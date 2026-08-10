@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
@@ -8,15 +7,23 @@ import BottomNav from "@/components/BottomNav";
 
 type Post = {
   id: string;
+  user_id: string;
+  title?: string | null;
   content: string;
   created_at: string;
+};
+
+type Profile = {
   user_id: string;
-  profiles?: {
-    id: string;
-    full_name: string | null;
-    qualification: string | null;
-    profile_image: string | null;
-  } | null;
+  full_name?: string | null;
+  qualification?: string | null;
+  profile_image?: string | null;
+};
+
+type Like = {
+  id: string;
+  post_id: string;
+  user_id: string;
 };
 
 type Comment = {
@@ -25,42 +32,17 @@ type Comment = {
   user_id: string;
   content: string;
   created_at: string;
-  profiles?: {
-    full_name: string | null;
-  } | null;
-};
-
-type Like = {
-  post_id: string;
-  user_id: string;
 };
 
 export default function HomePage() {
   const [posts, setPosts] = useState<Post[]>([]);
-
-  const [comments, setComments] = useState<{
-    [key: string]: Comment[];
-  }>({});
-
-  const [commentText, setCommentText] = useState<{
-    [key: string]: string;
-  }>({});
-
-  const [commentsOpen, setCommentsOpen] = useState<{
-    [key: string]: boolean;
-  }>({});
-
-  const [likes, setLikes] = useState<{
-    [key: string]: boolean;
-  }>({});
-
-  const [likeCounts, setLikeCounts] = useState<{
-    [key: string]: number;
-  }>({});
-
-  const [userId, setUserId] = useState<string | null>(null);
-
+  const [profiles, setProfiles] = useState<Record<string, Profile>>({});
+  const [likes, setLikes] = useState<Record<string, Like[]>>({});
+  const [comments, setComments] = useState<Record<string, Comment[]>>({});
+  const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
+  const [commentText, setCommentText] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     loadHome();
@@ -74,42 +56,19 @@ export default function HomePage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      setLoading(false);
+      window.location.href = "/login";
       return;
     }
 
     setUserId(user.id);
 
-    const { data: followData } = await supabase
-      .from("follows")
-      .select("followed_user")
-      .eq("following_user", user.id);
-
-    const followingIds =
-      followData?.map(
-        (follow) => follow.followed_user
-      ) ?? [];
-
-    const ids = [user.id, ...followingIds];
-
-    const {
-      data: postData,
-      error: postError,
-    } = await supabase
+    const { data: postData, error: postError } = await supabase
       .from("posts")
-      .select(`
-        id,
-        content,
-        created_at,
-        user_id
-      `)
-      .in("user_id", ids)
-      .order("created_at", {
-        ascending: false,
-      });
+      .select("*")
+      .order("created_at", { ascending: false });
 
     console.log("HOME POSTS", postData);
-    console.log("HOME ERROR", postError);
+    console.log("HOME POST ERROR", postError);
 
     if (!postData) {
       setPosts([]);
@@ -117,291 +76,305 @@ export default function HomePage() {
       return;
     }
 
-    const postsWithProfiles: Post[] =
-      await Promise.all(
-        postData.map(async (post) => {
-          const { data: profile } =
-            await supabase
-              .from("pt_profiles")
-              .select(`
-                id,
-                full_name,
-                qualification,
-                profile_image
-              `)
-              .eq("user_id", post.user_id)
-              .maybeSingle();
+    setPosts(postData);
 
-          return {
-            ...post,
-            profiles: profile,
-          };
-        })
-      );
+    const userIds = [
+      ...new Set(postData.map((post) => post.user_id)),
+    ];
 
-    setPosts(postsWithProfiles);
+    if (userIds.length > 0) {
+      const { data: profileData } = await supabase
+        .from("pt_profiles")
+        .select("user_id, full_name, qualification, profile_image")
+        .in("user_id", userIds);
 
-    const postIds =
-      postsWithProfiles.map(
-        (post) => post.id
-      );
+      const profileMap: Record<string, Profile> = {};
 
-    if (postIds.length > 0) {
-      const {
-        data: likeData,
-        error: likeError,
-      } = await supabase
-        .from("likes")
-        .select("post_id, user_id")
-        .in("post_id", postIds);
+      (profileData || []).forEach((profile) => {
+        profileMap[profile.user_id] = profile;
+      });
 
-      console.log("ALL LIKES", likeData);
-      console.log("ALL LIKE ERROR", likeError);
-
-      if (!likeError && likeData) {
-        const counts: {
-          [key: string]: number;
-        } = {};
-
-        const myLikes: {
-          [key: string]: boolean;
-        } = {};
-
-        postIds.forEach((postId) => {
-          counts[postId] = 0;
-          myLikes[postId] = false;
-        });
-
-        likeData.forEach(
-          (like: Like) => {
-            counts[like.post_id] =
-              (counts[like.post_id] ?? 0) + 1;
-
-            if (
-              like.user_id === user.id
-            ) {
-              myLikes[
-                like.post_id
-              ] = true;
-            }
-          }
-        );
-
-        setLikeCounts(counts);
-        setLikes(myLikes);
-      }
+      setProfiles(profileMap);
     }
 
-    for (
-      const post of postsWithProfiles
-    ) {
-      await loadComments(post.id);
+    const postIds = postData.map((post) => post.id);
+
+    if (postIds.length > 0) {
+      // =========================
+      // いいね取得
+      // =========================
+      const { data: likeData, error: likeError } = await supabase
+        .from("likes")
+        .select("*")
+        .in("post_id", postIds);
+
+      console.log("HOME LIKES", likeData);
+      console.log("HOME LIKE ERROR", likeError);
+
+      const likeMap: Record<string, Like[]> = {};
+
+      postIds.forEach((postId) => {
+        likeMap[postId] = [];
+      });
+
+      (likeData || []).forEach((like) => {
+        if (!likeMap[like.post_id]) {
+          likeMap[like.post_id] = [];
+        }
+
+        likeMap[like.post_id].push(like);
+      });
+
+      setLikes(likeMap);
+
+      // =========================
+      // コメント取得
+      // =========================
+      const { data: commentData, error: commentError } =
+        await supabase
+          .from("comments")
+          .select("*")
+          .in("post_id", postIds)
+          .order("created_at", {
+            ascending: true,
+          });
+
+      console.log("HOME COMMENTS", commentData);
+      console.log("HOME COMMENT ERROR", commentError);
+
+      const commentMap: Record<string, Comment[]> = {};
+      const commentCountMap: Record<string, number> = {};
+
+      postIds.forEach((postId) => {
+        commentMap[postId] = [];
+        commentCountMap[postId] = 0;
+      });
+
+      (commentData || []).forEach((comment) => {
+        if (!commentMap[comment.post_id]) {
+          commentMap[comment.post_id] = [];
+        }
+
+        commentMap[comment.post_id].push(comment);
+
+        commentCountMap[comment.post_id] =
+          (commentCountMap[comment.post_id] || 0) + 1;
+      });
+
+      setComments(commentMap);
+      setCommentCounts(commentCountMap);
     }
 
     setLoading(false);
   }
 
-  async function toggleLike(
-    postId: string
-  ) {
+  async function toggleLike(postId: string) {
     if (!userId) {
       return;
     }
 
-    const liked =
-      likes[postId] ?? false;
+    const currentLikes = likes[postId] || [];
 
-    if (liked) {
-      const { error } =
-        await supabase
-          .from("likes")
-          .delete()
-          .eq(
-            "post_id",
-            postId
-          )
-          .eq(
-            "user_id",
-            userId
-          );
+    const myLike = currentLikes.find(
+      (like) => like.user_id === userId
+    );
 
-      console.log(
-        "LIKE DELETE ERROR",
-        error
-      );
+    if (myLike) {
+      const { error } = await supabase
+        .from("likes")
+        .delete()
+        .eq("id", myLike.id);
 
       if (error) {
+        alert(error.message);
         return;
       }
 
       setLikes((prev) => ({
         ...prev,
-        [postId]: false,
-      }));
-
-      setLikeCounts((prev) => ({
-        ...prev,
-        [postId]: Math.max(
-          0,
-          (prev[postId] ?? 0) - 1
+        [postId]: (prev[postId] || []).filter(
+          (like) => like.id !== myLike.id
         ),
-      }));
-    } else {
-      const { error } =
-        await supabase
-          .from("likes")
-          .insert({
-            post_id: postId,
-            user_id: userId,
-          });
-
-      console.log(
-        "LIKE INSERT ERROR",
-        error
-      );
-
-      if (error) {
-        return;
-      }
-
-      setLikes((prev) => ({
-        ...prev,
-        [postId]: true,
-      }));
-
-      setLikeCounts((prev) => ({
-        ...prev,
-        [postId]:
-          (prev[postId] ?? 0) + 1,
-      }));
-    }
-  }
-
-  async function loadComments(
-    postId: string
-  ) {
-    const {
-      data,
-      error,
-    } = await supabase
-      .from("comments")
-      .select("*")
-      .eq(
-        "post_id",
-        postId
-      )
-      .order(
-        "created_at",
-        {
-          ascending: true,
-        }
-      );
-
-    console.log("COMMENTS", data);
-    console.log("COMMENT ERROR", error);
-
-    if (!data) {
-      setComments((prev) => ({
-        ...prev,
-        [postId]: [],
       }));
 
       return;
     }
 
-    const commentsWithProfiles: Comment[] =
-      await Promise.all(
-        data.map(
-          async (comment) => {
-            const {
-              data: profile,
-            } = await supabase
-              .from("pt_profiles")
-              .select("full_name")
-              .eq(
-                "user_id",
-                comment.user_id
-              )
-              .maybeSingle();
+    const { data, error } = await supabase
+      .from("likes")
+      .insert({
+        post_id: postId,
+        user_id: userId,
+      })
+      .select()
+      .single();
 
-            return {
-              ...comment,
-              profiles: profile,
-            };
-          }
-        )
-      );
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (data) {
+      setLikes((prev) => ({
+        ...prev,
+        [postId]: [...(prev[postId] || []), data],
+      }));
+    }
+  }
+
+  async function loadComments(postId: string) {
+    const { data, error } = await supabase
+      .from("comments")
+      .select("*")
+      .eq("post_id", postId)
+      .order("created_at", {
+        ascending: true,
+      });
+
+    if (error) {
+      console.log("COMMENTS ERROR", error.message);
+      return;
+    }
 
     setComments((prev) => ({
       ...prev,
-      [postId]:
-        commentsWithProfiles,
+      [postId]: data || [],
+    }));
+
+    setCommentCounts((prev) => ({
+      ...prev,
+      [postId]: data?.length || 0,
     }));
   }
 
-  async function addComment(
-    postId: string
+  async function addComment(postId: string) {
+    const text = commentText[postId]?.trim();
+
+    if (!text || !userId) {
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("comments")
+      .insert({
+        post_id: postId,
+        user_id: userId,
+        content: text,
+      })
+      .select()
+      .single();
+
+    console.log("COMMENT INSERT DATA", data);
+    console.log("COMMENT INSERT ERROR", error);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (data) {
+      setComments((prev) => ({
+        ...prev,
+        [postId]: [...(prev[postId] || []), data],
+      }));
+
+      setCommentCounts((prev) => ({
+        ...prev,
+        [postId]: (prev[postId] || 0) + 1,
+      }));
+    }
+
+    setCommentText((prev) => ({
+      ...prev,
+      [postId]: "",
+    }));
+  }
+
+  async function deleteComment(
+    postId: string,
+    commentId: string
   ) {
+    const { error } = await supabase
+      .from("comments")
+      .delete()
+      .eq("id", commentId)
+      .eq("user_id", userId);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    setComments((prev) => ({
+      ...prev,
+      [postId]: (prev[postId] || []).filter(
+        (comment) => comment.id !== commentId
+      ),
+    }));
+
+    setCommentCounts((prev) => ({
+      ...prev,
+      [postId]: Math.max(
+        0,
+        (prev[postId] || 0) - 1
+      ),
+    }));
+  }
+
+  async function deletePost(postId: string) {
     if (!userId) {
       return;
     }
 
-    const text =
-      commentText[postId] ?? "";
-
-    if (
-      text.trim() === ""
-    ) {
-      return;
-    }
-
-    const { error } =
-      await supabase
-        .from("comments")
-        .insert({
-          post_id: postId,
-          user_id: userId,
-          content:
-            text.trim(),
-        });
-
-    console.log(
-      "ADD COMMENT ERROR",
-      error
-    );
+    const { error } = await supabase
+      .from("posts")
+      .delete()
+      .eq("id", postId)
+      .eq("user_id", userId);
 
     if (error) {
+      alert(error.message);
       return;
     }
 
-    setCommentText(
-      (prev) => ({
-        ...prev,
-        [postId]: "",
-      })
+    setPosts((prev) =>
+      prev.filter((post) => post.id !== postId)
     );
 
-    await loadComments(
-      postId
-    );
+    setLikes((prev) => {
+      const next = { ...prev };
+      delete next[postId];
+      return next;
+    });
+
+    setComments((prev) => {
+      const next = { ...prev };
+      delete next[postId];
+      return next;
+    });
+
+    setCommentCounts((prev) => {
+      const next = { ...prev };
+      delete next[postId];
+      return next;
+    });
   }
 
-  function toggleComments(
-    postId: string
-  ) {
-    setCommentsOpen(
-      (prev) => ({
-        ...prev,
-        [postId]:
-          !(prev[postId] ?? false),
-      })
+  function getProfile(profileUserId: string) {
+    return (
+      profiles[profileUserId] || {
+        user_id: profileUserId,
+        full_name: "PTユーザー",
+        qualification: "理学療法士",
+        profile_image: null,
+      }
     );
   }
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">
-        <p className="text-sm text-gray-400">
+      <main className="min-h-screen bg-white flex items-center justify-center">
+        <p className="text-gray-500">
           読み込み中...
         </p>
       </main>
@@ -409,301 +382,247 @@ export default function HomePage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#fafafa] pb-24">
+    <main className="min-h-screen bg-gray-50 pb-24">
 
-      {/* ヘッダー */}
-      <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
+      <div className="max-w-xl mx-auto">
 
-        <div className="max-w-xl mx-auto px-5 py-4 flex items-center justify-between">
+        {/* ヘッダー */}
+        <header className="sticky top-0 z-10 bg-white border-b px-5 py-4">
+          <div className="flex items-center justify-between">
+            <h1 className="text-xl font-semibold">
+              Physinno
+            </h1>
 
-          <h1 className="text-xl font-semibold tracking-tight">
-            Physinno
-          </h1>
-
-          <span className="text-xs text-gray-400">
-            PT community
-          </span>
-
-        </div>
-
-      </header>
-
-      {/* フィード */}
-      <div className="max-w-xl mx-auto px-3 sm:px-4 py-5">
-
-        {posts.length === 0 && (
-          <div className="bg-white border border-gray-100 rounded-2xl px-6 py-12 text-center shadow-sm">
-
-            <p className="text-sm text-gray-400">
-              投稿がありません
+            <p className="text-sm text-gray-500">
+              Platform for PT
             </p>
-
-            <Link
-              href="/posts/create"
-              className="inline-block mt-4 text-sm font-medium underline underline-offset-4"
-            >
-              最初の投稿をする
-            </Link>
-
           </div>
-        )}
+        </header>
 
-        <div className="space-y-4">
+        {/* 投稿一覧 */}
+        <div className="space-y-4 py-4">
 
-          {posts.map((post) => (
-            <article
-              key={post.id}
-              className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)]"
-            >
+          {posts.length === 0 ? (
+            <div className="bg-white px-5 py-12 text-center">
+              <p className="text-gray-400">
+                まだ投稿がありません
+              </p>
+            </div>
+          ) : (
+            posts.map((post) => {
 
-              {/* 投稿者 */}
-              <Link
-                href={`/pts/${post.user_id}`}
-                className="flex items-center gap-3 px-4 py-4 transition hover:bg-gray-50"
-              >
+              const profile = getProfile(post.user_id);
+              const postLikes = likes[post.id] || [];
 
-                <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
+              const myLike = postLikes.some(
+                (like) => like.user_id === userId
+              );
 
-                  {post.profiles?.profile_image ? (
-                    <img
-                      src={
-                        post.profiles
-                          .profile_image
-                      }
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
-                  ) : (
-                    <span className="text-xs font-medium text-gray-400">
-                      PT
-                    </span>
-                  )}
+              const postComments = comments[post.id] || [];
+              const postCommentCount =
+                commentCounts[post.id] || 0;
 
-                </div>
+              return (
+                <article
+                  key={post.id}
+                  className="bg-white border-y"
+                >
 
-                <div className="min-w-0">
+                  {/* 投稿者 */}
+                  <div className="flex items-center gap-3 px-5 py-4">
 
-                  <p className="truncate text-sm font-semibold text-gray-900">
-                    {post.profiles?.full_name ??
-                      "PTユーザー"}
-                  </p>
+                    <Link href={`/pts/${post.user_id}`}>
 
-                  <p className="mt-0.5 text-xs text-gray-400">
-                    {post.profiles?.qualification ??
-                      "理学療法士"}
-                  </p>
+                      {profile.profile_image ? (
+                        <img
+                          src={profile.profile_image}
+                          alt={profile.full_name || ""}
+                          className="w-11 h-11 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-11 h-11 rounded-full bg-gray-200 flex items-center justify-center text-xl">
+                          👤
+                        </div>
+                      )}
 
-                </div>
+                    </Link>
 
-              </Link>
+                    <div className="flex-1">
 
-              {/* 投稿本文 */}
-              <Link
-                href={`/posts/${post.id}`}
-                className="block px-4 pb-5"
-              >
-
-                <p className="whitespace-pre-wrap text-[15px] leading-7 text-gray-800">
-                  {post.content}
-                </p>
-
-              </Link>
-
-              {/* アクション */}
-              <div className="border-t border-gray-100 px-4 py-3">
-
-                <div className="flex items-center gap-5">
-
-                  <button
-                    onClick={() =>
-                      toggleLike(
-                        post.id
-                      )
-                    }
-                    className="flex items-center gap-1.5 text-sm transition active:scale-90"
-                    aria-label="いいね"
-                  >
-
-                    <span className="text-xl leading-none">
-                      {likes[
-                        post.id
-                      ]
-                        ? "❤️"
-                        : "♡"}
-                    </span>
-
-                    <span className="text-gray-500">
-                      {likeCounts[
-                        post.id
-                      ] ?? 0}
-                    </span>
-
-                  </button>
-
-                  <button
-                    onClick={() =>
-                      toggleComments(
-                        post.id
-                      )
-                    }
-                    className="flex items-center gap-1.5 text-sm text-gray-500 transition active:scale-95"
-                    aria-label="コメント"
-                  >
-
-                    <span className="text-base">
-                      💬
-                    </span>
-
-                    <span>
-                      {comments[
-                        post.id
-                      ]?.length ?? 0}
-                    </span>
-
-                  </button>
-
-                  <Link
-                    href={`/posts/${post.id}`}
-                    className="ml-auto text-xs text-gray-400"
-                  >
-                    詳細を見る →
-                  </Link>
-
-                </div>
-
-              </div>
-
-              {/* コメント */}
-              {commentsOpen[
-                post.id
-              ] && (
-                <div className="border-t border-gray-100 bg-[#fafafa]">
-
-                  <div className="px-4 pt-3">
-
-                    {(
-                      comments[
-                        post.id
-                      ]?.length ?? 0
-                    ) === 0 ? (
-                      <p className="py-2 text-sm text-gray-400">
-                        まだコメントはありません
+                      <p className="font-semibold">
+                        {profile.full_name || "PTユーザー"} PT
                       </p>
-                    ) : (
-                      comments[
-                        post.id
-                      ]?.map(
-                        (comment) => (
-                          <div
-                            key={
-                              comment.id
-                            }
-                            className="border-b border-gray-100 py-2.5 last:border-0"
-                          >
 
-                            <Link
-                              href={`/pts/${comment.user_id}`}
-                              className="mr-2 text-sm font-semibold text-gray-800"
-                            >
-                              {comment.profiles?.full_name ??
-                                "ユーザー"}
-                            </Link>
+                      <p className="text-xs text-gray-500">
+                        {profile.qualification || "理学療法士"}
+                      </p>
 
-                            <span className="break-words text-sm text-gray-600">
-                              {
-                                comment.content
-                              }
-                            </span>
+                    </div>
 
-                          </div>
-                        )
-                      )
+                    {/* 自分の投稿だけ削除 */}
+                    {post.user_id === userId && (
+                      <button
+                        onClick={() => deletePost(post.id)}
+                        className="text-xs text-gray-400 hover:text-red-500"
+                      >
+                        削除
+                      </button>
                     )}
 
                   </div>
 
-                  {/* コメント入力 */}
-                  <div className="border-t border-gray-100 bg-white px-4 py-3">
+                  {/* 投稿内容 */}
+                  <Link href={`/posts/${post.id}`}>
+                    <div className="px-5 pb-4">
 
-                    <div className="flex gap-2">
+                      {post.title && (
+                        <h2 className="font-semibold text-lg mb-2">
+                          {post.title}
+                        </h2>
+                      )}
 
-                      <input
-                        value={
-                          commentText[
-                            post.id
-                          ] ?? ""
-                        }
-                        onChange={(e) =>
-                          setCommentText(
-                            (prev) => ({
-                              ...prev,
-                              [post.id]:
-                                e.target
-                                  .value,
-                            })
-                          )
-                        }
-                        onKeyDown={(e) => {
-                          if (
-                            e.key ===
-                            "Enter"
-                          ) {
-                            e.preventDefault();
+                      <p className="whitespace-pre-wrap leading-7">
+                        {post.content}
+                      </p>
 
-                            addComment(
-                              post.id
-                            );
-                          }
-                        }}
-                        placeholder="コメントを書く..."
-                        className="
-                          min-w-0
-                          flex-1
-                          rounded-full
-                          border
-                          border-gray-200
-                          bg-gray-50
-                          px-4
-                          py-2.5
-                          text-sm
-                          outline-none
-                          transition
-                          focus:border-gray-300
-                          focus:bg-white
-                        "
-                      />
+                    </div>
+                  </Link>
 
+                  {/* アクション */}
+                  <div className="px-5 py-3 border-t">
+
+                    <div className="flex items-center gap-5">
+
+                      {/* いいね */}
                       <button
-                        onClick={() =>
-                          addComment(
-                            post.id
-                          )
-                        }
-                        className="
-                          shrink-0
-                          rounded-full
-                          bg-black
-                          px-4
-                          text-sm
-                          font-medium
-                          text-white
-                          transition
-                          hover:bg-gray-800
-                          active:scale-95
-                        "
+                        onClick={() => toggleLike(post.id)}
+                        className="flex items-center gap-1 active:scale-95 transition"
                       >
-                        送信
+                        <span className="text-2xl">
+                          {myLike ? "❤️" : "🤍"}
+                        </span>
+
+                        <span className="text-sm">
+                          いいね {postLikes.length}
+                        </span>
+                      </button>
+
+                      {/* コメント */}
+                      <button
+                        onClick={() => loadComments(post.id)}
+                        className="flex items-center gap-1 active:scale-95 transition"
+                      >
+                        <span className="text-2xl">
+                          💬
+                        </span>
+
+                        <span className="text-sm">
+                          コメント {postCommentCount}
+                        </span>
                       </button>
 
                     </div>
 
+                    {/* コメント */}
+                    {comments[post.id] !== undefined && (
+                      <div className="mt-4 space-y-3">
+
+                        {postComments.length === 0 ? (
+                          <p className="text-sm text-gray-400">
+                            まだコメントはありません
+                          </p>
+                        ) : (
+                          postComments.map((comment) => {
+
+                            const commentProfile =
+                              getProfile(comment.user_id);
+
+                            return (
+                              <div
+                                key={comment.id}
+                                className="flex items-start gap-3"
+                              >
+
+                                {commentProfile.profile_image ? (
+                                  <img
+                                    src={commentProfile.profile_image}
+                                    alt=""
+                                    className="w-8 h-8 rounded-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm">
+                                    👤
+                                  </div>
+                                )}
+
+                                <div className="flex-1">
+
+                                  <div className="flex items-center gap-2">
+
+                                    <span className="font-semibold text-sm">
+                                      {commentProfile.full_name || "PTユーザー"} PT
+                                    </span>
+
+                                    {comment.user_id === userId && (
+                                      <button
+                                        onClick={() =>
+                                          deleteComment(
+                                            post.id,
+                                            comment.id
+                                          )
+                                        }
+                                        className="text-xs text-gray-400 hover:text-red-500"
+                                      >
+                                        削除
+                                      </button>
+                                    )}
+
+                                  </div>
+
+                                  <p className="text-sm mt-1">
+                                    {comment.content}
+                                  </p>
+
+                                </div>
+
+                              </div>
+                            );
+                          })
+                        )}
+
+                        {/* コメント入力 */}
+                        <div className="flex gap-2">
+
+                          <input
+                            value={commentText[post.id] || ""}
+                            onChange={(e) =>
+                              setCommentText((prev) => ({
+                                ...prev,
+                                [post.id]: e.target.value,
+                              }))
+                            }
+                            placeholder="コメントを入力..."
+                            className="flex-1 border rounded-full px-4 py-2 text-sm"
+                          />
+
+                          <button
+                            onClick={() => addComment(post.id)}
+                            className="px-4 py-2 rounded-full bg-black text-white text-sm"
+                          >
+                            送信
+                          </button>
+
+                        </div>
+
+                      </div>
+                    )}
+
                   </div>
 
-                </div>
-              )}
-
-            </article>
-          ))}
+                </article>
+              );
+            })
+          )}
 
         </div>
 

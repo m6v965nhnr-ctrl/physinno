@@ -3,224 +3,106 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-
+import BottomNav from "@/components/BottomNav";
 
 export default function CreatePostPage() {
-
-
   const router = useRouter();
 
-
   const [title, setTitle] = useState("");
-
   const [content, setContent] = useState("");
 
-
-
-
-
-  async function createPost(){
-
-
-
+  async function createPost() {
     const {
-      data:{
-        user
-      }
+      data: { user },
     } = await supabase.auth.getUser();
 
-
-
-
-
-    if(!user){
-
+    if (!user) {
       alert("ログインしてください");
-
+      router.push("/login");
       return;
-
     }
 
-
-
-
-
-    const {
-      error
-    } = await supabase
-
+    const { error } = await supabase
       .from("posts")
-
       .insert({
-
-        user_id:user.id,
-
-        post_type:"text",
-
+        user_id: user.id,
+        post_type: "text",
         title,
-
         content,
-
       });
 
+    console.log("CREATE POST ERROR", error);
 
-
-
-
-
-    console.log("CREATE POST ERROR",error);
-
-
-
-
-
-    if(error){
-
+    if (error) {
       alert(error.message);
-
       return;
-
     }
-
-
-
-
 
     alert("投稿しました");
 
-
-
     router.push("/home");
-
-
   }
 
-
-
-
-
-
-
   return (
+    <main className="min-h-screen bg-white px-6 py-12 pb-24">
 
-    <main className="
-      min-h-screen
-      bg-white
-      px-6
-      py-12
-      pb-24
-    ">
+      <div className="mx-auto max-w-xl">
 
-
-
-      <div className="
-        max-w-xl
-        mx-auto
-      ">
-
-
-        <h1 className="
-          text-3xl
-          font-semibold
-          mb-10
-        ">
-
+        <h1 className="mb-10 text-3xl font-semibold">
           投稿作成
-
         </h1>
-
-
-
-
-
 
         <div className="space-y-5">
 
-
           <input
-
             value={title}
-
-            onChange={(e)=>
+            onChange={(e) =>
               setTitle(e.target.value)
             }
-
             placeholder="タイトル"
-
             className="
               w-full
-              border
               rounded-2xl
+              border
               px-5
               py-3
             "
-
           />
-
-
-
-
-
 
           <textarea
-
             value={content}
-
-            onChange={(e)=>
+            onChange={(e) =>
               setContent(e.target.value)
             }
-
             placeholder="本文"
-
             rows={6}
-
             className="
               w-full
-              border
               rounded-2xl
+              border
               px-5
               py-3
             "
-
           />
 
-
-
-
-
-
-
           <button
-
             onClick={createPost}
-
             className="
               w-full
-              bg-black
-              text-white
               rounded-full
+              bg-black
               py-3
+              text-white
             "
-
           >
-
             投稿する
-
           </button>
 
-
-
         </div>
-
-
-
       </div>
 
-
+      <BottomNav />
 
     </main>
-
   );
-
-
 }

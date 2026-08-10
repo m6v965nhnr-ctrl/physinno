@@ -1,224 +1,132 @@
 "use client";
 
 import { useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
-export default function ReviewPage() {
-
-  const params = useParams();
+export default function RegisterPage() {
   const router = useRouter();
 
-  const id = params.id as string;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
+  async function handleRegister() {
+    setError("");
 
-  const [rating, setRating] = useState(5);
-  const [comment, setComment] = useState("");
-
-
-
-  async function submitReview() {
-
-
-    const {
-      data: userData
-    } = await supabase.auth.getUser();
-
-
-
-    const user = userData.user;
-
-
-    if (!user) {
-
-      alert("ログインしてください");
-
+    if (!email || !password) {
+      setError("メールアドレスとパスワードを入力してください");
       return;
-
     }
 
+    if (password.length < 6) {
+      setError("パスワードは6文字以上にしてください");
+      return;
+    }
 
+    setLoading(true);
 
-    const { error } = await supabase
-
-      .from("reviews")
-
-      .insert({
-
-        pt_id: id,
-
-        user_id: user.id,
-
-        rating,
-
-        comment,
-
-      });
-
-
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
 
     if (error) {
-
-      alert(error.message);
-
+      setError(error.message);
+      setLoading(false);
       return;
-
     }
 
+    if (!data.user) {
+      setError("登録に失敗しました");
+      setLoading(false);
+      return;
+    }
 
-
-    alert("レビューしました");
-
-
-    router.push(`/pts/${id}`);
-
-
+    router.push("/home");
   }
 
-
-
-
   return (
+    <main className="min-h-screen bg-[#fafafa] px-6 py-12">
+      <div className="mx-auto max-w-md">
 
-    <main className="min-h-screen bg-white px-6 py-12">
+        <Link
+          href="/"
+          className="text-sm text-gray-400"
+        >
+          ← Physinno
+        </Link>
 
-
-      <div className="max-w-md mx-auto">
-
-
-        <h1 className="text-3xl font-semibold mb-10">
-
-          レビューを書く
-
+        <h1 className="mt-10 text-3xl font-semibold tracking-tight">
+          新規登録
         </h1>
 
+        <p className="mt-3 text-sm text-gray-500">
+          Physinnoをはじめましょう
+        </p>
 
-
-        <div className="space-y-6">
-
-
+        <div className="mt-10 space-y-5">
 
           <div>
+            <label className="mb-2 block text-sm font-medium">
+              メールアドレス
+            </label>
 
-
-            <p className="mb-3">
-
-              評価
-
-            </p>
-
-
-
-            <select
-
-              value={rating}
-
-              onChange={(e)=>setRating(Number(e.target.value))}
-
-              className="
-                w-full
-                border
-                rounded-full
-                px-5
-                py-3
-              "
-
-            >
-
-              <option value="5">
-
-                ⭐⭐⭐⭐⭐
-
-              </option>
-
-
-              <option value="4">
-
-                ⭐⭐⭐⭐
-
-              </option>
-
-
-              <option value="3">
-
-                ⭐⭐⭐
-
-              </option>
-
-
-              <option value="2">
-
-                ⭐⭐
-
-              </option>
-
-
-              <option value="1">
-
-                ⭐
-
-              </option>
-
-
-            </select>
-
-
+            <input
+              type="email"
+              value={email}
+              onChange={(e) =>
+                setEmail(e.target.value)
+              }
+              placeholder="example@email.com"
+              className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+            />
           </div>
 
+          <div>
+            <label className="mb-2 block text-sm font-medium">
+              パスワード
+            </label>
 
+            <input
+              type="password"
+              value={password}
+              onChange={(e) =>
+                setPassword(e.target.value)
+              }
+              placeholder="6文字以上"
+              className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+            />
+          </div>
 
-
-          <textarea
-
-            placeholder="コメント"
-
-            value={comment}
-
-            onChange={(e)=>setComment(e.target.value)}
-
-            className="
-              w-full
-              border
-              rounded-2xl
-              px-5
-              py-4
-              h-40
-            "
-
-          />
-
-
-
-
+          {error && (
+            <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">
+              {error}
+            </p>
+          )}
 
           <button
-
-            onClick={submitReview}
-
-            className="
-              w-full
-              bg-black
-              text-white
-              rounded-full
-              py-3
-            "
-
+            onClick={handleRegister}
+            disabled={loading}
+            className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
-
-            投稿する
-
+            {loading ? "登録中..." : "新規登録"}
           </button>
 
-
+          <p className="text-center text-sm text-gray-500">
+            すでにアカウントをお持ちですか？
+            <Link
+              href="/login"
+              className="ml-1 font-medium text-gray-900 underline underline-offset-4"
+            >
+              ログイン
+            </Link>
+          </p>
 
         </div>
-
-
       </div>
-
-
     </main>
-
   );
-
 }

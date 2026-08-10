@@ -2,19 +2,47 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+
+type Post = {
+  id: string;
+  user_id: string;
+  title?: string | null;
+  content: string;
+  created_at: string;
+  like_count?: number | null;
+};
+
+type Profile = {
+  user_id: string;
+  full_name?: string | null;
+  qualification?: string | null;
+  profile_image?: string | null;
+};
+
+type Comment = {
+  id: string;
+  post_id: string;
+  user_id: string;
+  content: string;
+  created_at: string;
+};
 
 export default function PostDetailPage() {
   const params = useParams();
+  const router = useRouter();
+
   const id = params.id as string;
 
-  const [post, setPost] = useState<any>(null);
-  const [profile, setProfile] = useState<any>(null);
+  const [post, setPost] = useState<Post | null>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
   const [user, setUser] = useState<any>(null);
   const [liked, setLiked] = useState(false);
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
   const [commentText, setCommentText] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -23,6 +51,9 @@ export default function PostDetailPage() {
   }, [id]);
 
   async function loadPage() {
+    setLoading(true);
+    setNotFound(false);
+
     const {
       data: { user: userData },
     } = await supabase.auth.getUser();
@@ -34,23 +65,24 @@ export default function PostDetailPage() {
         .from("posts")
         .select("*")
         .eq("id", id)
-        .single();
+        .maybeSingle();
 
     console.log("POST DATA", postData);
     console.log("POST ERROR", postError);
 
-    if (!postData) {
+    if (postError || !postData) {
+      setPost(null);
+      setNotFound(true);
+      setLoading(false);
       return;
     }
 
     setPost(postData);
 
-    // 投稿者プロフィール
     const { data: profileData, error: profileError } =
       await supabase
         .from("pt_profiles")
         .select(`
-          id,
           user_id,
           full_name,
           qualification,
@@ -66,21 +98,36 @@ export default function PostDetailPage() {
       setProfile(profileData);
     }
 
-    // いいね状態
     if (userData) {
-      const { data: likeData } =
-        await supabase
-          .from("likes")
-          .select("*")
-          .eq("post_id", id)
-          .eq("user_id", userData.id);
+      const { data: likeData } = await supabase
+        .from("likes")
+        .select("id")
+        .eq("post_id", id)
+        .eq("user_id", userData.id);
 
-      if (likeData && likeData.length > 0) {
-        setLiked(true);
-      }
+      setLiked(!!likeData && likeData.length > 0);
     }
 
-    // コメント
+    const { data: allLikes, error: likesError } =
+      await supabase
+        .from("likes")
+        .select("id")
+        .eq("post_id", id);
+
+    console.log("LIKES DATA", allLikes);
+    console.log("LIKES ERROR", likesError);
+
+    if (!likesError) {
+      setPost((prev) =>
+        prev
+          ? {
+              ...prev,
+              like_count: allLikes?.length || 0,
+            }
+          : prev
+      );
+    }
+
     const {
       data: commentData,
       error: commentError,
@@ -95,14 +142,20 @@ export default function PostDetailPage() {
     console.log("COMMENT DATA", commentData);
     console.log("COMMENT ERROR", commentError);
 
-    if (commentData) {
-      setComments(commentData);
+    if (!commentError) {
+      setComments(commentData || []);
     }
+
+    setLoading(false);
   }
 
   async function toggleLike() {
     if (!user) {
       alert("ログインしてください");
+      return;
+    }
+
+    if (!post) {
       return;
     }
 
@@ -115,17 +168,20 @@ export default function PostDetailPage() {
 
       console.log("DELETE LIKE ERROR", error);
 
-      if (!error) {
-        setLiked(false);
-
-        setPost((prev: any) => ({
-          ...prev,
-          like_count: Math.max(
-            0,
-            (prev.like_count || 0) - 1
-          ),
-        }));
+      if (error) {
+        alert(error.message);
+        return;
       }
+
+      setLiked(false);
+
+      setPost((prev) => ({
+        ...prev!,
+        like_count: Math.max(
+          0,
+          (prev?.like_count || 0) - 1
+        ),
+      }));
     } else {
       const { error } = await supabase
         .from("likes")
@@ -136,14 +192,17 @@ export default function PostDetailPage() {
 
       console.log("INSERT LIKE ERROR", error);
 
-      if (!error) {
-        setLiked(true);
-
-        setPost((prev: any) => ({
-          ...prev,
-          like_count: (prev.like_count || 0) + 1,
-        }));
+      if (error) {
+        alert(error.message);
+        return;
       }
+
+      setLiked(true);
+
+      setPost((prev) => ({
+        ...prev!,
+        like_count: (prev?.like_count || 0) + 1,
+      }));
     }
   }
 
@@ -153,27 +212,61 @@ export default function PostDetailPage() {
       return;
     }
 
-    if (commentText.trim() === "") {
+    const text = commentText.trim();
+
+    if (!text) {
+      return;
+    }
+
+    const { data, error } = await supabase
+      .from("comments")
+      .insert({
+        user_id: user.id,
+        post_id: id,
+        content: text,
+      })
+      .select()
+      .single();
+
+    console.log("COMMENT INSERT DATA", data);
+    console.log("COMMENT INSERT ERROR", error);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    if (data) {
+      setComments((prev) => [data, ...prev]);
+    }
+
+    setCommentText("");
+  }
+
+  async function deleteComment(commentId: string) {
+    if (!user) {
       return;
     }
 
     const { error } = await supabase
       .from("comments")
-      .insert({
-        user_id: user.id,
-        post_id: id,
-        comment: commentText.trim(),
-      });
+      .delete()
+      .eq("id", commentId)
+      .eq("user_id", user.id);
 
-    console.log("COMMENT INSERT ERROR", error);
+    console.log("DELETE COMMENT ERROR", error);
 
-    if (!error) {
-      setCommentText("");
-      await loadPage();
+    if (error) {
+      alert(error.message);
+      return;
     }
+
+    setComments((prev) =>
+      prev.filter((comment) => comment.id !== commentId)
+    );
   }
 
-  if (!post) {
+  if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <p className="text-gray-500">
@@ -183,9 +276,77 @@ export default function PostDetailPage() {
     );
   }
 
+  if (notFound) {
+    return (
+      <main className="min-h-screen bg-white flex items-center justify-center px-6">
+        <div className="text-center">
+
+          <h1 className="text-xl font-semibold">
+            この投稿は存在しません
+          </h1>
+
+          <p className="mt-3 text-gray-500">
+            投稿が削除された可能性があります。
+          </p>
+
+          <button
+            onClick={() => router.push("/home")}
+            className="
+              mt-6
+              bg-black
+              text-white
+              rounded-full
+              px-6
+              py-3
+              active:scale-95
+              transition
+            "
+          >
+            HOMEへ戻る
+          </button>
+
+        </div>
+      </main>
+    );
+  }
+
+  if (!post) {
+    return null;
+  }
+
+  const isOwner = user?.id === post.user_id;
+
   return (
     <main className="min-h-screen bg-white px-6 py-12 pb-24">
+
       <div className="max-w-2xl mx-auto">
+
+        <div className="flex items-center justify-between mb-6">
+
+          <Link
+            href="/home"
+            className="text-sm text-gray-500 hover:text-black"
+          >
+            ← HOMEへ戻る
+          </Link>
+
+          {isOwner && (
+            <Link
+              href={`/posts/${id}/edit`}
+              className="
+                text-sm
+                border
+                rounded-full
+                px-4
+                py-2
+                hover:bg-gray-50
+              "
+            >
+              編集
+            </Link>
+          )}
+
+        </div>
 
         <h1 className="text-3xl font-semibold mb-8">
           投稿詳細
@@ -236,6 +397,7 @@ export default function PostDetailPage() {
               )}
 
               <div>
+
                 <p className="font-semibold">
                   {profile.full_name || "PTユーザー"} PT
                 </p>
@@ -243,7 +405,9 @@ export default function PostDetailPage() {
                 <p className="text-sm text-gray-500">
                   {profile.qualification || "理学療法士"}
                 </p>
+
               </div>
+
             </Link>
           ) : null}
 
@@ -324,6 +488,7 @@ export default function PostDetailPage() {
                 </button>
 
               </div>
+
             </div>
 
             {/* コメント一覧 */}
@@ -338,6 +503,8 @@ export default function PostDetailPage() {
                   <CommentItem
                     key={item.id}
                     comment={item}
+                    currentUserId={user?.id || ""}
+                    onDelete={deleteComment}
                   />
                 ))
               )}
@@ -345,19 +512,25 @@ export default function PostDetailPage() {
             </div>
 
           </div>
+
         </div>
 
       </div>
+
     </main>
   );
 }
 
 function CommentItem({
   comment,
+  currentUserId,
+  onDelete,
 }: {
-  comment: any;
+  comment: Comment;
+  currentUserId: string;
+  onDelete: (commentId: string) => void;
 }) {
-  const [profile, setProfile] = useState<any>(null);
+  const [profile, setProfile] = useState<Profile | null>(null);
 
   useEffect(() => {
     loadProfile();
@@ -382,9 +555,10 @@ function CommentItem({
   return (
     <div className="border rounded-xl p-4">
 
-      <div className="flex items-center gap-3">
+      <div className="flex items-start gap-3">
 
         <Link href={`/pts/${comment.user_id}`}>
+
           {profile?.profile_image ? (
             <img
               src={profile.profile_image}
@@ -413,19 +587,37 @@ function CommentItem({
               PT
             </div>
           )}
+
         </Link>
 
-        <div className="min-w-0">
+        <div className="min-w-0 flex-1">
 
-          <Link
-            href={`/pts/${comment.user_id}`}
-            className="font-semibold hover:underline"
-          >
-            {profile?.full_name || "ユーザー"}
-          </Link>
+          <div className="flex items-center gap-2">
+
+            <Link
+              href={`/pts/${comment.user_id}`}
+              className="font-semibold hover:underline"
+            >
+              {profile?.full_name || "ユーザー"}
+            </Link>
+
+            {comment.user_id === currentUserId && (
+              <button
+                onClick={() => onDelete(comment.id)}
+                className="
+                  text-xs
+                  text-gray-400
+                  hover:text-red-500
+                "
+              >
+                削除
+              </button>
+            )}
+
+          </div>
 
           <p className="mt-2 text-gray-700 whitespace-pre-wrap">
-            {comment.comment}
+            {comment.content}
           </p>
 
         </div>

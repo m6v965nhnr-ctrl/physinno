@@ -8,6 +8,7 @@ export default function EditProfilePage() {
   const router = useRouter();
 
   const [profileId, setProfileId] = useState("");
+
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
   const [specialty, setSpecialty] = useState("");
@@ -19,10 +20,17 @@ export default function EditProfilePage() {
   const [birthDate, setBirthDate] = useState("");
   const [language, setLanguage] = useState("");
   const [contact, setContact] = useState("");
-
   const [biography, setBiography] = useState("");
 
+  // プロフィール画像
+  const [profileImage, setProfileImage] = useState("");
+  const [selectedImage, setSelectedImage] =
+    useState<File | null>(null);
+  const [imagePreview, setImagePreview] = useState("");
+
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [userId, setUserId] = useState("");
 
   useEffect(() => {
     loadProfile();
@@ -34,15 +42,17 @@ export default function EditProfilePage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      setLoading(false);
+      router.replace("/login");
       return;
     }
+
+    setUserId(user.id);
 
     const { data, error } = await supabase
       .from("pt_profiles")
       .select("*")
       .eq("user_id", user.id)
-      .single();
+      .maybeSingle();
 
     console.log("EDIT PROFILE", data);
     console.log("EDIT ERROR", error);
@@ -67,46 +77,172 @@ export default function EditProfilePage() {
       setBirthDate(data.birth_date || "");
       setLanguage(data.languages || "");
       setContact(data.contact || "");
-
       setBiography(data.biography || "");
+
+      setProfileImage(data.profile_image || "");
+      setImagePreview(data.profile_image || "");
+    } else {
+      setFullName("");
+      setQualification("理学療法士");
     }
 
     setLoading(false);
   }
 
-  async function saveProfile() {
-    if (!profileId) {
-      alert("プロフィールが見つかりません");
+  // =========================
+  // 画像を選択
+  // =========================
+  function handleImageChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
       return;
     }
 
-    const { error } = await supabase
-      .from("pt_profiles")
-      .update({
-        full_name: fullName,
-        workplace,
-        specialty,
-        qualification,
-        experience_years: Number(experienceYears) || 0,
+    // 画像だけ許可
+    if (!file.type.startsWith("image/")) {
+      alert("画像ファイルを選択してください");
+      return;
+    }
 
-        education,
-        hometown,
-        birth_date: birthDate || null,
-        languages: language,
-        contact,
+    // 10MBまで
+    if (file.size > 10 * 1024 * 1024) {
+      alert("画像は10MB以下にしてください");
+      return;
+    }
 
-        biography,
-      })
-      .eq("id", profileId);
+    setSelectedImage(file);
 
-    console.log("SAVE ERROR", error);
+    const previewUrl = URL.createObjectURL(file);
+    setImagePreview(previewUrl);
+  }
+
+  // =========================
+  // 画像アップロード
+  // =========================
+  async function uploadProfileImage() {
+    if (!selectedImage || !userId) {
+      return profileImage;
+    }
+
+    const fileExtension =
+      selectedImage.name.split(".").pop() || "jpg";
+
+    const filePath =
+      `${userId}/${Date.now()}.${fileExtension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("profile-images")
+      .upload(filePath, selectedImage, {
+        upsert: true,
+        contentType: selectedImage.type,
+      });
+
+    console.log(
+      "PROFILE IMAGE UPLOAD ERROR",
+      uploadError
+    );
+
+    if (uploadError) {
+      alert(
+        `画像のアップロードに失敗しました\n${uploadError.message}`
+      );
+      return null;
+    }
+
+    const {
+      data: publicUrlData,
+    } = supabase.storage
+      .from("profile-images")
+      .getPublicUrl(filePath);
+
+    return publicUrlData.publicUrl;
+  }
+
+  // =========================
+  // プロフィール保存
+  // =========================
+  async function saveProfile() {
+    if (!userId) {
+      alert("ログインしてください");
+      return;
+    }
+
+    setSaving(true);
+
+    // 新しい画像が選択されていたらアップロード
+    let imageUrl = profileImage;
+
+    if (selectedImage) {
+      const uploadedUrl =
+        await uploadProfileImage();
+
+      if (!uploadedUrl) {
+        setSaving(false);
+        return;
+      }
+
+      imageUrl = uploadedUrl;
+    }
+
+    const profileData = {
+      user_id: userId,
+      full_name: fullName,
+      workplace,
+      specialty,
+      qualification,
+      experience_years:
+        Number(experienceYears) || 0,
+      education,
+      hometown,
+      birth_date: birthDate || null,
+      languages: language,
+      contact,
+      biography,
+      profile_image: imageUrl || null,
+    };
+
+    let error;
+
+    // 既存プロフィール → 更新
+    if (profileId) {
+      const result = await supabase
+        .from("pt_profiles")
+        .update(profileData)
+        .eq("id", profileId);
+
+      error = result.error;
+    }
+
+    // 新規プロフィール → 作成
+    else {
+      const result = await supabase
+        .from("pt_profiles")
+        .insert(profileData)
+        .select()
+        .single();
+
+      error = result.error;
+
+      if (result.data) {
+        setProfileId(result.data.id);
+      }
+    }
+
+    console.log("SAVE PROFILE ERROR", error);
 
     if (error) {
       alert(error.message);
+      setSaving(false);
       return;
     }
 
-    alert("プロフィールを更新しました");
+    setProfileImage(imageUrl);
+    setSelectedImage(null);
+
+    alert("プロフィールを保存しました");
 
     router.push("/mypage");
   }
@@ -130,6 +266,63 @@ export default function EditProfilePage() {
         </h1>
 
         <div className="space-y-7">
+
+          {/* =========================
+              プロフィール画像
+          ========================= */}
+          <div className="text-center">
+
+            <div className="mx-auto h-32 w-32 overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
+
+              {imagePreview ? (
+                <img
+                  src={imagePreview}
+                  alt="プロフィール画像"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span className="text-4xl">
+                  👤
+                </span>
+              )}
+
+            </div>
+
+            <label
+              htmlFor="profile-image"
+              className="
+                inline-block
+                mt-4
+                cursor-pointer
+                rounded-full
+                border
+                border-gray-300
+                bg-white
+                px-5
+                py-2.5
+                text-sm
+                font-medium
+                hover:bg-gray-50
+                active:scale-95
+                transition
+              "
+            >
+              写真を変更
+            </label>
+
+            <input
+              id="profile-image"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+
+            <p className="mt-2 text-xs text-gray-400">
+              JPG・PNGなど / 10MB以下
+            </p>
+
+          </div>
 
           {/* 名前 */}
           <div>
@@ -319,6 +512,7 @@ export default function EditProfilePage() {
           {/* 保存 */}
           <button
             onClick={saveProfile}
+            disabled={saving}
             className="
               w-full
               bg-black
@@ -328,9 +522,11 @@ export default function EditProfilePage() {
               font-semibold
               active:scale-95
               transition
+              disabled:opacity-50
+              disabled:cursor-not-allowed
             "
           >
-            保存
+            {saving ? "保存中..." : "保存"}
           </button>
 
         </div>

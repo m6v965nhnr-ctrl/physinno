@@ -1,10 +1,51 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 
-export default function BottomNav() {
+export default function BottomNavWrapper() {
   const pathname = usePathname();
+  const [loggedIn, setLoggedIn] = useState(false);
+
+  useEffect(() => {
+    async function checkLogin() {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      setLoggedIn(!!user);
+    }
+
+    checkLogin();
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setLoggedIn(!!session?.user);
+      }
+    );
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, []);
+
+  // ログイン前は表示しない
+  if (
+    pathname === "/" ||
+    pathname === "/login" ||
+    pathname === "/register"
+  ) {
+    return null;
+  }
+
+  // 未ログインなら表示しない
+  if (!loggedIn) {
+    return null;
+  }
 
   const menus = [
     {
@@ -58,7 +99,6 @@ export default function BottomNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-50 border-t bg-white/95 backdrop-blur">
       <div className="mx-auto flex max-w-xl items-center justify-around px-2 py-2">
-
         {menus.map((menu) => {
           const active = isActive(menu.href);
 
@@ -107,7 +147,6 @@ export default function BottomNav() {
             </Link>
           );
         })}
-
       </div>
     </nav>
   );

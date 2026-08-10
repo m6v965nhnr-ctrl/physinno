@@ -1,102 +1,41 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { supabase } from "@/lib/supabase";
+import Link from "next/link";
 
-export default function Home() {
-  const [user, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    async function getUser() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
-
-      setUser(user);
-    }
-
-    getUser();
-  }, []);
-
-  async function logout() {
-    await supabase.auth.signOut();
-    location.reload();
-  }
-
+export default function LandingPage() {
   return (
-    <main className="min-h-screen bg-white flex flex-col items-center justify-center px-6">
+    <main className="min-h-screen bg-[#fafafa] flex items-center justify-center px-6">
+      <div className="w-full max-w-md text-center">
 
-      <div className="w-full max-w-5xl">
+        <h1 className="text-4xl font-semibold tracking-tight text-gray-900">
+          Physinno
+        </h1>
 
-        <div className="flex justify-end mb-10">
+        <p className="mt-5 text-sm leading-7 text-gray-500">
+          理学療法士の価値を可視化し、
+          <br />
+          患者・PT・医療をつなぐプラットフォーム
+        </p>
 
-          {user ? (
-            <div className="flex items-center gap-4">
+        <div className="mt-12 space-y-3">
 
-              <span className="text-gray-700">
-                ログイン中
-              </span>
+          <Link
+            href="/login"
+            className="block w-full rounded-full bg-black px-6 py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 active:scale-[0.98]"
+          >
+            ログイン
+          </Link>
 
-              <button
-                onClick={logout}
-                className="border px-4 py-2 rounded-full"
-              >
-                ログアウト
-              </button>
-
-            </div>
-          ) : (
-            <div className="flex gap-3">
-
-              <a href="/login">
-                <button className="border px-5 py-2 rounded-full">
-                  ログイン
-                </button>
-              </a>
-
-              <a href="/register">
-                <button className="bg-black text-white px-5 py-2 rounded-full">
-                  新規登録
-                </button>
-              </a>
-
-            </div>
-          )}
-
-        </div>
-
-        <div className="text-center">
-
-          <h1 className="text-5xl font-bold text-gray-900 mb-6">
-            Physinno
-          </h1>
-
-          <p className="text-xl text-gray-600 mb-10">
-            理学療法士の価値を可視化し、
-            <br />
-            患者・PT・医療をつなぐプラットフォーム
-          </p>
-
-          <div className="flex gap-4 justify-center">
-
-            <a href="/pts">
-              <button className="bg-black text-white px-6 py-3 rounded-full">
-                PTを探す
-              </button>
-            </a>
-
-            <a href="/register">
-              <button className="border border-gray-300 px-6 py-3 rounded-full">
-                PTとして登録
-              </button>
-            </a>
-
-          </div>
+          <Link
+            href="/register"
+            className="block w-full rounded-full border border-gray-300 bg-white px-6 py-3.5 text-sm font-medium text-gray-900 transition hover:bg-gray-50 active:scale-[0.98]"
+          >
+            新規登録
+          </Link>
 
         </div>
 
       </div>
-
     </main>
   );
 }
