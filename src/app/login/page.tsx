@@ -5,108 +5,138 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter();
+const router = useRouter();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+const [email, setEmail] = useState("");
+const [password, setPassword] = useState("");
 
-  async function login() {
-    const { data, error } =
-      await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
+async function login() {
+const { data, error } =
+await supabase.auth.signInWithPassword({
+email,
+password,
+});
 
-    console.log(data);
-    console.log(error);
 
-    if (error) {
-      alert(error.message);
-      return;
-    }
+console.log(data);
+console.log(error);
 
-    alert("ログインしました");
+if (error) {
+  alert(error.message);
+  return;
+}
 
-    router.push("/home");
-  }
+alert("ログインしました");
 
-  return (
-    <main className="min-h-screen bg-white px-6 py-12">
-      <div className="max-w-md mx-auto">
+router.push("/home");
 
-        <h1 className="
-          text-3xl
-          font-semibold
-          mb-10
-        ">
-          ログイン
-        </h1>
 
-        <div className="space-y-5">
+}
 
-          <input
-            type="email"
-            placeholder="メールアドレス"
-            value={email}
-            onChange={(e) =>
-              setEmail(e.target.value)
-            }
-            className="
-              w-full
-              border
-              rounded-full
-              px-5
-              py-3
-            "
-          />
+return (
+<main
+style={{
+minHeight: "100vh",
+backgroundColor: "#ffffff",
+color: "#111111",
+padding: "48px 24px",
+}}
+>
+<div
+style={{
+maxWidth: "448px",
+margin: "0 auto",
+}}
+>
+<h1
+style={{
+color: "#111111",
+fontSize: "30px",
+fontWeight: 600,
+marginBottom: "40px",
+}}
+>
+ログイン </h1>
 
-          <input
-            type="password"
-            placeholder="パスワード"
-            value={password}
-            onChange={(e) =>
-              setPassword(e.target.value)
-            }
-            className="
-              w-full
-              border
-              rounded-full
-              px-5
-              py-3
-            "
-          />
 
-          <button
-            onClick={login}
-            className="
-              w-full
-              bg-black
-              text-white
-              rounded-full
-              py-3
-            "
-          >
-            ログイン
-          </button>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "20px",
+      }}
+    >
+      <input
+        type="email"
+        placeholder="メールアドレス"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "12px 20px",
+          border: "1px solid #999999",
+          borderRadius: "9999px",
+          backgroundColor: "#ffffff",
+          color: "#111111",
+          fontSize: "16px",
+          outline: "none",
+        }}
+      />
 
-          <button
-            onClick={() => router.push("/")}
-            className="
-              w-full
-              border
-              border-gray-300
-              bg-white
-              text-gray-700
-              rounded-full
-              py-3
-            "
-          >
-            最初の画面に戻る
-          </button>
+      <input
+        type="password"
+        placeholder="パスワード"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        style={{
+          width: "100%",
+          padding: "12px 20px",
+          border: "1px solid #999999",
+          borderRadius: "9999px",
+          backgroundColor: "#ffffff",
+          color: "#111111",
+          fontSize: "16px",
+          outline: "none",
+        }}
+      />
 
-        </div>
+      <button
+        onClick={login}
+        style={{
+          width: "100%",
+          padding: "12px",
+          border: "none",
+          borderRadius: "9999px",
+          backgroundColor: "#111111",
+          color: "#ffffff",
+          fontSize: "16px",
+          fontWeight: 500,
+          cursor: "pointer",
+        }}
+      >
+        ログイン
+      </button>
 
-      </div>
-    </main>
-  );
+      <button
+        onClick={() => router.push("/")}
+        style={{
+          width: "100%",
+          padding: "12px",
+          border: "1px solid #999999",
+          borderRadius: "9999px",
+          backgroundColor: "#ffffff",
+          color: "#222222",
+          fontSize: "16px",
+          fontWeight: 500,
+          cursor: "pointer",
+        }}
+      >
+        最初の画面に戻る
+      </button>
+    </div>
+  </div>
+</main>
+
+
+);
 }
