@@ -14,6 +14,7 @@ type Post = {
   video_url?: string | null;
   post_type?: string | null;
   disease_category?: string | null;
+  reference_url?: string | null;
 };
 
 type Profile = {
@@ -453,65 +454,87 @@ export default function HomePage() {
 
                   {/* 投稿内容 */}
                   <div className="px-5 pb-4">
-                    <Link href={`/posts/${post.id}`}>
-                      <div>
-                        {/* 症例報告 */}
-                        {post.post_type === "case" && (
-                          <div className="mb-2 flex items-center gap-2 -ml-2">
-                            <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600">
-                              症例報告
+                    <Link
+                      href={`/posts/${post.id}`}
+                      className="block"
+                    >
+                      {/* 症例報告 */}
+                      {post.post_type === "case" && (
+                        <div className="mb-2 flex items-center gap-2 -ml-2">
+                          <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600">
+                            症例報告
+                          </span>
+
+                          {post.disease_category && (
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                              {post.disease_category}
                             </span>
+                          )}
+                        </div>
+                      )}
 
-                            {post.disease_category && (
-                              <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
-                                {post.disease_category}
-                              </span>
-                            )}
-                          </div>
-                        )}
+                      {post.title && (
+                        <h2 className="font-semibold text-lg mb-2">
+                          {post.title}
+                        </h2>
+                      )}
 
-                        {post.title && (
-                          <h2 className="font-semibold text-lg mb-2">
-                            {post.title}
-                          </h2>
-                        )}
-
+                      {post.content && (
                         <p className="whitespace-pre-wrap leading-7">
                           {post.content}
                         </p>
+                      )}
 
-                        {/* 写真 */}
-                        {post.image_url && (
-                          <img
-                            src={post.image_url}
-                            alt="投稿画像"
-                            className="mt-4 w-full max-h-[600px] rounded-xl object-cover"
-                          />
-                        )}
+                      {/* 写真 */}
+                      {post.image_url && (
+                        <img
+                          src={post.image_url}
+                          alt="投稿画像"
+                          className="mt-4 w-full max-h-[600px] rounded-xl object-cover"
+                        />
+                      )}
 
-                        {/* 動画 */}
-                        {post.video_url && (
-                          <video
-                            src={post.video_url}
-                            controls
-                            playsInline
-                            className="mt-4 w-full max-h-[600px] rounded-xl"
-                          />
-                        )}
-                      </div>
+                      {/* 動画 */}
+                      {post.video_url && (
+                        <video
+                          src={post.video_url}
+                          controls
+                          playsInline
+                          className="mt-4 w-full max-h-[600px] rounded-xl"
+                        />
+                      )}
                     </Link>
 
-                    {/* 添付資料 */}
-                    {post.image_url && (
-                      <div className="mt-3">
-                        <a
-                          href={post.image_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-block rounded-lg border bg-gray-50 px-3 py-2 text-sm text-gray-600 hover:bg-gray-100"
-                        >
-                          📄 添付資料を開く
-                        </a>
+                    {/* 添付資料・参考URL */}
+                    {(post.image_url || post.reference_url) && (
+                      <div className="mt-3 space-y-2">
+                        {post.image_url && (
+                          <a
+                            href={post.image_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(event) =>
+                              event.stopPropagation()
+                            }
+                           className="block w-fit rounded-lg border bg-gray-50 px-2.5 py-1.5 text-xs text-gray-600 hover:bg-gray-100"
+                          >
+                            📄 添付資料を開く
+                          </a>
+                        )}
+
+                        {post.reference_url && (
+                          <a
+                            href={post.reference_url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={(event) =>
+                              event.stopPropagation()
+                            }
+                            className="block w-fit rounded-lg border bg-gray-50 px-2.5 py-1.5 text-xs text-gray-600 hover:bg-gray-100"
+                          >
+                            🔗 参考URLを開く
+                          </a>
+                        )}
                       </div>
                     )}
                   </div>
@@ -612,10 +635,10 @@ export default function HomePage() {
                         <div className="flex gap-2">
                           <input
                             value={commentText[post.id] || ""}
-                            onChange={(e) =>
+                            onChange={(event) =>
                               setCommentText((prev) => ({
                                 ...prev,
-                                [post.id]: e.target.value,
+                                [post.id]: event.target.value,
                               }))
                             }
                             placeholder="コメントを入力..."

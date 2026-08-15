@@ -21,6 +21,7 @@ export default function CreatePostPage() {
   const [title, setTitle] = useState("");
   const [diseaseCategory, setDiseaseCategory] = useState("");
   const [content, setContent] = useState("");
+  const [referenceUrl, setReferenceUrl] = useState("");
 
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -103,6 +104,7 @@ export default function CreatePostPage() {
           image_url: mediaUrl,
           post_type: "normal",
           disease_category: null,
+          reference_url: null,
         });
 
       if (error) {
@@ -129,8 +131,8 @@ export default function CreatePostPage() {
       return;
     }
 
-    if (!content.trim() && !mediaFile) {
-      alert("本文またはスライド・資料を添付してください");
+    if (!mediaFile && !referenceUrl.trim()) {
+      alert("スライド・資料または参考URLを追加してください");
       return;
     }
 
@@ -157,10 +159,11 @@ export default function CreatePostPage() {
         .insert({
           user_id: user.id,
           title: title.trim(),
-          content: content.trim(),
+          content: "",
           image_url: mediaUrl,
           post_type: "case",
           disease_category: diseaseCategory,
+          reference_url: referenceUrl.trim() || null,
         });
 
       if (error) {
@@ -207,7 +210,6 @@ export default function CreatePostPage() {
           </p>
 
           <div className="mt-8 space-y-4">
-
             {/* 通常投稿 */}
             <button
               onClick={() => setType("normal")}
@@ -251,7 +253,6 @@ export default function CreatePostPage() {
                 </div>
               </div>
             </button>
-
           </div>
         </div>
       </main>
@@ -264,10 +265,8 @@ export default function CreatePostPage() {
   if (type === "case") {
     return (
       <main className="min-h-screen bg-[#fafafa] pb-24">
-
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
-
             <button
               onClick={() => setType(null)}
               className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
@@ -286,14 +285,11 @@ export default function CreatePostPage() {
             >
               {posting ? "投稿中..." : "投稿"}
             </button>
-
           </div>
         </header>
 
         <div className="mx-auto max-w-2xl px-5 py-6">
-
           <div className="rounded-2xl border border-gray-100 bg-white p-5">
-
             {/* 症例報告ラベル */}
             <div className="mb-5">
               <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-semibold text-blue-600">
@@ -345,27 +341,9 @@ export default function CreatePostPage() {
               </select>
             </div>
 
-            {/* 本文 */}
-            <div className="mt-6">
-              <label className="text-sm font-semibold text-gray-900">
-                症例報告の本文
-              </label>
-
-              <textarea
-                value={content}
-                onChange={(event) =>
-                  setContent(event.target.value)
-                }
-                placeholder="症例の概要、評価、治療内容、経過、考察などを入力してください"
-                className="mt-2 min-h-[240px] w-full resize-none rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none placeholder:text-gray-400 focus:border-gray-500"
-              />
-            </div>
-
-            {/* 添付 */}
+            {/* 添付資料 */}
             <div className="mt-6 border-t border-gray-100 pt-5">
-
               <label className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-4 transition hover:bg-gray-50">
-
                 <span className="text-2xl">
                   📎
                 </span>
@@ -386,15 +364,33 @@ export default function CreatePostPage() {
                   onChange={handleMediaChange}
                   className="hidden"
                 />
+              </label>
+            </div>
 
+            {/* 参考URL */}
+            <div className="mt-6 border-t border-gray-100 pt-5">
+              <label className="text-sm font-semibold text-gray-900">
+                参考URL
               </label>
 
+              <input
+                type="url"
+                value={referenceUrl}
+                onChange={(event) =>
+                  setReferenceUrl(event.target.value)
+                }
+                placeholder="https://example.com"
+                className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+              />
+
+              <p className="mt-2 text-xs text-gray-400">
+                関連する論文・資料・WebページなどのURLを入力できます
+              </p>
             </div>
 
             {/* プレビュー */}
             {previewUrl && mediaFile && (
               <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100">
-
                 {mediaFile.type === "application/pdf" ? (
                   <div className="flex items-center gap-3 bg-gray-50 p-5">
                     <span className="text-3xl">
@@ -418,10 +414,8 @@ export default function CreatePostPage() {
                     className="max-h-[500px] w-full object-contain"
                   />
                 )}
-
               </div>
             )}
-
           </div>
         </div>
       </main>
@@ -433,11 +427,8 @@ export default function CreatePostPage() {
    */
   return (
     <main className="min-h-screen bg-[#fafafa] pb-24">
-
       <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
-
         <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
-
           <button
             onClick={() => setType(null)}
             className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
@@ -456,14 +447,11 @@ export default function CreatePostPage() {
           >
             {posting ? "投稿中..." : "投稿"}
           </button>
-
         </div>
       </header>
 
       <div className="mx-auto max-w-2xl px-5 py-6">
-
         <div className="rounded-2xl border border-gray-100 bg-white p-5">
-
           <textarea
             value={content}
             onChange={(event) =>
@@ -475,7 +463,6 @@ export default function CreatePostPage() {
 
           {previewUrl && mediaFile && (
             <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100">
-
               {mediaFile.type.startsWith("video/") ? (
                 <video
                   src={previewUrl}
@@ -489,14 +476,11 @@ export default function CreatePostPage() {
                   className="max-h-[500px] w-full object-contain"
                 />
               )}
-
             </div>
           )}
 
           <div className="mt-5 border-t border-gray-100 pt-4">
-
             <label className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-gray-50">
-
               <span className="text-2xl">
                 📷
               </span>
@@ -517,11 +501,8 @@ export default function CreatePostPage() {
                 onChange={handleMediaChange}
                 className="hidden"
               />
-
             </label>
-
           </div>
-
         </div>
       </div>
     </main>
