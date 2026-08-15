@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import BottomNav from "@/components/BottomNav";
 
 export default function EditPostPage() {
   const params = useParams();
@@ -184,7 +183,6 @@ export default function EditPostPage() {
 
       </div>
 
-      <BottomNav />
 
     </main>
   );

@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import BottomNav from "@/components/BottomNav";
 
 export default function MyPage() {
   const router = useRouter();
@@ -374,7 +373,6 @@ export default function MyPage() {
 
       </div>
 
-      <BottomNav />
 
     </main>
   );

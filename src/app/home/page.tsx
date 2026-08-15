@@ -3,7 +3,6 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import BottomNav from "@/components/BottomNav";
 
 type Post = {
   id: string;
@@ -11,6 +10,10 @@ type Post = {
   title?: string | null;
   content: string;
   created_at: string;
+  image_url?: string | null;
+  video_url?: string | null;
+  post_type?: string | null;
+  disease_category?: string | null;
 };
 
 type Profile = {
@@ -39,7 +42,9 @@ export default function HomePage() {
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [likes, setLikes] = useState<Record<string, Like[]>>({});
   const [comments, setComments] = useState<Record<string, Comment[]>>({});
-  const [commentCounts, setCommentCounts] = useState<Record<string, number>>({});
+  const [commentCounts, setCommentCounts] = useState<Record<string, number>>(
+    {}
+  );
   const [commentText, setCommentText] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
   const [userId, setUserId] = useState("");
@@ -78,9 +83,7 @@ export default function HomePage() {
 
     setPosts(postData);
 
-    const userIds = [
-      ...new Set(postData.map((post) => post.user_id)),
-    ];
+    const userIds = [...new Set(postData.map((post) => post.user_id))];
 
     if (userIds.length > 0) {
       const { data: profileData } = await supabase
@@ -100,9 +103,6 @@ export default function HomePage() {
     const postIds = postData.map((post) => post.id);
 
     if (postIds.length > 0) {
-      // =========================
-      // いいね取得
-      // =========================
       const { data: likeData, error: likeError } = await supabase
         .from("likes")
         .select("*")
@@ -127,17 +127,13 @@ export default function HomePage() {
 
       setLikes(likeMap);
 
-      // =========================
-      // コメント取得
-      // =========================
-      const { data: commentData, error: commentError } =
-        await supabase
-          .from("comments")
-          .select("*")
-          .in("post_id", postIds)
-          .order("created_at", {
-            ascending: true,
-          });
+      const { data: commentData, error: commentError } = await supabase
+        .from("comments")
+        .select("*")
+        .in("post_id", postIds)
+        .order("created_at", {
+          ascending: true,
+        });
 
       console.log("HOME COMMENTS", commentData);
       console.log("HOME COMMENT ERROR", commentError);
@@ -175,9 +171,7 @@ export default function HomePage() {
 
     const currentLikes = likes[postId] || [];
 
-    const myLike = currentLikes.find(
-      (like) => like.user_id === userId
-    );
+    const myLike = currentLikes.find((like) => like.user_id === userId);
 
     if (myLike) {
       const { error } = await supabase
@@ -290,10 +284,7 @@ export default function HomePage() {
     }));
   }
 
-  async function deleteComment(
-    postId: string,
-    commentId: string
-  ) {
+  async function deleteComment(postId: string, commentId: string) {
     const { error } = await supabase
       .from("comments")
       .delete()
@@ -314,10 +305,7 @@ export default function HomePage() {
 
     setCommentCounts((prev) => ({
       ...prev,
-      [postId]: Math.max(
-        0,
-        (prev[postId] || 0) - 1
-      ),
+      [postId]: Math.max(0, (prev[postId] || 0) - 1),
     }));
   }
 
@@ -337,9 +325,7 @@ export default function HomePage() {
       return;
     }
 
-    setPosts((prev) =>
-      prev.filter((post) => post.id !== postId)
-    );
+    setPosts((prev) => prev.filter((post) => post.id !== postId));
 
     setLikes((prev) => {
       const next = { ...prev };
@@ -371,46 +357,44 @@ export default function HomePage() {
     );
   }
 
+  function formatDate(dateString: string) {
+    const date = new Date(dateString);
+
+    return date.toLocaleDateString("ja-JP", {
+      year: "numeric",
+      month: "numeric",
+      day: "numeric",
+    });
+  }
+
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">
-          読み込み中...
-        </p>
+        <p className="text-gray-500">読み込み中...</p>
       </main>
     );
   }
 
   return (
     <main className="min-h-screen bg-gray-50 pb-24">
-
       <div className="max-w-xl mx-auto">
-
         {/* ヘッダー */}
         <header className="sticky top-0 z-10 bg-white border-b px-5 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold">
-              Physinno
-            </h1>
+            <h1 className="text-xl font-semibold">Physinno</h1>
 
-            <p className="text-sm text-gray-500">
-              Platform for PT
-            </p>
+            <p className="text-sm text-gray-500">Platform for PT</p>
           </div>
         </header>
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">
-
           {posts.length === 0 ? (
             <div className="bg-white px-5 py-12 text-center">
-              <p className="text-gray-400">
-                まだ投稿がありません
-              </p>
+              <p className="text-gray-400">まだ投稿がありません</p>
             </div>
           ) : (
             posts.map((post) => {
-
               const profile = getProfile(post.user_id);
               const postLikes = likes[post.id] || [];
 
@@ -419,20 +403,16 @@ export default function HomePage() {
               );
 
               const postComments = comments[post.id] || [];
-              const postCommentCount =
-                commentCounts[post.id] || 0;
+              const postCommentCount = commentCounts[post.id] || 0;
 
               return (
                 <article
                   key={post.id}
                   className="bg-white border-y"
                 >
-
                   {/* 投稿者 */}
                   <div className="flex items-center gap-3 px-5 py-4">
-
                     <Link href={`/pts/${post.user_id}`}>
-
                       {profile.profile_image ? (
                         <img
                           src={profile.profile_image}
@@ -444,11 +424,9 @@ export default function HomePage() {
                           👤
                         </div>
                       )}
-
                     </Link>
 
                     <div className="flex-1">
-
                       <p className="font-semibold">
                         {profile.full_name || "PTユーザー"} PT
                       </p>
@@ -457,6 +435,9 @@ export default function HomePage() {
                         {profile.qualification || "理学療法士"}
                       </p>
 
+                      <p className="mt-1 text-[10px] text-gray-400">
+                        {formatDate(post.created_at)}
+                      </p>
                     </div>
 
                     {/* 自分の投稿だけ削除 */}
@@ -468,31 +449,76 @@ export default function HomePage() {
                         削除
                       </button>
                     )}
-
                   </div>
 
                   {/* 投稿内容 */}
-                  <Link href={`/posts/${post.id}`}>
-                    <div className="px-5 pb-4">
+                  <div className="px-5 pb-4">
+                    <Link href={`/posts/${post.id}`}>
+                      <div>
+                        {/* 症例報告 */}
+                        {post.post_type === "case" && (
+                          <div className="mb-2 flex items-center gap-2 -ml-2">
+                            <span className="rounded-full bg-blue-50 px-3 py-1 text-sm font-semibold text-blue-600">
+                              症例報告
+                            </span>
 
-                      {post.title && (
-                        <h2 className="font-semibold text-lg mb-2">
-                          {post.title}
-                        </h2>
-                      )}
+                            {post.disease_category && (
+                              <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                                {post.disease_category}
+                              </span>
+                            )}
+                          </div>
+                        )}
 
-                      <p className="whitespace-pre-wrap leading-7">
-                        {post.content}
-                      </p>
+                        {post.title && (
+                          <h2 className="font-semibold text-lg mb-2">
+                            {post.title}
+                          </h2>
+                        )}
 
-                    </div>
-                  </Link>
+                        <p className="whitespace-pre-wrap leading-7">
+                          {post.content}
+                        </p>
+
+                        {/* 写真 */}
+                        {post.image_url && (
+                          <img
+                            src={post.image_url}
+                            alt="投稿画像"
+                            className="mt-4 w-full max-h-[600px] rounded-xl object-cover"
+                          />
+                        )}
+
+                        {/* 動画 */}
+                        {post.video_url && (
+                          <video
+                            src={post.video_url}
+                            controls
+                            playsInline
+                            className="mt-4 w-full max-h-[600px] rounded-xl"
+                          />
+                        )}
+                      </div>
+                    </Link>
+
+                    {/* 添付資料 */}
+                    {post.image_url && (
+                      <div className="mt-3">
+                        <a
+                          href={post.image_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-block rounded-lg border bg-gray-50 px-3 py-2 text-sm text-gray-600 hover:bg-gray-100"
+                        >
+                          📄 添付資料を開く
+                        </a>
+                      </div>
+                    )}
+                  </div>
 
                   {/* アクション */}
                   <div className="px-5 py-3 border-t">
-
                     <div className="flex items-center gap-5">
-
                       {/* いいね */}
                       <button
                         onClick={() => toggleLike(post.id)}
@@ -512,37 +538,32 @@ export default function HomePage() {
                         onClick={() => loadComments(post.id)}
                         className="flex items-center gap-1 active:scale-95 transition"
                       >
-                        <span className="text-2xl">
-                          💬
-                        </span>
+                        <span className="text-2xl">💬</span>
 
                         <span className="text-sm">
                           コメント {postCommentCount}
                         </span>
                       </button>
-
                     </div>
 
                     {/* コメント */}
                     {comments[post.id] !== undefined && (
                       <div className="mt-4 space-y-3">
-
                         {postComments.length === 0 ? (
                           <p className="text-sm text-gray-400">
                             まだコメントはありません
                           </p>
                         ) : (
                           postComments.map((comment) => {
-
-                            const commentProfile =
-                              getProfile(comment.user_id);
+                            const commentProfile = getProfile(
+                              comment.user_id
+                            );
 
                             return (
                               <div
                                 key={comment.id}
                                 className="flex items-start gap-3"
                               >
-
                                 {commentProfile.profile_image ? (
                                   <img
                                     src={commentProfile.profile_image}
@@ -556,11 +577,11 @@ export default function HomePage() {
                                 )}
 
                                 <div className="flex-1">
-
                                   <div className="flex items-center gap-2">
-
                                     <span className="font-semibold text-sm">
-                                      {commentProfile.full_name || "PTユーザー"} PT
+                                      {commentProfile.full_name ||
+                                        "PTユーザー"}{" "}
+                                      PT
                                     </span>
 
                                     {comment.user_id === userId && (
@@ -576,15 +597,12 @@ export default function HomePage() {
                                         削除
                                       </button>
                                     )}
-
                                   </div>
 
                                   <p className="text-sm mt-1">
                                     {comment.content}
                                   </p>
-
                                 </div>
-
                               </div>
                             );
                           })
@@ -592,7 +610,6 @@ export default function HomePage() {
 
                         {/* コメント入力 */}
                         <div className="flex gap-2">
-
                           <input
                             value={commentText[post.id] || ""}
                             onChange={(e) =>
@@ -611,25 +628,16 @@ export default function HomePage() {
                           >
                             送信
                           </button>
-
                         </div>
-
                       </div>
                     )}
-
                   </div>
-
                 </article>
               );
             })
           )}
-
         </div>
-
       </div>
-
-      <BottomNav />
-
     </main>
   );
 }

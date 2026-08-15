@@ -11,10 +11,6 @@ type Post = {
   title?: string | null;
   content: string;
   created_at: string;
-  image_url?: string | null;
-  video_url?: string | null;
-  post_type?: string | null;
-  disease_category?: string | null;
   like_count?: number | null;
 };
 
@@ -83,16 +79,20 @@ export default function PostDetailPage() {
 
     setPost(postData);
 
-    const { data: profileData } = await supabase
-      .from("pt_profiles")
-      .select(`
-        user_id,
-        full_name,
-        qualification,
-        profile_image
-      `)
-      .eq("user_id", postData.user_id)
-      .maybeSingle();
+    const { data: profileData, error: profileError } =
+      await supabase
+        .from("pt_profiles")
+        .select(`
+          user_id,
+          full_name,
+          qualification,
+          profile_image
+        `)
+        .eq("user_id", postData.user_id)
+        .maybeSingle();
+
+    console.log("POST PROFILE", profileData);
+    console.log("PROFILE ERROR", profileError);
 
     if (profileData) {
       setProfile(profileData);
@@ -114,6 +114,9 @@ export default function PostDetailPage() {
         .select("id")
         .eq("post_id", id);
 
+    console.log("LIKES DATA", allLikes);
+    console.log("LIKES ERROR", likesError);
+
     if (!likesError) {
       setPost((prev) =>
         prev
@@ -125,14 +128,19 @@ export default function PostDetailPage() {
       );
     }
 
-    const { data: commentData, error: commentError } =
-      await supabase
-        .from("comments")
-        .select("*")
-        .eq("post_id", id)
-        .order("created_at", {
-          ascending: false,
-        });
+    const {
+      data: commentData,
+      error: commentError,
+    } = await supabase
+      .from("comments")
+      .select("*")
+      .eq("post_id", id)
+      .order("created_at", {
+        ascending: false,
+      });
+
+    console.log("COMMENT DATA", commentData);
+    console.log("COMMENT ERROR", commentError);
 
     if (!commentError) {
       setComments(commentData || []);
@@ -158,6 +166,8 @@ export default function PostDetailPage() {
         .eq("post_id", id)
         .eq("user_id", user.id);
 
+      console.log("DELETE LIKE ERROR", error);
+
       if (error) {
         alert(error.message);
         return;
@@ -165,43 +175,35 @@ export default function PostDetailPage() {
 
       setLiked(false);
 
-      setPost((prev) =>
-        prev
-          ? {
-              ...prev,
-              like_count: Math.max(
-                0,
-                (prev.like_count || 0) - 1
-              ),
-            }
-          : prev
-      );
+      setPost((prev) => ({
+        ...prev!,
+        like_count: Math.max(
+          0,
+          (prev?.like_count || 0) - 1
+        ),
+      }));
+    } else {
+      const { error } = await supabase
+        .from("likes")
+        .insert({
+          user_id: user.id,
+          post_id: id,
+        });
 
-      return;
+      console.log("INSERT LIKE ERROR", error);
+
+      if (error) {
+        alert(error.message);
+        return;
+      }
+
+      setLiked(true);
+
+      setPost((prev) => ({
+        ...prev!,
+        like_count: (prev?.like_count || 0) + 1,
+      }));
     }
-
-    const { error } = await supabase
-      .from("likes")
-      .insert({
-        user_id: user.id,
-        post_id: id,
-      });
-
-    if (error) {
-      alert(error.message);
-      return;
-    }
-
-    setLiked(true);
-
-    setPost((prev) =>
-      prev
-        ? {
-            ...prev,
-            like_count: (prev.like_count || 0) + 1,
-          }
-        : prev
-    );
   }
 
   async function addComment() {
@@ -226,6 +228,9 @@ export default function PostDetailPage() {
       .select()
       .single();
 
+    console.log("COMMENT INSERT DATA", data);
+    console.log("COMMENT INSERT ERROR", error);
+
     if (error) {
       alert(error.message);
       return;
@@ -249,6 +254,8 @@ export default function PostDetailPage() {
       .eq("id", commentId)
       .eq("user_id", user.id);
 
+    console.log("DELETE COMMENT ERROR", error);
+
     if (error) {
       alert(error.message);
       return;
@@ -259,18 +266,12 @@ export default function PostDetailPage() {
     );
   }
 
-  function formatDate(dateString: string) {
-    return new Date(dateString).toLocaleDateString("ja-JP", {
-      year: "numeric",
-      month: "numeric",
-      day: "numeric",
-    });
-  }
-
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">読み込み中...</p>
+        <p className="text-gray-500">
+          読み込み中...
+        </p>
       </main>
     );
   }
@@ -279,16 +280,31 @@ export default function PostDetailPage() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center px-6">
         <div className="text-center">
+
           <h1 className="text-xl font-semibold">
             この投稿は存在しません
           </h1>
 
+          <p className="mt-3 text-gray-500">
+            投稿が削除された可能性があります。
+          </p>
+
           <button
             onClick={() => router.push("/home")}
-            className="mt-6 bg-black text-white rounded-full px-6 py-3"
+            className="
+              mt-6
+              bg-black
+              text-white
+              rounded-full
+              px-6
+              py-3
+              active:scale-95
+              transition
+            "
           >
             HOMEへ戻る
           </button>
+
         </div>
       </main>
     );
@@ -299,13 +315,14 @@ export default function PostDetailPage() {
   }
 
   const isOwner = user?.id === post.user_id;
-  const isCase = post.post_type === "case";
 
   return (
     <main className="min-h-screen bg-white px-6 py-12 pb-24">
+
       <div className="max-w-2xl mx-auto">
 
         <div className="flex items-center justify-between mb-6">
+
           <Link
             href="/home"
             className="text-sm text-gray-500 hover:text-black"
@@ -316,34 +333,71 @@ export default function PostDetailPage() {
           {isOwner && (
             <Link
               href={`/posts/${id}/edit`}
-              className="text-sm border rounded-full px-4 py-2 hover:bg-gray-50"
+              className="
+                text-sm
+                border
+                rounded-full
+                px-4
+                py-2
+                hover:bg-gray-50
+              "
             >
               編集
             </Link>
           )}
+
         </div>
+
+        <h1 className="text-3xl font-semibold mb-8">
+          投稿詳細
+        </h1>
 
         <div className="border rounded-2xl overflow-hidden">
 
           {/* 投稿者 */}
-          {profile && (
+          {profile ? (
             <Link
               href={`/pts/${profile.user_id}`}
-              className="flex items-center gap-3 px-6 py-5 border-b hover:bg-gray-50"
+              className="
+                flex
+                items-center
+                gap-3
+                px-6
+                py-5
+                border-b
+                hover:bg-gray-50
+              "
             >
               {profile.profile_image ? (
                 <img
                   src={profile.profile_image}
                   alt={profile.full_name || "プロフィール"}
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="
+                    w-12
+                    h-12
+                    rounded-full
+                    object-cover
+                  "
                 />
               ) : (
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-gray-400">
+                <div
+                  className="
+                    w-12
+                    h-12
+                    rounded-full
+                    bg-gray-100
+                    flex
+                    items-center
+                    justify-center
+                    text-gray-400
+                  "
+                >
                   PT
                 </div>
               )}
 
               <div>
+
                 <p className="font-semibold">
                   {profile.full_name || "PTユーザー"} PT
                 </p>
@@ -352,86 +406,50 @@ export default function PostDetailPage() {
                   {profile.qualification || "理学療法士"}
                 </p>
 
-                <p className="text-xs text-gray-400 mt-1">
-                  {formatDate(post.created_at)}
-                </p>
               </div>
+
             </Link>
-          )}
+          ) : null}
 
-         {/* 本文 */}
-<div className="p-6">
+          {/* 投稿本文 */}
+          <div className="p-6">
 
-  {/* 症例報告 */}
-  {isCase && (
-    <div className="mb-2 -ml-2 flex items-center gap-2">
-      <span className="inline-block rounded-full bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-600">
-        症例報告
-      </span>
-
-      {post.disease_category && (
-        <span className="inline-block rounded-full bg-gray-100 px-4 py-2 text-sm text-gray-600">
-          {post.disease_category}
-        </span>
-      )}
-    </div>
-  )}
-
-  {post.title && (
-    <h1 className="text-2xl font-semibold">
-      {post.title}
-    </h1>
-  )}
+            {post.title && (
+              <h2 className="text-2xl font-semibold">
+                {post.title}
+              </h2>
+            )}
 
             <p className="mt-5 whitespace-pre-wrap leading-7">
               {post.content}
             </p>
 
-          {/* 添付資料 */}
-{post.image_url && (
-  <div className="mt-6">
-    <a
-      href={post.image_url}
-      target="_blank"
-      rel="noopener noreferrer"
-     className="inline-block rounded-lg border bg-gray-50 px-3 py-2 text-sm"
-    >
-      📄 添付した資料を開く
-    </a>
-
-    <img
-      src={post.image_url}
-      alt="添付資料"
-      className="mt-4 w-full max-h-[700px] rounded-xl object-contain"
-    />
-  </div>
-)}
-
-            {/* 動画 */}
-            {post.video_url && (
-              <video
-                src={post.video_url}
-                controls
-                playsInline
-                className="mt-6 w-full max-h-[700px] rounded-xl"
-              />
-            )}
-
             {/* いいね */}
             <button
               onClick={toggleLike}
-              className="mt-8 border rounded-full px-6 py-2 transition active:scale-95"
+              className="
+                mt-8
+                border
+                rounded-full
+                px-6
+                py-2
+                transition
+                active:scale-95
+              "
             >
-              {liked ? "❤️" : "♡"} {post.like_count || 0}
+              {liked ? "❤️" : "♡"}{" "}
+              {post.like_count || 0}
             </button>
 
             {/* コメント */}
             <div className="mt-10">
+
               <h3 className="text-xl font-semibold mb-4">
                 コメント
               </h3>
 
               <div className="flex gap-3">
+
                 <input
                   value={commentText}
                   onChange={(e) =>
@@ -443,20 +461,39 @@ export default function PostDetailPage() {
                     }
                   }}
                   placeholder="コメントを書く"
-                  className="flex-1 border rounded-full px-5 py-2 outline-none"
+                  className="
+                    flex-1
+                    border
+                    rounded-full
+                    px-5
+                    py-2
+                    outline-none
+                    focus:ring-2
+                    focus:ring-gray-200
+                  "
                 />
 
                 <button
                   onClick={addComment}
-                  className="bg-black text-white rounded-full px-5"
+                  className="
+                    bg-black
+                    text-white
+                    rounded-full
+                    px-5
+                    transition
+                    active:scale-95
+                  "
                 >
                   送信
                 </button>
+
               </div>
+
             </div>
 
             {/* コメント一覧 */}
             <div className="mt-8 space-y-4">
+
               {comments.length === 0 ? (
                 <p className="text-gray-500">
                   まだコメントはありません
@@ -471,11 +508,15 @@ export default function PostDetailPage() {
                   />
                 ))
               )}
+
             </div>
 
           </div>
+
         </div>
+
       </div>
+
     </main>
   );
 }
@@ -513,23 +554,44 @@ function CommentItem({
 
   return (
     <div className="border rounded-xl p-4">
+
       <div className="flex items-start gap-3">
 
         <Link href={`/pts/${comment.user_id}`}>
+
           {profile?.profile_image ? (
             <img
               src={profile.profile_image}
               alt=""
-              className="w-9 h-9 rounded-full object-cover"
+              className="
+                w-9
+                h-9
+                rounded-full
+                object-cover
+              "
             />
           ) : (
-            <div className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center text-xs text-gray-400">
+            <div
+              className="
+                w-9
+                h-9
+                rounded-full
+                bg-gray-100
+                flex
+                items-center
+                justify-center
+                text-xs
+                text-gray-400
+              "
+            >
               PT
             </div>
           )}
+
         </Link>
 
         <div className="min-w-0 flex-1">
+
           <div className="flex items-center gap-2">
 
             <Link
@@ -542,7 +604,11 @@ function CommentItem({
             {comment.user_id === currentUserId && (
               <button
                 onClick={() => onDelete(comment.id)}
-                className="text-xs text-gray-400 hover:text-red-500"
+                className="
+                  text-xs
+                  text-gray-400
+                  hover:text-red-500
+                "
               >
                 削除
               </button>
@@ -553,9 +619,11 @@ function CommentItem({
           <p className="mt-2 text-gray-700 whitespace-pre-wrap">
             {comment.content}
           </p>
+
         </div>
 
       </div>
+
     </div>
   );
 }
