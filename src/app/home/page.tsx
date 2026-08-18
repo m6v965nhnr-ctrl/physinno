@@ -209,11 +209,50 @@ export default function HomePage() {
       return;
     }
 
-    if (data) {
-      setLikes((prev) => ({
-        ...prev,
-        [postId]: [...(prev[postId] || []), data],
-      }));
+    if (!data) {
+      return;
+    }
+
+    setLikes((prev) => ({
+      ...prev,
+      [postId]: [...(prev[postId] || []), data],
+    }));
+
+    // ========================================
+    // いいね通知
+    // ========================================
+
+    const targetPost = posts.find((post) => post.id === postId);
+
+    if (!targetPost) {
+      return;
+    }
+
+    // 自分の投稿には通知しない
+    if (targetPost.user_id === userId) {
+      return;
+    }
+
+    const { error: notificationError } = await supabase
+      .from("notifications")
+      .insert({
+        user_id: targetPost.user_id,
+        actor_id: userId,
+        type: "like",
+        post_id: postId,
+        is_read: false,
+      });
+
+    console.log(
+      "LIKE NOTIFICATION ERROR",
+      notificationError
+    );
+
+    if (notificationError) {
+      console.log(
+        "LIKE NOTIFICATION MESSAGE",
+        notificationError.message
+      );
     }
   }
 
@@ -278,6 +317,28 @@ export default function HomePage() {
         [postId]: (prev[postId] || 0) + 1,
       }));
     }
+    // ========================================
+// コメント通知
+// ========================================
+
+const targetPost = posts.find((post) => post.id === postId);
+
+if (targetPost && targetPost.user_id !== userId) {
+  const { error: notificationError } = await supabase
+    .from("notifications")
+    .insert({
+      user_id: targetPost.user_id,
+      actor_id: userId,
+      type: "comment",
+      post_id: postId,
+      is_read: false,
+    });
+
+  console.log(
+    "COMMENT NOTIFICATION ERROR",
+    notificationError
+  );
+}
 
     setCommentText((prev) => ({
       ...prev,
@@ -516,7 +577,7 @@ export default function HomePage() {
                             onClick={(event) =>
                               event.stopPropagation()
                             }
-                           className="block w-fit rounded-lg border bg-gray-50 px-2.5 py-1.5 text-xs text-gray-600 hover:bg-gray-100"
+                            className="block w-fit rounded-lg border bg-gray-50 px-2.5 py-1.5 text-xs text-gray-600 hover:bg-gray-100"
                           >
                             📄 添付資料を開く
                           </a>

@@ -1,10 +1,29 @@
 @import "tailwindcss";
 
+/* ========================================
+   Physinno Brand Colors
+======================================== */
+
 :root {
   --background: #ffffff;
   --foreground: #111111;
+
+  --physinno-blue: #55c7dc;
+  --physinno-cyan: #45d0c2;
+  --physinno-green: #4ed7a7;
+
+  --physinno-gradient: linear-gradient(
+    135deg,
+    #55c7dc 0%,
+    #45d0c2 50%,
+    #4ed7a7 100%
+  );
+
+  --physinno-light: #f2fffb;
+
   color-scheme: light !important;
 }
+
 
 /* ========================================
    Physinno 全体
@@ -21,6 +40,7 @@ body {
   color-scheme: light !important;
 }
 
+
 body {
   font-family:
     Arial,
@@ -28,8 +48,10 @@ body {
     "Hiragino Sans",
     Meiryo,
     sans-serif;
+
   line-height: 1.6;
 }
+
 
 /* ========================================
    OS・ブラウザがダークモードでも変更させない
@@ -50,6 +72,7 @@ body {
   }
 }
 
+
 /* ========================================
    基本文字
 ======================================== */
@@ -58,7 +81,6 @@ body * {
   color: #222222;
 }
 
-/* 見出し */
 
 h1,
 h2,
@@ -68,6 +90,7 @@ h5,
 h6 {
   color: #111111 !important;
 }
+
 
 /* ========================================
    Tailwind 文字色
@@ -109,6 +132,20 @@ h6 {
   color: #000000 !important;
 }
 
+
+/* ========================================
+   Physinno カラーテキスト
+======================================== */
+
+.text-physinno-blue {
+  color: #3bb8d0 !important;
+}
+
+.text-physinno-green {
+  color: #25bd89 !important;
+}
+
+
 /* ========================================
    背景
 ======================================== */
@@ -118,36 +155,61 @@ h6 {
 }
 
 .bg-gray-50 {
-  background-color: #f5f5f5 !important;
+  background-color: #f2fffb !important;
 }
 
 .bg-gray-100 {
-  background-color: #eeeeee !important;
+  background-color: #eafaf6 !important;
 }
 
 .bg-gray-200 {
-  background-color: #dddddd !important;
+  background-color: #d8f3ec !important;
 }
+
+
+/* ========================================
+   Physinno グラデーション
+======================================== */
+
+.bg-physinno-gradient {
+  background: linear-gradient(
+    135deg,
+    #55c7dc 0%,
+    #45d0c2 50%,
+    #4ed7a7 100%
+  ) !important;
+}
+
 
 /* ========================================
    枠線
 ======================================== */
 
 .border-gray-100 {
-  border-color: #dddddd !important;
+  border-color: #dcefea !important;
 }
 
 .border-gray-200 {
-  border-color: #cccccc !important;
+  border-color: #cde9e2 !important;
 }
 
 .border-gray-300 {
-  border-color: #aaaaaa !important;
+  border-color: #a9d8cf !important;
 }
 
 .border-gray-400 {
-  border-color: #888888 !important;
+  border-color: #7fc2b6 !important;
 }
+
+
+/* ========================================
+   Physinno 枠線
+======================================== */
+
+.border-physinno {
+  border-color: #45d0c2 !important;
+}
+
 
 /* ========================================
    入力欄
@@ -158,15 +220,26 @@ textarea,
 select {
   background-color: #ffffff !important;
   color: #111111 !important;
-  border-color: #999999 !important;
+  border-color: #b9dcd5 !important;
   color-scheme: light !important;
 }
 
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #45d0c2 !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(69, 208, 194, 0.15);
+}
+
+
 input::placeholder,
 textarea::placeholder {
-  color: #555555 !important;
+  color: #777777 !important;
   opacity: 1 !important;
 }
+
 
 /* ========================================
    ボタン
@@ -174,13 +247,73 @@ textarea::placeholder {
 
 button {
   color: #111111;
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease,
+    box-shadow 0.15s ease;
 }
+
+
+button:hover {
+  opacity: 0.92;
+}
+
+
+button:active {
+  transform: scale(0.98);
+}
+
+
+/* 黒ボタンをPhysinnoカラーへ */
 
 button.bg-black,
 button.bg-gray-900 {
-  background-color: #111111 !important;
+  background: linear-gradient(
+    135deg,
+    #55c7dc 0%,
+    #45d0c2 50%,
+    #4ed7a7 100%
+  ) !important;
+
+  color: #ffffff !important;
+
+  box-shadow:
+    0 4px 14px rgba(69, 208, 194, 0.22);
+}
+
+
+/* ========================================
+   Physinno ボタン用クラス
+======================================== */
+
+.bg-physinno-blue {
+  background-color: #55c7dc !important;
   color: #ffffff !important;
 }
+
+
+.bg-physinno-green {
+  background-color: #4ed7a7 !important;
+  color: #ffffff !important;
+}
+
+
+.physinno-button {
+  background: linear-gradient(
+    135deg,
+    #55c7dc 0%,
+    #45d0c2 50%,
+    #4ed7a7 100%
+  ) !important;
+
+  color: #ffffff !important;
+
+  border: none;
+
+  box-shadow:
+    0 4px 14px rgba(69, 208, 194, 0.22);
+}
+
 
 /* ========================================
    リンク
@@ -191,11 +324,42 @@ a {
   text-decoration: none;
 }
 
+
+a:hover {
+  color: #25bd89;
+}
+
+
 /* ========================================
    選択
 ======================================== */
 
 ::selection {
-  background: #cccccc;
+  background: #b9f0df;
   color: #111111;
+}
+
+
+/* ========================================
+   スクロールバー
+======================================== */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+
+::-webkit-scrollbar-track {
+  background: #f2fffb;
+}
+
+
+::-webkit-scrollbar-thumb {
+  background: #9dded1;
+  border-radius: 999px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+  background: #55c7dc;
 }
