@@ -16,8 +16,10 @@ export default function LoginPage() {
       password,
     });
 
-    console.log(data);
-    console.log(error);
+   console.log(data);
+console.log(error);
+console.log("LOGIN USER:", data.user);
+console.log("LOGIN EMAIL:", data.user?.email);
 
     if (error) {
       alert(error.message);
