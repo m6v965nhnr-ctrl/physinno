@@ -36,7 +36,7 @@ console.log("LOGIN EMAIL:", data.user?.email);
     alert("ログインしました");
 
     // 管理者メールアドレス
-    if (user.email?.toLowerCase() === "bupapabupapa7@gmail.com") {
+    if (user.email?.toLowerCase() === "bupapabupapa7@gmailcom") {
       router.push("/admin");
       return;
     }
