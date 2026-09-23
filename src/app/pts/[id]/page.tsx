@@ -5,6 +5,22 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import {
+  ACHIEVEMENT_CATEGORIES,
+  ACHIEVEMENT_CATEGORY_LABEL,
+  Achievement,
+  QualificationTarget,
+  computeQualificationProgress,
+  listAchievements,
+  listQualificationTargets,
+} from "@/lib/achievements";
+
+type CaseReport = {
+  id: string;
+  title: string | null;
+  disease_category: string | null;
+  created_at: string;
+};
 
 export default function PTProfile() {
   const params = useParams();
@@ -15,6 +31,9 @@ export default function PTProfile() {
   const [user, setUser] = useState<any>(null);
   const [following, setFollowing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [caseReports, setCaseReports] = useState<CaseReport[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [targets, setTargets] = useState<QualificationTarget[]>([]);
 
   useEffect(() => {
     if (id) {
@@ -83,6 +102,20 @@ export default function PTProfile() {
         setFollowing(false);
       }
     }
+
+    // =========================
+    // ポートフォリオ（症例報告・実績・資格更新目標）
+    // =========================
+    const { data: caseData } = await supabase
+      .from("posts")
+      .select("id, title, disease_category, created_at")
+      .eq("user_id", ptData.user_id)
+      .eq("post_type", "case")
+      .order("created_at", { ascending: false });
+
+    setCaseReports(caseData || []);
+    setAchievements(await listAchievements(ptData.user_id));
+    setTargets(await listQualificationTargets(ptData.user_id));
   }
 
   async function toggleFollow() {
@@ -335,6 +368,89 @@ export default function PTProfile() {
 
           </div>
         </section>
+
+        {/* ポートフォリオ */}
+        {(caseReports.length > 0 ||
+          achievements.length > 0 ||
+          targets.length > 0) && (
+          <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+            <h2 className="text-lg font-semibold text-gray-900">
+              ポートフォリオ
+            </h2>
+
+            {/* 資格更新の目標 */}
+            {targets.length > 0 && (
+              <div className="mt-4 flex flex-wrap gap-2">
+                {targets.map((t) => {
+                  const progress = computeQualificationProgress(
+                    t,
+                    achievements
+                  );
+
+                  return (
+                    <span
+                      key={t.id}
+                      className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                    >
+                      🏅 {t.name} {progress.count}/{t.required_total}
+                    </span>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* 実績の積み上げ */}
+            {achievements.length > 0 && (
+              <div className="mt-4 grid grid-cols-3 gap-2">
+                {ACHIEVEMENT_CATEGORIES.map((c) => {
+                  const count = achievements.filter(
+                    (a) => a.category === c
+                  ).length;
+
+                  if (count === 0) return null;
+
+                  return (
+                    <div
+                      key={c}
+                      className="rounded-2xl border border-gray-100 py-3 text-center"
+                    >
+                      <p className="text-lg font-semibold">{count}</p>
+                      <p className="mt-1 text-xs text-gray-500">
+                        {ACHIEVEMENT_CATEGORY_LABEL[c]}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+
+            {/* 症例報告 */}
+            {caseReports.length > 0 && (
+              <div className="mt-5 space-y-2">
+                <p className="text-xs font-medium text-gray-400">
+                  症例報告（{caseReports.length}件）
+                </p>
+
+                {caseReports.map((c) => (
+                  <Link
+                    key={c.id}
+                    href={`/posts/${c.id}`}
+                    className="block rounded-2xl border border-gray-100 p-4 transition hover:bg-gray-50"
+                  >
+                    <p className="text-sm font-medium text-gray-900">
+                      {c.title || "無題の症例報告"}
+                    </p>
+
+                    <p className="mt-1 text-xs text-gray-400">
+                      {c.disease_category ? `${c.disease_category}・` : ""}
+                      {c.created_at?.slice(0, 10)}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* レビューを書く */}
         <Link

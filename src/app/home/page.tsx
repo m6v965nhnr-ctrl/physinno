@@ -419,7 +419,7 @@ if (targetPost && targetPost.user_id !== userId) {
         {/* ヘッダー */}
         <header className="sticky top-0 z-10 bg-white border-b px-5 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold">Re：light</h1>
+            <h1 className="text-xl font-semibold">Re:light</h1>
 
             <p className="text-sm text-gray-500">Platform for PT</p>
           </div>

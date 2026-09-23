@@ -86,7 +86,7 @@ export default function RegisterPage() {
           href="/"
           className="text-sm text-gray-400"
         >
-          ← Physinno
+          ← Re:light
         </Link>
 
         <h1 className="mt-10 text-3xl font-semibold tracking-tight">
@@ -94,7 +94,7 @@ export default function RegisterPage() {
         </h1>
 
         <p className="mt-3 text-sm text-gray-500">
-          Physinnoをはじめましょう
+          Re:lightをはじめましょう
         </p>
 
         <div className="mt-10 space-y-5">

@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
 /* ========================================
-   Physinno Brand Colors
+   Re:light Brand Colors
 ======================================== */
 
 :root {
   --background: #ffffff;
   --foreground: #111111;
 
-  --physinno-blue: #55c7dc;
-  --physinno-cyan: #45d0c2;
-  --physinno-green: #4ed7a7;
+  --relight-blue: #55c7dc;
+  --relight-cyan: #45d0c2;
+  --relight-green: #4ed7a7;
 
-  --physinno-gradient: linear-gradient(
+  --relight-gradient: linear-gradient(
     135deg,
     #55c7dc 0%,
     #45d0c2 50%,
     #4ed7a7 100%
   );
 
-  --physinno-light: #f2fffb;
+  --relight-light: #f2fffb;
 
   color-scheme: light !important;
 }
 
 
 /* ========================================
-   Physinno 全体
+   Re:light 全体
    ダークモードでも白背景・黒文字を維持
 ======================================== */
 
@@ -134,14 +134,14 @@ h6 {
 
 
 /* ========================================
-   Physinno カラーテキスト
+   Re:light カラーテキスト
 ======================================== */
 
-.text-physinno-blue {
+.text-relight-blue {
   color: #3bb8d0 !important;
 }
 
-.text-physinno-green {
+.text-relight-green {
   color: #25bd89 !important;
 }
 
@@ -168,10 +168,10 @@ h6 {
 
 
 /* ========================================
-   Physinno グラデーション
+   Re:light グラデーション
 ======================================== */
 
-.bg-physinno-gradient {
+.bg-relight-gradient {
   background: linear-gradient(
     135deg,
     #55c7dc 0%,
@@ -203,10 +203,10 @@ h6 {
 
 
 /* ========================================
-   Physinno 枠線
+   Re:light 枠線
 ======================================== */
 
-.border-physinno {
+.border-relight {
   border-color: #45d0c2 !important;
 }
 
@@ -264,7 +264,7 @@ button:active {
 }
 
 
-/* 黒ボタンをPhysinnoカラーへ */
+/* 黒ボタンをRe:lightカラーへ */
 
 button.bg-black,
 button.bg-gray-900 {
@@ -283,22 +283,22 @@ button.bg-gray-900 {
 
 
 /* ========================================
-   Physinno ボタン用クラス
+   Re:light ボタン用クラス
 ======================================== */
 
-.bg-physinno-blue {
+.bg-relight-blue {
   background-color: #55c7dc !important;
   color: #ffffff !important;
 }
 
 
-.bg-physinno-green {
+.bg-relight-green {
   background-color: #4ed7a7 !important;
   color: #ffffff !important;
 }
 
 
-.physinno-button {
+.relight-button {
   background: linear-gradient(
     135deg,
     #55c7dc 0%,

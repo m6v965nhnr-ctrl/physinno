@@ -6,6 +6,13 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
+import {
+  Achievement,
+  QualificationTarget,
+  computeQualificationProgress,
+  listAchievements,
+  listQualificationTargets,
+} from "@/lib/achievements";
 
 type MyReview = {
   id: string;
@@ -27,6 +34,8 @@ export default function MyPage() {
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [email, setEmail] = useState("");
   const [myReviews, setMyReviews] = useState<MyReview[]>([]);
+  const [achievements, setAchievements] = useState<Achievement[]>([]);
+  const [targets, setTargets] = useState<QualificationTarget[]>([]);
 
   useEffect(() => {
     loadMyPage();
@@ -119,6 +128,12 @@ export default function MyPage() {
       .eq("followed_user", user.id);
 
     setFollowerCount(followerData?.length || 0);
+
+    // =========================
+    // 実績・資格更新の進捗
+    // =========================
+    setAchievements(await listAchievements(user.id));
+    setTargets(await listQualificationTargets(user.id));
 
     setLoading(false);
   }
@@ -261,6 +276,35 @@ export default function MyPage() {
             ⭐ {profile?.rating || 0}{" "}
             ({profile?.review_count || 0}件)
           </p>
+
+          {/* 資格更新の進捗（小さめ表示） */}
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {targets.map((t) => {
+              const progress = computeQualificationProgress(
+                t,
+                achievements
+              );
+
+              return (
+                <Link
+                  key={t.id}
+                  href="/mypage/achievements"
+                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                >
+                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                  {Math.floor(progress.monthsRemaining / 12)}年
+                  {progress.monthsRemaining % 12}ヶ月
+                </Link>
+              );
+            })}
+
+            <Link
+              href="/mypage/achievements"
+              className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
+            >
+              + 実績・資格を管理
+            </Link>
+          </div>
 
           {/* =========================
               投稿・フォロー・フォロワー

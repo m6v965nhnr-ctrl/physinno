@@ -8,7 +8,7 @@ export default function LandingPage() {
       <div className="w-full max-w-md text-center">
 
         <h1 className="text-4xl font-semibold tracking-tight text-gray-900">
-          Physinno
+          Re:light
         </h1>
 
         <p className="mt-5 text-sm leading-7 text-gray-500">

@@ -4,7 +4,7 @@ import AuthGuard from "@/components/AuthGuard";
 import BottomNavWrapper from "@/components/BottomNavWrapper";
 
 export const metadata: Metadata = {
-  title: "Physinno",
+  title: "Re:light",
   description: "理学療法士をつなぐプラットフォーム",
 };
 

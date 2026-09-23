@@ -113,7 +113,7 @@ export default function AdminPage() {
           </p>
 
           <p className="mt-2 text-sm text-gray-500">
-            このページはPhysinno運営者専用です。
+            このページはRe:light運営者専用です。
           </p>
 
           <button
@@ -142,7 +142,7 @@ export default function AdminPage() {
           </h1>
 
           <p className="mt-1 text-sm text-gray-500">
-            Physinnoの利用状況を確認できます。
+            Re:lightの利用状況を確認できます。
           </p>
         </div>
       </header>
@@ -158,7 +158,7 @@ export default function AdminPage() {
               label="登録ユーザー"
               value={stats.users}
               icon="👤"
-              description="Physinnoに登録したアカウント数"
+              description="Re:lightに登録したアカウント数"
             />
 
             <StatCard
@@ -233,7 +233,7 @@ export default function AdminPage() {
           </h2>
 
           <p className="mt-1 text-sm text-gray-500">
-            Physinno内で現在どれくらい活動があるかを確認できます。
+            Re:light内で現在どれくらい活動があるかを確認できます。
           </p>
 
           <div className="mt-5 space-y-5">
@@ -282,7 +282,7 @@ export default function AdminPage() {
             </h2>
 
             <p className="mt-1 text-sm text-gray-500">
-              Physinnoに登録しているユーザーの情報です。
+              Re:lightに登録しているユーザーの情報です。
             </p>
           </div>
 
