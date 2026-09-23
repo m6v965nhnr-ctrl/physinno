@@ -42,9 +42,6 @@ export default function PTProfile() {
 .eq("id", id)
 .limit(1);
 
-    console.log("PT DATA", ptList);
-    console.log("PT ERROR", ptError);
-
     if (ptError) {
       setErrorMessage("プロフィールの読み込みに失敗しました");
       return;
@@ -60,10 +57,7 @@ export default function PTProfile() {
     setPt(ptData);
 
     // レビュー取得
-    const {
-      data: reviewData,
-      error: reviewError,
-    } = await supabase
+    const { data: reviewData } = await supabase
       .from("reviews")
       .select("*")
       .eq("pt_id", ptData.id)
@@ -71,26 +65,17 @@ export default function PTProfile() {
         ascending: false,
       });
 
-    console.log("REVIEWS DATA", reviewData);
-    console.log("REVIEWS ERROR", reviewError);
-
     if (reviewData) {
       setReviews(reviewData);
     }
 
     // フォロー状態取得
     if (user) {
-      const {
-        data: followData,
-        error: followError,
-      } = await supabase
+      const { data: followData } = await supabase
         .from("follows")
         .select("*")
         .eq("following_user", user.id)
         .eq("followed_user", ptData.user_id);
-
-      console.log("FOLLOW DATA", followData);
-      console.log("FOLLOW ERROR", followError);
 
       if (followData && followData.length > 0) {
         setFollowing(true);
@@ -117,8 +102,6 @@ export default function PTProfile() {
         .eq("following_user", user.id)
         .eq("followed_user", pt.user_id);
 
-      console.log("UNFOLLOW ERROR", error);
-
       if (!error) {
         setFollowing(false);
       }
@@ -129,8 +112,6 @@ export default function PTProfile() {
           following_user: user.id,
           followed_user: pt.user_id,
         });
-
-      console.log("FOLLOW ERROR", error);
 
       if (!error) {
         setFollowing(true);
@@ -391,6 +372,15 @@ export default function PTProfile() {
 
             <span className="text-sm text-gray-400">
               {reviews.length}件
+              {reviews.length > 0 && (
+                <>
+                  （PT{" "}
+                  {reviews.filter((r) => r.reviewer_type === "pt").length}
+                  件・一般{" "}
+                  {reviews.filter((r) => r.reviewer_type === "general").length}
+                  件）
+                </>
+              )}
             </span>
 
           </div>
@@ -419,13 +409,15 @@ export default function PTProfile() {
                   "
                 >
 
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between gap-3">
 
                     <p className="text-sm tracking-wide">
                       {"⭐".repeat(
                         Number(review.rating) || 0
                       )}
                     </p>
+
+                    <ReviewerBadge type={review.reviewer_type} />
 
                   </div>
 
@@ -472,4 +464,24 @@ function ProfileItem({
 
     </div>
   );
+}
+// レビューを書いた人の種類（PT／一般）
+function ReviewerBadge({ type }: { type: string | null | undefined }) {
+  if (type === "pt") {
+    return (
+      <span className="rounded-full bg-black px-2.5 py-0.5 text-[11px] font-medium text-white">
+        PTのレビュー
+      </span>
+    );
+  }
+
+  if (type === "general") {
+    return (
+      <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
+        一般のレビュー
+      </span>
+    );
+  }
+
+  return null;
 }

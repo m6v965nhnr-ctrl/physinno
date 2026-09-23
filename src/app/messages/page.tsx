@@ -29,7 +29,6 @@ export default function MessagesPage() {
   }, []);
 
   async function loadConversations() {
-    console.log("MESSAGES: START");
 
     setLoading(true);
     setErrorMessage("");
@@ -39,8 +38,6 @@ export default function MessagesPage() {
       error: userError,
     } = await supabase.auth.getUser();
 
-    console.log("MESSAGES: USER", user);
-    console.log("MESSAGES: USER ERROR", userError);
 
     if (userError) {
       setErrorMessage(userError.message);
@@ -56,7 +53,6 @@ export default function MessagesPage() {
 
     setUser(user);
 
-    console.log("MESSAGES: GET CONVERSATIONS");
 
     const { data, error } = await supabase
       .from("conversations")
@@ -66,8 +62,6 @@ export default function MessagesPage() {
         ascending: false,
       });
 
-    console.log("MESSAGES: CONVERSATIONS", data);
-    console.log("MESSAGES: CONVERSATIONS ERROR", error);
 
     if (error) {
       setErrorMessage(error.message);
@@ -89,7 +83,6 @@ export default function MessagesPage() {
         : conversation.user1_id
     );
 
-    console.log("MESSAGES: OTHER IDS", otherIds);
 
     if (otherIds.length > 0) {
       const { data: profileData, error: profileError } =
@@ -98,8 +91,6 @@ export default function MessagesPage() {
           .select("user_id, full_name, profile_image")
           .in("user_id", otherIds);
 
-      console.log("MESSAGES: PROFILES", profileData);
-      console.log("MESSAGES: PROFILE ERROR", profileError);
 
       if (profileError) {
         setErrorMessage(profileError.message);
@@ -118,7 +109,6 @@ export default function MessagesPage() {
       }
     }
 
-    console.log("MESSAGES: FINISH");
 
     setLoading(false);
   }

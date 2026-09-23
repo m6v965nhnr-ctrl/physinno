@@ -18,9 +18,6 @@ export default function PTSearchPage(){
   const [specialty,setSpecialty] = useState("");
 
 
-
-
-
   useEffect(()=>{
 
     searchPT();
@@ -28,13 +25,7 @@ export default function PTSearchPage(){
   },[]);
 
 
-
-
-
-
-
   async function searchPT(){
-
 
 
     let query = supabase
@@ -42,10 +33,6 @@ export default function PTSearchPage(){
       .from("pt_profiles")
 
       .select("*");
-
-
-
-
 
 
     if(name){
@@ -61,10 +48,6 @@ export default function PTSearchPage(){
     }
 
 
-
-
-
-
     if(prefecture){
 
       query = query.ilike(
@@ -76,10 +59,6 @@ export default function PTSearchPage(){
       );
 
     }
-
-
-
-
 
 
     if(specialty){
@@ -95,10 +74,6 @@ export default function PTSearchPage(){
     }
 
 
-
-
-
-
     const {
 
       data,
@@ -108,28 +83,7 @@ export default function PTSearchPage(){
     } = await query;
 
 
-
-
-
-
-    console.log(
-      "PT SEARCH DATA",
-      data
-    );
-
-
-    console.log(
-      "PT SEARCH ERROR",
-      error
-    );
-
-
-
-
-
-
     if(data){
-
 
 
       const sorted = [...data].sort(
@@ -145,20 +99,13 @@ export default function PTSearchPage(){
       );
 
 
-
       setPts(sorted);
-
 
 
     }
 
 
   }
-
-
-
-
-
 
 
   return (
@@ -172,14 +119,10 @@ export default function PTSearchPage(){
     ">
 
 
-
       <div className="
         max-w-3xl
         mx-auto
       ">
-
-
-
 
 
         <h1 className="
@@ -195,12 +138,7 @@ export default function PTSearchPage(){
         </h1>
 
 
-
-
-
-
         <div className="space-y-4 mb-10">
-
 
 
           <input
@@ -224,9 +162,6 @@ export default function PTSearchPage(){
           />
 
 
-
-
-
           <input
 
             value={prefecture}
@@ -246,10 +181,6 @@ export default function PTSearchPage(){
             "
 
           />
-
-
-
-
 
 
           <input
@@ -273,10 +204,6 @@ export default function PTSearchPage(){
           />
 
 
-
-
-
-
           <button
 
             onClick={searchPT}
@@ -296,17 +223,10 @@ export default function PTSearchPage(){
           </button>
 
 
-
         </div>
 
 
-
-
-
-
-
         <div className="space-y-5">
-
 
 
           {pts.map((pt)=>(
@@ -321,7 +241,6 @@ export default function PTSearchPage(){
             >
 
 
-
               <div className="
                 border
                 rounded-2xl
@@ -329,16 +248,11 @@ export default function PTSearchPage(){
               ">
 
 
-
-
-
                 <div className="
                   flex
                   items-center
                   gap-4
                 ">
-
-
 
 
                   {pt.profile_image ? (
@@ -381,11 +295,6 @@ export default function PTSearchPage(){
                   )}
 
 
-
-
-
-
-
                   <div>
 
 
@@ -401,9 +310,6 @@ export default function PTSearchPage(){
                     </h2>
 
 
-
-
-
                     <p className="mt-1">
 
                       ⭐ {pt.rating || 0}
@@ -416,19 +322,12 @@ export default function PTSearchPage(){
                     </p>
 
 
-
-
-
-
                     <p className="text-gray-500">
 
                       {pt.prefecture} {pt.city}
 
 
                     </p>
-
-
-
 
 
                     <p className="text-gray-500">
@@ -439,22 +338,13 @@ export default function PTSearchPage(){
                     </p>
 
 
-
-
                   </div>
-
-
-
 
 
                 </div>
 
 
-
-
-
               </div>
-
 
 
             </Link>
@@ -463,23 +353,10 @@ export default function PTSearchPage(){
           ))}
 
 
-
-
         </div>
 
 
-
-
-
-
       </div>
-
-
-
-
-
-
-
 
 
     </main>

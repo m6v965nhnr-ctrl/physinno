@@ -71,8 +71,6 @@ export default function MessagePage() {
           )
           .maybeSingle();
 
-      console.log("CONVERSATION:", conversationData);
-      console.log("CONVERSATION ERROR:", conversationError);
 
       let conversation = conversationData;
 
@@ -87,8 +85,6 @@ export default function MessagePage() {
             .select()
             .single();
 
-        console.log("NEW CONVERSATION:", newConversation);
-        console.log("NEW CONVERSATION ERROR:", createError);
 
         if (createError || !newConversation) {
           setLoading(false);
@@ -110,8 +106,6 @@ export default function MessagePage() {
           ascending: true,
         });
 
-      console.log("MESSAGES:", messageData);
-      console.log("MESSAGES ERROR:", messageError);
 
       if (!cancelled && messageData) {
         setMessages(messageData);
@@ -148,9 +142,7 @@ export default function MessagePage() {
           }
         );
 
-      channel.subscribe((status) => {
-        console.log("MESSAGE REALTIME:", status);
-      });
+      channel.subscribe();
     }
 
     start();
@@ -184,8 +176,6 @@ export default function MessagePage() {
       .select()
       .single();
 
-    console.log("SEND MESSAGE:", data);
-    console.log("SEND MESSAGE ERROR:", error);
 
     if (!error && data) {
       setMessages((current) => {

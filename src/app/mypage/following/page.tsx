@@ -41,8 +41,6 @@ export default function FollowingPage() {
       .select("followed_user")
       .eq("following_user", user.id);
 
-    console.log("FOLLOWING DATA", followData);
-    console.log("FOLLOWING ERROR", followError);
 
     if (
       followError ||
@@ -68,11 +66,6 @@ export default function FollowingPage() {
       )
       .in("user_id", userIds);
 
-    console.log("FOLLOWING PROFILES", profileData);
-    console.log(
-      "FOLLOWING PROFILE ERROR",
-      profileError
-    );
 
     if (
       profileError ||
@@ -103,7 +96,6 @@ export default function FollowingPage() {
       .eq("following_user", user.id)
       .eq("followed_user", userId);
 
-    console.log("UNFOLLOW ERROR", error);
 
     if (error) {
       alert("フォロー解除に失敗しました");

@@ -73,8 +73,6 @@ export default function HomePage() {
       .select("*")
       .order("created_at", { ascending: false });
 
-    console.log("HOME POSTS", postData);
-    console.log("HOME POST ERROR", postError);
 
     if (!postData) {
       setPosts([]);
@@ -109,8 +107,6 @@ export default function HomePage() {
         .select("*")
         .in("post_id", postIds);
 
-      console.log("HOME LIKES", likeData);
-      console.log("HOME LIKE ERROR", likeError);
 
       const likeMap: Record<string, Like[]> = {};
 
@@ -136,8 +132,6 @@ export default function HomePage() {
           ascending: true,
         });
 
-      console.log("HOME COMMENTS", commentData);
-      console.log("HOME COMMENT ERROR", commentError);
 
       const commentMap: Record<string, Comment[]> = {};
       const commentCountMap: Record<string, number> = {};
@@ -184,6 +178,7 @@ export default function HomePage() {
         alert(error.message);
         return;
       }
+
 
       setLikes((prev) => ({
         ...prev,
@@ -242,18 +237,6 @@ export default function HomePage() {
         post_id: postId,
         is_read: false,
       });
-
-    console.log(
-      "LIKE NOTIFICATION ERROR",
-      notificationError
-    );
-
-    if (notificationError) {
-      console.log(
-        "LIKE NOTIFICATION MESSAGE",
-        notificationError.message
-      );
-    }
   }
 
   async function loadComments(postId: string) {
@@ -266,7 +249,6 @@ export default function HomePage() {
       });
 
     if (error) {
-      console.log("COMMENTS ERROR", error.message);
       return;
     }
 
@@ -298,8 +280,6 @@ export default function HomePage() {
       .select()
       .single();
 
-    console.log("COMMENT INSERT DATA", data);
-    console.log("COMMENT INSERT ERROR", error);
 
     if (error) {
       alert(error.message);
@@ -334,10 +314,6 @@ if (targetPost && targetPost.user_id !== userId) {
       is_read: false,
     });
 
-  console.log(
-    "COMMENT NOTIFICATION ERROR",
-    notificationError
-  );
 }
 
     setCommentText((prev) => ({
@@ -443,7 +419,7 @@ if (targetPost && targetPost.user_id !== userId) {
         {/* ヘッダー */}
         <header className="sticky top-0 z-10 bg-white border-b px-5 py-4">
           <div className="flex items-center justify-between">
-            <h1 className="text-xl font-semibold">Physinno</h1>
+            <h1 className="text-xl font-semibold">Re：light</h1>
 
             <p className="text-sm text-gray-500">Platform for PT</p>
           </div>

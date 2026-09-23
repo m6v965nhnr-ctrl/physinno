@@ -74,7 +74,8 @@ export default function RegisterPage() {
       return;
     }
 
-    router.push("/home");
+    // 一般ユーザーはPT検索から、PTはホームから始める
+    router.push(accountType === "general" ? "/pts" : "/home");
   }
 
   return (

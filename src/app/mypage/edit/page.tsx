@@ -54,8 +54,6 @@ export default function EditProfilePage() {
       .eq("user_id", user.id)
       .maybeSingle();
 
-    console.log("EDIT PROFILE", data);
-    console.log("EDIT ERROR", error);
 
     if (data) {
       setProfileId(data.id);
@@ -140,10 +138,6 @@ export default function EditProfilePage() {
         contentType: selectedImage.type,
       });
 
-    console.log(
-      "PROFILE IMAGE UPLOAD ERROR",
-      uploadError
-    );
 
     if (uploadError) {
       alert(
@@ -231,7 +225,6 @@ export default function EditProfilePage() {
       }
     }
 
-    console.log("SAVE PROFILE ERROR", error);
 
     if (error) {
       alert(error.message);

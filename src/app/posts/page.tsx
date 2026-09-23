@@ -11,7 +11,6 @@ export default function PostsPage() {
   const [posts, setPosts] = useState<any[]>([]);
 
 
-
   useEffect(()=>{
 
 
@@ -29,13 +28,6 @@ export default function PostsPage() {
         });
 
 
-
-      console.log("POST DATA", data);
-
-      console.log("POST ERROR", error);
-
-
-
       if(data){
 
         setPosts(data);
@@ -46,15 +38,10 @@ export default function PostsPage() {
     }
 
 
-
     getPosts();
 
 
   },[]);
-
-
-
-
 
 
   return (
@@ -65,7 +52,6 @@ export default function PostsPage() {
       <div className="max-w-2xl mx-auto">
 
 
-
         <div className="flex justify-between items-center mb-10">
 
 
@@ -74,7 +60,6 @@ export default function PostsPage() {
             投稿一覧
 
           </h1>
-
 
 
           <Link href="/posts/create">
@@ -101,10 +86,6 @@ export default function PostsPage() {
 
 
         </div>
-
-
-
-
 
 
         {posts.length === 0 ? (
@@ -144,7 +125,6 @@ export default function PostsPage() {
               >
 
 
-
                 <h2 className="text-xl font-semibold">
 
                   {post.title}
@@ -152,13 +132,11 @@ export default function PostsPage() {
                 </h2>
 
 
-
                 <p className="mt-4">
 
                   {post.content}
 
                 </p>
-
 
 
                 <p className="text-sm text-gray-500 mt-5">
@@ -172,7 +150,6 @@ export default function PostsPage() {
                 </p>
 
 
-
               </div>
 
 
@@ -183,7 +160,6 @@ export default function PostsPage() {
 
 
         )}
-
 
 
       </div>

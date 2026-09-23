@@ -43,8 +43,6 @@ export default function FollowersPage() {
       .select("following_user")
       .eq("followed_user", user.id);
 
-    console.log("FOLLOWERS DATA", followerData);
-    console.log("FOLLOWERS ERROR", followerError);
 
     if (
       followerError ||
@@ -69,14 +67,6 @@ export default function FollowersPage() {
       .select("followed_user")
       .eq("following_user", user.id);
 
-    console.log(
-      "MY FOLLOWING DATA",
-      myFollowingData
-    );
-    console.log(
-      "MY FOLLOWING ERROR",
-      myFollowingError
-    );
 
     if (myFollowingData) {
       setFollowingIds(
@@ -97,14 +87,6 @@ export default function FollowersPage() {
       )
       .in("user_id", followerIds);
 
-    console.log(
-      "FOLLOWER PROFILES",
-      profileData
-    );
-    console.log(
-      "FOLLOWER PROFILE ERROR",
-      profileError
-    );
 
     if (
       profileError ||
@@ -149,10 +131,6 @@ export default function FollowersPage() {
           targetUserId
         );
 
-      console.log(
-        "UNFOLLOW ERROR",
-        error
-      );
 
       if (error) {
         alert("フォロー解除に失敗しました");
@@ -173,10 +151,6 @@ export default function FollowersPage() {
           followed_user: targetUserId,
         });
 
-      console.log(
-        "FOLLOW ERROR",
-        error
-      );
 
       if (error) {
         alert("フォローに失敗しました");

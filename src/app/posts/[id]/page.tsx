@@ -71,8 +71,6 @@ export default function PostDetailPage() {
         .eq("id", id)
         .maybeSingle();
 
-    console.log("POST DATA", postData);
-    console.log("POST ERROR", postError);
 
     if (postError || !postData) {
       setPost(null);

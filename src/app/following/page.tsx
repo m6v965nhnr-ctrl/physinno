@@ -39,8 +39,6 @@ export default function FollowingPage() {
         .select("followed_user")
         .eq("following_user", user.id);
 
-    console.log("FOLLOWING DATA", followData);
-    console.log("FOLLOWING ERROR", followError);
 
     if (
       followError ||
@@ -66,15 +64,6 @@ export default function FollowingPage() {
       )
       .in("user_id", userIds);
 
-    console.log(
-      "FOLLOWING PROFILES",
-      profileData
-    );
-
-    console.log(
-      "FOLLOWING PROFILE ERROR",
-      profileError
-    );
 
     if (
       profileError ||

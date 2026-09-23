@@ -26,7 +26,6 @@ export default function ProfileEditPage() {
   });
 
 
-
   useEffect(() => {
 
     async function getProfile() {
@@ -52,10 +51,6 @@ export default function ProfileEditPage() {
         .select("*")
         .eq("user_id", user.id)
         .single();
-
-
-      console.log(data);
-      console.log(error);
 
 
       if (data) {
@@ -86,9 +81,6 @@ export default function ProfileEditPage() {
 
 
   }, [router]);
-
-
-
 
 
   async function uploadImage() {
@@ -125,9 +117,6 @@ export default function ProfileEditPage() {
   }
 
 
-
-
-
   async function saveProfile() {
 
 
@@ -159,7 +148,6 @@ export default function ProfileEditPage() {
       .eq("id", id);
 
 
-
     if (error) {
 
       alert(error.message);
@@ -176,9 +164,6 @@ export default function ProfileEditPage() {
   }
 
 
-
-
-
   return (
 
     <main className="min-h-screen bg-white px-6 py-12">
@@ -189,7 +174,6 @@ export default function ProfileEditPage() {
         <h1 className="text-3xl font-semibold mb-8">
           プロフィール編集
         </h1>
-
 
 
         {preview && (
@@ -207,7 +191,6 @@ export default function ProfileEditPage() {
           />
 
         )}
-
 
 
         <label
@@ -256,9 +239,6 @@ export default function ProfileEditPage() {
         </label>
 
 
-
-
-
         <div className="space-y-4">
 
 
@@ -295,7 +275,6 @@ export default function ProfileEditPage() {
             />
 
           ))}
-
 
 
           <button

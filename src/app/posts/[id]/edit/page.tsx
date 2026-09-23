@@ -40,8 +40,6 @@ export default function EditPostPage() {
       .eq("user_id", user.id)
       .maybeSingle();
 
-    console.log("EDIT POST DATA", data);
-    console.log("EDIT POST ERROR", error);
 
     if (error || !data) {
       alert("この投稿は編集できません");
@@ -86,7 +84,6 @@ export default function EditPostPage() {
       .eq("id", id)
       .eq("user_id", user.id);
 
-    console.log("UPDATE POST ERROR", error);
 
     if (error) {
       alert(error.message);

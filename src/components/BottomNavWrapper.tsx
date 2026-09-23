@@ -1,56 +1,82 @@
-
 "use client";
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { AccountType, getMyAccountType } from "@/lib/account";
+
+type Menu = {
+  href: string;
+  icon: string;
+  label: string;
+};
+
+const PT_MENUS: Menu[] = [
+  { href: "/home", icon: "⌂", label: "ホーム" },
+  { href: "/messages", icon: "💬", label: "メッセージ" },
+  { href: "/posts/create", icon: "+", label: "投稿" },
+  { href: "/pts", icon: "⌕", label: "PT検索" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
+];
+
+// 一般ユーザー：PTを探す・メッセージ・マイページのみ
+const GENERAL_MENUS: Menu[] = [
+  { href: "/pts", icon: "⌕", label: "PT検索" },
+  { href: "/messages", icon: "💬", label: "メッセージ" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
+];
 
 export default function BottomNavWrapper() {
   const pathname = usePathname();
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     let mounted = true;
 
-    async function checkLogin() {
-      const {
-        data: { user },
-      } = await supabase.auth.getUser();
+    async function applyUser(userId: string | null) {
+      if (!userId) {
+        if (!mounted) return;
+        setLoggedIn(false);
+        setAccountType(null);
+        setChecked(true);
+        return;
+      }
+
+      const type = await getMyAccountType(userId);
 
       if (!mounted) return;
 
-      setLoggedIn(!!user);
+      setLoggedIn(true);
+      setAccountType(type);
       setChecked(true);
     }
 
-    checkLogin();
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      applyUser(user?.id ?? null);
+    });
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        if (!mounted) return;
-
-        setLoggedIn(!!session?.user);
-        setChecked(true);
-      }
-    );
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      applyUser(session?.user?.id ?? null);
+    });
 
     return () => {
       mounted = false;
       subscription.unsubscribe();
     };
-  }, []);
+  }, [pathname]);
 
   // ログイン状態の確認が終わるまで何も表示しない
   if (!checked) {
     return null;
   }
 
-  // ログイン前は表示しない
+  // ログイン前のページでは表示しない
   if (
     pathname === "/" ||
     pathname === "/login" ||
@@ -59,70 +85,18 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // 未ログインなら表示しない
   if (!loggedIn) {
     return null;
   }
 
-  const menus = [
-  {
-    href: "/home",
-    icon: "⌂",
-    label: "ホーム",
-  },
-  {
-    href: "/messages",
-    icon: "💬",
-    label: "メッセージ",
-  },
-  {
-    href: "/posts/create",
-    icon: "+",
-    label: "投稿",
-  },
-  {
-    href: "/pts",
-    icon: "⌕",
-    label: "PT検索",
-  },
-  {
-    href: "/mypage",
-    icon: "○",
-    label: "マイページ",
-  },
-];
+  const menus = accountType === "general" ? GENERAL_MENUS : PT_MENUS;
 
   function isActive(href: string) {
-    if (href === "/home") {
-      return pathname === "/home";
+    if (href === "/home" || href === "/posts/create") {
+      return pathname === href;
     }
 
-    if (href === "/pts") {
-      return (
-        pathname === "/pts" ||
-        pathname.startsWith("/pts/")
-      );
-    }
-
-    if (href === "/posts/create") {
-      return pathname === "/posts/create";
-    }
-
-    if (href === "/messages") {
-      return (
-        pathname === "/messages" ||
-        pathname.startsWith("/messages/")
-      );
-    }
-
-    if (href === "/mypage") {
-      return (
-        pathname === "/mypage" ||
-        pathname.startsWith("/mypage/")
-      );
-    }
-
-    return pathname === href;
+    return pathname === href || pathname.startsWith(`${href}/`);
   }
 
   return (

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import { getMyAccountType } from "@/lib/account";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -15,11 +16,6 @@ export default function LoginPage() {
       email,
       password,
     });
-
-   console.log(data);
-console.log(error);
-console.log("LOGIN USER:", data.user);
-console.log("LOGIN EMAIL:", data.user?.email);
 
     if (error) {
       alert(error.message);
@@ -35,14 +31,22 @@ console.log("LOGIN EMAIL:", data.user?.email);
 
     alert("ログインしました");
 
-    // 管理者メールアドレス
-    if (user.email?.toLowerCase() === "bupapabupapa7@gmailcom") {
+    // 管理者は管理画面へ（admin_users テーブルで判定）
+    const { data: adminData } = await supabase
+      .from("admin_users")
+      .select("user_id")
+      .eq("user_id", user.id)
+      .limit(1);
+
+    if (adminData && adminData.length > 0) {
       router.push("/admin");
       return;
     }
 
-    // 一般ユーザー
-    router.push("/home");
+    // 一般ユーザーはPT検索、PTはホームへ
+    const accountType = await getMyAccountType(user.id);
+
+    router.push(accountType === "general" ? "/pts" : "/home");
   }
 
   return (
