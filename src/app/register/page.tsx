@@ -5,16 +5,41 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 
+type AccountType = "pt" | "general";
+
+const ACCOUNT_TYPE_OPTIONS: {
+  value: AccountType;
+  label: string;
+  description: string;
+}[] = [
+  {
+    value: "pt",
+    label: "PT（理学療法士）",
+    description: "PT同士で交流・情報共有",
+  },
+  {
+    value: "general",
+    label: "一般",
+    description: "PTを探す・レビューを書く",
+  },
+];
+
 export default function RegisterPage() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
   async function handleRegister() {
     setError("");
+
+    if (!accountType) {
+      setError("アカウントの種類（PT／一般）を選んでください");
+      return;
+    }
 
     if (!email || !password) {
       setError("メールアドレスとパスワードを入力してください");
@@ -31,6 +56,10 @@ export default function RegisterPage() {
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
+      options: {
+        // DBトリガー on_auth_user_created が users.account_type に保存します
+        data: { account_type: accountType },
+      },
     });
 
     if (error) {
@@ -68,6 +97,52 @@ export default function RegisterPage() {
         </p>
 
         <div className="mt-10 space-y-5">
+
+          <div>
+            <p className="mb-2 block text-sm font-medium">
+              アカウントの種類
+            </p>
+
+            <div
+              role="radiogroup"
+              aria-label="アカウントの種類"
+              className="grid grid-cols-2 gap-3"
+            >
+              {ACCOUNT_TYPE_OPTIONS.map((option) => {
+                const selected = accountType === option.value;
+
+                return (
+                  <button
+                    key={option.value}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => setAccountType(option.value)}
+                    className={`rounded-2xl border px-4 py-3.5 text-left transition ${
+                      selected
+                        ? "border-black bg-black text-white"
+                        : "border-gray-200 bg-white text-gray-900 hover:border-gray-400"
+                    }`}
+                  >
+                    <span className="block text-sm font-medium">
+                      {option.label}
+                    </span>
+                    <span
+                      className={`mt-1 block text-xs ${
+                        selected ? "text-gray-300" : "text-gray-500"
+                      }`}
+                    >
+                      {option.description}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <p className="mt-2 text-xs text-gray-400">
+              資格は自己申告です。
+            </p>
+          </div>
 
           <div>
             <label className="mb-2 block text-sm font-medium">

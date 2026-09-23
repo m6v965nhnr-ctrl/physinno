@@ -309,7 +309,9 @@ export default function AdminPage() {
                         <span className="rounded-full bg-gray-100 px-3 py-1 text-xs text-gray-600">
                           {member.account_type === "pt"
                             ? "PT"
-                            : member.account_type || "未設定"}
+                            : member.account_type === "general"
+                              ? "一般"
+                              : member.account_type || "未設定"}
                         </span>
                       </div>
 
