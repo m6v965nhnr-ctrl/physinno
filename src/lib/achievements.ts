@@ -56,16 +56,94 @@ export const ACHIEVEMENT_FIELD_CONFIG: Record<
   },
 };
 
+function isAchievementCategory(value: string): value is AchievementCategory {
+  return (ACHIEVEMENT_CATEGORIES as string[]).includes(value);
+}
+
+// 実績（学会発表・院内症例発表など）は posts テーブルに投稿として保存される
 export type Achievement = {
   id: string;
   user_id: string;
   category: AchievementCategory;
   title: string | null;
   conference_name: string | null;
-  achieved_on: string;
   memo: string | null;
+  achieved_on: string;
+  is_public: boolean;
   created_at: string;
 };
+
+type PostRow = {
+  id: string;
+  user_id: string;
+  post_type: string;
+  title: string | null;
+  conference_name: string | null;
+  content: string | null;
+  achieved_on: string | null;
+  is_public: boolean;
+  created_at: string;
+};
+
+function toAchievement(row: PostRow): Achievement | null {
+  if (!isAchievementCategory(row.post_type)) {
+    return null;
+  }
+
+  return {
+    id: row.id,
+    user_id: row.user_id,
+    category: row.post_type,
+    title: row.title,
+    conference_name: row.conference_name,
+    memo: row.content,
+    achieved_on: row.achieved_on || row.created_at.slice(0, 10),
+    is_public: row.is_public,
+    created_at: row.created_at,
+  };
+}
+
+// 本人のマイページ用: 公開・非公開を問わず全ての実績投稿を取得
+export async function listMyAchievements(
+  userId: string
+): Promise<Achievement[]> {
+  const { data } = await supabase
+    .from("posts")
+    .select(
+      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at"
+    )
+    .eq("user_id", userId)
+    .in("post_type", ACHIEVEMENT_CATEGORIES)
+    .order("achieved_on", { ascending: false });
+
+  return ((data || []) as PostRow[])
+    .map(toAchievement)
+    .filter((a): a is Achievement => a !== null);
+}
+
+// 公開ポートフォリオ用: 公開設定の実績投稿のみ取得
+export async function listPublicAchievements(
+  userId: string
+): Promise<Achievement[]> {
+  const { data } = await supabase
+    .from("posts")
+    .select(
+      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at"
+    )
+    .eq("user_id", userId)
+    .eq("is_public", true)
+    .in("post_type", ACHIEVEMENT_CATEGORIES)
+    .order("achieved_on", { ascending: false });
+
+  return ((data || []) as PostRow[])
+    .map(toAchievement)
+    .filter((a): a is Achievement => a !== null);
+}
+
+export async function deleteAchievement(id: string) {
+  const { error } = await supabase.from("posts").delete().eq("id", id);
+  return error ? error.message : null;
+}
 
 export type QualificationTarget = {
   id: string;
@@ -76,43 +154,6 @@ export type QualificationTarget = {
   cycle_start: string;
   created_at: string;
 };
-
-export async function listAchievements(
-  userId: string
-): Promise<Achievement[]> {
-  const { data } = await supabase
-    .from("achievements")
-    .select("*")
-    .eq("user_id", userId)
-    .order("achieved_on", { ascending: false });
-
-  return data || [];
-}
-
-export async function addAchievement(params: {
-  userId: string;
-  category: AchievementCategory;
-  title?: string;
-  conferenceName?: string;
-  achievedOn?: string;
-  memo?: string;
-}) {
-  const { error } = await supabase.from("achievements").insert({
-    user_id: params.userId,
-    category: params.category,
-    title: params.title || null,
-    conference_name: params.conferenceName || null,
-    achieved_on: params.achievedOn || new Date().toISOString().slice(0, 10),
-    memo: params.memo || null,
-  });
-
-  return error ? error.message : null;
-}
-
-export async function deleteAchievement(id: string) {
-  const { error } = await supabase.from("achievements").delete().eq("id", id);
-  return error ? error.message : null;
-}
 
 export async function listQualificationTargets(
   userId: string

@@ -3,6 +3,12 @@
 import { useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import {
+  ACHIEVEMENT_CATEGORIES,
+  ACHIEVEMENT_CATEGORY_LABEL,
+  ACHIEVEMENT_FIELD_CONFIG,
+  AchievementCategory,
+} from "@/lib/achievements";
 
 const diseaseCategories = [
   "脳血管",
@@ -16,12 +22,22 @@ const diseaseCategories = [
 ];
 
 export default function CreatePostPage() {
-  const [type, setType] = useState<"normal" | "case" | null>(null);
+  const [type, setType] = useState<"normal" | "case" | "achievement" | null>(
+    null
+  );
+  const [achievementCategory, setAchievementCategory] =
+    useState<AchievementCategory | null>(null);
 
   const [title, setTitle] = useState("");
   const [diseaseCategory, setDiseaseCategory] = useState("");
   const [content, setContent] = useState("");
   const [referenceUrl, setReferenceUrl] = useState("");
+
+  const [conferenceName, setConferenceName] = useState("");
+  const [achievedOn, setAchievedOn] = useState(
+    new Date().toISOString().slice(0, 10)
+  );
+  const [isPublic, setIsPublic] = useState(true);
 
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -179,6 +195,57 @@ export default function CreatePostPage() {
     }
   }
 
+  async function handleAchievementPost() {
+    if (!achievementCategory) {
+      return;
+    }
+
+    if (!title.trim()) {
+      alert("タイトルを入力してください");
+      return;
+    }
+
+    setPosting(true);
+
+    try {
+      const {
+        data: { user },
+      } = await supabase.auth.getUser();
+
+      if (!user) {
+        alert("ログインしてください");
+        return;
+      }
+
+      const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[achievementCategory];
+
+      const { error } = await supabase.from("posts").insert({
+        user_id: user.id,
+        title: title.trim(),
+        content: content.trim(),
+        post_type: achievementCategory,
+        conference_name: fieldConfig.showConferenceName
+          ? conferenceName.trim() || null
+          : null,
+        achieved_on: achievedOn,
+        is_public: isPublic,
+        disease_category: null,
+        reference_url: null,
+      });
+
+      if (error) {
+        console.error("ACHIEVEMENT POST ERROR", error);
+        alert("実績の投稿に失敗しました");
+        return;
+      }
+
+      alert("実績を投稿しました");
+      window.location.href = isPublic ? "/home" : "/mypage/achievements";
+    } finally {
+      setPosting(false);
+    }
+  }
+
   /*
    * 投稿種類選択画面
    */
@@ -253,6 +320,194 @@ export default function CreatePostPage() {
                 </div>
               </div>
             </button>
+
+            {/* 実績 */}
+            <button
+              onClick={() => setType("achievement")}
+              className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
+                  🏅
+                </div>
+
+                <div>
+                  <p className="text-base font-semibold text-gray-900">
+                    実績
+                  </p>
+
+                  <p className="mt-1 text-sm text-gray-400">
+                    学会発表・院内症例発表・研修受講・論文・その他を投稿
+                  </p>
+                </div>
+              </div>
+            </button>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  /*
+   * 実績：カテゴリ選択
+   */
+  if (type === "achievement" && !achievementCategory) {
+    return (
+      <main className="min-h-screen bg-[#fafafa] pb-24">
+        <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-2xl items-center px-5 py-4">
+            <button
+              onClick={() => setType(null)}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
+            >
+              ←
+            </button>
+
+            <h1 className="ml-3 text-lg font-semibold text-gray-900">
+              実績を投稿
+            </h1>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-2xl px-5 py-10">
+          <h2 className="text-center text-xl font-semibold text-gray-900">
+            どの実績ですか？
+          </h2>
+
+          <div className="mt-8 grid grid-cols-2 gap-3">
+            {ACHIEVEMENT_CATEGORIES.map((c) => (
+              <button
+                key={c}
+                onClick={() => setAchievementCategory(c)}
+                className="rounded-2xl border border-gray-200 bg-white p-5 text-center font-medium text-gray-900 transition hover:border-gray-400 hover:shadow-sm"
+              >
+                {ACHIEVEMENT_CATEGORY_LABEL[c]}
+              </button>
+            ))}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  /*
+   * 実績：詳細入力
+   */
+  if (type === "achievement" && achievementCategory) {
+    const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[achievementCategory];
+
+    return (
+      <main className="min-h-screen bg-[#fafafa] pb-24">
+        <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
+            <button
+              onClick={() => setAchievementCategory(null)}
+              className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
+            >
+              ←
+            </button>
+
+            <h1 className="text-lg font-semibold text-gray-900">
+              {ACHIEVEMENT_CATEGORY_LABEL[achievementCategory]}
+            </h1>
+
+            <button
+              onClick={handleAchievementPost}
+              disabled={posting}
+              className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+            >
+              {posting ? "投稿中..." : "投稿"}
+            </button>
+          </div>
+        </header>
+
+        <div className="mx-auto max-w-2xl px-5 py-6">
+          <div className="rounded-2xl border border-gray-100 bg-white p-5">
+            <div className="mb-5">
+              <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
+                {ACHIEVEMENT_CATEGORY_LABEL[achievementCategory]}
+              </span>
+            </div>
+
+            {fieldConfig.showConferenceName && (
+              <div>
+                <label className="text-sm font-semibold text-gray-900">
+                  学会名
+                </label>
+
+                <input
+                  value={conferenceName}
+                  onChange={(event) =>
+                    setConferenceName(event.target.value)
+                  }
+                  placeholder="例：日本理学療法学術大会"
+                  className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+                />
+              </div>
+            )}
+
+            <div className="mt-6">
+              <label className="text-sm font-semibold text-gray-900">
+                {fieldConfig.titlePlaceholder.split("（")[0]}
+              </label>
+
+              <input
+                value={title}
+                onChange={(event) => setTitle(event.target.value)}
+                placeholder={fieldConfig.titlePlaceholder}
+                className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="text-sm font-semibold text-gray-900">
+                {fieldConfig.memoLabel}
+              </label>
+
+              <textarea
+                value={content}
+                onChange={(event) => setContent(event.target.value)}
+                placeholder={fieldConfig.memoLabel}
+                rows={5}
+                className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+              />
+            </div>
+
+            <div className="mt-6">
+              <label className="text-sm font-semibold text-gray-900">
+                実施日
+              </label>
+
+              <input
+                type="date"
+                value={achievedOn}
+                onChange={(event) => setAchievedOn(event.target.value)}
+                className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+              />
+            </div>
+
+            <div className="mt-6 border-t border-gray-100 pt-5">
+              <label className="flex cursor-pointer items-center justify-between gap-3">
+                <div>
+                  <p className="text-sm font-medium text-gray-900">
+                    ホームのフィードに公開する
+                  </p>
+
+                  <p className="mt-1 text-xs text-gray-400">
+                    オフにすると自分のマイページ集計にのみ反映されます
+                  </p>
+                </div>
+
+                <input
+                  type="checkbox"
+                  checked={isPublic}
+                  onChange={(event) =>
+                    setIsPublic(event.target.checked)
+                  }
+                  className="h-5 w-5"
+                />
+              </label>
+            </div>
           </div>
         </div>
       </main>

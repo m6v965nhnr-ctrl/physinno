@@ -10,7 +10,7 @@ import {
   Achievement,
   QualificationTarget,
   computeQualificationProgress,
-  listAchievements,
+  listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
 
@@ -132,7 +132,7 @@ export default function MyPage() {
     // =========================
     // 実績・資格更新の進捗
     // =========================
-    setAchievements(await listAchievements(user.id));
+    setAchievements(await listMyAchievements(user.id));
     setTargets(await listQualificationTargets(user.id));
 
     setLoading(false);

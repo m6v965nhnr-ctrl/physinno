@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import {
+  ACHIEVEMENT_CATEGORIES,
+  ACHIEVEMENT_CATEGORY_LABEL,
+  AchievementCategory,
+} from "@/lib/achievements";
 
 type Post = {
   id: string;
@@ -15,7 +20,14 @@ type Post = {
   post_type?: string | null;
   disease_category?: string | null;
   reference_url?: string | null;
+  conference_name?: string | null;
 };
+
+function isAchievementPostType(
+  postType: string | null | undefined
+): postType is AchievementCategory {
+  return !!postType && (ACHIEVEMENT_CATEGORIES as string[]).includes(postType);
+}
 
 type Profile = {
   id?: string;
@@ -72,6 +84,7 @@ export default function HomePage() {
     const { data: postData, error: postError } = await supabase
       .from("posts")
       .select("*")
+      .eq("is_public", true)
       .order("created_at", { ascending: false });
 
 
@@ -506,6 +519,21 @@ if (targetPost && targetPost.user_id !== userId) {
                           {post.disease_category && (
                             <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
                               {post.disease_category}
+                            </span>
+                          )}
+                        </div>
+                      )}
+
+                      {/* 実績（学会発表・院内症例発表など） */}
+                      {isAchievementPostType(post.post_type) && (
+                        <div className="mb-2 flex items-center gap-2 -ml-2">
+                          <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-600">
+                            {ACHIEVEMENT_CATEGORY_LABEL[post.post_type]}
+                          </span>
+
+                          {post.conference_name && (
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                              {post.conference_name}
                             </span>
                           )}
                         </div>

@@ -7,16 +7,13 @@ import { supabase } from "@/lib/supabase";
 import {
   ACHIEVEMENT_CATEGORIES,
   ACHIEVEMENT_CATEGORY_LABEL,
-  ACHIEVEMENT_FIELD_CONFIG,
   Achievement,
-  AchievementCategory,
   QualificationTarget,
-  addAchievement,
   addQualificationTarget,
   computeQualificationProgress,
   deleteAchievement,
   deleteQualificationTarget,
-  listAchievements,
+  listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
 
@@ -28,18 +25,6 @@ export default function AchievementsPage() {
 
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [targets, setTargets] = useState<QualificationTarget[]>([]);
-
-  // 実績登録フォーム
-  const [category, setCategory] = useState<AchievementCategory>("conference");
-  const [title, setTitle] = useState("");
-  const [conferenceName, setConferenceName] = useState("");
-  const [summary, setSummary] = useState("");
-  const [achievedOn, setAchievedOn] = useState(
-    new Date().toISOString().slice(0, 10)
-  );
-  const [saving, setSaving] = useState(false);
-
-  const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[category];
 
   // 資格目標フォーム
   const [showTargetForm, setShowTargetForm] = useState(false);
@@ -65,41 +50,13 @@ export default function AchievementsPage() {
     }
 
     setUserId(user.id);
-    setAchievements(await listAchievements(user.id));
+    setAchievements(await listMyAchievements(user.id));
     setTargets(await listQualificationTargets(user.id));
     setLoading(false);
   }
 
-  async function handleAddAchievement(e: React.FormEvent) {
-    e.preventDefault();
-    setSaving(true);
-
-    const error = await addAchievement({
-      userId,
-      category,
-      title,
-      conferenceName: fieldConfig.showConferenceName
-        ? conferenceName
-        : undefined,
-      memo: summary,
-      achievedOn,
-    });
-
-    setSaving(false);
-
-    if (error) {
-      alert(error);
-      return;
-    }
-
-    setTitle("");
-    setConferenceName("");
-    setSummary("");
-    load();
-  }
-
   async function handleDeleteAchievement(id: string) {
-    if (!confirm("この実績を削除しますか？")) return;
+    if (!confirm("この実績投稿を削除しますか？")) return;
     await deleteAchievement(id);
     load();
   }
@@ -156,12 +113,21 @@ export default function AchievementsPage() {
           ← マイページ
         </Link>
 
-        <h1 className="mt-4 text-2xl font-semibold tracking-tight">
-          実績・資格更新
-        </h1>
+        <div className="mt-4 flex items-center justify-between">
+          <h1 className="text-2xl font-semibold tracking-tight">
+            実績・資格更新
+          </h1>
+
+          <Link
+            href="/posts/create"
+            className="rounded-full bg-relight-gradient px-4 py-2 text-sm font-medium text-white"
+          >
+            + 実績を投稿
+          </Link>
+        </div>
 
         <p className="mt-2 text-sm text-gray-500">
-          学会発表や院内症例発表などを登録すると、資格更新までの進捗が自動で計算されます。
+          「投稿」から学会発表や院内症例発表などを投稿すると、ここに集計され資格更新までの進捗が自動で計算されます。
         </p>
 
         {/* =========================
@@ -268,72 +234,6 @@ export default function AchievementsPage() {
         </section>
 
         {/* =========================
-            実績登録
-        ========================= */}
-        <section className="mt-10 border-t pt-6">
-          <h2 className="text-lg font-semibold">実績を登録</h2>
-
-          <form onSubmit={handleAddAchievement} className="mt-4 space-y-3">
-            <div className="grid grid-cols-2 gap-2">
-              {ACHIEVEMENT_CATEGORIES.map((c) => (
-                <button
-                  type="button"
-                  key={c}
-                  onClick={() => setCategory(c)}
-                  className={`rounded-xl border px-3 py-2 text-sm ${
-                    category === c
-                      ? "border-relight bg-relight-gradient text-white"
-                      : "border-gray-200"
-                  }`}
-                >
-                  {ACHIEVEMENT_CATEGORY_LABEL[c]}
-                </button>
-              ))}
-            </div>
-
-            {fieldConfig.showConferenceName && (
-              <input
-                value={conferenceName}
-                onChange={(e) => setConferenceName(e.target.value)}
-                placeholder="学会名（例: 日本理学療法学術大会）"
-                className="w-full rounded-xl border px-4 py-2.5 text-sm"
-              />
-            )}
-
-            <input
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              placeholder={fieldConfig.titlePlaceholder}
-              className="w-full rounded-xl border px-4 py-2.5 text-sm"
-            />
-
-            <textarea
-              value={summary}
-              onChange={(e) => setSummary(e.target.value)}
-              placeholder={fieldConfig.memoLabel}
-              rows={4}
-              className="w-full rounded-xl border px-4 py-2.5 text-sm"
-            />
-
-            <input
-              type="date"
-              value={achievedOn}
-              onChange={(e) => setAchievedOn(e.target.value)}
-              className="w-full rounded-xl border px-4 py-2.5 text-sm"
-              required
-            />
-
-            <button
-              type="submit"
-              disabled={saving}
-              className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
-            >
-              {saving ? "登録中..." : "登録する"}
-            </button>
-          </form>
-        </section>
-
-        {/* =========================
             カテゴリ別の積み上げ
         ========================= */}
         <section className="mt-10 border-t pt-6">
@@ -355,7 +255,9 @@ export default function AchievementsPage() {
 
           <div className="mt-6 space-y-2">
             {achievements.length === 0 ? (
-              <p className="text-sm text-gray-400">まだ実績がありません。</p>
+              <p className="text-sm text-gray-400">
+                まだ実績がありません。「実績を投稿」から登録できます。
+              </p>
             ) : (
               achievements.map((a) => (
                 <div
@@ -367,6 +269,11 @@ export default function AchievementsPage() {
                       {ACHIEVEMENT_CATEGORY_LABEL[a.category]}
                       {a.conference_name ? `・${a.conference_name}` : ""}
                       {a.title ? `・${a.title}` : ""}
+                      {!a.is_public && (
+                        <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+                          非公開
+                        </span>
+                      )}
                     </p>
 
                     {a.memo && (

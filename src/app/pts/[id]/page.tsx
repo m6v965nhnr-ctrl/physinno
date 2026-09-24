@@ -11,7 +11,7 @@ import {
   Achievement,
   QualificationTarget,
   computeQualificationProgress,
-  listAchievements,
+  listPublicAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
 
@@ -114,7 +114,7 @@ export default function PTProfile() {
       .order("created_at", { ascending: false });
 
     setCaseReports(caseData || []);
-    setAchievements(await listAchievements(ptData.user_id));
+    setAchievements(await listPublicAchievements(ptData.user_id));
     setTargets(await listQualificationTargets(ptData.user_id));
   }
 
