@@ -184,6 +184,16 @@ export default function PortfolioViewPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-24 print:bg-white print:pb-0">
+      {/* A4での印刷・PDF保存に合わせたページ設定（登録した情報は省略せず、必要なだけページが増える想定） */}
+      <style>{`
+        @media print {
+          @page {
+            size: A4;
+            margin: 15mm;
+          }
+        }
+      `}</style>
+
       {/* ヘッダー（印刷時は非表示） */}
       <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur print:hidden">
         <div className="mx-auto flex max-w-4xl items-center justify-between px-5 py-4">
@@ -207,7 +217,7 @@ export default function PortfolioViewPage() {
         {/* =========================
             基本情報
         ========================= */}
-        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:rounded-none print:border-0 print:p-0 print:shadow-none">
+        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
           {/* 証明写真 */}
           <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0">
             {pt.id_photo ? (
@@ -270,7 +280,7 @@ export default function PortfolioViewPage() {
         {/* =========================
             サマリー
         ========================= */}
-        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-6">
+        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-6 print:break-inside-avoid">
           <SummaryTile
             label="学会発表"
             value={achievements.filter((a) => a.category === "conference").length}
@@ -472,8 +482,8 @@ function PortfolioBlock({
   if (items.length === 0) return null;
 
   return (
-    <section className="mt-6 print:mt-4 print:break-inside-avoid">
-      <h2 className="text-lg font-semibold text-gray-900 print:text-base">
+    <section className="mt-6 print:mt-4">
+      <h2 className="text-lg font-semibold text-gray-900 print:text-base print:break-after-avoid">
         {title}
       </h2>
 
@@ -494,7 +504,7 @@ function PrintEntry({
   description?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:px-0 print:py-2">
+    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:px-0 print:py-2 print:break-inside-avoid">
       <p className="text-sm font-medium text-gray-900">{title}</p>
       {subtitle && <p className="mt-1 text-xs text-gray-500">{subtitle}</p>}
       {meta && <p className="mt-1 text-xs text-gray-400">{meta}</p>}
