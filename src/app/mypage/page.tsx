@@ -195,6 +195,20 @@ export default function MyPage() {
   }
 
   // =========================
+  // 自分の投稿を削除
+  // =========================
+  async function handleDeletePost(id: string) {
+    const { error } = await supabase.from("posts").delete().eq("id", id);
+
+    if (error) {
+      alert(error.message);
+      return;
+    }
+
+    loadMyPage();
+  }
+
+  // =========================
   // 自分が書いたレビュー（一般ユーザー用）
   // =========================
   async function loadMyReviews(userId: string) {
@@ -717,13 +731,14 @@ export default function MyPage() {
               </p>
             ) : (
               posts.map((post) => (
-                <Link
+                <div
                   key={post.id}
-                  href={`/posts/${post.id}`}
-                  className="block"
+                  className="flex items-start gap-3 border rounded-2xl p-5"
                 >
-                  <div className="border rounded-2xl p-5">
-
+                  <Link
+                    href={`/posts/${post.id}`}
+                    className="block min-w-0 flex-1"
+                  >
                     {post.title && (
                       <h3 className="font-semibold">
                         {post.title}
@@ -733,9 +748,15 @@ export default function MyPage() {
                     <p className="mt-2 whitespace-pre-wrap">
                       {post.content}
                     </p>
+                  </Link>
 
-                  </div>
-                </Link>
+                  <button
+                    onClick={() => handleDeletePost(post.id)}
+                    className="shrink-0 text-xs text-gray-400 hover:text-red-500"
+                  >
+                    削除
+                  </button>
+                </div>
               ))
             )}
 
