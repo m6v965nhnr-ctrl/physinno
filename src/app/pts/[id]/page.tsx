@@ -34,6 +34,10 @@ export default function PTProfile() {
   const [caseReports, setCaseReports] = useState<CaseReport[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [targets, setTargets] = useState<QualificationTarget[]>([]);
+  const [postCount, setPostCount] = useState(0);
+  const [followingCount, setFollowingCount] = useState(0);
+  const [followerCount, setFollowerCount] = useState(0);
+  const [profileExpanded, setProfileExpanded] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -116,6 +120,31 @@ export default function PTProfile() {
     setCaseReports(caseData || []);
     setAchievements(await listPublicAchievements(ptData.user_id));
     setTargets(await listQualificationTargets(ptData.user_id));
+
+    // =========================
+    // 投稿・フォロー・フォロワー数
+    // =========================
+    const { count: postsCount } = await supabase
+      .from("posts")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", ptData.user_id)
+      .eq("is_public", true);
+
+    setPostCount(postsCount || 0);
+
+    const { count: followingTotal } = await supabase
+      .from("follows")
+      .select("id", { count: "exact", head: true })
+      .eq("following_user", ptData.user_id);
+
+    setFollowingCount(followingTotal || 0);
+
+    const { count: followerTotal } = await supabase
+      .from("follows")
+      .select("id", { count: "exact", head: true })
+      .eq("followed_user", ptData.user_id);
+
+    setFollowerCount(followerTotal || 0);
   }
 
   async function toggleFollow() {
@@ -213,31 +242,44 @@ export default function PTProfile() {
       <div className="max-w-2xl mx-auto px-4 py-8">
 
         {/* プロフィールヘッダー */}
-        <section className="rounded-3xl border border-gray-100 bg-white px-6 py-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+        <section className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
 
-          <div className="flex flex-col items-center text-center">
-
-            {pt.profile_image ? (
+          {/* カバー写真 */}
+          <div className="h-32 w-full bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20">
+            {pt.cover_image && (
               <img
-                src={pt.profile_image}
-                alt={pt.full_name || "プロフィール"}
-                className="h-28 w-28 rounded-full object-cover ring-1 ring-gray-100"
+                src={pt.cover_image}
+                alt=""
+                className="h-full w-full object-cover"
               />
-            ) : (
-              <div className="flex h-28 w-28 items-center justify-center rounded-full bg-gray-100 text-sm font-medium text-gray-400">
-                PT
-              </div>
             )}
+          </div>
 
-            <h1 className="mt-5 text-2xl font-semibold tracking-tight text-gray-900">
-              {pt.full_name || "PTユーザー"} PT
+          <div className="flex flex-col items-center px-6 pb-8 text-center">
+
+            <div className="-mt-12">
+              {pt.profile_image ? (
+                <img
+                  src={pt.profile_image}
+                  alt={pt.full_name || "プロフィール"}
+                  className="h-24 w-24 rounded-full object-cover ring-4 ring-white"
+                />
+              ) : (
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-gray-100 text-sm font-medium text-gray-400 ring-4 ring-white">
+                  PT
+                </div>
+              )}
+            </div>
+
+            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
+              {pt.full_name || "PTユーザー"}
             </h1>
 
-            <p className="mt-1 text-sm text-gray-500">
-              理学療法士
+            <p className="mt-1 text-base text-gray-600">
+              {pt.qualification || "理学療法士"}
             </p>
 
-            <div className="mt-4 flex items-center gap-2">
+            <div className="mt-3 flex items-center gap-2">
               <span className="text-lg">
                 ⭐
               </span>
@@ -251,53 +293,94 @@ export default function PTProfile() {
               </span>
             </div>
 
-            {/* フォロー */}
-            <button
-              onClick={toggleFollow}
-              className={`
-                mt-6
-                w-full
-                max-w-xs
-                rounded-full
-                py-2.5
-                text-sm
-                font-medium
-                transition
-                active:scale-[0.98]
-                ${
-                  following
-                    ? "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
-                    : "bg-black text-white hover:bg-gray-800"
-                }
-              `}
-            >
-              {following ? "フォロー中" : "フォローする"}
-            </button>
+            {/* 投稿・フォロー・フォロワー */}
+            <div className="mt-5 flex justify-center gap-8">
+              <div className="text-center">
+                <p className="font-semibold">{postCount}</p>
+                <p className="text-sm text-gray-500">投稿</p>
+              </div>
 
-            {/* メッセージ */}
-            <Link
-              href={`/messages/${pt.user_id}`}
-              className="mt-3 block w-full max-w-xs"
-            >
-              <div
-                className="
-                  w-full
+              <div className="text-center">
+                <p className="font-semibold">{followingCount}</p>
+                <p className="text-sm text-gray-500">フォロー</p>
+              </div>
+
+              <div className="text-center">
+                <p className="font-semibold">{followerCount}</p>
+                <p className="text-sm text-gray-500">フォロワー</p>
+              </div>
+            </div>
+
+            {/* フォロー・メッセージ・レビューを書く */}
+            <div className="mt-6 flex w-full max-w-sm gap-2">
+              <button
+                onClick={toggleFollow}
+                className={`
+                  flex-1
                   rounded-full
-                  border
-                  border-gray-300
-                  bg-white
                   py-2.5
                   text-sm
                   font-medium
-                  text-gray-900
                   transition
-                  hover:bg-gray-50
                   active:scale-[0.98]
-                "
+                  ${
+                    following
+                      ? "border border-gray-200 bg-white text-gray-700 hover:bg-gray-50"
+                      : "bg-black text-white hover:bg-gray-800"
+                  }
+                `}
               >
-                💬 メッセージ
-              </div>
-            </Link>
+                {following ? "フォロー中" : "フォローする"}
+              </button>
+
+              <Link
+                href={`/messages/${pt.user_id}`}
+                className="flex-1"
+              >
+                <div
+                  className="
+                    w-full
+                    rounded-full
+                    border
+                    border-gray-300
+                    bg-white
+                    py-2.5
+                    text-sm
+                    font-medium
+                    text-gray-900
+                    transition
+                    hover:bg-gray-50
+                    active:scale-[0.98]
+                  "
+                >
+                  💬 メッセージ
+                </div>
+              </Link>
+
+              <Link
+                href={`/pts/${pt.id}/review`}
+                className="flex-1"
+              >
+                <div
+                  className="
+                    w-full
+                    rounded-full
+                    border
+                    border-gray-300
+                    bg-white
+                    py-2.5
+                    text-sm
+                    font-medium
+                    text-gray-900
+                    transition
+                    hover:bg-gray-50
+                    active:scale-[0.98]
+                  "
+                >
+                  レビューを書く
+                </div>
+              </Link>
+            </div>
 
           </div>
         </section>
@@ -316,55 +399,66 @@ export default function PTProfile() {
               value={pt.workplace}
             />
 
-            <ProfileItem
-              title="専門"
-              value={pt.specialty}
-            />
+            {profileExpanded && (
+              <>
+                <ProfileItem
+                  title="専門"
+                  value={pt.specialty}
+                />
 
-            <ProfileItem
-              title="資格"
-              value={pt.qualification}
-            />
+                <ProfileItem
+                  title="資格"
+                  value={pt.qualification}
+                />
 
-            <ProfileItem
-              title="経験年数"
-              value={
-                pt.experience_years !== null &&
-                pt.experience_years !== undefined
-                  ? `${pt.experience_years}年`
-                  : ""
-              }
-            />
+                <ProfileItem
+                  title="経験年数"
+                  value={
+                    pt.experience_years !== null &&
+                    pt.experience_years !== undefined
+                      ? `${pt.experience_years}年`
+                      : ""
+                  }
+                />
 
-            <ProfileItem
-              title="学歴"
-              value={pt.education}
-            />
+                <ProfileItem
+                  title="学歴"
+                  value={pt.education}
+                />
 
-            <ProfileItem
-              title="出身"
-              value={pt.hometown}
-            />
+                <ProfileItem
+                  title="出身"
+                  value={pt.hometown}
+                />
 
-            <ProfileItem
-              title="生年月日"
-              value={pt.birth_date}
-            />
+                <ProfileItem
+                  title="生年月日"
+                  value={pt.birth_date}
+                />
 
-            <ProfileItem
-              title="言語"
-              value={pt.language}
-            />
+                <ProfileItem
+                  title="言語"
+                  value={pt.language}
+                />
 
-            <ProfileItem
-              title="連絡先"
-              value={pt.contact}
-            />
+                <ProfileItem
+                  title="連絡先"
+                  value={pt.contact}
+                />
 
-            <ProfileItem
-              title="自己紹介"
-              value={pt.biography}
-            />
+                <ProfileItem
+                  title="自己紹介"
+                  value={pt.biography}
+                />
+              </>
+            )}
+
+            <button
+              onClick={() => setProfileExpanded((v) => !v)}
+              className="w-full rounded-full border border-gray-200 py-2 text-sm text-gray-500 hover:bg-gray-50"
+            >
+              {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
+            </button>
 
           </div>
         </section>
@@ -451,31 +545,6 @@ export default function PTProfile() {
             )}
           </section>
         )}
-
-        {/* レビューを書く */}
-        <Link
-          href={`/pts/${pt.id}/review`}
-          className="block"
-        >
-          <div
-            className="
-              mt-5
-              w-full
-              rounded-full
-              bg-black
-              py-3
-              text-center
-              text-sm
-              font-medium
-              text-white
-              transition
-              hover:bg-gray-800
-              active:scale-[0.98]
-            "
-          >
-            レビューを書く
-          </div>
-        </Link>
 
         {/* レビュー */}
         <section className="mt-8">

@@ -3,11 +3,14 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
+import AccountTypeCard from "@/components/AccountTypeCard";
+import { AccountType, getMyAccountType } from "@/lib/account";
 
 export default function EditProfilePage() {
   const router = useRouter();
 
   const [profileId, setProfileId] = useState("");
+  const [accountType, setAccountType] = useState<AccountType | null>(null);
 
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
@@ -28,6 +31,12 @@ export default function EditProfilePage() {
     useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState("");
 
+  // カバー写真
+  const [coverImage, setCoverImage] = useState("");
+  const [selectedCover, setSelectedCover] =
+    useState<File | null>(null);
+  const [coverPreview, setCoverPreview] = useState("");
+
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [userId, setUserId] = useState("");
@@ -47,6 +56,7 @@ export default function EditProfilePage() {
     }
 
     setUserId(user.id);
+    setAccountType(await getMyAccountType(user.id));
 
     const { data, error } = await supabase
       .from("pt_profiles")
@@ -79,6 +89,8 @@ export default function EditProfilePage() {
 
       setProfileImage(data.profile_image || "");
       setImagePreview(data.profile_image || "");
+      setCoverImage(data.cover_image || "");
+      setCoverPreview(data.cover_image || "");
     } else {
       setFullName("");
       setQualification("理学療法士");
@@ -115,6 +127,34 @@ export default function EditProfilePage() {
 
     const previewUrl = URL.createObjectURL(file);
     setImagePreview(previewUrl);
+  }
+
+  // =========================
+  // カバー写真を選択
+  // =========================
+  function handleCoverChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      alert("画像ファイルを選択してください");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("画像は10MB以下にしてください");
+      return;
+    }
+
+    setSelectedCover(file);
+
+    const previewUrl = URL.createObjectURL(file);
+    setCoverPreview(previewUrl);
   }
 
   // =========================
@@ -156,6 +196,43 @@ export default function EditProfilePage() {
   }
 
   // =========================
+  // カバー写真アップロード
+  // =========================
+  async function uploadCoverImage() {
+    if (!selectedCover || !userId) {
+      return coverImage;
+    }
+
+    const fileExtension =
+      selectedCover.name.split(".").pop() || "jpg";
+
+    const filePath =
+      `${userId}/cover-${Date.now()}.${fileExtension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("profile-images")
+      .upload(filePath, selectedCover, {
+        upsert: true,
+        contentType: selectedCover.type,
+      });
+
+    if (uploadError) {
+      alert(
+        `カバー写真のアップロードに失敗しました\n${uploadError.message}`
+      );
+      return null;
+    }
+
+    const {
+      data: publicUrlData,
+    } = supabase.storage
+      .from("profile-images")
+      .getPublicUrl(filePath);
+
+    return publicUrlData.publicUrl;
+  }
+
+  // =========================
   // プロフィール保存
   // =========================
   async function saveProfile() {
@@ -181,6 +258,19 @@ export default function EditProfilePage() {
       imageUrl = uploadedUrl;
     }
 
+    let coverUrl = coverImage;
+
+    if (selectedCover) {
+      const uploadedCoverUrl = await uploadCoverImage();
+
+      if (!uploadedCoverUrl) {
+        setSaving(false);
+        return;
+      }
+
+      coverUrl = uploadedCoverUrl;
+    }
+
     const profileData = {
       user_id: userId,
       full_name: fullName,
@@ -196,6 +286,7 @@ export default function EditProfilePage() {
       contact,
       biography,
       profile_image: imageUrl || null,
+      cover_image: coverUrl || null,
     };
 
     let error;
@@ -234,6 +325,8 @@ export default function EditProfilePage() {
 
     setProfileImage(imageUrl);
     setSelectedImage(null);
+    setCoverImage(coverUrl);
+    setSelectedCover(null);
 
     alert("プロフィールを保存しました");
 
@@ -259,6 +352,63 @@ export default function EditProfilePage() {
         </h1>
 
         <div className="space-y-7">
+
+          {/* =========================
+              カバー写真
+          ========================= */}
+          <div>
+            <label className="block font-semibold mb-2">
+              カバー写真
+            </label>
+
+            <div className="h-32 w-full overflow-hidden rounded-2xl bg-gray-100 flex items-center justify-center">
+              {coverPreview ? (
+                <img
+                  src={coverPreview}
+                  alt="カバー写真"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span className="text-xs text-gray-400">
+                  未設定
+                </span>
+              )}
+            </div>
+
+            <label
+              htmlFor="cover-image"
+              className="
+                inline-block
+                mt-3
+                cursor-pointer
+                rounded-full
+                border
+                border-gray-300
+                bg-white
+                px-5
+                py-2.5
+                text-sm
+                font-medium
+                hover:bg-gray-50
+                active:scale-95
+                transition
+              "
+            >
+              カバー写真を変更
+            </label>
+
+            <input
+              id="cover-image"
+              type="file"
+              accept="image/*"
+              onChange={handleCoverChange}
+              className="hidden"
+            />
+
+            <p className="mt-2 text-xs text-gray-400">
+              プロフィールの背景に表示されます / JPG・PNGなど / 10MB以下
+            </p>
+          </div>
 
           {/* =========================
               プロフィール画像
@@ -501,6 +651,12 @@ export default function EditProfilePage() {
               className="w-full border rounded-xl px-4 py-3 resize-none"
             />
           </div>
+
+          {/* アカウントの種類 */}
+          <AccountTypeCard
+            accountType={accountType}
+            onChanged={(type) => setAccountType(type)}
+          />
 
           {/* 保存 */}
           <button

@@ -7,6 +7,8 @@ import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
+  ACHIEVEMENT_CATEGORIES,
+  ACHIEVEMENT_CATEGORY_LABEL,
   Achievement,
   QualificationTarget,
   computeQualificationProgress,
@@ -225,8 +227,19 @@ export default function MyPage() {
         ========================= */}
         <div className="text-center">
 
+          {/* カバー写真 */}
+          <div className="-mx-6 -mt-12 h-40 overflow-hidden bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20">
+            {profile?.cover_image && (
+              <img
+                src={profile.cover_image}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+            )}
+          </div>
+
           {/* プロフィール画像 */}
-          <div className="mx-auto w-32 h-32">
+          <div className="-mt-16 mx-auto w-32 h-32">
 
             {profile?.profile_image ? (
               <img
@@ -237,8 +250,8 @@ export default function MyPage() {
                   h-32
                   rounded-full
                   object-cover
-                  border
-                  border-gray-200
+                  ring-4
+                  ring-white
                 "
               />
             ) : (
@@ -252,8 +265,8 @@ export default function MyPage() {
                   items-center
                   justify-center
                   text-4xl
-                  border
-                  border-gray-200
+                  ring-4
+                  ring-white
                 "
               >
                 👤
@@ -321,34 +334,52 @@ export default function MyPage() {
 
           </div>
 
-          {/* 資格更新の進捗（小さめ表示） */}
-          <div className="mt-6 flex flex-wrap justify-center gap-2">
-            {targets.map((t) => {
-              const progress = computeQualificationProgress(
-                t,
-                achievements
-              );
+          {/* 実績・資格更新の進捗（クリックしなくても内容が見える） */}
+          {(targets.length > 0 || achievements.length > 0) && (
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
+              {targets.map((t) => {
+                const progress = computeQualificationProgress(
+                  t,
+                  achievements
+                );
 
-              return (
-                <Link
-                  key={t.id}
-                  href="/mypage/achievements"
-                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
-                >
-                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
-                  {Math.floor(progress.monthsRemaining / 12)}年
-                  {progress.monthsRemaining % 12}ヶ月
-                </Link>
-              );
-            })}
+                return (
+                  <span
+                    key={t.id}
+                    className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                  >
+                    🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                    {Math.floor(progress.monthsRemaining / 12)}年
+                    {progress.monthsRemaining % 12}ヶ月
+                  </span>
+                );
+              })}
 
-            <Link
-              href="/mypage/achievements"
-              className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
-            >
-              + 実績・資格を管理
-            </Link>
-          </div>
+              {ACHIEVEMENT_CATEGORIES.map((c) => {
+                const count = achievements.filter(
+                  (a) => a.category === c
+                ).length;
+
+                if (count === 0) return null;
+
+                return (
+                  <span
+                    key={c}
+                    className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
+                  >
+                    {ACHIEVEMENT_CATEGORY_LABEL[c]} {count}
+                  </span>
+                );
+              })}
+            </div>
+          )}
+
+          <Link
+            href="/mypage/achievements"
+            className="mt-3 inline-block text-xs text-relight-blue underline"
+          >
+            + 実績・資格を管理
+          </Link>
 
         </div>
 
@@ -441,12 +472,6 @@ export default function MyPage() {
           >
             {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
           </button>
-
-          {/* アカウントの種類 */}
-          <AccountTypeCard
-            accountType={accountType}
-            onChanged={handleAccountTypeChanged}
-          />
 
           {/* ログアウト */}
           <div className="pt-4">
