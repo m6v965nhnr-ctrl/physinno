@@ -244,20 +244,22 @@ export default function PTProfile() {
         {/* プロフィールヘッダー */}
         <section className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
 
-          {/* カバー写真 */}
-          <div className="h-32 w-full bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20">
-            {pt.cover_image && (
-              <img
-                src={pt.cover_image}
-                alt=""
-                className="h-full w-full object-cover"
-              />
-            )}
-          </div>
+          {/* カバー写真（投稿・フォロー・フォロワーの下まで背景として広がる） */}
+          <div className="relative">
+            <div className="absolute inset-0">
+              {pt.cover_image ? (
+                <img
+                  src={pt.cover_image}
+                  alt=""
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="h-full w-full bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20" />
+              )}
+            </div>
 
-          <div className="flex flex-col items-center px-6 pb-8 text-center">
+            <div className="relative flex flex-col items-center px-6 pt-8 pb-6 text-center">
 
-            <div className="-mt-12">
               {pt.profile_image ? (
                 <img
                   src={pt.profile_image}
@@ -269,50 +271,54 @@ export default function PTProfile() {
                   PT
                 </div>
               )}
-            </div>
 
-            <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
-              {pt.full_name || "PTユーザー"}
-            </h1>
+              <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
+                {pt.full_name || "PTユーザー"}
+              </h1>
 
-            <p className="mt-1 text-base text-gray-600">
-              {pt.qualification || "理学療法士"}
-            </p>
+              <p className="mt-1 text-base text-gray-600">
+                {pt.qualification || "理学療法士"}
+              </p>
 
-            <div className="mt-3 flex items-center gap-2">
-              <span className="text-lg">
-                ⭐
-              </span>
+              <div className="mt-3 flex items-center gap-2">
+                <span className="text-lg">
+                  ⭐
+                </span>
 
-              <span className="text-base font-medium">
-                {pt.rating || 0}
-              </span>
+                <span className="text-base font-medium">
+                  {pt.rating || 0}
+                </span>
 
-              <span className="text-sm text-gray-400">
-                ({pt.review_count || 0}件)
-              </span>
-            </div>
-
-            {/* 投稿・フォロー・フォロワー */}
-            <div className="mt-5 flex justify-center gap-8">
-              <div className="text-center">
-                <p className="font-semibold">{postCount}</p>
-                <p className="text-sm text-gray-500">投稿</p>
+                <span className="text-sm text-gray-400">
+                  ({pt.review_count || 0}件)
+                </span>
               </div>
 
-              <div className="text-center">
-                <p className="font-semibold">{followingCount}</p>
-                <p className="text-sm text-gray-500">フォロー</p>
+              {/* 投稿・フォロー・フォロワー */}
+              <div className="mt-5 flex justify-center gap-8">
+                <div className="text-center">
+                  <p className="font-semibold">{postCount}</p>
+                  <p className="text-sm text-gray-500">投稿</p>
+                </div>
+
+                <div className="text-center">
+                  <p className="font-semibold">{followingCount}</p>
+                  <p className="text-sm text-gray-500">フォロー</p>
+                </div>
+
+                <div className="text-center">
+                  <p className="font-semibold">{followerCount}</p>
+                  <p className="text-sm text-gray-500">フォロワー</p>
+                </div>
               </div>
 
-              <div className="text-center">
-                <p className="font-semibold">{followerCount}</p>
-                <p className="text-sm text-gray-500">フォロワー</p>
-              </div>
             </div>
+          </div>
+
+          <div className="flex flex-col items-center px-6 pb-8 text-center">
 
             {/* フォロー・メッセージ・レビューを書く */}
-            <div className="mt-6 flex w-full max-w-sm gap-2">
+            <div className="flex w-full max-w-sm gap-2">
               <button
                 onClick={toggleFollow}
                 className={`

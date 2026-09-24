@@ -224,164 +224,163 @@ export default function MyPage() {
 
         {/* =========================
             プロフィール上部
+            （カバー写真は投稿・フォロー・フォロワーの下まで背景として広がる）
         ========================= */}
-        <div className="text-center">
+        <div className="relative -mx-6 -mt-12 overflow-hidden">
 
           {/* カバー写真 */}
-          <div className="-mx-6 -mt-12 h-40 overflow-hidden bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20">
-            {profile?.cover_image && (
+          <div className="absolute inset-0">
+            {profile?.cover_image ? (
               <img
                 src={profile.cover_image}
                 alt=""
                 className="h-full w-full object-cover"
               />
-            )}
-          </div>
-
-          {/* プロフィール画像 */}
-          <div className="-mt-16 mx-auto w-32 h-32">
-
-            {profile?.profile_image ? (
-              <img
-                src={profile.profile_image}
-                alt={profile.full_name || "プロフィール画像"}
-                className="
-                  w-32
-                  h-32
-                  rounded-full
-                  object-cover
-                  ring-4
-                  ring-white
-                "
-              />
             ) : (
-              <div
-                className="
-                  w-32
-                  h-32
-                  rounded-full
-                  bg-gray-100
-                  flex
-                  items-center
-                  justify-center
-                  text-4xl
-                  ring-4
-                  ring-white
-                "
-              >
-                👤
-              </div>
+              <div className="h-full w-full bg-gradient-to-r from-[#55c7dc]/20 via-[#45d0c2]/20 to-[#4ed7a7]/20" />
             )}
-
           </div>
 
-          {/* 名前 */}
-          <h1 className="text-3xl font-semibold mt-6">
-            {profile?.full_name || "PTユーザー"}
-          </h1>
+          <div className="relative px-6 pt-12 pb-8 text-center">
 
-          {/* 資格 */}
-          <p className="text-lg text-gray-600 mt-2">
-            {profile?.qualification || "理学療法士"}
-          </p>
+            {/* プロフィール画像 */}
+            <div className="mx-auto w-32 h-32">
 
-          {/* 評価 */}
-          <p className="text-xl mt-5">
-            ⭐ {profile?.rating || 0}{" "}
-            ({profile?.review_count || 0}件)
-          </p>
+              {profile?.profile_image ? (
+                <img
+                  src={profile.profile_image}
+                  alt={profile.full_name || "プロフィール画像"}
+                  className="
+                    w-32
+                    h-32
+                    rounded-full
+                    object-cover
+                    ring-4
+                    ring-white
+                  "
+                />
+              ) : (
+                <div
+                  className="
+                    w-32
+                    h-32
+                    rounded-full
+                    bg-gray-100
+                    flex
+                    items-center
+                    justify-center
+                    text-4xl
+                    ring-4
+                    ring-white
+                  "
+                >
+                  👤
+                </div>
+              )}
 
-          {/* =========================
-              投稿・フォロー・フォロワー
-          ========================= */}
-          <div className="flex justify-center gap-8 mt-8">
-
-            <div className="text-center">
-              <p className="font-semibold">
-                {posts.length}
-              </p>
-
-              <p className="text-sm text-gray-500">
-                投稿
-              </p>
             </div>
 
-            <Link
-              href="/mypage/following"
-              className="text-center"
-            >
-              <p className="font-semibold">
-                {followCount}
-              </p>
+            {/* 名前 */}
+            <h1 className="text-3xl font-semibold mt-6">
+              {profile?.full_name || "PTユーザー"}
+            </h1>
 
-              <p className="text-sm text-gray-500">
-                フォロー
-              </p>
-            </Link>
+            {/* 資格 */}
+            <p className="text-lg text-gray-600 mt-2">
+              {profile?.qualification || "理学療法士"}
+            </p>
 
-            <Link
-              href="/mypage/followers"
-              className="text-center"
-            >
-              <p className="font-semibold">
-                {followerCount}
-              </p>
+            {/* 評価 */}
+            <p className="text-xl mt-5">
+              ⭐ {profile?.rating || 0}{" "}
+              ({profile?.review_count || 0}件)
+            </p>
 
-              <p className="text-sm text-gray-500">
-                フォロワー
-              </p>
-            </Link>
+            {/* =========================
+                投稿・フォロー・フォロワー
+            ========================= */}
+            <div className="flex justify-center gap-8 mt-8">
+
+              <div className="text-center">
+                <p className="font-semibold">
+                  {posts.length}
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  投稿
+                </p>
+              </div>
+
+              <Link
+                href="/mypage/following"
+                className="text-center"
+              >
+                <p className="font-semibold">
+                  {followCount}
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  フォロー
+                </p>
+              </Link>
+
+              <Link
+                href="/mypage/followers"
+                className="text-center"
+              >
+                <p className="font-semibold">
+                  {followerCount}
+                </p>
+
+                <p className="text-sm text-gray-500">
+                  フォロワー
+                </p>
+              </Link>
+
+            </div>
 
           </div>
-
-          {/* 実績・資格更新の進捗（クリックしなくても内容が見える） */}
-          {(targets.length > 0 || achievements.length > 0) && (
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {targets.map((t) => {
-                const progress = computeQualificationProgress(
-                  t,
-                  achievements
-                );
-
-                return (
-                  <span
-                    key={t.id}
-                    className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
-                  >
-                    🏅 {t.name} {progress.count}/{t.required_total}・更新まで
-                    {Math.floor(progress.monthsRemaining / 12)}年
-                    {progress.monthsRemaining % 12}ヶ月
-                  </span>
-                );
-              })}
-
-              {ACHIEVEMENT_CATEGORIES.map((c) => {
-                const count = achievements.filter(
-                  (a) => a.category === c
-                ).length;
-
-                if (count === 0) return null;
-
-                return (
-                  <span
-                    key={c}
-                    className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
-                  >
-                    {ACHIEVEMENT_CATEGORY_LABEL[c]} {count}
-                  </span>
-                );
-              })}
-            </div>
-          )}
-
-          <Link
-            href="/mypage/achievements"
-            className="mt-3 inline-block text-xs text-relight-blue underline"
-          >
-            + 実績・資格を管理
-          </Link>
-
         </div>
+
+        {/* 実績・資格更新の進捗（クリックしなくても内容が見える） */}
+        {(targets.length > 0 || achievements.length > 0) && (
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {targets.map((t) => {
+              const progress = computeQualificationProgress(
+                t,
+                achievements
+              );
+
+              return (
+                <span
+                  key={t.id}
+                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                >
+                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                  {Math.floor(progress.monthsRemaining / 12)}年
+                  {progress.monthsRemaining % 12}ヶ月
+                </span>
+              );
+            })}
+
+            {ACHIEVEMENT_CATEGORIES.map((c) => {
+              const count = achievements.filter(
+                (a) => a.category === c
+              ).length;
+
+              if (count === 0) return null;
+
+              return (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
+                >
+                  {ACHIEVEMENT_CATEGORY_LABEL[c]} {count}
+                </span>
+              );
+            })}
+          </div>
+        )}
 
         {/* =========================
             プロフィール情報
