@@ -18,6 +18,7 @@ type Post = {
 };
 
 type Profile = {
+  id?: string;
   user_id: string;
   full_name?: string | null;
   qualification?: string | null;
@@ -87,7 +88,7 @@ export default function HomePage() {
     if (userIds.length > 0) {
       const { data: profileData } = await supabase
         .from("pt_profiles")
-        .select("user_id, full_name, qualification, profile_image")
+        .select("id, user_id, full_name, qualification, profile_image")
         .in("user_id", userIds);
 
       const profileMap: Record<string, Profile> = {};
@@ -450,7 +451,7 @@ if (targetPost && targetPost.user_id !== userId) {
                 >
                   {/* 投稿者 */}
                   <div className="flex items-center gap-3 px-5 py-4">
-                    <Link href={`/pts/${post.user_id}`}>
+                    <AvatarLink profile={profile}>
                       {profile.profile_image ? (
                         <img
                           src={profile.profile_image}
@@ -462,7 +463,7 @@ if (targetPost && targetPost.user_id !== userId) {
                           👤
                         </div>
                       )}
-                    </Link>
+                    </AvatarLink>
 
                     <div className="flex-1">
                       <p className="font-semibold">
@@ -700,4 +701,19 @@ if (targetPost && targetPost.user_id !== userId) {
       </div>
     </main>
   );
+}
+
+// 投稿者アイコン用のリンク。pt_profiles が見つかっている場合のみ本人ページへ遷移させる
+function AvatarLink({
+  profile,
+  children,
+}: {
+  profile: Profile;
+  children: React.ReactNode;
+}) {
+  if (!profile.id) {
+    return <>{children}</>;
+  }
+
+  return <Link href={`/pts/${profile.id}`}>{children}</Link>;
 }
