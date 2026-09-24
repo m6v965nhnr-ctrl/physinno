@@ -8,8 +8,8 @@ export type AchievementCategory =
   | "other";
 
 export const ACHIEVEMENT_CATEGORY_LABEL: Record<AchievementCategory, string> = {
-  conference: "学会参加",
-  case_presentation: "症例発表",
+  conference: "学会発表",
+  case_presentation: "院内症例発表",
   training: "研修受講",
   paper: "論文",
   other: "その他",
@@ -19,11 +19,18 @@ export const ACHIEVEMENT_CATEGORIES = Object.keys(
   ACHIEVEMENT_CATEGORY_LABEL
 ) as AchievementCategory[];
 
+// 学会名・発表題名・概要の入力欄を出すカテゴリ
+export const ACHIEVEMENT_CATEGORIES_WITH_DETAILS: AchievementCategory[] = [
+  "conference",
+  "case_presentation",
+];
+
 export type Achievement = {
   id: string;
   user_id: string;
   category: AchievementCategory;
   title: string | null;
+  conference_name: string | null;
   achieved_on: string;
   memo: string | null;
   created_at: string;
@@ -55,6 +62,7 @@ export async function addAchievement(params: {
   userId: string;
   category: AchievementCategory;
   title?: string;
+  conferenceName?: string;
   achievedOn?: string;
   memo?: string;
 }) {
@@ -62,6 +70,7 @@ export async function addAchievement(params: {
     user_id: params.userId,
     category: params.category,
     title: params.title || null,
+    conference_name: params.conferenceName || null,
     achieved_on: params.achievedOn || new Date().toISOString().slice(0, 10),
     memo: params.memo || null,
   });

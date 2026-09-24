@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
   ACHIEVEMENT_CATEGORIES,
+  ACHIEVEMENT_CATEGORIES_WITH_DETAILS,
   ACHIEVEMENT_CATEGORY_LABEL,
   Achievement,
   AchievementCategory,
@@ -31,10 +32,14 @@ export default function AchievementsPage() {
   // 実績登録フォーム
   const [category, setCategory] = useState<AchievementCategory>("conference");
   const [title, setTitle] = useState("");
+  const [conferenceName, setConferenceName] = useState("");
+  const [summary, setSummary] = useState("");
   const [achievedOn, setAchievedOn] = useState(
     new Date().toISOString().slice(0, 10)
   );
   const [saving, setSaving] = useState(false);
+
+  const showDetails = ACHIEVEMENT_CATEGORIES_WITH_DETAILS.includes(category);
 
   // 資格目標フォーム
   const [showTargetForm, setShowTargetForm] = useState(false);
@@ -73,6 +78,8 @@ export default function AchievementsPage() {
       userId,
       category,
       title,
+      conferenceName: showDetails ? conferenceName : undefined,
+      memo: showDetails ? summary : undefined,
       achievedOn,
     });
 
@@ -84,6 +91,8 @@ export default function AchievementsPage() {
     }
 
     setTitle("");
+    setConferenceName("");
+    setSummary("");
     load();
   }
 
@@ -150,7 +159,7 @@ export default function AchievementsPage() {
         </h1>
 
         <p className="mt-2 text-sm text-gray-500">
-          学会参加や症例発表などを登録すると、資格更新までの進捗が自動で計算されます。
+          学会発表や院内症例発表などを登録すると、資格更新までの進捗が自動で計算されます。
         </p>
 
         {/* =========================
@@ -280,12 +289,35 @@ export default function AchievementsPage() {
               ))}
             </div>
 
+            {showDetails && category === "conference" && (
+              <input
+                value={conferenceName}
+                onChange={(e) => setConferenceName(e.target.value)}
+                placeholder="学会名（例: 日本理学療法学術大会）"
+                className="w-full rounded-xl border px-4 py-2.5 text-sm"
+              />
+            )}
+
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder="タイトル（任意・例: 日本理学療法学術大会）"
+              placeholder={
+                showDetails
+                  ? "発表題名"
+                  : "タイトル（任意・例: 日本理学療法学術大会）"
+              }
               className="w-full rounded-xl border px-4 py-2.5 text-sm"
             />
+
+            {showDetails && (
+              <textarea
+                value={summary}
+                onChange={(e) => setSummary(e.target.value)}
+                placeholder="概要"
+                rows={4}
+                className="w-full rounded-xl border px-4 py-2.5 text-sm"
+              />
+            )}
 
             <input
               type="date"
@@ -332,13 +364,21 @@ export default function AchievementsPage() {
               achievements.map((a) => (
                 <div
                   key={a.id}
-                  className="flex items-center justify-between rounded-2xl border border-gray-100 px-4 py-3"
+                  className="flex items-start justify-between rounded-2xl border border-gray-100 px-4 py-3"
                 >
                   <div>
                     <p className="text-sm font-medium">
                       {ACHIEVEMENT_CATEGORY_LABEL[a.category]}
+                      {a.conference_name ? `・${a.conference_name}` : ""}
                       {a.title ? `・${a.title}` : ""}
                     </p>
+
+                    {a.memo && (
+                      <p className="mt-1 text-xs text-gray-500 whitespace-pre-wrap">
+                        {a.memo}
+                      </p>
+                    )}
+
                     <p className="mt-1 text-xs text-gray-400">
                       {a.achieved_on}
                     </p>
@@ -346,7 +386,7 @@ export default function AchievementsPage() {
 
                   <button
                     onClick={() => handleDeleteAchievement(a.id)}
-                    className="text-gray-300 hover:text-gray-500"
+                    className="shrink-0 text-gray-300 hover:text-gray-500"
                   >
                     ×
                   </button>
