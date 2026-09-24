@@ -224,7 +224,7 @@ export default function MyPage() {
 
         {/* =========================
             プロフィール上部
-            （カバー写真は投稿・フォロー・フォロワーの下まで背景として広がる）
+            （カバー写真はアバター〜評価までを背景として覆う）
         ========================= */}
         <div className="relative -mx-6 -mt-12 overflow-hidden">
 
@@ -241,7 +241,7 @@ export default function MyPage() {
             )}
           </div>
 
-          <div className="relative px-6 pt-12 pb-8 text-center">
+          <div className="relative px-6 pt-12 pb-6 text-center">
 
             {/* プロフィール画像 */}
             <div className="mx-auto w-32 h-32">
@@ -296,53 +296,53 @@ export default function MyPage() {
               ({profile?.review_count || 0}件)
             </p>
 
-            {/* =========================
-                投稿・フォロー・フォロワー
-            ========================= */}
-            <div className="flex justify-center gap-8 mt-8">
-
-              <div className="text-center">
-                <p className="font-semibold">
-                  {posts.length}
-                </p>
-
-                <p className="text-sm text-gray-500">
-                  投稿
-                </p>
-              </div>
-
-              <Link
-                href="/mypage/following"
-                className="text-center"
-              >
-                <p className="font-semibold">
-                  {followCount}
-                </p>
-
-                <p className="text-sm text-gray-500">
-                  フォロー
-                </p>
-              </Link>
-
-              <Link
-                href="/mypage/followers"
-                className="text-center"
-              >
-                <p className="font-semibold">
-                  {followerCount}
-                </p>
-
-                <p className="text-sm text-gray-500">
-                  フォロワー
-                </p>
-              </Link>
-
-            </div>
-
           </div>
         </div>
 
-        {/* 実績・資格更新の進捗（クリックしなくても内容が見える） */}
+        {/* =========================
+            投稿・フォロー・フォロワー（カバー写真の外＝白背景）
+        ========================= */}
+        <div className="flex justify-center gap-8 mt-6 text-center">
+
+          <div className="text-center">
+            <p className="font-semibold">
+              {posts.length}
+            </p>
+
+            <p className="text-sm text-gray-500">
+              投稿
+            </p>
+          </div>
+
+          <Link
+            href="/mypage/following"
+            className="text-center"
+          >
+            <p className="font-semibold">
+              {followCount}
+            </p>
+
+            <p className="text-sm text-gray-500">
+              フォロー
+            </p>
+          </Link>
+
+          <Link
+            href="/mypage/followers"
+            className="text-center"
+          >
+            <p className="font-semibold">
+              {followerCount}
+            </p>
+
+            <p className="text-sm text-gray-500">
+              フォロワー
+            </p>
+          </Link>
+
+        </div>
+
+        {/* 実績・資格更新の進捗（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる） */}
         {(targets.length > 0 || achievements.length > 0) && (
           <div className="mt-6 flex flex-wrap justify-center gap-2">
             {targets.map((t) => {

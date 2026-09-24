@@ -244,7 +244,7 @@ export default function PTProfile() {
         {/* プロフィールヘッダー */}
         <section className="overflow-hidden rounded-3xl border border-gray-100 bg-white shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
 
-          {/* カバー写真（投稿・フォロー・フォロワーの下まで背景として広がる） */}
+          {/* カバー写真（アバター〜評価までを背景として覆う） */}
           <div className="relative">
             <div className="absolute inset-0">
               {pt.cover_image ? (
@@ -294,31 +294,31 @@ export default function PTProfile() {
                 </span>
               </div>
 
-              {/* 投稿・フォロー・フォロワー */}
-              <div className="mt-5 flex justify-center gap-8">
-                <div className="text-center">
-                  <p className="font-semibold">{postCount}</p>
-                  <p className="text-sm text-gray-500">投稿</p>
-                </div>
-
-                <div className="text-center">
-                  <p className="font-semibold">{followingCount}</p>
-                  <p className="text-sm text-gray-500">フォロー</p>
-                </div>
-
-                <div className="text-center">
-                  <p className="font-semibold">{followerCount}</p>
-                  <p className="text-sm text-gray-500">フォロワー</p>
-                </div>
-              </div>
-
             </div>
           </div>
 
           <div className="flex flex-col items-center px-6 pb-8 text-center">
 
+            {/* 投稿・フォロー・フォロワー（カバー写真の外＝白背景） */}
+            <div className="mt-2 flex justify-center gap-8">
+              <div className="text-center">
+                <p className="font-semibold">{postCount}</p>
+                <p className="text-sm text-gray-500">投稿</p>
+              </div>
+
+              <div className="text-center">
+                <p className="font-semibold">{followingCount}</p>
+                <p className="text-sm text-gray-500">フォロー</p>
+              </div>
+
+              <div className="text-center">
+                <p className="font-semibold">{followerCount}</p>
+                <p className="text-sm text-gray-500">フォロワー</p>
+              </div>
+            </div>
+
             {/* フォロー・メッセージ・レビューを書く */}
-            <div className="flex w-full max-w-sm gap-2">
+            <div className="mt-6 flex w-full max-w-sm gap-2">
               <button
                 onClick={toggleFollow}
                 className={`
@@ -390,6 +390,46 @@ export default function PTProfile() {
 
           </div>
         </section>
+
+        {/* 実績・資格更新の進捗（プロフィールをこの分だけ押し下げる） */}
+        {(targets.length > 0 || achievements.length > 0) && (
+          <div className="mt-5 flex flex-wrap justify-center gap-2">
+            {targets.map((t) => {
+              const progress = computeQualificationProgress(
+                t,
+                achievements
+              );
+
+              return (
+                <span
+                  key={t.id}
+                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                >
+                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                  {Math.floor(progress.monthsRemaining / 12)}年
+                  {progress.monthsRemaining % 12}ヶ月
+                </span>
+              );
+            })}
+
+            {ACHIEVEMENT_CATEGORIES.map((c) => {
+              const count = achievements.filter(
+                (a) => a.category === c
+              ).length;
+
+              if (count === 0) return null;
+
+              return (
+                <span
+                  key={c}
+                  className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
+                >
+                  {ACHIEVEMENT_CATEGORY_LABEL[c]} {count}
+                </span>
+              );
+            })}
+          </div>
+        )}
 
         {/* プロフィール */}
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
@@ -469,86 +509,31 @@ export default function PTProfile() {
           </div>
         </section>
 
-        {/* ポートフォリオ */}
-        {(caseReports.length > 0 ||
-          achievements.length > 0 ||
-          targets.length > 0) && (
+        {/* 症例報告 */}
+        {caseReports.length > 0 && (
           <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
             <h2 className="text-lg font-semibold text-gray-900">
-              ポートフォリオ
+              症例報告（{caseReports.length}件）
             </h2>
 
-            {/* 資格更新の目標 */}
-            {targets.length > 0 && (
-              <div className="mt-4 flex flex-wrap gap-2">
-                {targets.map((t) => {
-                  const progress = computeQualificationProgress(
-                    t,
-                    achievements
-                  );
+            <div className="mt-4 space-y-2">
+              {caseReports.map((c) => (
+                <Link
+                  key={c.id}
+                  href={`/posts/${c.id}`}
+                  className="block rounded-2xl border border-gray-100 p-4 transition hover:bg-gray-50"
+                >
+                  <p className="text-sm font-medium text-gray-900">
+                    {c.title || "無題の症例報告"}
+                  </p>
 
-                  return (
-                    <span
-                      key={t.id}
-                      className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
-                    >
-                      🏅 {t.name} {progress.count}/{t.required_total}
-                    </span>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* 実績の積み上げ */}
-            {achievements.length > 0 && (
-              <div className="mt-4 grid grid-cols-3 gap-2">
-                {ACHIEVEMENT_CATEGORIES.map((c) => {
-                  const count = achievements.filter(
-                    (a) => a.category === c
-                  ).length;
-
-                  if (count === 0) return null;
-
-                  return (
-                    <div
-                      key={c}
-                      className="rounded-2xl border border-gray-100 py-3 text-center"
-                    >
-                      <p className="text-lg font-semibold">{count}</p>
-                      <p className="mt-1 text-xs text-gray-500">
-                        {ACHIEVEMENT_CATEGORY_LABEL[c]}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-
-            {/* 症例報告 */}
-            {caseReports.length > 0 && (
-              <div className="mt-5 space-y-2">
-                <p className="text-xs font-medium text-gray-400">
-                  症例報告（{caseReports.length}件）
-                </p>
-
-                {caseReports.map((c) => (
-                  <Link
-                    key={c.id}
-                    href={`/posts/${c.id}`}
-                    className="block rounded-2xl border border-gray-100 p-4 transition hover:bg-gray-50"
-                  >
-                    <p className="text-sm font-medium text-gray-900">
-                      {c.title || "無題の症例報告"}
-                    </p>
-
-                    <p className="mt-1 text-xs text-gray-400">
-                      {c.disease_category ? `${c.disease_category}・` : ""}
-                      {c.created_at?.slice(0, 10)}
-                    </p>
-                  </Link>
-                ))}
-              </div>
-            )}
+                  <p className="mt-1 text-xs text-gray-400">
+                    {c.disease_category ? `${c.disease_category}・` : ""}
+                    {c.created_at?.slice(0, 10)}
+                  </p>
+                </Link>
+              ))}
+            </div>
           </section>
         )}
 
