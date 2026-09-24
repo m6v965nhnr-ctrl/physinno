@@ -526,7 +526,7 @@ if (targetPost && targetPost.user_id !== userId) {
 
                       {/* 実績（学会発表・院内症例発表など） */}
                       {isAchievementPostType(post.post_type) && (
-                        <div className="mb-2 flex items-center gap-2 -ml-2">
+                        <div className="mb-2 flex flex-wrap items-center gap-2 -ml-2">
                           <span className="rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-600">
                             {ACHIEVEMENT_CATEGORY_LABEL[post.post_type]}
                           </span>
@@ -536,8 +536,24 @@ if (targetPost && targetPost.user_id !== userId) {
                               {post.conference_name}
                             </span>
                           )}
+
+                          {post.disease_category && (
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                              {post.disease_category}
+                            </span>
+                          )}
                         </div>
                       )}
+
+                      {/* 通常投稿の疾患分類 */}
+                      {post.post_type === "normal" &&
+                        post.disease_category && (
+                          <div className="mb-2 flex items-center gap-2 -ml-2">
+                            <span className="rounded-full bg-gray-100 px-3 py-1 text-sm text-gray-600">
+                              {post.disease_category}
+                            </span>
+                          </div>
+                        )}
 
                       {post.title && (
                         <h2 className="font-semibold text-lg mb-2">
