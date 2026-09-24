@@ -43,6 +43,22 @@ export default function CreatePostPage() {
   );
   const [isPublic, setIsPublic] = useState(true);
 
+  // 詳細情報（任意・カテゴリごとにポートフォリオ集計で使う）
+  const [showDetails, setShowDetails] = useState(false);
+  const [presenters, setPresenters] = useState("");
+  const [coAuthors, setCoAuthors] = useState("");
+  const [presentationFormat, setPresentationFormat] = useState("");
+  const [award, setAward] = useState("");
+  const [cpdPoints, setCpdPoints] = useState("");
+  const [organizer, setOrganizer] = useState("");
+  const [instructor, setInstructor] = useState("");
+  const [authors, setAuthors] = useState("");
+  const [journalName, setJournalName] = useState("");
+  const [publishedYear, setPublishedYear] = useState("");
+  const [doi, setDoi] = useState("");
+  const [pmid, setPmid] = useState("");
+  const [readDate, setReadDate] = useState("");
+
   const [mediaFile, setMediaFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
@@ -170,6 +186,37 @@ export default function CreatePostPage() {
 
       const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[type];
 
+      let details: Record<string, string> = {};
+
+      if (type === "conference") {
+        details = {
+          ...(presenters.trim() && { presenters: presenters.trim() }),
+          ...(coAuthors.trim() && { co_authors: coAuthors.trim() }),
+          ...(presentationFormat.trim() && {
+            presentation_format: presentationFormat.trim(),
+          }),
+          ...(award.trim() && { award: award.trim() }),
+          ...(cpdPoints.trim() && { cpd_points: cpdPoints.trim() }),
+        };
+      } else if (type === "training") {
+        details = {
+          ...(organizer.trim() && { organizer: organizer.trim() }),
+          ...(instructor.trim() && { instructor: instructor.trim() }),
+          ...(cpdPoints.trim() && { cpd_points: cpdPoints.trim() }),
+        };
+      } else if (type === "paper") {
+        details = {
+          ...(authors.trim() && { authors: authors.trim() }),
+          ...(journalName.trim() && { journal_name: journalName.trim() }),
+          ...(publishedYear.trim() && {
+            published_year: publishedYear.trim(),
+          }),
+          ...(doi.trim() && { doi: doi.trim() }),
+          ...(pmid.trim() && { pmid: pmid.trim() }),
+          ...(readDate && { read_date: readDate }),
+        };
+      }
+
       const { error } = await supabase.from("posts").insert({
         user_id: user.id,
         title: title.trim(),
@@ -183,6 +230,7 @@ export default function CreatePostPage() {
         is_public: isPublic,
         disease_category: diseaseCategory || null,
         reference_url: referenceUrl.trim() || null,
+        details,
       });
 
       if (error) {
@@ -377,6 +425,135 @@ export default function CreatePostPage() {
               />
             </div>
 
+            {(type === "conference" ||
+              type === "training" ||
+              type === "paper") && (
+              <div className="mt-6 border-t border-gray-100 pt-5">
+                <button
+                  type="button"
+                  onClick={() => setShowDetails((v) => !v)}
+                  className="text-sm text-relight-blue"
+                >
+                  {showDetails ? "詳細情報を閉じる" : "+ 詳細情報を追加（任意）"}
+                </button>
+
+                {showDetails && (
+                  <div className="mt-4 space-y-3">
+                    {type === "conference" && (
+                      <>
+                        <LabeledInput
+                          label="発表者"
+                          value={presenters}
+                          onChange={setPresenters}
+                          placeholder="例：山田太郎"
+                        />
+                        <LabeledInput
+                          label="共著者"
+                          value={coAuthors}
+                          onChange={setCoAuthors}
+                          placeholder="例：鈴木花子、佐藤次郎"
+                        />
+                        <LabeledInput
+                          label="発表形式"
+                          value={presentationFormat}
+                          onChange={setPresentationFormat}
+                          placeholder="例：口述発表、ポスター発表"
+                        />
+                        <LabeledInput
+                          label="受賞歴"
+                          value={award}
+                          onChange={setAward}
+                          placeholder="例：優秀演題賞"
+                        />
+                        <LabeledInput
+                          label="CPDポイント"
+                          value={cpdPoints}
+                          onChange={setCpdPoints}
+                          placeholder="例：5"
+                          type="number"
+                        />
+                      </>
+                    )}
+
+                    {type === "training" && (
+                      <>
+                        <LabeledInput
+                          label="主催団体"
+                          value={organizer}
+                          onChange={setOrganizer}
+                          placeholder="例：日本理学療法士協会"
+                        />
+                        <LabeledInput
+                          label="講師"
+                          value={instructor}
+                          onChange={setInstructor}
+                          placeholder="例：山田太郎"
+                        />
+                        <LabeledInput
+                          label="CPD単位・ポイント"
+                          value={cpdPoints}
+                          onChange={setCpdPoints}
+                          placeholder="例：3"
+                          type="number"
+                        />
+                      </>
+                    )}
+
+                    {type === "paper" && (
+                      <>
+                        <LabeledInput
+                          label="著者"
+                          value={authors}
+                          onChange={setAuthors}
+                          placeholder="例：山田太郎、鈴木花子"
+                        />
+                        <LabeledInput
+                          label="雑誌名"
+                          value={journalName}
+                          onChange={setJournalName}
+                          placeholder="例：理学療法学"
+                        />
+                        <LabeledInput
+                          label="発表年"
+                          value={publishedYear}
+                          onChange={setPublishedYear}
+                          placeholder="例：2026"
+                          type="number"
+                        />
+                        <LabeledInput
+                          label="DOI"
+                          value={doi}
+                          onChange={setDoi}
+                          placeholder="例：10.1234/example"
+                        />
+                        <LabeledInput
+                          label="PMID"
+                          value={pmid}
+                          onChange={setPmid}
+                          placeholder="例：12345678"
+                        />
+
+                        <div>
+                          <label className="text-sm font-semibold text-gray-900">
+                            読了日
+                          </label>
+
+                          <input
+                            type="date"
+                            value={readDate}
+                            onChange={(event) =>
+                              setReadDate(event.target.value)
+                            }
+                            className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
+                )}
+              </div>
+            )}
+
             <AttachmentFields
               diseaseCategory={diseaseCategory}
               setDiseaseCategory={setDiseaseCategory}
@@ -466,6 +643,35 @@ export default function CreatePostPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+// カテゴリ別の詳細項目（任意）用の共通ラベル付き入力欄
+function LabeledInput({
+  label,
+  value,
+  onChange,
+  placeholder,
+  type = "text",
+}: {
+  label: string;
+  value: string;
+  onChange: (value: string) => void;
+  placeholder?: string;
+  type?: string;
+}) {
+  return (
+    <div>
+      <label className="text-sm font-semibold text-gray-900">{label}</label>
+
+      <input
+        type={type}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        className="mt-2 w-full rounded-xl border border-gray-200 px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
+      />
+    </div>
   );
 }
 

@@ -14,6 +14,7 @@ export default function EditProfilePage() {
 
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
+  const [department, setDepartment] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [qualification, setQualification] = useState("");
   const [experienceYears, setExperienceYears] = useState("");
@@ -24,6 +25,8 @@ export default function EditProfilePage() {
   const [language, setLanguage] = useState("");
   const [contact, setContact] = useState("");
   const [biography, setBiography] = useState("");
+  const [strengths, setStrengths] = useState("");
+  const [interests, setInterests] = useState("");
 
   // プロフィール画像
   const [profileImage, setProfileImage] = useState("");
@@ -36,6 +39,12 @@ export default function EditProfilePage() {
   const [selectedCover, setSelectedCover] =
     useState<File | null>(null);
   const [coverPreview, setCoverPreview] = useState("");
+
+  // 証明写真（ポートフォリオ・履歴書用。プロフィール写真とは別枠）
+  const [idPhoto, setIdPhoto] = useState("");
+  const [selectedIdPhoto, setSelectedIdPhoto] =
+    useState<File | null>(null);
+  const [idPhotoPreview, setIdPhotoPreview] = useState("");
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
@@ -70,6 +79,7 @@ export default function EditProfilePage() {
 
       setFullName(data.full_name || "");
       setWorkplace(data.workplace || "");
+      setDepartment(data.department || "");
       setSpecialty(data.specialty || "");
       setQualification(data.qualification || "");
 
@@ -86,11 +96,15 @@ export default function EditProfilePage() {
       setLanguage(data.languages || "");
       setContact(data.contact || "");
       setBiography(data.biography || "");
+      setStrengths(data.strengths || "");
+      setInterests(data.interests || "");
 
       setProfileImage(data.profile_image || "");
       setImagePreview(data.profile_image || "");
       setCoverImage(data.cover_image || "");
       setCoverPreview(data.cover_image || "");
+      setIdPhoto(data.id_photo || "");
+      setIdPhotoPreview(data.id_photo || "");
     } else {
       setFullName("");
       setQualification("理学療法士");
@@ -155,6 +169,34 @@ export default function EditProfilePage() {
 
     const previewUrl = URL.createObjectURL(file);
     setCoverPreview(previewUrl);
+  }
+
+  // =========================
+  // 証明写真を選択
+  // =========================
+  function handleIdPhotoChange(
+    event: React.ChangeEvent<HTMLInputElement>
+  ) {
+    const file = event.target.files?.[0];
+
+    if (!file) {
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      alert("画像ファイルを選択してください");
+      return;
+    }
+
+    if (file.size > 10 * 1024 * 1024) {
+      alert("画像は10MB以下にしてください");
+      return;
+    }
+
+    setSelectedIdPhoto(file);
+
+    const previewUrl = URL.createObjectURL(file);
+    setIdPhotoPreview(previewUrl);
   }
 
   // =========================
@@ -233,6 +275,43 @@ export default function EditProfilePage() {
   }
 
   // =========================
+  // 証明写真アップロード
+  // =========================
+  async function uploadIdPhoto() {
+    if (!selectedIdPhoto || !userId) {
+      return idPhoto;
+    }
+
+    const fileExtension =
+      selectedIdPhoto.name.split(".").pop() || "jpg";
+
+    const filePath =
+      `${userId}/id-photo-${Date.now()}.${fileExtension}`;
+
+    const { error: uploadError } = await supabase.storage
+      .from("profile-images")
+      .upload(filePath, selectedIdPhoto, {
+        upsert: true,
+        contentType: selectedIdPhoto.type,
+      });
+
+    if (uploadError) {
+      alert(
+        `証明写真のアップロードに失敗しました\n${uploadError.message}`
+      );
+      return null;
+    }
+
+    const {
+      data: publicUrlData,
+    } = supabase.storage
+      .from("profile-images")
+      .getPublicUrl(filePath);
+
+    return publicUrlData.publicUrl;
+  }
+
+  // =========================
   // プロフィール保存
   // =========================
   async function saveProfile() {
@@ -271,10 +350,24 @@ export default function EditProfilePage() {
       coverUrl = uploadedCoverUrl;
     }
 
+    let idPhotoUrl = idPhoto;
+
+    if (selectedIdPhoto) {
+      const uploadedIdPhotoUrl = await uploadIdPhoto();
+
+      if (!uploadedIdPhotoUrl) {
+        setSaving(false);
+        return;
+      }
+
+      idPhotoUrl = uploadedIdPhotoUrl;
+    }
+
     const profileData = {
       user_id: userId,
       full_name: fullName,
       workplace,
+      department,
       specialty,
       qualification,
       experience_years:
@@ -285,8 +378,11 @@ export default function EditProfilePage() {
       languages: language,
       contact,
       biography,
+      strengths,
+      interests,
       profile_image: imageUrl || null,
       cover_image: coverUrl || null,
+      id_photo: idPhotoUrl || null,
     };
 
     let error;
@@ -327,6 +423,8 @@ export default function EditProfilePage() {
     setSelectedImage(null);
     setCoverImage(coverUrl);
     setSelectedCover(null);
+    setIdPhoto(idPhotoUrl);
+    setSelectedIdPhoto(null);
 
     alert("プロフィールを保存しました");
 
@@ -467,6 +565,67 @@ export default function EditProfilePage() {
 
           </div>
 
+          {/* =========================
+              証明写真（ポートフォリオ用）
+          ========================= */}
+          <div className="text-center rounded-2xl border border-dashed border-gray-300 p-5">
+
+            <p className="text-sm font-semibold">
+              証明写真（ポートフォリオ用）
+            </p>
+
+            <p className="mt-1 text-xs text-gray-400">
+              プロフィール写真とは別に、履歴書・ポートフォリオに使う証明写真用の枠です
+            </p>
+
+            <div className="mx-auto mt-3 h-40 w-32 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center">
+
+              {idPhotoPreview ? (
+                <img
+                  src={idPhotoPreview}
+                  alt="証明写真"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <span className="text-xs text-gray-400">
+                  未設定
+                </span>
+              )}
+
+            </div>
+
+            <label
+              htmlFor="id-photo"
+              className="
+                inline-block
+                mt-4
+                cursor-pointer
+                rounded-full
+                border
+                border-gray-300
+                bg-white
+                px-5
+                py-2.5
+                text-sm
+                font-medium
+                hover:bg-gray-50
+                active:scale-95
+                transition
+              "
+            >
+              証明写真を設定
+            </label>
+
+            <input
+              id="id-photo"
+              type="file"
+              accept="image/*"
+              onChange={handleIdPhotoChange}
+              className="hidden"
+            />
+
+          </div>
+
           {/* 名前 */}
           <div>
             <label className="block font-semibold mb-2">
@@ -495,6 +654,22 @@ export default function EditProfilePage() {
                 setWorkplace(e.target.value)
               }
               placeholder="例：〇〇病院"
+              className="w-full border rounded-xl px-4 py-3"
+            />
+          </div>
+
+          {/* 所属部署 */}
+          <div>
+            <label className="block font-semibold mb-2">
+              所属部署
+            </label>
+
+            <input
+              value={department}
+              onChange={(e) =>
+                setDepartment(e.target.value)
+              }
+              placeholder="例：リハビリテーション科"
               className="w-full border rounded-xl px-4 py-3"
             />
           </div>
@@ -648,6 +823,40 @@ export default function EditProfilePage() {
               }
               placeholder="例：患者さん一人ひとりに寄り添ったリハビリを大切にしています。"
               rows={6}
+              className="w-full border rounded-xl px-4 py-3 resize-none"
+            />
+          </div>
+
+          {/* 自分の強み */}
+          <div>
+            <label className="block font-semibold mb-2">
+              自分の強み
+            </label>
+
+            <textarea
+              value={strengths}
+              onChange={(e) =>
+                setStrengths(e.target.value)
+              }
+              placeholder="例：コミュニケーションを大切にした運動療法が得意です。"
+              rows={3}
+              className="w-full border rounded-xl px-4 py-3 resize-none"
+            />
+          </div>
+
+          {/* 興味のある分野 */}
+          <div>
+            <label className="block font-semibold mb-2">
+              興味のある分野
+            </label>
+
+            <textarea
+              value={interests}
+              onChange={(e) =>
+                setInterests(e.target.value)
+              }
+              placeholder="例：スポーツリハビリ、慢性疼痛"
+              rows={3}
               className="w-full border rounded-xl px-4 py-3 resize-none"
             />
           </div>

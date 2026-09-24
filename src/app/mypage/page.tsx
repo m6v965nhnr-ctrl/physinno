@@ -410,6 +410,22 @@ export default function MyPage() {
         </div>
 
         {/* =========================
+            ポートフォリオへの導線
+        ========================= */}
+        <Link
+          href="/mypage/portfolio"
+          className="mt-6 flex items-center justify-between rounded-2xl bg-relight-gradient px-5 py-4 text-white"
+        >
+          <div>
+            <p className="text-sm font-semibold">ポートフォリオを作る</p>
+            <p className="mt-0.5 text-xs text-white/90">
+              学歴・職歴・資格・研修・学会発表・論文をまとめて管理し、PDFで保存できます
+            </p>
+          </div>
+          <span className="text-lg">›</span>
+        </Link>
+
+        {/* =========================
             実績・資格更新（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる）
         ========================= */}
         <div className="mt-10 border-t pt-8 space-y-6">
