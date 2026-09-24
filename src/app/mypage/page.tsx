@@ -36,6 +36,7 @@ export default function MyPage() {
   const [myReviews, setMyReviews] = useState<MyReview[]>([]);
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [targets, setTargets] = useState<QualificationTarget[]>([]);
+  const [profileExpanded, setProfileExpanded] = useState(false);
 
   useEffect(() => {
     loadMyPage();
@@ -263,11 +264,11 @@ export default function MyPage() {
 
           {/* 名前 */}
           <h1 className="text-3xl font-semibold mt-6">
-            {profile?.full_name || "PTユーザー"} PT
+            {profile?.full_name || "PTユーザー"}
           </h1>
 
           {/* 資格 */}
-          <p className="text-gray-500 mt-2">
+          <p className="text-lg text-gray-600 mt-2">
             {profile?.qualification || "理学療法士"}
           </p>
 
@@ -276,35 +277,6 @@ export default function MyPage() {
             ⭐ {profile?.rating || 0}{" "}
             ({profile?.review_count || 0}件)
           </p>
-
-          {/* 資格更新の進捗（小さめ表示） */}
-          <div className="mt-4 flex flex-wrap justify-center gap-2">
-            {targets.map((t) => {
-              const progress = computeQualificationProgress(
-                t,
-                achievements
-              );
-
-              return (
-                <Link
-                  key={t.id}
-                  href="/mypage/achievements"
-                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
-                >
-                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
-                  {Math.floor(progress.monthsRemaining / 12)}年
-                  {progress.monthsRemaining % 12}ヶ月
-                </Link>
-              );
-            })}
-
-            <Link
-              href="/mypage/achievements"
-              className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
-            >
-              + 実績・資格を管理
-            </Link>
-          </div>
 
           {/* =========================
               投稿・フォロー・フォロワー
@@ -349,20 +321,34 @@ export default function MyPage() {
 
           </div>
 
-          {/* プロフィール編集 */}
-          <Link href="/mypage/edit">
-            <button
-              className="
-                mt-6
-                border
-                px-6
-                py-2
-                rounded-full
-              "
+          {/* 資格更新の進捗（小さめ表示） */}
+          <div className="mt-6 flex flex-wrap justify-center gap-2">
+            {targets.map((t) => {
+              const progress = computeQualificationProgress(
+                t,
+                achievements
+              );
+
+              return (
+                <Link
+                  key={t.id}
+                  href="/mypage/achievements"
+                  className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                >
+                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                  {Math.floor(progress.monthsRemaining / 12)}年
+                  {progress.monthsRemaining % 12}ヶ月
+                </Link>
+              );
+            })}
+
+            <Link
+              href="/mypage/achievements"
+              className="inline-flex items-center gap-1 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-500"
             >
-              プロフィール編集
-            </button>
-          </Link>
+              + 実績・資格を管理
+            </Link>
+          </div>
 
         </div>
 
@@ -371,63 +357,90 @@ export default function MyPage() {
         ========================= */}
         <div className="mt-10 border-t pt-8 space-y-6">
 
-          <h2 className="text-xl font-semibold">
-            プロフィール
-          </h2>
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold">
+              プロフィール
+            </h2>
+
+            <Link href="/mypage/edit">
+              <button
+                className="
+                  border
+                  px-4
+                  py-1.5
+                  rounded-full
+                  text-sm
+                "
+              >
+                プロフィール編集
+              </button>
+            </Link>
+          </div>
 
           <ProfileItem
             title="勤務先"
             value={profile?.workplace}
           />
 
-          <ProfileItem
-            title="専門"
-            value={profile?.specialty}
-          />
+          {profileExpanded && (
+            <>
+              <ProfileItem
+                title="専門"
+                value={profile?.specialty}
+              />
 
-          <ProfileItem
-            title="資格"
-            value={profile?.qualification}
-          />
+              <ProfileItem
+                title="資格"
+                value={profile?.qualification}
+              />
 
-          <ProfileItem
-            title="経験年数"
-            value={
-              profile?.experience_years
-                ? `${profile.experience_years}年`
-                : ""
-            }
-          />
+              <ProfileItem
+                title="経験年数"
+                value={
+                  profile?.experience_years
+                    ? `${profile.experience_years}年`
+                    : ""
+                }
+              />
 
-          <ProfileItem
-            title="学歴"
-            value={profile?.education}
-          />
+              <ProfileItem
+                title="学歴"
+                value={profile?.education}
+              />
 
-          <ProfileItem
-            title="出身"
-            value={profile?.hometown}
-          />
+              <ProfileItem
+                title="出身"
+                value={profile?.hometown}
+              />
 
-          <ProfileItem
-            title="生年月日"
-            value={profile?.birth_date}
-          />
+              <ProfileItem
+                title="生年月日"
+                value={profile?.birth_date}
+              />
 
-          <ProfileItem
-            title="言語"
-            value={profile?.languages}
-          />
+              <ProfileItem
+                title="言語"
+                value={profile?.languages}
+              />
 
-          <ProfileItem
-            title="連絡先"
-            value={profile?.contact}
-          />
+              <ProfileItem
+                title="連絡先"
+                value={profile?.contact}
+              />
 
-          <ProfileItem
-            title="自己紹介"
-            value={profile?.biography}
-          />
+              <ProfileItem
+                title="自己紹介"
+                value={profile?.biography}
+              />
+            </>
+          )}
+
+          <button
+            onClick={() => setProfileExpanded((v) => !v)}
+            className="w-full rounded-full border border-gray-200 py-2 text-sm text-gray-500 hover:bg-gray-50"
+          >
+            {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
+          </button>
 
           {/* アカウントの種類 */}
           <AccountTypeCard
