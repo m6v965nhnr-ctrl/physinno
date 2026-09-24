@@ -21,12 +21,16 @@ const diseaseCategories = [
   "その他",
 ];
 
+type PostType = "normal" | "case" | AchievementCategory;
+
+function isAchievementCategory(
+  value: PostType | null
+): value is AchievementCategory {
+  return !!value && (ACHIEVEMENT_CATEGORIES as string[]).includes(value);
+}
+
 export default function CreatePostPage() {
-  const [type, setType] = useState<"normal" | "case" | "achievement" | null>(
-    null
-  );
-  const [achievementCategory, setAchievementCategory] =
-    useState<AchievementCategory | null>(null);
+  const [type, setType] = useState<PostType | null>(null);
 
   const [title, setTitle] = useState("");
   const [diseaseCategory, setDiseaseCategory] = useState("");
@@ -196,7 +200,7 @@ export default function CreatePostPage() {
   }
 
   async function handleAchievementPost() {
-    if (!achievementCategory) {
+    if (!isAchievementCategory(type)) {
       return;
     }
 
@@ -217,13 +221,13 @@ export default function CreatePostPage() {
         return;
       }
 
-      const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[achievementCategory];
+      const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[type];
 
       const { error } = await supabase.from("posts").insert({
         user_id: user.id,
         title: title.trim(),
         content: content.trim(),
-        post_type: achievementCategory,
+        post_type: type,
         conference_name: fieldConfig.showConferenceName
           ? conferenceName.trim() || null
           : null,
@@ -321,67 +325,28 @@ export default function CreatePostPage() {
               </div>
             </button>
 
-            {/* 実績 */}
-            <button
-              onClick={() => setType("achievement")}
-              className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
-                  🏅
-                </div>
-
-                <div>
-                  <p className="text-base font-semibold text-gray-900">
-                    実績
-                  </p>
-
-                  <p className="mt-1 text-sm text-gray-400">
-                    学会発表・院内症例発表・研修受講・論文・その他を投稿
-                  </p>
-                </div>
-              </div>
-            </button>
-          </div>
-        </div>
-      </main>
-    );
-  }
-
-  /*
-   * 実績：カテゴリ選択
-   */
-  if (type === "achievement" && !achievementCategory) {
-    return (
-      <main className="min-h-screen bg-[#fafafa] pb-24">
-        <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
-          <div className="mx-auto flex max-w-2xl items-center px-5 py-4">
-            <button
-              onClick={() => setType(null)}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
-            >
-              ←
-            </button>
-
-            <h1 className="ml-3 text-lg font-semibold text-gray-900">
-              実績を投稿
-            </h1>
-          </div>
-        </header>
-
-        <div className="mx-auto max-w-2xl px-5 py-10">
-          <h2 className="text-center text-xl font-semibold text-gray-900">
-            どの実績ですか？
-          </h2>
-
-          <div className="mt-8 grid grid-cols-2 gap-3">
+            {/* 実績（学会発表・院内症例発表・研修受講・論文・その他） */}
             {ACHIEVEMENT_CATEGORIES.map((c) => (
               <button
                 key={c}
-                onClick={() => setAchievementCategory(c)}
-                className="rounded-2xl border border-gray-200 bg-white p-5 text-center font-medium text-gray-900 transition hover:border-gray-400 hover:shadow-sm"
+                onClick={() => setType(c)}
+                className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
               >
-                {ACHIEVEMENT_CATEGORY_LABEL[c]}
+                <div className="flex items-center gap-4">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
+                    🏅
+                  </div>
+
+                  <div>
+                    <p className="text-base font-semibold text-gray-900">
+                      {ACHIEVEMENT_CATEGORY_LABEL[c]}
+                    </p>
+
+                    <p className="mt-1 text-sm text-gray-400">
+                      {ACHIEVEMENT_CATEGORY_LABEL[c]}の実績を投稿
+                    </p>
+                  </div>
+                </div>
               </button>
             ))}
           </div>
@@ -393,22 +358,22 @@ export default function CreatePostPage() {
   /*
    * 実績：詳細入力
    */
-  if (type === "achievement" && achievementCategory) {
-    const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[achievementCategory];
+  if (isAchievementCategory(type)) {
+    const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[type];
 
     return (
       <main className="min-h-screen bg-[#fafafa] pb-24">
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
             <button
-              onClick={() => setAchievementCategory(null)}
+              onClick={() => setType(null)}
               className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
             >
               ←
             </button>
 
             <h1 className="text-lg font-semibold text-gray-900">
-              {ACHIEVEMENT_CATEGORY_LABEL[achievementCategory]}
+              {ACHIEVEMENT_CATEGORY_LABEL[type]}
             </h1>
 
             <button
@@ -425,7 +390,7 @@ export default function CreatePostPage() {
           <div className="rounded-2xl border border-gray-100 bg-white p-5">
             <div className="mb-5">
               <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
-                {ACHIEVEMENT_CATEGORY_LABEL[achievementCategory]}
+                {ACHIEVEMENT_CATEGORY_LABEL[type]}
               </span>
             </div>
 
