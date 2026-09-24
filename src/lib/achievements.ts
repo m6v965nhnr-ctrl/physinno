@@ -19,11 +19,42 @@ export const ACHIEVEMENT_CATEGORIES = Object.keys(
   ACHIEVEMENT_CATEGORY_LABEL
 ) as AchievementCategory[];
 
-// 学会名・発表題名・概要の入力欄を出すカテゴリ
-export const ACHIEVEMENT_CATEGORIES_WITH_DETAILS: AchievementCategory[] = [
-  "conference",
-  "case_presentation",
-];
+// カテゴリごとの入力欄の見た目（タイトル欄のプレースホルダー・概要欄のラベル等）
+export const ACHIEVEMENT_FIELD_CONFIG: Record<
+  AchievementCategory,
+  {
+    titlePlaceholder: string;
+    memoLabel: string;
+    showConferenceName: boolean;
+  }
+> = {
+  conference: {
+    titlePlaceholder: "発表題名",
+    memoLabel: "概要",
+    showConferenceName: true,
+  },
+  case_presentation: {
+    titlePlaceholder: "発表題名",
+    memoLabel: "概要",
+    showConferenceName: false,
+  },
+  training: {
+    titlePlaceholder: "講義名（例: 運動器疾患のリハビリテーション研修）",
+    memoLabel: "概要",
+    showConferenceName: false,
+  },
+  paper: {
+    titlePlaceholder:
+      "論文タイトル（例: 変形性膝関節症患者に対する運動療法の効果）",
+    memoLabel: "概要",
+    showConferenceName: false,
+  },
+  other: {
+    titlePlaceholder: "タイトル",
+    memoLabel: "内容",
+    showConferenceName: false,
+  },
+};
 
 export type Achievement = {
   id: string;

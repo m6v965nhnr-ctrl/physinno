@@ -6,8 +6,8 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
   ACHIEVEMENT_CATEGORIES,
-  ACHIEVEMENT_CATEGORIES_WITH_DETAILS,
   ACHIEVEMENT_CATEGORY_LABEL,
+  ACHIEVEMENT_FIELD_CONFIG,
   Achievement,
   AchievementCategory,
   QualificationTarget,
@@ -39,7 +39,7 @@ export default function AchievementsPage() {
   );
   const [saving, setSaving] = useState(false);
 
-  const showDetails = ACHIEVEMENT_CATEGORIES_WITH_DETAILS.includes(category);
+  const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[category];
 
   // 資格目標フォーム
   const [showTargetForm, setShowTargetForm] = useState(false);
@@ -78,8 +78,10 @@ export default function AchievementsPage() {
       userId,
       category,
       title,
-      conferenceName: showDetails ? conferenceName : undefined,
-      memo: showDetails ? summary : undefined,
+      conferenceName: fieldConfig.showConferenceName
+        ? conferenceName
+        : undefined,
+      memo: summary,
       achievedOn,
     });
 
@@ -289,7 +291,7 @@ export default function AchievementsPage() {
               ))}
             </div>
 
-            {showDetails && category === "conference" && (
+            {fieldConfig.showConferenceName && (
               <input
                 value={conferenceName}
                 onChange={(e) => setConferenceName(e.target.value)}
@@ -301,23 +303,17 @@ export default function AchievementsPage() {
             <input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              placeholder={
-                showDetails
-                  ? "発表題名"
-                  : "タイトル（任意・例: 日本理学療法学術大会）"
-              }
+              placeholder={fieldConfig.titlePlaceholder}
               className="w-full rounded-xl border px-4 py-2.5 text-sm"
             />
 
-            {showDetails && (
-              <textarea
-                value={summary}
-                onChange={(e) => setSummary(e.target.value)}
-                placeholder="概要"
-                rows={4}
-                className="w-full rounded-xl border px-4 py-2.5 text-sm"
-              />
-            )}
+            <textarea
+              value={summary}
+              onChange={(e) => setSummary(e.target.value)}
+              placeholder={fieldConfig.memoLabel}
+              rows={4}
+              className="w-full rounded-xl border px-4 py-2.5 text-sm"
+            />
 
             <input
               type="date"
