@@ -16,13 +16,13 @@ const PT_MENUS: Menu[] = [
   { href: "/home", icon: "⌂", label: "ホーム" },
   { href: "/messages", icon: "💬", label: "メッセージ" },
   { href: "/posts/create", icon: "+", label: "投稿" },
-  { href: "/pts", icon: "⌕", label: "PT検索" },
+  { href: "/pts", icon: "⌕", label: "検索" },
   { href: "/mypage", icon: "○", label: "マイページ" },
 ];
 
 // 一般ユーザー：PTを探す・メッセージ・マイページのみ
 const GENERAL_MENUS: Menu[] = [
-  { href: "/pts", icon: "⌕", label: "PT検索" },
+  { href: "/pts", icon: "⌕", label: "検索" },
   { href: "/messages", icon: "💬", label: "メッセージ" },
   { href: "/mypage", icon: "○", label: "マイページ" },
 ];

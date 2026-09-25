@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { getMyAccountType } from "@/lib/account";
+import SeminarNews from "@/components/SeminarNews";
 
 
 export default function PTSearchPage(){
@@ -17,10 +19,24 @@ export default function PTSearchPage(){
 
   const [specialty,setSpecialty] = useState("");
 
+  // PTアカウントのみ「News（研修・学会情報）」タブを表示
+  const [isPt,setIsPt] = useState(false);
+  const [tab,setTab] = useState<"pts"|"news">("pts");
+
 
   useEffect(()=>{
 
     searchPT();
+
+    supabase.auth.getUser().then(async ({data:{user}})=>{
+
+      if(user){
+
+        setIsPt((await getMyAccountType(user.id)) === "pt");
+
+      }
+
+    });
 
   },[]);
 
@@ -124,6 +140,45 @@ export default function PTSearchPage(){
         mx-auto
       ">
 
+
+        {isPt && (
+
+          <div className="mb-8 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium">
+
+            {([["pts","PTを探す"],["news","News"]] as const).map(([key,label])=>(
+
+              <button
+
+                key={key}
+
+                onClick={()=>setTab(key)}
+
+                className={`rounded-full py-2.5 transition ${
+                  tab === key
+                    ? "bg-white text-gray-900 shadow-sm"
+                    : "text-gray-500"
+                }`}
+
+              >
+
+                {label}
+
+              </button>
+
+            ))}
+
+          </div>
+
+        )}
+
+
+        {isPt && tab === "news" ? (
+
+          <SeminarNews />
+
+        ) : (
+
+        <>
 
         <h1 className="
           text-3xl
@@ -354,6 +409,10 @@ export default function PTSearchPage(){
 
 
         </div>
+
+        </>
+
+        )}
 
 
       </div>

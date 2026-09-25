@@ -190,7 +190,7 @@ export default function PTProfile() {
               href="/pts"
               className="text-sm text-gray-400 hover:text-gray-700"
             >
-              ← PT検索
+              ← 検索
             </Link>
           </div>
         </header>
@@ -205,7 +205,7 @@ export default function PTProfile() {
               href="/pts"
               className="mt-5 inline-block rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white"
             >
-              PT検索に戻る
+              検索に戻る
             </Link>
           </div>
         </div>
@@ -234,7 +234,7 @@ export default function PTProfile() {
             href="/pts"
             className="text-sm text-gray-400 hover:text-gray-700"
           >
-            ← PT検索
+            ← 検索
           </Link>
         </div>
       </header>
