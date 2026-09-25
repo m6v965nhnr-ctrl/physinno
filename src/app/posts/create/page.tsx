@@ -9,6 +9,7 @@ import {
   ACHIEVEMENT_FIELD_CONFIG,
   AchievementCategory,
 } from "@/lib/achievements";
+import { notify } from "@/lib/notify";
 
 const diseaseCategories = [
   "脳血管",
@@ -96,7 +97,7 @@ export default function CreatePostPage() {
 
     if (uploadError) {
       console.error("MEDIA UPLOAD ERROR", uploadError);
-      alert("資料のアップロードに失敗しました");
+      notify("資料のアップロードに失敗しました");
       return null;
     }
 
@@ -109,7 +110,7 @@ export default function CreatePostPage() {
 
   async function handleNormalPost() {
     if (!content.trim() && !mediaFile) {
-      alert("本文または写真・動画・資料を入力してください");
+      notify("本文または写真・動画・資料を入力してください");
       return;
     }
 
@@ -121,7 +122,7 @@ export default function CreatePostPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        alert("ログインしてください");
+        notify("ログインしてください");
         return;
       }
 
@@ -145,11 +146,11 @@ export default function CreatePostPage() {
 
       if (error) {
         console.error("NORMAL POST ERROR", error);
-        alert("投稿に失敗しました");
+        notify("投稿に失敗しました");
         return;
       }
 
-      alert("投稿しました");
+      notify("投稿しました");
       window.location.href = "/home";
     } finally {
       setPosting(false);
@@ -162,7 +163,7 @@ export default function CreatePostPage() {
     }
 
     if (!title.trim()) {
-      alert("タイトルを入力してください");
+      notify("タイトルを入力してください");
       return;
     }
 
@@ -174,7 +175,7 @@ export default function CreatePostPage() {
       } = await supabase.auth.getUser();
 
       if (!user) {
-        alert("ログインしてください");
+        notify("ログインしてください");
         return;
       }
 
@@ -235,11 +236,11 @@ export default function CreatePostPage() {
 
       if (error) {
         console.error("ACHIEVEMENT POST ERROR", error);
-        alert("実績の投稿に失敗しました");
+        notify("実績の投稿に失敗しました");
         return;
       }
 
-      alert("実績を投稿しました");
+      notify("実績を投稿しました");
       window.location.href = isPublic ? "/home" : "/mypage/achievements";
     } finally {
       setPosting(false);
@@ -370,11 +371,11 @@ export default function CreatePostPage() {
 
             {fieldConfig.showConferenceName && (
               <div>
-                <label className="text-sm font-semibold text-gray-900">
+                <label className="text-sm font-semibold text-gray-900" htmlFor="field-1">
                   学会名
                 </label>
 
-                <input
+                <input id="field-1"
                   value={conferenceName}
                   onChange={(event) =>
                     setConferenceName(event.target.value)
@@ -386,11 +387,11 @@ export default function CreatePostPage() {
             )}
 
             <div className="mt-6">
-              <label className="text-sm font-semibold text-gray-900">
+              <label className="text-sm font-semibold text-gray-900" htmlFor="field-2">
                 {fieldConfig.titlePlaceholder.split("（")[0]}
               </label>
 
-              <input
+              <input id="field-2"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
                 placeholder={fieldConfig.titlePlaceholder}
@@ -399,11 +400,11 @@ export default function CreatePostPage() {
             </div>
 
             <div className="mt-6">
-              <label className="text-sm font-semibold text-gray-900">
+              <label className="text-sm font-semibold text-gray-900" htmlFor="field-3">
                 {fieldConfig.memoLabel}
               </label>
 
-              <textarea
+              <textarea id="field-3"
                 value={content}
                 onChange={(event) => setContent(event.target.value)}
                 placeholder={fieldConfig.memoLabel}
@@ -413,11 +414,11 @@ export default function CreatePostPage() {
             </div>
 
             <div className="mt-6">
-              <label className="text-sm font-semibold text-gray-900">
+              <label className="text-sm font-semibold text-gray-900" htmlFor="field-4">
                 実施日
               </label>
 
-              <input
+              <input id="field-4"
                 type="date"
                 value={achievedOn}
                 onChange={(event) => setAchievedOn(event.target.value)}
@@ -534,11 +535,11 @@ export default function CreatePostPage() {
                         />
 
                         <div>
-                          <label className="text-sm font-semibold text-gray-900">
+                          <label className="text-sm font-semibold text-gray-900" htmlFor="field-5">
                             読了日
                           </label>
 
-                          <input
+                          <input id="field-5"
                             type="date"
                             value={readDate}
                             onChange={(event) =>
@@ -629,7 +630,7 @@ export default function CreatePostPage() {
             }
             placeholder="今なにを共有しますか？"
             className="min-h-[180px] w-full resize-none text-sm text-gray-900 outline-none placeholder:text-gray-400"
-          />
+           aria-label="今なにを共有しますか？"/>
 
           <AttachmentFields
             diseaseCategory={diseaseCategory}
@@ -662,9 +663,9 @@ function LabeledInput({
 }) {
   return (
     <div>
-      <label className="text-sm font-semibold text-gray-900">{label}</label>
+      <label className="text-sm font-semibold text-gray-900" htmlFor="field-6">{label}</label>
 
-      <input
+      <input id="field-6"
         type={type}
         value={value}
         onChange={(event) => onChange(event.target.value)}
@@ -697,11 +698,11 @@ function AttachmentFields({
     <>
       {/* 疾患分類 */}
       <div className="mt-6 border-t border-gray-100 pt-5">
-        <label className="text-sm font-semibold text-gray-900">
+        <label className="text-sm font-semibold text-gray-900" htmlFor="field-7">
           疾患分類（任意）
         </label>
 
-        <select
+        <select id="field-7"
           value={diseaseCategory}
           onChange={(event) => setDiseaseCategory(event.target.value)}
           className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
@@ -760,7 +761,7 @@ function AttachmentFields({
                 className="max-h-[500px] w-full object-contain"
               />
             ) : (
-              <img
+              <img loading="lazy" decoding="async"
                 src={previewUrl}
                 alt="資料プレビュー"
                 className="max-h-[500px] w-full object-contain"
@@ -772,11 +773,11 @@ function AttachmentFields({
 
       {/* 参考URL */}
       <div className="mt-6 border-t border-gray-100 pt-5">
-        <label className="text-sm font-semibold text-gray-900">
+        <label className="text-sm font-semibold text-gray-900" htmlFor="field-8">
           参考URL（任意）
         </label>
 
-        <input
+        <input id="field-8"
           type="url"
           value={referenceUrl}
           onChange={(event) => setReferenceUrl(event.target.value)}

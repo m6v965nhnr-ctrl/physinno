@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
+import { notify } from "@/lib/notify";
 
 export default function ReviewPage() {
   const params = useParams();
@@ -20,7 +21,7 @@ export default function ReviewPage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -33,14 +34,14 @@ export default function ReviewPage() {
     });
 
     if (insertError) {
-      alert(insertError.message);
+      notify(insertError.message);
       return;
     }
 
     // 評価の平均・件数（pt_profiles.rating / review_count）は
     // DBトリガー reviews_recalc_rating で自動計算されます
 
-    alert("レビューを投稿しました");
+    notify("レビューを投稿しました");
 
     router.push(`/pts/${ptId}`);
   }
@@ -71,7 +72,7 @@ export default function ReviewPage() {
               onChange={(e) => setComment(e.target.value)}
               placeholder="治療を受けた感想"
               className="h-40 w-full rounded-2xl border p-5"
-            />
+             aria-label="治療を受けた感想"/>
           </div>
 
           <button
@@ -98,7 +99,7 @@ export default function ReviewPage() {
               }`}
             >
               <span
-                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${
+                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-[left] ${
                   isAnonymous ? "left-[22px]" : "left-0.5"
                 }`}
               />

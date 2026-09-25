@@ -4,6 +4,7 @@ import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { getMyAccountType } from "@/lib/account";
+import { notify } from "@/lib/notify";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -18,18 +19,18 @@ export default function LoginPage() {
     });
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
     const user = data.user;
 
     if (!user) {
-      alert("ログインユーザーを確認できませんでした");
+      notify("ログインユーザーを確認できませんでした");
       return;
     }
 
-    alert("ログインしました");
+    notify("ログインしました");
 
     // 管理者は管理画面へ（admin_users テーブルで判定）
     const { data: adminData } = await supabase
@@ -84,6 +85,11 @@ export default function LoginPage() {
         >
           <input
             type="email"
+            name="email"
+            autoComplete="email"
+            inputMode="email"
+            spellCheck={false}
+            aria-label="メールアドレス"
             placeholder="メールアドレス"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -101,6 +107,9 @@ export default function LoginPage() {
 
           <input
             type="password"
+            name="password"
+            autoComplete="current-password"
+            aria-label="パスワード"
             placeholder="パスワード"
             value={password}
             onChange={(e) => setPassword(e.target.value)}

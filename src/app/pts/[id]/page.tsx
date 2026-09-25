@@ -15,6 +15,7 @@ import {
   listQualificationTargets,
 } from "@/lib/achievements";
 import type { AuthUser, PtProfile, Review } from "@/lib/types";
+import { notify } from "@/lib/notify";
 
 type CaseReport = {
   id: string;
@@ -150,7 +151,7 @@ export default function PTProfile() {
 
   async function toggleFollow() {
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -249,7 +250,7 @@ export default function PTProfile() {
           <div className="relative">
             <div className="absolute inset-0">
               {pt.cover_image ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={pt.cover_image}
                   alt=""
                   className="h-full w-full object-cover"
@@ -262,7 +263,7 @@ export default function PTProfile() {
             <div className="relative flex flex-col items-center px-6 pt-8 pb-6 text-center">
 
               {pt.profile_image ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={pt.profile_image}
                   alt={pt.full_name || "プロフィール"}
                   className="h-24 w-24 rounded-full object-cover ring-4 ring-white"

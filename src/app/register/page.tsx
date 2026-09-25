@@ -146,12 +146,16 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium">
+            <label className="mb-2 block text-sm font-medium" htmlFor="field-1">
               メールアドレス
             </label>
 
-            <input
+            <input id="field-1"
               type="email"
+              name="email"
+              autoComplete="email"
+              inputMode="email"
+              spellCheck={false}
               value={email}
               onChange={(e) =>
                 setEmail(e.target.value)
@@ -162,12 +166,14 @@ export default function RegisterPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-sm font-medium">
+            <label className="mb-2 block text-sm font-medium" htmlFor="field-2">
               パスワード
             </label>
 
-            <input
+            <input id="field-2"
               type="password"
+              name="password"
+              autoComplete="new-password"
               value={password}
               onChange={(e) =>
                 setPassword(e.target.value)

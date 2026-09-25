@@ -30,3 +30,10 @@
 - レビューの `user_id` は API から読める（画面上の「匿名」は表示のみ）。厳密な匿名化にはビューまたは列権限の見直しが必要。
 - 画面は Client Component 中心で、マウント時に取得する実装（lint は `set-state-in-effect` を warn にしている）。Server Components / SWR への移行余地あり。
 - 一部の士会サイトは会員専用・自動アクセス拒否のため取得できない。
+
+## UI 方針（Web Interface Guidelines 準拠）
+- 通知は `alert()` ではなく `notify()`（`src/lib/notify.ts`）＋ `Toaster`（`aria-live`）。エラー文言は自動で赤表示。
+- フォーカスは `:focus-visible` で常に可視化。スキップリンク・`viewport-fit=cover`・`safe-area`（下部ナビ）に対応。
+- 入力欄は `label`/`aria-label` に関連付け、ログイン・登録は `autocomplete` を指定。スマホでは入力欄を16px以上にして拡大を防ぐ。
+- 削除操作は確認ダイアログ。モーダルは `role="dialog"` と `overscroll-contain`。
+- `globals.css` の `!important` による色の上書きは、Tailwind の `hover:` などを打ち消すため、追加しない（文字色の継承を全要素に強制するルールは撤去済み）。

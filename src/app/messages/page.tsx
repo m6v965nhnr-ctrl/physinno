@@ -193,7 +193,7 @@ export default function MessagesPage() {
                   className="flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0"
                 >
                   {profile?.profile_image ? (
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={profile.profile_image}
                       alt={profile.full_name || "PT"}
                       className="h-12 w-12 rounded-full object-cover"

@@ -77,9 +77,8 @@ body {
    基本文字
 ======================================== */
 
-body * {
-  color: #222222;
-}
+/* 文字色は body から継承させる（全要素の color を上書きすると、
+   Tailwind の text-red-500 などの色指定が効かなくなるため） */
 
 
 h1,
@@ -150,10 +149,6 @@ h6 {
    背景
 ======================================== */
 
-.bg-white {
-  background-color: #ffffff !important;
-}
-
 .bg-gray-50 {
   background-color: #f2fffb !important;
 }
@@ -220,7 +215,7 @@ textarea,
 select {
   background-color: #ffffff !important;
   color: #111111 !important;
-  border-color: #b9dcd5 !important;
+  border-color: #6fb0a3 !important;
   color-scheme: light !important;
 }
 
@@ -228,9 +223,9 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-  border-color: #45d0c2 !important;
+  border-color: #1f9e93 !important;
   outline: none;
-  box-shadow: 0 0 0 3px rgba(69, 208, 194, 0.15);
+  box-shadow: 0 0 0 3px rgba(69, 208, 194, 0.4);
 }
 
 
@@ -362,4 +357,78 @@ a:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #55c7dc;
+}
+
+
+/* ========================================
+   アクセシビリティ・タッチ操作
+   （Web Interface Guidelines に準拠）
+======================================== */
+
+/* キーボード操作時のフォーカスを常に可視化 */
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible,
+[role="tab"]:focus-visible,
+[role="switch"]:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #1f9e93;
+  outline-offset: 2px;
+}
+
+/* ダブルタップ拡大の遅延を防ぐ */
+a,
+button,
+input,
+select,
+textarea,
+label,
+summary,
+[role="button"],
+[role="tab"],
+[role="switch"] {
+  touch-action: manipulation;
+}
+
+html {
+  -webkit-tap-highlight-color: rgba(69, 208, 194, 0.18);
+}
+
+/* iPhone で入力欄をタップしたときに画面が拡大されないよう 16px 以上にする */
+@media (max-width: 767px) {
+  input,
+  select,
+  textarea {
+    font-size: 16px;
+  }
+}
+
+/* 動きを減らす設定のユーザーにはアニメーションを止める */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* スキップリンク（キーボード操作で本文へ移動） */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 10000;
+  border-radius: 9999px;
+  background: #111111;
+  color: #ffffff !important;
+  padding: 10px 16px;
+  font-size: 14px;
+}
+
+.skip-link:focus {
+  top: 8px;
 }

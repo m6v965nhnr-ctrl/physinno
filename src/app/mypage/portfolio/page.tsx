@@ -59,6 +59,7 @@ import {
   reconcileProfileAndPortfolio,
   syncPortfolioToProfile,
 } from "@/lib/profileSync";
+import { notify } from "@/lib/notify";
 
 type FieldType = "text" | "date" | "number" | "textarea" | "select" | "checkbox";
 
@@ -394,10 +395,11 @@ export default function PortfolioPage() {
               onChange={(e) => setKeyword(e.target.value)}
               placeholder="キーワードで検索（学校名・勤務先・資格名など）"
               className="w-full rounded-xl border px-4 py-2.5 text-sm"
-            />
+             aria-label="キーワードで検索（学校名・勤務先・資格名など）"/>
 
             <select
               value={yearFilter}
+              aria-label="年で絞り込み"
               onChange={(e) => setYearFilter(e.target.value)}
               className="w-full rounded-xl border px-4 py-2.5 text-sm bg-white sm:w-40"
             >
@@ -828,6 +830,7 @@ export default function PortfolioPage() {
 
                   <select
                     value={g.status}
+                    aria-label={`${g.title}の進捗`}
                     onChange={async (e) => {
                       await updateCareerGoalStatus(
                         g.id,
@@ -849,10 +852,12 @@ export default function PortfolioPage() {
 
                 <button
                   onClick={async () => {
+                    if (!window.confirm("この目標を削除しますか？")) return;
                     await deleteCareerGoal(g.id);
                     load();
                   }}
-                  className="shrink-0 text-gray-300 hover:text-gray-500"
+                  aria-label="この目標を削除"
+                  className="shrink-0 px-2 py-1 text-gray-300 hover:text-gray-500"
                 >
                   ×
                 </button>
@@ -900,10 +905,12 @@ export default function PortfolioPage() {
                   )}
                   <button
                     onClick={async () => {
+                      if (!window.confirm("このスキルを削除しますか？")) return;
                       await deleteSkill(s.id);
                       load();
                     }}
-                    className="ml-1 text-gray-300 hover:text-gray-500"
+                    aria-label={`${s.name}を削除`}
+                    className="ml-1 px-1.5 text-gray-300 hover:text-gray-500"
                   >
                     ×
                   </button>
@@ -970,9 +977,11 @@ function EntryCard({
       </div>
 
       <button
-        onClick={onDelete}
-        className="shrink-0 text-gray-300 hover:text-gray-500"
-      >
+        onClick={() => {
+          if (window.confirm("この項目を削除しますか？")) onDelete();
+        }}
+        className="shrink-0 px-2 py-1 text-gray-300 hover:text-gray-500"
+        aria-label="この項目を削除">
         ×
       </button>
     </div>
@@ -1011,7 +1020,7 @@ function PortfolioSection({
     setSaving(false);
 
     if (error) {
-      alert(error);
+      notify(error);
       return;
     }
 
@@ -1040,7 +1049,7 @@ function PortfolioSection({
           {fields.map((f) => (
             <div key={f.key}>
               {f.type !== "checkbox" && (
-                <label className="text-xs text-gray-500">
+                <label htmlFor={`pf-${f.key}`} className="text-xs text-gray-500">
                   {f.label}
                   {f.required && " *"}
                 </label>
@@ -1048,6 +1057,7 @@ function PortfolioSection({
 
               {f.type === "textarea" ? (
                 <textarea
+                  id={`pf-${f.key}`}
                   value={(values[f.key] as string) || ""}
                   onChange={(e) => updateField(f.key, e.target.value)}
                   placeholder={f.placeholder}
@@ -1057,6 +1067,7 @@ function PortfolioSection({
                 />
               ) : f.type === "select" ? (
                 <select
+                  id={`pf-${f.key}`}
                   value={(values[f.key] as string) || f.options?.[0]?.value || ""}
                   onChange={(e) => updateField(f.key, e.target.value)}
                   className="mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm"
@@ -1079,6 +1090,7 @@ function PortfolioSection({
                 </label>
               ) : (
                 <input
+                  id={`pf-${f.key}`}
                   type={f.type || "text"}
                   value={(values[f.key] as string) || ""}
                   onChange={(e) => updateField(f.key, e.target.value)}

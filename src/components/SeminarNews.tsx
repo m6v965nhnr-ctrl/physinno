@@ -14,6 +14,7 @@ import {
   occursOn,
   toISODate,
 } from "@/lib/seminars";
+import { notify } from "@/lib/notify";
 
 type FormatFilter = "" | "online" | "offline";
 
@@ -26,7 +27,7 @@ const FEE_OPTIONS = [
 ];
 
 const chipBase =
-  "rounded-full border px-3 py-1.5 text-xs font-medium transition active:scale-95";
+  "min-h-9 rounded-full border px-3.5 py-2 text-xs font-medium transition active:scale-95";
 
 function Chip({
   active,
@@ -41,6 +42,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={`${chipBase} ${
         active
           ? "border-transparent bg-relight-gradient text-white"
@@ -103,7 +105,7 @@ export default function SeminarNews() {
     const error = await setSeminarSaved(id, next);
 
     if (error) {
-      alert(`保存できませんでした\n${error}`);
+      notify(`保存できませんでした\n${error}`);
       setSavedIds(savedIds);
     }
   }
@@ -241,7 +243,7 @@ export default function SeminarNews() {
           }}
           placeholder="キーワード（研修名・主催・地名など）"
           className="w-full rounded-full border px-5 py-3"
-        />
+         aria-label="キーワード（研修名・主催・地名など）"/>
 
         <div className="flex gap-2">
           <button
@@ -367,6 +369,7 @@ export default function SeminarNews() {
               <input
                 type="date"
                 value={dateFrom}
+                aria-label="開催日（開始）"
                 min={todayIso}
                 onChange={(e) => setDateFrom(e.target.value)}
                 className="min-w-0 flex-1 rounded-xl border bg-white px-3 py-2 text-sm"
@@ -375,6 +378,7 @@ export default function SeminarNews() {
               <input
                 type="date"
                 value={dateTo}
+                aria-label="開催日（終了）"
                 min={todayIso}
                 onChange={(e) => setDateTo(e.target.value)}
                 className="min-w-0 flex-1 rounded-xl border bg-white px-3 py-2 text-sm"
@@ -421,7 +425,8 @@ export default function SeminarNews() {
             <button
               type="button"
               onClick={() => shiftMonth(-1)}
-              className="rounded-full border px-4 py-1.5 text-sm"
+              aria-label="前の月"
+              className="min-h-10 rounded-full border px-4 py-1.5 text-sm"
             >
               ←
             </button>
@@ -431,7 +436,8 @@ export default function SeminarNews() {
             <button
               type="button"
               onClick={() => shiftMonth(1)}
-              className="rounded-full border px-4 py-1.5 text-sm"
+              aria-label="次の月"
+              className="min-h-10 rounded-full border px-4 py-1.5 text-sm"
             >
               →
             </button>
@@ -454,6 +460,8 @@ export default function SeminarNews() {
                   key={c.iso}
                   type="button"
                   onClick={() => setSelectedDay(selectedDay === c.iso ? "" : c.iso)}
+                  aria-label={`${month.getMonth() + 1}月${c.day}日 ${c.count}件`}
+                  aria-pressed={selectedDay === c.iso}
                   className={`flex h-14 flex-col items-center justify-start rounded-xl border pt-1.5 text-sm transition ${
                     selectedDay === c.iso
                       ? "border-black bg-gray-50"
@@ -573,7 +581,7 @@ function SaveButton({ saved, onClick }: { saved: boolean; onClick: () => void })
       }}
       aria-label={saved ? "保存を解除" : "保存する"}
       aria-pressed={saved}
-      className={`shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition active:scale-95 ${
+      className={`min-h-9 shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-medium transition active:scale-95 ${
         saved ? "border-transparent bg-relight-gradient text-white" : "border-gray-200 bg-white text-gray-500"
       }`}
     >
@@ -605,7 +613,12 @@ function SeminarList({
           role="button"
           tabIndex={0}
           onClick={() => onSelect(s)}
-          onKeyDown={(e) => e.key === "Enter" && onSelect(s)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              onSelect(s);
+            }
+          }}
           className="block w-full cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition active:scale-[0.99]"
         >
           <div className="flex items-start justify-between gap-3">
@@ -661,11 +674,15 @@ function SeminarDetail({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center"
+      className="fixed inset-0 z-[10001] flex items-end justify-center bg-black/40 sm:items-center"
       onClick={onClose}
     >
       <div
-        className="max-h-[85vh] w-full max-w-xl overflow-y-auto rounded-t-3xl bg-white p-6 sm:rounded-3xl"
+        role="dialog"
+        aria-modal="true"
+        aria-label={s.title}
+        className="max-h-[85vh] w-full max-w-xl overflow-y-auto overscroll-contain rounded-t-3xl bg-white p-6 sm:rounded-3xl"
+        style={{ paddingBottom: "calc(1.5rem + env(safe-area-inset-bottom))" }}
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-3">
@@ -676,7 +693,12 @@ function SeminarDetail({
             <FormatBadge format={s.format} />
           </div>
 
-          <button type="button" onClick={onClose} className="text-2xl leading-none text-gray-400">
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="閉じる"
+            className="-mr-2 -mt-2 px-3 py-2 text-2xl leading-none text-gray-400"
+          >
             ×
           </button>
         </div>

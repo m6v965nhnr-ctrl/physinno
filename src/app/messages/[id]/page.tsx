@@ -220,7 +220,7 @@ export default function MessagePage() {
           </Link>
 
           {profile?.profile_image ? (
-            <img
+            <img loading="lazy" decoding="async"
               src={profile.profile_image}
               alt={profile.full_name || "プロフィール"}
               className="h-10 w-10 rounded-full object-cover"
@@ -272,7 +272,7 @@ export default function MessagePage() {
                     <div className="w-8 shrink-0">
                       {showIcon &&
                         (profile?.profile_image ? (
-                          <img
+                          <img loading="lazy" decoding="async"
                             src={profile.profile_image}
                             alt={profile.full_name || "PT"}
                             className="h-8 w-8 rounded-full object-cover"

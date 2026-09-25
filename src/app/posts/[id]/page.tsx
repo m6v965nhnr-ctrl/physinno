@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
+import { notify } from "@/lib/notify";
 
 type Post = {
   id: string;
@@ -142,7 +143,7 @@ export default function PostDetailPage() {
 
   async function toggleLike() {
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -158,7 +159,7 @@ export default function PostDetailPage() {
         .eq("user_id", user.id);
 
       if (error) {
-        alert(error.message);
+        notify(error.message);
         return;
       }
 
@@ -187,7 +188,7 @@ export default function PostDetailPage() {
       });
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -205,7 +206,7 @@ export default function PostDetailPage() {
 
   async function addComment() {
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -226,7 +227,7 @@ export default function PostDetailPage() {
       .single();
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -249,7 +250,7 @@ export default function PostDetailPage() {
       .eq("user_id", user.id);
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -331,7 +332,7 @@ export default function PostDetailPage() {
               className="flex items-center gap-3 px-6 py-5 border-b hover:bg-gray-50"
             >
               {profile.profile_image ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={profile.profile_image}
                   alt={profile.full_name || "プロフィール"}
                   className="w-12 h-12 rounded-full object-cover"
@@ -398,7 +399,7 @@ export default function PostDetailPage() {
       📄 添付した資料を開く
     </a>
 
-    <img
+    <img loading="lazy" decoding="async"
       src={post.image_url}
       alt="添付資料"
       className="mt-4 w-full max-h-[700px] rounded-xl object-contain"
@@ -516,7 +517,7 @@ function CommentItem({
 
         <Link href={`/pts/${comment.user_id}`}>
           {profile?.profile_image ? (
-            <img
+            <img loading="lazy" decoding="async"
               src={profile.profile_image}
               alt=""
               className="w-9 h-9 rounded-full object-cover"
@@ -541,7 +542,7 @@ function CommentItem({
             {comment.user_id === currentUserId && (
               <button
                 onClick={() => onDelete(comment.id)}
-                className="text-xs text-gray-400 hover:text-red-500"
+                className="text-xs text-gray-400 hover:text-red-500!"
               >
                 削除
               </button>

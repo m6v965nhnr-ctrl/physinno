@@ -8,6 +8,7 @@ import {
   ACHIEVEMENT_CATEGORY_LABEL,
   AchievementCategory,
 } from "@/lib/achievements";
+import { notify } from "@/lib/notify";
 
 type Post = {
   id: string;
@@ -198,7 +199,7 @@ export default function HomePage() {
         .eq("id", myLike.id);
 
       if (error) {
-        alert(error.message);
+        notify(error.message);
         return;
       }
 
@@ -223,7 +224,7 @@ export default function HomePage() {
       .single();
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -305,7 +306,7 @@ export default function HomePage() {
 
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -353,7 +354,7 @@ if (targetPost && targetPost.user_id !== userId) {
       .eq("user_id", userId);
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -382,7 +383,7 @@ if (targetPost && targetPost.user_id !== userId) {
       .eq("user_id", userId);
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -475,7 +476,7 @@ if (targetPost && targetPost.user_id !== userId) {
                   <div className="flex items-center gap-3 px-5 py-4">
                     <AvatarLink profile={profile}>
                       {profile.profile_image ? (
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={profile.profile_image}
                           alt={profile.full_name || ""}
                           className="w-11 h-11 rounded-full object-cover"
@@ -505,7 +506,7 @@ if (targetPost && targetPost.user_id !== userId) {
                     {post.user_id === userId && (
                       <button
                         onClick={() => deletePost(post.id)}
-                        className="text-xs text-gray-400 hover:text-red-500"
+                        className="text-xs text-gray-400 hover:text-red-500!"
                       >
                         削除
                       </button>
@@ -578,7 +579,7 @@ if (targetPost && targetPost.user_id !== userId) {
 
                       {/* 写真 */}
                       {post.image_url && (
-                        <img
+                        <img loading="lazy" decoding="async"
                           src={post.image_url}
                           alt="投稿画像"
                           className="mt-4 w-full max-h-[600px] rounded-xl object-cover"
@@ -679,7 +680,7 @@ if (targetPost && targetPost.user_id !== userId) {
                                 className="flex items-start gap-3"
                               >
                                 {commentProfile.profile_image ? (
-                                  <img
+                                  <img loading="lazy" decoding="async"
                                     src={commentProfile.profile_image}
                                     alt=""
                                     className="w-8 h-8 rounded-full object-cover"
@@ -706,7 +707,7 @@ if (targetPost && targetPost.user_id !== userId) {
                                             comment.id
                                           )
                                         }
-                                        className="text-xs text-gray-400 hover:text-red-500"
+                                        className="text-xs text-gray-400 hover:text-red-500!"
                                       >
                                         削除
                                       </button>
@@ -734,7 +735,7 @@ if (targetPost && targetPost.user_id !== userId) {
                             }
                             placeholder="コメントを入力..."
                             className="flex-1 border rounded-full px-4 py-2 text-sm"
-                          />
+                           aria-label="コメントを入力..."/>
 
                           <button
                             onClick={() => addComment(post.id)}

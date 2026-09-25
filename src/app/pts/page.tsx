@@ -146,13 +146,21 @@ export default function PTSearchPage(){
 
         {isPt && (
 
-          <div className="mb-8 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium">
+          <div
+            role="tablist"
+            aria-label="検索の種類"
+            className="mb-8 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium"
+          >
 
             {([["pts","PTを探す"],["news","News"]] as const).map(([key,label])=>(
 
               <button
 
                 key={key}
+
+                role="tab"
+
+                aria-selected={tab === key}
 
                 onClick={()=>setTab(key)}
 
@@ -217,7 +225,7 @@ export default function PTSearchPage(){
               py-3
             "
 
-          />
+           aria-label="名前"/>
 
 
           <input
@@ -238,7 +246,7 @@ export default function PTSearchPage(){
               py-3
             "
 
-          />
+           aria-label="地域（都道府県）"/>
 
 
           <input
@@ -259,7 +267,7 @@ export default function PTSearchPage(){
               py-3
             "
 
-          />
+           aria-label="専門分野"/>
 
 
           <button
@@ -316,7 +324,7 @@ export default function PTSearchPage(){
                   {pt.profile_image ? (
 
 
-                    <img
+                    <img loading="lazy" decoding="async"
 
                       src={pt.profile_image ?? undefined}
 

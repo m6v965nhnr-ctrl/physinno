@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { notify } from "@/lib/notify";
 
 type Profile = {
   id: string;
@@ -109,7 +110,7 @@ export default function FollowersPage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -133,7 +134,7 @@ export default function FollowersPage() {
 
 
       if (error) {
-        alert("フォロー解除に失敗しました");
+        notify("フォロー解除に失敗しました");
         return;
       }
 
@@ -153,7 +154,7 @@ export default function FollowersPage() {
 
 
       if (error) {
-        alert("フォローに失敗しました");
+        notify("フォローに失敗しました");
         return;
       }
 
@@ -216,7 +217,7 @@ export default function FollowersPage() {
                   >
 
                     {profile.profile_image ? (
-                      <img
+                      <img loading="lazy" decoding="async"
                         src={
                           profile.profile_image
                         }

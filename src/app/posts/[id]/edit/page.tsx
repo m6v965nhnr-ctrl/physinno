@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { notify } from "@/lib/notify";
 
 export default function EditPostPage() {
   const params = useParams();
@@ -36,7 +37,7 @@ export default function EditPostPage() {
 
 
     if (error || !data) {
-      alert("この投稿は編集できません");
+      notify("この投稿は編集できません");
       router.push("/home");
       return;
     }
@@ -59,7 +60,7 @@ export default function EditPostPage() {
     }
 
     if (!content.trim()) {
-      alert("本文を入力してください");
+      notify("本文を入力してください");
       return;
     }
 
@@ -70,7 +71,7 @@ export default function EditPostPage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       router.push("/login");
       return;
     }
@@ -86,12 +87,12 @@ export default function EditPostPage() {
 
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       setSaving(false);
       return;
     }
 
-    alert("投稿を更新しました");
+    notify("投稿を更新しました");
 
     router.push(`/posts/${id}`);
   }
@@ -140,7 +141,7 @@ export default function EditPostPage() {
               focus:ring-2
               focus:ring-gray-200
             "
-          />
+           aria-label="タイトル"/>
 
           <textarea
             value={content}
@@ -159,7 +160,7 @@ export default function EditPostPage() {
               focus:ring-2
               focus:ring-gray-200
             "
-          />
+           aria-label="本文"/>
 
           <button
             onClick={updatePost}

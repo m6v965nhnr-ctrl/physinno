@@ -16,6 +16,7 @@ import {
   listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
+import { notify } from "@/lib/notify";
 
 export default function AchievementsPage() {
   const router = useRouter();
@@ -78,7 +79,7 @@ export default function AchievementsPage() {
     setSavingTarget(false);
 
     if (error) {
-      alert(error);
+      notify(error);
       return;
     }
 
@@ -156,7 +157,7 @@ export default function AchievementsPage() {
                 placeholder="資格名（例: 認定理学療法士）"
                 className="w-full rounded-xl border px-4 py-2.5 text-sm"
                 required
-              />
+               aria-label="資格名（例: 認定理学療法士）"/>
 
               <div className="flex gap-3">
                 <label className="flex-1 text-xs text-gray-500">

@@ -10,6 +10,7 @@ import {
   reconcileProfileAndPortfolio,
   syncProfileToPortfolio,
 } from "@/lib/profileSync";
+import { notify } from "@/lib/notify";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -152,13 +153,13 @@ export default function EditProfilePage() {
 
     // 画像だけ許可
     if (!file.type.startsWith("image/")) {
-      alert("画像ファイルを選択してください");
+      notify("画像ファイルを選択してください");
       return;
     }
 
     // 10MBまで
     if (file.size > 10 * 1024 * 1024) {
-      alert("画像は10MB以下にしてください");
+      notify("画像は10MB以下にしてください");
       return;
     }
 
@@ -181,12 +182,12 @@ export default function EditProfilePage() {
     }
 
     if (!file.type.startsWith("image/")) {
-      alert("画像ファイルを選択してください");
+      notify("画像ファイルを選択してください");
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      alert("画像は10MB以下にしてください");
+      notify("画像は10MB以下にしてください");
       return;
     }
 
@@ -209,12 +210,12 @@ export default function EditProfilePage() {
     }
 
     if (!file.type.startsWith("image/")) {
-      alert("画像ファイルを選択してください");
+      notify("画像ファイルを選択してください");
       return;
     }
 
     if (file.size > 10 * 1024 * 1024) {
-      alert("画像は10MB以下にしてください");
+      notify("画像は10MB以下にしてください");
       return;
     }
 
@@ -247,7 +248,7 @@ export default function EditProfilePage() {
 
 
     if (uploadError) {
-      alert(
+      notify(
         `画像のアップロードに失敗しました\n${uploadError.message}`
       );
       return null;
@@ -284,7 +285,7 @@ export default function EditProfilePage() {
       });
 
     if (uploadError) {
-      alert(
+      notify(
         `カバー写真のアップロードに失敗しました\n${uploadError.message}`
       );
       return null;
@@ -321,7 +322,7 @@ export default function EditProfilePage() {
       });
 
     if (uploadError) {
-      alert(
+      notify(
         `証明写真のアップロードに失敗しました\n${uploadError.message}`
       );
       return null;
@@ -341,7 +342,7 @@ export default function EditProfilePage() {
   // =========================
   async function saveProfile() {
     if (!userId) {
-      alert("ログインしてください");
+      notify("ログインしてください");
       return;
     }
 
@@ -439,7 +440,7 @@ export default function EditProfilePage() {
 
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       setSaving(false);
       return;
     }
@@ -463,7 +464,7 @@ export default function EditProfilePage() {
     setIdPhoto(idPhotoUrl);
     setSelectedIdPhoto(null);
 
-    alert("プロフィールを保存しました");
+    notify("プロフィールを保存しました");
 
     router.push("/mypage");
   }
@@ -498,7 +499,7 @@ export default function EditProfilePage() {
 
             <div className="h-32 w-full overflow-hidden rounded-2xl bg-gray-100 flex items-center justify-center">
               {coverPreview ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={coverPreview}
                   alt="カバー写真"
                   className="h-full w-full object-cover"
@@ -553,7 +554,7 @@ export default function EditProfilePage() {
             <div className="mx-auto h-32 w-32 overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
 
               {imagePreview ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={imagePreview}
                   alt="プロフィール画像"
                   className="h-full w-full object-cover"
@@ -618,7 +619,7 @@ export default function EditProfilePage() {
             <div className="mx-auto mt-3 h-40 w-32 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 flex items-center justify-center">
 
               {idPhotoPreview ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={idPhotoPreview}
                   alt="証明写真"
                   className="h-full w-full object-cover"
@@ -665,11 +666,11 @@ export default function EditProfilePage() {
 
           {/* 名前 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-1">
               名前
             </label>
 
-            <input
+            <input id="field-1"
               value={fullName}
               onChange={(e) =>
                 setFullName(e.target.value)
@@ -681,11 +682,11 @@ export default function EditProfilePage() {
 
           {/* 勤務先 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-2">
               勤務先
             </label>
 
-            <input
+            <input id="field-2"
               value={workplace}
               onChange={(e) =>
                 setWorkplace(e.target.value)
@@ -697,11 +698,11 @@ export default function EditProfilePage() {
 
           {/* 所属部署 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-3">
               所属部署
             </label>
 
-            <input
+            <input id="field-3"
               value={department}
               onChange={(e) =>
                 setDepartment(e.target.value)
@@ -713,11 +714,11 @@ export default function EditProfilePage() {
 
           {/* 専門分野 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-4">
               専門分野
             </label>
 
-            <input
+            <input id="field-4"
               value={specialty}
               onChange={(e) =>
                 setSpecialty(e.target.value)
@@ -729,11 +730,11 @@ export default function EditProfilePage() {
 
           {/* 資格 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-5">
               資格
             </label>
 
-            <input
+            <input id="field-5"
               value={qualification}
               onChange={(e) =>
                 setQualification(e.target.value)
@@ -759,7 +760,7 @@ export default function EditProfilePage() {
                 }
                 placeholder="例：5"
                 className="w-full border rounded-xl px-4 py-3"
-              />
+               aria-label="例：5"/>
 
               <span className="whitespace-nowrap">
                 年
@@ -769,11 +770,11 @@ export default function EditProfilePage() {
 
           {/* 学歴 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-6">
               学歴
             </label>
 
-            <input
+            <input id="field-6"
               value={education}
               onChange={(e) =>
                 setEducation(e.target.value)
@@ -785,11 +786,11 @@ export default function EditProfilePage() {
 
           {/* 出身 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-7">
               出身
             </label>
 
-            <input
+            <input id="field-7"
               value={hometown}
               onChange={(e) =>
                 setHometown(e.target.value)
@@ -801,11 +802,11 @@ export default function EditProfilePage() {
 
           {/* 生年月日 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-8">
               生年月日
             </label>
 
-            <input
+            <input id="field-8"
               type="date"
               value={birthDate}
               onChange={(e) =>
@@ -817,11 +818,11 @@ export default function EditProfilePage() {
 
           {/* 言語 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-9">
               言語
             </label>
 
-            <input
+            <input id="field-9"
               value={language}
               onChange={(e) =>
                 setLanguage(e.target.value)
@@ -833,11 +834,11 @@ export default function EditProfilePage() {
 
           {/* 連絡先 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-10">
               連絡先
             </label>
 
-            <input
+            <input id="field-10"
               value={contact}
               onChange={(e) =>
                 setContact(e.target.value)
@@ -849,11 +850,11 @@ export default function EditProfilePage() {
 
           {/* 自己紹介 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-11">
               自己紹介
             </label>
 
-            <textarea
+            <textarea id="field-11"
               value={biography}
               onChange={(e) =>
                 setBiography(e.target.value)
@@ -866,11 +867,11 @@ export default function EditProfilePage() {
 
           {/* 自分の強み */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-12">
               自分の強み
             </label>
 
-            <textarea
+            <textarea id="field-12"
               value={strengths}
               onChange={(e) =>
                 setStrengths(e.target.value)
@@ -883,11 +884,11 @@ export default function EditProfilePage() {
 
           {/* 興味のある分野 */}
           <div>
-            <label className="block font-semibold mb-2">
+            <label className="block font-semibold mb-2" htmlFor="field-13">
               興味のある分野
             </label>
 
-            <textarea
+            <textarea id="field-13"
               value={interests}
               onChange={(e) =>
                 setInterests(e.target.value)

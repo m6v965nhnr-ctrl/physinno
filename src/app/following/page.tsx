@@ -121,7 +121,7 @@ export default function FollowingPage() {
                 <div className="bg-white border rounded-2xl p-4 flex items-center gap-4">
 
                   {profile.profile_image ? (
-                    <img
+                    <img loading="lazy" decoding="async"
                       src={profile.profile_image}
                       alt={
                         profile.full_name || ""

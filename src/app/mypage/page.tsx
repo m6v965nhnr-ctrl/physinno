@@ -19,6 +19,7 @@ import {
   listQualificationTargets,
 } from "@/lib/achievements";
 import type { Post, PtProfile } from "@/lib/types";
+import { notify } from "@/lib/notify";
 
 type MyReview = {
   id: string;
@@ -174,7 +175,7 @@ export default function MyPage() {
     setSavingTarget(false);
 
     if (error) {
-      alert(error);
+      notify(error);
       return;
     }
 
@@ -202,7 +203,7 @@ export default function MyPage() {
     const { error } = await supabase.from("posts").delete().eq("id", id);
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -257,7 +258,7 @@ export default function MyPage() {
     const { error } = await supabase.auth.signOut();
 
     if (error) {
-      alert(error.message);
+      notify(error.message);
       return;
     }
 
@@ -299,7 +300,7 @@ export default function MyPage() {
           {/* カバー写真 */}
           <div className="absolute inset-0">
             {profile?.cover_image ? (
-              <img
+              <img loading="lazy" decoding="async"
                 src={profile.cover_image}
                 alt=""
                 className="h-full w-full object-cover"
@@ -315,7 +316,7 @@ export default function MyPage() {
             <div className="mx-auto w-32 h-32">
 
               {profile?.profile_image ? (
-                <img
+                <img loading="lazy" decoding="async"
                   src={profile.profile_image}
                   alt={profile.full_name || "プロフィール画像"}
                   className="
@@ -468,7 +469,7 @@ export default function MyPage() {
                   placeholder="資格名（例: 認定理学療法士）"
                   className="w-full rounded-xl border px-4 py-2.5 text-sm"
                   required
-                />
+                 aria-label="資格名（例: 認定理学療法士）"/>
 
                 <div className="flex gap-3">
                   <label className="flex-1 text-xs text-gray-500">
@@ -769,7 +770,7 @@ export default function MyPage() {
 
                   <button
                     onClick={() => handleDeletePost(post.id)}
-                    className="shrink-0 text-xs text-gray-400 hover:text-red-500"
+                    className="shrink-0 text-xs text-gray-400 hover:text-red-500!"
                   >
                     削除
                   </button>

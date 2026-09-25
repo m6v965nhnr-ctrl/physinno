@@ -100,7 +100,11 @@ export default function BottomNavWrapper() {
   }
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white">
+    <nav
+      aria-label="メインメニュー"
+      className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white"
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
+    >
       <div className="mx-auto flex max-w-xl items-center justify-around px-1 py-2">
         {menus.map((menu) => {
           const active = isActive(menu.href);
@@ -109,6 +113,7 @@ export default function BottomNavWrapper() {
             <Link
               key={menu.href}
               href={menu.href}
+              aria-current={active ? "page" : undefined}
               className={`flex min-w-[64px] flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 transition active:scale-95 ${
                 active
                   ? "font-semibold text-black"
@@ -116,6 +121,7 @@ export default function BottomNavWrapper() {
               }`}
             >
               <span
+                aria-hidden="true"
                 className={`flex h-7 items-center justify-center leading-none ${
                   menu.href === "/posts/create"
                     ? "text-3xl font-light"
@@ -125,7 +131,7 @@ export default function BottomNavWrapper() {
                 {menu.icon}
               </span>
 
-              <span className="text-[10px]">
+              <span className="text-[11px]">
                 {menu.label}
               </span>
             </Link>

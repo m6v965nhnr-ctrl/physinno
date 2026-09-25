@@ -222,7 +222,7 @@ export default function PortfolioViewPage() {
           {/* 証明写真 */}
           <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0">
             {pt.id_photo ? (
-              <img
+              <img loading="lazy" decoding="async"
                 src={pt.id_photo}
                 alt="証明写真"
                 className="h-full w-full object-cover"
