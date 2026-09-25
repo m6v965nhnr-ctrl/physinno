@@ -12,10 +12,10 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { extractText, getDocumentProxy } from "npm:unpdf@1.8.1";
 import {
-  Candidate,
   JPTA_SEARCH_URL,
   PREF_SITES,
   Seminar,
+  Candidate,
   candidateToSeminar,
   collectCandidates,
   discoverListPages,
@@ -30,6 +30,7 @@ import {
   parsePrefWordpress,
   parsePtOtSt,
 } from "./parsers.ts";
+import { syncPrefSite } from "./pref.ts";
 
 // 記事ページに貼られたPDF（開催案内）へのリンク
 function findPdfLink(html: string, pageUrl: string) {
@@ -208,68 +209,43 @@ async function jobPtKanagawa() {
   return save(rows);
 }
 
-// 都道府県理学療法士会サイト: トップ＋研修・お知らせ一覧から候補を集め、
-// タイトルに日付がなければ詳細ページの「開催日時」等から日付を取る
+// 都道府県理学療法士会サイト（1回の呼び出しで from〜to 番目の士会）
 async function jobPref(from: number, to: number) {
   const today = todayJst();
   const rows: Seminar[] = [];
   const stats: Record<string, string> = {};
 
+  const opts = (ms: number) => ({
+    headers: { "User-Agent": BROWSER_UA, "Accept-Language": "ja" },
+    redirect: "follow" as const,
+    signal: AbortSignal.timeout(ms),
+  });
+
+  const deps = {
+    today,
+    fetchText: async (u: string) => {
+      const res = await fetch(u, opts(12000));
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return { text: await res.text(), url: res.url };
+    },
+    fetchBytes: async (u: string) => {
+      const res = await fetch(u, opts(20000));
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      return new Uint8Array(await res.arrayBuffer());
+    },
+    pdfToText: async (bytes: Uint8Array) => {
+      const pdf = await getDocumentProxy(bytes);
+      return (await extractText(pdf, { mergePages: true })).text;
+    },
+  };
+
   for (const site of PREF_SITES.slice(from, to)) {
     // 大阪府は開催案内がPDFのため専用ジョブ（osaka）で取得する
     if (site.code === "osaka") continue;
     try {
-      const fetchPage = async (u: string) => {
-        const res = await fetch(u, {
-          headers: { "User-Agent": BROWSER_UA, "Accept-Language": "ja" },
-          redirect: "follow",
-          signal: AbortSignal.timeout(12000),
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        return { text: await res.text(), url: res.url };
-      };
-
-      const top = await fetchPage(site.url);
-      const candidates = new Map<string, Candidate>();
-      for (const c of collectCandidates(top.text, top.url)) candidates.set(c.href, c);
-
-      for (const u of discoverListPages(top.text, top.url, 4)) {
-        try {
-          const page = await fetchPage(u);
-          for (const c of collectCandidates(page.text, page.url)) candidates.set(c.href, c);
-        } catch (_e) {
-          // 一覧ページが取得できなくても続行
-        }
-      }
-
-      let found = 0;
-
-      await Promise.all(
-        [...candidates.values()].slice(0, 15).map(async (c) => {
-          try {
-            let range = titleDateRange(c.text, today);
-            let dateText: string | null = null;
-
-            if (!range) {
-              const detail = await fetchPage(c.href);
-              const labeled = extractLabeledDate(detail.text, today);
-              if (labeled) {
-                range = labeled.range;
-                dateText = labeled.dateText;
-              }
-            }
-
-            if (range && range.end >= today) {
-              rows.push(candidateToSeminar(c, range, dateText, site));
-              found++;
-            }
-          } catch (_e) {
-            // 詳細ページが取得できないものは対象外
-          }
-        })
-      );
-
-      stats[site.prefecture] = `${found}/${candidates.size}`;
+      const r = await syncPrefSite(site, deps);
+      rows.push(...r.rows);
+      stats[site.prefecture] = JSON.stringify(r.stat);
     } catch (e) {
       stats[site.prefecture] = `skip ${String(e).slice(0, 80)}`;
     }
@@ -395,7 +371,7 @@ Deno.serve(async (req) => {
 
     if (job === "ptotst") saved = await jobPtOtSt(from, Math.min(to, from + 8));
     else if (job === "pref") {
-      const r = await jobPref(from, Math.min(to, from + 4));
+      const r = await jobPref(from, Math.min(to, from + 2));
       return Response.json({ job: key, saved: r.saved, stats: r.stats });
     } else if (job === "jpta") saved = await jobJpta();
     else if (job === "jpta-other") saved = await jobJptaOther();

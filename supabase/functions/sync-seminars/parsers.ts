@@ -706,7 +706,7 @@ export function extractAnchors(html: string, baseUrl: string): Anchor[] {
   return out;
 }
 
-const LIST_LINK_RE = /研修|講習|セミナー|イベント|学術|開催|催し|お知らせ|ニュース|新着|案内|会員向け|生涯学習|活動/;
+const LIST_LINK_RE = /研修|講習|セミナー|イベント|学術|開催|催し|お知らせ|ニュース|新着|案内|会員向け|生涯学習|活動|カレンダー|スケジュール|予定/;
 const EVENT_RE = /研修|講習|セミナー|講座|講演|勉強会|学術|大会|集会|フォーラム|シンポジウム|カンファレンス|説明会|イベント|ワークショップ|症例検討|研究会|交流会|フェスティバル|サポート|検討会|報告会/;
 
 // トップページから、研修・イベント・お知らせ一覧らしきリンクを最大 max 件選ぶ
@@ -821,6 +821,125 @@ export function candidateToSeminar(
 export function titleDateRange(rawTitle: string, today: string): DateRange | null {
   // 「締切り：9月30日」のような申込期限は開催日ではないので除く
   const title = rawTitle.replace(/(?:申込|申し込み|参加登録)?\s*(?:締切り?|〆切|期限)\s*[:：]?\s*[^\s)）】]*/g, " ");
-  if (!/\d+\s*月\s*\d+|[０-９]+\s*月\s*[０-９]+/.test(title)) return null;
+  const hasDate =
+    /\d+\s*月\s*\d+|[０-９]+\s*月\s*[０-９]+/.test(title) ||
+    /20\d{2}\s*[\/.／]\s*\d{1,2}\s*[\/.／]\s*\d{1,2}/.test(title) ||
+    /\d{1,2}\s*[\/／]\s*\d{1,2}(?!\d)\s*(?:\([^)]*\)|（[^）]*）)?\s*(?:開催|実施|に開催|から)/.test(title);
+  if (!hasDate) return null;
   return extractDateRange(title, { baseYear: Number(today.slice(0, 4)), postedOn: today });
+}
+
+// 記事ページ内のPDFリンク（共通メニューのPDFを避けるため、/info/ や uploads を優先し、なければ最後）
+export function findPdfLink(html: string, pageUrl: string) {
+  const pdfs = extractAnchors(html, pageUrl).filter((a) => /\.pdf(\?|#|$)/i.test(a.href));
+  const preferred = pdfs.find((a) => /\/info\/|\/uploads\//.test(a.href));
+  return (preferred ?? pdfs[pdfs.length - 1])?.href ?? null;
+}
+
+// 埋め込まれたGoogleカレンダーのID
+export function findGoogleCalendarIds(html: string) {
+  const ids = new Set<string>();
+  for (const m of html.matchAll(/calendar\.google\.com\/calendar\/(?:u\/\d+\/)?embed\?([^"'\s>]+)/g)) {
+    const query = decode(m[1]);
+    for (const part of query.split("&")) {
+      if (!part.startsWith("src=")) continue;
+      const raw = decodeURIComponent(part.slice(4));
+      if (raw.includes("@")) {
+        ids.add(raw);
+        continue;
+      }
+      try {
+        const b64 = raw.replace(/-/g, "+").replace(/_/g, "/");
+        const id = atob(b64 + "=".repeat((4 - (b64.length % 4)) % 4));
+        if (id.includes("@")) ids.add(id);
+      } catch {
+        // skip
+      }
+    }
+  }
+  // 祝日カレンダーは対象外
+  return [...ids].filter((id) => !/holiday/.test(id));
+}
+
+export function icsUrl(calendarId: string) {
+  return `https://calendar.google.com/calendar/ical/${encodeURIComponent(calendarId)}/public/basic.ics`;
+}
+
+function icsDate(value: string, params: string, allDayEndExclusive = false) {
+  const m = value.match(/^(\d{4})(\d{2})(\d{2})(?:T(\d{2})(\d{2})(\d{2})(Z?))?$/);
+  if (!m) return null;
+  let y = Number(m[1]);
+  let mo = Number(m[2]);
+  let d = Number(m[3]);
+  if (m[4] === undefined) {
+    if (allDayEndExclusive) {
+      const dt = new Date(Date.UTC(y, mo - 1, d) - 86400000);
+      return ymd(dt.getUTCFullYear(), dt.getUTCMonth() + 1, dt.getUTCDate());
+    }
+    return ymd(y, mo, d);
+  }
+  if (m[7] === "Z" && !/TZID/.test(params)) {
+    const dt = new Date(Date.UTC(y, mo - 1, d, Number(m[4]), Number(m[5])) + 9 * 3600000);
+    y = dt.getUTCFullYear();
+    mo = dt.getUTCMonth() + 1;
+    d = dt.getUTCDate();
+  }
+  return ymd(y, mo, d);
+}
+
+const ICS_NOISE_RE = /理事会|幹事会|運営会議|委員会会議|打ち?合わせ|事務局(?:休|閉)|休業|年末年始|締切|〆切/;
+
+// 公開Googleカレンダー（ICS）から開催日つきの予定を取り出す
+export function parseIcs(ics: string, site: PrefSite, pageUrl: string, today: string): Seminar[] {
+  const out: Seminar[] = [];
+  const unfolded = ics.replace(/\r?\n[ \t]/g, "");
+
+  for (const block of unfolded.split("BEGIN:VEVENT").slice(1)) {
+    const body = block.split("END:VEVENT")[0];
+    const field = (name: string) => {
+      const m = body.match(new RegExp(`^${name}((?:;[^:\\n]*)?):(.*)$`, "m"));
+      return m ? { params: m[1] ?? "", value: (m[2] ?? "").trim() } : null;
+    };
+    const unesc = (v: string) => v.replace(/\\n/gi, " ").replace(/\\,/g, ",").replace(/\\;/g, ";").replace(/\\\\/g, "\\");
+
+    const summary = field("SUMMARY");
+    const dtstart = field("DTSTART");
+    if (!summary || !dtstart) continue;
+
+    const title = unesc(summary.value).trim();
+    if (!title || ICS_NOISE_RE.test(title)) continue;
+
+    const dtend = field("DTEND");
+    const allDay = /^\d{8}$/.test(dtstart.value);
+    const start = icsDate(dtstart.value, dtstart.params);
+    let end = dtend ? icsDate(dtend.value, dtend.params, allDay && /^\d{8}$/.test(dtend.value)) : start;
+    if (!start) continue;
+    if (!end || end < start) end = start;
+    if (end < today) continue;
+
+    const uid = field("UID")?.value ?? `${title}${start}`;
+    const description = unesc(field("DESCRIPTION")?.value ?? "");
+    const location = unesc(field("LOCATION")?.value ?? "");
+    const eventUrl = description.match(/https?:\/\/[^\s<>"]+/)?.[0] ?? field("URL")?.value ?? pageUrl;
+
+    out.push(
+      finalize({
+        id: `pref-${site.code}:ics-${shortHash(uid)}`,
+        source: `pref-${site.code}`,
+        source_label: site.name,
+        title,
+        organizer: site.name,
+        date_text: null,
+        start_date: start,
+        end_date: end,
+        format: formatFromText(`${title} ${location}`),
+        prefecture: findPrefecture(location) || site.prefecture,
+        fee_text: null,
+        summary: truncate([location ? `開催場所：${location}` : "", description].filter(Boolean).join(" / "), 300),
+        url: eventUrl,
+      })
+    );
+  }
+
+  return out;
 }
