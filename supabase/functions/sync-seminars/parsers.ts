@@ -186,11 +186,15 @@ export function extractDateRange(
   raw: string,
   opts: { baseYear?: number; baseMonth?: number; postedOn?: string } = {}
 ): DateRange | null {
-  const text = toHalf(
-    raw
-      .replace(/令和\s*(\d+)\s*年/g, (_, n) => `${2018 + Number(n)}年`)
-      .replace(/令和元年/g, "2019年")
-  );
+  const text = toHalf(raw)
+    // 令和8年 / 平成30年 / R8.10.28 などの表記を西暦に直す
+    .replace(/令和\s*元\s*年/g, "2019年")
+    .replace(/令和\s*(\d+)\s*年/g, (_, n) => `${2018 + Number(n)}年`)
+    .replace(/平成\s*(\d+)\s*年/g, (_, n) => `${1988 + Number(n)}年`)
+    .replace(
+      /(?<![A-Za-z])R\s*(\d{1,2})\s*[.\/]\s*(\d{1,2})\s*[.\/]\s*(\d{1,2})/g,
+      (_, y, m, d) => `${2018 + Number(y)}年${m}月${d}日`
+    );
 
   let year = opts.baseYear;
   let month = opts.baseMonth;
@@ -627,4 +631,194 @@ export function parsePrefWordpress(
   }
 
   return out;
+}
+
+// ========================================
+// 都道府県理学療法士会（サイトごとに構造が異なるため汎用の抽出）
+// ========================================
+export type PrefSite = { code: string; prefecture: string; name: string; url: string };
+
+export const PREF_SITES: PrefSite[] = [
+  { code: "hokkaido", prefecture: "北海道", name: "北海道理学療法士会", url: "http://www.pt-hokkaido.jp/" },
+  { code: "aomori", prefecture: "青森県", name: "青森県理学療法士会", url: "http://www.ptaomori.org/" },
+  { code: "akita", prefecture: "秋田県", name: "秋田県理学療法士会", url: "https://www.ptakita.org/" },
+  { code: "iwate", prefecture: "岩手県", name: "岩手県理学療法士会", url: "http://www.iwate-pt.com/" },
+  { code: "miyagi", prefecture: "宮城県", name: "宮城県理学療法士会", url: "https://www.pt-miyagi.org/" },
+  { code: "yamagata", prefecture: "山形県", name: "山形県理学療法士会", url: "http://www.dream-pt-yamagata.jp/" },
+  { code: "fukushima", prefecture: "福島県", name: "福島県理学療法士会", url: "http://fukushima-pt.com/" },
+  { code: "ibaraki", prefecture: "茨城県", name: "茨城県理学療法士会", url: "https://www.pt-ibaraki.jp/" },
+  { code: "tochigi", prefecture: "栃木県", name: "栃木県理学療法士会", url: "https://www.tochigi-pt.com/" },
+  { code: "gunma", prefecture: "群馬県", name: "群馬県理学療法士会", url: "http://gunma-pt.com/" },
+  { code: "saitama", prefecture: "埼玉県", name: "埼玉県理学療法士会", url: "https://saitama-pt.or.jp/" },
+  { code: "chiba", prefecture: "千葉県", name: "千葉県理学療法士会", url: "https://chiba-pt.or.jp/" },
+  { code: "tokyo", prefecture: "東京都", name: "東京都理学療法士協会", url: "http://www.pttokyo.net/" },
+  { code: "niigata", prefecture: "新潟県", name: "新潟県理学療法士会", url: "http://nipta.or.jp/" },
+  { code: "yamanashi", prefecture: "山梨県", name: "山梨県理学療法士会", url: "http://ypta.jp/" },
+  { code: "nagano", prefecture: "長野県", name: "長野県理学療法士会", url: "https://ptnagano.or.jp/" },
+  { code: "toyama", prefecture: "富山県", name: "富山県理学療法士会", url: "http://toyamapt.umin.ne.jp/" },
+  { code: "ishikawa", prefecture: "石川県", name: "石川県理学療法士会", url: "https://ishikawa-pt.com/" },
+  { code: "fukui", prefecture: "福井県", name: "福井県理学療法士会", url: "http://www.fpta.or.jp/" },
+  { code: "shizuoka", prefecture: "静岡県", name: "静岡県理学療法士会", url: "https://www.shizuoka-pt.com/" },
+  { code: "gifu", prefecture: "岐阜県", name: "岐阜県理学療法士会", url: "https://gifu-pt.jp/" },
+  { code: "aichi", prefecture: "愛知県", name: "愛知県理学療法士会", url: "http://www.aichi-pt.jp/" },
+  { code: "mie", prefecture: "三重県", name: "三重県理学療法士会", url: "http://mie-pt.jp/" },
+  { code: "kyoto", prefecture: "京都府", name: "京都府理学療法士会", url: "https://www.kpta.jp/" },
+  { code: "shiga", prefecture: "滋賀県", name: "滋賀県理学療法士会", url: "http://www.shiga-pt.or.jp/" },
+  { code: "nara", prefecture: "奈良県", name: "奈良県理学療法士会", url: "http://narapt.jp/" },
+  { code: "wakayama", prefecture: "和歌山県", name: "和歌山県理学療法士会", url: "http://pt-wakayama.or.jp/" },
+  { code: "osaka", prefecture: "大阪府", name: "大阪府理学療法士会", url: "http://www.physiotherapist-osk.or.jp/" },
+  { code: "hyogo", prefecture: "兵庫県", name: "兵庫県理学療法士会", url: "https://hyogo-pt.or.jp/" },
+  { code: "okayama", prefecture: "岡山県", name: "岡山県理学療法士会", url: "http://pt-okayama.com/" },
+  { code: "hiroshima", prefecture: "広島県", name: "広島県理学療法士会", url: "https://www.hpta.or.jp/" },
+  { code: "tottori", prefecture: "鳥取県", name: "鳥取県理学療法士会", url: "http://tori-pt.com/" },
+  { code: "shimane", prefecture: "島根県", name: "島根県理学療法士会", url: "https://www.spta.jp/" },
+  { code: "yamaguchi", prefecture: "山口県", name: "山口県理学療法士会", url: "https://www.yamaguchi-pta.jp/" },
+  { code: "tokushima", prefecture: "徳島県", name: "徳島県理学療法士会", url: "https://www.tokupt.or.jp/" },
+  { code: "kochi", prefecture: "高知県", name: "高知県理学療法士会", url: "http://www.kopta.net/" },
+  { code: "kagawa", prefecture: "香川県", name: "香川県理学療法士会", url: "https://www.kagawa-pt.com/" },
+  { code: "ehime", prefecture: "愛媛県", name: "愛媛県理学療法士会", url: "http://www.epta.jp/" },
+  { code: "fukuoka", prefecture: "福岡県", name: "福岡県理学療法士会", url: "https://fukuoka-pt.jp/" },
+  { code: "nagasaki", prefecture: "長崎県", name: "長崎県理学療法士会", url: "http://www.npta.or.jp/wp/" },
+  { code: "kumamoto", prefecture: "熊本県", name: "熊本県理学療法士会", url: "https://www.kumamoto-pt.org/" },
+  { code: "oita", prefecture: "大分県", name: "大分県理学療法士会", url: "https://opta.or.jp/" },
+  { code: "saga", prefecture: "佐賀県", name: "佐賀県理学療法士会", url: "https://sagapt.or.jp/" },
+  { code: "miyazaki", prefecture: "宮崎県", name: "宮崎県理学療法士会", url: "https://miyazaki-pta.com/" },
+  { code: "kagoshima", prefecture: "鹿児島県", name: "鹿児島県理学療法士会", url: "http://infokpta.com/" },
+  { code: "okinawa", prefecture: "沖縄県", name: "沖縄県理学療法士会", url: "https://oki-pt.or.jp/" },
+];
+
+type Anchor = { href: string; text: string };
+
+export function extractAnchors(html: string, baseUrl: string): Anchor[] {
+  const out: Anchor[] = [];
+  const cleaned = html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, "");
+
+  for (const m of cleaned.matchAll(/<a\s[^>]*href=["']([^"'#][^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi)) {
+    const text = stripTags(m[2]).replace(/\s+/g, " ").trim();
+    if (!text) continue;
+    try {
+      out.push({ href: new URL(decode(m[1]), baseUrl).toString(), text });
+    } catch {
+      // 不正なURLは無視
+    }
+  }
+
+  return out;
+}
+
+const LIST_LINK_RE = /研修|講習|セミナー|イベント|学術|開催|催し|お知らせ|ニュース|新着|案内|会員向け|生涯学習|活動/;
+const EVENT_RE = /研修|講習|セミナー|講座|講演|勉強会|学術|大会|集会|フォーラム|シンポジウム|カンファレンス|説明会|イベント|ワークショップ|症例検討|研究会|交流会|フェスティバル|サポート|検討会|報告会/;
+
+// トップページから、研修・イベント・お知らせ一覧らしきリンクを最大 max 件選ぶ
+export function discoverListPages(html: string, siteUrl: string, max = 4) {
+  const host = new URL(siteUrl).hostname.replace(/^www\./, "");
+  const seen = new Set<string>();
+  const pages: string[] = [];
+
+  for (const a of extractAnchors(html, siteUrl)) {
+    if (pages.length >= max) break;
+    if (!LIST_LINK_RE.test(a.text) || a.text.length > 30) continue;
+    if (/\.(pdf|jpe?g|png|zip|docx?|xlsx?)$/i.test(a.href)) continue;
+
+    let u: URL;
+    try {
+      u = new URL(a.href);
+    } catch {
+      continue;
+    }
+
+    if (u.hostname.replace(/^www\./, "") !== host) continue;
+    u.hash = "";
+    const key = u.toString();
+    if (seen.has(key) || key === new URL(siteUrl).toString()) continue;
+    seen.add(key);
+    pages.push(key);
+  }
+
+  return pages;
+}
+
+function shortHash(text: string) {
+  let h = 5381;
+  for (let i = 0; i < text.length; i++) h = ((h << 5) + h + text.charCodeAt(i)) >>> 0;
+  return h.toString(36);
+}
+
+export type Candidate = { href: string; text: string };
+
+// 先頭の掲載日（2026.09.10 / 2026年9月25日 / 26.09.14）や NEW! を取り除く
+export function cleanTitle(text: string) {
+  return text
+    .replace(/^\s*(?:\d{2,4}\s*[年./]\s*\d{1,2}\s*[月./]\s*\d{1,2}\s*日?\s*)+/, "")
+    .replace(/^\s*(?:\d{1,2}:\d{2}\s*(?:AM|PM)?\s*)/i, "")
+    .replace(/\bNEW!?\s*/gi, "")
+    .replace(/^\s*お知らせ\s*/, "")
+    .trim();
+}
+
+const NOISE_RE = /お問い合わせ|問合せ|プログラム集|一覧|アクセス|サイトマップ|プライバシー|個人情報|入会|退会|会員登録|ログイン|リンク集|募集要項|規約/;
+
+// ページ内のリンク文言から、研修・イベントらしい候補を集める
+export function collectCandidates(html: string, pageUrl: string): Candidate[] {
+  const out: Candidate[] = [];
+
+  for (const a of extractAnchors(html, pageUrl)) {
+    const text = a.text;
+    if (text.length < 10 || text.length > 200) continue;
+    if (!EVENT_RE.test(text) || NOISE_RE.test(text)) continue;
+    if (/^(県内|県外|市内)/.test(text)) continue;
+    if (/\.(jpe?g|png|zip|docx?|xlsx?)$/i.test(a.href)) continue;
+    // 申込締切だけが書かれているものは開催日ではないので除外
+    if (/(締切|〆切|期限)/.test(text) && !/(開催|日時|実施)/.test(text)) continue;
+    out.push({ href: a.href, text: cleanTitle(text) || text });
+  }
+
+  return out;
+}
+
+// 詳細ページから「開催日時」「日時」「日程」などの見出しの後ろにある日付を探す
+export function extractLabeledDate(html: string, today: string) {
+  const text = stripTags(
+    html.replace(/<(?:h[1-6]|p|li|tr|dt|dd|div|br)[^>]*>/gi, "\n")
+  );
+  const baseYear = Number(today.slice(0, 4));
+
+  for (const m of text.matchAll(/(開催日時|開催日程|開催日|開催期間|日\s*時|日\s*程|期\s*日|会\s*期)\s*[:：】\]）)]?\s*([^\n]{0,90})/g)) {
+    const value = m[2];
+    // 「締切」「申込」の行は開催日ではない
+    if (/(締切|〆切|期限|申込|申し込み)/.test(m[0])) continue;
+    const range = extractDateRange(value, { baseYear, postedOn: today });
+    if (range) return { range, dateText: value.trim() };
+  }
+
+  return null;
+}
+
+export function candidateToSeminar(
+  c: Candidate,
+  range: DateRange,
+  dateText: string | null,
+  site: PrefSite
+): Seminar {
+  return finalize({
+    id: `pref-${site.code}:${shortHash(c.href)}`,
+    source: `pref-${site.code}`,
+    source_label: site.name,
+    title: c.text,
+    organizer: site.name,
+    date_text: truncate(dateText, 160),
+    start_date: range.start,
+    end_date: range.end,
+    format: formatFromText(c.text + " " + (dateText ?? "")),
+    prefecture: site.prefecture,
+    fee_text: null,
+    summary: "士会サイトの告知です。詳細・申込は元のページでご確認ください。",
+    url: c.href,
+  });
+}
+
+// タイトルに月日が入っている場合はそれを使う
+export function titleDateRange(title: string, today: string): DateRange | null {
+  if (!/\d+\s*月\s*\d+|[０-９]+\s*月\s*[０-９]+/.test(title)) return null;
+  return extractDateRange(title, { baseYear: Number(today.slice(0, 4)), postedOn: today });
 }

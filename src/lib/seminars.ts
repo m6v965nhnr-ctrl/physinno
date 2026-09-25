@@ -110,3 +110,24 @@ export async function listUpcomingSeminars() {
     (a, b) => key(a).localeCompare(key(b)) || a.start_date.localeCompare(b.start_date)
   );
 }
+
+// ---------- 保存（ブックマーク） ----------
+export async function listSavedSeminarIds() {
+  const { data } = await supabase.from("seminar_saves").select("seminar_id");
+  return (data || []).map((r) => r.seminar_id as string);
+}
+
+export async function setSeminarSaved(seminarId: string, saved: boolean) {
+  if (saved) {
+    const { error } = await supabase
+      .from("seminar_saves")
+      .upsert({ seminar_id: seminarId }, { onConflict: "user_id,seminar_id" });
+    return error ? error.message : null;
+  }
+
+  const { error } = await supabase
+    .from("seminar_saves")
+    .delete()
+    .eq("seminar_id", seminarId);
+  return error ? error.message : null;
+}

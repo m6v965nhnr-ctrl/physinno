@@ -5,13 +5,21 @@
 //   ?job=jpta                 日本理学療法士協会 セミナー検索（マイページ）
 //   ?job=jpta-other           日本理学療法士協会 協会主催以外の研修会
 //   ?job=jpta-nichiken        日本理学療法士協会 学術研修大会（全国）
+//   ?job=pref&from=0&to=3     都道府県理学療法士会サイト（PREF_SITES の from〜to 番目）
 //   ?job=pt-kanagawa          神奈川県理学療法士会 会員向け研修会・イベント
 //   ?job=cleanup              終了済み・長期間取得できていない情報の削除
 
 import { createClient } from "npm:@supabase/supabase-js@2";
 import {
+  Candidate,
   JPTA_SEARCH_URL,
+  PREF_SITES,
   Seminar,
+  candidateToSeminar,
+  collectCandidates,
+  discoverListPages,
+  extractLabeledDate,
+  titleDateRange,
   jptaFormFields,
   jptaTotal,
   parseJptaNichiken,
@@ -22,6 +30,9 @@ import {
 } from "./parsers.ts";
 
 const UA = "Mozilla/5.0 (compatible; RelightSeminarSync/1.0)";
+// 一部の士会サイトはボット風のUAを拒否するため、ブラウザ相当のUAを使う
+const BROWSER_UA =
+  "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15";
 const THROTTLE_MINUTES = 10;
 
 const supabase = createClient(
@@ -182,6 +193,76 @@ async function jobPtKanagawa() {
   return save(rows);
 }
 
+// 都道府県理学療法士会サイト: トップ＋研修・お知らせ一覧から候補を集め、
+// タイトルに日付がなければ詳細ページの「開催日時」等から日付を取る
+async function jobPref(from: number, to: number) {
+  const today = todayJst();
+  const rows: Seminar[] = [];
+  const stats: Record<string, string> = {};
+
+  for (const site of PREF_SITES.slice(from, to)) {
+    try {
+      const fetchPage = async (u: string) => {
+        const res = await fetch(u, {
+          headers: { "User-Agent": BROWSER_UA, "Accept-Language": "ja" },
+          redirect: "follow",
+          signal: AbortSignal.timeout(12000),
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return { text: await res.text(), url: res.url };
+      };
+
+      const top = await fetchPage(site.url);
+      const candidates = new Map<string, Candidate>();
+      for (const c of collectCandidates(top.text, top.url)) candidates.set(c.href, c);
+
+      for (const u of discoverListPages(top.text, top.url, 4)) {
+        try {
+          const page = await fetchPage(u);
+          for (const c of collectCandidates(page.text, page.url)) candidates.set(c.href, c);
+        } catch (_e) {
+          // 一覧ページが取得できなくても続行
+        }
+      }
+
+      let found = 0;
+
+      await Promise.all(
+        [...candidates.values()].slice(0, 15).map(async (c) => {
+          try {
+            let range = titleDateRange(c.text, today);
+            let dateText: string | null = null;
+
+            if (!range) {
+              const detail = await fetchPage(c.href);
+              const labeled = extractLabeledDate(detail.text, today);
+              if (labeled) {
+                range = labeled.range;
+                dateText = labeled.dateText;
+              }
+            }
+
+            if (range && range.end >= today) {
+              rows.push(candidateToSeminar(c, range, dateText, site));
+              found++;
+            }
+          } catch (_e) {
+            // 詳細ページが取得できないものは対象外
+          }
+        })
+      );
+
+      stats[site.prefecture] = `${found}/${candidates.size}`;
+    } catch (e) {
+      stats[site.prefecture] = `skip ${String(e).slice(0, 80)}`;
+    }
+  }
+
+  const saved = await save(rows);
+  console.log("pref stats", JSON.stringify(stats));
+  return { saved, stats };
+}
+
 async function jobCleanup() {
   const today = todayJst();
   const stale = new Date(Date.now() - 4 * 86400000).toISOString();
@@ -220,7 +301,10 @@ Deno.serve(async (req) => {
     let saved = 0;
 
     if (job === "ptotst") saved = await jobPtOtSt(from, Math.min(to, from + 8));
-    else if (job === "jpta") saved = await jobJpta();
+    else if (job === "pref") {
+      const r = await jobPref(from, Math.min(to, from + 4));
+      return Response.json({ job: key, saved: r.saved, stats: r.stats });
+    } else if (job === "jpta") saved = await jobJpta();
     else if (job === "jpta-other") saved = await jobJptaOther();
     else if (job === "jpta-nichiken") saved = await jobJptaNichiken();
     else if (job === "pt-kanagawa") saved = await jobPtKanagawa();

@@ -8,7 +8,9 @@ import {
   REGIONS,
   Seminar,
   dateRangeJa,
+  listSavedSeminarIds,
   listUpcomingSeminars,
+  setSeminarSaved,
   occursOn,
   toISODate,
 } from "@/lib/seminars";
@@ -58,7 +60,8 @@ export default function SeminarNews() {
   const [items, setItems] = useState<Seminar[]>([]);
   const [loading, setLoading] = useState(true);
 
-  const [view, setView] = useState<"list" | "calendar">("list");
+  const [view, setView] = useState<"list" | "calendar" | "saved">("list");
+  const [savedIds, setSavedIds] = useState<string[]>([]);
   const [showFilters, setShowFilters] = useState(false);
 
   // 絞り込み
@@ -89,7 +92,26 @@ export default function SeminarNews() {
       setItems(rows);
       setLoading(false);
     });
+    listSavedSeminarIds().then(setSavedIds);
   }, []);
+
+  async function toggleSaved(id: string) {
+    const next = !savedIds.includes(id);
+    // 先に画面へ反映し、失敗したら元に戻す
+    setSavedIds(next ? [...savedIds, id] : savedIds.filter((v) => v !== id));
+
+    const error = await setSeminarSaved(id, next);
+
+    if (error) {
+      alert(`保存できませんでした\n${error}`);
+      setSavedIds(savedIds);
+    }
+  }
+
+  const savedItems = useMemo(
+    () => items.filter((s) => savedIds.includes(s.id)),
+    [items, savedIds]
+  );
 
   const filtered = useMemo(() => {
     const words = keyword
@@ -233,10 +255,22 @@ export default function SeminarNews() {
 
           <button
             type="button"
-            onClick={() => setView(view === "list" ? "calendar" : "list")}
-            className="flex-1 rounded-full border border-gray-300 bg-white py-2.5 text-sm font-medium"
+            onClick={() => setView(view === "calendar" ? "list" : "calendar")}
+            className={`flex-1 rounded-full border py-2.5 text-sm font-medium ${
+              view === "calendar" ? "border-black bg-gray-50" : "border-gray-300 bg-white"
+            }`}
           >
-            {view === "list" ? "📅 カレンダー" : "☰ リスト"}
+            📅 カレンダー
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setView(view === "saved" ? "list" : "saved")}
+            className={`flex-1 rounded-full border py-2.5 text-sm font-medium ${
+              view === "saved" ? "border-black bg-gray-50" : "border-gray-300 bg-white"
+            }`}
+          >
+            🔖 保存済み{savedIds.length > 0 ? `（${savedIds.length}）` : ""}
           </button>
         </div>
       </div>
@@ -373,7 +407,11 @@ export default function SeminarNews() {
       )}
 
       <p className="mt-5 text-sm text-gray-500">
-        {loading ? "読み込み中..." : `${filtered.length}件`}
+        {loading
+          ? "読み込み中..."
+          : view === "saved"
+            ? `保存済み ${savedItems.length}件`
+            : `${filtered.length}件`}
       </p>
 
       {/* カレンダー */}
@@ -441,7 +479,7 @@ export default function SeminarNews() {
                 <p className="mb-3 text-sm font-semibold">
                   {selectedDay.replace(/-/g, "/")} の研修・学会（{dayItems.length}件）
                 </p>
-                <SeminarList items={dayItems} onSelect={setSelected} />
+                <SeminarList items={dayItems} onSelect={setSelected} savedIds={savedIds} onToggleSaved={toggleSaved} />
               </>
             ) : (
               <p className="text-center text-xs text-gray-400">
@@ -461,7 +499,7 @@ export default function SeminarNews() {
             </p>
           ) : (
             <>
-              <SeminarList items={filtered.slice(0, visibleCount)} onSelect={setSelected} />
+              <SeminarList items={filtered.slice(0, visibleCount)} onSelect={setSelected} savedIds={savedIds} onToggleSaved={toggleSaved} />
 
               {visibleCount < filtered.length && (
                 <button
@@ -477,7 +515,33 @@ export default function SeminarNews() {
         </div>
       )}
 
-      {selected && <SeminarDetail seminar={selected} onClose={() => setSelected(null)} />}
+      {view === "saved" && !loading && (
+        <div className="mt-3">
+          {savedItems.length === 0 ? (
+            <p className="py-12 text-center text-sm text-gray-400">
+              保存した研修・学会はまだありません
+              <br />
+              気になるものの 🔖 をタップして保存できます
+            </p>
+          ) : (
+            <SeminarList
+              items={savedItems}
+              onSelect={setSelected}
+              savedIds={savedIds}
+              onToggleSaved={toggleSaved}
+            />
+          )}
+        </div>
+      )}
+
+      {selected && (
+        <SeminarDetail
+          seminar={selected}
+          saved={savedIds.includes(selected.id)}
+          onToggleSaved={() => toggleSaved(selected.id)}
+          onClose={() => setSelected(null)}
+        />
+      )}
     </div>
   );
 }
@@ -499,12 +563,35 @@ function FormatBadge({ format }: { format: Seminar["format"] }) {
   );
 }
 
+function SaveButton({ saved, onClick }: { saved: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
+      aria-label={saved ? "保存を解除" : "保存する"}
+      aria-pressed={saved}
+      className={`shrink-0 rounded-full border px-3 py-1 text-xs font-medium transition active:scale-95 ${
+        saved ? "border-transparent bg-relight-gradient text-white" : "border-gray-200 bg-white text-gray-500"
+      }`}
+    >
+      {saved ? "🔖 保存済み" : "🔖 保存"}
+    </button>
+  );
+}
+
 function SeminarList({
   items,
   onSelect,
+  savedIds,
+  onToggleSaved,
 }: {
   items: Seminar[];
   onSelect: (s: Seminar) => void;
+  savedIds: string[];
+  onToggleSaved: (id: string) => void;
 }) {
   if (items.length === 0) {
     return <p className="py-6 text-center text-sm text-gray-400">該当する研修・学会はありません</p>;
@@ -513,13 +600,18 @@ function SeminarList({
   return (
     <div className="space-y-3">
       {items.map((s) => (
-        <button
+        <div
           key={s.id}
-          type="button"
+          role="button"
+          tabIndex={0}
           onClick={() => onSelect(s)}
-          className="block w-full rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition active:scale-[0.99]"
+          onKeyDown={(e) => e.key === "Enter" && onSelect(s)}
+          className="block w-full cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition active:scale-[0.99]"
         >
-          <p className="text-sm font-semibold text-gray-900">{dateRangeJa(s)}</p>
+          <div className="flex items-start justify-between gap-3">
+            <p className="text-sm font-semibold text-gray-900">{dateRangeJa(s)}</p>
+            <SaveButton saved={savedIds.includes(s.id)} onClick={() => onToggleSaved(s.id)} />
+          </div>
 
           <div className="mt-2 flex flex-wrap items-center gap-1.5">
             <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
@@ -544,13 +636,23 @@ function SeminarList({
             {s.organizer ? `${s.organizer} ・ ` : ""}
             {s.fee_yen !== null && !s.is_free ? `${s.fee_yen.toLocaleString()}円〜` : ""}
           </p>
-        </button>
+        </div>
       ))}
     </div>
   );
 }
 
-function SeminarDetail({ seminar: s, onClose }: { seminar: Seminar; onClose: () => void }) {
+function SeminarDetail({
+  seminar: s,
+  saved,
+  onToggleSaved,
+  onClose,
+}: {
+  seminar: Seminar;
+  saved: boolean;
+  onToggleSaved: () => void;
+  onClose: () => void;
+}) {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
     window.addEventListener("keydown", onKey);
@@ -600,11 +702,21 @@ function SeminarDetail({ seminar: s, onClose }: { seminar: Seminar; onClose: () 
           </p>
         )}
 
+        <button
+          type="button"
+          onClick={onToggleSaved}
+          className={`mt-6 block w-full rounded-full border py-3 text-center text-sm font-medium ${
+            saved ? "border-black bg-gray-50" : "border-gray-300 bg-white"
+          }`}
+        >
+          {saved ? "🔖 保存済み（タップで解除）" : "🔖 保存する"}
+        </button>
+
         <a
           href={s.url}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 block w-full rounded-full bg-relight-gradient py-3 text-center text-sm font-medium text-white"
+          className="mt-3 block w-full rounded-full bg-relight-gradient py-3 text-center text-sm font-medium text-white"
         >
           詳細・申込ページを開く ↗
         </a>
