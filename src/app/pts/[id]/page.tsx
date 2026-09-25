@@ -593,7 +593,14 @@ export default function PTProfile() {
                       )}
                     </p>
 
-                    <ReviewerBadge type={review.reviewer_type} />
+                    <div className="flex items-center gap-1.5">
+                      {review.is_anonymous && (
+                        <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-[11px] font-medium text-gray-500">
+                          匿名
+                        </span>
+                      )}
+                      <ReviewerBadge type={review.reviewer_type} />
+                    </div>
 
                   </div>
 

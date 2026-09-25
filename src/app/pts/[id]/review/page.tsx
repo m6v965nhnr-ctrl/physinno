@@ -12,6 +12,7 @@ export default function ReviewPage() {
 
   const [rating, setRating] = useState(5);
   const [comment, setComment] = useState("");
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   async function submitReview() {
     const {
@@ -28,6 +29,7 @@ export default function ReviewPage() {
       user_id: user.id,
       rating,
       comment,
+      is_anonymous: isAnonymous,
     });
 
     if (insertError) {
@@ -71,6 +73,37 @@ export default function ReviewPage() {
               className="h-40 w-full rounded-2xl border p-5"
             />
           </div>
+
+          <button
+            type="button"
+            role="switch"
+            aria-checked={isAnonymous}
+            onClick={() => setIsAnonymous(!isAnonymous)}
+            className={`flex w-full items-center justify-between rounded-2xl border p-4 text-left transition ${
+              isAnonymous ? "border-black bg-gray-50" : "border-gray-200"
+            }`}
+          >
+            <span>
+              <span className="block text-sm font-medium">
+                匿名で投稿する
+              </span>
+              <span className="mt-1 block text-xs text-gray-500">
+                レビューには「匿名」と表示されます
+              </span>
+            </span>
+
+            <span
+              className={`relative h-6 w-11 shrink-0 rounded-full transition ${
+                isAnonymous ? "bg-black" : "bg-gray-300"
+              }`}
+            >
+              <span
+                className={`absolute top-0.5 h-5 w-5 rounded-full bg-white transition-all ${
+                  isAnonymous ? "left-[22px]" : "left-0.5"
+                }`}
+              />
+            </span>
+          </button>
 
           <button
             onClick={submitReview}

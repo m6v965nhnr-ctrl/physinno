@@ -55,6 +55,10 @@ import {
   listTeachingExperiences,
   listWorkHistory,
 } from "@/lib/portfolio";
+import {
+  reconcileProfileAndPortfolio,
+  syncPortfolioToProfile,
+} from "@/lib/profileSync";
 
 type FieldType = "text" | "date" | "number" | "textarea" | "select" | "checkbox";
 
@@ -95,10 +99,12 @@ export default function PortfolioPage() {
   const [yearFilter, setYearFilter] = useState("");
 
   useEffect(() => {
-    load();
+    load(true);
   }, []);
 
-  async function load() {
+  // initial=true: プロフィール側の入力内容も取り込んで双方を揃える
+  // それ以外: 履歴の変更内容をプロフィールへ反映する
+  async function load(initial = false) {
     setLoading(true);
 
     const {
@@ -111,6 +117,12 @@ export default function PortfolioPage() {
     }
 
     setUserId(user.id);
+
+    if (initial) {
+      await reconcileProfileAndPortfolio(user.id);
+    } else {
+      await syncPortfolioToProfile(user.id);
+    }
 
     const { data: profileData } = await supabase
       .from("pt_profiles")

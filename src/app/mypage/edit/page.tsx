@@ -5,6 +5,11 @@ import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
+import {
+  SyncFields,
+  reconcileProfileAndPortfolio,
+  syncProfileToPortfolio,
+} from "@/lib/profileSync";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -50,6 +55,15 @@ export default function EditProfilePage() {
   const [saving, setSaving] = useState(false);
   const [userId, setUserId] = useState("");
 
+  // ポートフォリオと連携する項目の保存済みの値（差分の反映に使う）
+  const [syncedFields, setSyncedFields] = useState<SyncFields>({
+    education: "",
+    workplace: "",
+    department: "",
+    qualification: "",
+    languages: "",
+  });
+
   useEffect(() => {
     loadProfile();
   }, []);
@@ -66,6 +80,9 @@ export default function EditProfilePage() {
 
     setUserId(user.id);
     setAccountType(await getMyAccountType(user.id));
+
+    // ポートフォリオ側で登録済みの学歴・職歴・資格・語学を取り込む
+    await reconcileProfileAndPortfolio(user.id);
 
     const { data, error } = await supabase
       .from("pt_profiles")
@@ -105,6 +122,14 @@ export default function EditProfilePage() {
       setCoverPreview(data.cover_image || "");
       setIdPhoto(data.id_photo || "");
       setIdPhotoPreview(data.id_photo || "");
+
+      setSyncedFields({
+        education: data.education || "",
+        workplace: data.workplace || "",
+        department: data.department || "",
+        qualification: data.qualification || "",
+        languages: data.languages || "",
+      });
     } else {
       setFullName("");
       setQualification("理学療法士");
@@ -418,6 +443,18 @@ export default function EditProfilePage() {
       setSaving(false);
       return;
     }
+
+    // ポートフォリオ（学歴・職歴・資格・語学）にも反映
+    const nextFields: SyncFields = {
+      education,
+      workplace,
+      department,
+      qualification,
+      languages: language,
+    };
+
+    await syncProfileToPortfolio(userId, syncedFields, nextFields);
+    setSyncedFields(nextFields);
 
     setProfileImage(imageUrl);
     setSelectedImage(null);
