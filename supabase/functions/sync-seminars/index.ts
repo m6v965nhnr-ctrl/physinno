@@ -10,6 +10,7 @@
 //   ?job=cleanup              終了済み・長期間取得できていない情報の削除
 
 import { createClient } from "npm:@supabase/supabase-js@2";
+import { extractText, getDocumentProxy } from "npm:unpdf@1.8.1";
 import {
   Candidate,
   JPTA_SEARCH_URL,
@@ -19,6 +20,7 @@ import {
   collectCandidates,
   discoverListPages,
   extractLabeledDate,
+  extractAnchors,
   titleDateRange,
   jptaFormFields,
   jptaTotal,
@@ -28,6 +30,19 @@ import {
   parsePrefWordpress,
   parsePtOtSt,
 } from "./parsers.ts";
+
+// 記事ページに貼られたPDF（開催案内）へのリンク
+function findPdfLink(html: string, pageUrl: string) {
+  // サイト共通メニューにもPDFがあるため、記事内のもの（/info/ を含む、なければ最後）を選ぶ
+  const pdfs = extractAnchors(html, pageUrl).filter((a) => /\.pdf(\?|$)/i.test(a.href));
+  return (pdfs.find((a) => a.href.includes("/info/")) ?? pdfs[pdfs.length - 1])?.href ?? null;
+}
+
+// URL中の日付（/2026/09/04/）
+function postDateFromUrl(url: string) {
+  const m = url.match(/\/(\d{4})\/(\d{2})\/(\d{2})\//);
+  return m ? `${m[1]}-${m[2]}-${m[3]}` : null;
+}
 
 const UA = "Mozilla/5.0 (compatible; RelightSeminarSync/1.0)";
 // 一部の士会サイトはボット風のUAを拒否するため、ブラウザ相当のUAを使う
@@ -201,6 +216,8 @@ async function jobPref(from: number, to: number) {
   const stats: Record<string, string> = {};
 
   for (const site of PREF_SITES.slice(from, to)) {
+    // 大阪府は開催案内がPDFのため専用ジョブ（osaka）で取得する
+    if (site.code === "osaka") continue;
     try {
       const fetchPage = async (u: string) => {
         const res = await fetch(u, {
@@ -261,6 +278,82 @@ async function jobPref(from: number, to: number) {
   const saved = await save(rows);
   console.log("pref stats", JSON.stringify(stats));
   return { saved, stats };
+}
+
+// 大阪府理学療法士会: お知らせ記事の「詳細はこちら」がPDFなので、PDFの本文から開催日時を読み取る
+async function jobOsaka(from: number, to: number) {
+  const today = todayJst();
+  const site = PREF_SITES.find((s) => s.code === "osaka")!;
+  const fetchPage = async (u: string) => {
+    const res = await fetch(u, {
+      headers: { "User-Agent": BROWSER_UA, "Accept-Language": "ja" },
+      redirect: "follow",
+      signal: AbortSignal.timeout(15000),
+    });
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    return res;
+  };
+
+  const top = await (await fetchPage(site.url)).text();
+  const posts = new Map<string, Candidate>();
+  const collect = (html: string, url: string) => {
+    for (const c of collectCandidates(html, url)) {
+      const d = postDateFromUrl(c.href);
+      // 直近約90日以内に投稿された記事だけを対象にする
+      if (d && d >= new Date(Date.now() - 90 * 86400000).toISOString().slice(0, 10)) posts.set(c.href, c);
+    }
+  };
+  collect(top, site.url);
+  for (const u of discoverListPages(top, site.url, 4)) {
+    try {
+      collect(await (await fetchPage(u)).text(), u);
+    } catch (_e) {
+      // skip
+    }
+  }
+
+  const list = [...posts.values()]
+    .sort((a, b) => (postDateFromUrl(b.href) ?? "").localeCompare(postDateFromUrl(a.href) ?? ""))
+    .slice(from, to);
+
+  const rows: Seminar[] = [];
+  const stats: string[] = [];
+
+  for (const c of list) {
+    try {
+      const title = c.text.replace(/^\[[^\]]*\]\s*/, "");
+      let range = titleDateRange(title, today);
+      let dateText: string | null = null;
+
+      if (!range) {
+        const html = await (await fetchPage(c.href)).text();
+        const pdfUrl = findPdfLink(html, c.href);
+        if (pdfUrl) {
+          const buf = new Uint8Array(await (await fetchPage(pdfUrl)).arrayBuffer());
+          if (buf.length < 5_000_000) {
+            const pdf = await getDocumentProxy(buf);
+            const { text } = await extractText(pdf, { mergePages: true });
+            const labeled = extractLabeledDate(text, today);
+            if (labeled) {
+              range = labeled.range;
+              dateText = labeled.dateText;
+            }
+          }
+        }
+      }
+
+      if (range && range.end >= today) {
+        rows.push(candidateToSeminar({ href: c.href, text: title }, range, dateText, site));
+        stats.push(`ok ${title.slice(0, 20)}`);
+      } else {
+        stats.push(`no-date ${title.slice(0, 20)}`);
+      }
+    } catch (e) {
+      stats.push(`err ${String(e).slice(0, 40)}`);
+    }
+  }
+
+  return { saved: await save(rows), stats };
 }
 
 async function jobCleanup() {

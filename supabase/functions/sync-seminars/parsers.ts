@@ -783,7 +783,7 @@ export function extractLabeledDate(html: string, today: string) {
   );
   const baseYear = Number(today.slice(0, 4));
 
-  for (const m of text.matchAll(/(開催日時|開催日程|開催日|開催期間|日\s*時|日\s*程|期\s*日|会\s*期)\s*[:：】\]）)]?\s*([^\n]{0,90})/g)) {
+  for (const m of text.matchAll(/(開催日時|開催日程|開催日|開催期間|受講期間|実施日|実施期間|日\s*時|日\s*程|期\s*日|会\s*期)\s*[:：】\]）)]?\s*([^\n]{0,90})/g)) {
     const value = m[2];
     // 「締切」「申込」の行は開催日ではない
     if (/(締切|〆切|期限|申込|申し込み)/.test(m[0])) continue;
@@ -818,7 +818,9 @@ export function candidateToSeminar(
 }
 
 // タイトルに月日が入っている場合はそれを使う
-export function titleDateRange(title: string, today: string): DateRange | null {
+export function titleDateRange(rawTitle: string, today: string): DateRange | null {
+  // 「締切り：9月30日」のような申込期限は開催日ではないので除く
+  const title = rawTitle.replace(/(?:申込|申し込み|参加登録)?\s*(?:締切り?|〆切|期限)\s*[:：]?\s*[^\s)）】]*/g, " ");
   if (!/\d+\s*月\s*\d+|[０-９]+\s*月\s*[０-９]+/.test(title)) return null;
   return extractDateRange(title, { baseYear: Number(today.slice(0, 4)), postedOn: today });
 }
