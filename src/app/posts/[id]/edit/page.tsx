@@ -15,12 +15,6 @@ export default function EditPostPage() {
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      loadPost();
-    }
-  }, [id]);
-
   async function loadPost() {
     setLoading(true);
 
@@ -52,6 +46,12 @@ export default function EditPostPage() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (id) {
+      loadPost();
+    }
+  }, [id]);
 
   async function updatePost() {
     if (saving) {

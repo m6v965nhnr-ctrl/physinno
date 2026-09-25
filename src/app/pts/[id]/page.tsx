@@ -14,6 +14,7 @@ import {
   listPublicAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
+import type { AuthUser, PtProfile, Review } from "@/lib/types";
 
 type CaseReport = {
   id: string;
@@ -26,9 +27,9 @@ export default function PTProfile() {
   const params = useParams();
   const id = params.id as string;
 
-  const [pt, setPt] = useState<any>(null);
-  const [reviews, setReviews] = useState<any[]>([]);
-  const [user, setUser] = useState<any>(null);
+  const [pt, setPt] = useState<PtProfile | null>(null);
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [following, setFollowing] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [caseReports, setCaseReports] = useState<CaseReport[]>([]);
@@ -38,12 +39,6 @@ export default function PTProfile() {
   const [followingCount, setFollowingCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
   const [profileExpanded, setProfileExpanded] = useState(false);
-
-  useEffect(() => {
-    if (id) {
-      getPT();
-    }
-  }, [id]);
 
   async function getPT() {
     setErrorMessage("");
@@ -146,6 +141,12 @@ export default function PTProfile() {
 
     setFollowerCount(followerTotal || 0);
   }
+
+  useEffect(() => {
+    if (id) {
+      getPT();
+    }
+  }, [id]);
 
   async function toggleFollow() {
     if (!user) {

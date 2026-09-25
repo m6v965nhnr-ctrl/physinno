@@ -25,6 +25,7 @@ import {
   WorkHistory,
 } from "@/lib/portfolio";
 import type { CareerGoal } from "@/lib/portfolio";
+import type { PtProfile } from "@/lib/types";
 
 type CaseReport = {
   id: string;
@@ -37,7 +38,7 @@ export default function PortfolioViewPage() {
   const params = useParams();
   const id = params.id as string;
 
-  const [pt, setPt] = useState<any>(null);
+  const [pt, setPt] = useState<PtProfile | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
 
   const [achievements, setAchievements] = useState<Achievement[]>([]);
@@ -51,12 +52,6 @@ export default function PortfolioViewPage() {
   const [languages, setLanguages] = useState<LanguageSkill[]>([]);
   const [goals, setGoals] = useState<CareerGoal[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
-
-  useEffect(() => {
-    if (id) {
-      load();
-    }
-  }, [id]);
 
   async function load() {
     setErrorMessage("");
@@ -161,6 +156,12 @@ export default function PortfolioViewPage() {
     setGoals((goalData || []) as CareerGoal[]);
     setSkills((skillData || []) as Skill[]);
   }
+
+  useEffect(() => {
+    if (id) {
+      load();
+    }
+  }, [id]);
 
   if (errorMessage) {
     return (

@@ -16,10 +16,6 @@ export default function FollowingPage() {
   const [profiles, setProfiles] = useState<Profile[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadFollowing();
-  }, []);
-
   async function loadFollowing() {
     setLoading(true);
 
@@ -77,6 +73,10 @@ export default function FollowingPage() {
     setProfiles(profileData);
     setLoading(false);
   }
+
+  useEffect(() => {
+    loadFollowing();
+  }, []);
 
   if (loading) {
     return (

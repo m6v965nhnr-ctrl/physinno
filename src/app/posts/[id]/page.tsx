@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import type { AuthUser } from "@/lib/types";
 
 type Post = {
   id: string;
@@ -41,18 +42,12 @@ export default function PostDetailPage() {
 
   const [post, setPost] = useState<Post | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [liked, setLiked] = useState(false);
   const [comments, setComments] = useState<Comment[]>([]);
   const [commentText, setCommentText] = useState("");
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    if (id) {
-      loadPage();
-    }
-  }, [id]);
 
   async function loadPage() {
     setLoading(true);
@@ -138,6 +133,12 @@ export default function PostDetailPage() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    if (id) {
+      loadPage();
+    }
+  }, [id]);
 
   async function toggleLike() {
     if (!user) {
@@ -489,10 +490,6 @@ function CommentItem({
 }) {
   const [profile, setProfile] = useState<Profile | null>(null);
 
-  useEffect(() => {
-    loadProfile();
-  }, [comment.user_id]);
-
   async function loadProfile() {
     const { data } = await supabase
       .from("pt_profiles")
@@ -508,6 +505,10 @@ function CommentItem({
       setProfile(data);
     }
   }
+
+  useEffect(() => {
+    loadProfile();
+  }, [comment.user_id]);
 
   return (
     <div className="border rounded-xl p-4">

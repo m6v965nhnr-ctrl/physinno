@@ -5,12 +5,13 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
+import type { PtProfile } from "@/lib/types";
 
 
 export default function PTSearchPage(){
 
 
-  const [pts,setPts] = useState<any[]>([]);
+  const [pts,setPts] = useState<PtProfile[]>([]);
 
 
   const [name,setName] = useState("");
@@ -48,7 +49,9 @@ export default function PTSearchPage(){
 
       .from("pt_profiles")
 
-      .select("*");
+      .select("*")
+      .order("rating", { ascending: false, nullsFirst: false })
+      .limit(50);
 
 
     if(name){
@@ -315,9 +318,9 @@ export default function PTSearchPage(){
 
                     <img
 
-                      src={pt.profile_image}
+                      src={pt.profile_image ?? undefined}
 
-                      alt={pt.full_name}
+                      alt={pt.full_name ?? ""}
 
                       className="
                         w-16

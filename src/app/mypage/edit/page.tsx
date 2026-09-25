@@ -64,10 +64,6 @@ export default function EditProfilePage() {
     languages: "",
   });
 
-  useEffect(() => {
-    loadProfile();
-  }, []);
-
   async function loadProfile() {
     const {
       data: { user },
@@ -137,6 +133,10 @@ export default function EditProfilePage() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    loadProfile();
+  }, []);
 
   // =========================
   // 画像を選択

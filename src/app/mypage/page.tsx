@@ -18,6 +18,7 @@ import {
   listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
+import type { Post, PtProfile } from "@/lib/types";
 
 type MyReview = {
   id: string;
@@ -31,8 +32,8 @@ type MyReview = {
 export default function MyPage() {
   const router = useRouter();
 
-  const [profile, setProfile] = useState<any>(null);
-  const [posts, setPosts] = useState<any[]>([]);
+  const [profile, setProfile] = useState<Partial<PtProfile> | null>(null);
+  const [posts, setPosts] = useState<Post[]>([]);
   const [followCount, setFollowCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
   const [loading, setLoading] = useState(true);

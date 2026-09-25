@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import type { AuthUser } from "@/lib/types";
 
 type Conversation = {
   id: string;
@@ -18,15 +19,11 @@ type Profile = {
 };
 
 export default function MessagesPage() {
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<AuthUser | null>(null);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    loadConversations();
-  }, []);
 
   async function loadConversations() {
 
@@ -112,6 +109,10 @@ export default function MessagesPage() {
 
     setLoading(false);
   }
+
+  useEffect(() => {
+    loadConversations();
+  }, []);
 
   if (loading) {
     return (

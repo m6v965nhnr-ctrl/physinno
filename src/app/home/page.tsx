@@ -51,6 +51,9 @@ type Comment = {
   created_at: string;
 };
 
+// 一度に読み込む投稿数（それ以上は「もっと見る」で追加取得）
+const PAGE_SIZE = 30;
+
 export default function HomePage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
@@ -61,11 +64,78 @@ export default function HomePage() {
   );
   const [commentText, setCommentText] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [hasMore, setHasMore] = useState(false);
   const [userId, setUserId] = useState("");
 
-  useEffect(() => {
-    loadHome();
-  }, []);
+  // 投稿に紐づくプロフィール・いいね・コメントを並列で取得して state に統合する
+  async function hydrate(postData: Post[]) {
+    if (postData.length === 0) return;
+
+    const userIds = [...new Set(postData.map((post) => post.user_id))];
+    const postIds = postData.map((post) => post.id);
+
+    const [profileRes, likeRes, commentRes] = await Promise.all([
+      supabase
+        .from("pt_profiles")
+        .select("id, user_id, full_name, qualification, profile_image")
+        .in("user_id", userIds),
+      supabase.from("likes").select("id, post_id, user_id").in("post_id", postIds),
+      supabase
+        .from("comments")
+        .select("*")
+        .in("post_id", postIds)
+        .order("created_at", { ascending: true }),
+    ]);
+
+    setProfiles((prev) => {
+      const next = { ...prev };
+      (profileRes.data || []).forEach((profile) => {
+        next[profile.user_id] = profile;
+      });
+      return next;
+    });
+
+    const likeMap: Record<string, Like[]> = {};
+    const commentMap: Record<string, Comment[]> = {};
+    const commentCountMap: Record<string, number> = {};
+
+    postIds.forEach((postId) => {
+      likeMap[postId] = [];
+      commentMap[postId] = [];
+      commentCountMap[postId] = 0;
+    });
+
+    (likeRes.data || []).forEach((like) => {
+      likeMap[like.post_id]?.push(like);
+    });
+
+    (commentRes.data || []).forEach((comment) => {
+      commentMap[comment.post_id]?.push(comment);
+      commentCountMap[comment.post_id] += 1;
+    });
+
+    setLikes((prev) => ({ ...prev, ...likeMap }));
+    setComments((prev) => ({ ...prev, ...commentMap }));
+    setCommentCounts((prev) => ({ ...prev, ...commentCountMap }));
+  }
+
+  // 投稿を PAGE_SIZE 件ずつ新しい順に取得する（before: これより古い投稿だけ）
+  async function fetchPostPage(before?: string) {
+    let query = supabase
+      .from("posts")
+      .select("*")
+      .eq("is_public", true)
+      .order("created_at", { ascending: false })
+      .limit(PAGE_SIZE);
+
+    if (before) {
+      query = query.lt("created_at", before);
+    }
+
+    const { data } = await query;
+    return (data || []) as Post[];
+  }
 
   async function loadHome() {
     setLoading(true);
@@ -81,97 +151,36 @@ export default function HomePage() {
 
     setUserId(user.id);
 
-    const { data: postData, error: postError } = await supabase
-      .from("posts")
-      .select("*")
-      .eq("is_public", true)
-      .order("created_at", { ascending: false });
+    const firstPage = await fetchPostPage();
 
+    setPosts(firstPage);
+    setHasMore(firstPage.length === PAGE_SIZE);
 
-    if (!postData) {
-      setPosts([]);
-      setLoading(false);
-      return;
-    }
-
-    setPosts(postData);
-
-    const userIds = [...new Set(postData.map((post) => post.user_id))];
-
-    if (userIds.length > 0) {
-      const { data: profileData } = await supabase
-        .from("pt_profiles")
-        .select("id, user_id, full_name, qualification, profile_image")
-        .in("user_id", userIds);
-
-      const profileMap: Record<string, Profile> = {};
-
-      (profileData || []).forEach((profile) => {
-        profileMap[profile.user_id] = profile;
-      });
-
-      setProfiles(profileMap);
-    }
-
-    const postIds = postData.map((post) => post.id);
-
-    if (postIds.length > 0) {
-      const { data: likeData, error: likeError } = await supabase
-        .from("likes")
-        .select("*")
-        .in("post_id", postIds);
-
-
-      const likeMap: Record<string, Like[]> = {};
-
-      postIds.forEach((postId) => {
-        likeMap[postId] = [];
-      });
-
-      (likeData || []).forEach((like) => {
-        if (!likeMap[like.post_id]) {
-          likeMap[like.post_id] = [];
-        }
-
-        likeMap[like.post_id].push(like);
-      });
-
-      setLikes(likeMap);
-
-      const { data: commentData, error: commentError } = await supabase
-        .from("comments")
-        .select("*")
-        .in("post_id", postIds)
-        .order("created_at", {
-          ascending: true,
-        });
-
-
-      const commentMap: Record<string, Comment[]> = {};
-      const commentCountMap: Record<string, number> = {};
-
-      postIds.forEach((postId) => {
-        commentMap[postId] = [];
-        commentCountMap[postId] = 0;
-      });
-
-      (commentData || []).forEach((comment) => {
-        if (!commentMap[comment.post_id]) {
-          commentMap[comment.post_id] = [];
-        }
-
-        commentMap[comment.post_id].push(comment);
-
-        commentCountMap[comment.post_id] =
-          (commentCountMap[comment.post_id] || 0) + 1;
-      });
-
-      setComments(commentMap);
-      setCommentCounts(commentCountMap);
-    }
+    await hydrate(firstPage);
 
     setLoading(false);
   }
+
+  async function loadMore() {
+    const last = posts[posts.length - 1];
+
+    if (!last || loadingMore) return;
+
+    setLoadingMore(true);
+
+    const nextPage = await fetchPostPage(last.created_at);
+
+    setPosts((prev) => [...prev, ...nextPage]);
+    setHasMore(nextPage.length === PAGE_SIZE);
+
+    await hydrate(nextPage);
+
+    setLoadingMore(false);
+  }
+
+  useEffect(() => {
+    loadHome();
+  }, []);
 
   async function toggleLike(postId: string) {
     if (!userId) {
@@ -740,6 +749,18 @@ if (targetPost && targetPost.user_id !== userId) {
                 </article>
               );
             })
+          )}
+
+          {hasMore && (
+            <div className="px-5 py-2">
+              <button
+                onClick={loadMore}
+                disabled={loadingMore}
+                className="w-full rounded-full border border-gray-300 bg-white py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+              >
+                {loadingMore ? "読み込み中..." : "もっと見る"}
+              </button>
+            </div>
           )}
         </div>
       </div>

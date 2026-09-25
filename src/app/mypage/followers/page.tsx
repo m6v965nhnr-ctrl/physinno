@@ -17,10 +17,6 @@ export default function FollowersPage() {
   const [followingIds, setFollowingIds] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    loadFollowers();
-  }, []);
-
   async function loadFollowers() {
     setLoading(true);
 
@@ -100,6 +96,10 @@ export default function FollowersPage() {
     setProfiles(profileData);
     setLoading(false);
   }
+
+  useEffect(() => {
+    loadFollowers();
+  }, []);
 
   async function toggleFollow(
     targetUserId: string
