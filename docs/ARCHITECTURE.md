@@ -37,3 +37,13 @@
 - 入力欄は `label`/`aria-label` に関連付け、ログイン・登録は `autocomplete` を指定。スマホでは入力欄を16px以上にして拡大を防ぐ。
 - 削除操作は確認ダイアログ。モーダルは `role="dialog"` と `overscroll-contain`。
 - `globals.css` の `!important` による色の上書きは、Tailwind の `hover:` などを打ち消すため、追加しない（文字色の継承を全要素に強制するルールは撤去済み）。
+
+## PT検索・プロフィールの公開範囲（2026-09-27時点）
+- `/pts`（PT検索）と `/pts/{id}`・`/pts/{id}/portfolio`（プロフィール）は、**ログインなしで閲覧可能**（ユーザーの了承済み・意図的な設計）。
+  - DBのRLSは元々これらを anon に公開していたが、フロント側の `AuthGuard` が全画面をログイン必須にしていたため、実質非公開だった。
+  - `src/lib/account.ts` の `isPublicPtPath()` で対象パスを判定（`/pts/{id}/review` など操作系ページは対象外＝引き続きログイン必須）。
+- 目的はSEOによる新規「一般の方」の獲得。個別プロフィールに `generateMetadata`（`src/app/pts/[id]/layout.tsx`）でPTごとに一意なtitle/description/OGP、`Person`+`BreadcrumbList` のJSON-LDを付与。
+  - Googleの構造化データガイドラインに合わせ、`Person` に対する `AggregateRating`/`Review` は付与していない（個人への自作自演レビューと誤認されるリスクを避けるため）。
+- `sitemap.ts` は `pt_profiles` を動的に読み込み、プロフィールURLを含めて生成する（`revalidate = 3600`）。
+- サーバー側（`generateMetadata`・`sitemap`）の読み取りは `src/lib/supabasePublic.ts`（セッションを持たない軽量クライアント）を使う。
+- 匿名の訪問者には `/pts` と `/pts/{id}` に「無料登録」の案内を表示し、SEO流入をアカウント登録につなげる。

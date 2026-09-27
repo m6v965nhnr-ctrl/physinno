@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
 import type { PtProfile } from "@/lib/types";
+import { ptNameWithTitle } from "@/lib/format";
 
 
 export default function PTSearchPage(){
@@ -24,12 +25,17 @@ export default function PTSearchPage(){
   const [isPt,setIsPt] = useState(false);
   const [tab,setTab] = useState<"pts"|"news">("pts");
 
+  // ログインしていない訪問者（検索エンジン経由など）には登録を案内する
+  const [loggedIn, setLoggedIn] = useState(true);
+
 
   useEffect(()=>{
 
     searchPT();
 
     supabase.auth.getUser().then(async ({data:{user}})=>{
+
+      setLoggedIn(!!user);
 
       if(user){
 
@@ -203,6 +209,19 @@ export default function PTSearchPage(){
 
         </h1>
 
+        {!loggedIn && (
+          <div className="mb-10 flex flex-col items-start gap-3 rounded-2xl bg-relight-gradient px-6 py-5 text-white sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm leading-6">
+              無料登録すると、理学療法士へのメッセージ送信・レビュー投稿ができます。
+            </p>
+            <Link
+              href="/register?type=general"
+              className="shrink-0 rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900"
+            >
+              無料登録する
+            </Link>
+          </div>
+        )}
 
         <div className="space-y-4 mb-10">
 
@@ -370,7 +389,7 @@ export default function PTSearchPage(){
                     ">
 
 
-                      {pt.full_name} PT
+                      {ptNameWithTitle(pt.full_name)}
 
 
                     </h2>

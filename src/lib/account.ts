@@ -22,6 +22,14 @@ export function isPtOnlyPath(pathname: string) {
   );
 }
 
+// ログインなしで見られるPT検索・プロフィールページ（DBのRLSもanonの閲覧を許可済み）。
+// /pts/{id}/review のように、閲覧以外の操作を伴うページは対象外にする。
+const PUBLIC_PT_PATH = /^\/pts(\/[^/]+(\/portfolio)?)?$/;
+
+export function isPublicPtPath(pathname: string) {
+  return PUBLIC_PT_PATH.test(pathname);
+}
+
 // ログイン中ユーザーのアカウント種類を取得（未設定なら null）
 export async function getMyAccountType(
   userId: string

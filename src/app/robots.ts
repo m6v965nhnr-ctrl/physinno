@@ -1,17 +1,18 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 
-// 公開ページ（トップ・登録）だけを検索対象にし、ログイン後の画面は除外する
+// 公開ページ（トップ・登録・PT検索とプロフィール）だけを検索対象にし、
+// ログインが必要な画面（レビュー投稿・メッセージ等）は除外する
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
-      allow: ["/$", "/register"],
+      allow: ["/$", "/register", "/pts", "/pts/*"],
       disallow: [
         "/login",
         "/home",
         "/posts",
-        "/pts",
+        "/pts/*/review",
         "/mypage",
         "/profile",
         "/messages",

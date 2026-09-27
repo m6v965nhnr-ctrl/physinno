@@ -232,13 +232,22 @@ export default function PTProfile() {
 
       {/* ヘッダー */}
       <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
-        <div className="max-w-2xl mx-auto px-5 py-4">
+        <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
           <Link
             href="/pts"
             className="text-sm text-gray-400 hover:text-gray-700"
           >
             ← 検索
           </Link>
+
+          {!user && (
+            <Link
+              href="/register?type=general"
+              className="shrink-0 rounded-full bg-relight-gradient px-4 py-2 text-xs font-semibold text-white"
+            >
+              無料登録
+            </Link>
+          )}
         </div>
       </header>
 
