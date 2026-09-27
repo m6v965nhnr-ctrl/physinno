@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -32,6 +32,14 @@ export default function RegisterPage() {
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // トップページのボタンから来たとき（?type=pt / ?type=general）は種類を選んだ状態にする
+  useEffect(() => {
+    const type = new URLSearchParams(window.location.search).get("type");
+    if (type === "pt" || type === "general") {
+      setAccountType(type);
+    }
+  }, []);
 
   async function handleRegister() {
     setError("");
