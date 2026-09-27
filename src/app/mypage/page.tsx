@@ -20,6 +20,7 @@ import {
 } from "@/lib/achievements";
 import type { Post, PtProfile } from "@/lib/types";
 import { notify } from "@/lib/notify";
+import { DEFAULT_PT_NAME, ptName, ptNameWithTitle } from "@/lib/format";
 
 type MyReview = {
   id: string;
@@ -103,7 +104,7 @@ export default function MyPage() {
       setProfile({
         user_id: user.id,
         full_name:
-          user.email?.split("@")[0] || "PTユーザー",
+          user.email?.split("@")[0] || DEFAULT_PT_NAME,
         qualification: "理学療法士",
         profile_image: null,
         rating: 0,
@@ -231,14 +232,14 @@ export default function MyPage() {
         .in("id", ptIds);
 
       (ptData || []).forEach((pt) => {
-        nameMap[pt.id] = pt.full_name || "PTユーザー";
+        nameMap[pt.id] = pt.full_name || "";
       });
     }
 
     setMyReviews(
       rows.map((r) => ({
         ...r,
-        pt_name: nameMap[r.pt_id] || "PTユーザー",
+        pt_name: nameMap[r.pt_id] || "",
       }))
     );
   }
@@ -269,7 +270,7 @@ export default function MyPage() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <p className="text-gray-500">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
@@ -351,7 +352,7 @@ export default function MyPage() {
 
             {/* 名前 */}
             <h1 className="text-3xl font-semibold mt-6">
-              {profile?.full_name || "PTユーザー"}
+              {ptName(profile?.full_name)}
             </h1>
 
             {/* 資格 */}
@@ -500,7 +501,7 @@ export default function MyPage() {
                   disabled={savingTarget}
                   className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
                 >
-                  {savingTarget ? "保存中..." : "追加する"}
+                  {savingTarget ? "保存中…" : "追加する"}
                 </button>
               </form>
             )}
@@ -883,7 +884,7 @@ function GeneralMyPage({
                 >
                   <div className="flex items-center justify-between gap-3">
                     <p className="text-sm font-medium text-gray-900">
-                      {review.pt_name} PT
+                      {ptNameWithTitle(review.pt_name)}
                     </p>
                     <p className="text-sm">
                       {"⭐".repeat(Number(review.rating) || 0)}

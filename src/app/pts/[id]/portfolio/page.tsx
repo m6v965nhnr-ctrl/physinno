@@ -26,6 +26,7 @@ import {
 } from "@/lib/portfolio";
 import type { CareerGoal } from "@/lib/portfolio";
 import type { PtProfile } from "@/lib/types";
+import { ptName } from "@/lib/format";
 
 type CaseReport = {
   id: string;
@@ -174,7 +175,7 @@ export default function PortfolioViewPage() {
   if (!pt) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中...</p>
+        <p className="text-sm text-gray-400">読み込み中…</p>
       </main>
     );
   }
@@ -236,7 +237,7 @@ export default function PortfolioViewPage() {
 
           <div className="flex-1 text-center sm:text-left">
             <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
-              {pt.full_name || "PTユーザー"}
+              {ptName(pt.full_name)}
             </h1>
 
             <p className="mt-1 text-base text-gray-600">

@@ -99,7 +99,7 @@ export default function AdminPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <p className="text-gray-500">管理画面を読み込み中...</p>
+        <p className="text-gray-500">管理画面を読み込み中…</p>
       </main>
     );
   }

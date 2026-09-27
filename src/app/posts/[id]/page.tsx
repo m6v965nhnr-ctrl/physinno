@@ -6,6 +6,7 @@ import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { notify } from "@/lib/notify";
+import { ptNameWithTitle } from "@/lib/format";
 
 type Post = {
   id: string;
@@ -270,7 +271,7 @@ export default function PostDetailPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">読み込み中...</p>
+        <p className="text-gray-500">読み込み中…</p>
       </main>
     );
   }
@@ -345,7 +346,7 @@ export default function PostDetailPage() {
 
               <div>
                 <p className="font-semibold">
-                  {profile.full_name || "PTユーザー"} PT
+                  {ptNameWithTitle(profile.full_name)}
                 </p>
 
                 <p className="text-sm text-gray-500">

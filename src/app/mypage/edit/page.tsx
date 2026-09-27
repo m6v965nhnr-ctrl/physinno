@@ -473,7 +473,7 @@ export default function EditProfilePage() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <p className="text-gray-500">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
@@ -922,7 +922,7 @@ export default function EditProfilePage() {
               disabled:cursor-not-allowed
             "
           >
-            {saving ? "保存中..." : "保存"}
+            {saving ? "保存中…" : "保存"}
           </button>
 
         </div>

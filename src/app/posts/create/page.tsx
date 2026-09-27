@@ -356,7 +356,7 @@ export default function CreatePostPage() {
               disabled={posting}
               className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
             >
-              {posting ? "投稿中..." : "投稿"}
+              {posting ? "投稿中…" : "投稿"}
             </button>
           </div>
         </header>
@@ -616,7 +616,7 @@ export default function CreatePostPage() {
             disabled={posting}
             className="rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
           >
-            {posting ? "投稿中..." : "投稿"}
+            {posting ? "投稿中…" : "投稿"}
           </button>
         </div>
       </header>

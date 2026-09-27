@@ -97,7 +97,7 @@ export default function AchievementsPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">読み込み中...</p>
+        <p className="text-gray-500">読み込み中…</p>
       </main>
     );
   }
@@ -188,7 +188,7 @@ export default function AchievementsPage() {
                 disabled={savingTarget}
                 className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
               >
-                {savingTarget ? "保存中..." : "追加する"}
+                {savingTarget ? "保存中…" : "追加する"}
               </button>
             </form>
           )}

@@ -101,7 +101,7 @@ export default function EditPostPage() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <p className="text-gray-500">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
@@ -174,7 +174,7 @@ export default function EditPostPage() {
               disabled:opacity-50
             "
           >
-            {saving ? "更新中..." : "変更を保存"}
+            {saving ? "更新中…" : "変更を保存"}
           </button>
 
         </div>

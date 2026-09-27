@@ -16,6 +16,7 @@ import {
 } from "@/lib/achievements";
 import type { AuthUser, PtProfile, Review } from "@/lib/types";
 import { notify } from "@/lib/notify";
+import { ptName } from "@/lib/format";
 
 type CaseReport = {
   id: string;
@@ -220,7 +221,7 @@ export default function PTProfile() {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">
         <p className="text-sm text-gray-400">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
@@ -275,7 +276,7 @@ export default function PTProfile() {
               )}
 
               <h1 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
-                {pt.full_name || "PTユーザー"}
+                {ptName(pt.full_name)}
               </h1>
 
               <p className="mt-1 text-base text-gray-600">

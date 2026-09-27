@@ -277,7 +277,7 @@ export default function PortfolioPage() {
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">読み込み中...</p>
+        <p className="text-gray-500">読み込み中…</p>
       </main>
     );
   }
@@ -1107,7 +1107,7 @@ function PortfolioSection({
             disabled={saving}
             className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
           >
-            {saving ? "保存中..." : "追加する"}
+            {saving ? "保存中…" : "追加する"}
           </button>
         </form>
       )}

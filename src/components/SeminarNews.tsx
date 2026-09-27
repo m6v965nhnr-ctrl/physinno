@@ -412,7 +412,7 @@ export default function SeminarNews() {
 
       <p className="mt-5 text-sm text-gray-500">
         {loading
-          ? "読み込み中..."
+          ? "読み込み中…"
           : view === "saved"
             ? `保存済み ${savedItems.length}件`
             : `${filtered.length}件`}

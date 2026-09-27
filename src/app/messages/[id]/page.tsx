@@ -5,6 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
+import { ptName } from "@/lib/format";
 
 type Message = {
   id: string;
@@ -203,7 +204,7 @@ export default function MessagePage() {
   if (loading) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中...</p>
+        <p className="text-sm text-gray-400">読み込み中…</p>
       </main>
     );
   }
@@ -233,7 +234,7 @@ export default function MessagePage() {
 
           <div>
             <p className="text-sm font-semibold text-gray-900">
-              {profile?.full_name || "PTユーザー"}
+              {ptName(profile?.full_name)}
             </p>
 
             <p className="text-xs text-gray-400">メッセージ</p>
@@ -323,7 +324,7 @@ export default function MessagePage() {
                 sendMessage();
               }
             }}
-            placeholder="メッセージを入力..."
+            placeholder="メッセージを入力…"
             className="min-w-0 flex-1 rounded-full border border-gray-200 bg-gray-50 px-4 py-2.5 text-sm outline-none focus:border-gray-400"
           />
 
@@ -332,7 +333,7 @@ export default function MessagePage() {
             disabled={sending || !content.trim()}
             className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40"
           >
-            {sending ? "送信中..." : "送信"}
+            {sending ? "送信中…" : "送信"}
           </button>
         </div>
       </div>

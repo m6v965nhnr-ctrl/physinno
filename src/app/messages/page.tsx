@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
+import { ptName } from "@/lib/format";
 
 type Conversation = {
   id: string;
@@ -119,7 +120,7 @@ export default function MessagesPage() {
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center pb-24">
         <div className="text-center">
           <p className="text-sm text-gray-500">
-            読み込み中...
+            読み込み中…
           </p>
           <p className="mt-2 text-xs text-gray-400">
             メッセージを読み込んでいます
@@ -206,7 +207,7 @@ export default function MessagesPage() {
 
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-semibold text-gray-900">
-                      {profile?.full_name || "PTユーザー"}
+                      {ptName(profile?.full_name)}
                     </p>
 
                     <p className="mt-1 text-xs text-gray-400">

@@ -202,7 +202,7 @@ export default function RegisterPage() {
             disabled={loading}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
-            {loading ? "登録中..." : "新規登録"}
+            {loading ? "登録中…" : "新規登録"}
           </button>
 
           <p className="text-center text-sm text-gray-500">

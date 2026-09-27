@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import { ptName } from "@/lib/format";
 
 type Profile = {
   id: string;
@@ -115,7 +116,7 @@ export default function FollowingPage() {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
         <p className="text-gray-500">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
@@ -172,8 +173,7 @@ export default function FollowingPage() {
 
                   <div className="min-w-0">
                     <p className="font-semibold truncate">
-                      {profile.full_name ||
-                        "PTユーザー"}
+                      {ptName(profile.full_name)}
                     </p>
 
                     <p className="text-sm text-gray-500 mt-1">

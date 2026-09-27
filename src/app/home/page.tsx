@@ -9,6 +9,7 @@ import {
   AchievementCategory,
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
+import { ptNameWithTitle } from "@/lib/format";
 
 type Post = {
   id: string;
@@ -412,7 +413,7 @@ if (targetPost && targetPost.user_id !== userId) {
     return (
       profiles[profileUserId] || {
         user_id: profileUserId,
-        full_name: "PTユーザー",
+        full_name: "",
         qualification: "理学療法士",
         profile_image: null,
       }
@@ -432,7 +433,7 @@ if (targetPost && targetPost.user_id !== userId) {
   if (loading) {
     return (
       <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">読み込み中...</p>
+        <p className="text-gray-500">読み込み中…</p>
       </main>
     );
   }
@@ -490,7 +491,7 @@ if (targetPost && targetPost.user_id !== userId) {
 
                     <div className="flex-1">
                       <p className="font-semibold">
-                        {profile.full_name || "PTユーザー"} PT
+                        {ptNameWithTitle(profile.full_name)}
                       </p>
 
                       <p className="text-xs text-gray-500">
@@ -694,9 +695,7 @@ if (targetPost && targetPost.user_id !== userId) {
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2">
                                     <span className="font-semibold text-sm">
-                                      {commentProfile.full_name ||
-                                        "PTユーザー"}{" "}
-                                      PT
+                                      {ptNameWithTitle(commentProfile.full_name)}
                                     </span>
 
                                     {comment.user_id === userId && (
@@ -733,9 +732,9 @@ if (targetPost && targetPost.user_id !== userId) {
                                 [post.id]: event.target.value,
                               }))
                             }
-                            placeholder="コメントを入力..."
+                            placeholder="コメントを入力…"
                             className="flex-1 border rounded-full px-4 py-2 text-sm"
-                           aria-label="コメントを入力..."/>
+                           aria-label="コメントを入力…"/>
 
                           <button
                             onClick={() => addComment(post.id)}
@@ -759,7 +758,7 @@ if (targetPost && targetPost.user_id !== userId) {
                 disabled={loadingMore}
                 className="w-full rounded-full border border-gray-300 bg-white py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
               >
-                {loadingMore ? "読み込み中..." : "もっと見る"}
+                {loadingMore ? "読み込み中…" : "もっと見る"}
               </button>
             </div>
           )}

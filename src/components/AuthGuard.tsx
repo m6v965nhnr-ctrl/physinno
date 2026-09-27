@@ -68,7 +68,7 @@ export default function AuthGuard({
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">
         <p className="text-sm text-gray-400">
-          読み込み中...
+          読み込み中…
         </p>
       </main>
     );
