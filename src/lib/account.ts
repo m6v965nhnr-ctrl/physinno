@@ -7,7 +7,7 @@ export const ACCOUNT_TYPE_LABEL: Record<AccountType, string> = {
   general: "一般",
 };
 
-// 一般ユーザーが開けないページ（PT同士のコミュニティ機能）
+// 一般の方が開けないページ（PT同士のコミュニティ機能）
 export const PT_ONLY_PATH_PREFIXES = [
   "/home",
   "/posts",

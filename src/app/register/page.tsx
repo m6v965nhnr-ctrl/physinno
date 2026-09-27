@@ -82,7 +82,7 @@ export default function RegisterPage() {
       return;
     }
 
-    // 一般ユーザーは検索から、PTはホームから始める
+    // 一般の方は検索から、PTはホームから始める
     router.push(accountType === "general" ? "/pts" : "/home");
   }
 

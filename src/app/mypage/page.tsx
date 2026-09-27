@@ -75,7 +75,7 @@ export default function MyPage() {
     const type = await getMyAccountType(user.id);
     setAccountType(type);
 
-    // 一般ユーザーは自分のレビューとフォロー数だけ読み込む
+    // 一般の方は自分のレビューとフォロー数だけ読み込む
     if (type === "general") {
       await loadMyReviews(user.id);
 
@@ -211,7 +211,7 @@ export default function MyPage() {
   }
 
   // =========================
-  // 自分が書いたレビュー（一般ユーザー用）
+  // 自分が書いたレビュー（一般の方用）
   // =========================
   async function loadMyReviews(userId: string) {
     const { data: reviewData } = await supabase

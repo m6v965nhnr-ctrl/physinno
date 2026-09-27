@@ -42,7 +42,7 @@ export default function AuthGuard({
         return;
       }
 
-      // 一般ユーザーは PT向けのページ（ホーム・投稿など）を開けない
+      // 一般の方は PT向けのページ（ホーム・投稿など）を開けない
       if (isPtOnlyPath(pathname)) {
         const accountType = await getMyAccountType(user.id);
 

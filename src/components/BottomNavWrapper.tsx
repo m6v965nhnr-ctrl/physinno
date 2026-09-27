@@ -20,7 +20,7 @@ const PT_MENUS: Menu[] = [
   { href: "/mypage", icon: "○", label: "マイページ" },
 ];
 
-// 一般ユーザー：PTを探す・メッセージ・マイページのみ
+// 一般の方：PTを探す・メッセージ・マイページのみ
 const GENERAL_MENUS: Menu[] = [
   { href: "/pts", icon: "⌕", label: "検索" },
   { href: "/messages", icon: "💬", label: "メッセージ" },

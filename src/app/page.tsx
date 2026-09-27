@@ -38,7 +38,7 @@ const STEPS = [
 const FAQS = [
   {
     q: "料金はかかりますか？",
-    a: "登録・利用ともに無料です。",
+    a: "理学療法士・一般の方ともに、登録と基本機能は無料でご利用いただけます。",
   },
   {
     q: "理学療法士でなくても使えますか？",
@@ -179,7 +179,7 @@ export default function LandingPage() {
       <section className="bg-[#f7faf9] px-6 py-16">
         <div className="mx-auto max-w-5xl md:flex md:items-center md:justify-between md:gap-10">
           <div className="max-w-xl">
-            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">リハビリを受けたい方へ</h2>
+            <h2 className="text-2xl font-bold tracking-tight md:text-3xl">一般の方へ</h2>
             <p className="mt-4 text-sm leading-7 text-gray-600">
               地域や専門分野から理学療法士を探し、経験・資格・レビューを見比べられます。
               自分に合った理学療法士を見つけるために、ぜひご活用ください。

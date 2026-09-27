@@ -44,7 +44,7 @@ export default function LoginPage() {
       return;
     }
 
-    // 一般ユーザーは検索、PTはホームへ
+    // 一般の方は検索、PTはホームへ
     const accountType = await getMyAccountType(user.id);
 
     router.push(accountType === "general" ? "/pts" : "/home");
