@@ -180,6 +180,15 @@ export default function PTProfile() {
 
       if (!error) {
         setFollowing(true);
+
+        if (pt.user_id !== user.id) {
+          await supabase.from("notifications").insert({
+            user_id: pt.user_id,
+            actor_id: user.id,
+            type: "follow",
+            is_read: false,
+          });
+        }
       }
     }
   }
