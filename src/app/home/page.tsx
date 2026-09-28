@@ -69,6 +69,7 @@ export default function HomePage() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [userId, setUserId] = useState("");
+  const [unreadCount, setUnreadCount] = useState(0);
 
   // 投稿に紐づくプロフィール・いいね・コメントを並列で取得して state に統合する
   async function hydrate(postData: Post[]) {
@@ -152,6 +153,14 @@ export default function HomePage() {
     }
 
     setUserId(user.id);
+
+    const { count } = await supabase
+      .from("notifications")
+      .select("id", { count: "exact", head: true })
+      .eq("user_id", user.id)
+      .eq("is_read", false);
+
+    setUnreadCount(count || 0);
 
     const firstPage = await fetchPostPage();
 
@@ -449,6 +458,22 @@ if (targetPost && targetPost.user_id !== userId) {
             <p className="text-sm text-gray-500">Platform for PT</p>
           </div>
         </header>
+
+        {/* 通知（常にヘッダーの下に固定表示） */}
+        <div className="bg-white px-5 pt-4">
+          <Link
+            href="/notifications"
+            className="relative inline-flex w-1/3 items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+          >
+            <span aria-hidden="true">🔔</span>
+            通知
+            {unreadCount > 0 && (
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
+                {unreadCount > 9 ? "9+" : unreadCount}
+              </span>
+            )}
+          </Link>
+        </div>
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">
