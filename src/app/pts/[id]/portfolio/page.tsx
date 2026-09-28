@@ -217,7 +217,7 @@ export default function PortfolioViewPage() {
         @media print {
           @page {
             size: A4;
-            margin: 15mm;
+            margin: 12mm;
           }
         }
       `}</style>
@@ -252,7 +252,7 @@ export default function PortfolioViewPage() {
 
       <div className="mx-auto max-w-4xl px-6 py-10 print:max-w-none print:px-0 print:py-0">
         {/* 印刷時のみ表示する書類タイトル（画面では基本情報カードに名前があるため省略） */}
-        <div className="mb-4 hidden items-baseline justify-between border-b border-gray-300 pb-3 print:flex">
+        <div className="mb-4 hidden items-baseline justify-between border-b border-gray-300 pb-3 print:mb-3 print:flex print:pb-2">
           <p className="text-lg font-bold tracking-wide text-gray-900">
             ポートフォリオ
           </p>
@@ -264,9 +264,9 @@ export default function PortfolioViewPage() {
         {/* =========================
             基本情報
         ========================= */}
-        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
+        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:gap-4 print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
           {/* 証明写真 */}
-          <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0">
+          <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0 print:h-28 print:w-24">
             {pt.id_photo ? (
               <img loading="lazy" decoding="async"
                 src={pt.id_photo}
@@ -289,7 +289,7 @@ export default function PortfolioViewPage() {
               {pt.qualification || "理学療法士"}
             </p>
 
-            <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1 text-sm text-gray-600 sm:grid-cols-2">
+            <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1 text-sm text-gray-600 sm:grid-cols-2 print:mt-2 print:text-gray-800">
               {pt.workplace && <p>勤務先: {pt.workplace}</p>}
               {pt.department && <p>所属部署: {pt.department}</p>}
               {pt.specialty && <p>専門: {pt.specialty}</p>}
@@ -300,13 +300,13 @@ export default function PortfolioViewPage() {
             </div>
 
             {pt.biography && (
-              <p className="mt-4 whitespace-pre-wrap text-sm leading-6 text-gray-700">
+              <p className="mt-4 whitespace-pre-wrap text-sm leading-6 text-gray-700 print:mt-2 print:leading-snug print:text-gray-800">
                 {pt.biography}
               </p>
             )}
 
             {(pt.strengths || pt.interests) && (
-              <div className="mt-4 space-y-2 text-sm text-gray-700">
+              <div className="mt-4 space-y-2 text-sm text-gray-700 print:mt-2 print:space-y-1 print:text-gray-800">
                 {pt.strengths && (
                   <p>
                     <span className="font-semibold">自分の強み: </span>
@@ -327,7 +327,7 @@ export default function PortfolioViewPage() {
         {/* =========================
             サマリー（ひと目でわかる概要）
         ========================= */}
-        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-6 print:break-inside-avoid">
+        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-4 print:break-inside-avoid">
           <SummaryTile label="症例経験" value={caseCount} />
           <SummaryTile label="保有資格" value={certifications.length} />
           <SummaryTile
@@ -444,12 +444,12 @@ export default function PortfolioViewPage() {
             </PortfolioBlock>
 
             {skills.length > 0 && (
-              <div className="mt-3 print:break-inside-avoid">
-                <p className="text-sm font-medium text-gray-900 print:break-after-avoid">
+              <div className="mt-3 print:mt-1.5 print:break-inside-avoid">
+                <p className="text-sm font-medium text-gray-900 print:text-sm print:break-after-avoid">
                   スキル
                 </p>
 
-                <div className="mt-2 flex flex-wrap gap-2">
+                <div className="mt-2 flex flex-wrap gap-2 print:mt-1">
                   {skills.map((s) => (
                     <span
                       key={s.id}
@@ -609,26 +609,28 @@ function MacroSection({
   children: React.ReactNode;
 }) {
   return (
-    <section className="mt-10 print:mt-8 print:break-before-auto">
-      <div className="flex items-baseline gap-2 border-b-2 border-relight pb-2 print:break-after-avoid">
+    <section className="mt-10 print:mt-5 print:break-before-auto">
+      <div className="flex items-baseline gap-2 border-b-2 border-relight pb-2 print:pb-1 print:break-after-avoid">
         <span className="text-sm font-semibold text-relight-blue">
           {number}
         </span>
-        <h2 className="text-xl font-bold text-gray-900 print:text-lg">
+        <h2 className="text-xl font-bold text-gray-900 print:text-base">
           {title}
         </h2>
       </div>
 
-      <div className="mt-4 space-y-6">{children}</div>
+      <div className="mt-4 space-y-6 print:mt-2 print:space-y-3">{children}</div>
     </section>
   );
 }
 
 function SummaryTile({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white py-3 text-center print:rounded-none print:border-gray-300 print:py-2">
-      <p className="text-lg font-semibold">{value}</p>
-      <p className="mt-1 text-xs text-gray-500 print:text-gray-700">{label}</p>
+    <div className="rounded-2xl border border-gray-100 bg-white py-3 text-center print:rounded-none print:border-gray-300 print:py-1.5">
+      <p className="text-lg font-semibold print:text-base">{value}</p>
+      <p className="mt-1 text-xs text-gray-500 print:mt-0 print:text-gray-700">
+        {label}
+      </p>
     </div>
   );
 }
@@ -654,7 +656,9 @@ function PortfolioBlock({
         {title}
       </h3>
 
-      <div className="mt-3 space-y-2">{children}</div>
+      <div className="mt-3 space-y-2 print:mt-1.5 print:space-y-1">
+        {children}
+      </div>
     </section>
   );
 }
@@ -671,20 +675,22 @@ function PrintEntry({
   description?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:border-gray-200 print:px-0 print:py-2 print:break-inside-avoid">
-      <p className="text-sm font-medium text-gray-900">{title}</p>
+    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:border-gray-200 print:px-0 print:py-1 print:break-inside-avoid">
+      <p className="text-sm font-medium text-gray-900 print:leading-snug">
+        {title}
+      </p>
       {subtitle && (
-        <p className="mt-1 text-xs text-gray-500 print:text-gray-700">
+        <p className="mt-1 text-xs text-gray-500 print:mt-0.5 print:leading-snug print:text-gray-700">
           {subtitle}
         </p>
       )}
       {meta && (
-        <p className="mt-1 text-xs text-gray-400 print:text-gray-600">
+        <p className="mt-1 text-xs text-gray-400 print:mt-0.5 print:leading-snug print:text-gray-600">
           {meta}
         </p>
       )}
       {description && (
-        <p className="mt-1 whitespace-pre-wrap text-xs text-gray-600 print:text-gray-800">
+        <p className="mt-1 whitespace-pre-wrap text-xs text-gray-600 print:mt-0.5 print:leading-snug print:text-gray-800">
           {description}
         </p>
       )}
