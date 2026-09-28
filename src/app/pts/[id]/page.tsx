@@ -338,12 +338,13 @@ export default function PTProfile() {
               </div>
             </div>
 
-            {/* フォロー・メッセージ・レビューを書く */}
+            {/* フォロー・メッセージ・レビュー（文字数を揃えて高さがバラつかないようにする） */}
             <div className="mt-6 flex w-full max-w-sm gap-2">
               <button
                 onClick={toggleFollow}
                 className={`
                   flex-1
+                  whitespace-nowrap
                   rounded-full
                   py-2.5
                   text-sm
@@ -357,7 +358,7 @@ export default function PTProfile() {
                   }
                 `}
               >
-                {following ? "フォロー中" : "フォローする"}
+                {following ? "フォロー中" : "フォロー"}
               </button>
 
               <Link
@@ -367,6 +368,7 @@ export default function PTProfile() {
                 <div
                   className="
                     w-full
+                    whitespace-nowrap
                     rounded-full
                     border
                     border-gray-300
@@ -380,7 +382,7 @@ export default function PTProfile() {
                     active:scale-[0.98]
                   "
                 >
-                  💬 メッセージ
+                  メッセージ
                 </div>
               </Link>
 
@@ -391,6 +393,7 @@ export default function PTProfile() {
                 <div
                   className="
                     w-full
+                    whitespace-nowrap
                     rounded-full
                     border
                     border-gray-300
@@ -404,7 +407,7 @@ export default function PTProfile() {
                     active:scale-[0.98]
                   "
                 >
-                  レビューを書く
+                  レビュー
                 </div>
               </Link>
             </div>
