@@ -448,6 +448,60 @@ export async function deleteSkill(id: string) {
 }
 
 // ========================================
+// スキル推薦（エンドースメント）
+// ========================================
+
+// 渡したスキルID群について、それぞれの推薦数を返す
+export async function countSkillEndorsements(skillIds: string[]) {
+  if (skillIds.length === 0) return {} as Record<string, number>;
+
+  const { data } = await supabase
+    .from("skill_endorsements")
+    .select("skill_id")
+    .in("skill_id", skillIds);
+
+  const counts: Record<string, number> = {};
+  (data || []).forEach((row) => {
+    counts[row.skill_id] = (counts[row.skill_id] || 0) + 1;
+  });
+  return counts;
+}
+
+// 自分がすでに推薦したスキルIDの一覧
+export async function listMyEndorsedSkillIds(
+  skillIds: string[],
+  myUserId: string
+) {
+  if (skillIds.length === 0) return [] as string[];
+
+  const { data } = await supabase
+    .from("skill_endorsements")
+    .select("skill_id")
+    .in("skill_id", skillIds)
+    .eq("endorser_id", myUserId);
+
+  return (data || []).map((row) => row.skill_id);
+}
+
+export async function endorseSkill(skillId: string, myUserId: string) {
+  const { error } = await supabase
+    .from("skill_endorsements")
+    .insert({ skill_id: skillId, endorser_id: myUserId });
+
+  return error ? error.message : null;
+}
+
+export async function unendorseSkill(skillId: string, myUserId: string) {
+  const { error } = await supabase
+    .from("skill_endorsements")
+    .delete()
+    .eq("skill_id", skillId)
+    .eq("endorser_id", myUserId);
+
+  return error ? error.message : null;
+}
+
+// ========================================
 // 添付ファイル（汎用）
 // ========================================
 export type Attachment = {

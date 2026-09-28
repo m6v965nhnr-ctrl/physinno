@@ -22,10 +22,15 @@ import {
   TEACHING_EXPERIENCE_TYPE_LABEL,
   TeachingExperience,
   WorkHistory,
+  countSkillEndorsements,
+  endorseSkill,
+  listMyEndorsedSkillIds,
+  unendorseSkill,
 } from "@/lib/portfolio";
 import type { CareerGoal } from "@/lib/portfolio";
 import type { PtProfile } from "@/lib/types";
 import { ptName } from "@/lib/format";
+import { notify } from "@/lib/notify";
 
 type CaseReport = {
   id: string;
@@ -52,6 +57,38 @@ export default function PortfolioViewPage() {
   const [languages, setLanguages] = useState<LanguageSkill[]>([]);
   const [goals, setGoals] = useState<CareerGoal[]>([]);
   const [skills, setSkills] = useState<Skill[]>([]);
+
+  const [myUserId, setMyUserId] = useState<string | null>(null);
+  const [endorsementCounts, setEndorsementCounts] = useState<
+    Record<string, number>
+  >({});
+  const [myEndorsedIds, setMyEndorsedIds] = useState<string[]>([]);
+
+  async function toggleEndorse(skillId: string) {
+    if (!myUserId) {
+      notify("ログインすると推薦できます");
+      return;
+    }
+
+    const already = myEndorsedIds.includes(skillId);
+
+    const error = already
+      ? await unendorseSkill(skillId, myUserId)
+      : await endorseSkill(skillId, myUserId);
+
+    if (error) {
+      notify(error);
+      return;
+    }
+
+    setMyEndorsedIds((prev) =>
+      already ? prev.filter((s) => s !== skillId) : [...prev, skillId]
+    );
+    setEndorsementCounts((prev) => ({
+      ...prev,
+      [skillId]: (prev[skillId] || 0) + (already ? -1 : 1),
+    }));
+  }
 
   async function load() {
     setErrorMessage("");
@@ -154,7 +191,21 @@ export default function PortfolioViewPage() {
     setActivities((actData || []) as HospitalActivity[]);
     setLanguages((langData || []) as LanguageSkill[]);
     setGoals((goalData || []) as CareerGoal[]);
-    setSkills((skillData || []) as Skill[]);
+
+    const skillRows = (skillData || []) as Skill[];
+    setSkills(skillRows);
+
+    const skillIds = skillRows.map((s) => s.id);
+    setEndorsementCounts(await countSkillEndorsements(skillIds));
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (user) {
+      setMyUserId(user.id);
+      setMyEndorsedIds(await listMyEndorsedSkillIds(skillIds, user.id));
+    }
   }
 
   useEffect(() => {
@@ -450,17 +501,40 @@ export default function PortfolioViewPage() {
                 </p>
 
                 <div className="mt-2 flex flex-wrap gap-2 print:mt-1">
-                  {skills.map((s) => (
-                    <span
-                      key={s.id}
-                      className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600"
-                    >
-                      {s.name}
-                      {s.category && (
-                        <span className="text-gray-400">（{s.category}）</span>
-                      )}
-                    </span>
-                  ))}
+                  {skills.map((s) => {
+                    const count = endorsementCounts[s.id] || 0;
+                    const endorsed = myEndorsedIds.includes(s.id);
+                    const isOwnProfile = myUserId === pt.user_id;
+
+                    return (
+                      <span
+                        key={s.id}
+                        className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600"
+                      >
+                        {s.name}
+                        {s.category && (
+                          <span className="text-gray-400">
+                            （{s.category}）
+                          </span>
+                        )}
+                        {count > 0 && (
+                          <span className="text-gray-400">👍{count}</span>
+                        )}
+                        {!isOwnProfile && (
+                          <button
+                            onClick={() => toggleEndorse(s.id)}
+                            className={`ml-0.5 rounded-full px-2 py-0.5 text-[11px] print:hidden ${
+                              endorsed
+                                ? "bg-relight-gradient text-white"
+                                : "border border-gray-300 text-gray-500 hover:border-gray-400"
+                            }`}
+                          >
+                            {endorsed ? "推薦済み" : "推薦する"}
+                          </button>
+                        )}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             )}
