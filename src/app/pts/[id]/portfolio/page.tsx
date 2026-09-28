@@ -88,6 +88,15 @@ export default function PortfolioViewPage() {
       ...prev,
       [skillId]: (prev[skillId] || 0) + (already ? -1 : 1),
     }));
+
+    if (!already && pt && pt.user_id !== myUserId) {
+      await supabase.from("notifications").insert({
+        user_id: pt.user_id,
+        actor_id: myUserId,
+        type: "endorsement",
+        is_read: false,
+      });
+    }
   }
 
   async function load() {

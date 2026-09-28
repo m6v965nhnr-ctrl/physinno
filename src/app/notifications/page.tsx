@@ -5,7 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
 
-type NotificationType = "like" | "comment" | "follow";
+type NotificationType = "like" | "comment" | "follow" | "endorsement";
 
 type NotificationRow = {
   id: string;
@@ -32,6 +32,7 @@ const TYPE_LABEL: Record<NotificationType, string> = {
   like: "さんがあなたの投稿にいいねしました",
   comment: "さんがあなたの投稿にコメントしました",
   follow: "さんがあなたをフォローしました",
+  endorsement: "さんがあなたのスキルを推薦しました",
 };
 
 export default function NotificationsPage() {
@@ -175,7 +176,7 @@ export default function NotificationsPage() {
               </div>
             );
 
-            if (n.type === "follow" && actor) {
+            if ((n.type === "follow" || n.type === "endorsement") && actor) {
               return (
                 <Link key={n.id} href={`/pts/${actor.id}`}>
                   {body}
