@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
 
@@ -36,6 +37,8 @@ const TYPE_LABEL: Record<NotificationType, string> = {
 };
 
 export default function NotificationsPage() {
+  const router = useRouter();
+
   const [notifications, setNotifications] = useState<NotificationRow[]>([]);
   const [actors, setActors] = useState<Record<string, ActorProfile>>({});
   const [posts, setPosts] = useState<Record<string, PostInfo>>({});
@@ -111,9 +114,24 @@ export default function NotificationsPage() {
     load();
   }, []);
 
+  function handleBack() {
+    if (window.history.length > 1) {
+      router.back();
+    } else {
+      router.push("/home");
+    }
+  }
+
   return (
     <main className="min-h-screen bg-[#fafafa] pb-24">
-      <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 px-5 py-4 backdrop-blur">
+      <header className="sticky top-0 z-40 flex items-center gap-3 border-b border-gray-100 bg-white/95 px-5 py-4 backdrop-blur">
+        <button
+          onClick={handleBack}
+          className="text-sm text-gray-400 hover:text-gray-700"
+        >
+          ← 戻る
+        </button>
+
         <h1 className="text-lg font-semibold text-gray-900">通知</h1>
       </header>
 
