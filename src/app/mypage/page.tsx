@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
+import ReferralCard from "@/components/ReferralCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   ACHIEVEMENT_CATEGORIES,
@@ -280,6 +281,7 @@ export default function MyPage() {
     return (
       <GeneralMyPage
         name={email.split("@")[0] || "ユーザー"}
+        userId={userId}
         followCount={followCount}
         reviews={myReviews}
         onAccountTypeChanged={handleAccountTypeChanged}
@@ -427,6 +429,8 @@ export default function MyPage() {
           </div>
           <span className="text-lg">›</span>
         </Link>
+
+        <ReferralCard userId={userId} />
 
         {/* =========================
             実績・資格更新（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる）
@@ -815,12 +819,14 @@ function ProfileItem({
 }
 function GeneralMyPage({
   name,
+  userId,
   followCount,
   reviews,
   onAccountTypeChanged,
   onLogout,
 }: {
   name: string;
+  userId: string;
   followCount: number;
   reviews: MyReview[];
   onAccountTypeChanged: (type: AccountType) => void;
@@ -901,6 +907,8 @@ function GeneralMyPage({
             </div>
           )}
         </section>
+
+        {userId && <ReferralCard userId={userId} />}
 
         {/* アカウントの種類 */}
         <AccountTypeCard

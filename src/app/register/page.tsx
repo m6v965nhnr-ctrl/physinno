@@ -33,12 +33,20 @@ export default function RegisterPage() {
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [referredBy, setReferredBy] = useState("");
 
   // トップページのボタンから来たとき（?type=pt / ?type=general）は種類を選んだ状態にする
+  // 招待リンク（?ref=招待した人のユーザーID）はサインアップ時にそのまま渡す
   useEffect(() => {
-    const type = new URLSearchParams(window.location.search).get("type");
+    const params = new URLSearchParams(window.location.search);
+    const type = params.get("type");
     if (type === "pt" || type === "general") {
       setAccountType(type);
+    }
+
+    const ref = params.get("ref");
+    if (ref) {
+      setReferredBy(ref);
     }
   }, []);
 
@@ -71,8 +79,11 @@ export default function RegisterPage() {
       email,
       password,
       options: {
-        // DBトリガー on_auth_user_created が users.account_type に保存します
-        data: { account_type: accountType },
+        // DBトリガー on_auth_user_created が users.account_type / referred_by に保存します
+        data: {
+          account_type: accountType,
+          referred_by: referredBy || undefined,
+        },
       },
     });
 
