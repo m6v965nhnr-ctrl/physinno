@@ -102,7 +102,7 @@ export default function BottomNavWrapper() {
   return (
     <nav
       aria-label="メインメニュー"
-      className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white"
+      className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div className="mx-auto flex max-w-xl items-center justify-around px-1 py-2">

@@ -232,16 +232,35 @@ export default function PortfolioViewPage() {
             ← プロフィール
           </Link>
 
-          <button
-            onClick={() => window.print()}
-            className="rounded-full bg-relight-gradient px-5 py-2 text-sm font-medium text-white"
-          >
-            PDFとして保存
-          </button>
+          <div className="flex flex-col items-end gap-1">
+            <button
+              onClick={() => window.print()}
+              className="rounded-full bg-relight-gradient px-5 py-2 text-sm font-medium text-white"
+            >
+              PDFとして保存
+            </button>
+            <p className="max-w-[220px] text-right text-[11px] leading-snug text-gray-400">
+              保存ダイアログの「詳細設定」で
+              <br />
+              「ヘッダーとフッター」のチェックを外すと
+              <br />
+              URLや日付が入らずきれいに保存されます
+            </p>
+          </div>
         </div>
       </header>
 
       <div className="mx-auto max-w-4xl px-6 py-10 print:max-w-none print:px-0 print:py-0">
+        {/* 印刷時のみ表示する書類タイトル（画面では基本情報カードに名前があるため省略） */}
+        <div className="mb-4 hidden items-baseline justify-between border-b border-gray-300 pb-3 print:flex">
+          <p className="text-lg font-bold tracking-wide text-gray-900">
+            ポートフォリオ
+          </p>
+          <p className="text-xs text-gray-500">
+            作成日: {new Date().toISOString().slice(0, 10)}
+          </p>
+        </div>
+
         {/* =========================
             基本情報
         ========================= */}
@@ -386,9 +405,9 @@ export default function PortfolioViewPage() {
                   return (
                     <span
                       key={t.id}
-                      className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                      className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600 print:border-gray-400 print:text-gray-800"
                     >
-                      🏅 {t.name} {progress.count}/{t.required_total}（更新目標）
+                      {t.name}（更新目標）{progress.count}/{t.required_total}
                     </span>
                   );
                 })}
@@ -607,9 +626,9 @@ function MacroSection({
 
 function SummaryTile({ label, value }: { label: string; value: number }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white py-3 text-center print:border print:py-2">
+    <div className="rounded-2xl border border-gray-100 bg-white py-3 text-center print:rounded-none print:border-gray-300 print:py-2">
       <p className="text-lg font-semibold">{value}</p>
-      <p className="mt-1 text-xs text-gray-500">{label}</p>
+      <p className="mt-1 text-xs text-gray-500 print:text-gray-700">{label}</p>
     </div>
   );
 }
@@ -652,12 +671,20 @@ function PrintEntry({
   description?: string;
 }) {
   return (
-    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:px-0 print:py-2 print:break-inside-avoid">
+    <div className="rounded-2xl border border-gray-100 bg-white px-4 py-3 print:rounded-none print:border-0 print:border-b print:border-gray-200 print:px-0 print:py-2 print:break-inside-avoid">
       <p className="text-sm font-medium text-gray-900">{title}</p>
-      {subtitle && <p className="mt-1 text-xs text-gray-500">{subtitle}</p>}
-      {meta && <p className="mt-1 text-xs text-gray-400">{meta}</p>}
+      {subtitle && (
+        <p className="mt-1 text-xs text-gray-500 print:text-gray-700">
+          {subtitle}
+        </p>
+      )}
+      {meta && (
+        <p className="mt-1 text-xs text-gray-400 print:text-gray-600">
+          {meta}
+        </p>
+      )}
       {description && (
-        <p className="mt-1 whitespace-pre-wrap text-xs text-gray-600">
+        <p className="mt-1 whitespace-pre-wrap text-xs text-gray-600 print:text-gray-800">
           {description}
         </p>
       )}
