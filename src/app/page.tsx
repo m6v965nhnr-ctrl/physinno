@@ -239,7 +239,15 @@ export default function LandingPage() {
       </section>
 
       <footer className="px-6 py-8 text-center text-xs text-gray-500">
-        © {new Date().getFullYear()} Re:light
+        <div className="flex items-center justify-center gap-4">
+          <Link href="/terms" className="hover:text-gray-700">
+            利用規約
+          </Link>
+          <Link href="/privacy" className="hover:text-gray-700">
+            プライバシーポリシー
+          </Link>
+        </div>
+        <p className="mt-3">© {new Date().getFullYear()} Re:light</p>
       </footer>
     </main>
   );

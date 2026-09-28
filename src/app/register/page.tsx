@@ -30,6 +30,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
+  const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -46,6 +47,11 @@ export default function RegisterPage() {
 
     if (!accountType) {
       setError("アカウントの種類（PT／一般）を選んでください");
+      return;
+    }
+
+    if (!agreed) {
+      setError("利用規約とプライバシーポリシーへの同意が必要です");
       return;
     }
 
@@ -191,6 +197,25 @@ export default function RegisterPage() {
             />
           </div>
 
+          <label className="flex items-start gap-2 text-xs text-gray-600">
+            <input
+              type="checkbox"
+              checked={agreed}
+              onChange={(e) => setAgreed(e.target.checked)}
+              className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300"
+            />
+            <span>
+              <Link href="/terms" target="_blank" className="underline">
+                利用規約
+              </Link>
+              と
+              <Link href="/privacy" target="_blank" className="underline">
+                プライバシーポリシー
+              </Link>
+              に同意します
+            </span>
+          </label>
+
           {error && (
             <p className="rounded-2xl bg-red-50 px-4 py-3 text-sm text-red-600">
               {error}
@@ -199,7 +224,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading}
+            disabled={loading || !agreed}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : "新規登録"}
