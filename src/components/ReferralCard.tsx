@@ -55,7 +55,7 @@ export default function ReferralCard({ userId }: { userId: string }) {
       </div>
 
       <p className="mt-1 text-xs text-gray-500">
-        招待リンクから登録すると、あなたの招待人数にカウントされます
+        招待リンクから登録すると、自動で相互フォローになります
       </p>
 
       <button
