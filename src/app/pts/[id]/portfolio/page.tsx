@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
-  ACHIEVEMENT_CATEGORY_LABEL,
   Achievement,
   QualificationTarget,
   computeQualificationProgress,
@@ -184,6 +183,33 @@ export default function PortfolioViewPage() {
     caseReports.length +
     achievements.filter((a) => a.category === "case_presentation").length;
 
+  // 臨床実績（症例報告＋院内症例発表）は「臨床実績」として1つにまとめる
+  const clinicalItems = [
+    ...caseReports.map((c) => ({
+      id: `case-${c.id}`,
+      title: c.title || "無題の症例報告",
+      kind: "症例報告",
+      category: c.disease_category || "",
+      date: c.created_at?.slice(0, 10) || "",
+      description: "",
+    })),
+    ...achievements
+      .filter((a) => a.category === "case_presentation")
+      .map((a) => ({
+        id: `case-presentation-${a.id}`,
+        title: a.title || "無題の症例発表",
+        kind: "院内症例発表",
+        category: "",
+        date: a.achieved_on || "",
+        description: a.memo || "",
+      })),
+  ].sort((a, b) => (b.date || "").localeCompare(a.date || ""));
+
+  const conferenceItems = achievements.filter((a) => a.category === "conference");
+  const paperItems = achievements.filter((a) => a.category === "paper");
+  const trainingItems = achievements.filter((a) => a.category === "training");
+  const otherItems = achievements.filter((a) => a.category === "other");
+
   return (
     <main className="min-h-screen bg-[#fafafa] pb-24 print:bg-white print:pb-0">
       {/* A4での印刷・PDF保存に合わせたページ設定（登録した情報は省略せず、必要なだけページが増える想定） */}
@@ -280,182 +306,302 @@ export default function PortfolioViewPage() {
         </section>
 
         {/* =========================
-            サマリー
+            サマリー（ひと目でわかる概要）
         ========================= */}
         <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-6 print:break-inside-avoid">
+          <SummaryTile label="症例経験" value={caseCount} />
+          <SummaryTile label="保有資格" value={certifications.length} />
           <SummaryTile
-            label="学会発表"
-            value={achievements.filter((a) => a.category === "conference").length}
-          />
-          <SummaryTile
-            label="論文"
-            value={achievements.filter((a) => a.category === "paper").length}
+            label="学会発表・論文"
+            value={
+              achievements.filter(
+                (a) => a.category === "conference" || a.category === "paper"
+              ).length
+            }
           />
           <SummaryTile
             label="研修受講"
             value={achievements.filter((a) => a.category === "training").length}
           />
-          <SummaryTile label="症例経験" value={caseCount} />
         </section>
 
-        {/* 資格更新の目標 */}
-        {targets.length > 0 && (
-          <div className="mt-6 flex flex-wrap gap-2 print:mt-4">
-            {targets.map((t) => {
-              const progress = computeQualificationProgress(t, achievements);
-              return (
-                <span
-                  key={t.id}
-                  className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
-                >
-                  🏅 {t.name} {progress.count}/{t.required_total}
-                </span>
-              );
-            })}
-          </div>
+        {/* =========================
+            I. 経歴
+        ========================= */}
+        {(education.length > 0 || work.length > 0) && (
+          <MacroSection number="I" title="経歴">
+            <PortfolioBlock title="職歴">
+              {work.map((w) => (
+                <PrintEntry
+                  key={w.id}
+                  title={w.workplace}
+                  subtitle={[w.department, w.position]
+                    .filter(Boolean)
+                    .join("・")}
+                  meta={`${w.joined_on || "?"} 〜 ${w.left_on || "現在"}`}
+                  description={
+                    w.clinical_area ? `臨床領域: ${w.clinical_area}` : ""
+                  }
+                />
+              ))}
+            </PortfolioBlock>
+
+            <PortfolioBlock title="学歴">
+              {education.map((e) => (
+                <PrintEntry
+                  key={e.id}
+                  title={e.school_name}
+                  subtitle={[e.faculty, e.major].filter(Boolean).join("・")}
+                  meta={`${e.enrolled_on || "?"} 〜 ${
+                    e.graduated_on || "在学中"
+                  }`}
+                  description={
+                    e.thesis_title
+                      ? `卒業研究: ${e.thesis_title}${
+                          e.thesis_summary ? "　" + e.thesis_summary : ""
+                        }`
+                      : ""
+                  }
+                />
+              ))}
+            </PortfolioBlock>
+          </MacroSection>
         )}
 
-        <PortfolioBlock title="学歴">
-          {education.map((e) => (
-            <PrintEntry
-              key={e.id}
-              title={e.school_name}
-              subtitle={[e.faculty, e.major].filter(Boolean).join("・")}
-              meta={`${e.enrolled_on || "?"} 〜 ${e.graduated_on || "在学中"}`}
-              description={
-                e.thesis_title
-                  ? `卒業研究: ${e.thesis_title}${
-                      e.thesis_summary ? "　" + e.thesis_summary : ""
-                    }`
-                  : ""
-              }
-            />
-          ))}
-        </PortfolioBlock>
+        {/* =========================
+            II. 資格・専門性
+        ========================= */}
+        {(targets.length > 0 ||
+          certifications.length > 0 ||
+          languages.length > 0 ||
+          skills.length > 0) && (
+          <MacroSection number="II" title="資格・専門性">
+            {targets.length > 0 && (
+              <div className="mb-2 flex flex-wrap gap-2 print:break-inside-avoid">
+                {targets.map((t) => {
+                  const progress = computeQualificationProgress(
+                    t,
+                    achievements
+                  );
+                  return (
+                    <span
+                      key={t.id}
+                      className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
+                    >
+                      🏅 {t.name} {progress.count}/{t.required_total}（更新目標）
+                    </span>
+                  );
+                })}
+              </div>
+            )}
 
-        <PortfolioBlock title="職歴">
-          {work.map((w) => (
-            <PrintEntry
-              key={w.id}
-              title={w.workplace}
-              subtitle={[w.department, w.position].filter(Boolean).join("・")}
-              meta={`${w.joined_on || "?"} 〜 ${w.left_on || "現在"}`}
-              description={w.clinical_area ? `臨床領域: ${w.clinical_area}` : ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="資格・認定">
-          {certifications.map((c) => (
-            <PrintEntry
-              key={c.id}
-              title={c.name}
-              subtitle={c.issuing_body || ""}
-              meta={[
-                c.acquired_on ? `取得: ${c.acquired_on}` : "",
-                c.expires_on ? `期限: ${c.expires_on}` : "",
-              ]
-                .filter(Boolean)
-                .join("　")}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="学会発表・論文・研修">
-          {achievements.map((a) => (
-            <PrintEntry
-              key={a.id}
-              title={`${ACHIEVEMENT_CATEGORY_LABEL[a.category]}${
-                a.conference_name ? "・" + a.conference_name : ""
-              }${a.title ? "・" + a.title : ""}`}
-              meta={a.achieved_on}
-              description={a.memo || ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="症例報告">
-          {caseReports.map((c) => (
-            <PrintEntry
-              key={c.id}
-              title={c.title || "無題の症例報告"}
-              meta={`${c.disease_category ? c.disease_category + "・" : ""}${c.created_at?.slice(0, 10)}`}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="教育・指導経験">
-          {teaching.map((t) => (
-            <PrintEntry
-              key={t.id}
-              title={`${TEACHING_EXPERIENCE_TYPE_LABEL[t.type]}${
-                t.title ? "・" + t.title : ""
-              }`}
-              meta={t.occurred_on || ""}
-              description={t.description || ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="院内活動・プロジェクト">
-          {activities.map((a) => (
-            <PrintEntry
-              key={a.id}
-              title={`${HOSPITAL_ACTIVITY_TYPE_LABEL[a.type]}${
-                a.title ? "・" + a.title : ""
-              }`}
-              meta={`${a.started_on || "?"} 〜 ${a.ended_on || "継続中"}`}
-              description={a.description || ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="語学">
-          {languages.map((l) => (
-            <PrintEntry
-              key={l.id}
-              title={l.language}
-              subtitle={[l.certification_name, l.score]
-                .filter(Boolean)
-                .join(" ")}
-              meta={l.english_available ? "英語対応可能" : ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        <PortfolioBlock title="キャリア目標">
-          {goals.map((g) => (
-            <PrintEntry
-              key={g.id}
-              title={`${CAREER_GOAL_TYPE_LABEL[g.goal_type]}・${g.title}`}
-              description={g.description || ""}
-            />
-          ))}
-        </PortfolioBlock>
-
-        {skills.length > 0 && (
-          <section className="mt-6 print:mt-4">
-            <h2 className="text-lg font-semibold text-gray-900 print:text-base">
-              スキル
-            </h2>
-
-            <div className="mt-3 flex flex-wrap gap-2">
-              {skills.map((s) => (
-                <span
-                  key={s.id}
-                  className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600"
-                >
-                  {s.name}
-                  {s.category && (
-                    <span className="text-gray-400">（{s.category}）</span>
-                  )}
-                </span>
+            <PortfolioBlock title="資格・認定">
+              {certifications.map((c) => (
+                <PrintEntry
+                  key={c.id}
+                  title={c.name}
+                  subtitle={c.issuing_body || ""}
+                  meta={[
+                    c.acquired_on ? `取得: ${c.acquired_on}` : "",
+                    c.expires_on ? `期限: ${c.expires_on}` : "",
+                  ]
+                    .filter(Boolean)
+                    .join("　")}
+                />
               ))}
-            </div>
-          </section>
+            </PortfolioBlock>
+
+            <PortfolioBlock title="語学">
+              {languages.map((l) => (
+                <PrintEntry
+                  key={l.id}
+                  title={l.language}
+                  subtitle={[l.certification_name, l.score]
+                    .filter(Boolean)
+                    .join(" ")}
+                  meta={l.english_available ? "英語対応可能" : ""}
+                />
+              ))}
+            </PortfolioBlock>
+
+            {skills.length > 0 && (
+              <div className="mt-3 print:break-inside-avoid">
+                <p className="text-sm font-medium text-gray-900 print:break-after-avoid">
+                  スキル
+                </p>
+
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {skills.map((s) => (
+                    <span
+                      key={s.id}
+                      className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600"
+                    >
+                      {s.name}
+                      {s.category && (
+                        <span className="text-gray-400">（{s.category}）</span>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </MacroSection>
+        )}
+
+        {/* =========================
+            III. 臨床実績
+        ========================= */}
+        {clinicalItems.length > 0 && (
+          <MacroSection number="III" title="臨床実績">
+            <PortfolioBlock title={`症例経験（${clinicalItems.length}件）`}>
+              {clinicalItems.map((item) => (
+                <PrintEntry
+                  key={item.id}
+                  title={item.title}
+                  subtitle={item.kind}
+                  meta={[item.category, item.date].filter(Boolean).join("・")}
+                  description={item.description}
+                />
+              ))}
+            </PortfolioBlock>
+          </MacroSection>
+        )}
+
+        {/* =========================
+            IV. 学術活動
+        ========================= */}
+        {(conferenceItems.length > 0 ||
+          paperItems.length > 0 ||
+          trainingItems.length > 0 ||
+          otherItems.length > 0) && (
+          <MacroSection number="IV" title="学術活動">
+            <PortfolioBlock title="学会発表">
+              {conferenceItems.map((a) => (
+                <PrintEntry
+                  key={a.id}
+                  title={a.title || "無題"}
+                  subtitle={a.conference_name || ""}
+                  meta={a.achieved_on}
+                  description={a.memo || ""}
+                />
+              ))}
+            </PortfolioBlock>
+
+            <PortfolioBlock title="論文">
+              {paperItems.map((a) => (
+                <PrintEntry
+                  key={a.id}
+                  title={a.title || "無題"}
+                  meta={a.achieved_on}
+                  description={a.memo || ""}
+                />
+              ))}
+            </PortfolioBlock>
+
+            <PortfolioBlock title="研修受講">
+              {trainingItems.map((a) => (
+                <PrintEntry
+                  key={a.id}
+                  title={a.title || "無題"}
+                  meta={a.achieved_on}
+                  description={a.memo || ""}
+                />
+              ))}
+            </PortfolioBlock>
+
+            <PortfolioBlock title="その他の実績">
+              {otherItems.map((a) => (
+                <PrintEntry
+                  key={a.id}
+                  title={a.title || "無題"}
+                  meta={a.achieved_on}
+                  description={a.memo || ""}
+                />
+              ))}
+            </PortfolioBlock>
+          </MacroSection>
+        )}
+
+        {/* =========================
+            V. 教育・組織への貢献
+        ========================= */}
+        {(teaching.length > 0 || activities.length > 0) && (
+          <MacroSection number="V" title="教育・組織への貢献">
+            <PortfolioBlock title="教育・指導経験">
+              {teaching.map((t) => (
+                <PrintEntry
+                  key={t.id}
+                  title={`${TEACHING_EXPERIENCE_TYPE_LABEL[t.type]}${
+                    t.title ? "・" + t.title : ""
+                  }`}
+                  meta={t.occurred_on || ""}
+                  description={t.description || ""}
+                />
+              ))}
+            </PortfolioBlock>
+
+            <PortfolioBlock title="院内活動・プロジェクト">
+              {activities.map((a) => (
+                <PrintEntry
+                  key={a.id}
+                  title={`${HOSPITAL_ACTIVITY_TYPE_LABEL[a.type]}${
+                    a.title ? "・" + a.title : ""
+                  }`}
+                  meta={`${a.started_on || "?"} 〜 ${
+                    a.ended_on || "継続中"
+                  }`}
+                  description={a.description || ""}
+                />
+              ))}
+            </PortfolioBlock>
+          </MacroSection>
+        )}
+
+        {/* =========================
+            VI. 今後の目標
+        ========================= */}
+        {goals.length > 0 && (
+          <MacroSection number="VI" title="今後の目標">
+            <PortfolioBlock title="キャリア目標">
+              {goals.map((g) => (
+                <PrintEntry
+                  key={g.id}
+                  title={`${CAREER_GOAL_TYPE_LABEL[g.goal_type]}・${g.title}`}
+                  description={g.description || ""}
+                />
+              ))}
+            </PortfolioBlock>
+          </MacroSection>
         )}
       </div>
     </main>
+  );
+}
+
+// ポートフォリオを大きな流れ（経歴→資格・専門性→臨床実績→学術活動→
+// 教育・組織への貢献→今後の目標）で読めるようにする見出しブロック
+function MacroSection({
+  number,
+  title,
+  children,
+}: {
+  number: string;
+  title: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <section className="mt-10 print:mt-8 print:break-before-auto">
+      <div className="flex items-baseline gap-2 border-b-2 border-relight pb-2 print:break-after-avoid">
+        <span className="text-sm font-semibold text-relight-blue">
+          {number}
+        </span>
+        <h2 className="text-xl font-bold text-gray-900 print:text-lg">
+          {title}
+        </h2>
+      </div>
+
+      <div className="mt-4 space-y-6">{children}</div>
+    </section>
   );
 }
 
@@ -484,10 +630,10 @@ function PortfolioBlock({
   if (items.length === 0) return null;
 
   return (
-    <section className="mt-6 print:mt-4">
-      <h2 className="text-lg font-semibold text-gray-900 print:text-base print:break-after-avoid">
+    <section>
+      <h3 className="text-base font-semibold text-gray-900 print:text-sm print:break-after-avoid">
         {title}
-      </h2>
+      </h3>
 
       <div className="mt-3 space-y-2">{children}</div>
     </section>
