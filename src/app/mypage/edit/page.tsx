@@ -87,6 +87,16 @@ export default function EditProfilePage() {
       .eq("user_id", user.id)
       .maybeSingle();
 
+    // 出身・生年月日・連絡先は非公開のpt_privateから取得する
+    const { data: privateData } = await supabase
+      .from("pt_private")
+      .select("hometown, birth_date, contact")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    setHometown(privateData?.hometown || "");
+    setBirthDate(privateData?.birth_date || "");
+    setContact(privateData?.contact || "");
 
     if (data) {
       setProfileId(data.id);
@@ -105,10 +115,7 @@ export default function EditProfilePage() {
       );
 
       setEducation(data.education || "");
-      setHometown(data.hometown || "");
-      setBirthDate(data.birth_date || "");
       setLanguage(data.languages || "");
-      setContact(data.contact || "");
       setBiography(data.biography || "");
       setStrengths(data.strengths || "");
       setInterests(data.interests || "");
@@ -129,7 +136,6 @@ export default function EditProfilePage() {
       });
     } else {
       setFullName("");
-      setQualification("理学療法士");
     }
 
     setLoading(false);
@@ -399,10 +405,7 @@ export default function EditProfilePage() {
       experience_years:
         Number(experienceYears) || 0,
       education,
-      hometown,
-      birth_date: birthDate || null,
       languages: language,
-      contact,
       biography,
       strengths,
       interests,
@@ -410,6 +413,23 @@ export default function EditProfilePage() {
       cover_image: coverUrl || null,
       id_photo: idPhotoUrl || null,
     };
+
+    // 出身・生年月日・連絡先は非公開のpt_privateへ保存する（誰でも読めるpt_profilesには置かない）
+    const { error: privateError } = await supabase.from("pt_private").upsert(
+      {
+        user_id: userId,
+        hometown,
+        birth_date: birthDate || null,
+        contact,
+      },
+      { onConflict: "user_id" }
+    );
+
+    if (privateError) {
+      notify(privateError.message);
+      setSaving(false);
+      return;
+    }
 
     let error;
 

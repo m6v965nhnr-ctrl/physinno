@@ -20,7 +20,7 @@ import {
   listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
-import type { Post, PtProfile } from "@/lib/types";
+import type { Post, PtPrivate, PtProfile } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import { DEFAULT_PT_NAME, ptName, ptNameWithTitle } from "@/lib/format";
 
@@ -37,6 +37,9 @@ export default function MyPage() {
   const router = useRouter();
 
   const [profile, setProfile] = useState<Partial<PtProfile> | null>(null);
+  const [privateInfo, setPrivateInfo] = useState<Partial<PtPrivate> | null>(
+    null
+  );
   const [posts, setPosts] = useState<Post[]>([]);
   const [followCount, setFollowCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
@@ -115,6 +118,15 @@ export default function MyPage() {
     } else {
       setProfile(profileData);
     }
+
+    // 出身・生年月日・連絡先は非公開のpt_privateから取得する（本人のみ）
+    const { data: privateData } = await supabase
+      .from("pt_private")
+      .select("hometown, birth_date, contact")
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    setPrivateInfo(privateData || null);
 
     // =========================
     // 自分の投稿
@@ -682,12 +694,12 @@ export default function MyPage() {
 
               <ProfileItem
                 title="出身"
-                value={profile?.hometown}
+                value={privateInfo?.hometown}
               />
 
               <ProfileItem
                 title="生年月日"
-                value={profile?.birth_date}
+                value={privateInfo?.birth_date}
               />
 
               <ProfileItem
@@ -697,7 +709,7 @@ export default function MyPage() {
 
               <ProfileItem
                 title="連絡先"
-                value={profile?.contact}
+                value={privateInfo?.contact}
               />
 
               <ProfileItem

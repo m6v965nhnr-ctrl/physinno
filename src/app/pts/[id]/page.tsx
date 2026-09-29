@@ -497,23 +497,8 @@ export default function PTProfile() {
                 />
 
                 <ProfileItem
-                  title="出身"
-                  value={pt.hometown}
-                />
-
-                <ProfileItem
-                  title="生年月日"
-                  value={pt.birth_date}
-                />
-
-                <ProfileItem
                   title="言語"
                   value={pt.language}
-                />
-
-                <ProfileItem
-                  title="連絡先"
-                  value={pt.contact}
                 />
 
                 <ProfileItem

@@ -19,17 +19,25 @@ export type PtProfile = {
   specialty: string | null;
   qualification: string | null;
   education: string | null;
-  birthplace: string | null;
-  birth_date: string | null;
-  hometown: string | null;
   languages: string | null;
   language: string | null;
-  contact: string | null;
   strengths: string | null;
   interests: string | null;
   rating: number | null;
   review_count: number | null;
   created_at: string | null;
+  updated_at: string | null;
+};
+
+// 本人のみ閲覧・編集できる非公開情報（pt_private、RLSでuser_id本人限定）
+export type PtPrivate = {
+  user_id: string;
+  license_number: string | null;
+  self_assessment_private: string | null;
+  contact: string | null;
+  birth_date: string | null;
+  birthplace: string | null;
+  hometown: string | null;
   updated_at: string | null;
 };
 
