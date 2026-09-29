@@ -3,7 +3,12 @@
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { getMyAccountType, isPtOnlyPath, isPublicPtPath } from "@/lib/account";
+import {
+  getMyAccountType,
+  isPtOnlyPath,
+  isPublicPostPath,
+  isPublicPtPath,
+} from "@/lib/account";
 
 const publicPaths = ["/", "/login", "/register"];
 
@@ -21,8 +26,12 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
-      // PT検索・プロフィールはログインなしで閲覧できる（レビュー投稿等は各ページ側でログインを促す）
-      if (publicPaths.includes(pathname) || isPublicPtPath(pathname)) {
+      // PT検索・プロフィール・投稿個別ページはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
+      if (
+        publicPaths.includes(pathname) ||
+        isPublicPtPath(pathname) ||
+        isPublicPostPath(pathname)
+      ) {
         setChecking(false);
         return;
       }
@@ -65,7 +74,12 @@ export default function AuthGuard({
     };
   }, [pathname, router]);
 
-  if (checking && !publicPaths.includes(pathname) && !isPublicPtPath(pathname)) {
+  if (
+    checking &&
+    !publicPaths.includes(pathname) &&
+    !isPublicPtPath(pathname) &&
+    !isPublicPostPath(pathname)
+  ) {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">
         <p className="text-sm text-gray-400">

@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
+import { SITE_URL } from "@/lib/site";
 
 type Post = {
   id: string;
@@ -22,6 +23,7 @@ type Post = {
 };
 
 type Profile = {
+  id: string;
   user_id: string;
   full_name?: string | null;
   qualification?: string | null;
@@ -39,8 +41,10 @@ type Comment = {
 export default function PostDetailPage() {
   const params = useParams();
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   const id = params.id as string;
+  const incomingRef = searchParams.get("ref");
 
   const [post, setPost] = useState<Post | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -81,6 +85,7 @@ export default function PostDetailPage() {
     const { data: profileData } = await supabase
       .from("pt_profiles")
       .select(`
+        id,
         user_id,
         full_name,
         qualification,
@@ -260,6 +265,32 @@ export default function PostDetailPage() {
     );
   }
 
+  async function handleShare() {
+    const link = user
+      ? `${SITE_URL}/posts/${id}?ref=${user.id}`
+      : `${SITE_URL}/posts/${id}`;
+
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title: post?.title || "Re:lightの投稿",
+          text: "Re:lightでこの投稿を見つけました",
+          url: link,
+        });
+        return;
+      } catch {
+        // ユーザーがキャンセルした場合等はコピーにフォールバック
+      }
+    }
+
+    try {
+      await navigator.clipboard.writeText(link);
+      notify("リンクをコピーしました");
+    } catch {
+      notify("コピーに失敗しました。手動でリンクを選択してください");
+    }
+  }
+
   function formatDate(dateString: string) {
     return new Date(dateString).toLocaleDateString("ja-JP", {
       year: "numeric",
@@ -308,20 +339,42 @@ export default function PostDetailPage() {
 
         <div className="flex items-center justify-between mb-6">
           <Link
-            href="/home"
+            href={user ? "/home" : "/"}
             className="text-sm text-gray-500 hover:text-black"
           >
-            ← HOMEへ戻る
+            {user ? "← HOMEへ戻る" : "← Re:light"}
           </Link>
 
-          {isOwner && (
-            <Link
-              href={`/posts/${id}/edit`}
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleShare}
               className="text-sm border rounded-full px-4 py-2 hover:bg-gray-50"
             >
-              編集
-            </Link>
-          )}
+              共有
+            </button>
+
+            {isOwner && (
+              <Link
+                href={`/posts/${id}/edit`}
+                className="text-sm border rounded-full px-4 py-2 hover:bg-gray-50"
+              >
+                編集
+              </Link>
+            )}
+
+            {!user && (
+              <Link
+                href={
+                  incomingRef
+                    ? `/register?type=pt&ref=${incomingRef}`
+                    : "/register?type=pt"
+                }
+                className="shrink-0 rounded-full bg-relight-gradient px-4 py-2 text-sm font-semibold text-white"
+              >
+                無料登録
+              </Link>
+            )}
+          </div>
         </div>
 
         <div className="border rounded-2xl overflow-hidden">
@@ -329,7 +382,7 @@ export default function PostDetailPage() {
           {/* 投稿者 */}
           {profile && (
             <Link
-              href={`/pts/${profile.user_id}`}
+              href={`/pts/${profile.id}`}
               className="flex items-center gap-3 px-6 py-5 border-b hover:bg-gray-50"
             >
               {profile.profile_image ? (
@@ -490,7 +543,7 @@ function CommentItem({
   currentUserId: string;
   onDelete: (commentId: string) => void;
 }) {
-  const [profile, setProfile] = useState<Profile | null>(null);
+  const [profile, setProfile] = useState<Omit<Profile, "id"> | null>(null);
 
   async function loadProfile() {
     const { data } = await supabase

@@ -30,6 +30,16 @@ export function isPublicPtPath(pathname: string) {
   return PUBLIC_PT_PATH.test(pathname);
 }
 
+// 投稿（症例・実績）の個別ページもログインなしで見られるようにする。
+// シェアされたリンクを開いた人がログイン壁で内容を見られない状態だと、
+// 「投稿→シェア→新規登録」という広がり方がそもそも成立しないため。
+// 一覧(/posts)・投稿作成(/posts/create)・編集(/posts/{id}/edit)は対象外。
+const PUBLIC_POST_PATH = /^\/posts\/(?!create$)[^/]+$/;
+
+export function isPublicPostPath(pathname: string) {
+  return PUBLIC_POST_PATH.test(pathname);
+}
+
 // ログイン中ユーザーのアカウント種類を取得（未設定なら null）
 export async function getMyAccountType(
   userId: string
