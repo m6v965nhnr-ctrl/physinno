@@ -36,7 +36,8 @@ export default function BottomNavWrapper() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [checked, setChecked] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
+  const [unreadNotifCount, setUnreadNotifCount] = useState(0);
+  const [unreadMessageCount, setUnreadMessageCount] = useState(0);
 
   useEffect(() => {
     let mounted = true;
@@ -47,24 +48,31 @@ export default function BottomNavWrapper() {
         setLoggedIn(false);
         setAccountType(null);
         setChecked(true);
-        setUnreadCount(0);
+        setUnreadNotifCount(0);
+        setUnreadMessageCount(0);
         return;
       }
 
       const type = await getMyAccountType(userId);
 
-      const { count } = await supabase
-        .from("notifications")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", userId)
-        .eq("is_read", false);
+      const [{ count }, { data: unreadConvCount }] = await Promise.all([
+        supabase
+          .from("notifications")
+          .select("id", { count: "exact", head: true })
+          .eq("user_id", userId)
+          .eq("is_read", false),
+        supabase.rpc("get_unread_conversation_count"),
+      ]);
 
       if (!mounted) return;
 
       setLoggedIn(true);
       setAccountType(type);
       setChecked(true);
-      setUnreadCount(count || 0);
+      setUnreadNotifCount(count || 0);
+      setUnreadMessageCount(
+        typeof unreadConvCount === "number" ? unreadConvCount : 0
+      );
     }
 
     supabase.auth.getUser().then(({ data: { user } }) => {
@@ -121,14 +129,21 @@ export default function BottomNavWrapper() {
         {menus.map((menu) => {
           const active = isActive(menu.href);
 
+          const badgeCount =
+            menu.href === "/notifications"
+              ? unreadNotifCount
+              : menu.href === "/messages"
+              ? unreadMessageCount
+              : 0;
+
           return (
             <Link
               key={menu.href}
               href={menu.href}
               aria-current={active ? "page" : undefined}
               aria-label={
-                menu.href === "/notifications" && unreadCount > 0
-                  ? `${menu.label}（未読${unreadCount}件）`
+                badgeCount > 0
+                  ? `${menu.label}（未読${badgeCount}件）`
                   : undefined
               }
               className={`flex min-w-[64px] flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 transition active:scale-95 ${
@@ -146,9 +161,9 @@ export default function BottomNavWrapper() {
                 }`}
               >
                 {menu.icon}
-                {menu.href === "/notifications" && unreadCount > 0 && (
+                {badgeCount > 0 && (
                   <span className="absolute -right-1.5 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-semibold text-white">
-                    {unreadCount > 9 ? "9+" : unreadCount}
+                    {badgeCount > 9 ? "9+" : badgeCount}
                   </span>
                 )}
               </span>

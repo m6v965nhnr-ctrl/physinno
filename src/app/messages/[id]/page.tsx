@@ -115,6 +115,11 @@ export default function MessagePage() {
 
       setLoading(false);
 
+      // このスレッドを開いた時点で既読にする
+      await supabase.rpc("mark_conversation_read", {
+        p_conversation_id: conversation.id,
+      });
+
       /*
        * Realtime
        *
@@ -140,6 +145,11 @@ export default function MessagePage() {
               }
 
               return [...current, newMessage];
+            });
+
+            // 開いている間に届いたメッセージも既読にする
+            supabase.rpc("mark_conversation_read", {
+              p_conversation_id: conversation.id,
             });
           }
         );

@@ -11,6 +11,8 @@ type Conversation = {
   user1_id: string;
   user2_id: string;
   created_at: string;
+  user1_last_read_at: string | null;
+  user2_last_read_at: string | null;
 };
 
 type Profile = {
@@ -23,6 +25,7 @@ export default function MessagesPage() {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
+  const [unreadIds, setUnreadIds] = useState<Set<string>>(new Set());
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -80,6 +83,46 @@ export default function MessagesPage() {
         ? conversation.user2_id
         : conversation.user1_id
     );
+
+    // 会話ごとの最新メッセージと自分の既読時刻を比べて未読を判定する
+    const conversationIds = data.map((c) => c.id);
+
+    if (conversationIds.length > 0) {
+      const { data: latestMessages } = await supabase
+        .from("messages")
+        .select("conversation_id, sender_id, created_at")
+        .in("conversation_id", conversationIds)
+        .order("created_at", { ascending: false });
+
+      const latestByConversation: Record<
+        string,
+        { sender_id: string; created_at: string }
+      > = {};
+
+      (latestMessages || []).forEach((m) => {
+        if (!latestByConversation[m.conversation_id]) {
+          latestByConversation[m.conversation_id] = m;
+        }
+      });
+
+      const unread = new Set<string>();
+
+      data.forEach((c) => {
+        const latest = latestByConversation[c.id];
+        if (!latest || latest.sender_id === user.id) return;
+
+        const myLastReadAt =
+          c.user1_id === user.id
+            ? c.user1_last_read_at
+            : c.user2_last_read_at;
+
+        if (!myLastReadAt || latest.created_at > myLastReadAt) {
+          unread.add(c.id);
+        }
+      });
+
+      setUnreadIds(unread);
+    }
 
 
     if (otherIds.length > 0) {
@@ -186,12 +229,15 @@ export default function MessagesPage() {
                   : conversation.user1_id;
 
               const profile = profiles[otherId];
+              const unread = unreadIds.has(conversation.id);
 
               return (
                 <Link
                   key={conversation.id}
                   href={`/messages/${otherId}`}
-                  className="flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0"
+                  className={`flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0 ${
+                    unread ? "bg-cyan-50/60" : ""
+                  }`}
                 >
                   {profile?.profile_image ? (
                     <img loading="lazy" decoding="async"
@@ -206,7 +252,11 @@ export default function MessagesPage() {
                   )}
 
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-semibold text-gray-900">
+                    <p
+                      className={`text-sm text-gray-900 ${
+                        unread ? "font-bold" : "font-semibold"
+                      }`}
+                    >
                       {ptName(profile?.full_name)}
                     </p>
 
@@ -214,6 +264,10 @@ export default function MessagesPage() {
                       メッセージを見る
                     </p>
                   </div>
+
+                  {unread && (
+                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" />
+                  )}
 
                   <span className="text-gray-300">
                     →
