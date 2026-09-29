@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import ReferralCard from "@/components/ReferralCard";
+import ProfileCompletenessCard from "@/components/ProfileCompletenessCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   ACHIEVEMENT_CATEGORIES,
@@ -413,6 +414,8 @@ export default function MyPage() {
           </Link>
 
         </div>
+
+        <ProfileCompletenessCard profile={profile} />
 
         {/* =========================
             ポートフォリオへの導線
