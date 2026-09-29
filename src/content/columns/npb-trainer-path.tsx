@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NpbTrainerPath() {
   return (
     <div className="column-body">
@@ -29,7 +31,11 @@ export default function NpbTrainerPath() {
         </li>
       </ul>
       <p>
-        いずれのルートでも、学習量の目安は合計930時間とされ、資格試験の合格率は15%前後という難関資格です。国家資格の勉強と並行して取り組むには、早い段階からの計画が欠かせません。
+        いずれのルートでも、学習量の目安は合計930時間とされ、資格試験の合格率は15%前後という難関資格です。国家資格の勉強と並行して取り組むには、早い段階からの計画が欠かせません（
+        <Link href="/columns/pt-study-hours-comparison">
+          理学療法士の学習量との比較はこちら
+        </Link>
+        ）。
       </p>
 
       <h2>採用の実情</h2>

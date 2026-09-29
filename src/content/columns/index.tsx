@@ -14,6 +14,7 @@ import MlbTrainerPath from "./mlb-trainer-path";
 import JLeagueTrainerPath from "./j-league-trainer-path";
 import OverseasSoccerTrainerPath from "./overseas-soccer-trainer-path";
 import BasketballTrainerPath from "./basketball-trainer-path";
+import PtStudyHoursComparison from "./pt-study-hours-comparison";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -31,4 +32,5 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "j-league-trainer-path": JLeagueTrainerPath,
   "overseas-soccer-trainer-path": OverseasSoccerTrainerPath,
   "basketball-trainer-path": BasketballTrainerPath,
+  "pt-study-hours-comparison": PtStudyHoursComparison,
 };

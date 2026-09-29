@@ -147,6 +147,15 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "pt-study-hours-comparison",
+    title: "理学療法士になるための勉強時間はどれくらい？JSPO-AT等と比較",
+    description:
+      "PT養成課程の総単位数・臨床実習時間から見る学習量を、JSPO-AT（930時間）や米国BOC-ATCの大学院課程と比較し、資格取得にかかる規模感を整理します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {
