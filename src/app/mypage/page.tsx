@@ -433,8 +433,6 @@ export default function MyPage() {
           <span className="text-lg">›</span>
         </Link>
 
-        <ReferralCard userId={userId} />
-
         {/* =========================
             実績・資格更新（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる）
         ========================= */}
@@ -715,6 +713,8 @@ export default function MyPage() {
           >
             {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
           </button>
+
+          <ReferralCard userId={userId} />
 
           {/* ログアウト */}
           <div className="pt-4">
