@@ -7,6 +7,7 @@ import SoloPtWorkplace from "./solo-pt-workplace";
 import TrainingSeminarSearch from "./training-seminar-search";
 import PtOversupplyReality from "./pt-oversupply-reality";
 import PtSalaryReality from "./pt-salary-reality";
+import PtTokyoFamilyIncome from "./pt-tokyo-family-income";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -17,4 +18,5 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "training-seminar-search": TrainingSeminarSearch,
   "pt-oversupply-reality": PtOversupplyReality,
   "pt-salary-reality": PtSalaryReality,
+  "pt-tokyo-family-income": PtTokyoFamilyIncome,
 };

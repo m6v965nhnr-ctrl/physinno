@@ -84,6 +84,15 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "pt-tokyo-family-income",
+    title: "理学療法士の年収で東京で子育てはできる？生活費・教育費・インフレから考える",
+    description:
+      "PTの平均年収、東京の生活費、子育て世帯の年収相場、教育費、物価上昇（インフレ）のデータを並べて、東京でPTとして家族を持って生きていけるかを現実的に検証します。",
+    category: "業界動向",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {
