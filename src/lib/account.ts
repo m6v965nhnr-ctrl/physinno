@@ -40,6 +40,13 @@ export function isPublicPostPath(pathname: string) {
   return PUBLIC_POST_PATH.test(pathname);
 }
 
+// SEO向けのコラム記事（一覧・個別ページとも誰でも読める）
+const PUBLIC_COLUMN_PATH = /^\/columns(\/[^/]+)?$/;
+
+export function isPublicColumnPath(pathname: string) {
+  return PUBLIC_COLUMN_PATH.test(pathname);
+}
+
 // ログイン中ユーザーのアカウント種類を取得（未設定なら null）
 export async function getMyAccountType(
   userId: string

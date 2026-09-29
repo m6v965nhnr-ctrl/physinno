@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import {
   getMyAccountType,
   isPtOnlyPath,
+  isPublicColumnPath,
   isPublicPostPath,
   isPublicPtPath,
 } from "@/lib/account";
@@ -26,11 +27,12 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
-      // PT検索・プロフィール・投稿個別ページはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
+      // PT検索・プロフィール・投稿個別ページ・コラムはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
       if (
         publicPaths.includes(pathname) ||
         isPublicPtPath(pathname) ||
-        isPublicPostPath(pathname)
+        isPublicPostPath(pathname) ||
+        isPublicColumnPath(pathname)
       ) {
         setChecking(false);
         return;
@@ -78,7 +80,8 @@ export default function AuthGuard({
     checking &&
     !publicPaths.includes(pathname) &&
     !isPublicPtPath(pathname) &&
-    !isPublicPostPath(pathname)
+    !isPublicPostPath(pathname) &&
+    !isPublicColumnPath(pathname)
   ) {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">

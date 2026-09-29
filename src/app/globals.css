@@ -432,3 +432,90 @@ html {
 .skip-link:focus {
   top: 8px;
 }
+
+/* コラム記事本文の見出し・段落・リストの見た目を揃える */
+.column-body h2 {
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.column-body h2:first-child {
+  margin-top: 0;
+}
+
+.column-body h3 {
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.column-body p {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  line-height: 1.9;
+  color: #374151;
+}
+
+.column-body ul,
+.column-body ol {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  line-height: 1.9;
+  color: #374151;
+}
+
+.column-body ul {
+  list-style-type: disc;
+}
+
+.column-body ol {
+  list-style-type: decimal;
+}
+
+.column-body li {
+  margin-top: 0.375rem;
+}
+
+.column-body li > ul,
+.column-body li > ol {
+  margin-top: 0.375rem;
+  margin-bottom: 0;
+}
+
+.column-body strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+.column-body a {
+  color: #1d8fa3;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.column-body blockquote {
+  margin: 1.25rem 0;
+  padding: 0.75rem 1.25rem;
+  border-left: 3px solid #55c7dc;
+  background: #f7fdfd;
+  color: #4b5563;
+}
+
+.column-body .column-note {
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+  border-radius: 1rem;
+  background: #f0fdfa;
+  border: 1px solid #d1f5ec;
+  color: #374151;
+  font-size: 0.9375rem;
+  line-height: 1.8;
+}

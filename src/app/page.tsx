@@ -240,6 +240,9 @@ export default function LandingPage() {
 
       <footer className="px-6 py-8 text-center text-xs text-gray-500">
         <div className="flex items-center justify-center gap-4">
+          <Link href="/columns" className="hover:text-gray-700">
+            コラム
+          </Link>
           <Link href="/terms" className="hover:text-gray-700">
             利用規約
           </Link>
