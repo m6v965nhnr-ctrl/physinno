@@ -93,6 +93,15 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "pro-sports-trainer-path",
+    title: "プロスポーツトレーナーになるには？NPB・MLB・Jリーグ・海外サッカー・バスケの道のり",
+    description:
+      "プロ野球・メジャーリーグ・Jリーグ・海外サッカー・バスケットボール（Bリーグ/NBA）、それぞれで求められる資格とキャリアの道のりを、実例を交えて比較解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {
