@@ -66,6 +66,24 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "pt-oversupply-reality",
+    title: "理学療法士は「多すぎる」のか？需給の実態とこれからのキャリア戦略",
+    description:
+      "有資格者数の推移、供給過多の予測、都市部と地方の偏在、養成校の募集停止まで、公表データをもとに理学療法士の需給の実態を整理し、これからのキャリア戦略を考えます。",
+    category: "業界動向",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
+  {
+    slug: "pt-salary-reality",
+    title: "理学療法士の給料はなぜ上がりにくいのか？年収の実態とこれからの働き方",
+    description:
+      "平均年収の実態、昇給しにくい構造的な理由、収入を上げるために現実的に取れる選択肢まで、データをもとに理学療法士の給料事情を整理します。",
+    category: "業界動向",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {

@@ -5,6 +5,8 @@ import PortfolioForJobChange from "./portfolio-for-job-change";
 import ResumeWritingPt from "./resume-writing-pt";
 import SoloPtWorkplace from "./solo-pt-workplace";
 import TrainingSeminarSearch from "./training-seminar-search";
+import PtOversupplyReality from "./pt-oversupply-reality";
+import PtSalaryReality from "./pt-salary-reality";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -13,4 +15,6 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "resume-writing-pt": ResumeWritingPt,
   "solo-pt-workplace": SoloPtWorkplace,
   "training-seminar-search": TrainingSeminarSearch,
+  "pt-oversupply-reality": PtOversupplyReality,
+  "pt-salary-reality": PtSalaryReality,
 };
