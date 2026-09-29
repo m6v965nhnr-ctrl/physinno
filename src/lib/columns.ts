@@ -102,6 +102,51 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "npb-trainer-path",
+    title: "プロ野球（NPB）トレーナーになるには｜必要な資格と道のり",
+    description:
+      "NPBのトレーナーに必須資格はあるのか。国家資格とJSPO-ATの組み合わせ、採用の実情、今から積み上げておきたい経験まで詳しく解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
+  {
+    slug: "mlb-trainer-path",
+    title: "メジャーリーグ（MLB）のアスレティックトレーナーになるには｜BOC-ATC取得への道",
+    description:
+      "MLBで働くために事実上必須となる米国BOC-ATCとは。取得までの流れ、留学ルート、日本人保有者数など、現実的な道のりを解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
+  {
+    slug: "j-league-trainer-path",
+    title: "Jリーグのトレーナー（フィジオ）になるには｜求められる資格と求人の探し方",
+    description:
+      "Jリーグクラブで働く理学療法士に求められる資格（CSCS・JSPO-AT等）と、数少ない求人情報の集め方を解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
+  {
+    slug: "overseas-soccer-trainer-path",
+    title: "海外サッカークラブでフィジオとして働くには｜資格と就労ビザの壁",
+    description:
+      "プレミアリーグなど海外クラブで働くための現実的なハードルと、現地大学進学など実例から見えてくるルートを解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
+  {
+    slug: "basketball-trainer-path",
+    title: "バスケットボール（Bリーグ・NBA）のトレーナーになるには",
+    description:
+      "Bリーグは国内資格の組み合わせ、NBAは米国資格が必須。それぞれの道のりと今から準備できることを解説します。",
+    category: "資格・キャリア",
+    publishedAt: "2026-09-29",
+    updatedAt: "2026-09-29",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {

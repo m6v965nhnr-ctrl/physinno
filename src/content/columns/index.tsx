@@ -9,6 +9,11 @@ import PtOversupplyReality from "./pt-oversupply-reality";
 import PtSalaryReality from "./pt-salary-reality";
 import PtTokyoFamilyIncome from "./pt-tokyo-family-income";
 import ProSportsTrainerPath from "./pro-sports-trainer-path";
+import NpbTrainerPath from "./npb-trainer-path";
+import MlbTrainerPath from "./mlb-trainer-path";
+import JLeagueTrainerPath from "./j-league-trainer-path";
+import OverseasSoccerTrainerPath from "./overseas-soccer-trainer-path";
+import BasketballTrainerPath from "./basketball-trainer-path";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -21,4 +26,9 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "pt-salary-reality": PtSalaryReality,
   "pt-tokyo-family-income": PtTokyoFamilyIncome,
   "pro-sports-trainer-path": ProSportsTrainerPath,
+  "npb-trainer-path": NpbTrainerPath,
+  "mlb-trainer-path": MlbTrainerPath,
+  "j-league-trainer-path": JLeagueTrainerPath,
+  "overseas-soccer-trainer-path": OverseasSoccerTrainerPath,
+  "basketball-trainer-path": BasketballTrainerPath,
 };
