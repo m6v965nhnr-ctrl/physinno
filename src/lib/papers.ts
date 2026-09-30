@@ -1,7 +1,9 @@
 import { supabase } from "@/lib/supabase";
 
+export type PaperSource = "pubmed" | "jstage" | "cinii" | "pedro";
+
 export type PaperResult = {
-  source: "pubmed" | "jstage";
+  source: PaperSource;
   title: string;
   authors: string | null;
   journal: string | null;
@@ -20,32 +22,29 @@ export type SavedPaper = {
   created_at: string;
 };
 
-export const PAPER_SOURCE_LABEL: Record<PaperResult["source"], string> = {
+export const PAPER_SOURCE_LABEL: Record<PaperSource, string> = {
   pubmed: "PubMed",
   jstage: "J-STAGE",
+  cinii: "CiNii Research",
+  pedro: "PEDro",
 };
 
-// APIで直接検索できないサイトは、検索語を埋め込んだリンクを一発で開けるようにする
+// PubMedは常に検索対象。それ以外は絞り込み用のチェックボックスで on/off する
+export const OPTIONAL_PAPER_SOURCES: { key: Exclude<PaperSource, "pubmed">; label: string }[] = [
+  { key: "jstage", label: "J-STAGE" },
+  { key: "cinii", label: "CiNii Research" },
+  { key: "pedro", label: "PEDro" },
+];
+
+// 公開APIがない（Google Scholar: スクレイピングは規約違反のリスク／
+// 医中誌Web: 購読・ログイン必須）ため、検索語を埋め込んだリンクを開く形にとどめる
 export const PAPER_LINK_SOURCES = [
-  {
-    key: "cinii",
-    label: "CiNii Research",
-    note: "日本の論文・研究成果",
-    build: (q: string) => `https://cir.nii.ac.jp/all?q=${encodeURIComponent(q)}`,
-  },
   {
     key: "scholar",
     label: "Google Scholar",
-    note: "分野横断",
+    note: "分野横断（APIがないためリンクで開きます）",
     build: (q: string) =>
       `https://scholar.google.com/scholar?hl=ja&q=${encodeURIComponent(q)}`,
-  },
-  {
-    key: "pedro",
-    label: "PEDro",
-    note: "理学療法のRCT・システマティックレビューに強い",
-    build: (q: string) =>
-      `https://search.pedro.org.au/search-results?calc_text=${encodeURIComponent(q)}&-find=Search`,
   },
   {
     key: "ichushi",
@@ -56,19 +55,25 @@ export const PAPER_LINK_SOURCES = [
 ] as const;
 
 export async function searchPapers(
-  query: string
-): Promise<{ results: PaperResult[]; error: string | null }> {
+  query: string,
+  sources: Exclude<PaperSource, "pubmed">[]
+): Promise<{ results: PaperResult[]; error: string | null; translatedQuery: string | null }> {
   try {
-    const res = await fetch(`/api/papers/search?q=${encodeURIComponent(query)}`);
+    const params = new URLSearchParams({ q: query, sources: sources.join(",") });
+    const res = await fetch(`/api/papers/search?${params.toString()}`);
     const data = await res.json();
 
     if (!res.ok) {
-      return { results: [], error: data.error || "検索に失敗しました" };
+      return { results: [], error: data.error || "検索に失敗しました", translatedQuery: null };
     }
 
-    return { results: data.results ?? [], error: null };
+    return {
+      results: data.results ?? [],
+      error: null,
+      translatedQuery: data.translatedQuery ?? null,
+    };
   } catch {
-    return { results: [], error: "検索に失敗しました" };
+    return { results: [], error: "検索に失敗しました", translatedQuery: null };
   }
 }
 

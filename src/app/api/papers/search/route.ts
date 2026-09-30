@@ -1,12 +1,20 @@
-// 論文横断検索: PubMed・J-STAGEは公式APIで一括検索して結果を直接表示する。
-// CiNii Research・Google Scholar・PEDro・医中誌Webは公開APIがない（または
-// 登録・購読が必要な）ため、クライアント側でその場サイトへのリンクを作る。
+// 論文横断検索: PubMed・J-STAGE・CiNii Research・PEDroを一括検索し、
+// 1つの結果一覧にまとめて返す（サイトは絞り込み条件のひとつという位置づけ）。
+// Google Scholarと医中誌Webは公開APIがない（前者はスクレイピング規約違反の
+// リスク、後者は購読・ログインが必須）ため、クライアント側で検索語入りの
+// 外部リンクを提示するのみとする。
+//
+// 検索語が日本語の場合は英語に、英語の場合は日本語に自動翻訳し、
+// 両方の言語で検索して結果をまとめる（例: 「変形性膝関節症」でも
+// "knee osteoarthritis" の論文がヒットするように）。
 
 export const dynamic = "force-dynamic";
-export const maxDuration = 20;
+export const maxDuration = 25;
+
+type PaperSource = "pubmed" | "jstage" | "cinii" | "pedro";
 
 type PaperResult = {
-  source: "pubmed" | "jstage";
+  source: PaperSource;
   title: string;
   authors: string | null;
   journal: string | null;
@@ -14,14 +22,48 @@ type PaperResult = {
   url: string;
 };
 
-type PubMedSummaryItem = {
-  uid: string;
-  title?: string;
-  authors?: { name: string }[];
-  fulljournalname?: string;
-  source?: string;
-  pubdate?: string;
-};
+function containsJapanese(s: string): boolean {
+  return /[぀-ヿ㐀-鿿]/.test(s);
+}
+
+// MyMemoryの無料枠は単語単体だと辞書エントリ（ふりがな・スラッシュ付き）が
+// 混じることがあるため、記号を除去して使えるテキストだけ残す
+function cleanTranslation(raw: string): string {
+  return raw
+    .replace(/\[[^\]]*\]/g, " ")
+    .replace(/\//g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+async function translate(
+  text: string,
+  from: "ja" | "en",
+  to: "ja" | "en"
+): Promise<string | null> {
+  try {
+    const res = await fetch(
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`,
+      { signal: AbortSignal.timeout(5000) }
+    );
+    if (!res.ok) return null;
+
+    const data = (await res.json()) as {
+      responseData?: { translatedText?: string };
+    };
+    const raw = data.responseData?.translatedText;
+    if (!raw) return null;
+
+    const cleaned = cleanTranslation(raw);
+    if (!cleaned) return null;
+    // 英訳したはずなのに日本語が残っている＝翻訳できていないので諦める
+    if (to === "en" && containsJapanese(cleaned)) return null;
+
+    return cleaned;
+  } catch {
+    return null;
+  }
+}
 
 function decodeEntities(raw: string): string {
   return raw
@@ -34,6 +76,31 @@ function decodeEntities(raw: string): string {
     .replace(/&amp;/g, "&")
     .trim();
 }
+
+function dedupe(list: PaperResult[]): PaperResult[] {
+  const seen = new Set<string>();
+  return list.filter((r) => {
+    // CiNiiなど同一論文が別IDで重複登録されていることがあるため、
+    // URLに加えて「掲載誌+タイトル」の正規化キーでも重複を弾く
+    const titleKey = `${r.journal ?? ""}::${r.title}`.toLowerCase().replace(/\s+/g, "");
+    const key = `${r.source}:${titleKey}`;
+    if (seen.has(r.url) || seen.has(key)) return false;
+    seen.add(r.url);
+    seen.add(key);
+    return true;
+  });
+}
+
+// --- PubMed（公式E-utilities API） ---
+
+type PubMedSummaryItem = {
+  uid: string;
+  title?: string;
+  authors?: { name: string }[];
+  fulljournalname?: string;
+  source?: string;
+  pubdate?: string;
+};
 
 async function searchPubMed(query: string): Promise<PaperResult[]> {
   const base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
@@ -75,6 +142,8 @@ async function searchPubMed(query: string): Promise<PaperResult[]> {
       url: `https://pubmed.ncbi.nlm.nih.gov/${item.uid}/`,
     }));
 }
+
+// --- J-STAGE（公式WebAPI, Atom形式） ---
 
 function between(xml: string, tag: string): string[] {
   const re = new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`, "g");
@@ -135,6 +204,86 @@ async function searchJStage(query: string): Promise<PaperResult[]> {
   return results;
 }
 
+// --- CiNii Research（公式OpenSearch API, appid不要で利用可能） ---
+
+type CiniiItem = {
+  title?: string;
+  "@id"?: string;
+  "dc:creator"?: string[];
+  "prism:publicationName"?: string;
+  "prism:publicationDate"?: string;
+};
+
+async function searchCinii(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://cir.nii.ac.jp/opensearch/articles?q=${encodeURIComponent(query)}&count=15&format=json`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as { items?: CiniiItem[] };
+  const items = data.items ?? [];
+
+  return items
+    .filter((item): item is CiniiItem & { title: string; "@id": string } =>
+      Boolean(item.title && item["@id"])
+    )
+    .map((item) => ({
+      source: "cinii" as const,
+      title: item.title,
+      authors: (item["dc:creator"] ?? []).join("、") || null,
+      journal: item["prism:publicationName"] ?? null,
+      year: (item["prism:publicationDate"] ?? "").slice(0, 4) || null,
+      url: item["@id"],
+    }));
+}
+
+// --- PEDro（公式APIはないが、robots.txtで全許可されている検索結果ページをそのまま読む） ---
+
+async function searchPedro(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://search.pedro.org.au/search-results?calc_text=${encodeURIComponent(query)}&-find=Search`,
+    {
+      signal: AbortSignal.timeout(8000),
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)" },
+    }
+  );
+  if (!res.ok) return [];
+
+  const html = await res.text();
+  const rowRe =
+    /<a href="(https:\/\/search\.pedro\.org\.au\/search-results\/record-detail\/\d+)"[\s\S]*?class="left">([\s\S]*?)<\/a><\/td>\s*<td>([^<]*)<\/td>/g;
+
+  const results: PaperResult[] = [];
+  let m: RegExpExecArray | null;
+
+  while ((m = rowRe.exec(html)) !== null && results.length < 15) {
+    const url = m[1];
+    const title = decodeEntities(m[2]);
+    const method = decodeEntities(m[3]);
+    if (!title) continue;
+
+    const yearMatch = title.match(/\((\d{4})\)\s*$/);
+
+    results.push({
+      source: "pedro",
+      title,
+      authors: null,
+      journal: method || null,
+      year: yearMatch?.[1] ?? null,
+      url,
+    });
+  }
+
+  return results;
+}
+
+const SOURCE_SEARCHERS: Record<Exclude<PaperSource, "pubmed">, (q: string) => Promise<PaperResult[]>> = {
+  jstage: searchJStage,
+  cinii: searchCinii,
+  pedro: searchPedro,
+};
+
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q")?.trim();
@@ -146,20 +295,59 @@ export async function GET(request: Request) {
     );
   }
 
-  const [pubmed, jstage] = await Promise.allSettled([
-    searchPubMed(q),
-    searchJStage(q),
+  const sourcesParam = searchParams.get("sources");
+  const requestedSources = new Set(
+    sourcesParam ? sourcesParam.split(",") : ["jstage", "cinii", "pedro"]
+  );
+
+  const isJa = containsJapanese(q);
+  const [enTranslated, jaTranslated] = await Promise.all([
+    isJa ? translate(q, "ja", "en") : Promise.resolve(null),
+    isJa ? Promise.resolve(null) : translate(q, "en", "ja"),
   ]);
 
-  const results: PaperResult[] = [
-    ...(pubmed.status === "fulfilled" ? pubmed.value : []),
-    ...(jstage.status === "fulfilled" ? jstage.value : []),
-  ];
+  const enQuery = isJa ? enTranslated ?? q : q;
+  const jaQuery = isJa ? q : jaTranslated ?? q;
+  // 日本語検索サイト（J-STAGE・CiNii）は日英どちらの表記の論文もヒットしうるので両方で検索する
+  const bilingualQueries = [...new Set([jaQuery, enQuery])];
 
-  const failedSources = [
-    pubmed.status === "rejected" ? "pubmed" : null,
-    jstage.status === "rejected" ? "jstage" : null,
-  ].filter((s): s is string => Boolean(s));
+  const tasks: Promise<PaperResult[]>[] = [searchPubMed(enQuery)];
+  const taskLabels: string[] = ["pubmed"];
 
-  return Response.json({ results, failedSources });
+  (Object.keys(SOURCE_SEARCHERS) as Exclude<PaperSource, "pubmed">[]).forEach((key) => {
+    if (!requestedSources.has(key)) return;
+
+    const searcher = SOURCE_SEARCHERS[key];
+    const queries = key === "pedro" ? [enQuery] : bilingualQueries;
+
+    tasks.push(
+      Promise.all(queries.map(searcher)).then((lists) => dedupe(lists.flat()))
+    );
+    taskLabels.push(key);
+  });
+
+  const settled = await Promise.allSettled(tasks);
+
+  const results: PaperResult[] = [];
+  const failedSources: string[] = [];
+
+  settled.forEach((r, i) => {
+    if (r.status === "fulfilled") {
+      results.push(...r.value);
+    } else {
+      failedSources.push(taskLabels[i]);
+    }
+  });
+
+  const merged = dedupe(results).sort((a, b) => {
+    const ay = a.year ? Number(a.year) : -1;
+    const by = b.year ? Number(b.year) : -1;
+    return by - ay;
+  });
+
+  return Response.json({
+    results: merged,
+    failedSources,
+    translatedQuery: isJa ? enTranslated : jaTranslated,
+  });
 }

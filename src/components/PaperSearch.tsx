@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import {
+  OPTIONAL_PAPER_SOURCES,
   PAPER_LINK_SOURCES,
   PAPER_SOURCE_LABEL,
   PaperResult,
+  PaperSource,
   SavedPaper,
   deleteSavedPaper,
   listSavedPapers,
@@ -15,8 +17,11 @@ import {
 } from "@/lib/papers";
 
 // PTがいつも論文を探すときに何サイトも回っている手間を減らすための横断検索。
-// PubMed・J-STAGEは公式APIで直接結果を表示し、それ以外は検索語入りの
-// リンクを一発で開けるようにする（公開APIがない、または購読が必要なため）。
+// PubMed・J-STAGE・CiNii Research・PEDroは公式API（またはrobots.txtで
+// 許可された検索結果ページ）から1つの結果一覧にまとめて表示する。
+// サイトはあくまで絞り込みのチェックボックス。Google Scholarと医中誌Webは
+// 公開APIがない（規約違反のリスク／購読・ログイン必須）ため、検索語入りの
+// リンクを一発で開けるだけにとどめる。
 export default function PaperSearch() {
   const [userId, setUserId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
@@ -24,6 +29,11 @@ export default function PaperSearch() {
   const [results, setResults] = useState<PaperResult[]>([]);
   const [searched, setSearched] = useState(false);
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
+  const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
+
+  const [enabledSources, setEnabledSources] = useState<Set<Exclude<PaperSource, "pubmed">>>(
+    new Set(OPTIONAL_PAPER_SOURCES.map((s) => s.key))
+  );
 
   const [savedOpen, setSavedOpen] = useState(false);
   const [savedPapers, setSavedPapers] = useState<SavedPaper[]>([]);
@@ -35,6 +45,15 @@ export default function PaperSearch() {
     });
   }, []);
 
+  function toggleSource(key: Exclude<PaperSource, "pubmed">) {
+    setEnabledSources((prev) => {
+      const next = new Set(prev);
+      if (next.has(key)) next.delete(key);
+      else next.add(key);
+      return next;
+    });
+  }
+
   async function handleSearch() {
     const q = query.trim();
     if (!q) return;
@@ -42,8 +61,9 @@ export default function PaperSearch() {
     setSearching(true);
     setSearched(true);
 
-    const { results, error } = await searchPapers(q);
+    const { results, error, translatedQuery } = await searchPapers(q, [...enabledSources]);
     setResults(results);
+    setTranslatedQuery(translatedQuery);
     setSearching(false);
 
     if (error) notify(error);
@@ -109,7 +129,30 @@ export default function PaperSearch() {
         </button>
       </div>
 
-      {/* PubMed / J-STAGE を横断した結果 */}
+      {/* 検索対象サイト（絞り込み条件。PubMedは常に含む） */}
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
+        <span className="rounded-full bg-gray-100 px-2.5 py-1 text-gray-600">
+          ✓ PubMed（常に検索）
+        </span>
+        {OPTIONAL_PAPER_SOURCES.map((s) => (
+          <label key={s.key} className="flex items-center gap-1.5">
+            <input
+              type="checkbox"
+              checked={enabledSources.has(s.key)}
+              onChange={() => toggleSource(s.key)}
+            />
+            {s.label}
+          </label>
+        ))}
+      </div>
+
+      {translatedQuery && (
+        <p className="mt-3 text-xs text-gray-400">
+          🌐「{translatedQuery}」でも検索しました
+        </p>
+      )}
+
+      {/* PubMed・J-STAGE・CiNii・PEDroを横断した結果を1つにまとめて表示 */}
       {searched && (
         <div className="mt-6 space-y-3">
           {searching && (
@@ -118,7 +161,7 @@ export default function PaperSearch() {
 
           {!searching && results.length === 0 && (
             <p className="text-sm text-gray-400">
-              PubMed / J-STAGEでは見つかりませんでした。下のリンクから他のサイトも確認してみてください
+              見つかりませんでした。下のリンクから他のサイトも確認してみてください
             </p>
           )}
 
@@ -163,7 +206,9 @@ export default function PaperSearch() {
 
       {/* APIがないサイトは検索語入りのリンクをその場で開けるようにする */}
       <div className="mt-8">
-        <h2 className="text-sm font-semibold text-gray-500">他のサイトでも探す</h2>
+        <h2 className="text-sm font-semibold text-gray-500">
+          他のサイトでも探す（APIがないためリンクで開きます）
+        </h2>
         <div className="mt-3 grid grid-cols-2 gap-2">
           {PAPER_LINK_SOURCES.map((s) => (
             <a
