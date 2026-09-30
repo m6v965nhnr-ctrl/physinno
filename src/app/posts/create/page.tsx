@@ -10,17 +10,7 @@ import {
   AchievementCategory,
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
-
-const diseaseCategories = [
-  "脳血管",
-  "整形外科",
-  "呼吸器",
-  "循環器",
-  "神経筋",
-  "内部障害",
-  "スポーツ",
-  "その他",
-];
+import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 
 type PostType = "normal" | AchievementCategory;
 
@@ -709,7 +699,7 @@ function AttachmentFields({
         >
           <option value="">指定しない</option>
 
-          {diseaseCategories.map((category) => (
+          {DISEASE_CATEGORIES.map((category) => (
             <option key={category} value={category}>
               {category}
             </option>

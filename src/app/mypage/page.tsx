@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import ReferralCard from "@/components/ReferralCard";
 import ProfileCompletenessCard from "@/components/ProfileCompletenessCard";
+import CertificateAttachments from "@/components/CertificateAttachments";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   ACHIEVEMENT_CATEGORIES,
@@ -620,6 +621,13 @@ export default function MyPage() {
                       <p className="mt-1 text-xs text-gray-400">
                         {a.achieved_on}
                       </p>
+
+                      {userId && (
+                        <CertificateAttachments
+                          postId={a.id}
+                          userId={userId}
+                        />
+                      )}
                     </div>
 
                     <button
