@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
+import PaperSearch from "@/components/PaperSearch";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 
@@ -23,7 +24,9 @@ export default function PTSearchPage(){
 
   // PTアカウントのみ「News（研修・学会情報）」タブを表示
   const [isPt,setIsPt] = useState(false);
-  const [tab,setTab] = useState<"pts"|"news">("pts");
+  const [tab,setTab] = useState<"search"|"news">("search");
+  // 「探す」タブの中の切り替え: PTを探す / 論文を探す
+  const [searchMode,setSearchMode] = useState<"pts"|"papers">("pts");
 
   // ログインしていない訪問者（検索エンジン経由など）には登録を案内する
   const [loggedIn, setLoggedIn] = useState(true);
@@ -158,7 +161,7 @@ export default function PTSearchPage(){
             className="mb-8 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium"
           >
 
-            {([["pts","PTを探す"],["news","News"]] as const).map(([key,label])=>(
+            {([["search","探す"],["news","News"]] as const).map(([key,label])=>(
 
               <button
 
@@ -189,9 +192,54 @@ export default function PTSearchPage(){
         )}
 
 
+        {isPt && tab === "search" && (
+
+          <div
+            role="tablist"
+            aria-label="探すの種類"
+            className="mb-8 grid grid-cols-2 rounded-full border border-gray-200 p-1 text-sm font-medium"
+          >
+
+            {([["pts","PTを探す"],["papers","論文を探す"]] as const).map(([key,label])=>(
+
+              <button
+
+                key={key}
+
+                role="tab"
+
+                aria-selected={searchMode === key}
+
+                onClick={()=>setSearchMode(key)}
+
+                className={`rounded-full py-2 transition ${
+                  searchMode === key
+                    ? "bg-gray-900 text-white"
+                    : "text-gray-500"
+                }`}
+
+              >
+
+                {label}
+
+              </button>
+
+            ))}
+
+          </div>
+
+        )}
+
         {isPt && tab === "news" ? (
 
           <SeminarNews />
+
+        ) : isPt && searchMode === "papers" ? (
+
+          <>
+            <h1 className="text-3xl font-semibold mb-10">論文を探す</h1>
+            <PaperSearch />
+          </>
 
         ) : (
 
