@@ -110,13 +110,15 @@ export async function syncProfileToPortfolio(
   const prevCerts = splitList(prev.qualification);
 
   for (const name of prevCerts.filter((n) => !nextCerts.includes(n))) {
-    const ids = certs.filter((c) => c.name === name).map((c) => c.id);
+    const ids = certs
+      .filter((c) => c.name.trim() === name)
+      .map((c) => c.id);
     if (ids.length > 0) {
       await supabase.from("certifications").delete().in("id", ids);
     }
   }
   for (const name of nextCerts) {
-    if (!certs.some((c) => c.name === name)) {
+    if (!certs.some((c) => c.name.trim() === name)) {
       await supabase.from("certifications").insert({ user_id: userId, name });
     }
   }
@@ -126,13 +128,15 @@ export async function syncProfileToPortfolio(
   const prevLangs = splitList(prev.languages);
 
   for (const name of prevLangs.filter((n) => !nextLangs.includes(n))) {
-    const ids = langs.filter((l) => l.language === name).map((l) => l.id);
+    const ids = langs
+      .filter((l) => l.language.trim() === name)
+      .map((l) => l.id);
     if (ids.length > 0) {
       await supabase.from("language_skills").delete().in("id", ids);
     }
   }
   for (const name of nextLangs) {
-    if (!langs.some((l) => l.language === name)) {
+    if (!langs.some((l) => l.language.trim() === name)) {
       await supabase
         .from("language_skills")
         .insert({ user_id: userId, language: name });
@@ -176,8 +180,8 @@ export async function syncPortfolioToProfile(userId: string) {
 
   const update: Record<string, string> = {
     education: latestEdu?.school_name || "",
-    qualification: joinList(certs.map((c) => c.name)),
-    languages: joinList(langs.map((l) => l.language)),
+    qualification: joinList(certs.map((c) => c.name.trim())),
+    languages: joinList(langs.map((l) => l.language.trim())),
   };
 
   if (currentWork) {

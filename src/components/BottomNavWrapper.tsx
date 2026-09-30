@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -38,11 +38,33 @@ export default function BottomNavWrapper() {
   const [checked, setChecked] = useState(false);
   const [unreadNotifCount, setUnreadNotifCount] = useState(0);
   const [unreadMessageCount, setUnreadMessageCount] = useState(0);
+  const userIdRef = useRef<string | null>(null);
+  const prevPathnameRef = useRef(pathname);
 
+  async function refreshUnreadCounts(userId: string) {
+    const [{ count }, { data: unreadConvCount }] = await Promise.all([
+      supabase
+        .from("notifications")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", userId)
+        .eq("is_read", false),
+      supabase.rpc("get_unread_conversation_count"),
+    ]);
+
+    setUnreadNotifCount(count || 0);
+    setUnreadMessageCount(
+      typeof unreadConvCount === "number" ? unreadConvCount : 0
+    );
+  }
+
+  // ログイン状態・未読件数は、マウント時とログイン状態が変わった時だけ取得する
+  // （画面遷移のたびに毎回問い合わせると無駄なリクエストが積み重なるため）
   useEffect(() => {
     let mounted = true;
 
     async function applyUser(userId: string | null) {
+      userIdRef.current = userId;
+
       if (!userId) {
         if (!mounted) return;
         setLoggedIn(false);
@@ -55,24 +77,13 @@ export default function BottomNavWrapper() {
 
       const type = await getMyAccountType(userId);
 
-      const [{ count }, { data: unreadConvCount }] = await Promise.all([
-        supabase
-          .from("notifications")
-          .select("id", { count: "exact", head: true })
-          .eq("user_id", userId)
-          .eq("is_read", false),
-        supabase.rpc("get_unread_conversation_count"),
-      ]);
-
       if (!mounted) return;
 
       setLoggedIn(true);
       setAccountType(type);
       setChecked(true);
-      setUnreadNotifCount(count || 0);
-      setUnreadMessageCount(
-        typeof unreadConvCount === "number" ? unreadConvCount : 0
-      );
+
+      await refreshUnreadCounts(userId);
     }
 
     supabase.auth.getUser().then(({ data: { user } }) => {
@@ -89,6 +100,21 @@ export default function BottomNavWrapper() {
       mounted = false;
       subscription.unsubscribe();
     };
+  }, []);
+
+  // 通知・メッセージ一覧を開いて既読にした後、他のページへ戻ったタイミングで
+  // バッジの数だけ更新する（毎回の画面遷移では問い合わせない）
+  useEffect(() => {
+    const prevPathname = prevPathnameRef.current;
+    prevPathnameRef.current = pathname;
+
+    const leftNotifications = prevPathname === "/notifications";
+    const leftMessages =
+      prevPathname === "/messages" || prevPathname?.startsWith("/messages/");
+
+    if ((leftNotifications || leftMessages) && userIdRef.current) {
+      refreshUnreadCounts(userIdRef.current);
+    }
   }, [pathname]);
 
   // ログイン状態の確認が終わるまで何も表示しない
