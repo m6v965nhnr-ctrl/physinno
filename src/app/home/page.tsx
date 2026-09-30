@@ -459,7 +459,7 @@ if (targetPost && targetPost.user_id !== userId) {
           </div>
         </header>
 
-        {/* 通知・症例検索（常にヘッダーの下に固定表示） */}
+        {/* 通知・症例検索・グループ（常にヘッダーの下に固定表示） */}
         <div className="flex gap-2 bg-white px-5 pt-4">
           <Link
             href="/notifications"
@@ -480,6 +480,14 @@ if (targetPost && targetPost.user_id !== userId) {
           >
             <span aria-hidden="true">🔍</span>
             症例検索
+          </Link>
+
+          <Link
+            href="/groups"
+            className="inline-flex w-1/3 items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+          >
+            <span aria-hidden="true">👥</span>
+            グループ
           </Link>
         </div>
 

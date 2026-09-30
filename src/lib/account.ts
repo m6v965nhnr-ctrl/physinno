@@ -11,6 +11,7 @@ export const ACCOUNT_TYPE_LABEL: Record<AccountType, string> = {
 export const PT_ONLY_PATH_PREFIXES = [
   "/home",
   "/posts",
+  "/groups",
   "/profile/edit",
   "/mypage/edit",
   "/mypage/achievements",
