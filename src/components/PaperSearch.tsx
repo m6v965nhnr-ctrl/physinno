@@ -4,9 +4,9 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import {
-  OPTIONAL_PAPER_SOURCES,
   PAPER_LINK_SOURCES,
   PAPER_SOURCE_LABEL,
+  PAPER_SOURCES,
   PaperResult,
   PaperSource,
   SavedPaper,
@@ -14,14 +14,15 @@ import {
   listSavedPapers,
   savePaper,
   searchPapers,
+  translateTitles,
 } from "@/lib/papers";
 
 // PTがいつも論文を探すときに何サイトも回っている手間を減らすための横断検索。
 // PubMed・J-STAGE・CiNii Research・PEDroは公式API（またはrobots.txtで
 // 許可された検索結果ページ）から1つの結果一覧にまとめて表示する。
-// サイトはあくまで絞り込みのチェックボックス。Google Scholarと医中誌Webは
-// 公開APIがない（規約違反のリスク／購読・ログイン必須）ため、検索語入りの
-// リンクを一発で開けるだけにとどめる。
+// サイトはあくまで絞り込みのチェックボックス（すべてデフォルトon）。
+// Google Scholarと医中誌Webは公開APIがない（規約違反のリスク／購読・
+// ログイン必須）ため、検索語入りのリンクを一発で開けるだけにとどめる。
 export default function PaperSearch() {
   const [userId, setUserId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
@@ -30,9 +31,11 @@ export default function PaperSearch() {
   const [searched, setSearched] = useState(false);
   const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
   const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
+  const [titleTranslations, setTitleTranslations] = useState<Record<string, string>>({});
+  const [translatingTitles, setTranslatingTitles] = useState(false);
 
-  const [enabledSources, setEnabledSources] = useState<Set<Exclude<PaperSource, "pubmed">>>(
-    new Set(OPTIONAL_PAPER_SOURCES.map((s) => s.key))
+  const [enabledSources, setEnabledSources] = useState<Set<PaperSource>>(
+    new Set(PAPER_SOURCES.map((s) => s.key))
   );
 
   const [savedOpen, setSavedOpen] = useState(false);
@@ -45,7 +48,7 @@ export default function PaperSearch() {
     });
   }, []);
 
-  function toggleSource(key: Exclude<PaperSource, "pubmed">) {
+  function toggleSource(key: PaperSource) {
     setEnabledSources((prev) => {
       const next = new Set(prev);
       if (next.has(key)) next.delete(key);
@@ -56,10 +59,11 @@ export default function PaperSearch() {
 
   async function handleSearch() {
     const q = query.trim();
-    if (!q) return;
+    if (!q || enabledSources.size === 0) return;
 
     setSearching(true);
     setSearched(true);
+    setTitleTranslations({});
 
     const { results, error, translatedQuery } = await searchPapers(q, [...enabledSources]);
     setResults(results);
@@ -67,6 +71,24 @@ export default function PaperSearch() {
     setSearching(false);
 
     if (error) notify(error);
+  }
+
+  async function handleTranslateTitles() {
+    const targets = results.filter((r) => !titleTranslations[r.url]);
+    if (targets.length === 0) return;
+
+    setTranslatingTitles(true);
+    const translations = await translateTitles(targets.map((r) => r.title));
+    setTranslatingTitles(false);
+
+    setTitleTranslations((prev) => {
+      const next = { ...prev };
+      targets.forEach((r, i) => {
+        const t = translations[i];
+        if (t) next[r.url] = t;
+      });
+      return next;
+    });
   }
 
   async function handleSave(paper: PaperResult) {
@@ -129,12 +151,9 @@ export default function PaperSearch() {
         </button>
       </div>
 
-      {/* 検索対象サイト（絞り込み条件。PubMedは常に含む） */}
+      {/* 検索対象サイト（すべて絞り込みのチェックボックス） */}
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
-        <span className="rounded-full bg-gray-100 px-2.5 py-1 text-gray-600">
-          ✓ PubMed（常に検索）
-        </span>
-        {OPTIONAL_PAPER_SOURCES.map((s) => (
+        {PAPER_SOURCES.map((s) => (
           <label key={s.key} className="flex items-center gap-1.5">
             <input
               type="checkbox"
@@ -165,6 +184,16 @@ export default function PaperSearch() {
             </p>
           )}
 
+          {!searching && results.length > 0 && (
+            <button
+              onClick={handleTranslateTitles}
+              disabled={translatingTitles}
+              className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+            >
+              {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
+            </button>
+          )}
+
           {results.map((r, i) => (
             <div
               key={`${r.source}-${i}`}
@@ -182,6 +211,12 @@ export default function PaperSearch() {
               >
                 {r.title}
               </a>
+
+              {titleTranslations[r.url] && (
+                <p className="mt-1 text-sm text-gray-600">
+                  {titleTranslations[r.url]}
+                </p>
+              )}
 
               <p className="mt-1 text-xs text-gray-500">
                 {[r.journal, r.year].filter(Boolean).join(" ・ ")}

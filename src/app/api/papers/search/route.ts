@@ -8,6 +8,9 @@
 // 両方の言語で検索して結果をまとめる（例: 「変形性膝関節症」でも
 // "knee osteoarthritis" の論文がヒットするように）。
 
+import { containsJapanese, translateText } from "@/lib/server/mymemory";
+import { translateMedicalJapanese } from "@/lib/server/medicalGlossary";
+
 export const dynamic = "force-dynamic";
 export const maxDuration = 25;
 
@@ -21,49 +24,6 @@ type PaperResult = {
   year: string | null;
   url: string;
 };
-
-function containsJapanese(s: string): boolean {
-  return /[぀-ヿ㐀-鿿]/.test(s);
-}
-
-// MyMemoryの無料枠は単語単体だと辞書エントリ（ふりがな・スラッシュ付き）が
-// 混じることがあるため、記号を除去して使えるテキストだけ残す
-function cleanTranslation(raw: string): string {
-  return raw
-    .replace(/\[[^\]]*\]/g, " ")
-    .replace(/\//g, " ")
-    .replace(/\s+/g, " ")
-    .trim();
-}
-
-async function translate(
-  text: string,
-  from: "ja" | "en",
-  to: "ja" | "en"
-): Promise<string | null> {
-  try {
-    const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`,
-      { signal: AbortSignal.timeout(5000) }
-    );
-    if (!res.ok) return null;
-
-    const data = (await res.json()) as {
-      responseData?: { translatedText?: string };
-    };
-    const raw = data.responseData?.translatedText;
-    if (!raw) return null;
-
-    const cleaned = cleanTranslation(raw);
-    if (!cleaned) return null;
-    // 英訳したはずなのに日本語が残っている＝翻訳できていないので諦める
-    if (to === "en" && containsJapanese(cleaned)) return null;
-
-    return cleaned;
-  } catch {
-    return null;
-  }
-}
 
 function decodeEntities(raw: string): string {
   return raw
@@ -278,11 +238,22 @@ async function searchPedro(query: string): Promise<PaperResult[]> {
   return results;
 }
 
-const SOURCE_SEARCHERS: Record<Exclude<PaperSource, "pubmed">, (q: string) => Promise<PaperResult[]>> = {
+const SOURCE_SEARCHERS: Record<PaperSource, (q: string) => Promise<PaperResult[]>> = {
+  pubmed: searchPubMed,
   jstage: searchJStage,
   cinii: searchCinii,
   pedro: searchPedro,
 };
+
+// 検索語が日本語の場合、まず用語集（medicalGlossary）で標準的な英語に
+// 変換する。用語集で拾いきれない部分が残る場合だけ機械翻訳で補う
+// （機械翻訳単体だと医学用語が不正確になりやすいため）
+async function toEnglishQuery(q: string): Promise<string | null> {
+  const { result, fullyTranslated } = translateMedicalJapanese(q);
+  if (fullyTranslated) return result;
+
+  return (await translateText(result, "ja", "en")) ?? (result !== q ? result : null);
+}
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -297,13 +268,13 @@ export async function GET(request: Request) {
 
   const sourcesParam = searchParams.get("sources");
   const requestedSources = new Set(
-    sourcesParam ? sourcesParam.split(",") : ["jstage", "cinii", "pedro"]
+    sourcesParam ? sourcesParam.split(",") : ["pubmed", "jstage", "cinii", "pedro"]
   );
 
   const isJa = containsJapanese(q);
   const [enTranslated, jaTranslated] = await Promise.all([
-    isJa ? translate(q, "ja", "en") : Promise.resolve(null),
-    isJa ? Promise.resolve(null) : translate(q, "en", "ja"),
+    isJa ? toEnglishQuery(q) : Promise.resolve(null),
+    isJa ? Promise.resolve(null) : translateText(q, "en", "ja"),
   ]);
 
   const enQuery = isJa ? enTranslated ?? q : q;
@@ -311,14 +282,14 @@ export async function GET(request: Request) {
   // 日本語検索サイト（J-STAGE・CiNii）は日英どちらの表記の論文もヒットしうるので両方で検索する
   const bilingualQueries = [...new Set([jaQuery, enQuery])];
 
-  const tasks: Promise<PaperResult[]>[] = [searchPubMed(enQuery)];
-  const taskLabels: string[] = ["pubmed"];
+  const tasks: Promise<PaperResult[]>[] = [];
+  const taskLabels: string[] = [];
 
-  (Object.keys(SOURCE_SEARCHERS) as Exclude<PaperSource, "pubmed">[]).forEach((key) => {
+  (Object.keys(SOURCE_SEARCHERS) as PaperSource[]).forEach((key) => {
     if (!requestedSources.has(key)) return;
 
     const searcher = SOURCE_SEARCHERS[key];
-    const queries = key === "pedro" ? [enQuery] : bilingualQueries;
+    const queries = key === "jstage" || key === "cinii" ? bilingualQueries : [enQuery];
 
     tasks.push(
       Promise.all(queries.map(searcher)).then((lists) => dedupe(lists.flat()))

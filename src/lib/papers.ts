@@ -29,8 +29,9 @@ export const PAPER_SOURCE_LABEL: Record<PaperSource, string> = {
   pedro: "PEDro",
 };
 
-// PubMedは常に検索対象。それ以外は絞り込み用のチェックボックスで on/off する
-export const OPTIONAL_PAPER_SOURCES: { key: Exclude<PaperSource, "pubmed">; label: string }[] = [
+// すべて絞り込み用のチェックボックスで on/off する（PubMedもデフォルトonの通常項目）
+export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
+  { key: "pubmed", label: "PubMed" },
   { key: "jstage", label: "J-STAGE" },
   { key: "cinii", label: "CiNii Research" },
   { key: "pedro", label: "PEDro" },
@@ -56,7 +57,7 @@ export const PAPER_LINK_SOURCES = [
 
 export async function searchPapers(
   query: string,
-  sources: Exclude<PaperSource, "pubmed">[]
+  sources: PaperSource[]
 ): Promise<{ results: PaperResult[]; error: string | null; translatedQuery: string | null }> {
   try {
     const params = new URLSearchParams({ q: query, sources: sources.join(",") });
@@ -74,6 +75,21 @@ export async function searchPapers(
     };
   } catch {
     return { results: [], error: "検索に失敗しました", translatedQuery: null };
+  }
+}
+
+// 検索結果のタイトルを日本語にまとめて翻訳する（直訳でよい前提のシンプル機能）
+export async function translateTitles(texts: string[]): Promise<(string | null)[]> {
+  try {
+    const res = await fetch("/api/papers/translate", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ texts }),
+    });
+    const data = await res.json();
+    return Array.isArray(data.translations) ? data.translations : texts.map(() => null);
+  } catch {
+    return texts.map(() => null);
   }
 }
 
