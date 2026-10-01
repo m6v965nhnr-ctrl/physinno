@@ -848,7 +848,7 @@ export default function EditProfilePage() {
               onChange={(e) =>
                 setBirthDate(e.target.value)
               }
-              className="w-full border rounded-xl px-4 py-3"
+              className="block w-full min-w-0 max-w-full border rounded-xl px-4 py-3"
             />
           </div>
 

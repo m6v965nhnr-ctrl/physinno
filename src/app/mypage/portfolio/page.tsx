@@ -1095,7 +1095,7 @@ function PortfolioSection({
                   onChange={(e) => updateField(f.key, e.target.value)}
                   placeholder={f.placeholder}
                   required={f.required}
-                  className="mt-1 w-full rounded-xl border px-4 py-2.5 text-sm"
+                  className="mt-1 block w-full min-w-0 max-w-full rounded-xl border px-4 py-2.5 text-sm"
                 />
               )}
             </div>
