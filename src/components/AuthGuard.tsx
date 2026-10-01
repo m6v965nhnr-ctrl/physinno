@@ -12,7 +12,7 @@ import {
   isPublicPtPath,
 } from "@/lib/account";
 
-const publicPaths = ["/", "/login", "/register"];
+const publicPaths = ["/", "/login", "/register", "/terms", "/privacy"];
 
 export default function AuthGuard({
   children,
