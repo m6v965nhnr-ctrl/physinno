@@ -24,6 +24,7 @@ import {
   listPtsByHospital,
   setDiseaseRatios,
   unfollowHospital,
+  updateRecruitmentInfo,
   upsertHospitalReview,
 } from "@/lib/hospitals";
 import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
@@ -68,6 +69,10 @@ export default function HospitalDetailPage() {
   const [editingRatios, setEditingRatios] = useState(false);
   const [ratioInputs, setRatioInputs] = useState<Record<string, string>>({});
   const [savingRatios, setSavingRatios] = useState(false);
+
+  const [editingRecruitment, setEditingRecruitment] = useState(false);
+  const [recruitmentInput, setRecruitmentInput] = useState("");
+  const [savingRecruitment, setSavingRecruitment] = useState(false);
 
   const [loading, setLoading] = useState(true);
 
@@ -207,6 +212,28 @@ export default function HospitalDetailPage() {
     notify("疾患比率を更新しました");
     setDiseaseRatiosState(await listDiseaseRatios(id));
     setEditingRatios(false);
+  }
+
+  function openRecruitmentEditor() {
+    setRecruitmentInput(hospital?.recruitment_info ?? "");
+    setEditingRecruitment(true);
+  }
+
+  async function handleSaveRecruitment() {
+    setSavingRecruitment(true);
+    const error = await updateRecruitmentInfo(id, recruitmentInput);
+    setSavingRecruitment(false);
+
+    if (error) {
+      notify(error);
+      return;
+    }
+
+    notify("採用情報を更新しました");
+    setHospital((prev) =>
+      prev ? { ...prev, recruitment_info: recruitmentInput.trim() || null } : prev
+    );
+    setEditingRecruitment(false);
   }
 
   if (loading) {
@@ -391,6 +418,59 @@ export default function HospitalDetailPage() {
                   .map((r) => ({ category: r.category, percentage: r.percentage }))}
               />
             </div>
+          ) : (
+            <p className="mt-3 text-sm text-gray-400">
+              まだ登録されていません{canEditRatios && "（在籍PTが入力できます）"}
+            </p>
+          )}
+        </section>
+
+        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
+            {canEditRatios && !editingRecruitment && (
+              <button
+                onClick={openRecruitmentEditor}
+                className="text-xs text-gray-400 hover:text-gray-700"
+              >
+                編集する
+              </button>
+            )}
+          </div>
+
+          {editingRecruitment ? (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs text-gray-400">
+                募集職種・待遇・連絡先など、在籍PTが把握している採用情報を入力してください
+              </p>
+              <textarea
+                value={recruitmentInput}
+                onChange={(e) => setRecruitmentInput(e.target.value)}
+                rows={5}
+                placeholder="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-gray-400"
+              />
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  onClick={() => setEditingRecruitment(false)}
+                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
+                >
+                  キャンセル
+                </button>
+                <button
+                  onClick={handleSaveRecruitment}
+                  disabled={savingRecruitment}
+                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
+                >
+                  {savingRecruitment ? "保存中…" : "保存する"}
+                </button>
+              </div>
+            </div>
+          ) : hospital.recruitment_info ? (
+            <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-gray-700">
+              {hospital.recruitment_info}
+            </p>
           ) : (
             <p className="mt-3 text-sm text-gray-400">
               まだ登録されていません{canEditRatios && "（在籍PTが入力できます）"}

@@ -19,6 +19,8 @@ export type Hospital = {
   email: string | null;
   website: string | null;
   size: string | null;
+  // 採用情報は自動収集せず、在籍PTが手入力する前提のフリーテキスト
+  recruitment_info: string | null;
   created_by: string | null;
   // 病院側が自分でこのページを運営したい場合、将来的にここへ本人のuser_idを
   // 紐付ける想定（今回はスキーマのみ用意。実際の運営申請フローは未実装）
@@ -291,6 +293,20 @@ export async function setDiseaseRatios(
     })),
     { onConflict: "hospital_id,category" }
   );
+
+  return error ? error.message : null;
+}
+
+// 採用情報は自動スクレイピングではなく、在籍PT（または作成者・運営者）が
+// 手入力する前提のフリーテキスト
+export async function updateRecruitmentInfo(
+  hospitalId: string,
+  recruitmentInfo: string
+): Promise<string | null> {
+  const { error } = await supabase
+    .from("hospitals")
+    .update({ recruitment_info: recruitmentInfo.trim() || null })
+    .eq("id", hospitalId);
 
   return error ? error.message : null;
 }
