@@ -146,9 +146,9 @@ export default function LandingPage() {
             ひとりにしない。
           </h1>
           <p className="mt-6 text-base leading-8 text-gray-600">
-            症例の共有・相談、PubMedなど複数サイトを横断する論文検索、全国の研修・学会情報、PT同士のつながり。
+            症例の共有・相談、PubMedなど複数サイトを横断する論文検索、全国の研修・学会情報、病院単位のグループでの相談、PT同士のつながり。
             <br className="hidden md:block" />
-            Re:lightは、理学療法士の学びと価値を可視化するプラットフォームです。
+            Re:lightは、理学療法士・患者・研究者・病院・医療系企業のための、学びと価値をつなぐプラットフォームです。
           </p>
           <div className="mt-10 max-w-sm space-y-3">
             <PrimaryCta />
