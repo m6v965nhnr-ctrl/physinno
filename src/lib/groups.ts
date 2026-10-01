@@ -89,6 +89,16 @@ export async function createGroup(params: {
     .select()
     .single();
 
+  if (data) {
+    await supabase.from("notifications").insert({
+      user_id: params.ownerId,
+      actor_id: params.ownerId,
+      type: "group_created",
+      group_id: data.id,
+      is_read: false,
+    });
+  }
+
   return { data: data as Group | null, error: error?.message || null };
 }
 
@@ -96,6 +106,16 @@ export async function joinGroup(groupId: string, userId: string) {
   const { error } = await supabase
     .from("group_members")
     .insert({ group_id: groupId, user_id: userId, role: "member" });
+
+  if (!error) {
+    await supabase.from("notifications").insert({
+      user_id: userId,
+      actor_id: userId,
+      type: "group_joined",
+      group_id: groupId,
+      is_read: false,
+    });
+  }
 
   return error ? error.message : null;
 }

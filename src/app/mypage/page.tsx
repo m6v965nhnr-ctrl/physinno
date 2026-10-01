@@ -737,6 +737,13 @@ export default function MyPage() {
 
           <ReferralCard userId={userId} />
 
+          <Link
+            href="/contact"
+            className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
+          >
+            運営へのメッセージ
+          </Link>
+
           {/* ログアウト */}
           <div className="pt-4">
             <button
@@ -941,6 +948,13 @@ function GeneralMyPage({
           accountType="general"
           onChanged={onAccountTypeChanged}
         />
+
+        <Link
+          href="/contact"
+          className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
+        >
+          運営へのメッセージ
+        </Link>
 
         <button
           onClick={onLogout}

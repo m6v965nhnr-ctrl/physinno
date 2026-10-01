@@ -71,7 +71,7 @@ export default function CreateGroupPage() {
               id="group-name"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="例：〇〇病院 リハビリ科"
+              placeholder="例：運動器勉強会"
               className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
             />
           </div>

@@ -13,6 +13,7 @@ type NotificationRow = {
   actor_id: string | null;
   type: string;
   post_id: string | null;
+  group_id: string | null;
   is_read: boolean;
   created_at: string;
 };
@@ -29,11 +30,21 @@ type PostInfo = {
   title: string | null;
 };
 
+type GroupInfo = {
+  id: string;
+  name: string;
+};
+
 const TYPE_LABEL: Record<NotificationType, string> = {
   like: "さんがあなたの投稿にいいねしました",
   comment: "さんがあなたの投稿にコメントしました",
   follow: "さんがあなたをフォローしました",
   endorsement: "さんがあなたのスキルを推薦しました",
+};
+
+const GROUP_TYPE_LABEL: Record<string, string> = {
+  group_created: "を作成しました",
+  group_joined: "に参加しました",
 };
 
 export default function NotificationsPage() {
@@ -42,6 +53,7 @@ export default function NotificationsPage() {
   const [notifications, setNotifications] = useState<NotificationRow[]>([]);
   const [actors, setActors] = useState<Record<string, ActorProfile>>({});
   const [posts, setPosts] = useState<Record<string, PostInfo>>({});
+  const [groups, setGroups] = useState<Record<string, GroupInfo>>({});
   const [loading, setLoading] = useState(true);
 
   async function load() {
@@ -58,7 +70,7 @@ export default function NotificationsPage() {
 
     const { data } = await supabase
       .from("notifications")
-      .select("id, actor_id, type, post_id, is_read, created_at")
+      .select("id, actor_id, type, post_id, group_id, is_read, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(50);
@@ -99,6 +111,23 @@ export default function NotificationsPage() {
         map[p.id] = p;
       });
       setPosts(map);
+    }
+
+    const groupIds = Array.from(
+      new Set(rows.map((n) => n.group_id).filter(Boolean))
+    ) as string[];
+
+    if (groupIds.length > 0) {
+      const { data: groupData } = await supabase
+        .from("groups")
+        .select("id, name")
+        .in("id", groupIds);
+
+      const map: Record<string, GroupInfo> = {};
+      (groupData || []).forEach((g) => {
+        map[g.id] = g;
+      });
+      setGroups(map);
     }
 
     const unreadIds = rows.filter((n) => !n.is_read).map((n) => n.id);
@@ -151,7 +180,11 @@ export default function NotificationsPage() {
             const actor = n.actor_id ? actors[n.actor_id] : null;
             const name = ptName(actor?.full_name ?? null);
             const post = n.post_id ? posts[n.post_id] : null;
-            const label = TYPE_LABEL[n.type as NotificationType] || "の通知";
+            const group = n.group_id ? groups[n.group_id] : null;
+            const isGroupType = n.type === "group_created" || n.type === "group_joined";
+            const label = isGroupType
+              ? GROUP_TYPE_LABEL[n.type]
+              : TYPE_LABEL[n.type as NotificationType] || "の通知";
 
             const body = (
               <div
@@ -162,7 +195,11 @@ export default function NotificationsPage() {
                 }`}
               >
                 <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100">
-                  {actor?.profile_image ? (
+                  {isGroupType ? (
+                    <div className="flex h-full w-full items-center justify-center text-gray-300">
+                      👥
+                    </div>
+                  ) : actor?.profile_image ? (
                     <img
                       loading="lazy"
                       decoding="async"
@@ -179,8 +216,19 @@ export default function NotificationsPage() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-sm text-gray-900">
-                    <span className="font-medium">{name}</span>
-                    {label}
+                    {isGroupType ? (
+                      <>
+                        <span className="font-medium">
+                          グループ「{group?.name ?? ""}」
+                        </span>
+                        {label}
+                      </>
+                    ) : (
+                      <>
+                        <span className="font-medium">{name}</span>
+                        {label}
+                      </>
+                    )}
                   </p>
                   {post?.title && (
                     <p className="mt-0.5 truncate text-xs text-gray-400">
@@ -197,6 +245,14 @@ export default function NotificationsPage() {
             if ((n.type === "follow" || n.type === "endorsement") && actor) {
               return (
                 <Link key={n.id} href={`/pts/${actor.id}`}>
+                  {body}
+                </Link>
+              );
+            }
+
+            if (isGroupType && n.group_id) {
+              return (
+                <Link key={n.id} href={`/groups/${n.group_id}`}>
                   {body}
                 </Link>
               );

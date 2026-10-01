@@ -427,7 +427,6 @@ export default function PortfolioPage() {
             { key: "major", label: "専攻" },
             { key: "thesis_title", label: "卒業研究テーマ" },
             { key: "thesis_summary", label: "卒業研究概要", type: "textarea" },
-            { key: "advisor_name", label: "指導教員" },
           ]}
           defaultValues={{ is_public: true }}
           onSubmit={async (values) => {

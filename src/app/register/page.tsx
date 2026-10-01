@@ -68,8 +68,8 @@ export default function RegisterPage() {
       return;
     }
 
-    if (password.length < 6) {
-      setError("パスワードは6文字以上にしてください");
+    if (password.length < 8) {
+      setError("パスワードは8文字以上にしてください");
       return;
     }
 
@@ -203,7 +203,7 @@ export default function RegisterPage() {
               onChange={(e) =>
                 setPassword(e.target.value)
               }
-              placeholder="6文字以上"
+              placeholder="8文字以上"
               className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
             />
           </div>
