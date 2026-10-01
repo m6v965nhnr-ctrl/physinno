@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
+import { MedicalHistoryEntry, listPublicMedicalHistory } from "@/lib/medicalHistory";
 
 type Message = {
   id: string;
@@ -33,6 +34,8 @@ export default function MessagePage() {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [sending, setSending] = useState(false);
+  const [medicalHistory, setMedicalHistory] = useState<MedicalHistoryEntry[]>([]);
+  const [medicalHistoryOpen, setMedicalHistoryOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -63,6 +66,13 @@ export default function MessagePage() {
       if (!cancelled && profileData) {
         setProfile(profileData);
       }
+
+      // 相手が公開設定した病歴・持病を取得する。usersテーブルは本人の行しか
+      // 読めないRLSのため相手のaccount_typeは事前判定できないが、
+      // medical_history側のRLSが「公開かつ閲覧者がPT」だけに絞ってくれるので
+      // そのまま問い合わせれば十分（該当がなければ空配列が返るだけ）
+      const history = await listPublicMedicalHistory(id);
+      if (!cancelled) setMedicalHistory(history);
 
       const { data: conversationData, error: conversationError } =
         await supabase
@@ -251,6 +261,39 @@ export default function MessagePage() {
           </div>
         </div>
       </header>
+
+      {medicalHistory.length > 0 && (
+        <div className="mx-auto max-w-2xl px-4 pt-4">
+          <div className="rounded-2xl border border-gray-100 bg-white p-4">
+            <button
+              onClick={() => setMedicalHistoryOpen((v) => !v)}
+              className="flex w-full items-center justify-between text-left"
+            >
+              <span className="text-sm font-semibold text-gray-900">
+                🏥 相手が公開している病歴・持病（{medicalHistory.length}件）
+              </span>
+              <span className="text-gray-400">
+                {medicalHistoryOpen ? "▲" : "▼"}
+              </span>
+            </button>
+
+            {medicalHistoryOpen && (
+              <div className="mt-3 space-y-2">
+                {medicalHistory.map((entry) => (
+                  <div key={entry.id} className="rounded-xl bg-gray-50 px-3 py-2.5">
+                    <p className="text-sm font-medium text-gray-900">
+                      {entry.condition_name}
+                    </p>
+                    {entry.memo && (
+                      <p className="mt-0.5 text-xs text-gray-500">{entry.memo}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <div className="mx-auto max-w-2xl px-4 py-6">
         {messages.length === 0 ? (

@@ -8,6 +8,7 @@ import AccountTypeCard from "@/components/AccountTypeCard";
 import ReferralCard from "@/components/ReferralCard";
 import ProfileCompletenessCard from "@/components/ProfileCompletenessCard";
 import CertificateAttachments from "@/components/CertificateAttachments";
+import MedicalHistorySection from "@/components/MedicalHistorySection";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   ACHIEVEMENT_CATEGORIES,
@@ -930,6 +931,8 @@ function GeneralMyPage({
             </div>
           )}
         </section>
+
+        {userId && <MedicalHistorySection userId={userId} />}
 
         {userId && <ReferralCard userId={userId} />}
 

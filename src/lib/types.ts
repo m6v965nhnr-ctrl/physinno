@@ -12,6 +12,7 @@ export type PtProfile = {
   id_photo: string | null;
   biography: string | null;
   workplace: string | null;
+  workplace_size: string | null;
   department: string | null;
   prefecture: string | null;
   city: string | null;

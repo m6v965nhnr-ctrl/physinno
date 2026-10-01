@@ -20,6 +20,7 @@ export default function EditProfilePage() {
 
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
+  const [workplaceSize, setWorkplaceSize] = useState("");
   const [department, setDepartment] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [qualification, setQualification] = useState("");
@@ -103,6 +104,7 @@ export default function EditProfilePage() {
 
       setFullName(data.full_name || "");
       setWorkplace(data.workplace || "");
+      setWorkplaceSize(data.workplace_size || "");
       setDepartment(data.department || "");
       setSpecialty(data.specialty || "");
       setQualification(data.qualification || "");
@@ -399,6 +401,7 @@ export default function EditProfilePage() {
       user_id: userId,
       full_name: fullName,
       workplace,
+      workplace_size: workplaceSize || null,
       department,
       specialty,
       qualification,
@@ -714,6 +717,25 @@ export default function EditProfilePage() {
               placeholder="例：〇〇病院"
               className="w-full border rounded-xl px-4 py-3"
             />
+          </div>
+
+          {/* 勤務先の規模（任意・患者さん向けの「病院を探す」の絞り込みに使われます） */}
+          <div>
+            <label className="block font-semibold mb-2" htmlFor="field-workplace-size">
+              勤務先の規模（任意）
+            </label>
+
+            <select
+              id="field-workplace-size"
+              value={workplaceSize}
+              onChange={(e) => setWorkplaceSize(e.target.value)}
+              className="w-full border rounded-xl px-4 py-3"
+            >
+              <option value="">未設定</option>
+              <option value="small">小規模（〜50床目安）</option>
+              <option value="medium">中規模（50〜300床目安）</option>
+              <option value="large">大規模（300床以上目安）</option>
+            </select>
           </div>
 
           {/* 所属部署 */}

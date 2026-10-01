@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
 import PaperSearch from "@/components/PaperSearch";
+import HospitalSearch from "@/components/HospitalSearch";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 
@@ -24,9 +25,13 @@ export default function PTSearchPage(){
 
   // PTアカウントのみ「News（研修・学会情報）」タブを表示
   const [isPt,setIsPt] = useState(false);
+  // 一般（患者）アカウントは News の代わりに「病院を探す」タブを出す
+  const [isGeneral,setIsGeneral] = useState(false);
   const [tab,setTab] = useState<"search"|"news">("search");
   // 「探す」タブの中の切り替え: PTを探す / 論文を探す
   const [searchMode,setSearchMode] = useState<"pts"|"papers">("pts");
+  // 一般（患者）アカウント向け: PTを探す / 病院を探す
+  const [generalMode,setGeneralMode] = useState<"pts"|"hospitals">("pts");
 
   // ログインしていない訪問者（検索エンジン経由など）には登録を案内する
   const [loggedIn, setLoggedIn] = useState(true);
@@ -42,7 +47,9 @@ export default function PTSearchPage(){
 
       if(user){
 
-        setIsPt((await getMyAccountType(user.id)) === "pt");
+        const accountType = await getMyAccountType(user.id);
+        setIsPt(accountType === "pt");
+        setIsGeneral(accountType === "general");
 
       }
 
@@ -230,6 +237,44 @@ export default function PTSearchPage(){
 
         )}
 
+        {isGeneral && (
+
+          <div
+            role="tablist"
+            aria-label="探すの種類"
+            className="mb-8 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium"
+          >
+
+            {([["pts","PTを探す"],["hospitals","病院を探す"]] as const).map(([key,label])=>(
+
+              <button
+
+                key={key}
+
+                role="tab"
+
+                aria-selected={generalMode === key}
+
+                onClick={()=>setGeneralMode(key)}
+
+                className={`rounded-full py-2.5 transition ${
+                  generalMode === key
+                    ? "bg-white text-gray-900 shadow-sm"
+                    : "text-gray-500"
+                }`}
+
+              >
+
+                {label}
+
+              </button>
+
+            ))}
+
+          </div>
+
+        )}
+
         {isPt && tab === "news" ? (
 
           <SeminarNews />
@@ -239,6 +284,13 @@ export default function PTSearchPage(){
           <>
             <h1 className="text-3xl font-semibold mb-10">論文を探す</h1>
             <PaperSearch />
+          </>
+
+        ) : isGeneral && generalMode === "hospitals" ? (
+
+          <>
+            <h1 className="text-3xl font-semibold mb-10">病院を探す</h1>
+            <HospitalSearch />
           </>
 
         ) : (
