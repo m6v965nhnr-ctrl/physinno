@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
@@ -12,7 +13,27 @@ import { ptNameWithTitle } from "@/lib/format";
 
 
 export default function PTSearchPage(){
+  return (
+    <Suspense fallback={null}>
+      <PTSearchPageInner />
+    </Suspense>
+  );
+}
 
+function PTSearchPageInner(){
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // タブ選択をURLに保持しておくと、病院ページ等から戻った時に
+  // 直前のタブ（PTを探す/病院を探す等）のまま復元できる
+  function updateUrlParam(key: string, value: string) {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) params.set(key, value);
+    else params.delete(key);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  }
 
   const [pts,setPts] = useState<PtProfile[]>([]);
 
@@ -27,11 +48,17 @@ export default function PTSearchPage(){
   const [isPt,setIsPt] = useState(false);
   // 一般（患者）アカウントは News の代わりに「病院を探す」タブを出す
   const [isGeneral,setIsGeneral] = useState(false);
-  const [tab,setTab] = useState<"search"|"news">("search");
+  const [tab,setTab] = useState<"search"|"news">(
+    () => (searchParams.get("tab") as "search" | "news") || "search"
+  );
   // 「探す」タブの中の切り替え: PTを探す / 病院を探す / 論文を探す
-  const [searchMode,setSearchMode] = useState<"pts"|"hospitals"|"papers">("pts");
+  const [searchMode,setSearchMode] = useState<"pts"|"hospitals"|"papers">(
+    () => (searchParams.get("mode") as "pts" | "hospitals" | "papers") || "pts"
+  );
   // 一般（患者）アカウント向け: PTを探す / 病院を探す
-  const [generalMode,setGeneralMode] = useState<"pts"|"hospitals">("pts");
+  const [generalMode,setGeneralMode] = useState<"pts"|"hospitals">(
+    () => (searchParams.get("mode") as "pts" | "hospitals") || "pts"
+  );
 
   // ログインしていない訪問者（検索エンジン経由など）には登録を案内する
   const [loggedIn, setLoggedIn] = useState(true);
@@ -178,7 +205,7 @@ export default function PTSearchPage(){
 
                 aria-selected={tab === key}
 
-                onClick={()=>setTab(key)}
+                onClick={()=>{setTab(key); updateUrlParam("tab", key);}}
 
                 className={`rounded-full py-2.5 transition ${
                   tab === key
@@ -217,7 +244,7 @@ export default function PTSearchPage(){
 
                 aria-selected={searchMode === key}
 
-                onClick={()=>setSearchMode(key)}
+                onClick={()=>{setSearchMode(key); updateUrlParam("mode", key);}}
 
                 className={`rounded-full py-2 transition ${
                   searchMode === key
@@ -255,7 +282,7 @@ export default function PTSearchPage(){
 
                 aria-selected={generalMode === key}
 
-                onClick={()=>setGeneralMode(key)}
+                onClick={()=>{setGeneralMode(key); updateUrlParam("mode", key);}}
 
                 className={`rounded-full py-2.5 transition ${
                   generalMode === key

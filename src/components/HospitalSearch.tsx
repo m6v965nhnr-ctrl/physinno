@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
   Hospital,
@@ -19,12 +19,18 @@ import { notify } from "@/lib/notify";
 // 遷移すると、フォローや職場環境の口コミを見られる。
 export default function HospitalSearch() {
   const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
-  const [keyword, setKeyword] = useState("");
-  const [prefecture, setPrefecture] = useState("");
-  const [city, setCity] = useState("");
+  // 検索条件をURLに保持しておくと、病院ページから戻った時に
+  // 検索条件・結果をリセットせず復元できる
+  const [keyword, setKeyword] = useState(() => searchParams.get("keyword") || "");
+  const [prefecture, setPrefecture] = useState(() => searchParams.get("prefecture") || "");
+  const [city, setCity] = useState(() => searchParams.get("city") || "");
   const [cityOptions, setCityOptions] = useState<string[]>([]);
-  const [size, setSize] = useState<WorkplaceSize | "">("");
+  const [size, setSize] = useState<WorkplaceSize | "">(
+    () => (searchParams.get("size") as WorkplaceSize | "") || ""
+  );
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -36,8 +42,15 @@ export default function HospitalSearch() {
   const [newSize, setNewSize] = useState<WorkplaceSize | "">("");
   const [adding, setAdding] = useState(false);
 
+  const didMountPrefectureEffect = useRef(false);
+
   useEffect(() => {
-    setCity("");
+    // 初回マウント時はURLから復元したcityを維持し、リセットしない
+    if (didMountPrefectureEffect.current) {
+      setCity("");
+    } else {
+      didMountPrefectureEffect.current = true;
+    }
 
     if (!prefecture) {
       setCityOptions([]);
@@ -46,6 +59,14 @@ export default function HospitalSearch() {
 
     listCitiesByPrefecture(prefecture).then(setCityOptions);
   }, [prefecture]);
+
+  // URLに検索条件があれば、マウント時に自動で検索を復元する
+  useEffect(() => {
+    if (searchParams.get("keyword") || searchParams.get("prefecture") || searchParams.get("city") || searchParams.get("size")) {
+      handleSearch();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   async function handleSearch() {
     setSearching(true);
@@ -60,6 +81,19 @@ export default function HospitalSearch() {
 
     setHospitals(results);
     setSearching(false);
+
+    const params = new URLSearchParams(searchParams.toString());
+    const entries: [string, string][] = [
+      ["keyword", keyword.trim()],
+      ["prefecture", prefecture],
+      ["city", city],
+      ["size", size],
+    ];
+    entries.forEach(([key, value]) => {
+      if (value) params.set(key, value);
+      else params.delete(key);
+    });
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
 
   async function handleAddHospital() {
