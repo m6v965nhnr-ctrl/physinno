@@ -16,9 +16,20 @@ export type Hospital = {
   city: string | null;
   address: string | null;
   phone: string | null;
+  email: string | null;
   size: string | null;
   created_by: string | null;
+  // 病院側が自分でこのページを運営したい場合、将来的にここへ本人のuser_idを
+  // 紐付ける想定（今回はスキーマのみ用意。実際の運営申請フローは未実装）
+  claimed_by: string | null;
   created_at: string;
+};
+
+export type DiseaseRatio = {
+  id: string;
+  hospital_id: string;
+  category: string;
+  percentage: number;
 };
 
 export type HospitalReview = {
@@ -63,6 +74,7 @@ export async function createHospital({
   city,
   address,
   phone,
+  email,
   size,
   createdBy,
 }: {
@@ -71,6 +83,7 @@ export async function createHospital({
   city?: string;
   address?: string;
   phone?: string;
+  email?: string;
   size?: WorkplaceSize;
   createdBy: string;
 }): Promise<{ hospital: Hospital | null; error: string | null }> {
@@ -82,6 +95,7 @@ export async function createHospital({
       city: city?.trim() || null,
       address: address?.trim() || null,
       phone: phone?.trim() || null,
+      email: email?.trim() || null,
       size: size || null,
       created_by: createdBy,
     })
@@ -186,4 +200,57 @@ export async function upsertHospitalReview({
   );
 
   return error ? error.message : null;
+}
+
+export async function listDiseaseRatios(hospitalId: string): Promise<DiseaseRatio[]> {
+  const { data } = await supabase
+    .from("hospital_disease_ratios")
+    .select("*")
+    .eq("hospital_id", hospitalId);
+
+  return data ?? [];
+}
+
+// 在籍PT（またはこのページの作成者・運営者）のみ編集できる。HPのスクレイピング
+// ではなく、カテゴリごとの比率を手入力してもらう前提
+export async function setDiseaseRatios(
+  hospitalId: string,
+  userId: string,
+  ratios: { category: string; percentage: number }[]
+): Promise<string | null> {
+  const { error } = await supabase.from("hospital_disease_ratios").upsert(
+    ratios.map((r) => ({
+      hospital_id: hospitalId,
+      category: r.category,
+      percentage: r.percentage,
+      updated_by: userId,
+    })),
+    { onConflict: "hospital_id,category" }
+  );
+
+  return error ? error.message : null;
+}
+
+export async function canEditHospitalData(
+  hospitalId: string,
+  userId: string
+): Promise<boolean> {
+  const [{ data: staffRow }, { data: hospitalRow }] = await Promise.all([
+    supabase
+      .from("pt_profiles")
+      .select("id")
+      .eq("user_id", userId)
+      .eq("hospital_id", hospitalId)
+      .maybeSingle(),
+    supabase
+      .from("hospitals")
+      .select("created_by, claimed_by")
+      .eq("id", hospitalId)
+      .maybeSingle(),
+  ]);
+
+  if (staffRow) return true;
+  if (!hospitalRow) return false;
+
+  return hospitalRow.created_by === userId || hospitalRow.claimed_by === userId;
 }

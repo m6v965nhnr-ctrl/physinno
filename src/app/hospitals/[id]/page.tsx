@@ -6,19 +6,25 @@ import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import {
+  DiseaseRatio,
   Hospital,
   HospitalReview,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
+  canEditHospitalData,
   followHospital,
   getFollowerCount,
   getHospital,
   isFollowingHospital,
+  listDiseaseRatios,
   listHospitalReviews,
   listPtsByHospital,
+  setDiseaseRatios,
   unfollowHospital,
   upsertHospitalReview,
 } from "@/lib/hospitals";
+import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
+import DiseaseRatioPieChart from "@/components/DiseaseRatioPieChart";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
@@ -46,6 +52,12 @@ export default function HospitalDetailPage() {
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [submitting, setSubmitting] = useState(false);
 
+  const [diseaseRatios, setDiseaseRatiosState] = useState<DiseaseRatio[]>([]);
+  const [canEditRatios, setCanEditRatios] = useState(false);
+  const [editingRatios, setEditingRatios] = useState(false);
+  const [ratioInputs, setRatioInputs] = useState<Record<string, string>>({});
+  const [savingRatios, setSavingRatios] = useState(false);
+
   const [loading, setLoading] = useState(true);
 
   async function load() {
@@ -59,15 +71,17 @@ export default function HospitalDetailPage() {
     }
     setHospital(h);
 
-    const [ptList, count, reviewList] = await Promise.all([
+    const [ptList, count, reviewList, ratios] = await Promise.all([
       listPtsByHospital(id),
       getFollowerCount(id),
       listHospitalReviews(id),
+      listDiseaseRatios(id),
     ]);
 
     setPts(ptList);
     setFollowerCount(count);
     setReviews(reviewList);
+    setDiseaseRatiosState(ratios);
 
     const {
       data: { user },
@@ -77,6 +91,7 @@ export default function HospitalDetailPage() {
       setUserId(user.id);
       setIsPt((await getMyAccountType(user.id)) === "pt");
       setFollowing(await isFollowingHospital(id, user.id));
+      setCanEditRatios(await canEditHospitalData(id, user.id));
 
       const mine = reviewList.find((r) => r.user_id === user.id);
       if (mine) {
@@ -140,6 +155,40 @@ export default function HospitalDetailPage() {
     setReviews(await listHospitalReviews(id));
   }
 
+  function openRatioEditor() {
+    const current: Record<string, string> = {};
+    for (const category of DISEASE_CATEGORIES) {
+      const existing = diseaseRatios.find((r) => r.category === category);
+      current[category] = existing ? String(existing.percentage) : "0";
+    }
+    setRatioInputs(current);
+    setEditingRatios(true);
+  }
+
+  async function handleSaveRatios() {
+    if (!userId) return;
+
+    setSavingRatios(true);
+    const error = await setDiseaseRatios(
+      id,
+      userId,
+      DISEASE_CATEGORIES.map((category) => ({
+        category,
+        percentage: Number(ratioInputs[category]) || 0,
+      }))
+    );
+    setSavingRatios(false);
+
+    if (error) {
+      notify(error);
+      return;
+    }
+
+    notify("疾患比率を更新しました");
+    setDiseaseRatiosState(await listDiseaseRatios(id));
+    setEditingRatios(false);
+  }
+
   if (loading) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
@@ -184,9 +233,11 @@ export default function HospitalDetailPage() {
             )}
           </p>
 
-          {(hospital.address || hospital.phone) && (
+          {(hospital.address || hospital.phone || hospital.email) && (
             <p className="mt-1 text-xs text-gray-400">
-              {[hospital.address, hospital.phone].filter(Boolean).join(" ・ ")}
+              {[hospital.address, hospital.phone, hospital.email]
+                .filter(Boolean)
+                .join(" ・ ")}
             </p>
           )}
 
@@ -233,6 +284,77 @@ export default function HospitalDetailPage() {
             </div>
           </section>
         )}
+
+        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
+            {canEditRatios && !editingRatios && (
+              <button
+                onClick={openRatioEditor}
+                className="text-xs text-gray-400 hover:text-gray-700"
+              >
+                編集する
+              </button>
+            )}
+          </div>
+
+          {editingRatios ? (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs text-gray-400">
+                各疾患カテゴリのおおよその割合（%）を入力してください
+              </p>
+              {DISEASE_CATEGORIES.map((category) => (
+                <div key={category} className="flex items-center gap-3">
+                  <span className="w-20 shrink-0 text-sm text-gray-700">
+                    {category}
+                  </span>
+                  <input
+                    type="number"
+                    min={0}
+                    max={100}
+                    value={ratioInputs[category] ?? "0"}
+                    onChange={(e) =>
+                      setRatioInputs((prev) => ({
+                        ...prev,
+                        [category]: e.target.value,
+                      }))
+                    }
+                    className="w-20 rounded-lg border px-2 py-1 text-sm"
+                  />
+                  <span className="text-xs text-gray-400">%</span>
+                </div>
+              ))}
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  onClick={() => setEditingRatios(false)}
+                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
+                >
+                  キャンセル
+                </button>
+                <button
+                  onClick={handleSaveRatios}
+                  disabled={savingRatios}
+                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
+                >
+                  {savingRatios ? "保存中…" : "保存する"}
+                </button>
+              </div>
+            </div>
+          ) : diseaseRatios.some((r) => r.percentage > 0) ? (
+            <div className="mt-4">
+              <DiseaseRatioPieChart
+                data={diseaseRatios
+                  .filter((r) => r.percentage > 0)
+                  .map((r) => ({ category: r.category, percentage: r.percentage }))}
+              />
+            </div>
+          ) : (
+            <p className="mt-3 text-sm text-gray-400">
+              まだ登録されていません{canEditRatios && "（在籍PTが入力できます）"}
+            </p>
+          )}
+        </section>
 
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <h2 className="text-sm font-semibold text-gray-500">

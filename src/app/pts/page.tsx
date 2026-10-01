@@ -28,8 +28,8 @@ export default function PTSearchPage(){
   // 一般（患者）アカウントは News の代わりに「病院を探す」タブを出す
   const [isGeneral,setIsGeneral] = useState(false);
   const [tab,setTab] = useState<"search"|"news">("search");
-  // 「探す」タブの中の切り替え: PTを探す / 論文を探す
-  const [searchMode,setSearchMode] = useState<"pts"|"papers">("pts");
+  // 「探す」タブの中の切り替え: PTを探す / 病院を探す / 論文を探す
+  const [searchMode,setSearchMode] = useState<"pts"|"hospitals"|"papers">("pts");
   // 一般（患者）アカウント向け: PTを探す / 病院を探す
   const [generalMode,setGeneralMode] = useState<"pts"|"hospitals">("pts");
 
@@ -204,10 +204,10 @@ export default function PTSearchPage(){
           <div
             role="tablist"
             aria-label="探すの種類"
-            className="mb-8 grid grid-cols-2 rounded-full border border-gray-200 p-1 text-sm font-medium"
+            className="mb-8 grid grid-cols-3 rounded-full border border-gray-200 p-1 text-sm font-medium"
           >
 
-            {([["pts","PTを探す"],["papers","論文を探す"]] as const).map(([key,label])=>(
+            {([["pts","PTを探す"],["hospitals","病院を探す"],["papers","論文を探す"]] as const).map(([key,label])=>(
 
               <button
 
@@ -284,6 +284,13 @@ export default function PTSearchPage(){
           <>
             <h1 className="text-3xl font-semibold mb-10">論文を探す</h1>
             <PaperSearch />
+          </>
+
+        ) : isPt && searchMode === "hospitals" ? (
+
+          <>
+            <h1 className="text-3xl font-semibold mb-10">病院を探す</h1>
+            <HospitalSearch />
           </>
 
         ) : isGeneral && generalMode === "hospitals" ? (

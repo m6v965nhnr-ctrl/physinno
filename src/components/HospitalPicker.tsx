@@ -29,6 +29,7 @@ export default function HospitalPicker({
   const [newCity, setNewCity] = useState("");
   const [newAddress, setNewAddress] = useState("");
   const [newPhone, setNewPhone] = useState("");
+  const [newEmail, setNewEmail] = useState("");
   const [newSize, setNewSize] = useState<WorkplaceSize | "">("");
   const [saving, setSaving] = useState(false);
 
@@ -74,6 +75,7 @@ export default function HospitalPicker({
       city: newCity,
       address: newAddress,
       phone: newPhone,
+      email: newEmail,
       size: newSize || undefined,
       createdBy: user.id,
     });
@@ -187,6 +189,13 @@ export default function HospitalPicker({
             value={newPhone}
             onChange={(e) => setNewPhone(e.target.value)}
             placeholder="電話番号（任意）"
+            className="w-full rounded-lg border px-3 py-2 text-sm"
+          />
+          <input
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            type="email"
+            placeholder="連絡先メールアドレス（任意）"
             className="w-full rounded-lg border px-3 py-2 text-sm"
           />
           <select
