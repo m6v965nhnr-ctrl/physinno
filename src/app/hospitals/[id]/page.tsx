@@ -9,6 +9,9 @@ import {
   DiseaseRatio,
   Hospital,
   HospitalReview,
+  REVIEW_AXES,
+  REVIEW_AXIS_LABEL,
+  ReviewAxis,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
   canEditHospitalData,
@@ -47,7 +50,15 @@ export default function HospitalDetailPage() {
   const [followBusy, setFollowBusy] = useState(false);
 
   const [reviews, setReviews] = useState<HospitalReview[]>([]);
-  const [rating, setRating] = useState(5);
+  const [scores, setScores] = useState<Record<ReviewAxis, number>>({
+    work_environment: 5,
+    education_system: 5,
+    salary: 5,
+    overtime: 5,
+    paid_leave: 5,
+    openness: 5,
+  });
+  const [overallScore, setOverallScore] = useState(5);
   const [comment, setComment] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -95,7 +106,15 @@ export default function HospitalDetailPage() {
 
       const mine = reviewList.find((r) => r.user_id === user.id);
       if (mine) {
-        setRating(mine.rating);
+        setScores({
+          work_environment: mine.work_environment,
+          education_system: mine.education_system,
+          salary: mine.salary,
+          overtime: mine.overtime,
+          paid_leave: mine.paid_leave,
+          openness: mine.openness,
+        });
+        setOverallScore(mine.overall_score);
         setComment(mine.comment ?? "");
         setIsAnonymous(mine.is_anonymous);
       }
@@ -140,7 +159,8 @@ export default function HospitalDetailPage() {
     const error = await upsertHospitalReview({
       hospitalId: id,
       userId,
-      rating,
+      scores,
+      overallScore,
       comment,
       isAnonymous,
     });
@@ -207,7 +227,7 @@ export default function HospitalDetailPage() {
 
   const averageRating =
     reviews.length > 0
-      ? reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length
+      ? reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length
       : null;
 
   return (
@@ -267,7 +287,7 @@ export default function HospitalDetailPage() {
             <span>フォロワー {followerCount}人</span>
             {averageRating !== null && (
               <span>
-                ⭐ {averageRating.toFixed(1)}（{reviews.length}件）
+                総合 {averageRating.toFixed(1)}/10（{reviews.length}件）
               </span>
             )}
           </div>
@@ -384,18 +404,41 @@ export default function HospitalDetailPage() {
           </h2>
 
           {isPt && (
-            <div className="mt-4 space-y-3 rounded-2xl bg-gray-50 p-4">
-              <div className="flex items-center gap-1">
-                {[1, 2, 3, 4, 5].map((n) => (
-                  <button
-                    key={n}
-                    onClick={() => setRating(n)}
-                    className={`text-xl ${n <= rating ? "" : "opacity-30"}`}
-                    aria-label={`${n}`}
-                  >
-                    ⭐
-                  </button>
-                ))}
+            <div className="mt-4 space-y-4 rounded-2xl bg-gray-50 p-4">
+              {REVIEW_AXES.map((axis) => (
+                <div key={axis}>
+                  <div className="flex items-center justify-between text-sm">
+                    <span className="text-gray-700">{REVIEW_AXIS_LABEL[axis]}</span>
+                    <span className="font-semibold text-gray-900">{scores[axis]} / 10</span>
+                  </div>
+                  <input
+                    type="range"
+                    min={1}
+                    max={10}
+                    value={scores[axis]}
+                    onChange={(e) =>
+                      setScores((prev) => ({ ...prev, [axis]: Number(e.target.value) }))
+                    }
+                    className="mt-1 w-full"
+                    aria-label={REVIEW_AXIS_LABEL[axis]}
+                  />
+                </div>
+              ))}
+
+              <div className="border-t border-gray-200 pt-3">
+                <div className="flex items-center justify-between text-sm">
+                  <span className="font-semibold text-gray-900">総合点</span>
+                  <span className="font-semibold text-gray-900">{overallScore} / 10</span>
+                </div>
+                <input
+                  type="range"
+                  min={1}
+                  max={10}
+                  value={overallScore}
+                  onChange={(e) => setOverallScore(Number(e.target.value))}
+                  className="mt-1 w-full"
+                  aria-label="総合点"
+                />
               </div>
 
               <textarea
@@ -433,13 +476,24 @@ export default function HospitalDetailPage() {
             {reviews.map((r) => (
               <div key={r.id} className="rounded-2xl border border-gray-100 p-4">
                 <div className="flex items-center justify-between">
-                  <p className="text-sm">{"⭐".repeat(r.rating)}</p>
+                  <p className="text-sm font-semibold text-gray-900">
+                    総合 {r.overall_score} / 10
+                  </p>
                   {r.is_anonymous && (
                     <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-[11px] text-gray-500">
                       匿名
                     </span>
                   )}
                 </div>
+
+                <div className="mt-2 flex flex-wrap gap-x-3 gap-y-1 text-xs text-gray-500">
+                  {REVIEW_AXES.map((axis) => (
+                    <span key={axis}>
+                      {REVIEW_AXIS_LABEL[axis]} {r[axis]}
+                    </span>
+                  ))}
+                </div>
+
                 {r.comment && (
                   <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-gray-700">
                     {r.comment}

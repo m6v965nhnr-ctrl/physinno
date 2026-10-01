@@ -37,11 +37,37 @@ export type DiseaseRatio = {
   percentage: number;
 };
 
+export const REVIEW_AXES = [
+  "work_environment",
+  "education_system",
+  "salary",
+  "overtime",
+  "paid_leave",
+  "openness",
+] as const;
+
+export type ReviewAxis = (typeof REVIEW_AXES)[number];
+
+export const REVIEW_AXIS_LABEL: Record<ReviewAxis, string> = {
+  work_environment: "職場環境",
+  education_system: "教育体制",
+  salary: "給与",
+  overtime: "残業の少なさ",
+  paid_leave: "有休消化率",
+  openness: "風通しの良さ",
+};
+
 export type HospitalReview = {
   id: string;
   hospital_id: string;
   user_id: string;
-  rating: number;
+  work_environment: number;
+  education_system: number;
+  salary: number;
+  overtime: number;
+  paid_leave: number;
+  openness: number;
+  overall_score: number;
   comment: string | null;
   is_anonymous: boolean;
   created_at: string;
@@ -213,13 +239,15 @@ export async function listHospitalReviews(
 export async function upsertHospitalReview({
   hospitalId,
   userId,
-  rating,
+  scores,
+  overallScore,
   comment,
   isAnonymous,
 }: {
   hospitalId: string;
   userId: string;
-  rating: number;
+  scores: Record<ReviewAxis, number>;
+  overallScore: number;
   comment?: string;
   isAnonymous: boolean;
 }): Promise<string | null> {
@@ -227,7 +255,8 @@ export async function upsertHospitalReview({
     {
       hospital_id: hospitalId,
       user_id: userId,
-      rating,
+      ...scores,
+      overall_score: overallScore,
       comment: comment?.trim() || null,
       is_anonymous: isAnonymous,
     },
