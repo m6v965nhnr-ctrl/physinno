@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
-import HospitalPicker from "@/components/HospitalPicker";
+import WorkplaceAutosuggest from "@/components/WorkplaceAutosuggest";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   SyncFields,
@@ -704,32 +704,18 @@ export default function EditProfilePage() {
             />
           </div>
 
-          {/* 勤務先 */}
+          {/* 勤務先（入力すると病院ページの候補が出て、選ぶと連携できる） */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-2">
               勤務先
             </label>
 
-            <input id="field-2"
+            <WorkplaceAutosuggest
               value={workplace}
-              onChange={(e) =>
-                setWorkplace(e.target.value)
-              }
-              placeholder="例：〇〇病院"
-              className="w-full border rounded-xl px-4 py-3"
+              onValueChange={setWorkplace}
+              hospitalId={hospitalId}
+              onHospitalIdChange={setHospitalId}
             />
-          </div>
-
-          {/* 病院ページ（任意・他のPTのフォロー/口コミや患者さんの「病院を探す」の対象になります） */}
-          <div>
-            <label className="block font-semibold mb-2">
-              勤務先の病院ページ（任意）
-            </label>
-            <p className="mb-2 text-xs text-gray-500">
-              紐付けると、他のPTからのフォローや職場環境の口コミの対象になり、患者さんの「病院を探す」にも表示されます。
-            </p>
-
-            <HospitalPicker value={hospitalId} onChange={setHospitalId} />
           </div>
 
           {/* 所属部署 */}
