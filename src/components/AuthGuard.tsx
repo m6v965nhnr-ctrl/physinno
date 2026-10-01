@@ -7,6 +7,7 @@ import {
   getMyAccountType,
   isPtOnlyPath,
   isPublicColumnPath,
+  isPublicHospitalPath,
   isPublicPostPath,
   isPublicPtPath,
 } from "@/lib/account";
@@ -27,12 +28,13 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
-      // PT検索・プロフィール・投稿個別ページ・コラムはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
+      // PT検索・プロフィール・投稿個別ページ・コラム・病院ページはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
       if (
         publicPaths.includes(pathname) ||
         isPublicPtPath(pathname) ||
         isPublicPostPath(pathname) ||
-        isPublicColumnPath(pathname)
+        isPublicColumnPath(pathname) ||
+        isPublicHospitalPath(pathname)
       ) {
         setChecking(false);
         return;
@@ -81,7 +83,8 @@ export default function AuthGuard({
     !publicPaths.includes(pathname) &&
     !isPublicPtPath(pathname) &&
     !isPublicPostPath(pathname) &&
-    !isPublicColumnPath(pathname)
+    !isPublicColumnPath(pathname) &&
+    !isPublicHospitalPath(pathname)
   ) {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">

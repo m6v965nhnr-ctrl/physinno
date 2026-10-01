@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
+import HospitalPicker from "@/components/HospitalPicker";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   SyncFields,
@@ -20,7 +21,7 @@ export default function EditProfilePage() {
 
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
-  const [workplaceSize, setWorkplaceSize] = useState("");
+  const [hospitalId, setHospitalId] = useState<string | null>(null);
   const [department, setDepartment] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [qualification, setQualification] = useState("");
@@ -104,7 +105,7 @@ export default function EditProfilePage() {
 
       setFullName(data.full_name || "");
       setWorkplace(data.workplace || "");
-      setWorkplaceSize(data.workplace_size || "");
+      setHospitalId(data.hospital_id || null);
       setDepartment(data.department || "");
       setSpecialty(data.specialty || "");
       setQualification(data.qualification || "");
@@ -401,7 +402,7 @@ export default function EditProfilePage() {
       user_id: userId,
       full_name: fullName,
       workplace,
-      workplace_size: workplaceSize || null,
+      hospital_id: hospitalId,
       department,
       specialty,
       qualification,
@@ -719,23 +720,16 @@ export default function EditProfilePage() {
             />
           </div>
 
-          {/* 勤務先の規模（任意・患者さん向けの「病院を探す」の絞り込みに使われます） */}
+          {/* 病院ページ（任意・他のPTのフォロー/口コミや患者さんの「病院を探す」の対象になります） */}
           <div>
-            <label className="block font-semibold mb-2" htmlFor="field-workplace-size">
-              勤務先の規模（任意）
+            <label className="block font-semibold mb-2">
+              勤務先の病院ページ（任意）
             </label>
+            <p className="mb-2 text-xs text-gray-500">
+              紐付けると、他のPTからのフォローや職場環境の口コミの対象になり、患者さんの「病院を探す」にも表示されます。
+            </p>
 
-            <select
-              id="field-workplace-size"
-              value={workplaceSize}
-              onChange={(e) => setWorkplaceSize(e.target.value)}
-              className="w-full border rounded-xl px-4 py-3"
-            >
-              <option value="">未設定</option>
-              <option value="small">小規模（〜50床目安）</option>
-              <option value="medium">中規模（50〜300床目安）</option>
-              <option value="large">大規模（300床以上目安）</option>
-            </select>
+            <HospitalPicker value={hospitalId} onChange={setHospitalId} />
           </div>
 
           {/* 所属部署 */}

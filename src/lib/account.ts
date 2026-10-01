@@ -48,6 +48,14 @@ export function isPublicColumnPath(pathname: string) {
   return PUBLIC_COLUMN_PATH.test(pathname);
 }
 
+// 病院ページもログインなしで見られるようにする（患者さんが病院を探す導線のため）。
+// フォロー・口コミの投稿はページ内でログインを促す。
+const PUBLIC_HOSPITAL_PATH = /^\/hospitals(\/[^/]+)?$/;
+
+export function isPublicHospitalPath(pathname: string) {
+  return PUBLIC_HOSPITAL_PATH.test(pathname);
+}
+
 // ログイン中ユーザーのアカウント種類を取得（未設定なら null）
 export async function getMyAccountType(
   userId: string
