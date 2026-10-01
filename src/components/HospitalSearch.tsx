@@ -12,6 +12,7 @@ import {
 // 病院はPTが作成・編集できる施設ページ。検索結果から /hospitals/{id} に
 // 遷移すると、フォローや職場環境の口コミを見られる。
 export default function HospitalSearch() {
+  const [keyword, setKeyword] = useState("");
   const [prefecture, setPrefecture] = useState("");
   const [size, setSize] = useState<WorkplaceSize | "">("");
   const [searching, setSearching] = useState(false);
@@ -23,6 +24,7 @@ export default function HospitalSearch() {
     setSearched(true);
 
     const results = await searchHospitals({
+      keyword: keyword.trim() || undefined,
       prefecture: prefecture.trim() || undefined,
       size: size || undefined,
     });
@@ -34,6 +36,17 @@ export default function HospitalSearch() {
   return (
     <div>
       <div className="space-y-3">
+        <input
+          value={keyword}
+          onChange={(e) => setKeyword(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") handleSearch();
+          }}
+          placeholder="病院名（例：横須賀市立市民病院）"
+          className="w-full rounded-full border px-5 py-3"
+          aria-label="病院名"
+        />
+
         <input
           value={prefecture}
           onChange={(e) => setPrefecture(e.target.value)}

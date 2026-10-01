@@ -48,14 +48,19 @@ export type HospitalReview = {
 };
 
 export async function searchHospitals({
+  keyword,
   prefecture,
   size,
 }: {
+  keyword?: string;
   prefecture?: string;
   size?: WorkplaceSize;
 }): Promise<Hospital[]> {
   let query = supabase.from("hospitals").select("*").order("name");
 
+  // 正式名称（例：「公益社団法人〇〇　△△病院」）で登録されているため、
+  // 一般的に呼ばれる名前の一部でも見つかるよう部分一致で検索する
+  if (keyword) query = query.ilike("name", `%${keyword}%`);
   if (prefecture) query = query.ilike("prefecture", `%${prefecture}%`);
   if (size) query = query.eq("size", size);
 
