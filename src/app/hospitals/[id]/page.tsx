@@ -250,9 +250,9 @@ export default function HospitalDetailPage() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-1 block text-xs text-gray-500 underline"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
-              公式サイト
+              🌐 公式サイト
             </a>
           )}
 
