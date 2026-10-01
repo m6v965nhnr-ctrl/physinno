@@ -85,6 +85,7 @@ export async function createHospital({
   address,
   phone,
   email,
+  website,
   size,
   createdBy,
 }: {
@@ -94,6 +95,7 @@ export async function createHospital({
   address?: string;
   phone?: string;
   email?: string;
+  website?: string;
   size?: WorkplaceSize;
   createdBy: string;
 }): Promise<{ hospital: Hospital | null; error: string | null }> {
@@ -106,6 +108,7 @@ export async function createHospital({
       address: address?.trim() || null,
       phone: phone?.trim() || null,
       email: email?.trim() || null,
+      website: website?.trim() || null,
       size: size || null,
       created_by: createdBy,
     })

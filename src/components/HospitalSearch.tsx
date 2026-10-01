@@ -2,22 +2,35 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 import {
   Hospital,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
+  createHospital,
   searchHospitals,
 } from "@/lib/hospitals";
+import { notify } from "@/lib/notify";
 
 // 病院はPTが作成・編集できる施設ページ。検索結果から /hospitals/{id} に
 // 遷移すると、フォローや職場環境の口コミを見られる。
 export default function HospitalSearch() {
+  const router = useRouter();
+
   const [keyword, setKeyword] = useState("");
   const [prefecture, setPrefecture] = useState("");
   const [size, setSize] = useState<WorkplaceSize | "">("");
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
+
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [newName, setNewName] = useState("");
+  const [newWebsite, setNewWebsite] = useState("");
+  const [newPrefecture, setNewPrefecture] = useState("");
+  const [newSize, setNewSize] = useState<WorkplaceSize | "">("");
+  const [adding, setAdding] = useState(false);
 
   async function handleSearch() {
     setSearching(true);
@@ -33,8 +46,103 @@ export default function HospitalSearch() {
     setSearching(false);
   }
 
+  async function handleAddHospital() {
+    if (!newName.trim()) {
+      notify("病院名を入力してください");
+      return;
+    }
+
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+
+    if (!user) {
+      notify("ログインしてください");
+      return;
+    }
+
+    setAdding(true);
+
+    const { hospital, error } = await createHospital({
+      name: newName.trim(),
+      website: newWebsite.trim(),
+      prefecture: newPrefecture.trim(),
+      size: newSize || undefined,
+      createdBy: user.id,
+    });
+
+    setAdding(false);
+
+    if (error || !hospital) {
+      notify(error || "追加に失敗しました");
+      return;
+    }
+
+    notify("病院ページを追加しました");
+    router.push(`/hospitals/${hospital.id}`);
+  }
+
   return (
     <div>
+      <div className="flex justify-end">
+        <button
+          type="button"
+          onClick={() => setShowAddForm((v) => !v)}
+          className="text-xs text-gray-400 underline hover:text-gray-600"
+        >
+          {showAddForm ? "閉じる" : "+ 病院が見つからない場合はこちら"}
+        </button>
+      </div>
+
+      {showAddForm && (
+        <div className="mb-4 space-y-2 rounded-2xl border border-gray-100 bg-white p-4">
+          <p className="text-xs text-gray-500">
+            探している病院・クリニックが見つからない場合、ページを新規に追加できます（公式サイトのURLを貼り付けるだけでもOK）
+          </p>
+
+          <input
+            value={newName}
+            onChange={(e) => setNewName(e.target.value)}
+            placeholder="病院名（必須）"
+            className="w-full rounded-full border px-4 py-2.5 text-sm"
+          />
+          <input
+            value={newWebsite}
+            onChange={(e) => setNewWebsite(e.target.value)}
+            type="url"
+            placeholder="公式サイトURL（任意）"
+            className="w-full rounded-full border px-4 py-2.5 text-sm"
+          />
+          <input
+            value={newPrefecture}
+            onChange={(e) => setNewPrefecture(e.target.value)}
+            placeholder="都道府県（任意）"
+            className="w-full rounded-full border px-4 py-2.5 text-sm"
+          />
+          <select
+            value={newSize}
+            onChange={(e) => setNewSize(e.target.value as WorkplaceSize | "")}
+            className="w-full rounded-full border px-4 py-2.5 text-sm"
+          >
+            <option value="">規模：未設定</option>
+            {(Object.keys(WORKPLACE_SIZE_LABEL) as WorkplaceSize[]).map((key) => (
+              <option key={key} value={key}>
+                {WORKPLACE_SIZE_LABEL[key]}
+              </option>
+            ))}
+          </select>
+
+          <button
+            type="button"
+            onClick={handleAddHospital}
+            disabled={adding}
+            className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
+          >
+            {adding ? "追加中…" : "この内容で追加する"}
+          </button>
+        </div>
+      )}
+
       <div className="space-y-3">
         <input
           value={keyword}
