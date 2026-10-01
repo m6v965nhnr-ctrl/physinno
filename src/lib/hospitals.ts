@@ -17,11 +17,16 @@ export type Hospital = {
   address: string | null;
   phone: string | null;
   email: string | null;
+  website: string | null;
   size: string | null;
   created_by: string | null;
   // 病院側が自分でこのページを運営したい場合、将来的にここへ本人のuser_idを
   // 紐付ける想定（今回はスキーマのみ用意。実際の運営申請フローは未実装）
   claimed_by: string | null;
+  // 厚労省オープンデータから一括登録した病院には出典を記録する
+  // （公共データ利用規約PDL1.0の出典明記・加工表示の義務に対応）
+  data_source: string | null;
+  data_source_note: string | null;
   created_at: string;
 };
 

@@ -241,6 +241,28 @@ export default function HospitalDetailPage() {
             </p>
           )}
 
+          {hospital.website && (
+            <a
+              href={
+                hospital.website.startsWith("http")
+                  ? hospital.website
+                  : `https://${hospital.website}`
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 block text-xs text-gray-500 underline"
+            >
+              公式サイト
+            </a>
+          )}
+
+          {hospital.data_source === "mhlw_opendata" && (
+            <p className="mt-2 text-[11px] text-gray-400">
+              {hospital.data_source_note ??
+                "出典: 厚生労働省 医療情報ネット オープンデータを加工して作成"}
+            </p>
+          )}
+
           <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
             <span>フォロワー {followerCount}人</span>
             {averageRating !== null && (
