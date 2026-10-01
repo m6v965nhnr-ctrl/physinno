@@ -169,7 +169,7 @@ export default function PortfolioViewPage() {
         .select("*")
         .eq("user_id", userId)
         .eq("is_public", true)
-        .order("occurred_on", { ascending: false }),
+        .order("started_on", { ascending: false }),
       supabase
         .from("hospital_activities")
         .select("*")
@@ -636,7 +636,9 @@ export default function PortfolioViewPage() {
                   title={`${TEACHING_EXPERIENCE_TYPE_LABEL[t.type]}${
                     t.title ? "・" + t.title : ""
                   }`}
-                  meta={t.occurred_on || ""}
+                  meta={`${t.started_on || "?"} 〜 ${
+                    t.ended_on || "継続中"
+                  }`}
                   description={t.description || ""}
                 />
               ))}

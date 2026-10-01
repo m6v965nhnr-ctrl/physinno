@@ -173,7 +173,8 @@ export type TeachingExperience = {
   type: TeachingExperienceType;
   title: string | null;
   description: string | null;
-  occurred_on: string | null;
+  started_on: string | null;
+  ended_on: string | null;
   is_public: boolean;
   created_at: string;
 };
@@ -183,7 +184,7 @@ export async function listTeachingExperiences(userId: string) {
     .from("teaching_experiences")
     .select("*")
     .eq("user_id", userId)
-    .order("occurred_on", { ascending: false });
+    .order("started_on", { ascending: false });
 
   return (data || []) as TeachingExperience[];
 }

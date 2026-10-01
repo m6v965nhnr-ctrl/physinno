@@ -243,7 +243,7 @@ export default function PortfolioPage() {
       collect(w.left_on);
     });
     certifications.forEach((c) => collect(c.acquired_on));
-    teaching.forEach((t) => collect(t.occurred_on));
+    teaching.forEach((t) => collect(t.started_on));
     activities.forEach((a) => collect(a.started_on));
     achievements.forEach((a) => collect(a.achieved_on));
 
@@ -611,7 +611,8 @@ export default function PortfolioPage() {
             },
             { key: "title", label: "タイトル" },
             { key: "description", label: "内容", type: "textarea" },
-            { key: "occurred_on", label: "実施日", type: "date" },
+            { key: "started_on", label: "開始日", type: "date" },
+            { key: "ended_on", label: "終了日", type: "date" },
           ]}
           defaultValues={{ type: "junior_mentoring", is_public: true }}
           onSubmit={async (values) => {
@@ -619,7 +620,8 @@ export default function PortfolioPage() {
               type: (values.type as TeachingExperienceType) || "junior_mentoring",
               title: (values.title as string) || null,
               description: (values.description as string) || null,
-              occurred_on: (values.occurred_on as string) || null,
+              started_on: (values.started_on as string) || null,
+              ended_on: (values.ended_on as string) || null,
               is_public: true,
             });
 
@@ -629,14 +631,14 @@ export default function PortfolioPage() {
           }}
         >
           {teaching
-            .filter((t) => matches(t.title, t.description, t.occurred_on))
+            .filter((t) => matches(t.title, t.description, t.started_on))
             .map((t) => (
               <EntryCard
                 key={t.id}
                 title={`${TEACHING_EXPERIENCE_TYPE_LABEL[t.type]}${
                   t.title ? "・" + t.title : ""
                 }`}
-                meta={t.occurred_on || ""}
+                meta={`${t.started_on || "?"} 〜 ${t.ended_on || "継続中"}`}
                 description={t.description || ""}
                 isPublic={t.is_public}
                 onDelete={async () => {
