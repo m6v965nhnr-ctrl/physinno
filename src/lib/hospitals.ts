@@ -50,10 +50,12 @@ export type HospitalReview = {
 export async function searchHospitals({
   keyword,
   prefecture,
+  city,
   size,
 }: {
   keyword?: string;
   prefecture?: string;
+  city?: string;
   size?: WorkplaceSize;
 }): Promise<Hospital[]> {
   let query = supabase.from("hospitals").select("*").order("name");
@@ -62,10 +64,30 @@ export async function searchHospitals({
   // 一般的に呼ばれる名前の一部でも見つかるよう部分一致で検索する
   if (keyword) query = query.ilike("name", `%${keyword}%`);
   if (prefecture) query = query.ilike("prefecture", `%${prefecture}%`);
+  if (city) query = query.ilike("city", `%${city}%`);
   if (size) query = query.eq("size", size);
 
   const { data } = await query.limit(100);
   return data ?? [];
+}
+
+// 選択された都道府県に実在する市区町村だけをプルダウンに出すため、
+// 病院データから distinct な city を取得する
+export async function listCitiesByPrefecture(
+  prefecture: string
+): Promise<string[]> {
+  const { data } = await supabase
+    .from("hospitals")
+    .select("city")
+    .ilike("prefecture", `%${prefecture}%`)
+    .not("city", "is", null);
+
+  const cities = new Set<string>();
+  (data ?? []).forEach((row) => {
+    if (row.city) cities.add(row.city);
+  });
+
+  return Array.from(cities).sort((a, b) => a.localeCompare(b, "ja"));
 }
 
 export async function getHospital(id: string): Promise<Hospital | null> {

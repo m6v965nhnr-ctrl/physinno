@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -9,8 +9,10 @@ import {
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
   createHospital,
+  listCitiesByPrefecture,
   searchHospitals,
 } from "@/lib/hospitals";
+import { PREFECTURES } from "@/lib/prefectures";
 import { notify } from "@/lib/notify";
 
 // 病院はPTが作成・編集できる施設ページ。検索結果から /hospitals/{id} に
@@ -20,6 +22,8 @@ export default function HospitalSearch() {
 
   const [keyword, setKeyword] = useState("");
   const [prefecture, setPrefecture] = useState("");
+  const [city, setCity] = useState("");
+  const [cityOptions, setCityOptions] = useState<string[]>([]);
   const [size, setSize] = useState<WorkplaceSize | "">("");
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
@@ -32,13 +36,25 @@ export default function HospitalSearch() {
   const [newSize, setNewSize] = useState<WorkplaceSize | "">("");
   const [adding, setAdding] = useState(false);
 
+  useEffect(() => {
+    setCity("");
+
+    if (!prefecture) {
+      setCityOptions([]);
+      return;
+    }
+
+    listCitiesByPrefecture(prefecture).then(setCityOptions);
+  }, [prefecture]);
+
   async function handleSearch() {
     setSearching(true);
     setSearched(true);
 
     const results = await searchHospitals({
       keyword: keyword.trim() || undefined,
-      prefecture: prefecture.trim() || undefined,
+      prefecture: prefecture || undefined,
+      city: city || undefined,
       size: size || undefined,
     });
 
@@ -113,12 +129,19 @@ export default function HospitalSearch() {
             placeholder="公式サイトURL（任意）"
             className="w-full rounded-full border px-4 py-2.5 text-sm"
           />
-          <input
+          <select
             value={newPrefecture}
             onChange={(e) => setNewPrefecture(e.target.value)}
-            placeholder="都道府県（任意）"
             className="w-full rounded-full border px-4 py-2.5 text-sm"
-          />
+            aria-label="都道府県（任意）"
+          >
+            <option value="">都道府県：未選択</option>
+            {PREFECTURES.map((p) => (
+              <option key={p} value={p}>
+                {p}
+              </option>
+            ))}
+          </select>
           <select
             value={newSize}
             onChange={(e) => setNewSize(e.target.value as WorkplaceSize | "")}
@@ -155,16 +178,36 @@ export default function HospitalSearch() {
           aria-label="病院名"
         />
 
-        <input
+        <select
           value={prefecture}
           onChange={(e) => setPrefecture(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter") handleSearch();
-          }}
-          placeholder="地域（都道府県）"
           className="w-full rounded-full border px-5 py-3"
-          aria-label="地域（都道府県）"
-        />
+          aria-label="都道府県"
+        >
+          <option value="">都道府県：未選択</option>
+          {PREFECTURES.map((p) => (
+            <option key={p} value={p}>
+              {p}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          disabled={!prefecture || cityOptions.length === 0}
+          className="w-full rounded-full border px-5 py-3 disabled:bg-gray-50 disabled:text-gray-400"
+          aria-label="市区町村"
+        >
+          <option value="">
+            {prefecture ? "市区町村：未選択" : "先に都道府県を選択してください"}
+          </option>
+          {cityOptions.map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
 
         <select
           value={size}
