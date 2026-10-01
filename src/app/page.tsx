@@ -138,7 +138,7 @@ export default function LandingPage() {
       <section className="mx-auto max-w-5xl px-6 pb-16 pt-10 md:pt-20">
         <div className="max-w-2xl">
           <p className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-white" style={gradient}>
-            理学療法士（PT）のためのコミュニティ
+            理学療法士・患者・研究者・病院・医療系企業のためのプラットフォーム
           </p>
           <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
             理学療法士の臨床を、
