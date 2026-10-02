@@ -20,6 +20,12 @@ import {
 const RECENT_SEARCHES_KEY = "relight:paper-search:recent";
 const RECENT_SEARCHES_MAX = 6;
 
+type AiTurn = {
+  query: string;
+  results: PaperResult[];
+  translatedQuery: string | null;
+};
+
 function loadRecentSearches(): string[] {
   try {
     const raw = localStorage.getItem(RECENT_SEARCHES_KEY);
@@ -42,28 +48,103 @@ function saveRecentSearch(query: string) {
   }
 }
 
+function ResultCard({
+  r,
+  mode,
+  titleTranslation,
+  isSaved,
+  onToggleSave,
+}: {
+  r: PaperResult;
+  mode: "normal" | "ai";
+  titleTranslation?: string;
+  isSaved: boolean;
+  onToggleSave: () => void;
+}) {
+  return (
+    <div className="rounded-2xl border border-gray-100 p-4">
+      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+        {PAPER_SOURCE_LABEL[r.source]}
+      </span>
+
+      <a
+        href={r.url}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
+      >
+        {r.title}
+      </a>
+
+      {titleTranslation && (
+        <p className="mt-1 text-sm text-gray-600">{titleTranslation}</p>
+      )}
+
+      <p className="mt-1 text-xs text-gray-500">
+        {[r.journal, r.year].filter(Boolean).join(" ・ ")}
+      </p>
+      {r.authors && (
+        <p className="mt-0.5 truncate text-xs text-gray-400">{r.authors}</p>
+      )}
+
+      {mode === "ai" && (r.aiSummary || r.abstract) && (
+        <div className="mt-2 rounded-xl bg-emerald-50 px-3 py-2">
+          {r.aiSummary && (
+            <p className="text-xs font-medium text-emerald-700">✨ {r.aiSummary}</p>
+          )}
+          {r.abstract && (
+            <p className="mt-1 line-clamp-4 text-xs leading-5 text-gray-600">
+              {r.abstract}
+            </p>
+          )}
+        </div>
+      )}
+
+      <button
+        onClick={onToggleSave}
+        className={`mt-2 rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
+          isSaved
+            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+            : "border-gray-200 text-gray-600"
+        }`}
+      >
+        {isSaved ? "✓ 保存済み（解除）" : "＋ 保存"}
+      </button>
+    </div>
+  );
+}
+
 // PTがいつも論文を探すときに何サイトも回っている手間を減らすための横断検索。
-// PubMed・J-STAGE・CiNii Research・PEDro・Semantic Scholar・Europe PMCを
-// 1つの結果一覧にまとめて表示する。サイトはあくまで絞り込みのチェックボックス
-// （すべてデフォルトon）。Google Scholarと医中誌Webは公開APIがない
-// （規約違反のリスク／購読・ログイン必須）ため、検索語入りのリンクを
-// 一発で開けるだけにとどめる。
+// PubMed・J-STAGE・CiNii Research・PEDro・Semantic Scholar・Europe PMC・
+// OpenAlex・ClinicalTrials.gov・DOAJを1つの結果一覧にまとめて表示する。
+// サイトはあくまで絞り込みのチェックボックス（すべてデフォルトon）。
+// Physiopedia・Cochrane Library・Google Scholar・医中誌Webは公開APIが
+// ない（Cloudflareのボット対策／規約違反のリスク／購読・ログイン必須）
+// ため、検索語入りのリンクを一発で開けるだけにとどめる。
 //
-// ノーマルモード：キーワードでの横断検索（従来通り）
-// AIモード：聞きたいことを文章で入力すると、Semantic Scholar・Europe PMCの
-// アブストラクト（Semantic Scholarはモデル生成の一文要約tldrつき）を
-// 結果の下に表示する。Consensusのような「全論文を1つの結論に合成する」
+// ノーマルモード：キーワードでの横断検索（従来通り、1回ごとに結果を置き換え）
+// AIモード：聞きたいことを文章で入力すると、アブストラクト（一部ソースは
+// AI一文要約つき）を結果の下に表示する。質問を重ねるたびに会話のように
+// 履歴が積み上がっていく。Consensusのような「全論文を1つの結論に合成する」
 // 機能ではなく、まずは要約つきで関連論文を探しやすくする第一段階という位置づけ。
 export default function PaperSearch() {
   const [userId, setUserId] = useState<string | null>(null);
+  const [view, setView] = useState<"search" | "saved">("search");
   const [mode, setMode] = useState<"normal" | "ai">("normal");
   const [query, setQuery] = useState("");
   const [searching, setSearching] = useState(false);
+
+  // ノーマルモード：1回ごとに結果を置き換える
   const [results, setResults] = useState<PaperResult[]>([]);
   const [searched, setSearched] = useState(false);
+  const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
+
+  // AIモード：質問を重ねるたびに会話のように積み上がっていく
+  const [aiTurns, setAiTurns] = useState<AiTurn[]>([]);
+  const conversationEndRef = useRef<HTMLDivElement>(null);
+
   // 保存済み論文のurl→saved_papers.id。保存/保存解除の両方をこのマップで判定する
   const [savedMap, setSavedMap] = useState<Record<string, string>>({});
-  const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
   const [titleTranslations, setTitleTranslations] = useState<Record<string, string>>({});
   const [translatingTitles, setTranslatingTitles] = useState(false);
 
@@ -71,10 +152,8 @@ export default function PaperSearch() {
     new Set(PAPER_SOURCES.map((s) => s.key))
   );
 
-  const [savedOpen, setSavedOpen] = useState(false);
   const [savedPapers, setSavedPapers] = useState<SavedPaper[]>([]);
   const [savedLoading, setSavedLoading] = useState(false);
-  const savedSectionRef = useRef<HTMLDivElement>(null);
 
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [showRecent, setShowRecent] = useState(false);
@@ -112,25 +191,37 @@ export default function PaperSearch() {
     const q = (overrideQuery ?? query).trim();
     if (!q || enabledSources.size === 0) return;
 
-    setQuery(q);
     setShowRecent(false);
     setSearching(true);
-    setSearched(true);
-    setTitleTranslations({});
 
-    const { results, error, translatedQuery } = await searchPapers(q, [...enabledSources]);
-    setResults(results);
-    setTranslatedQuery(translatedQuery);
+    const { results: newResults, error, translatedQuery: newTranslatedQuery } =
+      await searchPapers(q, [...enabledSources]);
+
     setSearching(false);
-
     saveRecentSearch(q);
     setRecentSearches(loadRecentSearches());
+
+    if (mode === "ai") {
+      setAiTurns((prev) => [
+        ...prev,
+        { query: q, results: newResults, translatedQuery: newTranslatedQuery },
+      ]);
+      setQuery("");
+      setTimeout(() => {
+        conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+      }, 50);
+    } else {
+      setQuery(q);
+      setResults(newResults);
+      setTranslatedQuery(newTranslatedQuery);
+      setSearched(true);
+    }
 
     if (error) notify(error);
   }
 
-  async function handleTranslateTitles() {
-    const targets = results.filter((r) => !titleTranslations[r.url]);
+  async function handleTranslateTitles(targetResults: PaperResult[]) {
+    const targets = targetResults.filter((r) => !titleTranslations[r.url]);
     if (targets.length === 0) return;
 
     setTranslatingTitles(true);
@@ -203,19 +294,6 @@ export default function PaperSearch() {
     setSavedLoading(false);
   }
 
-  async function handleToggleSaved() {
-    setSavedOpen((v) => !v);
-  }
-
-  // タイトル翻訳ボタンの右に置く保存リストへのショートカット。
-  // 既存の折りたたみを開いて、保存リストまでスクロールする
-  function handleOpenSavedList() {
-    setSavedOpen(true);
-    setTimeout(() => {
-      savedSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 50);
-  }
-
   async function handleDeleteSaved(id: string) {
     const error = await deleteSavedPaper(id);
     if (error) {
@@ -239,6 +317,65 @@ export default function PaperSearch() {
       // noop
     }
     setRecentSearches([]);
+  }
+
+
+  // 保存リストは検索画面とは別の専用画面として表示する
+  if (view === "saved") {
+    return (
+      <div>
+        <button
+          onClick={() => setView("search")}
+          className="text-sm text-gray-400 hover:text-gray-700"
+        >
+          ← 検索に戻る
+        </button>
+
+        <h2 className="mt-3 text-xl font-semibold text-gray-900">
+          保存した論文（{savedPapers.length}）
+        </h2>
+
+        <div className="mt-4 space-y-2">
+          {savedLoading && <p className="text-sm text-gray-400">読み込み中…</p>}
+
+          {!savedLoading && savedPapers.length === 0 && (
+            <p className="text-sm text-gray-400">まだ保存した論文はありません</p>
+          )}
+
+          {savedPapers.map((p) => (
+            <div
+              key={p.id}
+              className="flex items-start justify-between gap-2 rounded-2xl border border-gray-100 p-4"
+            >
+              <div className="min-w-0">
+                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+                  {p.source}
+                </span>
+                <a
+                  href={p.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
+                >
+                  {p.title}
+                </a>
+                <p className="mt-1 text-xs text-gray-500">
+                  {[p.journal, p.year].filter(Boolean).join(" ・ ")}
+                </p>
+              </div>
+
+              <button
+                onClick={() => handleDeleteSaved(p.id)}
+                className="shrink-0 text-gray-300 hover:text-gray-500"
+                aria-label="削除"
+              >
+                ×
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -269,8 +406,7 @@ export default function PaperSearch() {
 
       {mode === "ai" && (
         <p className="mb-3 text-xs text-gray-500">
-          聞きたいことを文章で入力すると、Semantic Scholar・Europe
-          PMCの要約（アブストラクト／AI一文要約）つきで関連論文を探せます。
+          聞きたいことを文章で入力すると、要約（アブストラクト／AI一文要約）つきで関連論文を探せます。続けて質問すると会話のように積み上がります。
         </p>
       )}
 
@@ -348,7 +484,13 @@ export default function PaperSearch() {
         disabled={searching || !query.trim()}
         className="mt-2 w-full rounded-full bg-black py-3 text-white disabled:opacity-50"
       >
-        {searching ? "検索中…" : mode === "ai" ? "✨ AIで探す" : "🔍 検索"}
+        {searching
+          ? "検索中…"
+          : mode === "ai"
+            ? aiTurns.length > 0
+              ? "✨ 続けて質問する"
+              : "✨ AIで探す"
+            : "🔍 検索"}
       </button>
 
       {/* 検索対象サイト（すべて絞り込みのチェックボックス） */}
@@ -365,109 +507,129 @@ export default function PaperSearch() {
         ))}
       </div>
 
-      {translatedQuery && (
-        <p className="mt-3 text-xs text-gray-400">
-          🌐「{translatedQuery}」でも検索しました
-        </p>
-      )}
-
-      {searched && (
-        <div className="mt-6 space-y-3">
-          {searching && (
-            <p className="text-sm text-gray-400">検索しています…</p>
-          )}
-
-          {!searching && results.length === 0 && (
-            <p className="text-sm text-gray-400">
-              見つかりませんでした。下のリンクから他のサイトも確認してみてください
+      {/* ノーマルモード：1回ごとに結果を置き換える */}
+      {mode === "normal" && (
+        <>
+          {translatedQuery && (
+            <p className="mt-3 text-xs text-gray-400">
+              🌐「{translatedQuery}」でも検索しました
             </p>
           )}
 
-          {!searching && results.length > 0 && (
-            <div className="flex items-center justify-between">
-              {mode === "normal" ? (
-                <button
-                  onClick={handleTranslateTitles}
-                  disabled={translatingTitles}
-                  className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
-                >
-                  {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
-                </button>
-              ) : (
-                <span />
-              )}
+          {searched && (
+            <div className="mt-6 space-y-3">
+              {searching && <p className="text-sm text-gray-400">検索しています…</p>}
 
-              {userId && (
-                <button
-                  onClick={handleOpenSavedList}
-                  className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
-                >
-                  📑 保存リスト（{savedPapers.length}）
-                </button>
-              )}
-            </div>
-          )}
-
-          {results.map((r, i) => (
-            <div
-              key={`${r.source}-${i}`}
-              className="rounded-2xl border border-gray-100 p-4"
-            >
-              <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
-                {PAPER_SOURCE_LABEL[r.source]}
-              </span>
-
-              <a
-                href={r.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
-              >
-                {r.title}
-              </a>
-
-              {titleTranslations[r.url] && (
-                <p className="mt-1 text-sm text-gray-600">
-                  {titleTranslations[r.url]}
+              {!searching && results.length === 0 && (
+                <p className="text-sm text-gray-400">
+                  見つかりませんでした。下のリンクから他のサイトも確認してみてください
                 </p>
               )}
 
-              <p className="mt-1 text-xs text-gray-500">
-                {[r.journal, r.year].filter(Boolean).join(" ・ ")}
-              </p>
-              {r.authors && (
-                <p className="mt-0.5 truncate text-xs text-gray-400">
-                  {r.authors}
-                </p>
-              )}
+              {!searching && results.length > 0 && (
+                <div className="flex items-center justify-between">
+                  <button
+                    onClick={() => handleTranslateTitles(results)}
+                    disabled={translatingTitles}
+                    className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+                  >
+                    {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
+                  </button>
 
-              {mode === "ai" && (r.aiSummary || r.abstract) && (
-                <div className="mt-2 rounded-xl bg-emerald-50 px-3 py-2">
-                  {r.aiSummary && (
-                    <p className="text-xs font-medium text-emerald-700">
-                      ✨ {r.aiSummary}
-                    </p>
-                  )}
-                  {r.abstract && (
-                    <p className="mt-1 line-clamp-4 text-xs leading-5 text-gray-600">
-                      {r.abstract}
-                    </p>
+                  {userId && (
+                    <button
+                      onClick={() => setView("saved")}
+                      className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+                    >
+                      📑 保存リスト（{savedPapers.length}）
+                    </button>
                   )}
                 </div>
               )}
 
-              <button
-                onClick={() => handleToggleSave(r)}
-                className={`mt-2 rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
-                  savedMap[r.url]
-                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                    : "border-gray-200 text-gray-600"
-                }`}
-              >
-                {savedMap[r.url] ? "✓ 保存済み（解除）" : "＋ 保存"}
-              </button>
+              {results.map((r, i) => (
+                <ResultCard
+                  key={`${r.source}-${i}`}
+                  r={r}
+                  mode={mode}
+                  titleTranslation={titleTranslations[r.url]}
+                  isSaved={Boolean(savedMap[r.url])}
+                  onToggleSave={() => handleToggleSave(r)}
+                />
+              ))}
             </div>
-          ))}
+          )}
+        </>
+      )}
+
+      {/* AIモード：質問を重ねるたびに会話のように積み上がる */}
+      {mode === "ai" && aiTurns.length > 0 && (
+        <div className="mt-6">
+          <div className="flex items-center justify-between">
+            <button
+              onClick={() => handleTranslateTitles(aiTurns.flatMap((t) => t.results))}
+              disabled={translatingTitles}
+              className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+            >
+              {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
+            </button>
+
+            {userId && (
+              <button
+                onClick={() => setView("saved")}
+                className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+              >
+                📑 保存リスト（{savedPapers.length}）
+              </button>
+            )}
+          </div>
+
+          <div className="mt-4 space-y-6">
+            {aiTurns.map((turn, ti) => (
+              <div key={ti}>
+                <div className="ml-auto max-w-[85%] rounded-2xl rounded-br-sm bg-gray-900 px-4 py-2.5 text-sm text-white">
+                  {turn.query}
+                </div>
+                {turn.translatedQuery && (
+                  <p className="mt-1 text-right text-xs text-gray-400">
+                    🌐「{turn.translatedQuery}」でも検索しました
+                  </p>
+                )}
+
+                <div className="mt-3 space-y-3">
+                  {turn.results.length === 0 ? (
+                    <p className="text-sm text-gray-400">
+                      見つかりませんでした。下のリンクから他のサイトも確認してみてください
+                    </p>
+                  ) : (
+                    turn.results.map((r, i) => (
+                      <ResultCard
+                        key={`${ti}-${r.source}-${i}`}
+                        r={r}
+                        mode={mode}
+                        titleTranslation={titleTranslations[r.url]}
+                        isSaved={Boolean(savedMap[r.url])}
+                        onToggleSave={() => handleToggleSave(r)}
+                      />
+                    ))
+                  )}
+                </div>
+              </div>
+            ))}
+
+            {searching && (
+              <p className="text-sm text-gray-400">検索しています…</p>
+            )}
+          </div>
+
+          <div ref={conversationEndRef} />
+
+          <button
+            onClick={() => setAiTurns([])}
+            className="mt-4 text-xs text-gray-400 underline hover:text-gray-600"
+          >
+            新しい会話を始める
+          </button>
         </div>
       )}
 
@@ -492,60 +654,13 @@ export default function PaperSearch() {
         </div>
       </div>
 
-      {/* 保存した論文 */}
       {userId && (
-        <div ref={savedSectionRef} className="mt-8 scroll-mt-4">
-          <button
-            onClick={handleToggleSaved}
-            className="text-sm font-semibold text-gray-500"
-          >
-            保存した論文（{savedPapers.length}） {savedOpen ? "▲" : "▼"}
-          </button>
-
-          {savedOpen && (
-            <div className="mt-3 space-y-2">
-              {savedLoading && (
-                <p className="text-sm text-gray-400">読み込み中…</p>
-              )}
-
-              {!savedLoading && savedPapers.length === 0 && (
-                <p className="text-sm text-gray-400">まだ保存した論文はありません</p>
-              )}
-
-              {savedPapers.map((p) => (
-                <div
-                  key={p.id}
-                  className="flex items-start justify-between gap-2 rounded-2xl border border-gray-100 p-4"
-                >
-                  <div className="min-w-0">
-                    <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
-                      {p.source}
-                    </span>
-                    <a
-                      href={p.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
-                    >
-                      {p.title}
-                    </a>
-                    <p className="mt-1 text-xs text-gray-500">
-                      {[p.journal, p.year].filter(Boolean).join(" ・ ")}
-                    </p>
-                  </div>
-
-                  <button
-                    onClick={() => handleDeleteSaved(p.id)}
-                    className="shrink-0 text-gray-300 hover:text-gray-500"
-                    aria-label="削除"
-                  >
-                    ×
-                  </button>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        <button
+          onClick={() => setView("saved")}
+          className="mt-8 text-sm font-semibold text-gray-500 hover:text-gray-700"
+        >
+          📑 保存した論文（{savedPapers.length}）を見る
+        </button>
       )}
     </div>
   );

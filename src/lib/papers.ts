@@ -61,9 +61,17 @@ export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
 ];
 
 // 公開APIがない（Google Scholar: スクレイピングは規約違反のリスク／
-// 医中誌Web: 購読・ログイン必須／Cochrane Library: 検索APIが公開されていない）
-// ため、検索語を埋め込んだリンクを開く形にとどめる
+// 医中誌Web: 購読・ログイン必須／Cochrane Library: 検索APIが公開されていない／
+// Physiopedia: Cloudflareのボット対策によりサーバーからの直接アクセスが
+// ブロックされる）ため、検索語を埋め込んだリンクを開く形にとどめる
 export const PAPER_LINK_SOURCES = [
+  {
+    key: "physiopedia",
+    label: "Physiopedia",
+    note: "理学療法士向けの世界最大のリファレンスWiki（APIがないためリンクで開きます）",
+    build: (q: string) =>
+      `https://www.physio-pedia.com/Special:Search?search=${encodeURIComponent(q)}&fulltext=1`,
+  },
   {
     key: "cochrane",
     label: "Cochrane Library",
