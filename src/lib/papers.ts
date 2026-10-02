@@ -1,6 +1,12 @@
 import { supabase } from "@/lib/supabase";
 
-export type PaperSource = "pubmed" | "jstage" | "cinii" | "pedro";
+export type PaperSource =
+  | "pubmed"
+  | "jstage"
+  | "cinii"
+  | "pedro"
+  | "semanticscholar"
+  | "europepmc";
 
 export type PaperResult = {
   source: PaperSource;
@@ -9,6 +15,9 @@ export type PaperResult = {
   journal: string | null;
   year: string | null;
   url: string;
+  // AIモード用。Semantic Scholar・Europe PMCなど要約が取得できたソースのみ入る
+  abstract?: string | null;
+  aiSummary?: string | null;
 };
 
 export type SavedPaper = {
@@ -27,14 +36,20 @@ export const PAPER_SOURCE_LABEL: Record<PaperSource, string> = {
   jstage: "J-STAGE",
   cinii: "CiNii Research",
   pedro: "PEDro",
+  semanticscholar: "Semantic Scholar",
+  europepmc: "Europe PMC",
 };
 
 // すべて絞り込み用のチェックボックスで on/off する（PubMedもデフォルトonの通常項目）
+// Semantic Scholar・Europe PMCは要約（アブストラクト）も取得できるため、
+// AIモードの要約表示はこの2つの結果を主に使う
 export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
   { key: "pubmed", label: "PubMed" },
   { key: "jstage", label: "J-STAGE" },
   { key: "cinii", label: "CiNii Research" },
   { key: "pedro", label: "PEDro" },
+  { key: "semanticscholar", label: "Semantic Scholar" },
+  { key: "europepmc", label: "Europe PMC" },
 ];
 
 // 公開APIがない（Google Scholar: スクレイピングは規約違反のリスク／

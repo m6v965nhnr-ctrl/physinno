@@ -45,9 +45,16 @@ export default function AuthGuard({
         setChecking(true);
       }
 
+      // getUser()は毎回サーバーに検証リクエストを送るため、トークンの
+      // 自動リフレッシュ処理と競合して稀に「実際はログイン中なのに
+      // 一瞬だけ未ログイン扱いされる」ことがある。getSession()は
+      // クライアント初期化時のリフレッシュ結果を信頼して読むため、
+      // このルーティング用の判定にはこちらが安全（実データへのアクセスは
+      // 別途サーバー側のRLSで保護される）
       const {
-        data: { user },
-      } = await supabase.auth.getUser();
+        data: { session },
+      } = await supabase.auth.getSession();
+      const user = session?.user ?? null;
 
       if (cancelled) return;
 
@@ -73,8 +80,18 @@ export default function AuthGuard({
 
     checkAuth();
 
+    // セッションが実際に失効した場合（本人によるログアウト等）はその場で反映する
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT" && !publicPaths.includes(pathname)) {
+        router.replace("/");
+      }
+    });
+
     return () => {
       cancelled = true;
+      subscription.unsubscribe();
     };
   }, [pathname, router]);
 

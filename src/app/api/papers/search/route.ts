@@ -14,7 +14,13 @@ import { translateMedicalJapanese } from "@/lib/server/medicalGlossary";
 export const dynamic = "force-dynamic";
 export const maxDuration = 25;
 
-type PaperSource = "pubmed" | "jstage" | "cinii" | "pedro";
+type PaperSource =
+  | "pubmed"
+  | "jstage"
+  | "cinii"
+  | "pedro"
+  | "semanticscholar"
+  | "europepmc";
 
 type PaperResult = {
   source: PaperSource;
@@ -23,6 +29,9 @@ type PaperResult = {
   journal: string | null;
   year: string | null;
   url: string;
+  // AIモード用。要約が取得できたソース（Semantic Scholar・Europe PMC）のみ入る
+  abstract?: string | null;
+  aiSummary?: string | null;
 };
 
 function decodeEntities(raw: string): string {
@@ -238,11 +247,106 @@ async function searchPedro(query: string): Promise<PaperResult[]> {
   return results;
 }
 
+// --- Semantic Scholar（公式Graph API, 低頻度ならappキー不要）---
+// abstractに加えて、Semantic Scholar自身がモデルで生成した1文要約
+// （tldr）が返るソースがあるため、AIモードの要約表示に利用する
+
+type SemanticScholarItem = {
+  title?: string;
+  abstract?: string | null;
+  tldr?: { text?: string } | null;
+  authors?: { name: string }[];
+  venue?: string;
+  year?: number;
+  externalIds?: { DOI?: string };
+  url?: string;
+};
+
+async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
+      query
+    )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds`,
+    {
+      signal: AbortSignal.timeout(8000),
+      headers: { "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)" },
+    }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as { data?: SemanticScholarItem[] };
+  const items = data.data ?? [];
+
+  return items
+    .filter((item): item is SemanticScholarItem & { title: string } => Boolean(item.title))
+    .map((item) => ({
+      source: "semanticscholar" as const,
+      title: item.title,
+      authors: (item.authors ?? []).map((a) => a.name).join("、") || null,
+      journal: item.venue || null,
+      year: item.year ? String(item.year) : null,
+      url:
+        item.url ||
+        (item.externalIds?.DOI ? `https://doi.org/${item.externalIds.DOI}` : ""),
+      abstract: item.abstract || null,
+      aiSummary: item.tldr?.text || null,
+    }))
+    .filter((r) => r.url);
+}
+
+// --- Europe PMC（公式REST API, キー不要）---
+
+type EuropePmcItem = {
+  title?: string;
+  authorString?: string;
+  journalTitle?: string;
+  pubYear?: string;
+  doi?: string;
+  pmid?: string;
+  source?: string;
+  id?: string;
+  abstractText?: string;
+};
+
+async function searchEuropePmc(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(
+      query
+    )}&format=json&pageSize=15&resultType=core`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as {
+    resultList?: { result?: EuropePmcItem[] };
+  };
+  const items = data.resultList?.result ?? [];
+
+  return items
+    .filter((item): item is EuropePmcItem & { title: string } => Boolean(item.title))
+    .map((item) => ({
+      source: "europepmc" as const,
+      title: decodeEntities(item.title),
+      authors: item.authorString || null,
+      journal: item.journalTitle || null,
+      year: item.pubYear || null,
+      url: item.doi
+        ? `https://doi.org/${item.doi}`
+        : item.source && item.id
+          ? `https://europepmc.org/article/${item.source}/${item.id}`
+          : "",
+      abstract: item.abstractText ? decodeEntities(item.abstractText) : null,
+    }))
+    .filter((r) => r.url);
+}
+
 const SOURCE_SEARCHERS: Record<PaperSource, (q: string) => Promise<PaperResult[]>> = {
   pubmed: searchPubMed,
   jstage: searchJStage,
   cinii: searchCinii,
   pedro: searchPedro,
+  semanticscholar: searchSemanticScholar,
+  europepmc: searchEuropePmc,
 };
 
 // 検索語が日本語の場合、まず用語集（medicalGlossary）で標準的な英語に
@@ -268,7 +372,9 @@ export async function GET(request: Request) {
 
   const sourcesParam = searchParams.get("sources");
   const requestedSources = new Set(
-    sourcesParam ? sourcesParam.split(",") : ["pubmed", "jstage", "cinii", "pedro"]
+    sourcesParam
+      ? sourcesParam.split(",")
+      : ["pubmed", "jstage", "cinii", "pedro", "semanticscholar", "europepmc"]
   );
 
   const isJa = containsJapanese(q);
