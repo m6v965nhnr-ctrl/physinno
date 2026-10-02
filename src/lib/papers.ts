@@ -6,7 +6,10 @@ export type PaperSource =
   | "cinii"
   | "pedro"
   | "semanticscholar"
-  | "europepmc";
+  | "europepmc"
+  | "openalex"
+  | "clinicaltrials"
+  | "doaj";
 
 export type PaperResult = {
   source: PaperSource;
@@ -38,11 +41,13 @@ export const PAPER_SOURCE_LABEL: Record<PaperSource, string> = {
   pedro: "PEDro",
   semanticscholar: "Semantic Scholar",
   europepmc: "Europe PMC",
+  openalex: "OpenAlex",
+  clinicaltrials: "ClinicalTrials.gov",
+  doaj: "DOAJ",
 };
 
 // すべて絞り込み用のチェックボックスで on/off する（PubMedもデフォルトonの通常項目）
-// Semantic Scholar・Europe PMCは要約（アブストラクト）も取得できるため、
-// AIモードの要約表示はこの2つの結果を主に使う
+// アブストラクト（要約）も取得できるソースは、AIモードの要約表示に使われる
 export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
   { key: "pubmed", label: "PubMed" },
   { key: "jstage", label: "J-STAGE" },
@@ -50,11 +55,22 @@ export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
   { key: "pedro", label: "PEDro" },
   { key: "semanticscholar", label: "Semantic Scholar" },
   { key: "europepmc", label: "Europe PMC" },
+  { key: "openalex", label: "OpenAlex" },
+  { key: "clinicaltrials", label: "ClinicalTrials.gov" },
+  { key: "doaj", label: "DOAJ" },
 ];
 
 // 公開APIがない（Google Scholar: スクレイピングは規約違反のリスク／
-// 医中誌Web: 購読・ログイン必須）ため、検索語を埋め込んだリンクを開く形にとどめる
+// 医中誌Web: 購読・ログイン必須／Cochrane Library: 検索APIが公開されていない）
+// ため、検索語を埋め込んだリンクを開く形にとどめる
 export const PAPER_LINK_SOURCES = [
+  {
+    key: "cochrane",
+    label: "Cochrane Library",
+    note: "システマティックレビューの世界標準（APIがないためリンクで開きます）",
+    build: (q: string) =>
+      `https://www.cochranelibrary.com/search?q=${encodeURIComponent(q)}`,
+  },
   {
     key: "scholar",
     label: "Google Scholar",
@@ -121,18 +137,22 @@ export async function listSavedPapers(userId: string): Promise<SavedPaper[]> {
 export async function savePaper(
   userId: string,
   paper: PaperResult
-): Promise<string | null> {
-  const { error } = await supabase.from("saved_papers").insert({
-    user_id: userId,
-    source: paper.source,
-    title: paper.title,
-    authors: paper.authors,
-    journal: paper.journal,
-    year: paper.year,
-    url: paper.url,
-  });
+): Promise<{ id: string | null; error: string | null }> {
+  const { data, error } = await supabase
+    .from("saved_papers")
+    .insert({
+      user_id: userId,
+      source: paper.source,
+      title: paper.title,
+      authors: paper.authors,
+      journal: paper.journal,
+      year: paper.year,
+      url: paper.url,
+    })
+    .select("id")
+    .single();
 
-  return error ? error.message : null;
+  return { id: data?.id ?? null, error: error?.message ?? null };
 }
 
 export async function deleteSavedPaper(id: string): Promise<string | null> {

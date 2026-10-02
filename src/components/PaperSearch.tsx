@@ -61,7 +61,8 @@ export default function PaperSearch() {
   const [searching, setSearching] = useState(false);
   const [results, setResults] = useState<PaperResult[]>([]);
   const [searched, setSearched] = useState(false);
-  const [savedIds, setSavedIds] = useState<Set<string>>(new Set());
+  // 保存済み論文のurl→saved_papers.id。保存/保存解除の両方をこのマップで判定する
+  const [savedMap, setSavedMap] = useState<Record<string, string>>({});
   const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
   const [titleTranslations, setTitleTranslations] = useState<Record<string, string>>({});
   const [translatingTitles, setTranslatingTitles] = useState(false);
@@ -73,6 +74,7 @@ export default function PaperSearch() {
   const [savedOpen, setSavedOpen] = useState(false);
   const [savedPapers, setSavedPapers] = useState<SavedPaper[]>([]);
   const [savedLoading, setSavedLoading] = useState(false);
+  const savedSectionRef = useRef<HTMLDivElement>(null);
 
   const [recentSearches, setRecentSearches] = useState<string[]>([]);
   const [showRecent, setShowRecent] = useState(false);
@@ -81,8 +83,10 @@ export default function PaperSearch() {
   useEffect(() => {
     supabase.auth.getUser().then(({ data: { user } }) => {
       setUserId(user?.id ?? null);
+      if (user) loadSaved(user.id);
     });
     setRecentSearches(loadRecentSearches());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -143,33 +147,73 @@ export default function PaperSearch() {
     });
   }
 
-  async function handleSave(paper: PaperResult) {
+  // 保存する/もう一度押すと保存解除する、のトグル動作
+  async function handleToggleSave(paper: PaperResult) {
     if (!userId) {
       notify("ログインしてください");
       return;
     }
 
-    const error = await savePaper(userId, paper);
-    if (error) {
-      notify(error);
+    const existingId = savedMap[paper.url];
+
+    if (existingId) {
+      const error = await deleteSavedPaper(existingId);
+      if (error) {
+        notify(error);
+        return;
+      }
+      setSavedMap((prev) => {
+        const next = { ...prev };
+        delete next[paper.url];
+        return next;
+      });
+      setSavedPapers((prev) => prev.filter((p) => p.id !== existingId));
+      notify("保存を解除しました");
       return;
     }
 
-    setSavedIds((prev) => new Set(prev).add(paper.url));
+    const { id, error } = await savePaper(userId, paper);
+    if (error || !id) {
+      notify(error || "保存に失敗しました");
+      return;
+    }
+
+    setSavedMap((prev) => ({ ...prev, [paper.url]: id }));
+    setSavedPapers((prev) => [
+      {
+        id,
+        source: paper.source,
+        title: paper.title,
+        authors: paper.authors,
+        journal: paper.journal,
+        year: paper.year,
+        url: paper.url,
+        created_at: new Date().toISOString(),
+      },
+      ...prev,
+    ]);
     notify("保存しました");
   }
 
-  async function loadSaved() {
-    if (!userId) return;
+  async function loadSaved(uid: string) {
     setSavedLoading(true);
-    setSavedPapers(await listSavedPapers(userId));
+    const list = await listSavedPapers(uid);
+    setSavedPapers(list);
+    setSavedMap(Object.fromEntries(list.map((p) => [p.url, p.id])));
     setSavedLoading(false);
   }
 
   async function handleToggleSaved() {
-    const next = !savedOpen;
-    setSavedOpen(next);
-    if (next) await loadSaved();
+    setSavedOpen((v) => !v);
+  }
+
+  // タイトル翻訳ボタンの右に置く保存リストへのショートカット。
+  // 既存の折りたたみを開いて、保存リストまでスクロールする
+  function handleOpenSavedList() {
+    setSavedOpen(true);
+    setTimeout(() => {
+      savedSectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 50);
   }
 
   async function handleDeleteSaved(id: string) {
@@ -179,6 +223,13 @@ export default function PaperSearch() {
       return;
     }
     setSavedPapers((prev) => prev.filter((p) => p.id !== id));
+    setSavedMap((prev) => {
+      const next = { ...prev };
+      for (const url of Object.keys(next)) {
+        if (next[url] === id) delete next[url];
+      }
+      return next;
+    });
   }
 
   function clearRecentSearches() {
@@ -232,7 +283,10 @@ export default function PaperSearch() {
 
           <input
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              if (e.target.value.trim()) setShowRecent(false);
+            }}
             onFocus={() => setShowRecent(query.trim() === "" && recentSearches.length > 0)}
             onKeyDown={(e) => {
               if (e.key === "Enter") handleSearch();
@@ -329,14 +383,29 @@ export default function PaperSearch() {
             </p>
           )}
 
-          {!searching && results.length > 0 && mode === "normal" && (
-            <button
-              onClick={handleTranslateTitles}
-              disabled={translatingTitles}
-              className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
-            >
-              {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
-            </button>
+          {!searching && results.length > 0 && (
+            <div className="flex items-center justify-between">
+              {mode === "normal" ? (
+                <button
+                  onClick={handleTranslateTitles}
+                  disabled={translatingTitles}
+                  className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+                >
+                  {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
+                </button>
+              ) : (
+                <span />
+              )}
+
+              {userId && (
+                <button
+                  onClick={handleOpenSavedList}
+                  className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+                >
+                  📑 保存リスト（{savedPapers.length}）
+                </button>
+              )}
+            </div>
           )}
 
           {results.map((r, i) => (
@@ -388,11 +457,14 @@ export default function PaperSearch() {
               )}
 
               <button
-                onClick={() => handleSave(r)}
-                disabled={savedIds.has(r.url)}
-                className="mt-2 rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-40"
+                onClick={() => handleToggleSave(r)}
+                className={`mt-2 rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
+                  savedMap[r.url]
+                    ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                    : "border-gray-200 text-gray-600"
+                }`}
               >
-                {savedIds.has(r.url) ? "保存済み" : "＋ 保存"}
+                {savedMap[r.url] ? "✓ 保存済み（解除）" : "＋ 保存"}
               </button>
             </div>
           ))}
@@ -422,12 +494,12 @@ export default function PaperSearch() {
 
       {/* 保存した論文 */}
       {userId && (
-        <div className="mt-8">
+        <div ref={savedSectionRef} className="mt-8 scroll-mt-4">
           <button
             onClick={handleToggleSaved}
             className="text-sm font-semibold text-gray-500"
           >
-            保存した論文 {savedOpen ? "▲" : "▼"}
+            保存した論文（{savedPapers.length}） {savedOpen ? "▲" : "▼"}
           </button>
 
           {savedOpen && (

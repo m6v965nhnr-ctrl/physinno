@@ -20,7 +20,10 @@ type PaperSource =
   | "cinii"
   | "pedro"
   | "semanticscholar"
-  | "europepmc";
+  | "europepmc"
+  | "openalex"
+  | "clinicaltrials"
+  | "doaj";
 
 type PaperResult = {
   source: PaperSource;
@@ -340,6 +343,162 @@ async function searchEuropePmc(query: string): Promise<PaperResult[]> {
     .filter((r) => r.url);
 }
 
+// --- OpenAlex（公式API, キー不要・世界最大級の完全オープンな学術データベース）---
+
+type OpenAlexItem = {
+  title?: string;
+  abstract_inverted_index?: Record<string, number[]> | null;
+  authorships?: { author?: { display_name?: string } }[];
+  primary_location?: { source?: { display_name?: string } | null } | null;
+  publication_year?: number;
+  doi?: string;
+  ids?: { openalex?: string };
+};
+
+// アブストラクトは単語→出現位置のインデックス形式で返るため、文章に復元する
+function reconstructAbstract(
+  invertedIndex: Record<string, number[]> | null | undefined
+): string | null {
+  if (!invertedIndex) return null;
+
+  const positions = Object.values(invertedIndex).flat();
+  if (positions.length === 0) return null;
+
+  const words: string[] = new Array(Math.max(...positions) + 1).fill("");
+  for (const [word, wordPositions] of Object.entries(invertedIndex)) {
+    for (const pos of wordPositions) words[pos] = word;
+  }
+
+  return words.join(" ").trim() || null;
+}
+
+async function searchOpenAlex(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://api.openalex.org/works?search=${encodeURIComponent(
+      query
+    )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as { results?: OpenAlexItem[] };
+  const items = data.results ?? [];
+
+  return items
+    .filter((item): item is OpenAlexItem & { title: string } => Boolean(item.title))
+    .map((item) => ({
+      source: "openalex" as const,
+      title: item.title,
+      authors:
+        (item.authorships ?? [])
+          .map((a) => a.author?.display_name)
+          .filter((n): n is string => Boolean(n))
+          .join("、") || null,
+      journal: item.primary_location?.source?.display_name ?? null,
+      year: item.publication_year ? String(item.publication_year) : null,
+      url: item.doi || item.ids?.openalex || "",
+      abstract: reconstructAbstract(item.abstract_inverted_index),
+    }))
+    .filter((r) => r.url);
+}
+
+// --- ClinicalTrials.gov（米国NIH公式API v2, キー不要）---
+// 論文ではなく臨床試験の登録情報だが、EBMでは一次情報として重要なため含める
+
+type CtGovStudy = {
+  protocolSection?: {
+    identificationModule?: {
+      nctId?: string;
+      briefTitle?: string;
+      officialTitle?: string;
+    };
+    descriptionModule?: { briefSummary?: string };
+    sponsorCollaboratorsModule?: { leadSponsor?: { name?: string } };
+    statusModule?: { startDateStruct?: { date?: string } };
+  };
+};
+
+async function searchClinicalTrials(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://clinicaltrials.gov/api/v2/studies?query.term=${encodeURIComponent(
+      query
+    )}&pageSize=15&format=json`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as { studies?: CtGovStudy[] };
+  const items = data.studies ?? [];
+
+  return items
+    .map((s) => s.protocolSection)
+    .filter(
+      (p): p is NonNullable<CtGovStudy["protocolSection"]> =>
+        Boolean(p?.identificationModule?.nctId)
+    )
+    .map((p) => {
+      const nctId = p.identificationModule!.nctId!;
+      return {
+        source: "clinicaltrials" as const,
+        title:
+          p.identificationModule!.briefTitle ||
+          p.identificationModule!.officialTitle ||
+          "(no title)",
+        authors: null,
+        journal: p.sponsorCollaboratorsModule?.leadSponsor?.name || "ClinicalTrials.gov",
+        year: p.statusModule?.startDateStruct?.date?.slice(0, 4) || null,
+        url: `https://clinicaltrials.gov/study/${nctId}`,
+        abstract: p.descriptionModule?.briefSummary || null,
+      };
+    });
+}
+
+// --- DOAJ（Directory of Open Access Journals公式API, キー不要）---
+
+type DoajItem = {
+  bibjson?: {
+    title?: string;
+    author?: { name?: string }[];
+    journal?: { title?: string };
+    year?: string;
+    link?: { type?: string; url?: string }[];
+    abstract?: string;
+  };
+};
+
+async function searchDoaj(query: string): Promise<PaperResult[]> {
+  const res = await fetch(
+    `https://doaj.org/api/search/articles/${encodeURIComponent(query)}?pageSize=15`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return [];
+
+  const data = (await res.json()) as { results?: DoajItem[] };
+  const items = data.results ?? [];
+
+  return items
+    .filter((item): item is DoajItem & { bibjson: NonNullable<DoajItem["bibjson"]> & { title: string } } =>
+      Boolean(item.bibjson?.title)
+    )
+    .map((item) => {
+      const b = item.bibjson;
+      const link = b.link?.find((l) => l.type === "fulltext")?.url || b.link?.[0]?.url || "";
+
+      return {
+        source: "doaj" as const,
+        title: b.title,
+        authors:
+          (b.author ?? []).map((a) => a.name).filter((n): n is string => Boolean(n)).join("、") ||
+          null,
+        journal: b.journal?.title || null,
+        year: b.year || null,
+        url: link,
+        abstract: b.abstract || null,
+      };
+    })
+    .filter((r) => r.url);
+}
+
 const SOURCE_SEARCHERS: Record<PaperSource, (q: string) => Promise<PaperResult[]>> = {
   pubmed: searchPubMed,
   jstage: searchJStage,
@@ -347,6 +506,9 @@ const SOURCE_SEARCHERS: Record<PaperSource, (q: string) => Promise<PaperResult[]
   pedro: searchPedro,
   semanticscholar: searchSemanticScholar,
   europepmc: searchEuropePmc,
+  openalex: searchOpenAlex,
+  clinicaltrials: searchClinicalTrials,
+  doaj: searchDoaj,
 };
 
 // 検索語が日本語の場合、まず用語集（medicalGlossary）で標準的な英語に
@@ -374,7 +536,17 @@ export async function GET(request: Request) {
   const requestedSources = new Set(
     sourcesParam
       ? sourcesParam.split(",")
-      : ["pubmed", "jstage", "cinii", "pedro", "semanticscholar", "europepmc"]
+      : [
+          "pubmed",
+          "jstage",
+          "cinii",
+          "pedro",
+          "semanticscholar",
+          "europepmc",
+          "openalex",
+          "clinicaltrials",
+          "doaj",
+        ]
   );
 
   const isJa = containsJapanese(q);
