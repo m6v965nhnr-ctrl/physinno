@@ -57,6 +57,7 @@ function saveRecentSearch(query: string) {
 function ResultCard({
   r,
   mode,
+  showSummary,
   titleTranslation,
   isSaved,
   onToggleSave,
@@ -64,11 +65,16 @@ function ResultCard({
 }: {
   r: PaperResult;
   mode: "normal" | "ai";
+  showSummary: boolean;
   titleTranslation?: string;
   isSaved: boolean;
   onToggleSave: () => void;
   refNumber?: number;
 }) {
+  const [expanded, setExpanded] = useState(false);
+  const summaryVisible = mode === "ai" || showSummary;
+  const abstractIsLong = (r.abstract?.length ?? 0) > 280;
+
   return (
     <div className="rounded-2xl border border-gray-100 p-4">
       {refNumber !== undefined && (
@@ -100,17 +106,38 @@ function ResultCard({
         <p className="mt-0.5 truncate text-xs text-gray-400">{r.authors}</p>
       )}
 
-      {mode === "ai" && (r.aiSummary || r.abstract) && (
+      {summaryVisible && (r.aiSummary || r.abstract) && (
         <div className="mt-2 rounded-xl bg-emerald-50 px-3 py-2">
           {r.aiSummary && (
             <p className="text-xs font-medium text-emerald-700">✨ {r.aiSummary}</p>
           )}
           {r.abstract && (
-            <p className="mt-1 line-clamp-4 text-xs leading-5 text-gray-600">
-              {r.abstract}
-            </p>
+            <>
+              <p
+                className={`mt-1 whitespace-pre-wrap text-xs leading-5 text-gray-600 ${
+                  expanded ? "" : "line-clamp-4"
+                }`}
+              >
+                {r.abstract}
+              </p>
+              {abstractIsLong && (
+                <button
+                  type="button"
+                  onClick={() => setExpanded((v) => !v)}
+                  className="mt-1 text-[11px] text-emerald-700 underline"
+                >
+                  {expanded ? "閉じる" : "続きを読む"}
+                </button>
+              )}
+            </>
           )}
         </div>
+      )}
+
+      {summaryVisible && !r.aiSummary && !r.abstract && (
+        <p className="mt-2 text-xs text-gray-400">
+          この検索サイトからは要約を取得できませんでした。リンク先で確認できます。
+        </p>
       )}
 
       <button
@@ -151,6 +178,8 @@ export default function PaperSearch() {
   const [results, setResults] = useState<PaperResult[]>([]);
   const [searched, setSearched] = useState(false);
   const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
+  // ノーマルモードで各論文の要約（アブストラクト）を表示するか
+  const [showSummaries, setShowSummaries] = useState(false);
 
   // AIモード：質問を重ねるたびに会話のように積み上がっていく
   const [aiTurns, setAiTurns] = useState<AiTurn[]>([]);
@@ -612,14 +641,28 @@ export default function PaperSearch() {
                     {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
                   </button>
 
-                  {userId && (
+                  <div className="flex items-center gap-2">
                     <button
-                      onClick={() => setView("saved")}
-                      className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+                      onClick={() => setShowSummaries((v) => !v)}
+                      aria-pressed={showSummaries}
+                      className={`rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
+                        showSummaries
+                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                          : "border-gray-200 text-gray-600"
+                      }`}
                     >
-                      📑 保存リスト（{savedPapers.length}）
+                      {showSummaries ? "📄 要約を閉じる" : "📄 要約を表示"}
                     </button>
-                  )}
+
+                    {userId && (
+                      <button
+                        onClick={() => setView("saved")}
+                        className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+                      >
+                        📑 保存リスト（{savedPapers.length}）
+                      </button>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -627,6 +670,7 @@ export default function PaperSearch() {
                 <ResultCard
                   key={`${r.source}-${i}`}
                   r={r}
+                  showSummary={showSummaries}
                   mode={mode}
                   titleTranslation={titleTranslations[r.url]}
                   isSaved={Boolean(savedMap[r.url])}
@@ -700,6 +744,7 @@ export default function PaperSearch() {
                       <ResultCard
                         key={`${ti}-${r.source}-${i}`}
                         r={r}
+                        showSummary
                         mode={mode}
                         titleTranslation={titleTranslations[r.url]}
                         isSaved={Boolean(savedMap[r.url])}

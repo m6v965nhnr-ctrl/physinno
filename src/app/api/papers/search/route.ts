@@ -101,6 +101,9 @@ async function searchPubMed(query: string): Promise<PaperResult[]> {
   const result = esummaryData.result;
   if (!result) return [];
 
+  // esummaryにはアブストラクトが含まれないため、efetchで別途取得する（失敗しても検索結果は返す）
+  const abstracts = await fetchPubMedAbstracts(ids).catch(() => ({}) as Record<string, string>);
+
   return ids
     .map((id) => result[id])
     .filter((item): item is PubMedSummaryItem => Boolean(item))
@@ -112,7 +115,37 @@ async function searchPubMed(query: string): Promise<PaperResult[]> {
       journal: item.fulljournalname || item.source || null,
       year: (item.pubdate ?? "").slice(0, 4) || null,
       url: `https://pubmed.ncbi.nlm.nih.gov/${item.uid}/`,
+      abstract: abstracts[item.uid] ?? null,
     }));
+}
+
+async function fetchPubMedAbstracts(ids: string[]): Promise<Record<string, string>> {
+  const res = await fetch(
+    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id=${ids.join(",")}`,
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return {};
+
+  const xml = await res.text();
+  const out: Record<string, string> = {};
+
+  for (const article of xml.split("<PubmedArticle>").slice(1)) {
+    const pmid = article.match(/<PMID[^>]*>(\d+)<\/PMID>/)?.[1];
+    if (!pmid) continue;
+
+    // 構造化アブストラクト（BACKGROUND / METHODS など）はラベル付きで連結する
+    const parts = [...article.matchAll(/<AbstractText([^>]*)>([\s\S]*?)<\/AbstractText>/g)]
+      .map((m) => {
+        const label = m[1].match(/Label="([^"]+)"/)?.[1];
+        const text = decodeEntities(m[2]);
+        return text ? (label ? `${label}: ${text}` : text) : "";
+      })
+      .filter(Boolean);
+
+    if (parts.length > 0) out[pmid] = parts.join(" ");
+  }
+
+  return out;
 }
 
 // --- J-STAGE（公式WebAPI, Atom形式） ---
