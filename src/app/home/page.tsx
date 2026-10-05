@@ -10,6 +10,7 @@ import {
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
+import ProfileNameNudge from "@/components/ProfileNameNudge";
 
 type Post = {
   id: string;
@@ -490,6 +491,8 @@ if (targetPost && targetPost.user_id !== userId) {
             グループ
           </Link>
         </div>
+
+        <ProfileNameNudge userId={userId} />
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">
