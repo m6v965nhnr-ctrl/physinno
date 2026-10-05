@@ -8,6 +8,7 @@ import type { AuthUser } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
 import { SITE_URL } from "@/lib/site";
+import ReportButton from "@/components/ReportButton";
 
 type Post = {
   id: string;
@@ -353,6 +354,10 @@ export default function PostDetailPage() {
               共有
             </button>
 
+            {user && !isOwner && (
+              <ReportButton targetType="post" targetId={post.id} className="px-2 py-2 text-sm" />
+            )}
+
             {isOwner && (
               <Link
                 href={`/posts/${id}/edit`}
@@ -600,6 +605,10 @@ function CommentItem({
               >
                 削除
               </button>
+            )}
+
+            {currentUserId && comment.user_id !== currentUserId && (
+              <ReportButton targetType="comment" targetId={comment.id} />
             )}
 
           </div>

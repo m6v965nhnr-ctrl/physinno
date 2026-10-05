@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
+import ReportButton from "@/components/ReportButton";
 import { MedicalHistoryEntry, listPublicMedicalHistory } from "@/lib/medicalHistory";
 
 type Message = {
@@ -361,8 +362,15 @@ export default function MessagePage() {
                       {message.content}
                     </div>
 
-                    <span className="mt-0.5 px-1 text-[9px] text-gray-400">
+                    <span className="mt-0.5 flex items-center gap-2 px-1 text-[9px] text-gray-400">
                       {formatTime(message.created_at)}
+                      {!mine && (
+                        <ReportButton
+                          targetType="message"
+                          targetId={message.id}
+                          className="text-[10px]"
+                        />
+                      )}
                     </span>
                   </div>
                 </div>

@@ -71,6 +71,8 @@ export type Achievement = {
   achieved_on: string;
   is_public: boolean;
   created_at: string;
+  // 研修や学会で得た単位・ポイント(投稿の詳細情報「CPDポイント」。未入力は 0)
+  points: number;
 };
 
 type PostRow = {
@@ -83,6 +85,7 @@ type PostRow = {
   achieved_on: string | null;
   is_public: boolean;
   created_at: string;
+  details: Record<string, unknown> | null;
 };
 
 function toAchievement(row: PostRow): Achievement | null {
@@ -100,6 +103,7 @@ function toAchievement(row: PostRow): Achievement | null {
     achieved_on: row.achieved_on || row.created_at.slice(0, 10),
     is_public: row.is_public,
     created_at: row.created_at,
+    points: Number(row.details?.cpd_points) || 0,
   };
 }
 
@@ -110,7 +114,7 @@ export async function listMyAchievements(
   const { data } = await supabase
     .from("posts")
     .select(
-      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at"
+      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at, details"
     )
     .eq("user_id", userId)
     .in("post_type", ACHIEVEMENT_CATEGORIES)
@@ -128,7 +132,7 @@ export async function listPublicAchievements(
   const { data } = await supabase
     .from("posts")
     .select(
-      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at"
+      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at, details"
     )
     .eq("user_id", userId)
     .eq("is_public", true)
@@ -145,6 +149,9 @@ export async function deleteAchievement(id: string) {
   return error ? error.message : null;
 }
 
+// 目標の数え方: count = 実績1件を1回と数える / points = 実績に入力したポイントを合計する
+export type QualificationUnit = "count" | "points";
+
 export type QualificationTarget = {
   id: string;
   user_id: string;
@@ -153,6 +160,8 @@ export type QualificationTarget = {
   renewal_years: number;
   cycle_start: string;
   created_at: string;
+  unit: QualificationUnit;
+  count_categories: AchievementCategory[];
 };
 
 export async function listQualificationTargets(
@@ -164,23 +173,42 @@ export async function listQualificationTargets(
     .eq("user_id", userId)
     .order("created_at", { ascending: true });
 
-  return data || [];
+  return (data || []) as QualificationTarget[];
 }
 
-export async function addQualificationTarget(params: {
-  userId: string;
+export type QualificationInput = {
   name: string;
   requiredTotal: number;
   renewalYears: number;
-  cycleStart?: string;
-}) {
-  const { error } = await supabase.from("qualification_targets").insert({
-    user_id: params.userId,
-    name: params.name,
-    required_total: params.requiredTotal,
-    renewal_years: params.renewalYears,
-    cycle_start: params.cycleStart || new Date().toISOString().slice(0, 10),
-  });
+  cycleStart: string;
+  unit: QualificationUnit;
+  categories: AchievementCategory[];
+};
+
+function toRow(input: QualificationInput) {
+  return {
+    name: input.name.trim(),
+    required_total: Math.max(1, Math.round(input.requiredTotal) || 1),
+    renewal_years: Math.max(1, Math.round(input.renewalYears) || 1),
+    cycle_start: input.cycleStart || new Date().toISOString().slice(0, 10),
+    unit: input.unit,
+    count_categories: input.categories.length > 0 ? input.categories : ACHIEVEMENT_CATEGORIES,
+  };
+}
+
+export async function addQualificationTarget(userId: string, input: QualificationInput) {
+  const { error } = await supabase
+    .from("qualification_targets")
+    .insert({ user_id: userId, ...toRow(input) });
+
+  return error ? error.message : null;
+}
+
+export async function updateQualificationTarget(id: string, input: QualificationInput) {
+  const { error } = await supabase
+    .from("qualification_targets")
+    .update(toRow(input))
+    .eq("id", id);
 
   return error ? error.message : null;
 }
@@ -196,38 +224,88 @@ export async function deleteQualificationTarget(id: string) {
 
 export type QualificationProgress = {
   target: QualificationTarget;
-  count: number;
+  // 今のサイクルで積み上げた数(回数、またはポイント)
+  value: number;
+  // 対象になった実績の件数
+  activityCount: number;
   remaining: number;
+  achieved: boolean;
+  percent: number;
   deadline: Date;
   monthsRemaining: number;
+  expired: boolean;
+  // ポイントで数えるときの、1回あたりの平均ポイント(記録がなければ null)
+  averagePoints: number | null;
+  // 「あと何回」: 回数の目標ならそのまま残り、ポイントなら平均ポイントから見積もった回数(見積もれなければ null)
+  timesLeft: number | null;
+  // 期限までに、月に何回のペースが必要か
+  perMonth: number | null;
 };
 
-// 資格の更新サイクル開始日以降の実績数から、達成状況・更新期限を計算する
+// 更新サイクルの期間内で、対象にした種類の実績を数え、あと何回・何ポイントかを計算する
 export function computeQualificationProgress(
   target: QualificationTarget,
-  achievements: Achievement[]
+  achievements: Achievement[],
+  now: Date = new Date()
 ): QualificationProgress {
   const cycleStart = new Date(target.cycle_start);
-
-  const count = achievements.filter(
-    (a) => new Date(a.achieved_on) >= cycleStart
-  ).length;
 
   const deadline = new Date(cycleStart);
   deadline.setFullYear(deadline.getFullYear() + target.renewal_years);
 
-  const monthsRemaining = Math.max(
-    0,
-    Math.round(
-      (deadline.getTime() - Date.now()) / (1000 * 60 * 60 * 24 * 30.44)
-    )
-  );
+  const categories = target.count_categories?.length
+    ? target.count_categories
+    : ACHIEVEMENT_CATEGORIES;
+
+  const counted = achievements.filter((a) => {
+    const on = new Date(a.achieved_on);
+    return on >= cycleStart && on <= deadline && categories.includes(a.category);
+  });
+
+  const isPoints = target.unit === "points";
+  const value = isPoints
+    ? counted.reduce((sum, a) => sum + a.points, 0)
+    : counted.length;
+
+  const remaining = Math.max(0, target.required_total - value);
+  const achieved = remaining === 0;
+
+  const withPoints = counted.filter((a) => a.points > 0);
+  const averagePoints =
+    isPoints && withPoints.length > 0
+      ? withPoints.reduce((sum, a) => sum + a.points, 0) / withPoints.length
+      : null;
+
+  const timesLeft = achieved
+    ? 0
+    : isPoints
+      ? averagePoints
+        ? Math.ceil(remaining / averagePoints)
+        : null
+      : remaining;
+
+  const msPerMonth = 1000 * 60 * 60 * 24 * 30.44;
+  const monthsExact = (deadline.getTime() - now.getTime()) / msPerMonth;
+  const monthsRemaining = Math.max(0, Math.round(monthsExact));
+  const expired = deadline.getTime() < now.getTime();
+
+  const perMonth =
+    !achieved && timesLeft !== null && monthsExact > 0
+      ? Math.round((timesLeft / monthsExact) * 10) / 10
+      : null;
 
   return {
     target,
-    count,
-    remaining: Math.max(0, target.required_total - count),
+    value,
+    activityCount: counted.length,
+    remaining,
+    achieved,
+    percent: Math.min(100, Math.round((value / target.required_total) * 100)),
     deadline,
     monthsRemaining,
+    expired,
+    averagePoints,
+    timesLeft,
+    perMonth,
   };
 }

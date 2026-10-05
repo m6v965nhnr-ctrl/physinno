@@ -735,6 +735,18 @@ function SeminarDetail({
         </button>
 
         <a
+          href={`/posts/create?${new URLSearchParams({
+            type: s.kind === "学術大会・学会" ? "conference" : "training",
+            title: s.title,
+            date: s.start_date.slice(0, 10),
+            ...(s.organizer ? { organizer: s.organizer } : {}),
+          }).toString()}`}
+          className="mt-3 block w-full rounded-full border border-gray-300 bg-white py-3 text-center text-sm font-medium"
+        >
+          ✅ 参加した（学習履歴に記録する）
+        </a>
+
+        <a
           href={s.url}
           target="_blank"
           rel="noopener noreferrer"

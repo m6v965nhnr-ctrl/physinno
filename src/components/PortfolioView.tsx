@@ -510,7 +510,7 @@ export default function PortfolioView({
                       key={t.id}
                       className="inline-flex items-center rounded-full border border-relight px-3 py-1 text-xs text-gray-600 print:border-gray-400 print:text-gray-800"
                     >
-                      {t.name}（更新目標）{progress.count}/{t.required_total}
+                      {t.name}（更新目標）{progress.value}/{t.required_total}{t.unit === "points" ? "pt" : ""}
                     </span>
                   );
                 })}

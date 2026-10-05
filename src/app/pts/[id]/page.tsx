@@ -430,7 +430,7 @@ export default function PTProfile() {
                   key={t.id}
                   className="inline-flex items-center gap-1 rounded-full border border-relight px-3 py-1 text-xs text-gray-600"
                 >
-                  🏅 {t.name} {progress.count}/{t.required_total}・更新まで
+                  🏅 {t.name} {progress.value}/{t.required_total}{t.unit === "points" ? "pt" : ""}・更新まで
                   {Math.floor(progress.monthsRemaining / 12)}年
                   {progress.monthsRemaining % 12}ヶ月
                 </span>

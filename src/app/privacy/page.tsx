@@ -68,6 +68,9 @@ export default function PrivacyPage() {
               </li>
               <li>保存した論文、保存した研修・学会情報</li>
               <li>運営へのメッセージの内容</li>
+              <li>
+                通報の内容（通報者、対象の投稿・コメント・メッセージ・口コミ、理由、コメント）。運営者が、対応のために、通報された対象の内容（通報されたメッセージの本文を含みます）を確認します
+              </li>
               <li>AIモードに入力した質問文</li>
             </ul>
             <p className="mt-3 font-medium text-gray-900">自動的に取得される情報</p>
@@ -246,6 +249,16 @@ export default function PrivacyPage() {
                     </td>
                     <td className="px-3 py-2">
                       論文検索で入力した検索語（個人を特定する情報は送信しません）
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="px-3 py-2 align-top font-medium text-gray-900">
+                      メール送信サービス
+                      <br />
+                      <span className="font-normal text-gray-500">（Google の Gmail）</span>
+                    </td>
+                    <td className="px-3 py-2">
+                      通知メールの宛先（登録したメールアドレス）と、「〇〇さんからメッセージが届きました」のような通知の件名・本文。コメントやメッセージの本文は含めません。「通知」画面の「メールで通知を受け取る」をオフにすると送信を止められます
                     </td>
                   </tr>
                   <tr>

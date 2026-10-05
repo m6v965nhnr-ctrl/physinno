@@ -9,14 +9,11 @@ import {
   ACHIEVEMENT_CATEGORY_LABEL,
   Achievement,
   QualificationTarget,
-  addQualificationTarget,
-  computeQualificationProgress,
   deleteAchievement,
-  deleteQualificationTarget,
   listMyAchievements,
   listQualificationTargets,
 } from "@/lib/achievements";
-import { notify } from "@/lib/notify";
+import QualificationTargets from "@/components/QualificationTargets";
 
 export default function AchievementsPage() {
   const router = useRouter();
@@ -27,12 +24,6 @@ export default function AchievementsPage() {
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [targets, setTargets] = useState<QualificationTarget[]>([]);
 
-  // 資格目標フォーム
-  const [showTargetForm, setShowTargetForm] = useState(false);
-  const [targetName, setTargetName] = useState("");
-  const [requiredTotal, setRequiredTotal] = useState("20");
-  const [renewalYears, setRenewalYears] = useState("5");
-  const [savingTarget, setSavingTarget] = useState(false);
 
   useEffect(() => {
     load();
@@ -59,38 +50,6 @@ export default function AchievementsPage() {
   async function handleDeleteAchievement(id: string) {
     if (!confirm("この実績投稿を削除しますか？")) return;
     await deleteAchievement(id);
-    load();
-  }
-
-  async function handleAddTarget(e: React.FormEvent) {
-    e.preventDefault();
-
-    if (!targetName.trim()) return;
-
-    setSavingTarget(true);
-
-    const error = await addQualificationTarget({
-      userId,
-      name: targetName,
-      requiredTotal: Number(requiredTotal) || 1,
-      renewalYears: Number(renewalYears) || 5,
-    });
-
-    setSavingTarget(false);
-
-    if (error) {
-      notify(error);
-      return;
-    }
-
-    setTargetName("");
-    setShowTargetForm(false);
-    load();
-  }
-
-  async function handleDeleteTarget(id: string) {
-    if (!confirm("この目標を削除しますか？")) return;
-    await deleteQualificationTarget(id);
     load();
   }
 
@@ -135,103 +94,12 @@ export default function AchievementsPage() {
             資格更新の目標
         ========================= */}
         <section className="mt-8 border-t pt-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold">資格更新の目標</h2>
-
-            <button
-              onClick={() => setShowTargetForm((v) => !v)}
-              className="text-sm text-relight-blue"
-            >
-              {showTargetForm ? "閉じる" : "+ 目標を追加"}
-            </button>
-          </div>
-
-          {showTargetForm && (
-            <form
-              onSubmit={handleAddTarget}
-              className="mt-4 space-y-3 rounded-2xl border border-gray-100 p-4"
-            >
-              <input
-                value={targetName}
-                onChange={(e) => setTargetName(e.target.value)}
-                placeholder="資格名（例: 認定理学療法士）"
-                className="w-full rounded-xl border px-4 py-2.5 text-sm"
-                required
-               aria-label="資格名（例: 認定理学療法士）"/>
-
-              <div className="flex gap-3">
-                <label className="flex-1 text-xs text-gray-500">
-                  必要件数
-                  <input
-                    type="number"
-                    min={1}
-                    value={requiredTotal}
-                    onChange={(e) => setRequiredTotal(e.target.value)}
-                    className="mt-1 w-full rounded-xl border px-4 py-2.5 text-sm"
-                  />
-                </label>
-
-                <label className="flex-1 text-xs text-gray-500">
-                  更新サイクル（年）
-                  <input
-                    type="number"
-                    min={1}
-                    value={renewalYears}
-                    onChange={(e) => setRenewalYears(e.target.value)}
-                    className="mt-1 w-full rounded-xl border px-4 py-2.5 text-sm"
-                  />
-                </label>
-              </div>
-
-              <button
-                type="submit"
-                disabled={savingTarget}
-                className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
-              >
-                {savingTarget ? "保存中…" : "追加する"}
-              </button>
-            </form>
-          )}
-
-          <div className="mt-4 space-y-2">
-            {targets.length === 0 ? (
-              <p className="text-sm text-gray-400">
-                まだ目標が設定されていません。
-              </p>
-            ) : (
-              targets.map((t) => {
-                const progress = computeQualificationProgress(
-                  t,
-                  achievements
-                );
-
-                const years = Math.floor(progress.monthsRemaining / 12);
-                const months = progress.monthsRemaining % 12;
-
-                return (
-                  <div
-                    key={t.id}
-                    className="flex items-center justify-between rounded-full border border-relight px-4 py-2 text-xs text-gray-600"
-                  >
-                    <span>
-                      🏅 {t.name}
-                      <span className="font-semibold text-gray-900">
-                        {progress.count}/{t.required_total}
-                      </span>
-                      　更新まであと{years}年{months}ヶ月
-                    </span>
-
-                    <button
-                      onClick={() => handleDeleteTarget(t.id)}
-                      className="ml-2 shrink-0 text-gray-300 hover:text-gray-500"
-                    >
-                      ×
-                    </button>
-                  </div>
-                );
-              })
-            )}
-          </div>
+          <QualificationTargets
+            userId={userId}
+            targets={targets}
+            achievements={achievements}
+            onChanged={load}
+          />
         </section>
 
         {/* =========================

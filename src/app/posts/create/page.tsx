@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import {
@@ -54,6 +54,28 @@ export default function CreatePostPage() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
   const [posting, setPosting] = useState(false);
+
+  // 研修情報の「参加した」から来たときは、種類・題名・日付・主催を最初から入れておく
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const presetType = params.get("type");
+
+    if (presetType && (ACHIEVEMENT_CATEGORIES as string[]).includes(presetType)) {
+      setType(presetType as AchievementCategory);
+    }
+
+    const presetTitle = params.get("title");
+    if (presetTitle) setTitle(presetTitle.slice(0, 200));
+
+    const presetDate = params.get("date");
+    if (presetDate && /^\d{4}-\d{2}-\d{2}$/.test(presetDate)) setAchievedOn(presetDate);
+
+    const presetOrganizer = params.get("organizer");
+    if (presetOrganizer) {
+      setOrganizer(presetOrganizer.slice(0, 100));
+      setShowDetails(true);
+    }
+  }, []);
 
   function handleMediaChange(
     event: React.ChangeEvent<HTMLInputElement>

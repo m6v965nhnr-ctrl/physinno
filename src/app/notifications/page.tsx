@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
+import EmailNotificationToggle from "@/components/EmailNotificationToggle";
 
 type NotificationType = "like" | "comment" | "follow" | "endorsement";
 
@@ -165,6 +166,8 @@ export default function NotificationsPage() {
       </header>
 
       <div className="mx-auto max-w-xl px-5 py-6">
+        <EmailNotificationToggle />
+
         {loading && (
           <p className="text-center text-sm text-gray-400">読み込み中…</p>
         )}

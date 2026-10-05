@@ -33,6 +33,7 @@ import ReviewRadarChart from "@/components/ReviewRadarChart";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
+import ReportButton from "@/components/ReportButton";
 
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
@@ -630,6 +631,14 @@ export default function HospitalDetailPage() {
               <p className="text-sm text-gray-400">まだ口コミはありません</p>
             )}
 
+            <p className="text-[11px] leading-5 text-gray-400">
+              事実と異なる口コミや、権利を侵害する口コミは、各口コミの「通報」から運営へ連絡できます。病院の関係者の方は{" "}
+              <Link href="/contact" className="underline">
+                運営へのメッセージ
+              </Link>
+              から削除・訂正を申し出られます。
+            </p>
+
             {reviews.map((r) => (
               <div key={r.id} className="rounded-2xl border border-gray-100 p-4">
                 <div className="flex items-center justify-between">
@@ -655,6 +664,12 @@ export default function HospitalDetailPage() {
                   <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-gray-700">
                     {r.comment}
                   </p>
+                )}
+
+                {userId && !r.is_mine && (
+                  <div className="mt-2 text-right">
+                    <ReportButton targetType="hospital_review" targetId={r.id} />
+                  </div>
                 )}
               </div>
             ))}

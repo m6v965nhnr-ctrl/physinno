@@ -19,6 +19,7 @@ import {
 import { notify } from "@/lib/notify";
 import { ptName } from "@/lib/format";
 import { SITE_URL } from "@/lib/site";
+import ReportButton from "@/components/ReportButton";
 
 type Profile = {
   user_id: string;
@@ -295,7 +296,16 @@ export default function GroupDetailPage() {
                     key={m.id}
                     className={`flex flex-col ${isMe ? "items-end" : "items-start"}`}
                   >
-                    <p className="text-[11px] text-gray-400">{name}</p>
+                    <p className="flex items-center gap-2 text-[11px] text-gray-400">
+                      {name}
+                      {!isMe && (
+                        <ReportButton
+                          targetType="group_message"
+                          targetId={m.id}
+                          className="text-[10px]"
+                        />
+                      )}
+                    </p>
                     <div
                       className={`mt-0.5 max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm ${
                         isMe

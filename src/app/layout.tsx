@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
   },
+  // ホーム画面に追加したときの見え方（iPhone）
+  icons: { apple: "/pwa/icon?size=180" },
+  appleWebApp: { capable: true, title: SITE_NAME, statusBarStyle: "default" },
   // Google Search Console の所有権確認（Vercelの環境変数に設定）
   verification: process.env.GOOGLE_SITE_VERIFICATION
     ? { google: process.env.GOOGLE_SITE_VERIFICATION }

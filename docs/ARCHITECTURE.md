@@ -30,6 +30,20 @@
 - `/api/papers/search` が9サイトを並列に検索して結果を正規化（PubMedはefetchで要旨も取得）。`/api/papers/ai` が検索語の生成と回答生成を担当（`src/lib/server/gemini.ts`、キーはサーバー側のみ）。
 - AIは「渡された論文だけ」を根拠に引用番号つきで回答する。質問文は Google に送信されるため、プライバシーポリシーに明記し画面でも注意喚起している。
 
+## 通報・削除申請
+- `reports` に通報を保存(クライアントは `target_type / target_id / reason / detail` の列だけ書ける。状態・対応メモは運営のみ)。
+- 運営は `/admin` の「通報・削除申請」で、`admin_list_reports` / `admin_resolve_report`(どちらも admin_users のみ実行可)を使って確認・削除・クローズする。投稿を削除するときはコメント・いいね・通知も一緒に消す。
+
+## メール通知
+- コメント・フォロー(`notifications` への INSERT)とメッセージ(`messages` への INSERT)のトリガーが `queue_email()` を呼び、`pg_net` で Vercel の `/api/notify-email` に依頼を送る。
+- 依頼には本文を含めない(宛先・種類・相手の名前のみ)。同じ種類は10分に1通まで、`users.email_notifications` がオフの人には送らない。
+- `/api/notify-email` は `x-notify-secret`(= `NOTIFY_WEBHOOK_SECRET` = DBの `app_config.notify_webhook_secret`)が一致したときだけ SMTP(nodemailer)で送る。SMTP 未設定なら 503 で何も送らない。
+- 設定の切り替えは `set_my_email_notifications()`(`users` はクライアントから直接更新できないため)。
+
+## 資格更新の目標
+- `qualification_targets`: 数え方(`unit` = count / points)・必要数・更新サイクル・数える実績の種類(`count_categories`)。ポイントは実績投稿の `details.cpd_points` を合計する。
+- 「あと何回」は、回数の目標なら残り件数、ポイントの目標なら残りポイント ÷ 記録済み実績の平均ポイントで見積もる(`computeQualificationProgress`)。
+
 ## 病院ページ
 - `hospitals`（厚労省 医療情報ネット オープンデータ 2024-12-01 時点のうちリハビリテーション科のある病院 約5,000件＋ユーザー登録。栃木県は元データ自体が少ない）。API の1回あたり取得上限は1,000件なので、一覧系は `.range()` で分割する（`sitemap.ts` 参照）、`hospital_reviews`（6項目の評価）。
 - 口コミの投稿者(`user_id`)はクライアントへ返さない。一覧は `get_hospital_reviews` RPC（`is_mine` のみ返す）、テーブルの直接SELECTは本人分のみ。

@@ -157,10 +157,14 @@ export default function LandingPage() {
           <p className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-white" style={gradient}>
             理学療法士・患者・研究者・病院・医療系企業のためのプラットフォーム
           </p>
-          <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight md:text-5xl">
-            理学療法士の臨床を、
+          {/* 画面幅に合わせて文字の大きさを変え、スマホでも「理学療法士の臨床を、」が1行に収まるようにする */}
+          <h1
+            className="mt-6 font-bold leading-tight tracking-tight"
+            style={{ fontSize: "clamp(1.5rem, calc((100vw - 3rem) / 10.6), 3rem)" }}
+          >
+            <span className="whitespace-nowrap">理学療法士の臨床を、</span>
             <br />
-            ひとりにしない。
+            <span className="whitespace-nowrap">ひとりにしない。</span>
           </h1>
           <p className="mt-6 text-base leading-8 text-gray-600">
             症例の共有・相談、9サイトを横断する論文検索とAIモード、全国の研修・学会情報、全国の病院情報と口コミ、PT同士のつながり。

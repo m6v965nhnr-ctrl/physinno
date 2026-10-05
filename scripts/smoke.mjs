@@ -59,7 +59,19 @@ const ai = await get("/api/papers/ai", {
 });
 check("POST /api/papers/ai は未ログインで 401/503", [401, 503].includes(ai.res.status), `status=${ai.res.status}`);
 
-// 5) 論文検索APIが応答する
+// 5) ホーム画面に追加するための設定と、通知メールAPIの認可
+const manifest = await get("/manifest.webmanifest");
+check("manifest.webmanifest が200", manifest.res.status === 200, `status=${manifest.res.status}`);
+const icon = await fetch(BASE + "/pwa/icon?size=192");
+check("アプリアイコン(PNG)が取得できる", icon.status === 200 && (icon.headers.get("content-type") || "").includes("image/png"), `status=${icon.status}`);
+const notify = await get("/api/notify-email", {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ to: "a@example.com", kind: "message", actor: "x" }),
+});
+check("通知メールAPIは合言葉なしで 401", notify.res.status === 401, `status=${notify.res.status}`);
+
+// 6) 論文検索APIが応答する
 const search = await get("/api/papers/search?q=" + encodeURIComponent("stroke gait") + "&sources=pubmed");
 check("GET /api/papers/search が200", search.res.status === 200, `status=${search.res.status}`);
 
