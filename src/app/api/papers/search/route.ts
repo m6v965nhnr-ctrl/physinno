@@ -266,16 +266,26 @@ type SemanticScholarItem = {
 };
 
 async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
-  const res = await fetch(
-    `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
-      query
-    )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds`,
-    {
-      signal: AbortSignal.timeout(8000),
-      headers: { "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)" },
-    }
-  );
-  if (!res.ok) return [];
+  const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
+    query
+  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds`;
+
+  const headers: Record<string, string> = {
+    "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)",
+  };
+  // APIキーを取得したら環境変数で設定する（サーバー側のみ。クライアントには出さない）
+  if (process.env.SEMANTIC_SCHOLAR_API_KEY) {
+    headers["x-api-key"] = process.env.SEMANTIC_SCHOLAR_API_KEY;
+  }
+
+  // 429（レート制限）のときは指数バックオフで最大2回までリトライする
+  let res: Response | null = null;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    res = await fetch(url, { signal: AbortSignal.timeout(5000), headers });
+    if (res.status !== 429) break;
+    if (attempt < 2) await new Promise((r) => setTimeout(r, 800 * 2 ** attempt));
+  }
+  if (!res || !res.ok) return [];
 
   const data = (await res.json()) as { data?: SemanticScholarItem[] };
   const items = data.data ?? [];

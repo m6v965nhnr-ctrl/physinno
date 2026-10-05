@@ -10,6 +10,8 @@ import {
   PaperResult,
   PaperSource,
   SavedPaper,
+  aiAnswer,
+  aiRewriteQuery,
   deleteSavedPaper,
   listSavedPapers,
   savePaper,
@@ -24,6 +26,10 @@ type AiTurn = {
   query: string;
   results: PaperResult[];
   translatedQuery: string | null;
+  // 論文を根拠にしたAIの回答。AIが使えない場合はnull
+  answer: string | null;
+  // resultsの先頭から何件が回答の根拠（[1]〜[n]の引用番号）か
+  citedCount: number;
 };
 
 function loadRecentSearches(): string[] {
@@ -54,15 +60,22 @@ function ResultCard({
   titleTranslation,
   isSaved,
   onToggleSave,
+  refNumber,
 }: {
   r: PaperResult;
   mode: "normal" | "ai";
   titleTranslation?: string;
   isSaved: boolean;
   onToggleSave: () => void;
+  refNumber?: number;
 }) {
   return (
     <div className="rounded-2xl border border-gray-100 p-4">
+      {refNumber !== undefined && (
+        <span className="mr-1.5 rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-semibold text-white">
+          [{refNumber}]
+        </span>
+      )}
       <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
         {PAPER_SOURCE_LABEL[r.source]}
       </span>
@@ -141,6 +154,7 @@ export default function PaperSearch() {
 
   // AIモード：質問を重ねるたびに会話のように積み上がっていく
   const [aiTurns, setAiTurns] = useState<AiTurn[]>([]);
+  const [aiNotice, setAiNotice] = useState<string | null>(null);
   const conversationEndRef = useRef<HTMLDivElement>(null);
 
   // 保存済み論文のurl→saved_papers.id。保存/保存解除の両方をこのマップで判定する
@@ -193,29 +207,80 @@ export default function PaperSearch() {
 
     setShowRecent(false);
     setSearching(true);
+    saveRecentSearch(q);
+    setRecentSearches(loadRecentSearches());
+
+    if (mode === "ai") {
+      await handleAiTurn(q);
+      setSearching(false);
+      return;
+    }
 
     const { results: newResults, error, translatedQuery: newTranslatedQuery } =
       await searchPapers(q, [...enabledSources]);
 
     setSearching(false);
-    saveRecentSearch(q);
-    setRecentSearches(loadRecentSearches());
+    setQuery(q);
+    setResults(newResults);
+    setTranslatedQuery(newTranslatedQuery);
+    setSearched(true);
 
-    if (mode === "ai") {
-      setAiTurns((prev) => [
-        ...prev,
-        { query: q, results: newResults, translatedQuery: newTranslatedQuery },
-      ]);
-      setQuery("");
-      setTimeout(() => {
-        conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-      }, 50);
-    } else {
-      setQuery(q);
-      setResults(newResults);
-      setTranslatedQuery(newTranslatedQuery);
-      setSearched(true);
+    if (error) notify(error);
+  }
+
+  // AIモード1ターン分: 質問の意図 → 検索クエリ → 論文検索 → 論文を根拠にした回答。
+  // AI側が使えない場合（キー未設定・未ログイン・失敗）は、従来どおり検索結果だけを返す
+  async function handleAiTurn(q: string) {
+    const history = aiTurns.map((t) => ({ question: t.query, answer: t.answer }));
+
+    const rewrite = await aiRewriteQuery(q, history);
+    const { results: found, error, translatedQuery: foundTranslated } =
+      await searchPapers(rewrite.query ?? q, [...enabledSources]);
+
+    let answer: string | null = null;
+    let ordered = found;
+    let citedCount = 0;
+    let reason = rewrite.reason;
+
+    if (!rewrite.reason) {
+      // 要約（アブストラクト）がある論文だけを根拠にする。番号は表示順と一致させる
+      const grounded = found.filter((r) => r.abstract).slice(0, 8);
+
+      if (grounded.length > 0) {
+        const result = await aiAnswer(q, history, grounded);
+        reason = result.reason;
+        if (result.answer) {
+          answer = result.answer;
+          citedCount = grounded.length;
+          ordered = [...grounded, ...found.filter((r) => !grounded.includes(r))];
+        }
+      }
     }
+
+    setAiNotice(
+      reason === "not_configured"
+        ? "AIの会話回答は現在準備中です。検索結果のみ表示しています。"
+        : reason === "unauthorized"
+          ? "AIの会話回答はログインすると利用できます。検索結果のみ表示しています。"
+          : reason === "failed"
+            ? "AI回答の生成に失敗したため、検索結果のみ表示しています。"
+            : null
+    );
+
+    setAiTurns((prev) => [
+      ...prev,
+      {
+        query: q,
+        results: ordered,
+        translatedQuery: foundTranslated,
+        answer,
+        citedCount,
+      },
+    ]);
+    setQuery("");
+    setTimeout(() => {
+      conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }, 50);
 
     if (error) notify(error);
   }
@@ -405,9 +470,16 @@ export default function PaperSearch() {
       </div>
 
       {mode === "ai" && (
-        <p className="mb-3 text-xs text-gray-500">
-          聞きたいことを文章で入力すると、要約（アブストラクト／AI一文要約）つきで関連論文を探せます。続けて質問すると会話のように積み上がります。
-        </p>
+        <>
+          <p className="mb-3 text-xs text-gray-500">
+            聞きたいことを文章で入力すると、AIが意図を汲み取って論文を探し、見つかった論文の要約を根拠に回答します。続けて質問すると、会話の流れを踏まえて答えます（AI回答はログインが必要です）。
+          </p>
+          {aiNotice && (
+            <p className="mb-3 rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-700">
+              {aiNotice}
+            </p>
+          )}
+        </>
       )}
 
       {/* macOS風の検索フィールド：虫眼鏡アイコン・クリアボタン・最近の検索 */}
@@ -596,7 +668,25 @@ export default function PaperSearch() {
                   </p>
                 )}
 
+                {turn.answer && (
+                  <div className="mt-3 mr-auto max-w-[95%] rounded-2xl rounded-bl-sm bg-emerald-50 px-4 py-3">
+                    <p className="text-[11px] font-semibold text-emerald-700">✨ AIの回答</p>
+                    <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-800">
+                      {turn.answer}
+                    </p>
+                    <p className="mt-2 text-[11px] text-gray-400">
+                      取得できた論文の要約のみを根拠にしています。臨床判断は必ず原典と患者さんの状態に基づいて行ってください。
+                    </p>
+                  </div>
+                )}
+
                 <div className="mt-3 space-y-3">
+                  {turn.answer && (
+                    <p className="text-xs font-semibold text-gray-500">
+                      参考にした論文（[1]〜[{turn.citedCount}]）と、その他の検索結果
+                    </p>
+                  )}
+
                   {turn.results.length === 0 ? (
                     <p className="text-sm text-gray-400">
                       見つかりませんでした。下のリンクから他のサイトも確認してみてください
@@ -610,6 +700,7 @@ export default function PaperSearch() {
                         titleTranslation={titleTranslations[r.url]}
                         isSaved={Boolean(savedMap[r.url])}
                         onToggleSave={() => handleToggleSave(r)}
+                        refNumber={i < turn.citedCount ? i + 1 : undefined}
                       />
                     ))
                   )}
@@ -625,7 +716,10 @@ export default function PaperSearch() {
           <div ref={conversationEndRef} />
 
           <button
-            onClick={() => setAiTurns([])}
+            onClick={() => {
+              setAiTurns([]);
+              setAiNotice(null);
+            }}
             className="mt-4 text-xs text-gray-400 underline hover:text-gray-600"
           >
             新しい会話を始める

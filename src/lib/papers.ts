@@ -117,6 +117,56 @@ export async function searchPapers(
   }
 }
 
+export type AiHistoryItem = { question: string; answer: string | null };
+
+export type AiFailureReason = "not_configured" | "unauthorized" | "failed";
+
+async function callAi(
+  body: Record<string, unknown>
+): Promise<{ data: Record<string, unknown> | null; reason: AiFailureReason | null }> {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    const res = await fetch("/api/papers/ai", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json();
+
+    if (res.ok) return { data, reason: null };
+    if (data.code === "not_configured") return { data: null, reason: "not_configured" };
+    if (data.code === "unauthorized") return { data: null, reason: "unauthorized" };
+    return { data: null, reason: "failed" };
+  } catch {
+    return { data: null, reason: "failed" };
+  }
+}
+
+// 質問文（と会話の流れ）から、論文検索用の英語クエリをAIに作らせる
+export async function aiRewriteQuery(
+  question: string,
+  history: AiHistoryItem[]
+): Promise<{ query: string | null; reason: AiFailureReason | null }> {
+  const { data, reason } = await callAi({ action: "query", question, history });
+  return { query: typeof data?.query === "string" ? data.query : null, reason };
+}
+
+// 検索で取れた論文だけを根拠に、会話形式の回答をAIに作らせる
+export async function aiAnswer(
+  question: string,
+  history: AiHistoryItem[],
+  papers: Pick<PaperResult, "title" | "journal" | "year" | "abstract">[]
+): Promise<{ answer: string | null; reason: AiFailureReason | null }> {
+  const { data, reason } = await callAi({ action: "answer", question, history, papers });
+  return { answer: typeof data?.answer === "string" ? data.answer : null, reason };
+}
+
 // 検索結果のタイトルを日本語にまとめて翻訳する（直訳でよい前提のシンプル機能）
 export async function translateTitles(texts: string[]): Promise<(string | null)[]> {
   try {
