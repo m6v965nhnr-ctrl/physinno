@@ -29,6 +29,26 @@ export default function PrivacyPage() {
             </p>
           </section>
 
+          <Section title="運営者の情報">
+            <ul className="list-disc space-y-1 pl-5">
+              <li>運営者: Kazane Akimoto</li>
+              <li>
+                所在地: 神奈川県（番地以降は、開示のご請求があった場合に、本人確認のうえ遅滞なくお知らせします）
+              </li>
+              <li>
+                連絡先:{" "}
+                <a href="mailto:bupapabupapa7@gmail.com" className="underline">
+                  bupapabupapa7@gmail.com
+                </a>
+                （またはサービス内の
+                <Link href="/contact" className="mx-1 underline">
+                  運営へのメッセージ
+                </Link>
+                ）
+              </li>
+            </ul>
+          </Section>
+
           <Section title="1. 取得する情報">
             <p className="font-medium text-gray-900">ユーザーが入力・登録する情報</p>
             <ul className="mt-1 list-disc space-y-1 pl-5">

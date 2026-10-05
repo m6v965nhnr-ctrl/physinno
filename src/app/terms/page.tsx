@@ -37,6 +37,9 @@ export default function TermsPage() {
               </Link>
               によります。
             </p>
+            <p className="mt-2">
+              運営者は、Kazane Akimoto（所在地: 神奈川県）です。連絡先は第15条に記載しています。
+            </p>
           </Section>
 
           <Section title="第2条（利用登録とアカウント）">
