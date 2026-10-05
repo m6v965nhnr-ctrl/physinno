@@ -98,13 +98,23 @@ export default function EditProfilePage() {
     // 出身・生年月日・連絡先は非公開のpt_privateから取得する
     const { data: privateData } = await supabase
       .from("pt_private")
-      .select("hometown, birth_date, contact")
+      .select("hometown, birth_date, contact, id_photo_path")
       .eq("user_id", user.id)
       .maybeSingle();
 
     setHometown(privateData?.hometown || "");
     setBirthDate(privateData?.birth_date || "");
     setContact(privateData?.contact || "");
+
+    // 証明写真は非公開バケットに保存し、本人だけが署名付きURLで表示する
+    const savedIdPhotoPath = privateData?.id_photo_path || "";
+    setIdPhoto(savedIdPhotoPath);
+    if (savedIdPhotoPath) {
+      const { data: signed } = await supabase.storage
+        .from("id-photos")
+        .createSignedUrl(savedIdPhotoPath, 3600);
+      setIdPhotoPreview(signed?.signedUrl || "");
+    }
 
     if (data) {
       setProfileId(data.id);
@@ -133,8 +143,6 @@ export default function EditProfilePage() {
       setImagePreview(data.profile_image || "");
       setCoverImage(data.cover_image || "");
       setCoverPreview(data.cover_image || "");
-      setIdPhoto(data.id_photo || "");
-      setIdPhotoPreview(data.id_photo || "");
 
       setSyncedFields({
         education: data.education || "",
@@ -329,8 +337,10 @@ export default function EditProfilePage() {
     const filePath =
       `${userId}/id-photo-${Date.now()}.${fileExtension}`;
 
+    // 証明写真は公開しない。本人しか読めない非公開バケットに保存し、
+    // DBには公開URLではなく保存パスだけを残す
     const { error: uploadError } = await supabase.storage
-      .from("profile-images")
+      .from("id-photos")
       .upload(filePath, selectedIdPhoto, {
         upsert: true,
         contentType: selectedIdPhoto.type,
@@ -343,13 +353,12 @@ export default function EditProfilePage() {
       return null;
     }
 
-    const {
-      data: publicUrlData,
-    } = supabase.storage
-      .from("profile-images")
-      .getPublicUrl(filePath);
+    // 差し替え前の古いファイルは残さない
+    if (idPhoto && idPhoto !== filePath) {
+      await supabase.storage.from("id-photos").remove([idPhoto]);
+    }
 
-    return publicUrlData.publicUrl;
+    return filePath;
   }
 
   // =========================
@@ -428,16 +437,16 @@ export default function EditProfilePage() {
       interests,
       profile_image: imageUrl || null,
       cover_image: coverUrl || null,
-      id_photo: idPhotoUrl || null,
     };
 
-    // 出身・生年月日・連絡先は非公開のpt_privateへ保存する（誰でも読めるpt_profilesには置かない）
+    // 出身・生年月日・連絡先・証明写真は非公開のpt_privateへ保存する（誰でも読めるpt_profilesには置かない）
     const { error: privateError } = await supabase.from("pt_private").upsert(
       {
         user_id: userId,
         hometown,
         birth_date: birthDate || null,
         contact,
+        id_photo_path: idPhotoUrl || null,
       },
       { onConflict: "user_id" }
     );

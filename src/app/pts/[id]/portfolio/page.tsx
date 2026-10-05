@@ -59,6 +59,7 @@ export default function PortfolioViewPage() {
   const [skills, setSkills] = useState<Skill[]>([]);
 
   const [myUserId, setMyUserId] = useState<string | null>(null);
+  const [ownIdPhotoUrl, setOwnIdPhotoUrl] = useState<string | null>(null);
   const [endorsementCounts, setEndorsementCounts] = useState<
     Record<string, number>
   >({});
@@ -214,6 +215,23 @@ export default function PortfolioViewPage() {
     if (user) {
       setMyUserId(user.id);
       setMyEndorsedIds(await listMyEndorsedSkillIds(skillIds, user.id));
+
+      // 証明写真は非公開。本人が自分のポートフォリオを見ている時だけ表示する
+      // （pt_private・id-photosバケットともRLSで本人しか読めない）
+      if (user.id === userId) {
+        const { data: priv } = await supabase
+          .from("pt_private")
+          .select("id_photo_path")
+          .eq("user_id", user.id)
+          .maybeSingle();
+
+        if (priv?.id_photo_path) {
+          const { data: signed } = await supabase.storage
+            .from("id-photos")
+            .createSignedUrl(priv.id_photo_path, 3600);
+          setOwnIdPhotoUrl(signed?.signedUrl ?? null);
+        }
+      }
     }
   }
 
@@ -325,20 +343,22 @@ export default function PortfolioViewPage() {
             基本情報
         ========================= */}
         <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:gap-4 print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
-          {/* 証明写真 */}
-          <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0 print:h-28 print:w-24">
-            {pt.id_photo ? (
-              <img loading="lazy" decoding="async"
-                src={pt.id_photo}
-                alt="証明写真"
-                className="h-full w-full object-cover"
-              />
-            ) : (
-              <div className="flex h-full w-full items-center justify-center text-center text-xs text-gray-300">
-                証明写真
-              </div>
-            )}
-          </div>
+          {/* 証明写真（非公開：本人が見ている時だけ表示。PDF保存は本人の画面から行う） */}
+          {myUserId && myUserId === pt.user_id && (
+            <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0 print:h-28 print:w-24">
+              {ownIdPhotoUrl ? (
+                <img loading="lazy" decoding="async"
+                  src={ownIdPhotoUrl}
+                  alt="証明写真"
+                  className="h-full w-full object-cover"
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center text-center text-xs text-gray-300">
+                  証明写真
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="flex-1 text-center sm:text-left">
             <h1 className="text-2xl font-semibold tracking-tight text-gray-900">
