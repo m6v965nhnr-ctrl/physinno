@@ -474,6 +474,10 @@ export default function PaperSearch() {
           <p className="mb-3 text-xs text-gray-500">
             聞きたいことを文章で入力すると、AIが意図を汲み取って論文を探し、見つかった論文の要約を根拠に回答します。続けて質問すると、会話の流れを踏まえて答えます（AI回答はログインが必要です）。
           </p>
+          <p className="mb-3 text-xs text-gray-400">
+            ※ 質問は外部のAI事業者（Google）に送信されます。氏名や患者さんなど、個人を特定できる情報は入力しないでください。
+            <a href="/privacy" className="ml-1 underline">詳細</a>
+          </p>
           {aiNotice && (
             <p className="mb-3 rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-700">
               {aiNotice}
