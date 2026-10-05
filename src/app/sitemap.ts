@@ -16,6 +16,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/pts`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${SITE_URL}/register`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/columns`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
 
   const columnEntries: MetadataRoute.Sitemap = COLUMNS.map((c) => ({
@@ -38,5 +40,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...staticEntries, ...columnEntries, ...ptEntries];
+  // 病院ページ（厚労省オープンデータ由来を含む約1,100件）も検索から見つけてもらえるようにする
+  const { data: hospitals } = await supabasePublic
+    .from("hospitals")
+    .select("id, created_at")
+    .order("created_at", { ascending: false })
+    .limit(MAX_PROFILES);
+
+  const hospitalEntries: MetadataRoute.Sitemap = (hospitals || []).map((h) => ({
+    url: `${SITE_URL}/hospitals/${h.id}`,
+    lastModified: h.created_at ? new Date(h.created_at) : now,
+    changeFrequency: "monthly",
+    priority: 0.5,
+  }));
+
+  return [...staticEntries, ...columnEntries, ...ptEntries, ...hospitalEntries];
 }

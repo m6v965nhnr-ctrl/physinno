@@ -1,36 +1,36 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Re:light
 
-## Getting Started
+理学療法士（PT）のためのコミュニティ／情報プラットフォーム。一般の方は地域や専門分野からPTを探せます。
 
-First, run the development server:
+## 主な機能
+- **症例・実績の投稿**（タグ検索、コメント、いいね）と、投稿をもとにしたポートフォリオ（プロフィール下に表示、PDF保存可）
+- **論文検索**: PubMed / J-STAGE / CiNii / PEDro / Semantic Scholar / Europe PMC / OpenAlex / ClinicalTrials.gov / DOAJ を横断。日本語→英語の自動翻訳、要約表示、保存リスト。Physiopedia・Cochrane・Google Scholar・医中誌Webはリンクのみ
+- **AIモード**: 質問から検索語を作り、見つかった論文だけを根拠に日本語で回答（Gemini）
+- **研修・学会情報（News）**: 協会・士会サイトから毎日自動収集
+- **病院ページ**: 関東を中心とした約1,100病院。疾患比率・採用情報・6項目の口コミ（六角形レーダーチャート）
+- グループ、メッセージ、フォロー、PT検索
 
+## 技術構成
+Next.js（App Router）／ Supabase（Postgres + RLS・認証・ストレージ）／ Vercel。詳細は [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md)。
+
+## 開発
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev     # http://localhost:3000
+npm run build
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`.env.local` に以下を設定します（キーはコミットしないこと）。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| 変数 | 用途 |
+| --- | --- |
+| `NEXT_PUBLIC_SUPABASE_URL` / `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase 接続（必須） |
+| `NEXT_PUBLIC_SITE_URL` | 正規URL（サイトマップ・OGP用。未設定時は既定値） |
+| `GEMINI_API_KEY` | AIモード。未設定ならAIモードは「未設定」と表示 |
+| `GEMINI_MODEL` | 使用モデルの上書き（既定 `gemini-flash-latest`） |
+| `SEMANTIC_SCHOLAR_API_KEY` | Semantic Scholar の検索（未設定だと制限が厳しい） |
+| `CRON_SECRET` | Vercel Cron による研修情報取り込みの認証 |
+| `GOOGLE_SITE_VERIFICATION` | Search Console の所有権確認（任意） |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## デプロイ
+`main` へ push すると Vercel が自動デプロイします。DBの変更は `supabase/migrations` に残します。

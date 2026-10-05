@@ -1,11 +1,11 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Re:light｜理学療法士のための症例共有・研修情報コミュニティ";
+export const alt = "Re:light｜理学療法士のための症例共有・論文検索・病院情報";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const HEADLINE = "理学療法士の臨床を、ひとりにしない。";
-const SUB = "症例共有・研修情報・PT同士のつながり";
+const SUB = "症例共有・論文検索・病院の口コミ・PT同士のつながり";
 
 // 日本語を表示するため、使う文字だけの Noto Sans JP をGoogle Fontsから取得する
 async function loadJapaneseFont(text: string) {
@@ -46,7 +46,7 @@ export default async function OpengraphImage() {
           {font ? HEADLINE : "A community for physical therapists"}
         </div>
         <div style={{ marginTop: 28, fontSize: 32, opacity: 0.95 }}>
-          {font ? SUB : "Case sharing / Seminars / Connections"}
+          {font ? SUB : "Cases / Papers / Hospitals / Connections"}
         </div>
       </div>
     ),

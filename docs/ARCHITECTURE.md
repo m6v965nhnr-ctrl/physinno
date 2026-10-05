@@ -26,24 +26,15 @@
 - ストレージは自分のフォルダ（`{user_id}/…`）にのみアップロード可。バケットにサイズ・種類の上限。
 - SECURITY DEFINER 関数は内部で権限確認する（`get_admin_*` は admin_users、`ingest_seminars` はトークン）。
 
+## 論文検索とAIモード
+- `/api/papers/search` が9サイトを並列に検索して結果を正規化（PubMedはefetchで要旨も取得）。`/api/papers/ai` が検索語の生成と回答生成を担当（`src/lib/server/gemini.ts`、キーはサーバー側のみ）。
+- AIは「渡された論文だけ」を根拠に引用番号つきで回答する。質問文は Google に送信されるため、プライバシーポリシーに明記し画面でも注意喚起している。
+
+## 病院ページ
+- `hospitals`（厚労省オープンデータ由来＋ユーザー登録）、`hospital_reviews`（6項目の評価）。
+- 口コミの投稿者(`user_id`)はクライアントへ返さない。一覧は `get_hospital_reviews` RPC（`is_mine` のみ返す）、テーブルの直接SELECTは本人分のみ。
+- 証明写真は非公開バケット `id-photos`（パスは `pt_private.id_photo_path`）。
+
 ## 既知の課題
-- レビューの `user_id` は API から読める（画面上の「匿名」は表示のみ）。厳密な匿名化にはビューまたは列権限の見直しが必要。
-- 画面は Client Component 中心で、マウント時に取得する実装（lint は `set-state-in-effect` を warn にしている）。Server Components / SWR への移行余地あり。
-- 一部の士会サイトは会員専用・自動アクセス拒否のため取得できない。
-
-## UI 方針（Web Interface Guidelines 準拠）
-- 通知は `alert()` ではなく `notify()`（`src/lib/notify.ts`）＋ `Toaster`（`aria-live`）。エラー文言は自動で赤表示。
-- フォーカスは `:focus-visible` で常に可視化。スキップリンク・`viewport-fit=cover`・`safe-area`（下部ナビ）に対応。
-- 入力欄は `label`/`aria-label` に関連付け、ログイン・登録は `autocomplete` を指定。スマホでは入力欄を16px以上にして拡大を防ぐ。
-- 削除操作は確認ダイアログ。モーダルは `role="dialog"` と `overscroll-contain`。
-- `globals.css` の `!important` による色の上書きは、Tailwind の `hover:` などを打ち消すため、追加しない（文字色の継承を全要素に強制するルールは撤去済み）。
-
-## PT検索・プロフィールの公開範囲（2026-09-27時点）
-- `/pts`（PT検索）と `/pts/{id}`・`/pts/{id}/portfolio`（プロフィール）は、**ログインなしで閲覧可能**（ユーザーの了承済み・意図的な設計）。
-  - DBのRLSは元々これらを anon に公開していたが、フロント側の `AuthGuard` が全画面をログイン必須にしていたため、実質非公開だった。
-  - `src/lib/account.ts` の `isPublicPtPath()` で対象パスを判定（`/pts/{id}/review` など操作系ページは対象外＝引き続きログイン必須）。
-- 目的はSEOによる新規「一般の方」の獲得。個別プロフィールに `generateMetadata`（`src/app/pts/[id]/layout.tsx`）でPTごとに一意なtitle/description/OGP、`Person`+`BreadcrumbList` のJSON-LDを付与。
-  - Googleの構造化データガイドラインに合わせ、`Person` に対する `AggregateRating`/`Review` は付与していない（個人への自作自演レビューと誤認されるリスクを避けるため）。
-- `sitemap.ts` は `pt_profiles` を動的に読み込み、プロフィールURLを含めて生成する（`revalidate = 3600`）。
-- サーバー側（`generateMetadata`・`sitemap`）の読み取りは `src/lib/supabasePublic.ts`（セッションを持たない軽量クライアント）を使う。
-- 匿名の訪問者には `/pts` と `/pts/{id}` に「無料登録」の案内を表示し、SEO流入をアカウント登録につなげる。
+- Semantic Scholar は1秒1リクエストの制限があり、連続検索で結果が空になることがある。
+- Supabase の「漏えいパスワード保護」はダッシュボード側の設定（有料プラン）。
