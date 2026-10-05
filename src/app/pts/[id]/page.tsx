@@ -17,6 +17,7 @@ import {
 import type { AuthUser, PtProfile, Review } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import { ptName } from "@/lib/format";
+import PortfolioView from "@/components/PortfolioView";
 
 type CaseReport = {
   id: string;
@@ -515,6 +516,23 @@ export default function PTProfile() {
               {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
             </button>
 
+          </div>
+        </section>
+
+        {/* ポートフォリオ（公開設定した学歴・職歴・資格・実績などをプロフィールの下にそのまま表示） */}
+        <section className="mt-8">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold text-gray-900">ポートフォリオ</h2>
+            <Link
+              href={`/pts/${pt.id}/portfolio`}
+              className="text-xs text-gray-400 hover:text-gray-700"
+            >
+              全画面で見る・PDF保存 →
+            </Link>
+          </div>
+
+          <div className="mt-3">
+            <PortfolioView id={pt.id} embedded />
           </div>
         </section>
 
