@@ -2,7 +2,7 @@
 
 ## 全体像
 - **フロント/API**: Next.js（App Router）を Vercel にデプロイ。主要画面は Client Component から Supabase を直接呼ぶ。
-- **DB/認証/ストレージ**: Supabase（Postgres + RLS）。アクセス制御は RLS が本体。
+- **DB/認証/ストレージ**: Supabase（Postgres + RLS）。アクセス制御は RLS が本体。本番は東京リージョンの `relight-tokyo`（2026-10-05に韓国から移行。旧プロジェクトはロールバック用に一時的に残置）。
 - **バッチ**: 研修・学会情報の取得（毎日 0:00 JST）。
 
 ## 研修・学会情報（News）のデータフロー
