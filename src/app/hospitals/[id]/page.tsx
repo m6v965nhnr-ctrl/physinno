@@ -76,6 +76,13 @@ export default function HospitalDetailPage() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [reviewModalOpen]);
 
+  // ホームの案内（?review=1）から来たときは、PTなら口コミ投稿のモーダルを最初から開く
+  useEffect(() => {
+    if (isPt && new URLSearchParams(window.location.search).get("review") === "1") {
+      setReviewModalOpen(true);
+    }
+  }, [isPt]);
+
   const [diseaseRatios, setDiseaseRatiosState] = useState<DiseaseRatio[]>([]);
   const [canEditRatios, setCanEditRatios] = useState(false);
   const [editingRatios, setEditingRatios] = useState(false);

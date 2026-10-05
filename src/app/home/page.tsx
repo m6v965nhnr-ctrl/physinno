@@ -11,6 +11,7 @@ import {
 import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
 import ProfileNameNudge from "@/components/ProfileNameNudge";
+import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 
 type Post = {
   id: string;
@@ -493,6 +494,7 @@ if (targetPost && targetPost.user_id !== userId) {
         </div>
 
         <ProfileNameNudge userId={userId} />
+        <HospitalReviewNudge userId={userId} />
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">
