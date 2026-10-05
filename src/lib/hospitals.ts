@@ -59,10 +59,12 @@ export const REVIEW_AXIS_LABEL: Record<ReviewAxis, string> = {
   openness: "風通しの良さ",
 };
 
+// 投稿者(user_id)は匿名・記名にかかわらずクライアントへ返さない。
+// 自分の口コミかどうかだけ is_mine で分かる
 export type HospitalReview = {
   id: string;
   hospital_id: string;
-  user_id: string;
+  is_mine: boolean;
   work_environment: number;
   education_system: number;
   salary: number;
@@ -228,13 +230,11 @@ export async function unfollowHospital(
 export async function listHospitalReviews(
   hospitalId: string
 ): Promise<HospitalReview[]> {
-  const { data } = await supabase
-    .from("hospital_reviews")
-    .select("*")
-    .eq("hospital_id", hospitalId)
-    .order("created_at", { ascending: false });
+  const { data } = await supabase.rpc("get_hospital_reviews", {
+    p_hospital_id: hospitalId,
+  });
 
-  return data ?? [];
+  return (data ?? []) as HospitalReview[];
 }
 
 // 1人のPTにつき1病院1件まで（既にあれば上書き更新）

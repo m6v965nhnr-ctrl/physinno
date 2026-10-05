@@ -109,7 +109,7 @@ export default function HospitalDetailPage() {
       setFollowing(await isFollowingHospital(id, user.id));
       setCanEditRatios(await canEditHospitalData(id, user.id));
 
-      const mine = reviewList.find((r) => r.user_id === user.id);
+      const mine = reviewList.find((r) => r.is_mine);
       if (mine) {
         setScores({
           work_environment: mine.work_environment,
