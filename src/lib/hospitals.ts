@@ -29,8 +29,47 @@ export type Hospital = {
   // （公共データ利用規約PDL1.0の出典明記・加工表示の義務に対応）
   data_source: string | null;
   data_source_note: string | null;
+  // 厚労省オープンデータの診療科・病床数(学生の病院探し用)。未取得の病院は null
+  departments: string[] | null;
+  beds_general: number | null;
+  beds_long_term: number | null;
+  beds_psychiatric: number | null;
+  beds_total: number | null;
   created_at: string;
 };
+
+export type BedType = "general" | "long_term" | "psychiatric";
+
+export const BED_TYPE_LABEL: Record<BedType, string> = {
+  general: "一般病床あり（急性期・回復期など）",
+  long_term: "療養病床あり（長期療養・生活期）",
+  psychiatric: "精神病床あり",
+};
+
+// 病院探しで絞り込みに使う診療科(PTの就職・実習で関わりが多いもの)
+export const DEPARTMENT_FILTERS = [
+  "整形外科",
+  "脳神経外科",
+  "神経内科",
+  "リハビリテーション科",
+  "循環器内科",
+  "呼吸器内科",
+  "小児科",
+  "精神科",
+  "リウマチ科",
+  "救急科",
+];
+
+// 診療科・病床のデータが取り込まれているか(未取得のうちは絞り込み欄を出さない)
+export async function hasHospitalDetailData(): Promise<boolean> {
+  const { count } = await supabase
+    .from("hospitals")
+    .select("id", { count: "exact", head: true })
+    .not("departments", "is", null)
+    .limit(1);
+
+  return (count ?? 0) > 0;
+}
 
 export type DiseaseRatio = {
   id: string;
@@ -82,11 +121,15 @@ export async function searchHospitals({
   prefecture,
   city,
   size,
+  departments,
+  bedType,
 }: {
   keyword?: string;
   prefecture?: string;
   city?: string;
   size?: WorkplaceSize;
+  departments?: string[];
+  bedType?: BedType;
 }): Promise<Hospital[]> {
   let query = supabase.from("hospitals").select("*").order("name");
 
@@ -96,6 +139,10 @@ export async function searchHospitals({
   if (prefecture) query = query.ilike("prefecture", `%${prefecture}%`);
   if (city) query = query.ilike("city", `%${city}%`);
   if (size) query = query.eq("size", size);
+  if (departments && departments.length > 0) query = query.contains("departments", departments);
+  if (bedType === "general") query = query.gt("beds_general", 0);
+  if (bedType === "long_term") query = query.gt("beds_long_term", 0);
+  if (bedType === "psychiatric") query = query.gt("beds_psychiatric", 0);
 
   const { data } = await query.limit(100);
   return data ?? [];
@@ -175,6 +222,7 @@ export async function listPtsByHospital(hospitalId: string): Promise<PtProfile[]
     .from("pt_profiles")
     .select("*")
     .eq("hospital_id", hospitalId)
+    .eq("is_student", false)
     .order("rating", { ascending: false, nullsFirst: false });
 
   return data ?? [];

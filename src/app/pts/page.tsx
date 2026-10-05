@@ -4,7 +4,7 @@ import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { getMyAccountType } from "@/lib/account";
+import { getMyAccountType, isPtLike } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
 import PaperSearch from "@/components/PaperSearch";
 import HospitalSearch from "@/components/HospitalSearch";
@@ -75,7 +75,7 @@ function PTSearchPageInner(){
       if(user){
 
         const accountType = await getMyAccountType(user.id);
-        setIsPt(accountType === "pt");
+        setIsPt(isPtLike(accountType));
         setIsGeneral(accountType === "general");
 
       }
@@ -96,6 +96,8 @@ function PTSearchPageInner(){
       // 名前が未入力の空プロフィールは一覧に出さない（検索結果が空の人だらけになるため）
       .not("full_name", "is", null)
       .neq("full_name", "")
+      // 学生のアカウントは検索結果に出さない
+      .eq("is_student", false)
       .order("rating", { ascending: false, nullsFirst: false })
       .limit(50);
 

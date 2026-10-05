@@ -47,8 +47,23 @@ const FEATURES = [
   },
 ];
 
+const STUDENT_FEATURES = [
+  {
+    title: "実習・就活トラッカー",
+    body: "実習先、病院見学、応募、提出物の期限をまとめて管理。病院ページの「見学したい」からワンタップで追加できます。",
+  },
+  {
+    title: "国試カウントダウンと学習ログ",
+    body: "試験日までの日数、科目ごとの勉強時間、連続記録、復習したい科目が見えます。",
+  },
+  {
+    title: "実習先の口コミと先輩への質問",
+    body: "全国約5,000病院から探せて、実習生の声が見られます。実習・国試・就活は、現役のPTに匿名で質問できます。",
+  },
+];
+
 const STEPS = [
-  { title: "メールアドレスで無料登録", body: "アカウントの種類（理学療法士／一般）を選ぶだけ。1分で完了します。" },
+  { title: "メールアドレスで無料登録", body: "アカウントの種類（理学療法士／学生／一般）を選ぶだけ。1分で完了します。" },
   { title: "プロフィールを入力", body: "お名前・専門分野・経験年数を登録すると、つながりたい人が見つけやすくなります。登録直後に案内が出るので迷いません。" },
   { title: "症例を読む・投稿する", body: "まずは気になる症例を読むところから。慣れたら自分の経験も共有してみましょう。" },
 ];
@@ -61,6 +76,10 @@ const FAQS = [
   {
     q: "理学療法士でなくても使えますか？",
     a: "はい。一般アカウントで登録すると、地域や専門分野から理学療法士を探したり、プロフィールやレビューを見たりできます。症例の閲覧・投稿と研修情報は理学療法士アカウント向けの機能です。",
+  },
+  {
+    q: "学生でも使えますか？",
+    a: "はい。理学療法士をめざす学生向けのアカウントがあります。実習・就活・病院見学の管理、国家試験までのカウントダウンと学習ログ、実習先の口コミ（実習生の声）、現役のPTへの質問、実習レポートの文献探し・構成チェック（AI）が使えます。卒業予定年を登録しておくと、卒業した翌年の4月1日に自動でPTのアカウントに切り替わります。養成校名などは、本人だけに表示されます。",
   },
   {
     q: "どんな症例を投稿できますか？",
@@ -214,6 +233,30 @@ export default function LandingPage() {
               </article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* 学生の方へ */}
+      <section className="px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-2xl font-bold tracking-tight md:text-3xl">理学療法士をめざす学生の方へ</h2>
+          <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-600">
+            実習・就活・国試を、ひとつのアプリで。卒業したら、そのままPTのアカウントに切り替わります。
+          </p>
+          <ul className="mt-8 grid gap-4 md:grid-cols-3">
+            {STUDENT_FEATURES.map((f) => (
+              <li key={f.title} className="rounded-2xl border border-gray-200 p-5">
+                <h3 className="text-base font-semibold">{f.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-gray-600">{f.body}</p>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/register?type=student"
+            className="mt-8 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
+          >
+            学生として無料ではじめる
+          </Link>
         </div>
       </section>
 

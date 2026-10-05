@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { graduationYearOptions } from "@/lib/student";
 
-type AccountType = "pt" | "general";
+type AccountType = "pt" | "general" | "student";
 
 const ACCOUNT_TYPE_OPTIONS: {
   value: AccountType;
@@ -16,6 +17,11 @@ const ACCOUNT_TYPE_OPTIONS: {
     value: "pt",
     label: "PT（理学療法士）",
     description: "PT同士で交流・情報共有",
+  },
+  {
+    value: "student",
+    label: "学生（PTをめざす）",
+    description: "実習・就活・国試をサポート",
   },
   {
     value: "general",
@@ -34,13 +40,15 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [referredBy, setReferredBy] = useState("");
+  const yearOptions = graduationYearOptions();
+  const [graduationYear, setGraduationYear] = useState(String(yearOptions[0]));
 
   // トップページのボタンから来たとき（?type=pt / ?type=general）は種類を選んだ状態にする
   // 招待リンク（?ref=招待した人のユーザーID）はサインアップ時にそのまま渡す
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type");
-    if (type === "pt" || type === "general") {
+    if (type === "pt" || type === "general" || type === "student") {
       setAccountType(type);
     }
 
@@ -54,7 +62,7 @@ export default function RegisterPage() {
     setError("");
 
     if (!accountType) {
-      setError("アカウントの種類（PT／一般）を選んでください");
+      setError("アカウントの種類（PT／学生／一般）を選んでください");
       return;
     }
 
@@ -83,6 +91,7 @@ export default function RegisterPage() {
         data: {
           account_type: accountType,
           referred_by: referredBy || undefined,
+          graduation_year: accountType === "student" ? graduationYear : undefined,
         },
       },
     });
@@ -100,8 +109,15 @@ export default function RegisterPage() {
     }
 
     // 一般の方は検索から始める。PTは、他のPTに見つけてもらえるよう
-    // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する
-    router.push(accountType === "general" ? "/pts" : "/mypage/edit?welcome=1");
+    // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。
+    // 学生は、名前と養成校・卒業予定年などを入れる設定画面へ案内する
+    router.push(
+      accountType === "general"
+        ? "/pts"
+        : accountType === "student"
+          ? "/student/settings?welcome=1"
+          : "/mypage/edit?welcome=1"
+    );
   }
 
   return (
@@ -133,7 +149,7 @@ export default function RegisterPage() {
             <div
               role="radiogroup"
               aria-label="アカウントの種類"
-              className="grid grid-cols-2 gap-3"
+              className="grid grid-cols-1 gap-3 sm:grid-cols-3"
             >
               {ACCOUNT_TYPE_OPTIONS.map((option) => {
                 const selected = accountType === option.value;
@@ -170,6 +186,32 @@ export default function RegisterPage() {
               資格は自己申告です。
             </p>
           </div>
+
+          {accountType === "student" && (
+            <div>
+              <label className="mb-2 block text-sm font-medium" htmlFor="field-year">
+                卒業予定（3月卒業の年）
+              </label>
+
+              <select
+                id="field-year"
+                value={graduationYear}
+                onChange={(e) => setGraduationYear(e.target.value)}
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+              >
+                {yearOptions.map((y) => (
+                  <option key={y} value={y}>
+                    {y}年3月卒業予定
+                  </option>
+                ))}
+              </select>
+
+              <p className="mt-2 text-xs leading-5 text-gray-400">
+                卒業した翌年の4月1日に、自動でPTのアカウントに切り替わります（あとから設定で変更できます）。
+                養成校名や卒業予定は、本人だけに表示され、公開されません。
+              </p>
+            </div>
+          )}
 
           <div>
             <label className="mb-2 block text-sm font-medium" htmlFor="field-1">

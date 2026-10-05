@@ -75,6 +75,12 @@ export default function MyPage() {
     const type = await getMyAccountType(user.id);
     setAccountType(type);
 
+    // 学生は、学生向けのマイページ（実習・就活・国試）へ
+    if (type === "student") {
+      router.replace("/student");
+      return;
+    }
+
     // 一般の方は自分のレビューとフォロー数だけ読み込む
     if (type === "general") {
       await loadMyReviews(user.id);

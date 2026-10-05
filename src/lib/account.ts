@@ -1,11 +1,17 @@
 import { supabase } from "@/lib/supabase";
 
-export type AccountType = "pt" | "general";
+export type AccountType = "pt" | "general" | "student";
 
 export const ACCOUNT_TYPE_LABEL: Record<AccountType, string> = {
   pt: "PT",
   general: "一般",
+  student: "学生",
 };
+
+// PTと同じ画面・機能を使えるアカウント(PT・学生)。一般の方だけが対象外
+export function isPtLike(type: AccountType | null) {
+  return type === "pt" || type === "student";
+}
 
 // 一般の方が開けないページ（PT同士のコミュニティ機能）
 export const PT_ONLY_PATH_PREFIXES = [
@@ -15,6 +21,7 @@ export const PT_ONLY_PATH_PREFIXES = [
   "/profile/edit",
   "/mypage/edit",
   "/mypage/achievements",
+  "/student",
 ];
 
 export function isPtOnlyPath(pathname: string) {
@@ -68,11 +75,20 @@ export async function getMyAccountType(
 
   const type = data?.account_type;
 
-  return type === "pt" || type === "general" ? type : null;
+  return type === "pt" || type === "general" || type === "student" ? type : null;
+}
+
+// 卒業予定年を過ぎた学生を、その場で PT に切り替える(毎日の自動処理とは別に、ログイン時にも実行する)。
+// 戻り値: 切り替え後(または現在)のアカウント種類
+export async function syncMyAccountType(): Promise<AccountType | null> {
+  const { data, error } = await supabase.rpc("sync_my_account_type");
+  if (error) return null;
+
+  return data === "pt" || data === "general" || data === "student" ? data : null;
 }
 
 // 本人のアカウント種類を変更（DB関数 set_my_account_type）
-export async function setMyAccountType(type: AccountType) {
+export async function setMyAccountType(type: "pt" | "general") {
   const { error } = await supabase.rpc("set_my_account_type", {
     p_type: type,
   });

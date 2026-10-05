@@ -7,7 +7,7 @@ import {
   setMyAccountType,
 } from "@/lib/account";
 
-const OPTIONS: { value: AccountType; description: string }[] = [
+const OPTIONS: { value: "pt" | "general"; description: string }[] = [
   { value: "pt", description: "PT同士で交流・情報共有" },
   { value: "general", description: "PTを探す・レビューを書く" },
 ];
@@ -17,12 +17,12 @@ export default function AccountTypeCard({
   onChanged,
 }: {
   accountType: AccountType | null;
-  onChanged: (type: AccountType) => void;
+  onChanged: (type: "pt" | "general") => void;
 }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  async function change(type: AccountType) {
+  async function change(type: "pt" | "general") {
     if (type === accountType || saving) return;
 
     const label = ACCOUNT_TYPE_LABEL[type];

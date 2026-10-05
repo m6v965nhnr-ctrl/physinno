@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
 import EmailNotificationToggle from "@/components/EmailNotificationToggle";
 
-type NotificationType = "like" | "comment" | "follow" | "endorsement";
+type NotificationType = "like" | "comment" | "follow" | "endorsement" | "answer";
 
 type NotificationRow = {
   id: string;
@@ -15,6 +15,7 @@ type NotificationRow = {
   type: string;
   post_id: string | null;
   group_id: string | null;
+  question_id?: string | null;
   is_read: boolean;
   created_at: string;
 };
@@ -41,6 +42,7 @@ const TYPE_LABEL: Record<NotificationType, string> = {
   comment: "さんがあなたの投稿にコメントしました",
   follow: "さんがあなたをフォローしました",
   endorsement: "さんがあなたのスキルを推薦しました",
+  answer: "さんがあなたの質問に回答しました",
 };
 
 const GROUP_TYPE_LABEL: Record<string, string> = {
@@ -71,7 +73,7 @@ export default function NotificationsPage() {
 
     const { data } = await supabase
       .from("notifications")
-      .select("id, actor_id, type, post_id, group_id, is_read, created_at")
+      .select("id, actor_id, type, post_id, group_id, question_id, is_read, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(50);
@@ -185,6 +187,7 @@ export default function NotificationsPage() {
             const post = n.post_id ? posts[n.post_id] : null;
             const group = n.group_id ? groups[n.group_id] : null;
             const isGroupType = n.type === "group_created" || n.type === "group_joined";
+            const isGraduated = n.type === "graduated";
             const label = isGroupType
               ? GROUP_TYPE_LABEL[n.type]
               : TYPE_LABEL[n.type as NotificationType] || "の通知";
@@ -219,7 +222,11 @@ export default function NotificationsPage() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-sm text-gray-900">
-                    {isGroupType ? (
+                    {isGraduated ? (
+                      <span className="font-medium">
+                        ご卒業おめでとうございます！アカウントがPTに切り替わりました。プロフィールを入力しましょう
+                      </span>
+                    ) : isGroupType ? (
                       <>
                         <span className="font-medium">
                           グループ「{group?.name ?? ""}」
@@ -244,6 +251,22 @@ export default function NotificationsPage() {
                 </div>
               </div>
             );
+
+            if (isGraduated) {
+              return (
+                <Link key={n.id} href="/mypage/edit?welcome=1">
+                  {body}
+                </Link>
+              );
+            }
+
+            if (n.type === "answer" && n.question_id) {
+              return (
+                <Link key={n.id} href={`/student/questions/${n.question_id}`}>
+                  {body}
+                </Link>
+              );
+            }
 
             if ((n.type === "follow" || n.type === "endorsement") && actor) {
               return (

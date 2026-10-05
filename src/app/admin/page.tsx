@@ -314,7 +314,9 @@ export default function AdminPage() {
                             ? "PT"
                             : member.account_type === "general"
                               ? "一般"
-                              : member.account_type || "未設定"}
+                              : member.account_type === "student"
+                                ? "学生"
+                                : member.account_type || "未設定"}
                         </span>
                       </div>
 

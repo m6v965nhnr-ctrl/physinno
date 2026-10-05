@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { getMyAccountType } from "@/lib/account";
+import { getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 
 export default function LoginPage() {
@@ -45,7 +45,12 @@ export default function LoginPage() {
     }
 
     // 一般の方は検索、PTはホームへ
-    const accountType = await getMyAccountType(user.id);
+    let accountType = await getMyAccountType(user.id);
+
+    // 卒業予定年を過ぎた学生は、ここでPTに切り替える
+    if (accountType === "student") {
+      accountType = (await syncMyAccountType()) ?? accountType;
+    }
 
     router.push(accountType === "general" ? "/pts" : "/home");
   }

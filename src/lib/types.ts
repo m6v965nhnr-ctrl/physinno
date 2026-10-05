@@ -10,6 +10,8 @@ export type PtProfile = {
   profile_image: string | null;
   cover_image: string | null;
   biography: string | null;
+  // 学生アカウントのプロフィール(公開側には出さない)
+  is_student?: boolean;
   workplace: string | null;
   workplace_size: string | null;
   hospital_id: string | null;

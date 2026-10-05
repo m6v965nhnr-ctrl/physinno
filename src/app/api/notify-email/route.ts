@@ -13,6 +13,7 @@ const KINDS = {
   comment: { subject: (a: string) => `${a}さんがあなたの投稿にコメントしました`, path: "/notifications" },
   message: { subject: (a: string) => `${a}さんからメッセージが届きました`, path: "/messages" },
   follow: { subject: (a: string) => `${a}さんにフォローされました`, path: "/notifications" },
+  answer: { subject: (a: string) => `${a}さんがあなたの質問に回答しました`, path: "/notifications" },
 } as const;
 
 type Kind = keyof typeof KINDS;

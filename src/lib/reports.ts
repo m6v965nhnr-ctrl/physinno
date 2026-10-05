@@ -5,7 +5,10 @@ export type ReportTargetType =
   | "comment"
   | "message"
   | "group_message"
-  | "hospital_review";
+  | "hospital_review"
+  | "internship_review"
+  | "student_question"
+  | "student_answer";
 
 export type ReportReason =
   | "privacy"
@@ -34,6 +37,9 @@ export const REPORT_TARGET_LABEL: Record<ReportTargetType, string> = {
   message: "メッセージ",
   group_message: "グループのメッセージ",
   hospital_review: "口コミ",
+  internship_review: "実習生の声",
+  student_question: "質問",
+  student_answer: "回答",
 };
 
 // 戻り値: エラーメッセージ(成功なら null)

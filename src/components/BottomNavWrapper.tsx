@@ -4,7 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { AccountType, getMyAccountType } from "@/lib/account";
+import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
+import { notify } from "@/lib/notify";
 
 type Menu = {
   href: string;
@@ -75,7 +76,18 @@ export default function BottomNavWrapper() {
         return;
       }
 
-      const type = await getMyAccountType(userId);
+      let type = await getMyAccountType(userId);
+
+      // 卒業予定年を過ぎた学生は、ここでPTに切り替え、プロフィールの入力へ案内する
+      if (type === "student") {
+        const synced = await syncMyAccountType();
+        if (synced === "pt") {
+          type = "pt";
+          notify("ご卒業おめでとうございます！PTのアカウントに切り替わりました。プロフィールを入力しましょう");
+          window.location.href = "/mypage/edit?welcome=1";
+          return;
+        }
+      }
 
       if (!mounted) return;
 

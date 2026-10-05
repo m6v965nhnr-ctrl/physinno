@@ -5,13 +5,18 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
+  BED_TYPE_LABEL,
+  BedType,
+  DEPARTMENT_FILTERS,
   Hospital,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
   createHospital,
+  hasHospitalDetailData,
   listCitiesByPrefecture,
   searchHospitals,
 } from "@/lib/hospitals";
+import { internshipReviewCounts } from "@/lib/internship";
 import { PREFECTURES } from "@/lib/prefectures";
 import { notify } from "@/lib/notify";
 
@@ -34,6 +39,16 @@ export default function HospitalSearch() {
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
+
+  // 診療科・病床の絞り込み(データが取り込まれているときだけ表示)と、実習生の声の件数
+  const [hasDetailData, setHasDetailData] = useState(false);
+  const [departments, setDepartments] = useState<string[]>(
+    () => (searchParams.get("dept") || "").split(",").filter(Boolean)
+  );
+  const [bedType, setBedType] = useState<BedType | "">(
+    () => (searchParams.get("beds") as BedType | "") || ""
+  );
+  const [reviewCounts, setReviewCounts] = useState<Record<string, number>>({});
 
   const [showAddForm, setShowAddForm] = useState(false);
   const [newName, setNewName] = useState("");
@@ -60,9 +75,20 @@ export default function HospitalSearch() {
     listCitiesByPrefecture(prefecture).then(setCityOptions);
   }, [prefecture]);
 
+  useEffect(() => {
+    hasHospitalDetailData().then(setHasDetailData);
+  }, []);
+
   // URLに検索条件があれば、マウント時に自動で検索を復元する
   useEffect(() => {
-    if (searchParams.get("keyword") || searchParams.get("prefecture") || searchParams.get("city") || searchParams.get("size")) {
+    if (
+      searchParams.get("keyword") ||
+      searchParams.get("prefecture") ||
+      searchParams.get("city") ||
+      searchParams.get("size") ||
+      searchParams.get("dept") ||
+      searchParams.get("beds")
+    ) {
       handleSearch();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -77,10 +103,15 @@ export default function HospitalSearch() {
       prefecture: prefecture || undefined,
       city: city || undefined,
       size: size || undefined,
+      departments: departments.length > 0 ? departments : undefined,
+      bedType: bedType || undefined,
     });
 
     setHospitals(results);
     setSearching(false);
+
+    // 実習生の声が付いている病院を、わかるようにする(PT・学生のアカウントのみ件数が返る)
+    internshipReviewCounts(results.map((h) => h.id)).then(setReviewCounts);
 
     const params = new URLSearchParams(searchParams.toString());
     const entries: [string, string][] = [
@@ -88,6 +119,8 @@ export default function HospitalSearch() {
       ["prefecture", prefecture],
       ["city", city],
       ["size", size],
+      ["dept", departments.join(",")],
+      ["beds", bedType],
     ];
     entries.forEach(([key, value]) => {
       if (value) params.set(key, value);
@@ -257,6 +290,48 @@ export default function HospitalSearch() {
           ))}
         </select>
 
+        {hasDetailData && (
+          <>
+            <fieldset>
+              <legend className="mb-1.5 px-1 text-xs text-gray-500">診療科（選んだものすべてがある病院）</legend>
+              <div className="flex flex-wrap gap-1.5">
+                {DEPARTMENT_FILTERS.map((d) => {
+                  const on = departments.includes(d);
+                  return (
+                    <button
+                      key={d}
+                      type="button"
+                      aria-pressed={on}
+                      onClick={() =>
+                        setDepartments((prev) => (on ? prev.filter((v) => v !== d) : [...prev, d]))
+                      }
+                      className={`rounded-full border px-3 py-1.5 text-xs ${
+                        on ? "border-black bg-black text-white" : "border-gray-200 text-gray-600"
+                      }`}
+                    >
+                      {d}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
+            <select
+              value={bedType}
+              onChange={(e) => setBedType(e.target.value as BedType | "")}
+              className="w-full rounded-full border px-5 py-3"
+              aria-label="病床の種類"
+            >
+              <option value="">病床の種類を指定しない</option>
+              {(Object.keys(BED_TYPE_LABEL) as BedType[]).map((key) => (
+                <option key={key} value={key}>
+                  {BED_TYPE_LABEL[key]}
+                </option>
+              ))}
+            </select>
+          </>
+        )}
+
         <button
           onClick={handleSearch}
           disabled={searching}
@@ -291,7 +366,20 @@ export default function HospitalSearch() {
                     {WORKPLACE_SIZE_LABEL[h.size as WorkplaceSize] ?? h.size}
                   </>
                 )}
+                {h.beds_total ? ` ・ ${h.beds_total}床` : ""}
               </p>
+              {h.departments && h.departments.length > 0 && (
+                <p className="mt-1 line-clamp-1 text-[11px] text-gray-400">
+                  {h.departments.filter((d) => DEPARTMENT_FILTERS.includes(d)).join("・") || h.departments.slice(0, 6).join("・")}
+                </p>
+              )}
+              {reviewCounts[h.id] > 0 && (
+                <p className="mt-1.5">
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700">
+                    実習生の声 {reviewCounts[h.id]}件
+                  </span>
+                </p>
+              )}
             </Link>
           ))}
         </div>

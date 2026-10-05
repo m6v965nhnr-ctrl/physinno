@@ -71,7 +71,17 @@ const notify = await get("/api/notify-email", {
 });
 check("通知メールAPIは合言葉なしで 401", notify.res.status === 401, `status=${notify.res.status}`);
 
-// 6) 論文検索APIが応答する
+// 6) 学生向けAPIは未ログインで拒否され、学生ページはログイン前でも落ちない
+const helper = await get("/api/student/report-helper", {
+  method: "POST",
+  headers: { "content-type": "application/json" },
+  body: JSON.stringify({ mode: "sources", text: "test" }),
+});
+check("実習レポート支援APIは未ログインで 401/503", [401, 503].includes(helper.res.status), `status=${helper.res.status}`);
+const studentPage = await get("/student");
+check("GET /student が200（ログイン判定は画面側）", studentPage.res.status === 200, `status=${studentPage.res.status}`);
+
+// 7) 論文検索APIが応答する
 const search = await get("/api/papers/search?q=" + encodeURIComponent("stroke gait") + "&sources=pubmed");
 check("GET /api/papers/search が200", search.res.status === 200, `status=${search.res.status}`);
 

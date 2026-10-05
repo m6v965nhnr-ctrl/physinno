@@ -208,6 +208,13 @@ export default function PaperSearch() {
       if (user) loadSaved(user.id);
     });
     setRecentSearches(loadRecentSearches());
+
+    // 実習レポート支援などから「?q=」つきで開かれたときは、そのまま検索する
+    const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim().slice(0, 200);
+    if (initialQuery) {
+      setQuery(initialQuery);
+      handleSearch(initialQuery);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

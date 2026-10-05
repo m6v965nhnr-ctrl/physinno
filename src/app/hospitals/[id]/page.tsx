@@ -4,7 +4,9 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { getMyAccountType } from "@/lib/account";
+import { AccountType, getMyAccountType } from "@/lib/account";
+import InternshipReviews from "@/components/InternshipReviews";
+import StudentHospitalActions from "@/components/StudentHospitalActions";
 import {
   DiseaseRatio,
   Hospital,
@@ -44,6 +46,7 @@ export default function HospitalDetailPage() {
 
   const [userId, setUserId] = useState<string | null>(null);
   const [isPt, setIsPt] = useState(false);
+  const [accountType, setAccountType] = useState<AccountType | null>(null);
 
   const [hospital, setHospital] = useState<Hospital | null>(null);
   const [notFound, setNotFound] = useState(false);
@@ -125,7 +128,9 @@ export default function HospitalDetailPage() {
 
     if (user) {
       setUserId(user.id);
-      setIsPt((await getMyAccountType(user.id)) === "pt");
+      const myType = await getMyAccountType(user.id);
+      setAccountType(myType);
+      setIsPt(myType === "pt");
       setFollowing(await isFollowingHospital(id, user.id));
       setCanEditRatios(await canEditHospitalData(id, user.id));
 
@@ -360,6 +365,10 @@ export default function HospitalDetailPage() {
           >
             {following ? "フォロー中" : "＋ フォローする"}
           </button>
+
+          {accountType === "student" && (
+            <StudentHospitalActions hospitalId={hospital.id} hospitalName={hospital.name} />
+          )}
         </div>
 
         {pts.length > 0 && (
@@ -508,6 +517,8 @@ export default function HospitalDetailPage() {
           )}
         </section>
 
+        <InternshipReviews hospitalId={hospital.id} accountType={accountType} loggedIn={!!userId} />
+
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-sm font-semibold text-gray-500">職場環境の口コミ</h2>
@@ -520,7 +531,9 @@ export default function HospitalDetailPage() {
                 {reviews.some((r) => r.is_mine) ? "口コミを編集する" : "口コミを投稿する"}
               </button>
             ) : (
-              <span className="text-[11px] text-gray-400">投稿はPTアカウントのみ</span>
+              <span className="text-[11px] text-gray-400">
+                {accountType === "student" ? "投稿は現役PTのみ（学生は上の「実習生の声」へ）" : "投稿はPTアカウントのみ"}
+              </span>
             )}
           </div>
 

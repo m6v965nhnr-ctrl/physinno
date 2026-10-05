@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { getMyAccountType } from "@/lib/account";
 
 // 名前が未入力のPTプロフィールは公開のPT一覧に出ないため、
 // ホームで気づけるように案内する（新規登録の導線を通らない既存ユーザー向け）
 export default function ProfileNameNudge({ userId }: { userId: string }) {
   const [missing, setMissing] = useState(false);
+  const [isStudent, setIsStudent] = useState(false);
 
   useEffect(() => {
     if (!userId) return;
@@ -17,8 +19,9 @@ export default function ProfileNameNudge({ userId }: { userId: string }) {
       .select("full_name")
       .eq("user_id", userId)
       .maybeSingle()
-      .then(({ data }) => {
+      .then(async ({ data }) => {
         setMissing(!data?.full_name?.trim());
+        setIsStudent((await getMyAccountType(userId)) === "student");
       });
   }, [userId]);
 
@@ -26,7 +29,7 @@ export default function ProfileNameNudge({ userId }: { userId: string }) {
 
   return (
     <Link
-      href="/mypage/edit?welcome=1"
+      href={isStudent ? "/student/settings?welcome=1" : "/mypage/edit?welcome=1"}
       className="mx-5 mt-4 block rounded-2xl bg-emerald-50 p-4 transition hover:bg-emerald-100"
     >
       <p className="text-sm font-semibold text-emerald-800">
