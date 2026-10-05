@@ -29,6 +29,7 @@ import {
 } from "@/lib/hospitals";
 import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 import DiseaseRatioPieChart from "@/components/DiseaseRatioPieChart";
+import ReviewRadarChart from "@/components/ReviewRadarChart";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
@@ -63,6 +64,17 @@ export default function HospitalDetailPage() {
   const [comment, setComment] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [submitting, setSubmitting] = useState(false);
+  const [reviewModalOpen, setReviewModalOpen] = useState(false);
+
+  // Escキーでモーダルを閉じる
+  useEffect(() => {
+    if (!reviewModalOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setReviewModalOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [reviewModalOpen]);
 
   const [diseaseRatios, setDiseaseRatiosState] = useState<DiseaseRatio[]>([]);
   const [canEditRatios, setCanEditRatios] = useState(false);
@@ -177,6 +189,7 @@ export default function HospitalDetailPage() {
     }
 
     notify("口コミを投稿しました");
+    setReviewModalOpen(false);
     setReviews(await listHospitalReviews(id));
   }
 
@@ -256,6 +269,15 @@ export default function HospitalDetailPage() {
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length
       : null;
+
+  // 項目ごとの平均点（レーダーチャート用）
+  const axisAverages = REVIEW_AXES.map((axis) => ({
+    label: REVIEW_AXIS_LABEL[axis],
+    value:
+      reviews.length > 0
+        ? reviews.reduce((sum, r) => sum + r[axis], 0) / reviews.length
+        : 0,
+  }));
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-8 pb-28">
@@ -479,12 +501,59 @@ export default function HospitalDetailPage() {
         </section>
 
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
-          <h2 className="text-sm font-semibold text-gray-500">
-            職場環境の口コミ（PTのみ投稿できます）
-          </h2>
+          <div className="flex items-center justify-between gap-3">
+            <h2 className="text-sm font-semibold text-gray-500">職場環境の口コミ</h2>
 
-          {isPt && (
-            <div className="mt-4 space-y-4 rounded-2xl bg-gray-50 p-4">
+            {isPt ? (
+              <button
+                onClick={() => setReviewModalOpen(true)}
+                className="shrink-0 rounded-full bg-relight-gradient px-4 py-2 text-xs font-medium text-white"
+              >
+                {reviews.some((r) => r.is_mine) ? "口コミを編集する" : "口コミを投稿する"}
+              </button>
+            ) : (
+              <span className="text-[11px] text-gray-400">投稿はPTアカウントのみ</span>
+            )}
+          </div>
+
+          {reviews.length > 0 && (
+            <div className="mt-4">
+              <ReviewRadarChart items={axisAverages} />
+              <p className="mt-1 text-center text-xs text-gray-500">
+                {reviews.length}件の口コミの平均（10点満点）
+                {averageRating !== null && (
+                  <>
+                    ・総合 <span className="font-semibold text-gray-900">{averageRating.toFixed(1)}</span>
+                  </>
+                )}
+              </p>
+            </div>
+          )}
+
+          {isPt && reviewModalOpen && (
+            <div
+              className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center"
+              onClick={() => setReviewModalOpen(false)}
+              role="dialog"
+              aria-modal="true"
+              aria-label="口コミを投稿する"
+            >
+              <div
+                className="max-h-[90vh] w-full max-w-lg space-y-4 overflow-y-auto rounded-t-3xl bg-white p-5 pb-8 sm:rounded-3xl"
+                onClick={(e) => e.stopPropagation()}
+              >
+              <div className="flex items-center justify-between">
+                <h3 className="text-base font-semibold text-gray-900">
+                  {reviews.some((r) => r.is_mine) ? "口コミを編集する" : "口コミを投稿する"}
+                </h3>
+                <button
+                  onClick={() => setReviewModalOpen(false)}
+                  className="text-xl leading-none text-gray-400 hover:text-gray-700"
+                  aria-label="閉じる"
+                >
+                  ×
+                </button>
+              </div>
               {REVIEW_AXES.map((axis) => (
                 <div key={axis}>
                   <div className="flex items-center justify-between text-sm">
@@ -543,8 +612,9 @@ export default function HospitalDetailPage() {
                 disabled={submitting}
                 className="w-full rounded-full bg-relight-gradient py-2.5 text-sm font-medium text-white disabled:opacity-50"
               >
-                {submitting ? "投稿中…" : "口コミを投稿する"}
+                {submitting ? "投稿中…" : "この内容で投稿する"}
               </button>
+              </div>
             </div>
           )}
 
