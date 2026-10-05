@@ -2,7 +2,11 @@ import { createClient } from "@supabase/supabase-js";
 
 // AIモード用のLLM呼び出し（Google Gemini API・無料枠）。
 // GEMINI_API_KEYが未設定の間はAI機能を無効のまま、既存の検索だけが動く。
-const DEFAULT_MODEL = "gemini-2.5-flash";
+// モデル名は短期間で入れ替わる（2.5 Flashは新規利用不可になった）ため、
+// 常に最新のFlashを指す別名を既定にする。固定したい場合はGEMINI_MODELで上書き
+const DEFAULT_MODEL = "gemini-flash-latest";
+// 最新モデルが混雑しているときの切り替え先
+const FALLBACK_MODEL = "gemini-flash-lite-latest";
 
 export function isGeminiConfigured(): boolean {
   return Boolean(process.env.GEMINI_API_KEY);
@@ -21,41 +25,59 @@ export async function generateText({
   json?: boolean;
   maxOutputTokens?: number;
 }): Promise<string> {
-  const model = process.env.GEMINI_MODEL || DEFAULT_MODEL;
-
-  const generationConfig: Record<string, unknown> = {
+  const baseConfig: Record<string, unknown> = {
     temperature: 0.2,
     maxOutputTokens,
   };
-  if (json) generationConfig.responseMimeType = "application/json";
-  // 2.5 Flashは思考トークンで出力枠を消費するため、要約・クエリ生成では切る
-  if (/^gemini-2\.5-flash/.test(model)) {
-    generationConfig.thinkingConfig = { thinkingBudget: 0 };
+  if (json) baseConfig.responseMimeType = "application/json";
+
+  const call = (model: string, generationConfig: Record<string, unknown>) =>
+    fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": process.env.GEMINI_API_KEY!,
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: system }] },
+          contents: contents.map((c) => ({ role: c.role, parts: [{ text: c.text }] })),
+          generationConfig,
+        }),
+        signal: AbortSignal.timeout(12000),
+      }
+    );
+
+  // 最新モデルは「需要が高い」で一時的に503/429を返すことがあるため、
+  // 短く待って再試行し、それでも駄目なら軽量モデルに切り替える
+  const models = [process.env.GEMINI_MODEL || DEFAULT_MODEL, FALLBACK_MODEL];
+  let res: Response | null = null;
+
+  outer: for (const model of models) {
+    for (let attempt = 0; attempt < 2; attempt++) {
+      // Flash系は思考トークンで出力枠を使い切って本文が空になることがあるため、
+      // 要約・クエリ生成では思考を切る。非対応モデルで400になったら外して再試行する
+      res = await call(model, { ...baseConfig, thinkingConfig: { thinkingBudget: 0 } });
+      if (res.status === 400) res = await call(model, baseConfig);
+
+      if (res.ok) break outer;
+      if (res.status !== 503 && res.status !== 429) break outer;
+      await new Promise((r) => setTimeout(r, 600));
+    }
   }
 
-  const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent`,
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-goog-api-key": process.env.GEMINI_API_KEY!,
-      },
-      body: JSON.stringify({
-        systemInstruction: { parts: [{ text: system }] },
-        contents: contents.map((c) => ({ role: c.role, parts: [{ text: c.text }] })),
-        generationConfig,
-      }),
-      signal: AbortSignal.timeout(20000),
-    }
-  );
-
+  if (!res) throw new Error("Gemini API: no response");
   if (!res.ok) {
-    throw new Error(`Gemini API error: ${res.status}`);
+    const detail = await res.text().catch(() => "");
+    throw new Error(`Gemini API error: ${res.status} ${detail.slice(0, 300)}`);
   }
 
   const data = (await res.json()) as {
-    candidates?: { content?: { parts?: { text?: string }[] } }[];
+    candidates?: {
+      finishReason?: string;
+      content?: { parts?: { text?: string }[] };
+    }[];
   };
 
   const text = data.candidates?.[0]?.content?.parts
@@ -63,7 +85,11 @@ export async function generateText({
     .join("")
     .trim();
 
-  if (!text) throw new Error("Gemini API returned empty response");
+  if (!text) {
+    throw new Error(
+      `Gemini API returned empty response (finishReason=${data.candidates?.[0]?.finishReason})`
+    );
+  }
   return text;
 }
 

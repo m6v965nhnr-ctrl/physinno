@@ -129,7 +129,8 @@ export async function POST(request: Request) {
     }
 
     return Response.json({ error: "actionが不正です" }, { status: 400 });
-  } catch {
+  } catch (err) {
+    console.error("[papers/ai]", body.action, err);
     return Response.json(
       { error: "AIの応答に失敗しました", code: "ai_failed" },
       { status: 502 }
