@@ -283,7 +283,11 @@ export default function PrivacyPage() {
               <Link href="/contact" className="mx-1 underline">
                 運営へのメッセージ
               </Link>
-              からご連絡ください（アカウントと紐づけたい場合は匿名にチェックを入れずに送信してください）。
+              からご連絡ください（アカウントと紐づけたい場合は匿名にチェックを入れずに送信してください）。メールでのご連絡は、運営者の連絡先（
+              <a href="mailto:bupapabupapa7@gmail.com" className="underline">
+                bupapabupapa7@gmail.com
+              </a>
+              ）宛にお願いします。
             </p>
           </Section>
 
