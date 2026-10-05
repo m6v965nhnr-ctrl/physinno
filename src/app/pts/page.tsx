@@ -93,6 +93,9 @@ function PTSearchPageInner(){
       .from("pt_profiles")
 
       .select("*")
+      // 名前が未入力の空プロフィールは一覧に出さない（検索結果が空の人だらけになるため）
+      .not("full_name", "is", null)
+      .neq("full_name", "")
       .order("rating", { ascending: false, nullsFirst: false })
       .limit(50);
 

@@ -67,13 +67,6 @@ export default function MessagePage() {
         setProfile(profileData);
       }
 
-      // 相手が公開設定した病歴・持病を取得する。usersテーブルは本人の行しか
-      // 読めないRLSのため相手のaccount_typeは事前判定できないが、
-      // medical_history側のRLSが「公開かつ閲覧者がPT」だけに絞ってくれるので
-      // そのまま問い合わせれば十分（該当がなければ空配列が返るだけ）
-      const history = await listPublicMedicalHistory(id);
-      if (!cancelled) setMedicalHistory(history);
-
       const { data: conversationData, error: conversationError } =
         await supabase
           .from("conversations")
@@ -123,6 +116,13 @@ export default function MessagePage() {
         setMessages(messageData);
       }
 
+      // 相手が公開設定した病歴・持病を取得する。medical_history側のRLSが
+      // 「公開かつ閲覧者がPTかつ相手本人からメッセージが届いている会話がある」
+      // 場合だけに絞るため、そのまま問い合わせれば十分（該当がなければ空配列）。
+      // 会話が確定してから取得するのは、相手からの最初のメッセージで見えるようになるため
+      const history = await listPublicMedicalHistory(id);
+      if (!cancelled) setMedicalHistory(history);
+
       setLoading(false);
 
       // このスレッドを開いた時点で既読にする
@@ -161,6 +161,13 @@ export default function MessagePage() {
             supabase.rpc("mark_conversation_read", {
               p_conversation_id: conversation.id,
             });
+
+            // 相手から最初のメッセージが届いた時点で、公開された病歴が見えるようになる
+            if (newMessage.sender_id === id) {
+              listPublicMedicalHistory(id).then((history) => {
+                if (!cancelled) setMedicalHistory(history);
+              });
+            }
           }
         );
 

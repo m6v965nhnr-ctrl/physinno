@@ -56,6 +56,12 @@ export default function EditProfilePage() {
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  // 新規登録直後（?welcome=1）は歓迎メッセージを出し、保存後はホームへ進める
+  const [welcome, setWelcome] = useState(false);
+
+  useEffect(() => {
+    setWelcome(new URLSearchParams(window.location.search).get("welcome") === "1");
+  }, []);
   const [userId, setUserId] = useState("");
 
   // ポートフォリオと連携する項目の保存済みの値（差分の反映に使う）
@@ -355,6 +361,13 @@ export default function EditProfilePage() {
       return;
     }
 
+    // 名前のないプロフィールは公開の検索に出さないため、保存時に必須とする
+    if (!fullName.trim()) {
+      notify("名前を入力してください");
+      document.getElementById("field-1")?.focus();
+      return;
+    }
+
     setSaving(true);
 
     // 新しい画像が選択されていたらアップロード
@@ -490,7 +503,7 @@ export default function EditProfilePage() {
 
     notify("プロフィールを保存しました");
 
-    router.push("/mypage");
+    router.push(welcome ? "/home" : "/mypage");
   }
 
   if (loading) {
@@ -506,6 +519,26 @@ export default function EditProfilePage() {
   return (
     <main className="min-h-screen bg-white px-6 py-12 pb-24">
       <div className="max-w-xl mx-auto">
+
+        {welcome && (
+          <div className="mb-8 rounded-2xl bg-emerald-50 p-5">
+            <p className="text-base font-semibold text-emerald-800">
+              Re:lightへようこそ 🎉
+            </p>
+            <p className="mt-1 text-sm leading-6 text-emerald-700">
+              まずは<strong>名前</strong>・<strong>勤務先</strong>・
+              <strong>専門分野</strong>
+              だけ入力してみましょう。入力すると、他の理学療法士があなたを見つけてフォローしやすくなります。ほかの項目はあとからでも大丈夫です。
+            </p>
+            <button
+              type="button"
+              onClick={() => router.push("/home")}
+              className="mt-3 text-xs text-emerald-700 underline"
+            >
+              あとで入力する
+            </button>
+          </div>
+        )}
 
         <h1 className="text-3xl font-semibold mb-10">
           プロフィール編集
@@ -691,7 +724,7 @@ export default function EditProfilePage() {
           {/* 名前 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-1">
-              名前
+              名前 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-1"

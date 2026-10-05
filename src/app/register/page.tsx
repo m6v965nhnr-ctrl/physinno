@@ -99,8 +99,9 @@ export default function RegisterPage() {
       return;
     }
 
-    // 一般の方は検索から、PTはホームから始める
-    router.push(accountType === "general" ? "/pts" : "/home");
+    // 一般の方は検索から始める。PTは、他のPTに見つけてもらえるよう
+    // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する
+    router.push(accountType === "general" ? "/pts" : "/mypage/edit?welcome=1");
   }
 
   return (
