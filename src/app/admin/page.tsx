@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import AdminReports from "@/components/AdminReports";
+import AdminTeacherRequests from "@/components/AdminTeacherRequests";
 
 type Stats = {
   users: number;
@@ -150,6 +151,7 @@ export default function AdminPage() {
 
       <div className="mx-auto max-w-6xl px-5 py-6">
         <AdminReports />
+        <AdminTeacherRequests />
 
         <section>
           <h2 className="mb-4 text-lg font-semibold text-gray-900">

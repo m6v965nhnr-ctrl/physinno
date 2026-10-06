@@ -147,6 +147,17 @@ export default function QuizHomePage() {
           </button>
         </section>
 
+        <section className="grid grid-cols-2 gap-2">
+          <Link href="/student/quiz/classes" className="rounded-2xl bg-white p-3 shadow-sm transition hover:bg-gray-50">
+            <span className="block text-sm font-semibold">📋 クラスの課題</span>
+            <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">先生から配られた課題を解く</span>
+          </Link>
+          <Link href="/student/quiz/teacher" className="rounded-2xl bg-white p-3 shadow-sm transition hover:bg-gray-50">
+            <span className="block text-sm font-semibold">👩‍🏫 先生の方はこちら</span>
+            <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">クラスを作って課題を配る</span>
+          </Link>
+        </section>
+
         <div className="flex gap-1 rounded-full bg-gray-100 p-1 text-sm" role="tablist">
           {(
             [

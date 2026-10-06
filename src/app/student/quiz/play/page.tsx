@@ -19,8 +19,16 @@ import {
   revealQuestion,
   toggleBookmark,
 } from "@/lib/quiz";
+import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizClass";
 
-type Params = { unit: string | null; exam: number | null; mode: QuizMode; n: number; shuffle: boolean };
+type Params = {
+  unit: string | null;
+  exam: number | null;
+  mode: QuizMode;
+  n: number;
+  shuffle: boolean;
+  assignment: string | null; // クラスの課題のとき、課題のid
+};
 
 function readParams(): Params {
   const q = new URLSearchParams(window.location.search);
@@ -32,6 +40,7 @@ function readParams(): Params {
     mode: MODES.includes(mode) ? mode : "all",
     n: Number.isFinite(n) ? n : 20,
     shuffle: q.get("order") !== "seq",
+    assignment: q.get("assignment"),
   };
 }
 
@@ -58,6 +67,19 @@ export default function QuizPlayPage() {
     setSelected([]);
     setReveal(null);
     setResults([]);
+
+    // クラスの課題: 前に答えた問題は飛ばして、続きから始める
+    if (p.assignment) {
+      const aqs = await listAssignmentQuestions(p.assignment);
+      const answered = aqs.filter((x) => x.my_chosen !== null);
+      setResults(answered.map((x) => ({ question: x, chosen: x.my_chosen ?? [], correct: x.my_correct })));
+      const firstOpen = aqs.findIndex((x) => x.my_chosen === null);
+      setIdx(firstOpen === -1 ? aqs.length : firstOpen);
+      setQuestions(aqs);
+      setBookmarks(Object.fromEntries(aqs.map((x) => [x.id, x.bookmarked])));
+      return;
+    }
+
     const qs = await listQuizQuestions({
       unit: p.unit,
       exam: p.exam,
@@ -89,7 +111,9 @@ export default function QuizPlayPage() {
   async function submit(choice: number[]) {
     if (!q || busy || reveal) return;
     setBusy(true);
-    const r = await answerQuestion(q.id, choice);
+    const r = params?.assignment
+      ? await answerAssignmentQuestion(params.assignment, q.id, choice)
+      : await answerQuestion(q.id, choice);
     setBusy(false);
 
     if (!r) {
@@ -155,14 +179,24 @@ export default function QuizPlayPage() {
     );
   }
 
-  const scope = params.unit ? unitNames[params.unit] ?? "" : params.exam ? `第${params.exam}回` : "全範囲";
+  const isAssignment = Boolean(params.assignment);
+  const backHref = isAssignment ? "/student/quiz/classes" : "/student/quiz";
+  const scope = isAssignment
+    ? "クラスの課題"
+    : params.unit
+      ? unitNames[params.unit] ?? ""
+      : params.exam
+        ? `第${params.exam}回`
+        : "全範囲";
 
   if (questions.length === 0) {
     return (
       <main className="min-h-screen bg-[#fafafa] px-6 py-10">
         <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 text-center shadow-sm">
-          <p className="text-sm text-gray-600">この条件に合う問題はありません。</p>
-          <Link href="/student/quiz" className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+          <p className="text-sm text-gray-600">
+            {isAssignment ? "この課題を開けません。クラスから退出したか、課題が削除された可能性があります。" : "この条件に合う問題はありません。"}
+          </p>
+          <Link href={backHref} className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
             戻る
           </Link>
         </div>
@@ -175,7 +209,7 @@ export default function QuizPlayPage() {
     const ok = scored.filter((r) => r.correct).length;
     const wrong = results.filter((r) => r.correct === false);
 
-    const wrongParams: Params = { unit: params.unit, exam: params.exam, mode: "wrong", n: 0, shuffle: true };
+    const wrongParams: Params = { unit: params.unit, exam: params.exam, mode: "wrong", n: 0, shuffle: true, assignment: null };
 
     return (
       <main className="min-h-screen bg-[#fafafa] pb-28">
@@ -214,13 +248,15 @@ export default function QuizPlayPage() {
           )}
 
           <div className="grid gap-2">
-            <button
-              onClick={() => load(params)}
-              className="rounded-full bg-black py-2.5 text-sm font-medium text-white"
-            >
-              もう一度、同じ条件で解く
-            </button>
-            {wrong.length > 0 && (
+            {!isAssignment && (
+              <button
+                onClick={() => load(params)}
+                className="rounded-full bg-black py-2.5 text-sm font-medium text-white"
+              >
+                もう一度、同じ条件で解く
+              </button>
+            )}
+            {wrong.length > 0 && !isAssignment && (
               <button
                 onClick={() => {
                   setParams(wrongParams);
@@ -231,8 +267,8 @@ export default function QuizPlayPage() {
                 間違えた問題だけ、復習する
               </button>
             )}
-            <Link href="/student/quiz" className="rounded-full border border-gray-300 py-2.5 text-center text-sm text-gray-800">
-              単元の一覧に戻る
+            <Link href={backHref} className="rounded-full border border-gray-300 py-2.5 text-center text-sm text-gray-800">
+              {isAssignment ? "課題の一覧に戻る" : "単元の一覧に戻る"}
             </Link>
           </div>
         </div>
@@ -262,8 +298,8 @@ export default function QuizPlayPage() {
       <header className="sticky top-0 z-10 border-b border-gray-100 bg-white px-6 py-3">
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <Link href="/student/quiz" className="text-gray-400">
-              ← やめる
+            <Link href={backHref} className="text-gray-400">
+              ← {isAssignment ? "あとで続ける" : "やめる"}
             </Link>
             <span>
               {scope} ・ {idx + 1} / {questions.length}
@@ -354,15 +390,17 @@ export default function QuizPlayPage() {
                 答え合わせ
               </button>
             )}
-            <button
-              onClick={handleReveal}
-              disabled={busy}
-              className={`rounded-full border border-gray-300 px-5 py-2.5 text-sm text-gray-700 disabled:opacity-40 ${
-                q.need > 1 ? "" : "flex-1"
-              }`}
-            >
-              答えを見る
-            </button>
+            {!isAssignment && (
+              <button
+                onClick={handleReveal}
+                disabled={busy}
+                className={`rounded-full border border-gray-300 px-5 py-2.5 text-sm text-gray-700 disabled:opacity-40 ${
+                  q.need > 1 ? "" : "flex-1"
+                }`}
+              >
+                答えを見る
+              </button>
+            )}
           </div>
         )}
 
