@@ -69,3 +69,6 @@
 - 取り込み: `scripts/quiz/`(`build.py` がPDFから問題JSONと図の画像(webp)を作る → `classify.py` か手作業で単元を付ける → JSONを一時的に `public/` に置いてデプロイ → DBの `net.http_get` で取得して INSERT → JSONを削除)。図は `public/quiz/<回>/` に置く。
 - 採点: 欄ごとに「正解として認める組」を持つ(`answers` = `[[2],[3]]` のように、どちらでも正解)。空欄は採点除外(`excluded`)で、出題しない。
 - 通報: `reports.target_type = 'quiz_question'`。運営の「削除」を押しても問題は消えず、対応済みになる(問題の修正は運営が直接行う)。
+- 模擬試験: `/student/quiz/mock?exam=61&session=am`。1回分の午前または午後(採点除外を除く約100問)を、本番と同じ160分で解く。途中経過はこの端末の localStorage に保存し、最後に RPC `quiz_grade` でまとめて採点(答えた問題は `quiz_progress` にも反映、結果は `quiz_mock_attempts`)。問題の取得は `quiz_exam_questions`(正答は返さない)。
+- PDF・印刷: 一覧の「PDF・印刷」タブに、厚生労働省の公式PDF(問題・別冊・正答)へのリンク(`src/lib/quizPdf.ts`)と、解説つきの印刷用ページ `/student/quiz/print`(RPC `quiz_print_exam`)がある。印刷用ページは、ブラウザの印刷から「PDFに保存」で、PDFにできる。
+- 外部の解説: `quiz_questions.ref_url` に、明日へブログの該当ページ(5問ごと)のURLを入れ、答え合わせ画面にリンクを出す。文章の転載はしない。

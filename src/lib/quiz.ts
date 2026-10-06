@@ -118,3 +118,84 @@ export async function toggleBookmark(questionId: string): Promise<boolean | null
 export function percent(correct: number, total: number) {
   return total === 0 ? 0 : Math.round((correct / total) * 100);
 }
+
+// ---------------------------------------------------------
+// 模擬試験(1回分の午前または午後を、通しで解く)
+// ---------------------------------------------------------
+
+export const MOCK_MINUTES = 160; // 本番の解答時間(2時間40分)
+
+export type MockQuestion = {
+  id: string;
+  no: number;
+  unit: string;
+  intro: string;
+  stem: string;
+  choices: string[];
+  need: number;
+  image: string | null;
+  book_images: string[];
+  choices_in_image: boolean;
+};
+
+export type MockGradeItem = {
+  id: string;
+  no: number;
+  unit: string;
+  chosen: number[] | null;
+  correct: boolean;
+  answers: number[][];
+};
+
+export type MockGrade = { score: number; total: number; items: MockGradeItem[] };
+
+export type MockSummary = {
+  exam_no: number;
+  session: "am" | "pm";
+  attempts: number;
+  last_score: number;
+  last_total: number;
+  best_score: number;
+};
+
+export async function listExamQuestions(exam: number, session: "am" | "pm"): Promise<MockQuestion[]> {
+  const { data } = await supabase.rpc("quiz_exam_questions", { p_exam: exam, p_session: session });
+  return (data ?? []) as MockQuestion[];
+}
+
+export async function gradeExam(
+  exam: number,
+  session: "am" | "pm",
+  answers: Record<string, number[]>,
+  seconds: number
+): Promise<MockGrade | null> {
+  const { data, error } = await supabase.rpc("quiz_grade", {
+    p_exam: exam,
+    p_session: session,
+    p_answers: answers,
+    p_seconds: Math.max(0, Math.round(seconds)),
+  });
+  if (error || !data) return null;
+  return data as MockGrade;
+}
+
+export async function getMockSummary(): Promise<MockSummary[]> {
+  const { data } = await supabase.rpc("quiz_mock_summary");
+  return (data ?? []) as MockSummary[];
+}
+
+// ---------------------------------------------------------
+// 印刷用(問題・正答・解説)
+// ---------------------------------------------------------
+
+export type PrintQuestion = MockQuestion & {
+  excluded: boolean;
+  answers: number[][];
+  explanation: string | null;
+  explanation_source: "ai" | "official" | null;
+};
+
+export async function listPrintQuestions(exam: number, session: "am" | "pm"): Promise<PrintQuestion[]> {
+  const { data } = await supabase.rpc("quiz_print_exam", { p_exam: exam, p_session: session });
+  return (data ?? []) as PrintQuestion[];
+}

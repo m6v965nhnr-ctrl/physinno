@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { OFFICIAL_EXAMS, officialPage, officialPdfs } from "@/lib/quizPdf";
 import {
   MODES,
   MODE_LABEL,
@@ -11,6 +12,9 @@ import {
   QuizMode,
   QuizModeCounts,
   QuizUnit,
+  MockSummary,
+  MOCK_MINUTES,
+  getMockSummary,
   getModeCounts,
   listQuizExams,
   listQuizUnits,
@@ -35,7 +39,8 @@ export default function QuizHomePage() {
   const { loading, accountType } = useMyAccount(["student", "pt"]);
   const titleId = useId();
 
-  const [tab, setTab] = useState<"unit" | "exam">("unit");
+  const [tab, setTab] = useState<"unit" | "exam" | "mock" | "pdf">("unit");
+  const [mocks, setMocks] = useState<MockSummary[]>([]);
   const [units, setUnits] = useState<QuizUnit[] | null>(null);
   const [exams, setExams] = useState<QuizExam[] | null>(null);
 
@@ -49,6 +54,7 @@ export default function QuizHomePage() {
     if (loading) return;
     listQuizUnits().then(setUnits);
     listQuizExams().then(setExams);
+    getMockSummary().then(setMocks);
   }, [loading]);
 
   useEffect(() => {
@@ -146,6 +152,8 @@ export default function QuizHomePage() {
             [
               ["unit", "単元ごと"],
               ["exam", "回ごと"],
+              ["mock", "模擬試験"],
+              ["pdf", "PDF・印刷"],
             ] as const
           ).map(([k, label]) => (
             <button
@@ -153,7 +161,7 @@ export default function QuizHomePage() {
               role="tab"
               aria-selected={tab === k}
               onClick={() => setTab(k)}
-              className={`flex-1 rounded-full px-2 py-2 ${
+              className={`flex-1 rounded-full px-1 py-2 text-xs sm:text-sm ${
                 tab === k ? "bg-white font-semibold text-gray-900 shadow-sm" : "text-gray-500"
               }`}
             >
@@ -210,6 +218,85 @@ export default function QuizHomePage() {
                   {e.answered === 0 ? "まだ解いていません" : `${e.answered}問 解いた ・ 正解 ${e.correct}問 ・ 正答率 ${percent(e.correct, e.answered)}%`}
                 </p>
               </button>
+            ))}
+          </div>
+        )}
+
+        {tab === "mock" && (
+          <div className="space-y-3">
+            <p className="text-xs leading-5 text-gray-500">
+              1回分の午前または午後を、本番と同じ解答時間（{MOCK_MINUTES}分）で、通して解きます。答え合わせは、最後にまとめて行います。
+            </p>
+            {(exams ?? []).map((e) => (
+              <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
+                <p className="text-sm font-semibold">第{e.exam_no}回 理学療法士国家試験</p>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  {(["am", "pm"] as const).map((sess) => {
+                    const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
+                    return (
+                      <Link
+                        key={sess}
+                        href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
+                        className="rounded-xl border border-gray-200 p-3 text-center transition hover:bg-gray-50"
+                      >
+                        <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
+                        <span className="mt-0.5 block text-[11px] text-gray-500">
+                          {m ? `前回 ${m.last_score}/${m.last_total}問 ・ 最高 ${m.best_score}問` : "まだ解いていません"}
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
+          </div>
+        )}
+
+        {tab === "pdf" && (
+          <div className="space-y-3">
+            <p className="text-xs leading-5 text-gray-500">
+              厚生労働省が公開している、公式の問題・正答のPDFと、このアプリで作った、解説つきの印刷用ページ（PDFで保存できます）です。
+            </p>
+            {OFFICIAL_EXAMS.map((e) => (
+              <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
+                <p className="text-sm font-semibold">
+                  第{e.exam_no}回 <span className="text-xs font-normal text-gray-500">（{e.date}実施）</span>
+                </p>
+
+                <p className="mt-3 text-xs font-semibold text-gray-600">公式PDF（厚生労働省）</p>
+                <ul className="mt-1.5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {officialPdfs(e).map((f) => (
+                    <li key={f.href}>
+                      <a
+                        href={f.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-800 hover:bg-gray-50"
+                      >
+                        📄 {f.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-1.5 text-[11px] text-gray-400">
+                  <a href={officialPage(e)} target="_blank" rel="noopener noreferrer" className="underline">
+                    厚生労働省の公開ページ
+                  </a>
+                </p>
+
+                <p className="mt-3 text-xs font-semibold text-gray-600">解説つき（印刷・PDF保存）</p>
+                <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                  {(["am", "pm"] as const).map((sess) => (
+                    <Link
+                      key={sess}
+                      href={`/student/quiz/print?exam=${e.exam_no}&session=${sess}`}
+                      className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs text-gray-800 hover:bg-gray-50"
+                    >
+                      🖨️ {sess === "am" ? "午前" : "午後"}（問題・正答・解説）
+                    </Link>
+                  ))}
+                </div>
+              </section>
             ))}
           </div>
         )}
