@@ -13,6 +13,24 @@ export type ColumnMeta = {
 
 export const COLUMNS: ColumnMeta[] = [
   {
+    slug: "pt-kokushi-pass-rate",
+    title: "理学療法士国家試験の合格率と合格基準【第61回・2026年最新】過去5年の推移",
+    description:
+      "第61回理学療法士国家試験の合格率は89.7%（新卒94.9%）。合格基準（総得点・実地問題）と、第57回〜第61回の合格率の推移を厚生労働省の発表をもとにまとめました。",
+    category: "学生・国試",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+  },
+  {
+    slug: "pt-kokushi-study-plan",
+    title: "理学療法士国家試験の勉強法｜過去問の使い方と最終学年のスケジュール",
+    description:
+      "何から始めればいい？理学療法士国家試験の勉強を、過去問を軸に進める方法と、実習がある最終学年1年間のスケジュール例を紹介します。",
+    category: "学生・国試",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+  },
+  {
     slug: "case-presentation-how-to",
     title: "症例発表・症例報告の書き方完全ガイド｜構成のコツと例文",
     description:

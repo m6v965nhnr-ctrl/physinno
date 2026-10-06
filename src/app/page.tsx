@@ -48,7 +48,33 @@ const FEATURES = [
   },
 ];
 
+const ENTRANCES = [
+  {
+    href: "/register?type=pt",
+    who: "理学療法士の方",
+    title: "臨床と学びを、もっと広く",
+    body: "症例相談・論文検索・研修情報・病院の職場口コミ・ポートフォリオ",
+  },
+  {
+    href: "/register?type=student",
+    who: "理学療法士をめざす学生の方",
+    title: "国試・実習・就活をひとつに",
+    body: "過去問1,000問と解説・模擬試験、実習先の口コミ、見学・応募の管理",
+  },
+];
+
+const TRY_LINKS = [
+  { href: "/kokushi", title: "国試の過去問を解く", body: "第57回〜第61回の全1,000問。正答つき・ログイン不要" },
+  { href: "/pts", title: "理学療法士を探す", body: "地域や専門分野から、プロフィールとポートフォリオを見られます" },
+  { href: "/pts?mode=hospitals", title: "病院を探す", body: "リハビリ科のある全国約5,000病院の情報と、PTの職場口コミ" },
+  { href: "/columns", title: "コラムを読む", body: "給料・転職・認定理学療法士・症例発表の書き方など" },
+];
+
 const STUDENT_FEATURES = [
+  {
+    title: "国家試験の過去問ドリル（第57回〜第61回）",
+    body: "全1,000問を科目別・回別に。全問の解説、間違えた問題だけの復習、時間を計る模擬試験、科目ごとの正答率がわかります。",
+  },
   {
     title: "実習・就活トラッカー",
     body: "実習先、病院見学、応募、提出物の期限をまとめて管理。病院ページの「見学したい」からワンタップで追加できます。",
@@ -81,6 +107,10 @@ const FAQS = [
   {
     q: "学生でも使えますか？",
     a: "はい。理学療法士をめざす学生向けのアカウントがあります。実習・就活・病院見学の管理、国家試験までのカウントダウンと学習ログ、実習先の口コミ（実習生の声）、現役のPTへの質問、実習レポートの文献探しと、構成・誤字脱字のチェック（AI。代筆はしません）が使えます。卒業予定年を登録しておくと、卒業した翌年の4月1日に自動でPTのアカウントに切り替わります。養成校名などは、本人だけに表示されます。",
+  },
+  {
+    q: "国家試験の過去問は無料で解けますか？",
+    a: "はい。第57回〜第61回の理学療法士国家試験（全1,000問）は、ログインなしで1問ずつ解いて正答を確認できます。学生アカウントで無料登録すると、全問の解説、間違えた問題だけの復習、時間を計る模擬試験、科目ごとの正答率も使えます。",
   },
   {
     q: "どんな症例を投稿できますか？",
@@ -175,7 +205,7 @@ export default function LandingPage() {
       <section className="mx-auto max-w-5xl px-6 pb-16 pt-10 md:pt-20">
         <div className="max-w-2xl">
           <p className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-white" style={gradient}>
-            理学療法士・患者・学生・研究者・病院・医療系企業のためのプラットフォーム
+            理学療法士と、理学療法士をめざす学生のための無料プラットフォーム
           </p>
           {/* 画面幅に合わせて文字の大きさを変え、スマホでも「理学療法士の臨床を、」が1行に収まるようにする */}
           <h1
@@ -187,30 +217,54 @@ export default function LandingPage() {
             <span className="whitespace-nowrap">ひとりにしない。</span>
           </h1>
           <p className="mt-6 text-base leading-8 text-gray-600">
-            症例の共有・相談、9サイトを横断する論文検索とAIモード、全国の研修・学会情報、全国の病院情報と口コミ、学生の実習・就活・国試のサポート、PT同士のつながり。
+            症例の共有・相談、9サイトを横断する論文検索、全国の研修・学会情報、約5,000病院の職場口コミ。
+            学生は、国家試験の過去問1,000問と、実習・就活の管理まで。
             <br className="hidden md:block" />
-            Re:lightは、理学療法士・患者・学生・研究者・病院・医療系企業のための、学びと価値をつなぐプラットフォームです。
+            Re:lightは、理学療法士の学びと価値をつなぐプラットフォームです。
           </p>
-          <div className="mt-10 max-w-sm space-y-3">
-            <PrimaryCta />
-            <Link
-              href="/register?type=general"
-              className="block w-full rounded-full border border-gray-300 bg-white px-6 py-4 text-center text-base font-medium text-gray-900 transition hover:bg-gray-50 active:scale-[0.98]"
-            >
-              理学療法士を探したい方はこちら
-            </Link>
-            <Link
-              href="/register?type=student"
-              className="block w-full rounded-full border border-gray-300 bg-white px-6 py-4 text-center text-base font-medium text-gray-900 transition hover:bg-gray-50 active:scale-[0.98]"
-            >
-              理学療法士をめざす学生の方はこちら
-            </Link>
-            <p className="text-center text-xs text-gray-500">登録無料・メールアドレスだけで1分</p>
+          <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-2">
+            {ENTRANCES.map((e) => (
+              <Link
+                key={e.href}
+                href={e.href}
+                className="group block rounded-3xl border-2 border-gray-900 bg-white p-6 transition hover:bg-gray-50 active:scale-[0.99]"
+              >
+                <span className="block text-xs font-semibold text-gray-500">{e.who}</span>
+                <span className="mt-1 block text-xl font-bold text-gray-900">{e.title}</span>
+                <span className="mt-2 block text-sm leading-6 text-gray-700">{e.body}</span>
+                <span className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-semibold text-white">
+                  無料ではじめる →
+                </span>
+              </Link>
+            ))}
           </div>
+          <p className="mt-4 text-sm text-gray-600">
+            登録無料・メールアドレスだけで1分。
+            <Link href="/register?type=general" className="ml-1 underline">
+              理学療法士を探したい一般の方はこちら
+            </Link>
+          </p>
         </div>
       </section>
 
-      {/* 個人情報の取り扱い（最初のほうに置く） */}
+      {/* ログインなしで試せる公開ページ */}
+      <section className="px-6 pb-12">
+        <div className="mx-auto max-w-5xl">
+          <h2 className="text-lg font-bold text-gray-900">登録しなくても、まず試せます</h2>
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {TRY_LINKS.map((t) => (
+              <li key={t.href}>
+                <Link href={t.href} className="block h-full rounded-2xl bg-[#f7faf9] p-5 transition hover:bg-[#eef6f4]">
+                  <span className="block text-base font-semibold text-gray-900">{t.title} →</span>
+                  <span className="mt-1 block text-sm leading-6 text-gray-700">{t.body}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* 個人情報の取り扱い */}
       <section className="px-6 pb-4">
         <div className="mx-auto max-w-5xl rounded-3xl border border-gray-200 bg-white p-6 md:p-8">
           <p className="text-xs font-semibold text-gray-500">PRIVACY</p>
@@ -284,7 +338,7 @@ export default function LandingPage() {
           <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-600">
             実習・就活・国試を、ひとつのアプリで。卒業したら、そのままPTのアカウントに切り替わります。
           </p>
-          <ul className="mt-8 grid gap-4 md:grid-cols-3">
+          <ul className="mt-8 grid gap-4 md:grid-cols-2">
             {STUDENT_FEATURES.map((f) => (
               <li key={f.title} className="rounded-2xl border border-gray-200 p-5">
                 <h3 className="text-base font-semibold">{f.title}</h3>
@@ -292,12 +346,20 @@ export default function LandingPage() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/register?type=student"
-            className="mt-8 inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
-          >
-            学生として無料ではじめる
-          </Link>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link
+              href="/register?type=student"
+              className="inline-block rounded-full bg-black px-6 py-3 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              学生として無料ではじめる
+            </Link>
+            <Link
+              href="/kokushi"
+              className="inline-block rounded-full border border-gray-900 px-6 py-3 text-sm font-medium hover:bg-gray-50"
+            >
+              登録せずに過去問を解いてみる
+            </Link>
+          </div>
         </div>
       </section>
 
@@ -365,7 +427,16 @@ export default function LandingPage() {
       </section>
 
       <footer className="px-6 py-8 text-center text-xs text-gray-500">
-        <div className="flex items-center justify-center gap-4">
+        <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/kokushi" className="hover:text-gray-700">
+            国試過去問
+          </Link>
+          <Link href="/pts" className="hover:text-gray-700">
+            PTを探す
+          </Link>
+          <Link href="/pts?mode=hospitals" className="hover:text-gray-700">
+            病院を探す
+          </Link>
           <Link href="/columns" className="hover:text-gray-700">
             コラム
           </Link>

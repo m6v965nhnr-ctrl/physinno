@@ -537,3 +537,26 @@ html {
 .search-large .text-gray-400 {
   color: #6b7280;
 }
+
+/* コラム内の表（合格率の推移など）。スマホでは横にスクロールできるようにする */
+.column-body table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.25rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.column-body th,
+.column-body td {
+  border: 1px solid #e5e7eb;
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.column-body th {
+  background: #f7faf9;
+  font-weight: 600;
+}

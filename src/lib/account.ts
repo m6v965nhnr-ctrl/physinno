@@ -95,3 +95,10 @@ export async function setMyAccountType(type: "pt" | "general") {
 
   return error ? error.message : null;
 }
+
+// 国家試験の過去問ページ（/kokushi 以下）は誰でも読める（学生が検索から見つけられるように）
+const PUBLIC_KOKUSHI_PATH = /^\/kokushi(\/.*)?$/;
+
+export function isPublicKokushiPath(pathname: string) {
+  return PUBLIC_KOKUSHI_PATH.test(pathname);
+}

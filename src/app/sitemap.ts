@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
+import { QUESTIONS_PER_SESSION, SESSIONS, getPublicExams, questionPath } from "@/lib/kokushi";
 
 // 1時間ごとに再生成する（新しく登録されたPTのプロフィールもそのうち反映される）
 export const revalidate = 3600;
@@ -17,6 +18,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/pts`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${SITE_URL}/register`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/columns`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${SITE_URL}/kokushi`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];
@@ -63,5 +65,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  return [...staticEntries, ...columnEntries, ...ptEntries, ...hospitalEntries];
+  // 国家試験の過去問（回ごとの一覧と、1問ずつのページ）
+  const exams = await getPublicExams();
+  const kokushiEntries: MetadataRoute.Sitemap = exams.flatMap((e) => [
+    { url: `${SITE_URL}/kokushi/${e.exam_no}`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.8 },
+    ...SESSIONS.flatMap((session) =>
+      Array.from({ length: QUESTIONS_PER_SESSION }, (_, i) => ({
+        url: `${SITE_URL}${questionPath(e.exam_no, session, i + 1)}`,
+        lastModified: now,
+        changeFrequency: "yearly" as const,
+        priority: 0.6,
+      }))
+    ),
+  ]);
+
+  return [...staticEntries, ...columnEntries, ...kokushiEntries, ...ptEntries, ...hospitalEntries];
 }

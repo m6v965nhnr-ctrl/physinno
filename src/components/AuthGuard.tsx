@@ -9,8 +9,10 @@ import {
   isPublicColumnPath,
   isPublicHospitalPath,
   isPublicPostPath,
+  isPublicKokushiPath,
   isPublicPtPath,
 } from "@/lib/account";
+import { isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy"];
 
@@ -34,7 +36,8 @@ export default function AuthGuard({
         isPublicPtPath(pathname) ||
         isPublicPostPath(pathname) ||
         isPublicColumnPath(pathname) ||
-        isPublicHospitalPath(pathname)
+        isPublicHospitalPath(pathname) ||
+        isPublicKokushiPath(pathname)
       ) {
         setChecking(false);
         return;
@@ -63,9 +66,11 @@ export default function AuthGuard({
         return;
       }
 
+      let accountType: Awaited<ReturnType<typeof getMyAccountType>> | undefined;
+
       // 一般の方は PT向けのページ（ホーム・投稿など）を開けない
       if (isPtOnlyPath(pathname)) {
-        const accountType = await getMyAccountType(user.id);
+        accountType = await getMyAccountType(user.id);
 
         if (cancelled) return;
 
@@ -73,6 +78,23 @@ export default function AuthGuard({
           router.replace("/pts");
           return;
         }
+      }
+
+      // PTは、初回プロフィール登録（必須項目の入力）が済むまで入力画面から先へ進めない
+      if (!isAllowedBeforeOnboarding(pathname) && !(await isOnboarded(user.id))) {
+        if (accountType === undefined) {
+          accountType = await getMyAccountType(user.id);
+        }
+
+        if (cancelled) return;
+
+        if (accountType === "pt") {
+          router.replace("/mypage/edit?welcome=1");
+          return;
+        }
+
+        // PT以外は対象外。このタブでは再確認しない
+        markOnboarded(user.id);
       }
 
       setChecking(false);
@@ -101,7 +123,8 @@ export default function AuthGuard({
     !isPublicPtPath(pathname) &&
     !isPublicPostPath(pathname) &&
     !isPublicColumnPath(pathname) &&
-    !isPublicHospitalPath(pathname)
+    !isPublicHospitalPath(pathname) &&
+    !isPublicKokushiPath(pathname)
   ) {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">

@@ -12,6 +12,7 @@ import {
   syncProfileToPortfolio,
 } from "@/lib/profileSync";
 import { notify } from "@/lib/notify";
+import { markOnboarded } from "@/lib/onboarding";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -59,6 +60,8 @@ export default function EditProfilePage() {
   const [saving, setSaving] = useState(false);
   // 新規登録直後（?welcome=1）は歓迎メッセージを出し、保存後はホームへ進める
   const [welcome, setWelcome] = useState(false);
+  // 初回プロフィール登録が済んだ日時（未完了ならnull）
+  const [onboardedAt, setOnboardedAt] = useState<string | null>(null);
 
   useEffect(() => {
     setWelcome(new URLSearchParams(window.location.search).get("welcome") === "1");
@@ -142,6 +145,7 @@ export default function EditProfilePage() {
       setBiography(data.biography || "");
       setStrengths(data.strengths || "");
       setInterests(data.interests || "");
+      setOnboardedAt(data.onboarded_at || null);
 
       setProfileImage(data.profile_image || "");
       setImagePreview(data.profile_image || "");
@@ -374,10 +378,28 @@ export default function EditProfilePage() {
       return;
     }
 
-    // 名前のないプロフィールは公開の検索に出さないため、保存時に必須とする
-    if (!fullName.trim()) {
-      notify("名前を入力してください");
-      document.getElementById("field-1")?.focus();
+    // プロフィールに必要な項目は必須（連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
+    const requiredFields: { label: string; filled: boolean; focusId: string }[] = [
+      { label: "アイコン", filled: Boolean(profileImage || selectedImage), focusId: "icon-section" },
+      { label: "名前", filled: Boolean(fullName.trim()), focusId: "field-1" },
+      { label: "勤務先", filled: Boolean(workplace.trim()), focusId: "field-2" },
+      { label: "所属部署", filled: Boolean(department.trim()), focusId: "field-3" },
+      { label: "専門分野", filled: Boolean(specialty.trim()), focusId: "field-4" },
+      { label: "資格", filled: Boolean(qualification.trim()), focusId: "field-5" },
+      { label: "経験年数", filled: experienceYears.trim() !== "", focusId: "field-exp" },
+      { label: "学歴", filled: Boolean(education.trim()), focusId: "field-6" },
+      { label: "出身", filled: Boolean(hometown.trim()), focusId: "field-7" },
+      { label: "生年月日", filled: Boolean(birthDate), focusId: "field-8" },
+      { label: "言語", filled: Boolean(language.trim()), focusId: "field-9" },
+    ];
+
+    const missing = requiredFields.filter((f) => !f.filled);
+
+    if (missing.length > 0) {
+      notify(`次の項目を入力してください：${missing.map((f) => f.label).join("、")}`);
+      const target = document.getElementById(missing[0].focusId);
+      target?.scrollIntoView({ behavior: "smooth", block: "center" });
+      target?.focus();
       return;
     }
 
@@ -442,6 +464,8 @@ export default function EditProfilePage() {
       interests,
       profile_image: imageUrl || null,
       cover_image: coverUrl || null,
+      // 必須項目がそろって初めて保存できるので、ここで初回登録の完了を記録する
+      onboarded_at: onboardedAt || new Date().toISOString(),
     };
 
     // 出身・生年月日・連絡先・証明写真は非公開のpt_privateへ保存する（誰でも読めるpt_profilesには置かない）
@@ -515,6 +539,9 @@ export default function EditProfilePage() {
     setIdPhoto(idPhotoUrl);
     setSelectedIdPhoto(null);
 
+    setOnboardedAt(profileData.onboarded_at);
+    markOnboarded();
+
     notify("プロフィールを保存しました");
 
     router.push(welcome ? "/home" : "/mypage");
@@ -540,17 +567,10 @@ export default function EditProfilePage() {
               Re:lightへようこそ 🎉
             </p>
             <p className="mt-1 text-sm leading-6 text-emerald-700">
-              まずは<strong>名前</strong>・<strong>勤務先</strong>・
-              <strong>専門分野</strong>
-              だけ入力してみましょう。入力すると、他の理学療法士があなたを見つけてフォローしやすくなります。ほかの項目はあとからでも大丈夫です。
+              はじめに、あなたのプロフィールを登録しましょう。
+              <span className="text-red-500">（必須）</span>の項目をすべて入力すると、Re:lightを使いはじめられます。
+              連絡先・自己紹介・自分の強み・興味のある分野・カバー写真は、あとからでも追加できます。
             </p>
-            <button
-              type="button"
-              onClick={() => router.push("/home")}
-              className="mt-3 text-xs text-emerald-700 underline"
-            >
-              あとで入力する
-            </button>
           </div>
         )}
 
@@ -565,7 +585,7 @@ export default function EditProfilePage() {
           ========================= */}
           <div>
             <label className="block font-semibold mb-2">
-              カバー写真
+              カバー写真 <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <div className="h-32 w-full overflow-hidden rounded-2xl bg-gray-100 flex items-center justify-center">
@@ -621,6 +641,9 @@ export default function EditProfilePage() {
               プロフィール画像
           ========================= */}
           <div className="text-center">
+            <p id="icon-section" tabIndex={-1} className="mb-3 font-semibold">
+              アイコン <span className="text-xs font-normal text-red-500">（必須）</span>
+            </p>
 
             <div className="mx-auto h-32 w-32 overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
 
@@ -680,7 +703,7 @@ export default function EditProfilePage() {
           <div className="text-center rounded-2xl border border-dashed border-gray-300 p-5">
 
             <p className="text-sm font-semibold">
-              証明写真（ポートフォリオ用）
+              証明写真（ポートフォリオ用） <span className="text-xs font-normal text-gray-500">（任意）</span>
             </p>
 
             <p className="mt-1 text-xs text-gray-400">
@@ -754,7 +777,7 @@ export default function EditProfilePage() {
           {/* 勤務先（入力すると病院ページの候補が出て、選ぶと連携できる） */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-2">
-              勤務先
+              勤務先 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <WorkplaceAutosuggest
@@ -784,7 +807,7 @@ export default function EditProfilePage() {
           {/* 所属部署 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-3">
-              所属部署
+              所属部署 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-3"
@@ -800,7 +823,7 @@ export default function EditProfilePage() {
           {/* 専門分野 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-4">
-              専門分野
+              専門分野 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-4"
@@ -816,7 +839,7 @@ export default function EditProfilePage() {
           {/* 資格 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-5">
-              資格
+              資格 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-5"
@@ -831,12 +854,12 @@ export default function EditProfilePage() {
 
           {/* 経験年数 */}
           <div>
-            <label className="block font-semibold mb-2">
-              経験年数
+            <label className="block font-semibold mb-2" htmlFor="field-exp">
+              経験年数 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <div className="flex items-center gap-2">
-              <input
+              <input id="field-exp"
                 type="number"
                 min="0"
                 value={experienceYears}
@@ -856,7 +879,7 @@ export default function EditProfilePage() {
           {/* 学歴 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-6">
-              学歴
+              学歴 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-6"
@@ -872,7 +895,7 @@ export default function EditProfilePage() {
           {/* 出身 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-7">
-              出身
+              出身 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-7"
@@ -888,7 +911,7 @@ export default function EditProfilePage() {
           {/* 生年月日 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-8">
-              生年月日
+              生年月日 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-8"
@@ -904,7 +927,7 @@ export default function EditProfilePage() {
           {/* 言語 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-9">
-              言語
+              言語 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <input id="field-9"
@@ -920,7 +943,7 @@ export default function EditProfilePage() {
           {/* 連絡先 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-10">
-              連絡先
+              連絡先 <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <input id="field-10"
@@ -936,7 +959,7 @@ export default function EditProfilePage() {
           {/* 自己紹介 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-11">
-              自己紹介
+              自己紹介 <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <textarea id="field-11"
@@ -953,7 +976,7 @@ export default function EditProfilePage() {
           {/* 自分の強み */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-12">
-              自分の強み
+              自分の強み <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <textarea id="field-12"
@@ -970,7 +993,7 @@ export default function EditProfilePage() {
           {/* 興味のある分野 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-13">
-              興味のある分野
+              興味のある分野 <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <textarea id="field-13"
