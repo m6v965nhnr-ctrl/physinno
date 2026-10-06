@@ -1,5 +1,6 @@
 "use client";
 
+import { listPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -130,13 +131,14 @@ export default function PortfolioView({
 
     const userId = ptData.user_id;
 
-    const { data: caseData } = await supabase
-      .from("posts")
-      .select("id, title, disease_category, created_at")
-      .eq("user_id", userId)
-      .eq("post_type", "case")
-      .eq("is_public", true)
-      .order("created_at", { ascending: false });
+    const caseData = (await listPosts({ author: userId, types: ["case"], limit: 100 })).map(
+      (post) => ({
+        id: post.id,
+        title: post.title,
+        disease_category: post.disease_category,
+        created_at: post.created_at,
+      })
+    );
 
     setCaseReports(caseData || []);
     setAchievements(await listPublicAchievements(userId));

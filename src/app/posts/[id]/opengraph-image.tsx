@@ -44,13 +44,18 @@ export default async function PostOpengraphImage({
 }) {
   const { id } = await params;
 
-  const { data: post } = await supabasePublic
-    .from("posts")
-    .select("title, content, user_id, post_type, disease_category")
-    .eq("id", id)
-    .maybeSingle();
+  // 公開範囲の外の人には、題名だけ、または何も返らない。匿名の投稿には作者が付かない
+  const { data: rows } = await supabasePublic.rpc("list_posts", { p_id: id, p_limit: 1 });
+  const post = ((rows ?? [])[0] ?? null) as {
+    title: string | null;
+    content: string | null;
+    user_id: string | null;
+    post_type: string | null;
+    disease_category: string | null;
+    is_anonymous: boolean;
+  } | null;
 
-  const { data: pt } = post
+  const { data: pt } = post?.user_id
     ? await supabasePublic
         .from("pt_profiles")
         .select("full_name, specialty, qualification")
@@ -59,7 +64,7 @@ export default async function PostOpengraphImage({
     : { data: null };
 
   const kind = labelFor(post?.post_type ?? null, post?.disease_category ?? null);
-  const name = ptName(pt?.full_name ?? null);
+  const name = post?.is_anonymous ? "匿名のPT" : ptName(pt?.full_name ?? null);
   const role = pt?.specialty || pt?.qualification || "理学療法士";
   const headline = post?.title || (post?.content || "").slice(0, 40);
 

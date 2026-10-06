@@ -122,11 +122,20 @@ export default function MyPage() {
     // 出身・生年月日・連絡先は非公開のpt_privateから取得する（本人のみ）
     const { data: privateData } = await supabase
       .from("pt_private")
-      .select("hometown, birth_date, contact")
+      .select("hometown, birth_date, contact, hidden_workplace, hidden_department")
       .eq("user_id", user.id)
       .maybeSingle();
 
     setPrivateInfo(privateData || null);
+
+    // 勤務先を非公開にしているときは、本人にだけ、保管してある値を表示する
+    if (profileData?.hide_workplace) {
+      setProfile((prev) => ({
+        ...(prev ?? {}),
+        workplace: privateData?.hidden_workplace ?? null,
+        department: privateData?.hidden_department ?? null,
+      }));
+    }
 
     // =========================
     // 自分の投稿
@@ -541,7 +550,7 @@ export default function MyPage() {
           </div>
 
           <ProfileItem
-            title="勤務先"
+            title={profile?.hide_workplace ? "勤務先（非公開）" : "勤務先"}
             value={profile?.workplace}
           />
 

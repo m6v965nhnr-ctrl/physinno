@@ -21,6 +21,7 @@ export default function EditProfilePage() {
 
   const [fullName, setFullName] = useState("");
   const [workplace, setWorkplace] = useState("");
+  const [hideWorkplace, setHideWorkplace] = useState(false);
   const [hospitalId, setHospitalId] = useState<string | null>(null);
   const [department, setDepartment] = useState("");
   const [specialty, setSpecialty] = useState("");
@@ -98,7 +99,7 @@ export default function EditProfilePage() {
     // 出身・生年月日・連絡先は非公開のpt_privateから取得する
     const { data: privateData } = await supabase
       .from("pt_private")
-      .select("hometown, birth_date, contact, id_photo_path")
+      .select("hometown, birth_date, contact, id_photo_path, hidden_workplace, hidden_hospital_id, hidden_department")
       .eq("user_id", user.id)
       .maybeSingle();
 
@@ -120,9 +121,12 @@ export default function EditProfilePage() {
       setProfileId(data.id);
 
       setFullName(data.full_name || "");
-      setWorkplace(data.workplace || "");
-      setHospitalId(data.hospital_id || null);
-      setDepartment(data.department || "");
+      // 勤務先を非公開にしているときは、本人だけが読める pt_private から読み込む
+      const hidden = Boolean(data.hide_workplace);
+      setHideWorkplace(hidden);
+      setWorkplace((hidden ? privateData?.hidden_workplace : data.workplace) || "");
+      setHospitalId((hidden ? privateData?.hidden_hospital_id : data.hospital_id) || null);
+      setDepartment((hidden ? privateData?.hidden_department : data.department) || "");
       setSpecialty(data.specialty || "");
       setQualification(data.qualification || "");
 
@@ -146,8 +150,8 @@ export default function EditProfilePage() {
 
       setSyncedFields({
         education: data.education || "",
-        workplace: data.workplace || "",
-        department: data.department || "",
+        workplace: (data.hide_workplace ? privateData?.hidden_workplace : data.workplace) || "",
+        department: (data.hide_workplace ? privateData?.hidden_department : data.department) || "",
         qualification: data.qualification || "",
         languages: data.languages || "",
       });
@@ -426,6 +430,7 @@ export default function EditProfilePage() {
       workplace,
       hospital_id: hospitalId,
       department,
+      hide_workplace: hideWorkplace,
       specialty,
       qualification,
       experience_years:
@@ -758,6 +763,22 @@ export default function EditProfilePage() {
               hospitalId={hospitalId}
               onHospitalIdChange={setHospitalId}
             />
+
+            <label className="mt-3 flex cursor-pointer items-start gap-3">
+              <input
+                type="checkbox"
+                checked={hideWorkplace}
+                onChange={(e) => setHideWorkplace(e.target.checked)}
+                className="mt-1 h-4 w-4"
+              />
+              <span>
+                <span className="block text-sm font-medium">勤務先と所属部署を、ほかの人に公開しない</span>
+                <span className="block text-xs leading-5 text-gray-500">
+                  オンにすると、勤務先・所属部署・病院ページとの連携が、ほかの人には見えなくなります
+                  （サーバーにも公開用としては保存しません）。あなたの画面には、そのまま表示されます。
+                </span>
+              </span>
+            </label>
           </div>
 
           {/* 所属部署 */}

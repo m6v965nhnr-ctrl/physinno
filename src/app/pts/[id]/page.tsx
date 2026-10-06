@@ -1,6 +1,7 @@
 
 "use client";
 
+import { listPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -108,12 +109,15 @@ export default function PTProfile() {
     // =========================
     // ポートフォリオ（症例報告・実績・資格更新目標）
     // =========================
-    const { data: caseData } = await supabase
-      .from("posts")
-      .select("id, title, disease_category, created_at")
-      .eq("user_id", ptData.user_id)
-      .eq("post_type", "case")
-      .order("created_at", { ascending: false });
+    // 公開範囲の外の人には、題名だけ公開の症例は題名だけ。匿名の投稿は、作者のページに出さない
+    const caseData = (await listPosts({ author: ptData.user_id, types: ["case"], limit: 100 })).map(
+      (post) => ({
+        id: post.id,
+        title: post.title,
+        disease_category: post.disease_category,
+        created_at: post.created_at,
+      })
+    );
 
     setCaseReports(caseData || []);
     setAchievements(await listPublicAchievements(ptData.user_id));
@@ -122,11 +126,7 @@ export default function PTProfile() {
     // =========================
     // 投稿・フォロー・フォロワー数
     // =========================
-    const { count: postsCount } = await supabase
-      .from("posts")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", ptData.user_id)
-      .eq("is_public", true);
+    const postsCount = (await listPosts({ author: ptData.user_id, limit: 100 })).length;
 
     setPostCount(postsCount || 0);
 

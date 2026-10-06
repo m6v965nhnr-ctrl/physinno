@@ -210,6 +210,40 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* 個人情報の取り扱い（最初のほうに置く） */}
+      <section className="px-6 pb-4">
+        <div className="mx-auto max-w-5xl rounded-3xl border border-gray-200 bg-white p-6 md:p-8">
+          <p className="text-xs font-semibold text-gray-500">PRIVACY</p>
+          <h2 className="mt-1 text-xl font-bold tracking-tight md:text-2xl">個人情報は、使う人が自分で決められます</h2>
+          <ul className="mt-5 grid gap-3 text-sm leading-7 text-gray-700 md:grid-cols-2">
+            <li className="rounded-2xl bg-[#f7faf9] p-4">
+              <strong>投稿ごとに、見せる範囲を選べます。</strong>
+              全員／フォロワーだけ／自分だけ。範囲の外の人には、本文をサーバーから返しません。題名だけ公開することもできます。
+            </li>
+            <li className="rounded-2xl bg-[#f7faf9] p-4">
+              <strong>匿名で投稿できます。</strong>
+              名前もプロフィールも、ほかの人には返しません。自分のポートフォリオには載ります。
+            </li>
+            <li className="rounded-2xl bg-[#f7faf9] p-4">
+              <strong>勤務先を隠せます。</strong>
+              勤務先・所属部署を公開しない設定にすると、公開用のプロフィールには保存されません。
+            </li>
+            <li className="rounded-2xl bg-[#f7faf9] p-4">
+              <strong>免許番号・連絡先・生年月日・証明写真は、本人だけ。</strong>
+              ほかの人には見えない領域で保管します。広告や行動分析のためのトラッキングは使っていません。
+            </li>
+          </ul>
+          <p className="mt-4 text-xs leading-6 text-gray-500">
+            患者さんが特定される情報は、投稿しないでください。AIモードに入力した質問は、回答を作るため、外部のサービス（Google）に送信されます。
+            詳しくは
+            <Link href="/privacy" className="mx-1 underline">
+              プライバシーポリシー
+            </Link>
+            をご覧ください。
+          </p>
+        </div>
+      </section>
+
       {/* 悩み */}
       <section className="bg-[#f7faf9] px-6 py-16">
         <div className="mx-auto max-w-5xl">

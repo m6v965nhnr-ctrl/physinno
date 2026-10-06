@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { listPosts } from "@/lib/posts";
 
 export type AchievementCategory =
   | "conference"
@@ -73,6 +74,8 @@ export type Achievement = {
   created_at: string;
   // 研修や学会で得た単位・ポイント(投稿の詳細情報「CPDポイント」。未入力は 0)
   points: number;
+  // 題名だけ公開されている実績（概要・学会名などは、公開範囲の人にだけ見える）
+  titleOnly?: boolean;
 };
 
 type PostRow = {
@@ -125,23 +128,30 @@ export async function listMyAchievements(
     .filter((a): a is Achievement => a !== null);
 }
 
-// 公開ポートフォリオ用: 公開設定の実績投稿のみ取得
+// 公開ポートフォリオ用: 見てよい範囲の実績投稿を取得（公開範囲の外の人には、題名だけ公開のものは題名だけ）
 export async function listPublicAchievements(
   userId: string
 ): Promise<Achievement[]> {
-  const { data } = await supabase
-    .from("posts")
-    .select(
-      "id, user_id, post_type, title, conference_name, content, achieved_on, is_public, created_at, details"
-    )
-    .eq("user_id", userId)
-    .eq("is_public", true)
-    .in("post_type", ACHIEVEMENT_CATEGORIES)
-    .order("achieved_on", { ascending: false });
+  const rows = await listPosts({ author: userId, types: ACHIEVEMENT_CATEGORIES, limit: 100 });
 
-  return ((data || []) as PostRow[])
-    .map(toAchievement)
-    .filter((a): a is Achievement => a !== null);
+  return rows
+    .map((row): Achievement | null => {
+      const a = toAchievement({
+        id: row.id,
+        user_id: row.user_id ?? userId,
+        post_type: row.post_type,
+        title: row.title,
+        conference_name: row.conference_name,
+        content: row.content,
+        achieved_on: row.achieved_on,
+        is_public: row.is_public,
+        created_at: row.created_at,
+        details: row.details,
+      });
+      return a ? { ...a, titleOnly: row.restricted } : null;
+    })
+    .filter((a): a is Achievement => a !== null)
+    .sort((x, y) => (x.achieved_on < y.achieved_on ? 1 : -1));
 }
 
 export async function deleteAchievement(id: string) {

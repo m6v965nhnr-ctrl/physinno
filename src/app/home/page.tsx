@@ -13,20 +13,17 @@ import { ptNameWithTitle } from "@/lib/format";
 import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
+import {
+  FeedComment,
+  FeedPost,
+  LEVEL_SHORT,
+  VISIBILITY_LABEL,
+  listComments,
+  listPosts,
+  notifyPostAuthor,
+} from "@/lib/posts";
 
-type Post = {
-  id: string;
-  user_id: string;
-  title?: string | null;
-  content: string;
-  created_at: string;
-  image_url?: string | null;
-  video_url?: string | null;
-  post_type?: string | null;
-  disease_category?: string | null;
-  reference_url?: string | null;
-  conference_name?: string | null;
-};
+type Post = FeedPost;
 
 function isAchievementPostType(
   postType: string | null | undefined
@@ -48,13 +45,7 @@ type Like = {
   user_id: string;
 };
 
-type Comment = {
-  id: string;
-  post_id: string;
-  user_id: string;
-  content: string;
-  created_at: string;
-};
+type Comment = FeedComment;
 
 // 一度に読み込む投稿数（それ以上は「もっと見る」で追加取得）
 const PAGE_SIZE = 30;
@@ -74,33 +65,41 @@ export default function HomePage() {
   const [userId, setUserId] = useState("");
   const [unreadCount, setUnreadCount] = useState(0);
 
-  // 投稿に紐づくプロフィール・いいね・コメントを並列で取得して state に統合する
-  async function hydrate(postData: Post[]) {
-    if (postData.length === 0) return;
+  // 名前・アイコンを取得して state に足す（匿名などで user_id が無いものは飛ばす）
+  async function loadProfiles(ids: (string | null)[]) {
+    const userIds = [...new Set(ids.filter((id): id is string => !!id))];
+    if (userIds.length === 0) return;
 
-    const userIds = [...new Set(postData.map((post) => post.user_id))];
-    const postIds = postData.map((post) => post.id);
-
-    const [profileRes, likeRes, commentRes] = await Promise.all([
-      supabase
-        .from("pt_profiles")
-        .select("id, user_id, full_name, qualification, profile_image")
-        .in("user_id", userIds),
-      supabase.from("likes").select("id, post_id, user_id").in("post_id", postIds),
-      supabase
-        .from("comments")
-        .select("*")
-        .in("post_id", postIds)
-        .order("created_at", { ascending: true }),
-    ]);
+    const { data } = await supabase
+      .from("pt_profiles")
+      .select("id, user_id, full_name, qualification, profile_image")
+      .in("user_id", userIds);
 
     setProfiles((prev) => {
       const next = { ...prev };
-      (profileRes.data || []).forEach((profile) => {
+      (data || []).forEach((profile) => {
         next[profile.user_id] = profile;
       });
       return next;
     });
+  }
+
+  // 投稿に紐づくプロフィール・いいね・コメントを並列で取得して state に統合する
+  async function hydrate(postData: Post[]) {
+    if (postData.length === 0) return;
+
+    const postIds = postData.map((post) => post.id);
+
+    // 本文を読める投稿のコメントだけ(匿名の投稿では、作者のコメントから user_id が外れて返る)
+    const [commentList, likeRes] = await Promise.all([
+      listComments(postData.filter((post) => !post.restricted).map((post) => post.id)),
+      supabase.from("likes").select("id, post_id, user_id").in("post_id", postIds),
+    ]);
+
+    await loadProfiles([
+      ...postData.map((post) => post.user_id),
+      ...commentList.map((comment) => comment.user_id),
+    ]);
 
     const likeMap: Record<string, Like[]> = {};
     const commentMap: Record<string, Comment[]> = {};
@@ -116,7 +115,7 @@ export default function HomePage() {
       likeMap[like.post_id]?.push(like);
     });
 
-    (commentRes.data || []).forEach((comment) => {
+    commentList.forEach((comment) => {
       commentMap[comment.post_id]?.push(comment);
       commentCountMap[comment.post_id] += 1;
     });
@@ -128,19 +127,7 @@ export default function HomePage() {
 
   // 投稿を PAGE_SIZE 件ずつ新しい順に取得する（before: これより古い投稿だけ）
   async function fetchPostPage(before?: string) {
-    let query = supabase
-      .from("posts")
-      .select("*")
-      .eq("is_public", true)
-      .order("created_at", { ascending: false })
-      .limit(PAGE_SIZE);
-
-    if (before) {
-      query = query.lt("created_at", before);
-    }
-
-    const { data } = await query;
-    return (data || []) as Post[];
+    return listPosts({ before: before ?? null, limit: PAGE_SIZE });
   }
 
   async function loadHome() {
@@ -250,53 +237,23 @@ export default function HomePage() {
       [postId]: [...(prev[postId] || []), data],
     }));
 
-    // ========================================
-    // いいね通知
-    // ========================================
-
-    const targetPost = posts.find((post) => post.id === postId);
-
-    if (!targetPost) {
-      return;
-    }
-
-    // 自分の投稿には通知しない
-    if (targetPost.user_id === userId) {
-      return;
-    }
-
-    const { error: notificationError } = await supabase
-      .from("notifications")
-      .insert({
-        user_id: targetPost.user_id,
-        actor_id: userId,
-        type: "like",
-        post_id: postId,
-        is_read: false,
-      });
+    // いいね通知（投稿者への通知は、匿名の投稿でも、サーバー側が宛先を決める。自分の投稿には送られない）
+    await notifyPostAuthor(postId, "like");
   }
 
   async function loadComments(postId: string) {
-    const { data, error } = await supabase
-      .from("comments")
-      .select("*")
-      .eq("post_id", postId)
-      .order("created_at", {
-        ascending: true,
-      });
+    const data = await listComments([postId]);
 
-    if (error) {
-      return;
-    }
+    await loadProfiles(data.map((comment) => comment.user_id));
 
     setComments((prev) => ({
       ...prev,
-      [postId]: data || [],
+      [postId]: data,
     }));
 
     setCommentCounts((prev) => ({
       ...prev,
-      [postId]: data?.length || 0,
+      [postId]: data.length,
     }));
   }
 
@@ -326,7 +283,10 @@ export default function HomePage() {
     if (data) {
       setComments((prev) => ({
         ...prev,
-        [postId]: [...(prev[postId] || []), data],
+        [postId]: [
+          ...(prev[postId] || []),
+          { ...data, by_author: false, is_mine: true } as Comment,
+        ],
       }));
 
       setCommentCounts((prev) => ({
@@ -334,24 +294,8 @@ export default function HomePage() {
         [postId]: (prev[postId] || 0) + 1,
       }));
     }
-    // ========================================
-// コメント通知
-// ========================================
-
-const targetPost = posts.find((post) => post.id === postId);
-
-if (targetPost && targetPost.user_id !== userId) {
-  const { error: notificationError } = await supabase
-    .from("notifications")
-    .insert({
-      user_id: targetPost.user_id,
-      actor_id: userId,
-      type: "comment",
-      post_id: postId,
-      is_read: false,
-    });
-
-}
+    // コメント通知（宛先は、サーバー側が決める。自分の投稿には送られない）
+    await notifyPostAuthor(postId, "comment");
 
     setCommentText((prev) => ({
       ...prev,
@@ -421,7 +365,11 @@ if (targetPost && targetPost.user_id !== userId) {
     });
   }
 
-  function getProfile(profileUserId: string) {
+  function getProfile(profileUserId: string | null) {
+    if (!profileUserId) {
+      return { user_id: "", full_name: "", qualification: "", profile_image: null } as Profile;
+    }
+
     return (
       profiles[profileUserId] || {
         user_id: profileUserId,
@@ -482,7 +430,7 @@ if (targetPost && targetPost.user_id !== userId) {
             className="inline-flex w-1/3 items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔍</span>
-            症例検索
+            症例・論文
           </Link>
 
           <Link
@@ -507,6 +455,7 @@ if (targetPost && targetPost.user_id !== userId) {
           ) : (
             posts.map((post) => {
               const profile = getProfile(post.user_id);
+              const hidden = post.is_anonymous && !post.is_mine;
               const postLikes = likes[post.id] || [];
 
               const myLike = postLikes.some(
@@ -523,8 +472,12 @@ if (targetPost && targetPost.user_id !== userId) {
                 >
                   {/* 投稿者 */}
                   <div className="flex items-center gap-3 px-5 py-4">
-                    <AvatarLink profile={profile}>
-                      {profile.profile_image ? (
+                    <AvatarLink profile={hidden ? { user_id: "" } : profile}>
+                      {hidden ? (
+                        <div className="w-11 h-11 rounded-full bg-gray-800 flex items-center justify-center text-xl text-white">
+                          🕶
+                        </div>
+                      ) : profile.profile_image ? (
                         <img loading="lazy" decoding="async"
                           src={profile.profile_image}
                           alt={profile.full_name || ""}
@@ -539,11 +492,11 @@ if (targetPost && targetPost.user_id !== userId) {
 
                     <div className="flex-1">
                       <p className="font-semibold">
-                        {ptNameWithTitle(profile.full_name)}
+                        {hidden ? "匿名のPT" : ptNameWithTitle(profile.full_name)}
                       </p>
 
                       <p className="text-xs text-gray-500">
-                        {profile.qualification || "理学療法士"}
+                        {hidden ? "投稿者は表示されません" : profile.qualification || "理学療法士"}
                       </p>
 
                       <p className="mt-1 text-[10px] text-gray-400">
@@ -552,7 +505,7 @@ if (targetPost && targetPost.user_id !== userId) {
                     </div>
 
                     {/* 自分の投稿だけ削除 */}
-                    {post.user_id === userId && (
+                    {post.is_mine && (
                       <button
                         onClick={() => deletePost(post.id)}
                         className="text-xs text-gray-400 hover:text-red-500!"
@@ -562,7 +515,49 @@ if (targetPost && targetPost.user_id !== userId) {
                     )}
                   </div>
 
+                  {/* 公開範囲・対象レベルの表示 */}
+                  {(post.visibility !== "public" ||
+                    post.target_level !== "all" ||
+                    (post.is_anonymous && post.is_mine)) && (
+                    <div className="flex flex-wrap gap-1.5 px-5 pb-2">
+                      {post.visibility !== "public" && (
+                        <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-700">
+                          🔒 {VISIBILITY_LABEL[post.visibility]}
+                        </span>
+                      )}
+                      {post.is_anonymous && post.is_mine && (
+                        <span className="rounded-full bg-gray-800 px-2.5 py-0.5 text-[11px] font-medium text-white">
+                          匿名で投稿中（他の人には、あなたの名前が見えません）
+                        </span>
+                      )}
+                      {post.target_level !== "all" && (
+                        <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[11px] font-medium text-indigo-700">
+                          {LEVEL_SHORT[post.target_level]}向け
+                        </span>
+                      )}
+                    </div>
+                  )}
+
+                  {/* 題名だけ公開されている投稿（本文は、公開範囲の人だけが読めます） */}
+                  {post.restricted && (
+                    <div className="px-5 pb-5">
+                      {post.title && <h2 className="mb-2 text-lg font-semibold">{post.title}</h2>}
+                      <div className="rounded-xl bg-gray-50 p-4 text-sm leading-6 text-gray-600">
+                        🔒 本文は、
+                        {post.visibility === "followers"
+                          ? "投稿者をフォローしている人だけが読めます。"
+                          : "投稿者だけが読めます。"}
+                        {post.visibility === "followers" && post.user_id && (
+                          <Link href={`/pts/${profile.id ?? ""}`} className="ml-1 text-blue-600 underline">
+                            プロフィールを見る
+                          </Link>
+                        )}
+                      </div>
+                    </div>
+                  )}
+
                   {/* 投稿内容 */}
+                  {!post.restricted && (
                   <div className="px-5 pb-4">
                     <Link
                       href={`/posts/${post.id}`}
@@ -680,7 +675,10 @@ if (targetPost && targetPost.user_id !== userId) {
                     )}
                   </div>
 
+                  )}
+
                   {/* アクション */}
+                  {!post.restricted && (
                   <div className="px-5 py-3 border-t">
                     <div className="flex items-center gap-5">
                       {/* いいね */}
@@ -722,6 +720,7 @@ if (targetPost && targetPost.user_id !== userId) {
                             const commentProfile = getProfile(
                               comment.user_id
                             );
+                            const authorOfAnon = comment.user_id === null && comment.by_author;
 
                             return (
                               <div
@@ -736,17 +735,19 @@ if (targetPost && targetPost.user_id !== userId) {
                                   />
                                 ) : (
                                   <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm">
-                                    👤
+                                    {authorOfAnon ? "🕶" : "👤"}
                                   </div>
                                 )}
 
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2">
                                     <span className="font-semibold text-sm">
-                                      {ptNameWithTitle(commentProfile.full_name)}
+                                      {authorOfAnon
+                                        ? "投稿者（匿名）"
+                                        : ptNameWithTitle(commentProfile.full_name)}
                                     </span>
 
-                                    {comment.user_id === userId && (
+                                    {comment.is_mine && (
                                       <button
                                         onClick={() =>
                                           deleteComment(
@@ -794,6 +795,7 @@ if (targetPost && targetPost.user_id !== userId) {
                       </div>
                     )}
                   </div>
+                  )}
                 </article>
               );
             })

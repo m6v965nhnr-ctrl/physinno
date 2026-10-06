@@ -1,5 +1,6 @@
 "use client";
 
+import PostAudienceFields, { Audience, DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -32,7 +33,7 @@ export default function CreatePostPage() {
   const [achievedOn, setAchievedOn] = useState(
     new Date().toISOString().slice(0, 10)
   );
-  const [isPublic, setIsPublic] = useState(true);
+  const [audience, setAudience] = useState<Audience>(DEFAULT_AUDIENCE);
 
   // 詳細情報（任意・カテゴリごとにポートフォリオ集計で使う）
   const [showDetails, setShowDetails] = useState(false);
@@ -154,6 +155,7 @@ export default function CreatePostPage() {
           post_type: "normal",
           disease_category: diseaseCategory || null,
           reference_url: referenceUrl.trim() || null,
+          ...audiencePayload(audience, false),
         });
 
       if (error) {
@@ -163,7 +165,7 @@ export default function CreatePostPage() {
       }
 
       notify("投稿しました");
-      window.location.href = "/home";
+      window.location.href = audience.visibility === "private" ? "/mypage" : "/home";
     } finally {
       setPosting(false);
     }
@@ -240,7 +242,7 @@ export default function CreatePostPage() {
           ? conferenceName.trim() || null
           : null,
         achieved_on: achievedOn,
-        is_public: isPublic,
+        ...audiencePayload(audience, title.trim() !== ""),
         disease_category: diseaseCategory || null,
         reference_url: referenceUrl.trim() || null,
         details,
@@ -253,7 +255,7 @@ export default function CreatePostPage() {
       }
 
       notify("実績を投稿しました");
-      window.location.href = isPublic ? "/home" : "/mypage/achievements";
+      window.location.href = audience.visibility === "private" ? "/mypage/achievements" : "/home";
     } finally {
       setPosting(false);
     }
@@ -577,28 +579,7 @@ export default function CreatePostPage() {
               setReferenceUrl={setReferenceUrl}
             />
 
-            <div className="mt-6 border-t border-gray-100 pt-5">
-              <label className="flex cursor-pointer items-center justify-between gap-3">
-                <div>
-                  <p className="text-sm font-medium text-gray-900">
-                    ホームのフィードに公開する
-                  </p>
-
-                  <p className="mt-1 text-xs text-gray-400">
-                    オフにすると自分のマイページ集計にのみ反映されます
-                  </p>
-                </div>
-
-                <input
-                  type="checkbox"
-                  checked={isPublic}
-                  onChange={(event) =>
-                    setIsPublic(event.target.checked)
-                  }
-                  className="h-5 w-5"
-                />
-              </label>
-            </div>
+            <PostAudienceFields value={audience} onChange={setAudience} hasTitle={title.trim() !== ""} />
           </div>
         </div>
       </main>
@@ -653,6 +634,8 @@ export default function CreatePostPage() {
             referenceUrl={referenceUrl}
             setReferenceUrl={setReferenceUrl}
           />
+
+          <PostAudienceFields value={audience} onChange={setAudience} hasTitle={false} />
         </div>
       </div>
     </main>

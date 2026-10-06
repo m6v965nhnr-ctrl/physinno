@@ -12,6 +12,8 @@ export type PtProfile = {
   biography: string | null;
   // 学生アカウントのプロフィール(公開側には出さない)
   is_student?: boolean;
+  // true のとき、勤務先・病院・所属部署は、ほかの人には保存も表示もされない(本人だけが pt_private で持つ)
+  hide_workplace?: boolean;
   workplace: string | null;
   workplace_size: string | null;
   hospital_id: string | null;

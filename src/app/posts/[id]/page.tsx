@@ -9,19 +9,17 @@ import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
 import { SITE_URL } from "@/lib/site";
 import ReportButton from "@/components/ReportButton";
+import {
+  FeedComment,
+  FeedPost,
+  LEVEL_SHORT,
+  VISIBILITY_LABEL,
+  getPost,
+  listComments,
+  notifyPostAuthor,
+} from "@/lib/posts";
 
-type Post = {
-  id: string;
-  user_id: string;
-  title?: string | null;
-  content: string;
-  created_at: string;
-  image_url?: string | null;
-  video_url?: string | null;
-  post_type?: string | null;
-  disease_category?: string | null;
-  like_count?: number | null;
-};
+type Post = FeedPost;
 
 type Profile = {
   id: string;
@@ -31,13 +29,7 @@ type Profile = {
   profile_image?: string | null;
 };
 
-type Comment = {
-  id: string;
-  post_id: string;
-  user_id: string;
-  content: string;
-  created_at: string;
-};
+type Comment = FeedComment;
 
 export default function PostDetailPage() {
   const params = useParams();
@@ -66,15 +58,10 @@ export default function PostDetailPage() {
 
     setUser(userData);
 
-    const { data: postData, error: postError } =
-      await supabase
-        .from("posts")
-        .select("*")
-        .eq("id", id)
-        .maybeSingle();
+    // 公開範囲の外の人には、題名だけ(または何も)返ってくる。匿名の投稿には、作者の情報が付かない
+    const postData = await getPost(id);
 
-
-    if (postError || !postData) {
+    if (!postData) {
       setPost(null);
       setNotFound(true);
       setLoading(false);
@@ -83,20 +70,22 @@ export default function PostDetailPage() {
 
     setPost(postData);
 
-    const { data: profileData } = await supabase
-      .from("pt_profiles")
-      .select(`
-        id,
-        user_id,
-        full_name,
-        qualification,
-        profile_image
-      `)
-      .eq("user_id", postData.user_id)
-      .maybeSingle();
+    if (postData.user_id) {
+      const { data: profileData } = await supabase
+        .from("pt_profiles")
+        .select(`
+          id,
+          user_id,
+          full_name,
+          qualification,
+          profile_image
+        `)
+        .eq("user_id", postData.user_id)
+        .maybeSingle();
 
-    if (profileData) {
-      setProfile(profileData);
+      if (profileData) {
+        setProfile(profileData);
+      }
     }
 
     if (userData) {
@@ -126,17 +115,9 @@ export default function PostDetailPage() {
       );
     }
 
-    const { data: commentData, error: commentError } =
-      await supabase
-        .from("comments")
-        .select("*")
-        .eq("post_id", id)
-        .order("created_at", {
-          ascending: false,
-        });
-
-    if (!commentError) {
-      setComments(commentData || []);
+    if (!postData.restricted) {
+      const commentData = await listComments([id]);
+      setComments([...commentData].reverse());
     }
 
     setLoading(false);
@@ -201,6 +182,9 @@ export default function PostDetailPage() {
 
     setLiked(true);
 
+    // 投稿者への通知（宛先は、サーバー側が決める）
+    notifyPostAuthor(id, "like");
+
     setPost((prev) =>
       prev
         ? {
@@ -239,7 +223,8 @@ export default function PostDetailPage() {
     }
 
     if (data) {
-      setComments((prev) => [data, ...prev]);
+      setComments((prev) => [{ ...data, by_author: false, is_mine: true } as Comment, ...prev]);
+      notifyPostAuthor(id, "comment");
     }
 
     setCommentText("");
@@ -331,8 +316,9 @@ export default function PostDetailPage() {
     return null;
   }
 
-  const isOwner = user?.id === post.user_id;
+  const isOwner = post.is_mine;
   const isCase = post.post_type === "case";
+  const hiddenAuthor = post.is_anonymous && !post.is_mine;
 
   return (
     <main className="min-h-screen bg-white px-6 py-12 pb-24">
@@ -384,8 +370,21 @@ export default function PostDetailPage() {
 
         <div className="border rounded-2xl overflow-hidden">
 
-          {/* 投稿者 */}
-          {profile && (
+          {/* 投稿者（匿名の投稿は、本人以外には表示しない） */}
+          {hiddenAuthor && (
+            <div className="flex items-center gap-3 px-6 py-5 border-b">
+              <div className="w-12 h-12 rounded-full bg-gray-800 flex items-center justify-center text-xl text-white">
+                🕶
+              </div>
+              <div>
+                <p className="font-semibold">匿名のPT</p>
+                <p className="text-sm text-gray-500">投稿者は表示されません</p>
+                <p className="text-xs text-gray-400 mt-1">{formatDate(post.created_at)}</p>
+              </div>
+            </div>
+          )}
+
+          {!hiddenAuthor && profile && (
             <Link
               href={`/pts/${profile.id}`}
               className="flex items-center gap-3 px-6 py-5 border-b hover:bg-gray-50"
@@ -421,6 +420,27 @@ export default function PostDetailPage() {
          {/* 本文 */}
 <div className="p-6">
 
+  {/* 公開範囲・対象レベル */}
+  {(post.visibility !== "public" || post.target_level !== "all" || (post.is_anonymous && post.is_mine)) && (
+    <div className="mb-3 flex flex-wrap gap-1.5">
+      {post.visibility !== "public" && (
+        <span className="rounded-full bg-amber-50 px-3 py-1 text-xs font-medium text-amber-700">
+          🔒 {VISIBILITY_LABEL[post.visibility]}
+        </span>
+      )}
+      {post.is_anonymous && post.is_mine && (
+        <span className="rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-white">
+          匿名で投稿中（他の人には、あなたの名前が見えません）
+        </span>
+      )}
+      {post.target_level !== "all" && (
+        <span className="rounded-full bg-indigo-50 px-3 py-1 text-xs font-medium text-indigo-700">
+          {LEVEL_SHORT[post.target_level]}向け
+        </span>
+      )}
+    </div>
+  )}
+
   {/* 症例報告 */}
   {isCase && (
     <div className="mb-2 -ml-2 flex items-center gap-2">
@@ -442,6 +462,18 @@ export default function PostDetailPage() {
     </h1>
   )}
 
+  {post.restricted ? (
+    <div className="mt-6 rounded-xl bg-gray-50 p-5 text-sm leading-7 text-gray-600">
+      🔒 この投稿は、題名だけが公開されています。本文は、
+      {post.visibility === "followers" ? "投稿者をフォローしている人だけが読めます。" : "投稿者だけが読めます。"}
+      {post.visibility === "followers" && profile && (
+        <Link href={`/pts/${profile.id}`} className="ml-1 text-blue-600 underline">
+          投稿者のプロフィールを見る
+        </Link>
+      )}
+    </div>
+  ) : (
+  <>
             <p className="mt-5 whitespace-pre-wrap leading-7">
               {post.content}
             </p>
@@ -531,6 +563,8 @@ export default function PostDetailPage() {
                 ))
               )}
             </div>
+  </>
+  )}
 
           </div>
         </div>
@@ -551,6 +585,8 @@ function CommentItem({
   const [profile, setProfile] = useState<Omit<Profile, "id"> | null>(null);
 
   async function loadProfile() {
+    if (!comment.user_id) return;
+
     const { data } = await supabase
       .from("pt_profiles")
       .select(`
@@ -574,7 +610,7 @@ function CommentItem({
     <div className="border rounded-xl p-4">
       <div className="flex items-start gap-3">
 
-        <Link href={`/pts/${comment.user_id}`}>
+        <Link href={comment.user_id ? `/pts/${comment.user_id}` : "#"} aria-disabled={!comment.user_id}>
           {profile?.profile_image ? (
             <img loading="lazy" decoding="async"
               src={profile.profile_image}
@@ -595,10 +631,10 @@ function CommentItem({
               href={`/pts/${comment.user_id}`}
               className="font-semibold hover:underline"
             >
-              {profile?.full_name || "ユーザー"}
+              {comment.user_id ? profile?.full_name || "ユーザー" : "投稿者（匿名）"}
             </Link>
 
-            {comment.user_id === currentUserId && (
+            {comment.is_mine && (
               <button
                 onClick={() => onDelete(comment.id)}
                 className="text-xs text-gray-400 hover:text-red-500!"
@@ -607,7 +643,7 @@ function CommentItem({
               </button>
             )}
 
-            {currentUserId && comment.user_id !== currentUserId && (
+            {currentUserId && !comment.is_mine && (
               <ReportButton targetType="comment" targetId={comment.id} />
             )}
 

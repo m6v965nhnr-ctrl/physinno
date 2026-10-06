@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import PostAudienceFields, { Audience, DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 
 export default function EditPostPage() {
   const params = useParams();
@@ -13,6 +14,7 @@ export default function EditPostPage() {
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [audience, setAudience] = useState<Audience>(DEFAULT_AUDIENCE);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -44,6 +46,12 @@ export default function EditPostPage() {
 
     setTitle(data.title || "");
     setContent(data.content || "");
+    setAudience({
+      visibility: data.visibility ?? (data.is_public === false ? "private" : "public"),
+      titlePublic: Boolean(data.title_public),
+      anonymous: Boolean(data.is_anonymous),
+      level: data.target_level ?? "all",
+    });
 
     setLoading(false);
   }
@@ -81,6 +89,7 @@ export default function EditPostPage() {
       .update({
         title: title.trim(),
         content: content.trim(),
+        ...audiencePayload(audience, title.trim() !== ""),
       })
       .eq("id", id)
       .eq("user_id", user.id);
@@ -161,6 +170,8 @@ export default function EditPostPage() {
               focus:ring-gray-200
             "
            aria-label="本文"/>
+
+          <PostAudienceFields value={audience} onChange={setAudience} hasTitle={title.trim() !== ""} />
 
           <button
             onClick={updatePost}

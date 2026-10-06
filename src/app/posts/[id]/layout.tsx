@@ -9,21 +9,32 @@ type Props = { params: Promise<{ id: string }> };
 const CASE_LABEL = "症例報告";
 
 async function getPost(id: string) {
-  const { data } = await supabasePublic
-    .from("posts")
-    .select(
-      "id, user_id, title, content, post_type, disease_category, conference_name, created_at"
-    )
-    .eq("id", id)
-    .maybeSingle();
+  // 公開範囲の外の人（ログインしていない人を含む）には、題名だけ、または何も返らない。匿名の投稿には作者が付かない
+  const { data: rows } = await supabasePublic.rpc("list_posts", { p_id: id, p_limit: 1 });
+  const data = (rows ?? [])[0] as
+    | {
+        id: string;
+        user_id: string | null;
+        title: string | null;
+        content: string | null;
+        post_type: string | null;
+        disease_category: string | null;
+        conference_name: string | null;
+        created_at: string;
+        is_anonymous: boolean;
+        restricted: boolean;
+      }
+    | undefined;
 
   if (!data) return null;
 
-  const { data: pt } = await supabasePublic
-    .from("pt_profiles")
-    .select("full_name, specialty, qualification")
-    .eq("user_id", data.user_id)
-    .maybeSingle();
+  const { data: pt } = data.user_id
+    ? await supabasePublic
+        .from("pt_profiles")
+        .select("full_name, specialty, qualification")
+        .eq("user_id", data.user_id)
+        .maybeSingle()
+    : { data: null };
 
   return { post: data, pt };
 }
@@ -51,7 +62,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const { post, pt } = result;
-  const authorName = ptName(pt?.full_name ?? null);
+  const authorName = post.is_anonymous ? "匿名のPT" : ptName(pt?.full_name ?? null);
   const kind = labelFor(post.post_type, post.disease_category);
 
   const title = post.title ? `${post.title}（${kind}）` : `${authorName}の${kind}`;
@@ -94,7 +105,7 @@ export default async function PostLayout({
         headline: result.post.title || labelFor(result.post.post_type, result.post.disease_category),
         author: {
           "@type": "Person",
-          name: ptName(result.pt?.full_name ?? null),
+          name: result.post.is_anonymous ? "匿名のPT" : ptName(result.pt?.full_name ?? null),
         },
         datePublished: result.post.created_at,
         url: `${SITE_URL}/posts/${id}`,
