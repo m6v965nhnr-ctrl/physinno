@@ -24,7 +24,7 @@ const LINKS = [
   { href: "/student/exam", icon: "⏳", title: "国試カウントダウン", body: "学習ログと、科目ごとの積み上げ" },
   { href: "/student/exams", icon: "📚", title: "試験情報（学校の科目ごと）", body: "出題の傾向・勉強法・過去問を、同じ学校で共有" },
   { href: "/student/questions", icon: "🙋", title: "先輩に質問", body: "実習・国試・就活を現役PTに相談" },
-  { href: "/student/report-helper", icon: "📝", title: "実習レポート支援", body: "考察の論文探しと構成チェック（AI）" },
+  { href: "/student/report-helper", icon: "📝", title: "実習レポート支援", body: "考察の論文探し、構成・誤字脱字チェック（AI）" },
   { href: "/pts?tab=search&mode=hospitals", icon: "🏥", title: "病院・実習先を探す", body: "診療科や実習生の声から比較" },
   { href: "/student/settings", icon: "⚙️", title: "設定", body: "名前・卒業予定年・国試日" },
 ];

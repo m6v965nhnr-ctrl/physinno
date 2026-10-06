@@ -15,6 +15,7 @@ type StructureResult = {
   improvements?: string[];
   missing?: string[];
   questions?: string[];
+  typos?: { original?: string; suggestion?: string; reason?: string }[];
 };
 
 type SourcesResult = {
@@ -25,8 +26,8 @@ type SourcesResult = {
 
 const MODE_INFO: Record<Mode, { title: string; hint: string; placeholder: string; limit: number }> = {
   structure: {
-    title: "構成チェック",
-    hint: "レポートの一部（考察など）を貼ると、構成や抜けを点検して、考えを深める問いを返します。書き直しや代筆はしません。",
+    title: "構成・誤字脱字チェック",
+    hint: "レポートの一部（考察など）を貼ると、構成や抜けに加えて、誤字脱字・表記のゆれ・文末の不統一も点検して、考えを深める問いを返します。書き直しや代筆はしません。",
     placeholder: "例: 【考察】本症例では、…（患者さんの氏名・年齢・日付など、個人が特定できる情報は書かないでください）",
     limit: 6000,
   },
@@ -185,7 +186,7 @@ export default function ReportHelperPage() {
             disabled={running || !text.trim() || !!risk}
             className="mt-3 w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
           >
-            {running ? "考え中…" : mode === "structure" ? "構成をチェックする" : "検索語を提案してもらう"}
+            {running ? "考え中…" : mode === "structure" ? "構成・誤字脱字をチェックする" : "検索語を提案してもらう"}
           </button>
         </div>
 
@@ -201,6 +202,26 @@ export default function ReportHelperPage() {
             <List title="改善できる点" items={structure.improvements} tone="amber" />
             <List title="抜けている・弱い要素" items={structure.missing} />
             <List title="考えを深める問い" items={structure.questions} />
+
+            <div className="rounded-2xl bg-white p-4 shadow-sm">
+              <p className="text-sm font-semibold">誤字脱字・表記のチェック</p>
+              {structure.typos && structure.typos.length > 0 ? (
+                <ul className="mt-3 space-y-3">
+                  {structure.typos.map((t, i) => (
+                    <li key={i} className="rounded-xl bg-gray-50 p-3 text-sm leading-6">
+                      <p className="text-gray-500 line-through decoration-red-300">{t.original}</p>
+                      <p className="mt-0.5 font-medium text-gray-900">→ {t.suggestion}</p>
+                      {t.reason && <p className="mt-0.5 text-xs text-gray-500">{t.reason}</p>}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p className="mt-2 text-sm text-gray-500">大きな誤字脱字や表記のゆれは見つかりませんでした。</p>
+              )}
+              <p className="mt-3 text-[11px] leading-5 text-gray-400">
+                AIの指摘は完全ではありません。見落としや、誤った指摘もあります。最後は、必ず自分の目で読み直してください。
+              </p>
+            </div>
             <p className="text-center text-[11px] text-gray-400">
               考察で使う論文は、「考察に使う論文を探す」のタブでも探せます。
             </p>
