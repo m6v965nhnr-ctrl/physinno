@@ -61,3 +61,11 @@
 ## 既知の課題
 - Semantic Scholar は1秒1リクエストの制限があり、連続検索で結果が空になることがある。
 - Supabase の「漏えいパスワード保護」はダッシュボード側の設定（有料プラン）。
+
+## 過去問ドリル(理学療法士国家試験の一問一答)
+- 出典: 厚生労働省が公開している国家試験の問題・正答(公共データ利用規約 PDL1.0。出典表示が条件)。第59〜61回を取り込み済み。
+- テーブル: `quiz_units`(単元24) / `quiz_questions`(問題・正答・図のパス) / `quiz_progress`(本人の解答記録・ブックマーク)。どれも画面から直接は読めず、RPC(`quiz_*`)だけを通す。`quiz_can_use()` で学生・PTのみ。正答は `quiz_answer` / `quiz_reveal` を呼んだときだけ返る。
+- 画面: `/student/quiz`(単元・回の一覧、出題条件) → `/student/quiz/play`(一問一答、結果、間違い復習)。
+- 取り込み: `scripts/quiz/`(`build.py` がPDFから問題JSONと図の画像(webp)を作る → `classify.py` か手作業で単元を付ける → JSONを一時的に `public/` に置いてデプロイ → DBの `net.http_get` で取得して INSERT → JSONを削除)。図は `public/quiz/<回>/` に置く。
+- 採点: 欄ごとに「正解として認める組」を持つ(`answers` = `[[2],[3]]` のように、どちらでも正解)。空欄は採点除外(`excluded`)で、出題しない。
+- 通報: `reports.target_type = 'quiz_question'`。運営の「削除」を押しても問題は消えず、対応済みになる(問題の修正は運営が直接行う)。
