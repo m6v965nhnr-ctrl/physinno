@@ -208,7 +208,7 @@ export default function StudentSettingsPage() {
           <section className="space-y-4 rounded-2xl border border-gray-100 p-4">
             <h2 className="text-sm font-semibold text-gray-900">
               あなただけに表示される情報
-              <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-normal text-gray-500">
+              <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-normal text-gray-500">
                 非公開
               </span>
             </h2>

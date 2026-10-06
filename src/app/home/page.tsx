@@ -419,7 +419,7 @@ export default function HomePage() {
             <span aria-hidden="true">🔔</span>
             通知
             {unreadCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1 text-xs font-semibold text-white">
+              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             )}
@@ -499,7 +499,7 @@ export default function HomePage() {
                         {hidden ? "投稿者は表示されません" : profile.qualification || "理学療法士"}
                       </p>
 
-                      <p className="mt-1 text-xs text-gray-400">
+                      <p className="mt-1 text-[10px] text-gray-400">
                         {formatDate(post.created_at)}
                       </p>
                     </div>
@@ -521,17 +521,17 @@ export default function HomePage() {
                     (post.is_anonymous && post.is_mine)) && (
                     <div className="flex flex-wrap gap-1.5 px-5 pb-2">
                       {post.visibility !== "public" && (
-                        <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-xs font-medium text-amber-700">
+                        <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-700">
                           🔒 {VISIBILITY_LABEL[post.visibility]}
                         </span>
                       )}
                       {post.is_anonymous && post.is_mine && (
-                        <span className="rounded-full bg-gray-800 px-2.5 py-0.5 text-xs font-medium text-white">
+                        <span className="rounded-full bg-gray-800 px-2.5 py-0.5 text-[11px] font-medium text-white">
                           匿名で投稿中（他の人には、あなたの名前が見えません）
                         </span>
                       )}
                       {post.target_level !== "all" && (
-                        <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-xs font-medium text-indigo-700">
+                        <span className="rounded-full bg-indigo-50 px-2.5 py-0.5 text-[11px] font-medium text-indigo-700">
                           {LEVEL_SHORT[post.target_level]}向け
                         </span>
                       )}

@@ -197,7 +197,7 @@ export default function QualificationTargets({
                     className="mr-2"
                   />
                   {label}
-                  <span className="mt-0.5 block text-xs text-gray-400">{hint}</span>
+                  <span className="mt-0.5 block text-[11px] text-gray-400">{hint}</span>
                 </label>
               ))}
             </div>
@@ -261,7 +261,7 @@ export default function QualificationTargets({
             </div>
           </fieldset>
 
-          <p className="text-xs leading-5 text-gray-400">
+          <p className="text-[11px] leading-5 text-gray-400">
             {form.unit === "points"
               ? "ポイントは、実績の投稿で入力した「CPD単位・ポイント」を合計します。入力がない実績は0ポイントとして数えます。"
               : "選んだ種類の実績が、1件ごとに1回と数えられます。"}
@@ -297,7 +297,7 @@ export default function QualificationTargets({
                 <div className="flex items-start justify-between gap-2">
                   <p className="text-sm font-semibold text-gray-900">
                     🏅 {t.name}
-                    <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs font-normal text-gray-500">
+                    <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-normal text-gray-500">
                       {t.unit === "points" ? "ポイント" : "回数"}
                     </span>
                   </p>

@@ -166,7 +166,7 @@ export default function QuizTeacherPage() {
                   作る
                 </button>
               </div>
-              <p className="text-xs leading-5 text-gray-400">
+              <p className="text-[11px] leading-5 text-gray-400">
                 作ると、6文字の参加コードが出ます。学生に伝えると、学生が「クラスの課題」から参加できます。
               </p>
             </section>
@@ -294,7 +294,7 @@ function ClassCard({
           <p className="mt-0.5 text-xs text-gray-500">学生 {cls.member_count}人 ・ 課題 {cls.assignment_count}件</p>
         </div>
         <button onClick={copyCode} className="shrink-0 rounded-xl bg-gray-50 px-3 py-2 text-center" aria-label="参加コードをコピー">
-          <span className="block text-xs text-gray-400">参加コード（タップでコピー）</span>
+          <span className="block text-[10px] text-gray-400">参加コード（タップでコピー）</span>
           <span className="block text-lg font-bold tracking-[0.25em]">{cls.join_code}</span>
         </button>
       </div>
@@ -313,7 +313,7 @@ function ClassCard({
                     提出 {a.finished_count}/{a.member_count}人
                   </span>
                 </div>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 text-[11px] text-gray-500">
                   {a.n}問 ・ {dueText(a.due_at)}
                   {a.answered_total > 0 ? ` ・ 平均正答率 ${percent(a.correct_total, a.answered_total)}%` : ""}
                 </p>
@@ -344,7 +344,7 @@ function ClassCard({
           />
 
           <div className="grid grid-cols-2 gap-2">
-            <label className="text-xs text-gray-500">
+            <label className="text-[11px] text-gray-500">
               単元
               <select
                 value={unit}
@@ -359,7 +359,7 @@ function ClassCard({
                 ))}
               </select>
             </label>
-            <label className="text-xs text-gray-500">
+            <label className="text-[11px] text-gray-500">
               回
               <select
                 value={exam}
@@ -377,7 +377,7 @@ function ClassCard({
           </div>
 
           <fieldset>
-            <legend className="text-xs text-gray-500">難易度（全ユーザーの正答率から決まります）</legend>
+            <legend className="text-[11px] text-gray-500">難易度（全ユーザーの正答率から決まります）</legend>
             <div className="mt-1 space-y-1">
               {(Object.keys(DIFFICULTY_LABEL) as Difficulty[]).map((d) => {
                 const count = pool ? (d === "any" ? pool.all_count : pool[d]) : null;
@@ -385,18 +385,18 @@ function ClassCard({
                   <label key={d} className="flex items-center gap-2 text-sm">
                     <input type="radio" name={`diff-${cls.id}`} checked={difficulty === d} onChange={() => setDifficulty(d)} />
                     <span>{DIFFICULTY_LABEL[d]}</span>
-                    {count !== null && <span className="text-xs text-gray-400">{count}問</span>}
+                    {count !== null && <span className="text-[11px] text-gray-400">{count}問</span>}
                   </label>
                 );
               })}
             </div>
-            <p className="mt-1 text-xs leading-5 text-gray-400">
+            <p className="mt-1 text-[11px] leading-5 text-gray-400">
               難易度は、5人以上が解いた問題にだけ付きます。解いた人が少ないうちは、「指定しない」がおすすめです。
             </p>
           </fieldset>
 
           <div className="grid grid-cols-2 gap-2">
-            <label className="text-xs text-gray-500">
+            <label className="text-[11px] text-gray-500">
               問題数
               <select
                 value={n}
@@ -410,7 +410,7 @@ function ClassCard({
                 ))}
               </select>
             </label>
-            <label className="text-xs text-gray-500">
+            <label className="text-[11px] text-gray-500">
               期限（任意）
               <input
                 type="date"
@@ -422,7 +422,7 @@ function ClassCard({
           </div>
 
           {available !== null && available < n && available > 0 && (
-            <p className="text-xs text-amber-700">この条件に合う問題は{available}問です。{available}問で配ります。</p>
+            <p className="text-[11px] text-amber-700">この条件に合う問題は{available}問です。{available}問で配ります。</p>
           )}
 
           <div className="flex gap-2">

@@ -240,7 +240,7 @@ export default function GroupDetailPage() {
       <div className="mx-auto w-full max-w-2xl flex-1 px-5 py-6">
         <div className="flex items-center gap-2">
           <h1 className="text-xl font-semibold text-gray-900">{group.name}</h1>
-          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
+          <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
             {group.is_private ? "非公開" : "公開"}
           </span>
         </div>
@@ -296,13 +296,13 @@ export default function GroupDetailPage() {
                     key={m.id}
                     className={`flex flex-col ${isMe ? "items-end" : "items-start"}`}
                   >
-                    <p className="flex items-center gap-2 text-xs text-gray-400">
+                    <p className="flex items-center gap-2 text-[11px] text-gray-400">
                       {name}
                       {!isMe && (
                         <ReportButton
                           targetType="group_message"
                           targetId={m.id}
-                          className="text-xs"
+                          className="text-[10px]"
                         />
                       )}
                     </p>

@@ -583,7 +583,7 @@ function SaveButton({ saved, onClick }: { saved: boolean; onClick: () => void })
       aria-label={saved ? "保存を解除" : "保存する"}
       aria-pressed={saved}
       className={`min-h-9 shrink-0 rounded-full border px-3.5 py-1.5 text-xs font-medium transition active:scale-95 ${
-        saved ? "border-transparent bg-relight-gradient text-white" : "border-gray-200 bg-white text-gray-500"
+        saved ? "border-transparent bg-relight-gradient text-white" : "border-sky-200 bg-sky-100 text-sky-800"
       }`}
     >
       {saved ? "🔖 保存済み" : "🔖 保存"}

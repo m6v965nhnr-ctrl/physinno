@@ -206,7 +206,7 @@ export default function BottomNavWrapper() {
                 )}
               </span>
 
-              <span className="text-xs">
+              <span className="text-[11px]">
                 {menu.label}
               </span>
             </Link>

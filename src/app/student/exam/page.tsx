@@ -128,15 +128,15 @@ export default function ExamPage() {
         <section className="grid grid-cols-3 gap-3 text-center">
           <div className="rounded-2xl bg-white p-3 shadow-sm">
             <p className="text-lg font-bold">{formatMinutes(stats.weekMinutes)}</p>
-            <p className="mt-0.5 text-xs text-gray-500">今週（7日間）</p>
+            <p className="mt-0.5 text-[11px] text-gray-500">今週（7日間）</p>
           </div>
           <div className="rounded-2xl bg-white p-3 shadow-sm">
             <p className="text-lg font-bold">{stats.streakDays}日</p>
-            <p className="mt-0.5 text-xs text-gray-500">連続で記録</p>
+            <p className="mt-0.5 text-[11px] text-gray-500">連続で記録</p>
           </div>
           <div className="rounded-2xl bg-white p-3 shadow-sm">
             <p className="text-lg font-bold">{formatMinutes(stats.totalMinutes)}</p>
-            <p className="mt-0.5 text-xs text-gray-500">これまでの合計</p>
+            <p className="mt-0.5 text-[11px] text-gray-500">これまでの合計</p>
           </div>
         </section>
 
@@ -270,7 +270,7 @@ export default function ExamPage() {
                       {l.subject}
                       <span className="ml-2 text-xs text-gray-500">{formatMinutes(l.minutes)}</span>
                     </p>
-                    <p className="text-xs text-gray-400">
+                    <p className="text-[11px] text-gray-400">
                       {l.studied_on}
                       {l.confidence ? `・理解度 ${l.confidence}` : ""}
                       {l.memo ? `・${l.memo}` : ""}

@@ -275,7 +275,7 @@ export default function TrackerPage() {
                               className="block w-full px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-50"
                             >
                               {h.name}
-                              <span className="ml-2 text-xs text-gray-400">{h.prefecture}</span>
+                              <span className="ml-2 text-[11px] text-gray-400">{h.prefecture}</span>
                             </button>
                           </li>
                         ))}
@@ -457,7 +457,7 @@ export default function TrackerPage() {
                         key={s.value}
                         onClick={() => handleStatus(item, s.value)}
                         aria-pressed={item.status === s.value}
-                        className={`rounded-full border px-2.5 py-1 text-xs ${
+                        className={`rounded-full border px-2.5 py-1 text-[11px] ${
                           item.status === s.value
                             ? "border-black bg-black text-white"
                             : "border-gray-200 text-gray-500 hover:border-gray-400"

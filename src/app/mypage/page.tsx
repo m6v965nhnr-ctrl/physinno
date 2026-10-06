@@ -486,7 +486,7 @@ export default function MyPage() {
                         {a.conference_name ? `・${a.conference_name}` : ""}
                         {a.title ? `・${a.title}` : ""}
                         {!a.is_public && (
-                          <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
+                          <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
                             非公開
                           </span>
                         )}

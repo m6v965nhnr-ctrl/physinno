@@ -184,7 +184,7 @@ export default function StudentQuestionsPage() {
               匿名で投稿する（名前を表示しません）
             </label>
 
-            <p className="rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+            <p className="rounded-xl bg-amber-50 p-3 text-[11px] leading-5 text-amber-800">
               実習先の指導者の個人名や、患者さんが特定できる情報（氏名・年齢・日付・病名の組み合わせなど）は書かないでください。
             </p>
 
@@ -211,7 +211,7 @@ export default function StudentQuestionsPage() {
                 href={`/student/questions/${q.id}`}
                 className="block rounded-2xl bg-white p-4 shadow-sm transition hover:bg-gray-50"
               >
-                <div className="flex items-center gap-2 text-xs">
+                <div className="flex items-center gap-2 text-[11px]">
                   <span className="rounded-full bg-gray-900 px-2 py-0.5 text-white">
                     {QUESTION_CATEGORY_LABEL[q.category]}
                   </span>
@@ -227,7 +227,7 @@ export default function StudentQuestionsPage() {
                 </div>
                 <p className="mt-2 text-sm font-semibold text-gray-900">{q.title}</p>
                 <p className="mt-1 line-clamp-2 text-xs leading-5 text-gray-500">{q.body_preview}</p>
-                <p className="mt-2 text-xs text-gray-400">
+                <p className="mt-2 text-[11px] text-gray-400">
                   {q.author_name ? `${q.author_name}さん` : "匿名の学生"}
                 </p>
               </Link>

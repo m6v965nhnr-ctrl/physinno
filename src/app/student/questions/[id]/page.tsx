@@ -122,7 +122,7 @@ export default function StudentQuestionPage() {
 
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
         <article className="rounded-2xl bg-white p-5 shadow-sm">
-          <div className="flex items-center gap-2 text-xs">
+          <div className="flex items-center gap-2 text-[11px]">
             <span className="rounded-full bg-gray-900 px-2 py-0.5 text-white">
               {QUESTION_CATEGORY_LABEL[question.category]}
             </span>
@@ -208,7 +208,7 @@ export default function StudentQuestionPage() {
                 className="mt-2 w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm font-normal text-gray-900"
               />
             </label>
-            <p className="text-xs leading-5 text-gray-400">
+            <p className="text-[11px] leading-5 text-gray-400">
               医療・診療の助言ではなく、あなたの個人的な経験としてお答えください。患者さんが特定できる情報や、実習先の指導者の個人名は書かないでください。
             </p>
             <button

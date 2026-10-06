@@ -116,7 +116,7 @@ function GroupCard({ group }: { group: Group }) {
     >
       <div className="flex items-center gap-2">
         <p className="text-sm font-semibold text-gray-900">{group.name}</p>
-        <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
+        <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
           {group.is_private ? "非公開" : "公開"}
         </span>
       </div>

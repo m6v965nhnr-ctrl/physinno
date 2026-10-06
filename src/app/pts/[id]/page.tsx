@@ -622,7 +622,7 @@ export default function PTProfile() {
 
                     <div className="flex items-center gap-1.5">
                       {review.is_anonymous && (
-                        <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-xs font-medium text-gray-500">
+                        <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-[11px] font-medium text-gray-500">
                           匿名
                         </span>
                       )}
@@ -679,7 +679,7 @@ function ProfileItem({
 function ReviewerBadge({ type }: { type: string | null | undefined }) {
   if (type === "pt") {
     return (
-      <span className="rounded-full bg-black px-2.5 py-0.5 text-xs font-medium text-white">
+      <span className="rounded-full bg-black px-2.5 py-0.5 text-[11px] font-medium text-white">
         PTのレビュー
       </span>
     );
@@ -687,7 +687,7 @@ function ReviewerBadge({ type }: { type: string | null | undefined }) {
 
   if (type === "general") {
     return (
-      <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
+      <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
         一般のレビュー
       </span>
     );

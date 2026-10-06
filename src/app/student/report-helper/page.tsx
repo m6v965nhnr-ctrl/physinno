@@ -164,7 +164,7 @@ export default function ReportHelperPage() {
             aria-label={info.title}
             className="w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm leading-6 text-gray-900"
           />
-          <div className="mt-1 flex items-center justify-between text-xs text-gray-400">
+          <div className="mt-1 flex items-center justify-between text-[11px] text-gray-400">
             <span>
               {text.length}/{info.limit}文字
             </span>
@@ -176,7 +176,7 @@ export default function ReportHelperPage() {
             </p>
           )}
 
-          <p className="mt-2 rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+          <p className="mt-2 rounded-xl bg-amber-50 p-3 text-[11px] leading-5 text-amber-800">
             入力した文章は、AIサービス（Google）に送信されます。氏名・年齢・日付・病院名など、患者さんや実習先が特定できる情報は入れないでください。
             AIの返答には誤りが含まれることがあります。必ず教科書・論文・指導者の指導で確認してください。
           </p>
@@ -218,11 +218,11 @@ export default function ReportHelperPage() {
               ) : (
                 <p className="mt-2 text-sm text-gray-500">大きな誤字脱字や表記のゆれは見つかりませんでした。</p>
               )}
-              <p className="mt-3 text-xs leading-5 text-gray-400">
+              <p className="mt-3 text-[11px] leading-5 text-gray-400">
                 AIの指摘は完全ではありません。見落としや、誤った指摘もあります。最後は、必ず自分の目で読み直してください。
               </p>
             </div>
-            <p className="text-center text-xs text-gray-400">
+            <p className="text-center text-[11px] text-gray-400">
               考察で使う論文は、「考察に使う論文を探す」のタブでも探せます。
             </p>
           </section>

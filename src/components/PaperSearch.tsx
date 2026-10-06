@@ -200,10 +200,10 @@ function ResultCard({
 
       <button
         onClick={onToggleSave}
-        className={`mt-2 rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
+        className={`mt-2 rounded-full border px-4 py-1.5 text-xs ${
           isSaved
             ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-            : "border-gray-200 text-gray-600"
+            : "border-sky-200 bg-sky-100 text-sky-800 hover:bg-sky-200"
         }`}
       >
         {isSaved ? "✓ 保存済み（解除）" : "＋ 保存"}

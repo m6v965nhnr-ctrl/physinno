@@ -185,7 +185,7 @@ export default function InternshipReviews({
                     {PRACTICUM_TYPE_LABEL[r.practicum_type]}
                     {r.practicum_year ? `（${r.practicum_year}年）` : ""}
                   </span>
-                  <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-xs text-gray-500">
+                  <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-[11px] text-gray-500">
                     {r.is_mine ? "あなたの投稿" : "匿名"}
                   </span>
                 </div>
@@ -214,7 +214,7 @@ export default function InternshipReviews({
       )}
 
       {canRead && (
-        <p className="mt-4 text-xs leading-5 text-gray-400">
+        <p className="mt-4 text-[11px] leading-5 text-gray-400">
           個人の感想です。指導者の個人名や患者さんの情報は書かないルールです。事実と異なる内容や、権利を侵害する内容は、各投稿の「通報」から運営へ連絡できます。病院の関係者の方は{" "}
           <Link href="/contact" className="underline">
             運営へのメッセージ
@@ -311,7 +311,7 @@ export default function InternshipReviews({
               />
             </label>
 
-            <p className="rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+            <p className="rounded-xl bg-amber-50 p-3 text-[11px] leading-5 text-amber-800">
               ルール: 指導者など個人の名前は書かない／患者さんの情報（氏名・年齢・日付・病名の組み合わせなど）は書かない／事実にもとづいて書く。投稿者は表示されません（匿名）。
             </p>
 

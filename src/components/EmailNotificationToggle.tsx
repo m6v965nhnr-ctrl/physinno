@@ -55,7 +55,7 @@ export default function EmailNotificationToggle() {
         <p className="text-sm font-medium text-gray-900" id="email-notification-label">
           メールで通知を受け取る
         </p>
-        <p className="mt-0.5 text-xs leading-4 text-gray-400">
+        <p className="mt-0.5 text-[11px] leading-4 text-gray-400">
           コメント・メッセージ・フォローを、登録したメールアドレスにもお知らせします。
           メッセージやコメントの本文はメールに含まれません。
         </p>

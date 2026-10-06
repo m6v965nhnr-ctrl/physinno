@@ -178,6 +178,7 @@ function PTSearchPageInner(){
   return (
 
     <main className="
+      search-large
       min-h-screen
       bg-white
       px-6

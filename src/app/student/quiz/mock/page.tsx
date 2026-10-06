@@ -370,7 +370,7 @@ export default function MockExamPage() {
                       window.scrollTo({ top: 0 });
                     }}
                     aria-label={`問${x.no}${done ? "（回答済み）" : ""}${fl ? "（見直す）" : ""}`}
-                    className={`rounded-md py-1.5 text-xs ${
+                    className={`rounded-md py-1.5 text-[11px] ${
                       i === idx ? "ring-2 ring-emerald-500" : ""
                     } ${done ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-600"} ${
                       fl ? "outline outline-2 outline-amber-400" : ""
@@ -381,7 +381,7 @@ export default function MockExamPage() {
                 );
               })}
             </div>
-            <p className="mt-2 text-xs text-gray-400">黒＝回答済み　黄色の枠＝あとで見直す　緑の枠＝今の問題</p>
+            <p className="mt-2 text-[11px] text-gray-400">黒＝回答済み　黄色の枠＝あとで見直す　緑の枠＝今の問題</p>
           </div>
         )}
 
@@ -518,7 +518,7 @@ function ResultView({
             <span className="text-lg font-medium text-gray-500"> / {grade.total}問</span>
           </p>
           <p className="mt-1 text-sm text-gray-600">正答率 {pct}%　（解答時間 {fmt(usedSeconds * 1000)}）</p>
-          <p className="mt-2 text-xs leading-5 text-gray-400">
+          <p className="mt-2 text-[11px] leading-5 text-gray-400">
             合格の目安は、おおむね6割です（実際の合格基準は、回によって異なり、午前・午後を合わせた総得点と、実地問題の得点で決まります）。
           </p>
         </section>
@@ -622,7 +622,7 @@ function ReviewItem({
     <div className="rounded-2xl bg-white p-4 shadow-sm">
       <button onClick={toggle} aria-expanded={open} className="flex w-full items-start justify-between gap-3 text-left">
         <span className="min-w-0 text-sm leading-6">
-          <span className={`mr-2 rounded-full px-2 py-0.5 text-xs ${badge}`}>
+          <span className={`mr-2 rounded-full px-2 py-0.5 text-[10px] ${badge}`}>
             問{item.no}　{item.correct ? "正解" : item.chosen ? "不正解" : "未回答"}
           </span>
           <span className="text-gray-700">
@@ -666,8 +666,8 @@ function ReviewItem({
                     <span className="shrink-0 font-semibold">{n}</span>
                     <span className="min-w-0">
                       {c}
-                      {isChosen && <span className="ml-2 text-xs">（あなたの答え）</span>}
-                      {isAnswer && <span className="ml-2 text-xs">（正答）</span>}
+                      {isChosen && <span className="ml-2 text-[11px]">（あなたの答え）</span>}
+                      {isAnswer && <span className="ml-2 text-[11px]">（正答）</span>}
                     </span>
                   </li>
                 );
@@ -683,7 +683,7 @@ function ReviewItem({
               <>
                 <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
                 {reveal.explanation_source === "ai" && (
-                  <p className="mt-2 text-xs leading-5 text-gray-400">
+                  <p className="mt-2 text-[11px] leading-5 text-gray-400">
                     この解説はAIが作成したもので、誤りを含むことがあります。教科書・ガイドラインで確認してください。
                   </p>
                 )}
@@ -702,7 +702,7 @@ function ReviewItem({
             )}
           </div>
 
-          <p className="text-xs text-gray-400">
+          <p className="text-[11px] text-gray-400">
             第{exam}回 {SESSION_LABEL[session]}問{item.no}
           </p>
         </div>

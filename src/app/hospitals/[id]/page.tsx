@@ -339,7 +339,7 @@ export default function HospitalDetailPage() {
           )}
 
           {hospital.data_source === "mhlw_opendata" && (
-            <p className="mt-2 text-xs text-gray-400">
+            <p className="mt-2 text-[11px] text-gray-400">
               {hospital.data_source_note ??
                 "出典: 厚生労働省 医療情報ネット オープンデータを加工して作成"}
             </p>
@@ -531,7 +531,7 @@ export default function HospitalDetailPage() {
                 {reviews.some((r) => r.is_mine) ? "口コミを編集する" : "口コミを投稿する"}
               </button>
             ) : (
-              <span className="text-xs text-gray-400">
+              <span className="text-[11px] text-gray-400">
                 {accountType === "student" ? "投稿は現役PTのみ（学生は上の「実習生の声」へ）" : "投稿はPTアカウントのみ"}
               </span>
             )}
@@ -644,7 +644,7 @@ export default function HospitalDetailPage() {
               <p className="text-sm text-gray-400">まだ口コミはありません</p>
             )}
 
-            <p className="text-xs leading-5 text-gray-400">
+            <p className="text-[11px] leading-5 text-gray-400">
               事実と異なる口コミや、権利を侵害する口コミは、各口コミの「通報」から運営へ連絡できます。病院の関係者の方は{" "}
               <Link href="/contact" className="underline">
                 運営へのメッセージ
@@ -659,7 +659,7 @@ export default function HospitalDetailPage() {
                     総合 {r.overall_score} / 10
                   </p>
                   {r.is_anonymous && (
-                    <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-xs text-gray-500">
+                    <span className="rounded-full border border-gray-200 px-2.5 py-0.5 text-[11px] text-gray-500">
                       匿名
                     </span>
                   )}
