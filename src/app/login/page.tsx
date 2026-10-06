@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { getMyAccountType, syncMyAccountType } from "@/lib/account";
@@ -146,6 +147,13 @@ export default function LoginPage() {
           >
             ログイン
           </button>
+
+          <Link
+            href="/forgot-password"
+            style={{ textAlign: "center", color: "#444444", fontSize: "14px", textDecoration: "underline" }}
+          >
+            パスワードを忘れた方はこちら
+          </Link>
 
           <button
             onClick={() => router.push("/")}

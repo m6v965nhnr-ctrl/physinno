@@ -20,6 +20,8 @@ export default function robots(): MetadataRoute.Robots {
       ],
       disallow: [
         "/login",
+        "/forgot-password",
+        "/reset-password",
         "/home",
         "/posts",
         "/pts/*/review",
