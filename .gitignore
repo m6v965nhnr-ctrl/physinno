@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# 調べ物・分析のメモ（個人用。CLAUDE.md のルールで自動保存する）
+リサーチ/
