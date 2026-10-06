@@ -369,13 +369,13 @@ export default function HospitalSearch() {
                 {h.beds_total ? ` ・ ${h.beds_total}床` : ""}
               </p>
               {h.departments && h.departments.length > 0 && (
-                <p className="mt-1 line-clamp-1 text-[11px] text-gray-400">
+                <p className="mt-1 line-clamp-1 text-xs text-gray-400">
                   {h.departments.filter((d) => DEPARTMENT_FILTERS.includes(d)).join("・") || h.departments.slice(0, 6).join("・")}
                 </p>
               )}
               {reviewCounts[h.id] > 0 && (
                 <p className="mt-1.5">
-                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] text-emerald-700">
+                  <span className="rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
                     実習生の声 {reviewCounts[h.id]}件
                   </span>
                 </p>

@@ -116,10 +116,10 @@ export default function AdminReports() {
                 </p>
               )}
 
-              <p className="mt-2 text-[11px] text-gray-400">通報者: {r.reporter_email ?? "不明"}</p>
+              <p className="mt-2 text-xs text-gray-400">通報者: {r.reporter_email ?? "不明"}</p>
 
               {r.admin_note && (
-                <p className="mt-1 text-[11px] text-gray-400">対応メモ: {r.admin_note}</p>
+                <p className="mt-1 text-xs text-gray-400">対応メモ: {r.admin_note}</p>
               )}
 
               {r.status === "open" && (

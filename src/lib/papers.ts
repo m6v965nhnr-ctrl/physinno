@@ -182,6 +182,36 @@ export async function translateTitles(texts: string[]): Promise<(string | null)[
   }
 }
 
+// 論文の要約（アブストラクト）を日本語に翻訳する（ログインが必要）
+export type TranslateFailure = "unauthorized" | "failed";
+
+export async function translateAbstract(
+  text: string
+): Promise<{ translation: string | null; partial: boolean; reason: TranslateFailure | null }> {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+
+    const res = await fetch("/api/papers/translate-abstract", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      },
+      body: JSON.stringify({ text }),
+    });
+    const data = await res.json();
+
+    if (res.ok && typeof data.translation === "string") {
+      return { translation: data.translation, partial: Boolean(data.partial), reason: null };
+    }
+    return { translation: null, partial: false, reason: data.code === "unauthorized" ? "unauthorized" : "failed" };
+  } catch {
+    return { translation: null, partial: false, reason: "failed" };
+  }
+}
+
 export async function listSavedPapers(userId: string): Promise<SavedPaper[]> {
   const { data } = await supabase
     .from("saved_papers")

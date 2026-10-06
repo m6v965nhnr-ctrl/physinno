@@ -368,7 +368,7 @@ export default function MessagePage() {
                         <ReportButton
                           targetType="message"
                           targetId={message.id}
-                          className="text-[10px]"
+                          className="text-xs"
                         />
                       )}
                     </span>

@@ -472,7 +472,7 @@ export default function SeminarNews() {
                 >
                   <span>{c.day}</span>
                   {c.count > 0 && (
-                    <span className="mt-1 rounded-full bg-relight-gradient px-1.5 text-[10px] font-semibold leading-4 text-white">
+                    <span className="mt-1 rounded-full bg-relight-gradient px-1.5 text-xs font-semibold leading-4 text-white">
                       {c.count}
                     </span>
                   )}
@@ -557,15 +557,16 @@ export default function SeminarNews() {
 function FormatBadge({ format }: { format: Seminar["format"] }) {
   if (!format) return null;
 
+  // 塗りつぶしの色で、開催形式がひと目で分かるようにする
   const style =
     format === "online"
-      ? "bg-blue-50 text-blue-600"
+      ? "bg-blue-600 text-white"
       : format === "offline"
-        ? "bg-emerald-50 text-emerald-600"
-        : "bg-purple-50 text-purple-600";
+        ? "bg-emerald-600 text-white"
+        : "bg-purple-600 text-white";
 
   return (
-    <span className={`rounded-full px-2.5 py-0.5 text-[11px] font-medium ${style}`}>
+    <span className={`rounded-full px-3 py-1 text-xs font-semibold ${style}`}>
       {FORMAT_LABEL[format]}
     </span>
   );
@@ -619,36 +620,41 @@ function SeminarList({
               onSelect(s);
             }
           }}
-          className="block w-full cursor-pointer rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-[0_2px_12px_rgba(0,0,0,0.03)] transition active:scale-[0.99]"
+          className="relative block w-full cursor-pointer overflow-hidden rounded-2xl bg-white p-5 pl-6 text-left shadow-[0_6px_20px_rgba(0,0,0,0.08)] ring-1 ring-gray-100 transition active:scale-[0.99]"
         >
+          {/* 左の太い帯: 無料は緑、有料は青緑 */}
+          <span
+            aria-hidden="true"
+            className={`absolute inset-y-0 left-0 w-2 ${s.is_free ? "bg-emerald-500" : "bg-relight-gradient"}`}
+          />
+
           <div className="flex items-start justify-between gap-3">
-            <p className="text-sm font-semibold text-gray-900">{dateRangeJa(s)}</p>
+            <p className="text-base font-bold text-relight-blue">{dateRangeJa(s)}</p>
             <SaveButton saved={savedIds.includes(s.id)} onClick={() => onToggleSaved(s.id)} />
           </div>
 
-          <div className="mt-2 flex flex-wrap items-center gap-1.5">
-            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
-              {s.kind}
-            </span>
+          <p className="mt-2 line-clamp-2 text-lg font-bold leading-7 text-gray-900">{s.title}</p>
+
+          <div className="mt-3 flex flex-wrap items-center gap-1.5">
+            <span className="rounded-full bg-gray-900 px-3 py-1 text-xs font-semibold text-white">{s.kind}</span>
             <FormatBadge format={s.format} />
             {s.prefecture && (
-              <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
+              <span className="rounded-full border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700">
                 {s.prefecture}
               </span>
             )}
-            {s.is_free && (
-              <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-600">
-                無料
-              </span>
+            {s.is_free ? (
+              <span className="rounded-full bg-emerald-500 px-3 py-1 text-xs font-bold text-white">無料</span>
+            ) : (
+              s.fee_yen !== null && (
+                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-bold text-amber-800">
+                  {s.fee_yen.toLocaleString()}円〜
+                </span>
+              )
             )}
           </div>
 
-          <p className="mt-3 line-clamp-2 text-sm leading-6 text-gray-800">{s.title}</p>
-
-          <p className="mt-2 text-xs text-gray-400">
-            {s.organizer ? `${s.organizer} ・ ` : ""}
-            {s.fee_yen !== null && !s.is_free ? `${s.fee_yen.toLocaleString()}円〜` : ""}
-          </p>
+          {s.organizer && <p className="mt-3 text-sm text-gray-600">{s.organizer}</p>}
         </div>
       ))}
     </div>
@@ -687,7 +693,7 @@ function SeminarDetail({
       >
         <div className="flex items-start justify-between gap-3">
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-[11px] font-medium text-gray-600">
+            <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-xs font-medium text-gray-600">
               {s.kind}
             </span>
             <FormatBadge format={s.format} />
@@ -755,7 +761,7 @@ function SeminarDetail({
           詳細・申込ページを開く ↗
         </a>
 
-        <p className="mt-3 break-all text-center text-[11px] text-gray-400">{s.url}</p>
+        <p className="mt-3 break-all text-center text-xs text-gray-400">{s.url}</p>
       </div>
     </div>
   );

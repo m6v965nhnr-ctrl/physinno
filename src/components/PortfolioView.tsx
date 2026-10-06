@@ -337,7 +337,7 @@ export default function PortfolioView({
             >
               PDFとして保存
             </button>
-            <p className="max-w-[220px] text-right text-[11px] leading-snug text-gray-400">
+            <p className="max-w-[220px] text-right text-xs leading-snug text-gray-400">
               保存ダイアログの「詳細設定」で
               <br />
               「ヘッダーとフッター」のチェックを外すと
@@ -577,7 +577,7 @@ export default function PortfolioView({
                         {!isOwnProfile && (
                           <button
                             onClick={() => toggleEndorse(s.id)}
-                            className={`ml-0.5 rounded-full px-2 py-0.5 text-[11px] print:hidden ${
+                            className={`ml-0.5 rounded-full px-2 py-0.5 text-xs print:hidden ${
                               endorsed
                                 ? "bg-relight-gradient text-white"
                                 : "border border-gray-300 text-gray-500 hover:border-gray-400"

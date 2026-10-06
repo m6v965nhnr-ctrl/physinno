@@ -64,18 +64,18 @@ export default function QuizAssignmentResultsPage() {
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
         <section className="grid grid-cols-3 gap-2 text-center">
           <div className="rounded-2xl bg-white p-3 shadow-sm">
-            <p className="text-[11px] text-gray-500">提出</p>
+            <p className="text-xs text-gray-500">提出</p>
             <p className="mt-1 text-xl font-bold">
               {submitted}
               <span className="text-xs font-medium text-gray-500"> / {res.students.length}人</span>
             </p>
           </div>
           <div className="rounded-2xl bg-white p-3 shadow-sm">
-            <p className="text-[11px] text-gray-500">平均正答率</p>
+            <p className="text-xs text-gray-500">平均正答率</p>
             <p className="mt-1 text-xl font-bold">{answeredAll === 0 ? "-" : `${percent(correctAll, answeredAll)}%`}</p>
           </div>
           <div className="rounded-2xl bg-white p-3 shadow-sm">
-            <p className="text-[11px] text-gray-500">解答数</p>
+            <p className="text-xs text-gray-500">解答数</p>
             <p className="mt-1 text-xl font-bold">{answeredAll}</p>
           </div>
         </section>
@@ -107,14 +107,14 @@ export default function QuizAssignmentResultsPage() {
 
         <section className="rounded-2xl bg-white p-4 shadow-sm">
           <p className="text-sm font-semibold">問題ごとの正答率</p>
-          <p className="mt-1 text-[11px] text-gray-400">正答率の低い問題は、授業で取り上げる候補です。</p>
+          <p className="mt-1 text-xs text-gray-400">正答率の低い問題は、授業で取り上げる候補です。</p>
           <ul className="mt-2 divide-y divide-gray-100">
             {res.questions.map((q) => {
               const rate = percent(q.correct, q.answered);
               return (
                 <li key={q.id} className="py-2">
                   <div className="flex items-center justify-between gap-3">
-                    <span className="text-[11px] text-gray-400">{q.label}</span>
+                    <span className="text-xs text-gray-400">{q.label}</span>
                     <span
                       className={`text-xs font-semibold ${
                         q.answered === 0 ? "text-gray-400" : rate < 50 ? "text-red-600" : "text-gray-800"

@@ -134,7 +134,7 @@ export default function QuizClassesPage() {
                     >
                       <div className="flex items-start justify-between gap-3">
                         <div className="min-w-0">
-                          <p className="text-[11px] text-gray-400">{a.class_name}</p>
+                          <p className="text-xs text-gray-400">{a.class_name}</p>
                           <p className="mt-0.5 text-sm font-semibold">{a.title}</p>
                           <p className="mt-1 text-xs text-gray-500">
                             {a.n}問 ・ {dueText(a.due_at)}
@@ -168,7 +168,7 @@ export default function QuizClassesPage() {
                 <li key={c.id} className="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow-sm">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{c.name}</p>
-                    {c.teacher_name && <p className="text-[11px] text-gray-400">先生: {c.teacher_name}</p>}
+                    {c.teacher_name && <p className="text-xs text-gray-400">先生: {c.teacher_name}</p>}
                   </div>
                   <button onClick={() => handleLeave(c)} className="shrink-0 text-xs text-gray-500 underline">
                     退出する

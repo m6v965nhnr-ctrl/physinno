@@ -159,7 +159,7 @@ export default function AcademicCommunityPage() {
             </button>
           ))}
         </div>
-        <p className="mt-1 text-[11px] text-gray-400">
+        <p className="mt-1 text-xs text-gray-400">
           選んだレベル向けの投稿と、「どのレベルでも」の投稿が出ます。
           {!myLevel && "プロフィールに経験年数を入れると、自分のレベルが自動で選ばれます。"}
         </p>

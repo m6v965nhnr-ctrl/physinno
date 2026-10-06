@@ -16,6 +16,7 @@ import {
   listSavedPapers,
   savePaper,
   searchPapers,
+  translateAbstract,
   translateTitles,
 } from "@/lib/papers";
 
@@ -72,17 +73,50 @@ function ResultCard({
   refNumber?: number;
 }) {
   const [expanded, setExpanded] = useState(false);
+  // 要約の日本語訳（翻訳ボタンを押したときに取得）
+  const [abstractJa, setAbstractJa] = useState<string | null>(null);
+  const [showJa, setShowJa] = useState(true);
+  const [translating, setTranslating] = useState(false);
+  const [translateNote, setTranslateNote] = useState<string | null>(null);
   const summaryVisible = mode === "ai" || showSummary;
+  const abstractIsJapanese = /[぀-ヿ㐀-鿿]/.test(r.abstract ?? "");
+
+  async function handleTranslate() {
+    if (!r.abstract || translating) return;
+
+    if (abstractJa) {
+      setShowJa((v) => !v);
+      return;
+    }
+
+    setTranslating(true);
+    setTranslateNote(null);
+    const res = await translateAbstract(r.abstract);
+    setTranslating(false);
+
+    if (!res.translation) {
+      setTranslateNote(
+        res.reason === "unauthorized"
+          ? "翻訳はログインが必要です"
+          : "翻訳できませんでした。時間をおいてお試しください"
+      );
+      return;
+    }
+
+    setAbstractJa(res.translation);
+    setShowJa(true);
+    if (res.partial) setTranslateNote("一部だけ翻訳できました。残りは原文でご確認ください");
+  }
   const abstractIsLong = (r.abstract?.length ?? 0) > 280;
 
   return (
     <div className="rounded-2xl border border-gray-100 p-4">
       {refNumber !== undefined && (
-        <span className="mr-1.5 rounded-full bg-emerald-600 px-2 py-0.5 text-[10px] font-semibold text-white">
+        <span className="mr-1.5 rounded-full bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white">
           [{refNumber}]
         </span>
       )}
-      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
         {PAPER_SOURCE_LABEL[r.source]}
       </span>
 
@@ -114,21 +148,45 @@ function ResultCard({
           {r.abstract && (
             <>
               <p
-                className={`mt-1 whitespace-pre-wrap text-xs leading-5 text-gray-600 ${
+                className={`mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-700 ${
                   expanded ? "" : "line-clamp-4"
                 }`}
               >
-                {r.abstract}
+                {abstractJa && showJa ? abstractJa : r.abstract}
               </p>
-              {abstractIsLong && (
-                <button
-                  type="button"
-                  onClick={() => setExpanded((v) => !v)}
-                  className="mt-1 text-[11px] text-emerald-700 underline"
-                >
-                  {expanded ? "閉じる" : "続きを読む"}
-                </button>
+              <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
+                {(abstractIsLong || (abstractJa && showJa)) && (
+                  <button
+                    type="button"
+                    onClick={() => setExpanded((v) => !v)}
+                    className="text-xs text-emerald-700 underline"
+                  >
+                    {expanded ? "閉じる" : "続きを読む"}
+                  </button>
+                )}
+                {!abstractIsJapanese && (
+                  <button
+                    type="button"
+                    onClick={handleTranslate}
+                    disabled={translating}
+                    className="rounded-full border border-emerald-300 bg-white px-3 py-1 text-xs font-medium text-emerald-700 disabled:opacity-50"
+                  >
+                    {translating
+                      ? "翻訳中…"
+                      : abstractJa
+                        ? showJa
+                          ? "原文（英語）に戻す"
+                          : "🌐 日本語を表示"
+                        : "🌐 日本語に翻訳"}
+                  </button>
+                )}
+              </div>
+              {abstractJa && showJa && (
+                <p className="mt-1 text-xs leading-5 text-gray-500">
+                  機械翻訳です。数値や結論は、原文でも確認してください。
+                </p>
               )}
+              {translateNote && <p className="mt-1 text-xs text-red-600">{translateNote}</p>}
             </>
           )}
         </div>
@@ -449,7 +507,7 @@ export default function PaperSearch() {
               className="flex items-start justify-between gap-2 rounded-2xl border border-gray-100 p-4"
             >
               <div className="min-w-0">
-                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+                <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
                   {p.source}
                 </span>
                 <a
@@ -567,11 +625,11 @@ export default function PaperSearch() {
         {showRecent && recentSearches.length > 0 && (
           <div className="absolute z-10 mt-1 w-full overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
             <div className="flex items-center justify-between px-4 pt-2.5 pb-1">
-              <span className="text-[11px] font-medium text-gray-400">最近の検索</span>
+              <span className="text-xs font-medium text-gray-400">最近の検索</span>
               <button
                 type="button"
                 onClick={clearRecentSearches}
-                className="text-[11px] text-gray-400 hover:text-gray-600"
+                className="text-xs text-gray-400 hover:text-gray-600"
               >
                 履歴をクリア
               </button>
@@ -725,11 +783,11 @@ export default function PaperSearch() {
 
                 {turn.answer && (
                   <div className="mt-3 mr-auto max-w-[95%] rounded-2xl rounded-bl-sm bg-emerald-50 px-4 py-3">
-                    <p className="text-[11px] font-semibold text-emerald-700">✨ AIの回答</p>
+                    <p className="text-xs font-semibold text-emerald-700">✨ AIの回答</p>
                     <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-800">
                       {turn.answer}
                     </p>
-                    <p className="mt-2 text-[11px] text-gray-400">
+                    <p className="mt-2 text-xs text-gray-400">
                       取得できた論文の要約のみを根拠にしています。臨床判断は必ず原典と患者さんの状態に基づいて行ってください。
                     </p>
                   </div>
@@ -798,7 +856,7 @@ export default function PaperSearch() {
               className="rounded-2xl border border-gray-100 p-3 hover:border-gray-300"
             >
               <p className="text-sm font-medium text-gray-900">{s.label}</p>
-              <p className="mt-0.5 text-[11px] text-gray-400">{s.note}</p>
+              <p className="mt-0.5 text-xs text-gray-400">{s.note}</p>
             </a>
           ))}
         </div>

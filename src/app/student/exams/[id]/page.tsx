@@ -219,7 +219,7 @@ export default function ExamSubjectPage() {
 
           {notes.map((n) => (
             <li key={n.id} className="rounded-2xl bg-white p-4 shadow-sm">
-              <div className="flex flex-wrap items-center gap-2 text-[11px]">
+              <div className="flex flex-wrap items-center gap-2 text-xs">
                 <span className="rounded-full bg-gray-900 px-2.5 py-0.5 text-white">{n.academic_year}年度</span>
                 <span className="rounded-full bg-gray-100 px-2.5 py-0.5 text-gray-700">
                   {EXAM_TYPE_LABEL[n.exam_type]}
@@ -256,7 +256,7 @@ export default function ExamSubjectPage() {
               )}
 
               <div className="mt-3 flex items-center justify-between">
-                <span className="text-[11px] text-gray-400">{n.is_mine ? "あなたの投稿" : "匿名"}</span>
+                <span className="text-xs text-gray-400">{n.is_mine ? "あなたの投稿" : "匿名"}</span>
                 {n.is_mine ? (
                   <button onClick={() => handleDelete(n)} className="text-xs text-gray-400 hover:text-red-500">
                     削除
@@ -269,7 +269,7 @@ export default function ExamSubjectPage() {
           ))}
         </ul>
 
-        <p className="text-[11px] leading-5 text-gray-400">
+        <p className="text-xs leading-5 text-gray-400">
           投稿は、同じ学校の学生・卒業生だけに表示され、投稿者は分かりません。先生・学校の権利を侵害する内容や、事実と異なる内容は、各投稿の「通報」から運営へ連絡できます。
           学校・先生からの削除の申出は、
           <Link href="/contact" className="underline">
@@ -391,7 +391,7 @@ export default function ExamSubjectPage() {
               </label>
 
               {file && (
-                <label className="mt-3 flex items-start gap-2 rounded-lg bg-amber-50 p-3 text-[11px] leading-5 text-amber-900">
+                <label className="mt-3 flex items-start gap-2 rounded-lg bg-amber-50 p-3 text-xs leading-5 text-amber-900">
                   <input type="checkbox" checked={rights} onChange={(e) => setRights(e.target.checked)} className="mt-0.5" />
                   <span>
                     このファイルは、<strong>学校・先生が配布や共有を認めているもの</strong>、または<strong>自分で作った資料</strong>です。
@@ -401,7 +401,7 @@ export default function ExamSubjectPage() {
               )}
             </div>
 
-            <p className="rounded-xl bg-amber-50 p-3 text-[11px] leading-5 text-amber-800">
+            <p className="rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-800">
               先生や他の学生の個人名は書かないでください。試験問題の全文を写すより、「傾向」と「自分の言葉でのメモ」を中心にしてください。投稿者は他のユーザーに表示されません。
             </p>
 

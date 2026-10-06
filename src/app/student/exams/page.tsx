@@ -166,12 +166,12 @@ export default function ExamsPage() {
                   >
                     <span className="min-w-0">
                       <span className="block truncate text-sm font-semibold text-gray-900">{s.name}</span>
-                      <span className="mt-0.5 block text-[11px] text-gray-400">
+                      <span className="mt-0.5 block text-xs text-gray-400">
                         {s.grade}年生・{TERM_LABEL[s.term]}
                       </span>
                     </span>
                     <span
-                      className={`shrink-0 rounded-full px-2.5 py-1 text-[11px] ${
+                      className={`shrink-0 rounded-full px-2.5 py-1 text-xs ${
                         s.note_count > 0 ? "bg-emerald-50 text-emerald-700" : "bg-gray-100 text-gray-500"
                       }`}
                     >
@@ -237,7 +237,7 @@ export default function ExamsPage() {
                   </label>
                 </div>
 
-                <p className="text-[11px] leading-5 text-gray-400">
+                <p className="text-xs leading-5 text-gray-400">
                   科目は、同じ学校の人みんなで共有されます。すでに同じ科目がないか、上の一覧を確認してから追加してください。
                 </p>
 

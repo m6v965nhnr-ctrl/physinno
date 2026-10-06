@@ -69,7 +69,7 @@ export default function QuizPrintPage() {
         </div>
 
         <h1 className="mt-6 text-lg font-bold print:mt-0">{title}</h1>
-        <p className="mt-1 text-[11px] leading-5 text-gray-500">
+        <p className="mt-1 text-xs leading-5 text-gray-500">
           問題・正答の出典: 厚生労働省ホームページ（理学療法士国家試験の問題および正答）。図は、厚生労働省が公開しているものです。
           {withAnswers && withExplain ? "解説はAIが作成したもので、誤りを含むことがあります。" : ""}
           Re:light（https://relight-1wet.vercel.app）で作成。

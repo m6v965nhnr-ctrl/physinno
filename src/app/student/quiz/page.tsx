@@ -150,11 +150,11 @@ export default function QuizHomePage() {
         <section className="grid grid-cols-2 gap-2">
           <Link href="/student/quiz/classes" className="rounded-2xl bg-white p-3 shadow-sm transition hover:bg-gray-50">
             <span className="block text-sm font-semibold">📋 クラスの課題</span>
-            <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">先生から配られた課題を解く</span>
+            <span className="mt-0.5 block text-xs leading-4 text-gray-500">先生から配られた課題を解く</span>
           </Link>
           <Link href="/student/quiz/teacher" className="rounded-2xl bg-white p-3 shadow-sm transition hover:bg-gray-50">
             <span className="block text-sm font-semibold">👩‍🏫 先生の方はこちら</span>
-            <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">クラスを作って課題を配る</span>
+            <span className="mt-0.5 block text-xs leading-4 text-gray-500">クラスを作って課題を配る</span>
           </Link>
         </section>
 
@@ -201,7 +201,7 @@ export default function QuizHomePage() {
                       <div className="mt-2">
                         <ProgressBar answered={u.answered} total={u.total} />
                       </div>
-                      <p className="mt-1.5 text-[11px] text-gray-400">
+                      <p className="mt-1.5 text-xs text-gray-400">
                         {u.answered === 0 ? "まだ解いていません" : `${u.answered}問 解いた ・ 正解 ${u.correct}問 ・ 正答率 ${percent(u.correct, u.answered)}%`}
                       </p>
                     </button>
@@ -225,7 +225,7 @@ export default function QuizHomePage() {
                 <div className="mt-2">
                   <ProgressBar answered={e.answered} total={e.total} />
                 </div>
-                <p className="mt-1.5 text-[11px] text-gray-400">
+                <p className="mt-1.5 text-xs text-gray-400">
                   {e.answered === 0 ? "まだ解いていません" : `${e.answered}問 解いた ・ 正解 ${e.correct}問 ・ 正答率 ${percent(e.correct, e.answered)}%`}
                 </p>
               </button>
@@ -251,7 +251,7 @@ export default function QuizHomePage() {
                         className="rounded-xl border border-gray-200 p-3 text-center transition hover:bg-gray-50"
                       >
                         <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
-                        <span className="mt-0.5 block text-[11px] text-gray-500">
+                        <span className="mt-0.5 block text-xs text-gray-500">
                           {m ? `前回 ${m.last_score}/${m.last_total}問 ・ 最高 ${m.best_score}問` : "まだ解いていません"}
                         </span>
                       </Link>
@@ -289,7 +289,7 @@ export default function QuizHomePage() {
                     </li>
                   ))}
                 </ul>
-                <p className="mt-1.5 text-[11px] text-gray-400">
+                <p className="mt-1.5 text-xs text-gray-400">
                   <a href={officialPage(e)} target="_blank" rel="noopener noreferrer" className="underline">
                     厚生労働省の公開ページ
                   </a>
@@ -312,7 +312,7 @@ export default function QuizHomePage() {
           </div>
         )}
 
-        <p className="text-[11px] leading-5 text-gray-400">
+        <p className="text-xs leading-5 text-gray-400">
           問題・正答の出典: 厚生労働省ホームページ（理学療法士国家試験の問題および正答）。画面に表示するにあたり、問題の整形と単元の分類をしています。
           分類や文字の読み取りに誤りがある場合は、問題の画面の「通報」からお知らせください。
           図の問題は、厚生労働省が公開している図をそのまま表示しています。

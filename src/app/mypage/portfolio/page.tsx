@@ -817,7 +817,7 @@ export default function PortfolioPage() {
                   <p className="text-sm font-medium">
                     {CAREER_GOAL_TYPE_LABEL[g.goal_type]}・{g.title}
                     {!g.is_public && (
-                      <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+                      <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
                         非公開
                       </span>
                     )}
@@ -962,7 +962,7 @@ function EntryCard({
         <p className="text-sm font-medium">
           {title}
           {!isPublic && (
-            <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-[10px] text-gray-500">
+            <span className="ml-2 rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
               非公開
             </span>
           )}

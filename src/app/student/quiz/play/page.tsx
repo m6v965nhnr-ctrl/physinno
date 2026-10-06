@@ -236,7 +236,7 @@ export default function QuizPlayPage() {
               <ul className="mt-2 space-y-2">
                 {wrong.map((r) => (
                   <li key={r.question.id} className="text-sm leading-6 text-gray-700">
-                    <span className="mr-2 rounded-full bg-red-50 px-2 py-0.5 text-[10px] text-red-600">
+                    <span className="mr-2 rounded-full bg-red-50 px-2 py-0.5 text-xs text-red-600">
                       {questionLabel(r.question)}
                     </span>
                     {r.question.stem.slice(0, 60)}
@@ -313,7 +313,7 @@ export default function QuizPlayPage() {
 
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
         <div className="flex items-center justify-between">
-          <p className="text-[11px] text-gray-400">
+          <p className="text-xs text-gray-400">
             {questionLabel(q)}
             {unitName ? ` ・ ${unitName}` : ""}
           </p>
@@ -426,7 +426,7 @@ export default function QuizPlayPage() {
                   : reveal.answers.map((s) => s.join("・")).join(" または ")}
               </p>
               {reveal.answers.length > 1 && (
-                <p className="mt-1 text-[11px] opacity-80">厚生労働省が、複数の答えを正解として認めた問題です。</p>
+                <p className="mt-1 text-xs opacity-80">厚生労働省が、複数の答えを正解として認めた問題です。</p>
               )}
             </div>
 
@@ -436,7 +436,7 @@ export default function QuizPlayPage() {
                 <>
                   <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
                   {reveal.explanation_source === "ai" && (
-                    <p className="mt-2 text-[11px] leading-5 text-gray-400">
+                    <p className="mt-2 text-xs leading-5 text-gray-400">
                       この解説はAIが作成したもので、誤りを含むことがあります。教科書・ガイドラインで確認してください。
                     </p>
                   )}

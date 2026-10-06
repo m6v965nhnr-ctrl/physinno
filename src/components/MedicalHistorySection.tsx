@@ -89,7 +89,7 @@ export default function MedicalHistorySection({ userId }: { userId: string }) {
                     {e.condition_name}
                   </p>
                   <span
-                    className={`rounded-full px-2 py-0.5 text-[10px] ${
+                    className={`rounded-full px-2 py-0.5 text-xs ${
                       e.is_public
                         ? "bg-relight-gradient text-white"
                         : "bg-gray-200 text-gray-500"

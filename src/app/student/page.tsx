@@ -138,7 +138,7 @@ export default function StudentHomePage() {
               {countdown.examDays >= 0 ? countdown.examDays : 0}
               <span className="ml-1 text-sm font-medium text-gray-500">日</span>
             </p>
-            <p className="mt-1 text-[11px] text-gray-400">
+            <p className="mt-1 text-xs text-gray-400">
               {countdown.examDate.getFullYear()}年{countdown.examDate.getMonth() + 1}月
               {countdown.examDate.getDate()}日{countdown.examIsEstimate ? "ごろ（目安）" : ""}
             </p>
@@ -150,7 +150,7 @@ export default function StudentHomePage() {
               {countdown.graduationDays >= 0 ? countdown.graduationDays : 0}
               <span className="ml-1 text-sm font-medium text-gray-500">日</span>
             </p>
-            <p className="mt-1 text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
+            <p className="mt-1 text-xs text-gray-400">{profile.graduation_year}年3月卒業予定</p>
           </div>
         </section>
 
@@ -194,14 +194,14 @@ export default function StudentHomePage() {
                 <li key={`${e.item.id}-${i}`} className="flex items-center justify-between gap-3 text-sm">
                   <span className="min-w-0 truncate">
                     <span
-                      className={`mr-2 rounded-full px-2 py-0.5 text-[10px] ${
+                      className={`mr-2 rounded-full px-2 py-0.5 text-xs ${
                         e.days <= 3 ? "bg-red-50 text-red-600" : "bg-gray-100 text-gray-500"
                       }`}
                     >
                       {e.label}
                     </span>
                     {e.item.title}
-                    <span className="ml-1 text-[11px] text-gray-400">
+                    <span className="ml-1 text-xs text-gray-400">
                       （{statusLabel(e.item.kind, e.item.status)}）
                     </span>
                   </span>

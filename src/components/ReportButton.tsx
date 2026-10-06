@@ -143,7 +143,7 @@ export default function ReportButton({
               />
             </label>
 
-            <p className="mt-2 text-[11px] leading-4 text-gray-400">
+            <p className="mt-2 text-xs leading-4 text-gray-400">
               ログインしていない方や、ユーザーでない方の申出は{" "}
               <Link href="/contact" className="underline">
                 運営へのメッセージ
