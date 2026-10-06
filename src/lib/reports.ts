@@ -9,7 +9,8 @@ export type ReportTargetType =
   | "internship_review"
   | "student_question"
   | "student_answer"
-  | "exam_note";
+  | "exam_note"
+  | "quiz_question";
 
 export type ReportReason =
   | "privacy"
@@ -42,6 +43,7 @@ export const REPORT_TARGET_LABEL: Record<ReportTargetType, string> = {
   student_question: "質問",
   student_answer: "回答",
   exam_note: "試験メモ",
+  quiz_question: "問題",
 };
 
 // 戻り値: エラーメッセージ(成功なら null)
