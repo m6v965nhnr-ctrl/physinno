@@ -78,6 +78,8 @@ const helper = await get("/api/student/report-helper", {
   body: JSON.stringify({ mode: "sources", text: "test" }),
 });
 check("実習レポート支援APIは未ログインで 401/503", [401, 503].includes(helper.res.status), `status=${helper.res.status}`);
+const examsPage = await get("/student/exams");
+check("GET /student/exams が200（ログイン判定は画面側）", examsPage.res.status === 200, `status=${examsPage.res.status}`);
 const studentPage = await get("/student");
 check("GET /student が200（ログイン判定は画面側）", studentPage.res.status === 200, `status=${studentPage.res.status}`);
 

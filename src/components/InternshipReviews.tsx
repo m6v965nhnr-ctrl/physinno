@@ -66,6 +66,15 @@ export default function InternshipReviews({
     load();
   }, [load]);
 
+  // トラッカーの「実習生の声を書く」から来たときは、投稿画面を最初から開く
+  useEffect(() => {
+    if (!loaded || !isStudent) return;
+    if (new URLSearchParams(window.location.search).get("internship") === "1") {
+      openForm();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loaded, isStudent]);
+
   useEffect(() => {
     if (!open) return;
     const onKeyDown = (e: KeyboardEvent) => {

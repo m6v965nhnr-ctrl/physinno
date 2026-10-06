@@ -10,6 +10,7 @@ import {
   resolveAdminReport,
 } from "@/lib/reports";
 import { notify } from "@/lib/notify";
+import { adminRemoveExamNoteFile } from "@/lib/exams";
 
 type Filter = "open" | "resolved" | "dismissed";
 
@@ -47,6 +48,12 @@ export default function AdminReports() {
     const note = action === "delete" ? "運営が削除" : undefined;
 
     setBusyId(report.id);
+
+    // 試験メモの添付ファイル(過去問など)は、メモを消す前に、ファイル本体も削除する
+    if (action === "delete" && report.target_type === "exam_note") {
+      await adminRemoveExamNoteFile(report.target_id);
+    }
+
     const error = await resolveAdminReport(report.id, action, note);
     setBusyId("");
 

@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
+import { supabase } from "@/lib/supabase";
 import { useMyAccount } from "@/lib/useMyAccount";
 import {
   DEFAULT_STATUS,
@@ -57,6 +58,29 @@ export default function TrackerPage() {
   const [dueOn, setDueOn] = useState("");
   const [memo, setMemo] = useState("");
 
+  // 病院を検索して選ぶと、病院ページ・実習生の声と結びつく(任意)
+  const [hospitalQuery, setHospitalQuery] = useState("");
+  const [hospitalResults, setHospitalResults] = useState<{ id: string; name: string; prefecture: string | null }[]>([]);
+  const [pickedHospital, setPickedHospital] = useState<{ id: string; name: string } | null>(null);
+
+  useEffect(() => {
+    const q = hospitalQuery.trim();
+    if (q.length < 2) {
+      setHospitalResults([]);
+      return;
+    }
+    const timer = setTimeout(async () => {
+      const { data } = await supabase
+        .from("hospitals")
+        .select("id, name, prefecture")
+        .ilike("name", `%${q}%`)
+        .order("name")
+        .limit(6);
+      setHospitalResults(data || []);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [hospitalQuery]);
+
   const load = useCallback(async () => {
     if (!userId) return;
     setItems(await listStudentItems(userId));
@@ -79,6 +103,9 @@ export default function TrackerPage() {
     setDueOn("");
     setMemo("");
     setStatus(DEFAULT_STATUS[kind]);
+    setHospitalQuery("");
+    setHospitalResults([]);
+    setPickedHospital(null);
   }
 
   async function handleAdd(e: React.FormEvent) {
@@ -99,6 +126,7 @@ export default function TrackerPage() {
       kind,
       status,
       title,
+      hospital_id: pickedHospital?.id ?? null,
       practicum_type: kind === "practicum" ? practicumType : null,
       starts_on: kind === "practicum" ? startsOn : null,
       ends_on: kind === "practicum" ? endsOn : null,
@@ -210,8 +238,56 @@ export default function TrackerPage() {
 
         {showForm && (
           <form onSubmit={handleAdd} className="mt-4 space-y-3 rounded-2xl bg-white p-4 shadow-sm">
+            {kind !== "task" && (
+              <div className="text-xs text-gray-500">
+                病院を探して選ぶ（任意。選ぶと病院ページとつながります）
+                {pickedHospital ? (
+                  <p className="mt-1 flex items-center justify-between rounded-xl bg-emerald-50 px-3 py-2 text-sm text-emerald-800">
+                    <span className="truncate">🏥 {pickedHospital.name}</span>
+                    <button
+                      type="button"
+                      onClick={() => setPickedHospital(null)}
+                      className="ml-2 shrink-0 text-xs text-emerald-700 underline"
+                    >
+                      解除
+                    </button>
+                  </p>
+                ) : (
+                  <>
+                    <input
+                      value={hospitalQuery}
+                      onChange={(e) => setHospitalQuery(e.target.value)}
+                      placeholder="病院名の一部を入力（例: 市民病院）"
+                      className="mt-1 w-full rounded-xl border border-gray-200 px-3 py-2.5 text-sm text-gray-900"
+                    />
+                    {hospitalResults.length > 0 && (
+                      <ul className="mt-1 overflow-hidden rounded-xl border border-gray-200 bg-white">
+                        {hospitalResults.map((h) => (
+                          <li key={h.id}>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                setPickedHospital({ id: h.id, name: h.name });
+                                if (!title.trim()) setTitle(h.name);
+                                setHospitalQuery("");
+                                setHospitalResults([]);
+                              }}
+                              className="block w-full px-3 py-2 text-left text-sm text-gray-800 hover:bg-gray-50"
+                            >
+                              {h.name}
+                              <span className="ml-2 text-[11px] text-gray-400">{h.prefecture}</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </>
+                )}
+              </div>
+            )}
+
             <label className="block text-xs text-gray-500">
-              {kind === "task" ? "提出物・やること" : "病院・施設名など"}
+              {kind === "task" ? "提出物・やること" : "名前（病院・施設名など）"}
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
@@ -365,6 +441,15 @@ export default function TrackerPage() {
                       ×
                     </button>
                   </div>
+
+                  {item.kind === "practicum" && item.hospital_id && (
+                    <Link
+                      href={`/hospitals/${item.hospital_id}?internship=1`}
+                      className="mt-3 inline-block rounded-full border border-emerald-300 bg-emerald-50 px-3 py-1.5 text-xs font-medium text-emerald-800"
+                    >
+                      ✍️ この実習先の「実習生の声」を書く
+                    </Link>
+                  )}
 
                   <div className="mt-3 flex flex-wrap gap-1.5">
                     {KIND_STATUSES[item.kind].map((s) => (

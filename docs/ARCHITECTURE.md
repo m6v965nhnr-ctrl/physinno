@@ -36,6 +36,7 @@
 - 養成校名・卒業予定年・国試日は `student_profiles`(本人のみ)。卒業予定年の翌年4月1日(日本時間)に、`graduate_students()` が `pt` に切り替える。毎日0:10の cron と、ログイン時の `sync_my_account_type()` の両方で動く。切り替え後も学生時代の記録(トラッカー・学習ログ)は残る。
 - トラッカー `student_items`、学習ログ `study_logs`、実習先の口コミ `internship_reviews`、質問 `student_questions` / 回答 `student_answers` はいずれも RLS で本人のみ。他人の分は、投稿者を返さない RPC(`get_internship_reviews`, `list_student_questions` など)経由でのみ読める(PT・学生のみ)。
 - 実習レポート支援は `/api/student/report-helper`(Gemini)。構成の点検と検索語の提案だけを行い、代筆はしない。患者情報らしき入力は `privacyCheck` で止める。
+- 試験情報: `schools`(学校。学生が名前で登録・候補から選択) → `exam_subjects`(学年×学期の科目。学生が追加) → `exam_notes`(年度・試験の種類・難易度・出題傾向・覚えている出題内容・添付ファイル)。読み書きは `is_school_member()`(同じ学校を登録した学生・卒業生)のみ。投稿者は `list_exam_notes` で返さない。添付は非公開バケット `exam-files`(パスは `学校ID/投稿者ID/…`、同じ学校のメンバーだけ読める)。通報で削除するときは、運営が画面側でファイル本体を先に削除する(`adminRemoveExamNoteFile`)。
 - `hospitals.departments / beds_*` は診療科・病床の絞り込み用(厚労省オープンデータから別途取り込む。未取り込みの間は絞り込み欄を出さない)。
 
 ## 通報・削除申請

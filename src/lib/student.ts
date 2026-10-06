@@ -26,7 +26,7 @@ export async function getMyStudentProfile(userId: string): Promise<StudentProfil
 
 export async function updateMyStudentProfile(
   userId: string,
-  fields: { school_name: string | null; graduation_year: number; national_exam_date: string | null }
+  fields: { graduation_year: number; national_exam_date: string | null }
 ): Promise<string | null> {
   const { error } = await supabase
     .from("student_profiles")

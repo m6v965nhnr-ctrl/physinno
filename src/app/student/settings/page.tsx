@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { setMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { School, searchSchools, setMySchool } from "@/lib/exams";
 import {
   estimatedExamDate,
   getMyStudentProfile,
@@ -28,6 +29,20 @@ export default function StudentSettingsPage() {
   const [examDate, setExamDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [schoolOptions, setSchoolOptions] = useState<School[]>([]);
+
+  // 学校名の入力に合わせて、すでに登録されている学校を候補に出す(同じ学校が別々に登録されないように)
+  useEffect(() => {
+    const q = schoolName.trim();
+    if (q.length < 1) {
+      setSchoolOptions([]);
+      return;
+    }
+    const timer = setTimeout(() => {
+      searchSchools(q).then(setSchoolOptions);
+    }, 250);
+    return () => clearTimeout(timer);
+  }, [schoolName]);
 
   useEffect(() => {
     setWelcome(new URLSearchParams(window.location.search).get("welcome") === "1");
@@ -85,8 +100,15 @@ export default function StudentSettingsPage() {
       return;
     }
 
+    const schoolError = await setMySchool(schoolName);
+
+    if (schoolError) {
+      setSaving(false);
+      notify(`学校名を保存できませんでした: ${schoolError}`);
+      return;
+    }
+
     const error = await updateMyStudentProfile(userId, {
-      school_name: schoolName.trim() || null,
       graduation_year: graduationYear,
       national_exam_date: examDate || null,
     });
@@ -197,9 +219,19 @@ export default function StudentSettingsPage() {
                 value={schoolName}
                 onChange={(e) => setSchoolName(e.target.value)}
                 maxLength={100}
+                list="school-options"
                 placeholder="例: 〇〇リハビリテーション専門学校"
                 className="mt-1 w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm font-normal outline-none focus:border-gray-400"
               />
+              <datalist id="school-options">
+                {schoolOptions.map((s) => (
+                  <option key={s.id} value={s.name} />
+                ))}
+              </datalist>
+              <span className="mt-1 block text-xs font-normal leading-5 text-gray-400">
+                正式名称で入力してください。同じ学校を登録した人だけが、その学校の試験情報を見て、書き込めます（学校は自己申告です）。
+                候補に出た学校は、選ぶと同じ学校としてまとまります。
+              </span>
             </label>
 
             <label className="block text-sm font-medium">
