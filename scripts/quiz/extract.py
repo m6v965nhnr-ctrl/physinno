@@ -22,19 +22,118 @@ def norm(s):
     return s
 
 
-def lines_of(doc, first_page):
+GARBLE = re.compile(r"[\x00-\x08\x0b-\x1f\u00dd-\u00ff\u5eb5]")
+
+
+def repair(layer, ocr):
+    """文字化けした文字(埋め込みフォントの対応表がない)だけを、OCRの文字で置き換える。それ以外はPDFの文字をそのまま使う"""
+    import difflib
+    a = re.sub(r"\s+", "", layer)
+    b = re.sub(r"\s+", "", ocr)
+    sm = difflib.SequenceMatcher(None, a, b, autojunk=False)
+    if sm.ratio() < 0.5:
+        return b
+    out = []
+    for tag, i1, i2, j1, j2 in sm.get_opcodes():
+        seg = a[i1:i2]
+        if tag == "equal":
+            out.append(seg)
+        elif tag == "replace":
+            out.append(b[j1:j2] if GARBLE.search(seg) else seg)
+        elif tag == "delete":
+            out.append(GARBLE.sub("", seg))
+        # insert: OCRだけにある文字は使わない
+    t = "".join(out)
+    # 「2つ選べ」の数字が落ちている場合はOCRから補う
+    if re.search(r"(?<![0-9２３４])つ選べ", t):
+        m = re.search(r"([2-4２-４])\s*つ選べ", ocr)
+        if m:
+            t = re.sub(r"(?<![0-9２３４])つ選べ", m.group(1) + "つ選べ", t, count=1)
+    return t
+
+
+def learn_fontmap(doc, ocr, first_page=3):
+    """埋め込みフォントの文字コードが壊れているPDF用。
+    (フォント, 文字)→本当の文字 の対応を、OCR結果との突き合わせ(多数決)で学習する"""
+    import difflib, collections
+    votes = collections.defaultdict(collections.Counter)
+    for pi in range(first_page, len(doc)):
+        page = doc[pi]
+        pw, ph = page.rect.width, page.rect.height
+        items = ocr.get(pi, [])
+        if not items:
+            continue
+        for b in page.get_text("dict")["blocks"]:
+            if b["type"] != 0:
+                continue
+            for l in b["lines"]:
+                chars = [(sp["font"], ch) for sp in l["spans"] for ch in sp["text"] if not ch.isspace()]
+                if not chars:
+                    continue
+                x0, y0, x1, y1 = l["bbox"]
+                hit = [
+                    it for it in items
+                    if y0 / ph - 0.004 <= it["y"] + it["h"] / 2 <= y1 / ph + 0.004
+                    and (x0 / pw - 0.01) <= it["x"] + it["w"] / 2 <= (x1 / pw + 0.01)
+                ]
+                if not hit:
+                    continue
+                hit.sort(key=lambda it: it["x"])
+                o = re.sub(r"\s+", "", "".join(it["t"] for it in hit))
+                a = "".join(ch for _, ch in chars)
+                sm = difflib.SequenceMatcher(None, a, o, autojunk=False)
+                if sm.ratio() < 0.6:
+                    continue
+                for tag, i1, i2, j1, j2 in sm.get_opcodes():
+                    if tag == "equal":
+                        for k in range(i1, i2):
+                            votes[chars[k]][a[k]] += 1
+                    elif tag == "replace" and (i2 - i1) == (j2 - j1):
+                        for k in range(i2 - i1):
+                            votes[chars[i1 + k]][o[j1 + k]] += 1
+    fm = {}
+    for key, c in votes.items():
+        best, n = c.most_common(1)[0]
+        total = sum(c.values())
+        if best != key[1] and n >= 2 and n / total >= 0.6:
+            fm[key] = best
+    return fm
+
+
+def lines_of(doc, first_page, ocr=None, fontmap=None):
+    """ocr: {ページ番号: [{t, x, y, w, h}...]}（正規化座標）。文字化けしたPDF用に、行の位置に重なるOCR結果で文字を置き換える"""
     out = []
     for pi in range(first_page, len(doc)):
         page = doc[pi]
+        pw, ph = page.rect.width, page.rect.height
         d = page.get_text("dict")
+        items = (ocr or {}).get(pi, [])
         for b in d["blocks"]:
             if b["type"] != 0:
                 continue
             for l in b["lines"]:
-                t = "".join(s["text"] for s in l["spans"])
+                if fontmap:
+                    t = "".join(fontmap.get((sp["font"], ch), ch) for sp in l["spans"] for ch in sp["text"])
+                else:
+                    t = "".join(s["text"] for s in l["spans"])
                 if not t.strip():
                     continue
-                out.append({"page": pi, "x0": l["bbox"][0], "y0": l["bbox"][1], "y1": l["bbox"][3], "text": t})
+                x0, y0, x1, y1 = l["bbox"]
+                if items and not re.fullmatch(r"\s*\d{1,3}\s*", t):
+                    hit = [
+                        it for it in items
+                        if y0 / ph - 0.004 <= it["y"] + it["h"] / 2 <= y1 / ph + 0.004
+                        and (x0 / pw - 0.01) <= it["x"] + it["w"] / 2 <= (x1 / pw + 0.01)
+                    ]
+                    if hit:
+                        hit.sort(key=lambda it: it["x"])
+                        hit = [it for it in hit if not (re.fullmatch(r"\d{1,3}", it["t"].strip()) and it["x"] < 0.12)] or hit
+                        o = " ".join(it["t"] for it in hit)
+                        if os.environ.get("QUIZ_OCR_MODE") == "primary":
+                            t = o
+                        elif GARBLE.search(t) or re.search(r"(?<![0-9２３４])つ選べ", t):
+                            t = repair(t, o)
+                out.append({"page": pi, "x0": x0, "y0": y0, "y1": y1, "text": t})
     return out
 
 
@@ -42,14 +141,17 @@ def lines_of_page(doc, pi):
     return [l for l in lines_of(doc, pi) if l["page"] == pi]
 
 
-def parse(doc, session, bookdoc, outdir, exam_no):
-    ls = [l for l in lines_of(doc, 3) if not re.match(r"^\s*DKIX", l["text"]) and not re.match(r"^\s*[—\-–― ]*\d+[—\-–― ]*$", l["text"].strip()) or re.match(r"^\s*\d{1,3}\s*$", l["text"])]
+def parse(doc, session, bookdoc, outdir, exam_no, ocr=None, fontmap=None):
+    ls = [l for l in lines_of(doc, 3, ocr, fontmap) if not re.match(r"^\s*DKIX", l["text"]) and not re.match(r"^\s*[—\-–― ]*\d+[—\-–― ]*$", l["text"].strip()) or re.match(r"^\s*\d{1,3}\s*$", l["text"])]
     # 問題番号の位置を順に探す
     starts = {}
     expect = 1
     for idx, l in enumerate(ls):
         t = l["text"].strip()
         m = re.match(rf"^{expect}(\s+\S.*|\s*)$", t)
+        # 100問目は先頭の「1」が欠けて「00」と読み取られる版がある
+        if not m and expect == 100:
+            m = re.match(r"^0?0[\s\u3000]+\S", t)
         if m and l["x0"] < 120:
             starts[expect] = idx
             expect += 1
@@ -67,10 +169,10 @@ def parse(doc, session, bookdoc, outdir, exam_no):
     return qs, missing, ls, starts
 
 
-def build(exam_no, session, qpdf, bpdf, answers, outdir):
+def build(exam_no, session, qpdf, bpdf, answers, outdir, ocr=None, fontmap=None):
     doc = fitz.open(qpdf)
     book = fitz.open(bpdf)
-    qs, missing, ls, starts = parse(doc, session, book, outdir, exam_no)
+    qs, missing, ls, starts = parse(doc, session, book, outdir, exam_no, ocr, fontmap)
     res = []
     intros = {}  # 問題番号 -> 導入文
     for n, seg in qs:
@@ -124,8 +226,8 @@ def build(exam_no, session, qpdf, bpdf, answers, outdir):
             "choices": [norm(choices.get(i, "")) for i in range(1, 6)],
             "pages": sorted({l["page"] for l in seg}),
             "y": [seg[0]["y0"], seg[-1]["y1"]] if seg else [0, 0],
-            "book": sorted({int(x) for x in re.findall(r"別冊No\.\s*(\d+)", body + intros.get(n, ""))}),
-            "figure": bool(FIG_WORDS.search(body)),
+            "book": sorted({int(x) for x in re.findall(r"別冊No\.(\d+)", re.sub(r"\s+", "", body + intros.get(n, "")))}),
+            "figure": bool(FIG_WORDS.search(re.sub(r"\s+", "", body))),
         })
     return res, missing
 
