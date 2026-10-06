@@ -51,6 +51,7 @@ export type QuizReveal = {
   answers: number[][];
   explanation: string | null;
   explanation_source: "ai" | "official" | null;
+  ref_url?: string | null;
 };
 
 export const SESSION_LABEL = { am: "午前", pm: "午後" } as const;

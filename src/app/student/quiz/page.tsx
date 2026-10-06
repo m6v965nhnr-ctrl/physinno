@@ -123,6 +123,7 @@ export default function QuizHomePage() {
                 {answered}
                 <span className="ml-1 text-sm font-medium text-gray-500">/ {total}問 解いた</span>
               </p>
+              <p className="mt-0.5 text-xs text-gray-500">そのうち正解 {correct}問</p>
             </div>
             <p className="text-right text-xs text-gray-500">
               正答率（最後の答えで数えます）
@@ -182,7 +183,7 @@ export default function QuizHomePage() {
                         <ProgressBar answered={u.answered} total={u.total} />
                       </div>
                       <p className="mt-1.5 text-[11px] text-gray-400">
-                        {u.answered === 0 ? "まだ解いていません" : `${u.answered}問 解いた ・ 正答率 ${percent(u.correct, u.answered)}%`}
+                        {u.answered === 0 ? "まだ解いていません" : `${u.answered}問 解いた ・ 正解 ${u.correct}問 ・ 正答率 ${percent(u.correct, u.answered)}%`}
                       </p>
                     </button>
                   ))}
@@ -206,7 +207,7 @@ export default function QuizHomePage() {
                   <ProgressBar answered={e.answered} total={e.total} />
                 </div>
                 <p className="mt-1.5 text-[11px] text-gray-400">
-                  {e.answered === 0 ? "まだ解いていません" : `${e.answered}問 解いた ・ 正答率 ${percent(e.correct, e.answered)}%`}
+                  {e.answered === 0 ? "まだ解いていません" : `${e.answered}問 解いた ・ 正解 ${e.correct}問 ・ 正答率 ${percent(e.correct, e.answered)}%`}
                 </p>
               </button>
             ))}

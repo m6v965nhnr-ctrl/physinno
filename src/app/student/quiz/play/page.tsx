@@ -408,6 +408,21 @@ export default function QuizPlayPage() {
                   この問題の解説は、まだありません。正答は厚生労働省が公開しているものです。
                 </p>
               )}
+
+              {reveal.ref_url && (
+                <p className="mt-3 text-xs leading-5 text-gray-500">
+                  もっと詳しい解説は、外部サイトの{" "}
+                  <a
+                    href={reveal.ref_url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 underline"
+                  >
+                    明日へブログ（この問題を含むページ）
+                  </a>{" "}
+                  も参考になります。
+                </p>
+              )}
             </div>
 
             <div className="flex items-center justify-between">
