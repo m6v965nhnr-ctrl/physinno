@@ -10,6 +10,7 @@ const PAINS = [
   "研修・学会の情報があちこちに散らばっていて探しにくい",
   "転職や就職の前に、病院の雰囲気や教育体制をもっと知りたい",
   "自分の経験や得意分野を、うまく伝えられていない",
+  "（学生の方）実習先・就活・国試の準備を、ひとつにまとめて管理したい",
 ];
 
 const FEATURES = [
@@ -174,7 +175,7 @@ export default function LandingPage() {
       <section className="mx-auto max-w-5xl px-6 pb-16 pt-10 md:pt-20">
         <div className="max-w-2xl">
           <p className="inline-block rounded-full px-3 py-1 text-xs font-semibold text-white" style={gradient}>
-            理学療法士・患者・研究者・病院・医療系企業のためのプラットフォーム
+            理学療法士・患者・学生・研究者・病院・医療系企業のためのプラットフォーム
           </p>
           {/* 画面幅に合わせて文字の大きさを変え、スマホでも「理学療法士の臨床を、」が1行に収まるようにする */}
           <h1
@@ -186,9 +187,9 @@ export default function LandingPage() {
             <span className="whitespace-nowrap">ひとりにしない。</span>
           </h1>
           <p className="mt-6 text-base leading-8 text-gray-600">
-            症例の共有・相談、9サイトを横断する論文検索とAIモード、全国の研修・学会情報、全国の病院情報と口コミ、PT同士のつながり。
+            症例の共有・相談、9サイトを横断する論文検索とAIモード、全国の研修・学会情報、全国の病院情報と口コミ、学生の実習・就活・国試のサポート、PT同士のつながり。
             <br className="hidden md:block" />
-            Re:lightは、理学療法士・患者・研究者・病院・医療系企業のための、学びと価値をつなぐプラットフォームです。
+            Re:lightは、理学療法士・患者・学生・研究者・病院・医療系企業のための、学びと価値をつなぐプラットフォームです。
           </p>
           <div className="mt-10 max-w-sm space-y-3">
             <PrimaryCta />
@@ -197,6 +198,12 @@ export default function LandingPage() {
               className="block w-full rounded-full border border-gray-300 bg-white px-6 py-4 text-center text-base font-medium text-gray-900 transition hover:bg-gray-50 active:scale-[0.98]"
             >
               理学療法士を探したい方はこちら
+            </Link>
+            <Link
+              href="/register?type=student"
+              className="block w-full rounded-full border border-gray-300 bg-white px-6 py-4 text-center text-base font-medium text-gray-900 transition hover:bg-gray-50 active:scale-[0.98]"
+            >
+              理学療法士をめざす学生の方はこちら
             </Link>
             <p className="text-center text-xs text-gray-500">登録無料・メールアドレスだけで1分</p>
           </div>

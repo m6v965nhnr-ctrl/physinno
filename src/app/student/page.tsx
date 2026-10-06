@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useMyAccount } from "@/lib/useMyAccount";
 import {
@@ -37,6 +38,7 @@ function dayText(days: number) {
 
 // 学生のホーム: 卒業・国試までの日数、直近の予定、今週の学習、各機能への入口
 export default function StudentHomePage() {
+  const router = useRouter();
   const { loading, userId } = useMyAccount(["student"]);
 
   const [profile, setProfile] = useState<StudentProfile | null>(null);
@@ -62,6 +64,11 @@ export default function StudentHomePage() {
     })();
   }, [userId]);
 
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    router.push("/");
+  }
+
   if (loading || name === undefined || !profile) {
     return (
       <main className="flex min-h-screen items-center justify-center bg-white">
@@ -78,11 +85,19 @@ export default function StudentHomePage() {
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
-        <div className="mx-auto max-w-2xl">
-          <p className="text-xs font-medium text-emerald-600">学生</p>
-          <h1 className="mt-1 text-xl font-semibold tracking-tight">
-            {name ? `${name}さんの学生ホーム` : "学生ホーム"}
-          </h1>
+        <div className="mx-auto flex max-w-2xl items-start justify-between gap-3">
+          <div className="min-w-0">
+            <p className="text-xs font-medium text-emerald-600">学生</p>
+            <h1 className="mt-1 text-xl font-semibold tracking-tight">
+              {name ? `${name}さんの学生ホーム` : "学生ホーム"}
+            </h1>
+          </div>
+          <button
+            onClick={handleLogout}
+            className="shrink-0 rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+          >
+            ログアウト
+          </button>
         </div>
       </header>
 
