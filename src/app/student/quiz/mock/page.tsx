@@ -295,8 +295,8 @@ export default function MockExamPage() {
     const unanswered = qs.length - answeredCount;
     const msg =
       unanswered > 0
-        ? `未回答が${unanswered}問あります。このまま採点しますか？`
-        : "採点しますか？（採点すると、解答は変えられません）";
+        ? `未回答が${unanswered}問あります。試験を終了して、このまま採点しますか？`
+        : "試験を終了して、採点しますか？（採点すると、解答は変えられません）";
     if (confirm(msg)) submit();
   }
 
@@ -328,7 +328,7 @@ export default function MockExamPage() {
             onClick={handleSubmit}
             className="shrink-0 rounded-full bg-black px-4 py-2 text-xs font-medium text-white"
           >
-            採点する
+            試験終了
           </button>
         </div>
       </header>
