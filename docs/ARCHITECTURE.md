@@ -39,6 +39,18 @@
 - 試験情報: `schools`(学校。学生が名前で登録・候補から選択) → `exam_subjects`(学年×学期の科目。学生が追加) → `exam_notes`(年度・試験の種類・難易度・出題傾向・覚えている出題内容・添付ファイル)。読み書きは `is_school_member()`(同じ学校を登録した学生・卒業生)のみ。投稿者は `list_exam_notes` で返さない。添付は非公開バケット `exam-files`(パスは `学校ID/投稿者ID/…`、同じ学校のメンバーだけ読める)。通報で削除するときは、運営が画面側でファイル本体を先に削除する(`adminRemoveExamNoteFile`)。
 - `hospitals.departments / beds_*` は診療科・病床の絞り込み用(厚労省オープンデータから別途取り込む。未取り込みの間は絞り込み欄を出さない)。
 
+## 投稿の公開範囲・匿名投稿・勤務先を隠す設定
+- `posts` に `visibility`(public / followers / private)、`title_public`(題名だけ全員に見せる)、`is_anonymous`(匿名)、`target_level`(all / student / newcomer / junior / mid / veteran)を追加。`is_public` は古い画面との互換のため残し、トリガー `posts_sync_visibility` が `visibility` と食い違わないように保つ。匿名にできるのは `visibility = 'public'` の投稿だけ(CHECK 制約)。
+- 読み取りは、すべてサーバー側の関数を通す。`posts` / `comments` を直接読めるのは本人だけ(RLS)。
+  - `list_posts(author, types, before, limit, level, id)`: 公開範囲の外の人には、題名だけ公開の投稿は題名だけ(`restricted = true`、本文・添付・コメント数は空)、それ以外は返さない。匿名の投稿は、本人以外には `user_id` を返さず、作者の投稿一覧(`p_author`)にも出さない。いいね数・コメント数はその場で数える。ログインしていない人(anon)も呼べる(公開の投稿だけ)。
+  - `list_comments(post_ids)`: 読める投稿のコメントだけ。匿名の投稿で、作者が書いたコメントは `user_id` を外す(`by_author = true`)。
+  - `notify_post_author(post, type)`: いいね・コメントの通知。匿名の投稿でも画面が作者を知らなくてよいように、宛先(投稿者)はサーバーが決める。
+  - `can_read_post(post)`: コメント・いいねの作成と、いいねの読み取りの RLS が使う。
+- 学術の一覧は `/posts`(症例・論文・院内症例発表・学会発表・研修)。読む人のレベルは、プロフィールの経験年数(`levelOfReader`: 1〜3年=新人、4〜7=若手、8〜15=中堅、16〜=ベテラン、学生=学生)から決め、最初はそのレベルで絞る。絞り込みは、そのレベル向けと「どのレベルでも」の投稿。
+- 勤務先を隠す: `pt_profiles.hide_workplace`。true のとき、トリガー `pt_profiles_hide_workplace` が、`workplace / hospital_id / department / workplace_size` を `pt_private.hidden_*`(本人だけが読める)へ移し、公開のプロフィールの値を null にする。false に戻すと、元の値を `pt_profiles` に戻す。画面側で隠すのではなく、値そのものを公開用の表に置かない。編集画面と自分のマイページは、`pt_private` から読んで本人にだけ表示する。
+- マイグレーションは、`20261010_posts_privacy.sql`(加えるだけ) → 新しい画面を公開 → `20261010_posts_privacy_lockdown.sql`(直接の読み取りを絞る) の順に適用した。
+- 既知の課題: `notifications` の INSERT ポリシーは「actor_id が本人」だけを見ているため、宛先を指定した通知を、任意のユーザーに送れる(今回の対象外)。
+
 ## 通報・削除申請
 - `reports` に通報を保存(クライアントは `target_type / target_id / reason / detail` の列だけ書ける。状態・対応メモは運営のみ)。
 - 運営は `/admin` の「通報・削除申請」で、`admin_list_reports` / `admin_resolve_report`(どちらも admin_users のみ実行可)を使って確認・削除・クローズする。投稿を削除するときはコメント・いいね・通知も一緒に消す。
