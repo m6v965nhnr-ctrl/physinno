@@ -47,6 +47,8 @@ type PaperResult = {
   evidenceLevel?: EvidenceLevel | null;
   // "type" = 出版タイプ・登録情報などから確実に判定 / "text" = 題名・要約の文面からの推定
   evidenceBasis?: EvidenceBasis | null;
+  // 他の論文に引用された数（取得できないサイトは入らない）
+  citationCount?: number | null;
 };
 
 // 判定結果を、検索結果に入れる形にする
@@ -142,6 +144,9 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
     () => ({}) as Record<string, PubMedDetail>
   );
 
+  // 引用された数は、NIHのiCiteから取得する（失敗しても検索結果は返す）
+  const citations = await fetchPubMedCitations(ids).catch(() => ({}) as Record<string, number>);
+
   return ids
     .map((id) => result[id])
     .filter((item): item is PubMedSummaryItem => Boolean(item))
@@ -156,7 +161,23 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
       abstract: details[item.uid]?.abstract ?? null,
       evidenceLevel: details[item.uid]?.judgement?.level ?? null,
       evidenceBasis: details[item.uid]?.judgement?.basis ?? null,
+      citationCount: citations[item.uid] ?? null,
     }));
+}
+
+// PubMedの論文が引用された数（NIH iCite。公式API・キー不要）
+async function fetchPubMedCitations(ids: string[]): Promise<Record<string, number>> {
+  const res = await fetch(
+    `https://icite.od.nih.gov/api/pubs?pmids=${ids.join(",")}&fl=pmid,citation_count`,
+    { signal: AbortSignal.timeout(6000) }
+  );
+  if (!res.ok) return {};
+  const data = (await res.json()) as { data?: { pmid: number; citation_count: number | null }[] };
+  const out: Record<string, number> = {};
+  for (const d of data.data ?? []) {
+    if (typeof d.citation_count === "number") out[String(d.pmid)] = d.citation_count;
+  }
+  return out;
 }
 
 type PubMedDetail = { abstract: string | null; judgement: ReturnType<typeof judgeEvidence> };
@@ -364,12 +385,13 @@ type SemanticScholarItem = {
   externalIds?: { DOI?: string };
   url?: string;
   publicationTypes?: string[] | null;
+  citationCount?: number | null;
 };
 
 async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
   const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
     query
-  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds,publicationTypes`;
+  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds,publicationTypes,citationCount`;
 
   const headers: Record<string, string> = {
     "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)",
@@ -404,6 +426,7 @@ async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
         (item.externalIds?.DOI ? `https://doi.org/${item.externalIds.DOI}` : ""),
       abstract: item.abstract || null,
       aiSummary: item.tldr?.text || null,
+      citationCount: typeof item.citationCount === "number" ? item.citationCount : null,
       ...judged({
         types: (item.publicationTypes ?? []).map((t) =>
           t === "MetaAnalysis" ? "meta-analysis" : t === "CaseReport" ? "case report" : t === "Editorial" ? "editorial" : t
@@ -428,6 +451,7 @@ type EuropePmcItem = {
   id?: string;
   abstractText?: string;
   pubTypeList?: { pubType?: string[] };
+  citedByCount?: number;
 };
 
 async function searchEuropePmc(
@@ -471,6 +495,7 @@ async function searchEuropePmc(
           ? `https://europepmc.org/article/${item.source}/${item.id}`
           : "",
       abstract: item.abstractText ? decodeEntities(item.abstractText) : null,
+      citationCount: typeof item.citedByCount === "number" ? item.citedByCount : null,
       ...judged({
         types: item.pubTypeList?.pubType ?? [],
         title: item.title,
@@ -490,6 +515,7 @@ type OpenAlexItem = {
   publication_year?: number;
   doi?: string;
   ids?: { openalex?: string };
+  cited_by_count?: number;
 };
 
 // アブストラクトは単語→出現位置のインデックス形式で返るため、文章に復元する
@@ -513,7 +539,7 @@ async function searchOpenAlex(query: string): Promise<PaperResult[]> {
   const res = await fetch(
     `https://api.openalex.org/works?search=${encodeURIComponent(
       query
-    )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids`,
+    )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids,cited_by_count`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -535,6 +561,7 @@ async function searchOpenAlex(query: string): Promise<PaperResult[]> {
       year: item.publication_year ? String(item.publication_year) : null,
       url: item.doi || item.ids?.openalex || "",
       abstract: reconstructAbstract(item.abstract_inverted_index),
+      citationCount: typeof item.cited_by_count === "number" ? item.cited_by_count : null,
     }))
     .filter((r) => r.url);
 }

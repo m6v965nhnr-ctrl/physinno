@@ -26,6 +26,8 @@ export type PaperResult = {
   evidenceLevel?: EvidenceLevel | null;
   // "type" = 出版タイプなどから確実に判定 / "text" = 題名・要約の文面からの推定
   evidenceBasis?: EvidenceBasis | null;
+  // 他の論文に引用された数（PubMed・Semantic Scholar・Europe PMC・OpenAlexで取得。ほかのサイトは入らない）
+  citationCount?: number | null;
 };
 
 export type SavedPaper = {

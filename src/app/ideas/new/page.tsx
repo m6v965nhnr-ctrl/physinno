@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
-import { CATEGORIES, TOPICS, getTopic, topicsOf } from "@/content/ideas";
+import { CATEGORIES, getTopic, topicsOf, type CategoryKey } from "@/content/ideas";
 import { IdeaInput, PHASES, PHASE_LABEL, createIdea } from "@/lib/ideas";
 
 export default function NewIdeaPage() {
@@ -37,6 +37,7 @@ function NewIdeaInner() {
   const [allowed, setAllowed] = useState<boolean | null>(null);
   const [userId, setUserId] = useState<string | null>(null);
   const [slug, setSlug] = useState(getTopic(initial) ? initial : "");
+  const [category, setCategory] = useState<CategoryKey | "">(getTopic(initial)?.category ?? "");
   const [v, setV] = useState(EMPTY);
   const [saving, setSaving] = useState(false);
 
@@ -55,7 +56,7 @@ function NewIdeaInner() {
 
   async function submit() {
     if (!userId) return;
-    if (!slug) return notify("疾患を選択してください");
+    if (!slug) return notify("分類と疾患を選択してください");
     if (v.title.trim().length < 2) return notify("アイデアの名前を入力してください");
     if (v.method.trim().length < 5) return notify("リハビリの方法を入力してください");
 
@@ -103,22 +104,44 @@ function NewIdeaInner() {
 
         <div className="mt-5 space-y-5">
           <div>
-            <label className={label} htmlFor="topic">疾患 <span className="text-xs font-normal text-red-500">（必須）</span></label>
-            <select id="topic" value={slug} onChange={(e) => setSlug(e.target.value)} className={input}>
+            <label className={label} htmlFor="category">分類（診療報酬の区分） <span className="text-xs font-normal text-red-500">（必須）</span></label>
+            <select
+              id="category"
+              value={category}
+              onChange={(e) => {
+                setCategory(e.target.value as CategoryKey | "");
+                setSlug("");
+              }}
+              className={input}
+            >
               <option value="">選択してください</option>
-              {CATEGORIES.filter((c) => !c.comingSoon).map((c) => (
-                <optgroup key={c.key} label={c.name}>
-                  {topicsOf(c.key).map((t) => (
-                    <option key={t.slug} value={t.slug}>
-                      {t.name}
-                    </option>
-                  ))}
-                </optgroup>
+              {CATEGORIES.map((c) => (
+                <option key={c.key} value={c.key} disabled={c.comingSoon}>
+                  {c.name}
+                  {c.comingSoon ? "（準備中）" : ""}
+                </option>
               ))}
             </select>
-            {TOPICS.length > 0 && (
-              <p className="mt-1 text-xs text-gray-400">ほかの疾患は、順次追加します。</p>
-            )}
+          </div>
+
+          <div>
+            <label className={label} htmlFor="topic">疾患 <span className="text-xs font-normal text-red-500">（必須）</span></label>
+            <select
+              id="topic"
+              value={slug}
+              disabled={!category}
+              onChange={(e) => setSlug(e.target.value)}
+              className={`${input} disabled:bg-gray-50 disabled:text-gray-400`}
+            >
+              <option value="">{category ? "選択してください" : "先に、分類を選んでください"}</option>
+              {category &&
+                topicsOf(category).map((t) => (
+                  <option key={t.slug} value={t.slug}>
+                    {t.name}
+                  </option>
+                ))}
+            </select>
+            <p className="mt-1 text-xs text-gray-400">ほかの疾患は、順次追加します。</p>
           </div>
 
           <div>

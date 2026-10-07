@@ -1,7 +1,7 @@
 "use client";
 
 import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import {
@@ -138,6 +138,12 @@ function ResultCard({
         </span>
       )}
 
+      {typeof r.citationCount === "number" && (
+        <span className="ml-1.5 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600" title="他の論文に引用された数">
+          引用 {r.citationCount.toLocaleString()}
+        </span>
+      )}
+
       <a
         href={r.url}
         target="_blank"
@@ -253,6 +259,8 @@ export default function PaperSearch() {
   // ノーマルモード：1回ごとに結果を置き換える
   const [results, setResults] = useState<PaperResult[]>([]);
   const [searched, setSearched] = useState(false);
+  // 並び順: 発表が新しい順（既定）/ 引用数が多い順（同じ引用数なら、発表が新しい順）
+  const [sortBy, setSortBy] = useState<"year" | "citations">("year");
   const [translatedQuery, setTranslatedQuery] = useState<string | null>(null);
   // ノーマルモードで各論文の要約（アブストラクト）を表示するか
   const [showSummaries, setShowSummaries] = useState(false);
@@ -261,6 +269,19 @@ export default function PaperSearch() {
   const [aiTurns, setAiTurns] = useState<AiTurn[]>([]);
   const [aiNotice, setAiNotice] = useState<string | null>(null);
   const conversationEndRef = useRef<HTMLDivElement>(null);
+
+  const sortedResults = useMemo(() => {
+    const yearOf = (r: PaperResult) => (r.year ? Number(r.year) || -1 : -1);
+    return [...results].sort((a, b) => {
+      if (sortBy === "citations") {
+        // 引用数がない論文（取得できないサイト）は、後ろに回す
+        const ac = a.citationCount ?? -1;
+        const bc = b.citationCount ?? -1;
+        if (ac !== bc) return bc - ac;
+      }
+      return yearOf(b) - yearOf(a);
+    });
+  }, [results, sortBy]);
 
   // 保存済み論文のurl→saved_papers.id。保存/保存解除の両方をこのマップで判定する
   const [savedMap, setSavedMap] = useState<Record<string, string>>({});
@@ -813,7 +834,31 @@ export default function PaperSearch() {
                 </>
               )}
 
-              {results.map((r, i) => (
+              {results.length > 0 && (
+                <div className="flex items-center gap-2 text-xs text-gray-600">
+                  <span className="shrink-0">並び順</span>
+                  {([["year", "発表が新しい順"], ["citations", "引用数が多い順"]] as const).map(([key, label]) => (
+                    <button
+                      key={key}
+                      type="button"
+                      aria-pressed={sortBy === key}
+                      onClick={() => setSortBy(key)}
+                      className={`rounded-full border px-3 py-1.5 ${
+                        sortBy === key ? "border-gray-900 bg-gray-900 text-white" : "border-gray-200 hover:bg-gray-50"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  ))}
+                </div>
+              )}
+              {sortBy === "citations" && results.length > 0 && (
+                <p className="-mt-1 text-[11px] leading-4 text-gray-400">
+                  引用数は、PubMed・Semantic Scholar・Europe PMC・OpenAlexの論文で表示します（ほかのサイトの論文は、後ろに並びます）。引用数が同じ場合は、発表が新しい順です。出たばかりの論文は、引用数がまだ反映されていないことがあります。
+                </p>
+              )}
+
+              {sortedResults.map((r, i) => (
                 <ResultCard
                   key={`${r.source}-${i}`}
                   r={r}
