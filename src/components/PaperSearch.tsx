@@ -966,7 +966,7 @@ function OtherSiteButtons({ query }: { query: string }) {
   );
 }
 
-// 検索結果の操作ボタン。1行目：翻訳・要約、2行目：保存リスト（保存している数）
+// 検索結果の操作ボタン。翻訳・要約・保存リスト（保存している数）を、1列に並べる
 function ResultToolbar({
   onTranslate,
   translating,
@@ -982,49 +982,35 @@ function ResultToolbar({
   savedCount: number | null;
   onOpenSaved: () => void;
 }) {
-  return (
-    <div className="space-y-2">
-      <div className="flex flex-wrap items-center gap-2">
-        <button
-          onClick={onTranslate}
-          disabled={translating}
-          className="rounded-full border border-gray-200 px-4 py-1.5 text-left text-xs leading-snug text-gray-600 hover:bg-gray-50 disabled:opacity-50"
-        >
-          {translating ? (
-            "翻訳中…"
-          ) : (
-            <>
-              🌐 タイトルを
-              <br />
-              日本語に翻訳
-            </>
-          )}
-        </button>
+  const base =
+    "flex items-center justify-center gap-1 whitespace-nowrap rounded-full border px-2 py-2 text-xs hover:bg-gray-50";
 
-        {onToggleSummaries && (
-          <button
-            onClick={onToggleSummaries}
-            aria-pressed={showSummaries}
-            className={`rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
-              showSummaries
-                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                : "border-gray-200 text-gray-600"
-            }`}
-          >
-            {showSummaries ? "📄 要約を閉じる" : "📄 要約を表示"}
-          </button>
-        )}
-      </div>
+  return (
+    <div className="flex gap-2">
+      <button
+        onClick={onTranslate}
+        disabled={translating}
+        className={`${base} flex-1 border-gray-200 text-gray-600 disabled:opacity-50`}
+      >
+        {translating ? "翻訳中…" : "🌐 タイトル翻訳"}
+      </button>
+
+      {onToggleSummaries && (
+        <button
+          onClick={onToggleSummaries}
+          aria-pressed={showSummaries}
+          className={`${base} flex-1 ${
+            showSummaries ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-gray-200 text-gray-600"
+          }`}
+        >
+          {showSummaries ? "📄 要約を閉じる" : "📄 要約表示"}
+        </button>
+      )}
 
       {savedCount !== null && (
-        <button
-          onClick={onOpenSaved}
-          className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
-        >
+        <button onClick={onOpenSaved} className={`${base} flex-1 border-gray-200 text-gray-600`}>
           📑 保存リスト
-          <span className="rounded-full bg-gray-900 px-1.5 text-[10px] font-semibold text-white">
-            {savedCount}
-          </span>
+          <span className="rounded-full bg-gray-900 px-1.5 text-[10px] font-semibold text-white">{savedCount}</span>
         </button>
       )}
     </div>

@@ -20,7 +20,7 @@ export default function PrivacyPage() {
         <h1 className="mt-8 text-2xl font-semibold tracking-tight text-gray-900">
           プライバシーポリシー
         </h1>
-        <p className="mt-2 text-xs text-gray-400">最終更新日: 2026年10月6日</p>
+        <p className="mt-2 text-xs text-gray-400">最終更新日: 2026年10月8日</p>
 
         <div className="mt-8 space-y-8 text-sm leading-7 text-gray-700">
           <section>
@@ -264,7 +264,7 @@ export default function PrivacyPage() {
                       Google（Gemini API）
                     </td>
                     <td className="px-3 py-2">
-                      AIモードで入力した質問文、直近の会話の履歴、検索で取得した論文のタイトルと要約。氏名やメールアドレス等のアカウント情報は送信しません。
+                      AIモードで入力した質問文、直近の会話の履歴、検索で取得した論文のタイトルと要約。臨床アイデアの「AIに相談」で選択・入力した患者さんの状態（年代・性別・時期・主な問題・評価値・目標。選択式と数値のみで、氏名・病院名などは入力できません）。これらは保存しません。氏名やメールアドレス等のアカウント情報は送信しません。
                       <strong>
                         無料枠の利用のため、Googleの規約により、入力内容がGoogleのサービス改善に利用されたり、人が確認したりする場合があります。
                       </strong>

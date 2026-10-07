@@ -85,3 +85,10 @@
 - PDF・印刷: 一覧の「PDF・印刷」タブに、厚生労働省の公式PDF(問題・別冊・正答)へのリンク(`src/lib/quizPdf.ts`)と、解説つきの印刷用ページ `/student/quiz/print`(RPC `quiz_print_exam`)がある。印刷用ページは、ブラウザの印刷から「PDFに保存」で、PDFにできる。
 - 外部の解説: `quiz_questions.ref_url` に、明日へブログの該当ページ(5問ごと)のURLを入れ、答え合わせ画面にリンクを出す。文章の転載はしない。
 - 先生用のクラスと課題(`supabase/migrations/20261009_quiz_classes.sql`): PTアカウントが `/student/quiz/teacher` で申請(`quiz_teacher_requests`) → 運営が `/admin` で承認(`quiz_teachers`)。先生は `quiz_classes`(6文字の参加コード)を作り、`quiz_assignments`(単元・回・難易度で、問題をランダムに選んで固定)を配る。学生は `/student/quiz/classes` でコードを入れて参加(`quiz_class_members`)し、`/student/quiz/play?assignment=<id>` で解く。課題の解答は `quiz_assignment_answers` に最初の1回だけ記録(通常のドリルの記録 `quiz_progress` にも反映)。先生に見えるのは、いまクラスにいる学生の、配った課題の結果(名前・正誤)だけ(`/student/quiz/teacher/assignment?id=`)。学生はいつでも退出でき、退出すると先生の画面から消える。難易度は `quiz_progress` の全ユーザーの正答率から自動(5人以上が解いた問題だけ。80%以上=かんたん、50〜80%=ふつう、50%未満=むずかしい)。テーブルはすべてクライアントから直接は読み書きできず、SECURITY DEFINER の関数だけで操作する。
+
+## 臨床アイデア（2026-10-08〜）
+- 場所: `/pts` の「臨床アイデア」タブ（PT・学生のみ）と `/ideas`。`/ideas` は `PT_ONLY_PATH_PREFIXES` に入れてあり、一般アカウントは開けない。
+- 疾患の中身（診療報酬の区分 → 疾患 → 評価・編集部のアイデア・注意・参考資料）は、**コードに持つ**（`src/content/ideas/*.ts`。型は `types.ts`、区分は `categories.ts`）。PTの確認・修正は、ファイルの差分で行う。現在: 運動器・呼吸器・脳血管疾患等（神経系）・廃用症候群の各5疾患。心大血管・がん・障害児（者）・難病は「準備中」の枠だけ。
+- PTの投稿は DB: `clinical_ideas`（疾患 slug にひも付く。投稿できるのは `pt` のみ、読めるのは `pt`・`student`）と `clinical_idea_reactions`（like/save/practiced）。表は **自分の行だけ**直接読める。他人の投稿は RPC `list_clinical_ideas`（匿名の投稿は、`author_id`・名前・資格・経験を返さない）、件数は `clinical_idea_counts`、反応は `toggle_idea_reaction`。1日20件まで（トリガー）。通報の対象 `clinical_idea` を追加済み（`admin_list_reports` / `admin_resolve_report`）。
+- AIに相談: `POST /api/ideas/suggest`（Gemini）。入力は選択式・数値のみ（`src/lib/ideasAi.ts` の一覧にない値は、サーバーで拒否）。入力は保存しない。根拠は、疾患の編集部まとめ＋PTの投稿（人気順5件。ユーザーのトークンで RPC を呼ぶ）。出力は「検討できる選択肢」と、各選択肢の論文検索の語。1人あたり1時間10回（メモリ上の簡易制限）。`/privacy` の外部送信の表に記載済み。
+- 論文検索への連携: `/pts?mode=papers&q=…`（`PaperSearch` が `?q=` を読んで検索する）。

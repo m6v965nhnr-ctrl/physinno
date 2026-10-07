@@ -8,14 +8,16 @@ import { getMyAccountType, isPtLike } from "@/lib/account";
 import SeminarNews from "@/components/SeminarNews";
 import PaperSearch from "@/components/PaperSearch";
 import HospitalSearch from "@/components/HospitalSearch";
+import IdeasBrowser from "@/components/IdeasBrowser";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle, toHiragana } from "@/lib/format";
 
-type SearchMode = "papers" | "hospitals" | "pts";
+type SearchMode = "papers" | "ideas" | "hospitals" | "pts";
 
 // PT: 論文 / 病院 / PT。それ以外（一般・未ログイン）: 病院 / PT
 const PT_MODES: [SearchMode, string][] = [
   ["papers", "論文を探す"],
+  ["ideas", "臨床アイデア"],
   ["hospitals", "病院を探す"],
   ["pts", "PTを探す"],
 ];
@@ -168,7 +170,7 @@ function PTSearchPageInner() {
             role="tablist"
             aria-label="探すの種類"
             className={`mb-5 grid ${
-              modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
+              modes.length === 4 ? "grid-cols-4 text-xs" : modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
             } rounded-full border border-gray-200 p-1 text-sm font-medium`}
           >
             {modes.map(([key, label]) => (
@@ -196,6 +198,11 @@ function PTSearchPageInner() {
           <>
             <h1 className="text-3xl font-semibold mb-3">論文を探す</h1>
             <PaperSearch />
+          </>
+        ) : mode === "ideas" ? (
+          <>
+            <h1 className="text-3xl font-semibold mb-3">臨床アイデア</h1>
+            <IdeasBrowser />
           </>
         ) : mode === "hospitals" ? (
           <>

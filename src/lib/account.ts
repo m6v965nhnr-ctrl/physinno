@@ -22,6 +22,7 @@ export const PT_ONLY_PATH_PREFIXES = [
   "/mypage/edit",
   "/mypage/achievements",
   "/student",
+  "/ideas",
 ];
 
 export function isPtOnlyPath(pathname: string) {
