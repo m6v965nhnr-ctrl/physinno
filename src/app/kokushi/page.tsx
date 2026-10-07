@@ -63,7 +63,7 @@ export default async function KokushiIndexPage() {
 
         <p className="mt-4 text-sm leading-7 text-gray-700">
           厚生労働省が公開している理学療法士国家試験の問題を、1問ずつ解いて正答を確認できます。
-          ログインは不要です。解説・間違えた問題の復習・模擬試験は、無料登録で使えます。
+          ログインは不要で、解説も3問まで読めます。全問の解説・間違えた問題の復習・模擬試験は、無料登録で使えます。
         </p>
 
         <h2 className="mt-10 text-lg font-bold text-gray-900">回ごとに解く</h2>

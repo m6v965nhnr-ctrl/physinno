@@ -8,7 +8,7 @@ export default function KokushiCta({ compact = false }: { compact?: boolean }) {
         {compact ? "解説・苦手分析は無料登録で" : "全1,000問を、解説つきで解き続けよう"}
       </p>
       <p className="mt-1 text-sm leading-6 text-white/95">
-        無料登録すると、全問の解説、間違えた問題だけの復習、科目ごとの正答率、時間を計る模擬試験、国試までのカウントダウンが使えます。
+        無料登録すると、全1,000問の解説（登録なしでも3問まで）、間違えた問題だけの復習、科目ごとの正答率、時間を計る模擬試験、国試までのカウントダウンが使えます。
       </p>
       <Link
         href="/register?type=student"

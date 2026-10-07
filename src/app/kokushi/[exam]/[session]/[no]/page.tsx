@@ -114,6 +114,9 @@ export default async function KokushiQuestionPage({ params }: Props) {
 
           <div className="mt-6">
             <AnswerReveal
+              examNo={q.exam_no}
+              session={q.session}
+              no={q.no}
               choices={q.choices ?? []}
               choicesInImage={q.choices_in_image}
               answers={q.answers ?? []}
