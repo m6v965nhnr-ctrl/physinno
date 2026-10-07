@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { PIXEL_ENABLED } from "@/lib/metaPixel";
 
 // 検索から来た人が「自分向けだ」と分かり、そのまま登録できるランディングページ
 // （Server Component：本文がHTMLに含まれるので検索エンジンが読める）
@@ -283,7 +284,10 @@ export default function LandingPage() {
             </li>
             <li className="rounded-2xl bg-[#f7faf9] p-4">
               <strong>免許番号・連絡先・生年月日・証明写真は、本人だけ。</strong>
-              ほかの人には見えない領域で保管します。広告や行動分析のためのトラッキングは使っていません。
+              ほかの人には見えない領域で保管します。
+              {PIXEL_ENABLED
+                ? "行動分析のための解析ツールは使っていません。広告の効果測定は、同意した方にだけ行います。"
+                : "広告や行動分析のためのトラッキングは使っていません。"}
             </li>
           </ul>
           <p className="mt-4 text-xs leading-6 text-gray-500">

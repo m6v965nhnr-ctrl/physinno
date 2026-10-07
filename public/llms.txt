@@ -21,5 +21,6 @@
 
 - [理学療法士国家試験 過去問（第57回〜第61回・正答つき）](https://relight-1wet.vercel.app/kokushi): ログインなしで1問ずつ解いて正答を確認できる
 - [理学療法士を探す](https://relight-1wet.vercel.app/pts): 地域・専門分野から理学療法士を検索
+- [エビデンスレベル早見表（I〜VI）](https://relight-1wet.vercel.app/evidence-levels): 研究デザインごとの論文の強さの目安（Minds 2007）
 - [コラム](https://relight-1wet.vercel.app/columns): 理学療法士のキャリア・臨床・学生生活に関する記事
 - [利用規約](https://relight-1wet.vercel.app/terms) / [プライバシーポリシー](https://relight-1wet.vercel.app/privacy)

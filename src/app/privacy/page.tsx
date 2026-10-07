@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
+import { PIXEL_ENABLED } from "@/lib/metaPixel";
 
 export const metadata: Metadata = {
   title: "プライバシーポリシー",
@@ -95,7 +96,9 @@ export default function PrivacyPage() {
               </li>
             </ul>
             <p className="mt-3">
-              本サービスは、広告配信や行動の分析を目的とした解析ツール・トラッキングは使用していません。
+              {PIXEL_ENABLED
+                ? "本サービスは、利用者の行動を分析する解析ツールは使用していません。広告の効果測定のためのMetaの計測ツール（下記7）は、訪問者が同意した場合にのみ読み込みます。"
+                : "本サービスは、広告配信や行動の分析を目的とした解析ツール・トラッキングは使用していません。"}
             </p>
           </Section>
 
@@ -301,6 +304,12 @@ export default function PrivacyPage() {
                 </tbody>
               </table>
             </div>
+            {PIXEL_ENABLED && (
+              <p className="mt-3">
+                <strong>広告の効果測定（Metaピクセル）</strong>
+                ：Meta Platforms, Inc.（米国）の計測ツールです。バナーで「同意する」を選んだ場合にのみ、閲覧したページ・登録の完了・ブラウザの識別情報などが、Metaに送信されます。広告の成果の確認と、広告の配信の最適化に使われます。「同意しない」を選ぶと、何も送信されません。同意は、お使いの端末のブラウザの保存領域を削除すると、再度選べます。
+              </p>
+            )}
             <p className="mt-3">
               「Google Scholar」「医中誌Web」「Cochrane Library」「Physiopedia」などは、外部サイトへのリンクを開くだけで、本サービスから情報を送信することはありません（リンク先でのお客様の操作は、各サイトの規約・ポリシーに従います）。
             </p>

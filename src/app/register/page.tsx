@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getAttribution } from "@/lib/attribution";
+import { trackRegistration } from "@/lib/metaPixel";
 import { graduationYearOptions } from "@/lib/student";
 
 type AccountType = "pt" | "general" | "student";
@@ -110,6 +111,8 @@ export default function RegisterPage() {
       setLoading(false);
       return;
     }
+
+    trackRegistration();
 
     // 一般の方は検索から始める。PTは、他のPTに見つけてもらえるよう
     // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。

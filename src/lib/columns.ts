@@ -174,6 +174,33 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-09-29",
     updatedAt: "2026-09-29",
   },
+  {
+    slug: "pt-evidence-level-guide",
+    title: "エビデンスレベルとは？理学療法士が論文を読むときの見方【I〜VI早見表】",
+    description:
+      "システマティックレビュー、RCT、コホート研究、症例報告。研究デザインごとのエビデンスレベル（Minds 2007）を、理学療法の例で整理。使うときの注意と、論文を探す順番も解説します。",
+    category: "論文・エビデンス",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+  },
+  {
+    slug: "pubmed-search-for-pt",
+    title: "PubMedの使い方｜理学療法士のための論文検索の基本（PICO・絞り込み）",
+    description:
+      "PubMedで理学療法の論文を探す基本を、英語の検索語の作り方、PICO、AND・ORの使い方、RCT・システマティックレビューでの絞り込みまで、順番に解説します。",
+    category: "論文・エビデンス",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+  },
+  {
+    slug: "pt-how-to-read-papers",
+    title: "新人PTのための論文の読み方｜短時間で臨床に使えるか判断する7つの点",
+    description:
+      "忙しい臨床の合間でも読める、論文の読み方の順番と、研究デザイン・対象者・比較・評価・結果の大きさなど確認する7つの点。抄読会で話す型も紹介します。",
+    category: "論文・エビデンス",
+    publishedAt: "2026-10-07",
+    updatedAt: "2026-10-07",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {

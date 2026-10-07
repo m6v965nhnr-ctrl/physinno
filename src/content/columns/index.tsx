@@ -17,6 +17,9 @@ import BasketballTrainerPath from "./basketball-trainer-path";
 import PtStudyHoursComparison from "./pt-study-hours-comparison";
 import PtKokushiPassRate from "./pt-kokushi-pass-rate";
 import PtKokushiStudyPlan from "./pt-kokushi-study-plan";
+import PtEvidenceLevelGuide from "./pt-evidence-level-guide";
+import PubmedSearchForPt from "./pubmed-search-for-pt";
+import PtHowToReadPapers from "./pt-how-to-read-papers";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -37,4 +40,7 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "pt-study-hours-comparison": PtStudyHoursComparison,
   "pt-kokushi-pass-rate": PtKokushiPassRate,
   "pt-kokushi-study-plan": PtKokushiStudyPlan,
+  "pt-evidence-level-guide": PtEvidenceLevelGuide,
+  "pubmed-search-for-pt": PubmedSearchForPt,
+  "pt-how-to-read-papers": PtHowToReadPapers,
 };

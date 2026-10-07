@@ -4,6 +4,7 @@ import AuthGuard from "@/components/AuthGuard";
 import BottomNavWrapper from "@/components/BottomNavWrapper";
 import Toaster from "@/components/Toaster";
 import AttributionCapture from "@/components/AttributionCapture";
+import MetaPixel from "@/components/MetaPixel";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -63,6 +64,7 @@ export default function RootLayout({
 
         <BottomNavWrapper />
         <AttributionCapture />
+        <MetaPixel />
         <Toaster />
       </body>
     </html>
