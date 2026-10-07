@@ -11,9 +11,10 @@
 import { containsJapanese, translateText } from "@/lib/server/mymemory";
 import { translateMedicalJapanese } from "@/lib/server/medicalGlossary";
 import {
+  EvidenceBasis,
   EvidenceLevel,
-  classifyEvidence,
   europePmcLevelFilter,
+  judgeEvidence,
   isEvidenceLevel,
   pubmedLevelFilter,
 } from "@/lib/evidence";
@@ -44,7 +45,15 @@ type PaperResult = {
   aiSummary?: string | null;
   // エビデンスレベル（出版タイプ・題名・要約から判定。分からないときは入らない）
   evidenceLevel?: EvidenceLevel | null;
+  // "type" = 出版タイプ・登録情報などから確実に判定 / "text" = 題名・要約の文面からの推定
+  evidenceBasis?: EvidenceBasis | null;
 };
+
+// 判定結果を、検索結果に入れる形にする
+function judged(input: Parameters<typeof judgeEvidence>[0]): Pick<PaperResult, "evidenceLevel" | "evidenceBasis"> {
+  const j = judgeEvidence(input);
+  return { evidenceLevel: j?.level ?? null, evidenceBasis: j?.basis ?? null };
+}
 
 function decodeEntities(raw: string): string {
   return raw
@@ -130,7 +139,7 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
 
   // esummaryにはアブストラクトが含まれないため、efetchで別途取得する（失敗しても検索結果は返す）
   const details = await fetchPubMedDetails(ids).catch(
-    () => ({}) as Record<string, { abstract: string | null; level: EvidenceLevel | null }>
+    () => ({}) as Record<string, PubMedDetail>
   );
 
   return ids
@@ -145,13 +154,14 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
       year: (item.pubdate ?? "").slice(0, 4) || null,
       url: `https://pubmed.ncbi.nlm.nih.gov/${item.uid}/`,
       abstract: details[item.uid]?.abstract ?? null,
-      evidenceLevel: details[item.uid]?.level ?? null,
+      evidenceLevel: details[item.uid]?.judgement?.level ?? null,
+      evidenceBasis: details[item.uid]?.judgement?.basis ?? null,
     }));
 }
 
-async function fetchPubMedDetails(
-  ids: string[]
-): Promise<Record<string, { abstract: string | null; level: EvidenceLevel | null }>> {
+type PubMedDetail = { abstract: string | null; judgement: ReturnType<typeof judgeEvidence> };
+
+async function fetchPubMedDetails(ids: string[]): Promise<Record<string, PubMedDetail>> {
   const res = await fetch(
     `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id=${ids.join(",")}`,
     { signal: AbortSignal.timeout(8000) }
@@ -159,7 +169,7 @@ async function fetchPubMedDetails(
   if (!res.ok) return {};
 
   const xml = await res.text();
-  const out: Record<string, { abstract: string | null; level: EvidenceLevel | null }> = {};
+  const out: Record<string, PubMedDetail> = {};
 
   for (const article of xml.split("<PubmedArticle>").slice(1)) {
     const pmid = article.match(/<PMID[^>]*>(\d+)<\/PMID>/)?.[1];
@@ -181,7 +191,7 @@ async function fetchPubMedDetails(
 
     out[pmid] = {
       abstract: parts.length > 0 ? parts.join(" ") : null,
-      level: classifyEvidence({
+      judgement: judgeEvidence({
         types: [...types, ...mesh.filter((m) => /cohort|case-control|cross-sectional|prospective|retrospective|longitudinal/i.test(m))],
         title: decodeEntities(title),
         abstract: parts.join(" "),
@@ -321,6 +331,19 @@ async function searchPedro(query: string): Promise<PaperResult[]> {
       journal: method || null,
       year: yearMatch?.[1] ?? null,
       url,
+      // PEDroは、ランダム化比較試験（準ランダム化を含む）・システマティックレビュー・ガイドラインだけを載せるデータベース
+      ...judged({
+        types: [
+          /systematic review/i.test(method)
+            ? "systematic review"
+            : /practice guideline/i.test(method)
+              ? "practice guideline"
+              : /clinical trial/i.test(method)
+                ? "randomized controlled trial"
+                : "",
+        ].filter(Boolean),
+        title,
+      }),
     });
   }
 
@@ -381,7 +404,7 @@ async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
         (item.externalIds?.DOI ? `https://doi.org/${item.externalIds.DOI}` : ""),
       abstract: item.abstract || null,
       aiSummary: item.tldr?.text || null,
-      evidenceLevel: classifyEvidence({
+      ...judged({
         types: (item.publicationTypes ?? []).map((t) =>
           t === "MetaAnalysis" ? "meta-analysis" : t === "CaseReport" ? "case report" : t === "Editorial" ? "editorial" : t
         ),
@@ -448,7 +471,7 @@ async function searchEuropePmc(
           ? `https://europepmc.org/article/${item.source}/${item.id}`
           : "",
       abstract: item.abstractText ? decodeEntities(item.abstractText) : null,
-      evidenceLevel: classifyEvidence({
+      ...judged({
         types: item.pubTypeList?.pubType ?? [],
         title: item.title,
         abstract: item.abstractText,
@@ -529,8 +552,29 @@ type CtGovStudy = {
     descriptionModule?: { briefSummary?: string };
     sponsorCollaboratorsModule?: { leadSponsor?: { name?: string } };
     statusModule?: { startDateStruct?: { date?: string } };
+    designModule?: {
+      studyType?: string;
+      designInfo?: { allocation?: string; observationalModel?: string; timePerspective?: string };
+    };
   };
 };
+
+// 登録された試験計画の割り付け方法・観察研究の型から、研究デザインを決める
+function ctGovDesignTypes(d: NonNullable<CtGovStudy["protocolSection"]>["designModule"]): string[] {
+  const info = d?.designInfo;
+  if (d?.studyType === "INTERVENTIONAL") {
+    if (info?.allocation === "RANDOMIZED") return ["randomized controlled trial"];
+    if (info?.allocation === "NON_RANDOMIZED") return ["non-randomized controlled trial"];
+    return [];
+  }
+  if (d?.studyType === "OBSERVATIONAL") {
+    if (info?.observationalModel === "COHORT") return ["cohort study"];
+    if (info?.observationalModel === "CASE_CONTROL") return ["case-control study"];
+    if (info?.observationalModel === "CASE_ONLY") return ["case report"];
+    if (info?.timePerspective === "CROSS_SECTIONAL") return ["cross-sectional study"];
+  }
+  return [];
+}
 
 async function searchClinicalTrials(query: string): Promise<PaperResult[]> {
   const res = await fetch(
@@ -563,6 +607,7 @@ async function searchClinicalTrials(query: string): Promise<PaperResult[]> {
         year: p.statusModule?.startDateStruct?.date?.slice(0, 4) || null,
         url: `https://clinicaltrials.gov/study/${nctId}`,
         abstract: p.descriptionModule?.briefSummary || null,
+        ...judged({ types: ctGovDesignTypes(p.designModule) }),
       };
     });
 }
@@ -669,6 +714,9 @@ export async function GET(request: Request) {
     .map((v) => v.trim())
     .filter(isEvidenceLevel);
 
+  // strict=1: 出版タイプ・登録情報で確実に判定できたものだけに絞る（文面からの推定は除く）
+  const strict = searchParams.get("strict") === "1";
+
   const isJa = containsJapanese(q);
   const [enTranslated, jaTranslated] = await Promise.all([
     isJa ? toEnglishQuery(q) : Promise.resolve(null),
@@ -710,21 +758,19 @@ export async function GET(request: Request) {
 
   // どのサイトの論文にも、題名・要約からレベルを付ける（出版タイプで付いているものは、そのまま）
   for (const r of results) {
-    if (!r.evidenceLevel) {
-      r.evidenceLevel = classifyEvidence({ title: r.title, abstract: r.abstract });
-    }
+    if (!r.evidenceLevel) Object.assign(r, judged({ title: r.title, abstract: r.abstract }));
   }
 
-  // 指定があるとき: PubMed・Europe PMC は検索の段階で絞り込み済み。それ以外のサイトは、判定したレベルで絞る
-  const filtered =
-    levels.length === 0
-      ? results
-      : results.filter(
-          (r) =>
-            r.source === "pubmed" ||
-            (r.evidenceLevel && levels.includes(r.evidenceLevel)) ||
-            (r.source === "europepmc" && (!r.evidenceLevel || levels.includes(r.evidenceLevel)))
-        );
+  // 絞り込み:
+  //  - PubMed は、検索の段階で出版タイプ・MeSHで絞り込み済み
+  //  - それ以外のサイトは、判定したレベルが選んだレベルに入るものだけ（判定できなかったものは出さない）
+  //  - strict のときは、さらに、文面からの推定は除く
+  const filtered = results.filter((r) => {
+    if (strict && r.evidenceBasis !== "type") return false;
+    if (levels.length === 0) return true;
+    if (r.source === "pubmed") return true;
+    return !!r.evidenceLevel && levels.includes(r.evidenceLevel);
+  });
 
   const merged = dedupe(filtered).sort((a, b) => {
     const ay = a.year ? Number(a.year) : -1;

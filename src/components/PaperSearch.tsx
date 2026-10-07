@@ -122,10 +122,19 @@ function ResultCard({
       </span>
       {r.evidenceLevel && (
         <span
-          className="ml-1.5 rounded-full bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-800"
-          title={EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.label}
+          className={`ml-1.5 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
+            r.evidenceBasis === "text"
+              ? "border border-dashed border-sky-300 bg-white text-sky-700"
+              : "bg-sky-100 text-sky-800"
+          }`}
+          title={`${EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.label ?? ""}${
+            r.evidenceBasis === "text"
+              ? "（題名・要約の文面からの推定です。原文で確認してください）"
+              : "（出版タイプなどから判定）"
+          }`}
         >
           レベル{r.evidenceLevel}・{EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.short}
+          {r.evidenceBasis === "text" && "（推定）"}
         </span>
       )}
 
@@ -261,6 +270,8 @@ export default function PaperSearch() {
   // エビデンスレベルの絞り込み（空 = 絞り込まない）
   const [levels, setLevels] = useState<Set<EvidenceLevel>>(new Set());
   const [showLevels, setShowLevels] = useState(false);
+  // 出版タイプなどで確実に判定できた論文だけにする（文面からの推定を除く）
+  const [strictLevels, setStrictLevels] = useState(false);
 
   const [enabledSources, setEnabledSources] = useState<Set<PaperSource>>(
     new Set(PAPER_SOURCES.map((s) => s.key))
@@ -324,7 +335,7 @@ export default function PaperSearch() {
     }
 
     const { results: newResults, error, translatedQuery: newTranslatedQuery } =
-      await searchPapers(q, [...enabledSources], [...levels]);
+      await searchPapers(q, [...enabledSources], [...levels], strictLevels);
 
     setSearching(false);
     setQuery(q);
@@ -342,7 +353,7 @@ export default function PaperSearch() {
 
     const rewrite = await aiRewriteQuery(q, history);
     const { results: found, error, translatedQuery: foundTranslated } =
-      await searchPapers(rewrite.query ?? q, [...enabledSources], [...levels]);
+      await searchPapers(rewrite.query ?? q, [...enabledSources], [...levels], strictLevels);
 
     let answer: string | null = null;
     let ordered = found;
@@ -691,71 +702,76 @@ export default function PaperSearch() {
       </div>
 
       {/* エビデンスレベルで絞り込む（Minds 2007 の分類） */}
-      <div className="mt-3 rounded-2xl border border-sky-100 bg-sky-50/60 p-3">
-        <button
-          type="button"
-          onClick={() => setShowLevels((v) => !v)}
-          aria-expanded={showLevels}
-          className="flex w-full items-center justify-between text-left text-sm font-semibold text-sky-900"
-        >
-          <span>
+      <div className="mt-3 rounded-xl border border-sky-100 bg-sky-50/60 px-3 py-2">
+        <div className="flex items-center justify-between gap-2">
+          <button
+            type="button"
+            onClick={() => setShowLevels((v) => !v)}
+            aria-expanded={showLevels}
+            className="flex items-center gap-1.5 text-left text-xs font-semibold text-sky-900"
+          >
+            <span className="text-[10px] text-sky-700">{showLevels ? "▼" : "▶"}</span>
             エビデンスレベルで絞る
             {levels.size > 0 && (
-              <span className="ml-2 rounded-full bg-sky-600 px-2 py-0.5 text-xs font-semibold text-white">
-                {levels.size}件選択中
+              <span className="rounded-full bg-sky-600 px-1.5 py-px text-[10px] font-semibold text-white">
+                {[...levels].join("・")}
               </span>
             )}
-          </span>
-          <span className="text-xs text-sky-700">{showLevels ? "▲" : "▼"}</span>
-        </button>
+          </button>
+          {levels.size > 0 && (
+            <button type="button" onClick={() => setLevels(new Set())} className="text-[11px] text-sky-700 underline">
+              解除
+            </button>
+          )}
+        </div>
 
         {showLevels && (
-          <div className="mt-3 overflow-hidden rounded-xl border border-gray-200 bg-white">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-sky-600 text-white">
-                <tr>
-                  <th className="w-24 px-3 py-2 font-semibold">レベル</th>
-                  <th className="px-3 py-2 font-semibold">内容</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {EVIDENCE_LEVELS.map((l) => (
-                  <tr key={l.key} className={levels.has(l.key) ? "bg-sky-50" : ""}>
-                    <td className="px-3 py-2">
-                      <label className="flex items-center gap-2 font-semibold text-gray-900">
-                        <input
-                          type="checkbox"
-                          checked={levels.has(l.key)}
-                          onChange={() =>
-                            setLevels((prev) => {
-                              const next = new Set(prev);
-                              if (next.has(l.key)) next.delete(l.key);
-                              else next.add(l.key);
-                              return next;
-                            })
-                          }
-                        />
-                        {l.key}
-                      </label>
-                    </td>
-                    <td className="px-3 py-2 leading-6 text-gray-700">{l.label}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="mt-2">
+            <div className="flex flex-wrap gap-1.5">
+              {EVIDENCE_LEVELS.map((l) => {
+                const on = levels.has(l.key);
+                return (
+                  <button
+                    key={l.key}
+                    type="button"
+                    aria-pressed={on}
+                    title={l.label}
+                    onClick={() =>
+                      setLevels((prev) => {
+                        const next = new Set(prev);
+                        if (next.has(l.key)) next.delete(l.key);
+                        else next.add(l.key);
+                        return next;
+                      })
+                    }
+                    className={`rounded-full border px-2.5 py-1 text-[11px] leading-none transition ${
+                      on
+                        ? "border-sky-600 bg-sky-600 text-white"
+                        : "border-sky-200 bg-white text-sky-900 hover:bg-sky-50"
+                    }`}
+                  >
+                    <span className="font-semibold">{l.key}</span>
+                    <span className={`ml-1 ${on ? "text-sky-50" : "text-gray-500"}`}>{l.short}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            <label className="mt-2 flex cursor-pointer items-center gap-1.5 text-[11px] text-gray-700">
+              <input
+                type="checkbox"
+                checked={strictLevels}
+                onChange={(e) => setStrictLevels(e.target.checked)}
+                className="h-3 w-3"
+              />
+              確実に判定できたものだけ（出版タイプで分類。文面からの推定は除く）
+            </label>
+
+            <p className="mt-1.5 text-[10px] leading-4 text-gray-500">
+              複数選べます（どれかに当てはまる論文が出ます）。ボタンに触れると詳しい説明が出ます。
+              「推定」の印は、題名・要約の文面からの判定です。レベルは目安なので、原文で確認してください。
+            </p>
           </div>
-        )}
-
-        {showLevels && (
-          <p className="mt-2 text-xs leading-5 text-gray-500">
-            複数選べます（選んだどれかに当てはまる論文が出ます）。PubMed・Europe PMCは、検索の段階で絞り込みます。ほかのサイトは、題名・要約の文面から推定するので、判定できない論文は出ません。
-            レベルは目安です。個々の研究の質は、原文で確認してください。
-            {levels.size > 0 && (
-              <button type="button" onClick={() => setLevels(new Set())} className="ml-2 text-sky-700 underline">
-                選択を解除
-              </button>
-            )}
-          </p>
         )}
       </div>
 

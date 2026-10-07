@@ -1,5 +1,5 @@
 import { supabase } from "@/lib/supabase";
-import type { EvidenceLevel } from "@/lib/evidence";
+import type { EvidenceBasis, EvidenceLevel } from "@/lib/evidence";
 
 export type PaperSource =
   | "pubmed"
@@ -24,6 +24,8 @@ export type PaperResult = {
   aiSummary?: string | null;
   // エビデンスレベル（出版タイプ・題名・要約から判定。分からないときは入らない）
   evidenceLevel?: EvidenceLevel | null;
+  // "type" = 出版タイプなどから確実に判定 / "text" = 題名・要約の文面からの推定
+  evidenceBasis?: EvidenceBasis | null;
 };
 
 export type SavedPaper = {
@@ -100,11 +102,13 @@ export const PAPER_LINK_SOURCES = [
 export async function searchPapers(
   query: string,
   sources: PaperSource[],
-  levels: EvidenceLevel[] = []
+  levels: EvidenceLevel[] = [],
+  strict = false
 ): Promise<{ results: PaperResult[]; error: string | null; translatedQuery: string | null }> {
   try {
     const params = new URLSearchParams({ q: query, sources: sources.join(",") });
     if (levels.length > 0) params.set("levels", levels.join(","));
+    if (strict) params.set("strict", "1");
     const res = await fetch(`/api/papers/search?${params.toString()}`);
     const data = await res.json();
 
