@@ -45,7 +45,7 @@ export default async function PtOpengraphImage({
   const metaLine = [
     place,
     pt?.workplace,
-    pt?.experience_years ? `経験${pt.experience_years}年` : null,
+    pt?.experience_years ? `${pt.experience_years}年目` : null,
   ]
     .filter(Boolean)
     .join("　　");

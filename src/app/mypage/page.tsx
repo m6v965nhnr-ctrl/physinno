@@ -567,10 +567,10 @@ export default function MyPage() {
               />
 
               <ProfileItem
-                title="経験年数"
+                title="経験"
                 value={
                   profile?.experience_years
-                    ? `${profile.experience_years}年`
+                    ? `${profile.experience_years}年目`
                     : ""
                 }
               />

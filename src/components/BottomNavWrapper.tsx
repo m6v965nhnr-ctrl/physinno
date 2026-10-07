@@ -16,11 +16,11 @@ type Menu = {
 // 通知はホーム画面内のボタン（Re:light見出しの下）に置くため、
 // PTのボトムナビには含めない（一般の方にはホーム相当の画面がないため残す）
 const PT_MENUS: Menu[] = [
-  { href: "/home", icon: "⌂", label: "ホーム" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
   { href: "/messages", icon: "💬", label: "メッセージ" },
   { href: "/posts/create", icon: "+", label: "投稿" },
   { href: "/pts", icon: "⌕", label: "検索" },
-  { href: "/mypage", icon: "○", label: "マイページ" },
+  { href: "/home", icon: "⌂", label: "ホーム" },
 ];
 
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ

@@ -483,11 +483,11 @@ export default function PTProfile() {
                 />
 
                 <ProfileItem
-                  title="経験年数"
+                  title="経験"
                   value={
                     pt.experience_years !== null &&
                     pt.experience_years !== undefined
-                      ? `${pt.experience_years}年`
+                      ? `${pt.experience_years}年目`
                       : ""
                   }
                 />

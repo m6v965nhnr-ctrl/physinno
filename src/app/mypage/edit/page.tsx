@@ -389,9 +389,8 @@ export default function EditProfilePage() {
       { label: "ふりがな", filled: Boolean(fullNameKana.trim()), focusId: "field-kana" },
       { label: "勤務先", filled: Boolean(workplace.trim()), focusId: "field-2" },
       { label: "所属部署", filled: Boolean(department.trim()), focusId: "field-3" },
-      { label: "専門分野", filled: Boolean(specialty.trim()), focusId: "field-4" },
       { label: "資格", filled: Boolean(qualification.trim()), focusId: "field-5" },
-      { label: "経験年数", filled: experienceYears.trim() !== "", focusId: "field-exp" },
+      { label: "経験（何年目か）", filled: experienceYears.trim() !== "", focusId: "field-exp" },
       { label: "学歴", filled: Boolean(education.trim()), focusId: "field-6" },
       { label: "出身", filled: Boolean(hometown.trim()), focusId: "field-7" },
       { label: "生年月日", filled: Boolean(birthDate), focusId: "field-8" },
@@ -846,7 +845,7 @@ export default function EditProfilePage() {
           {/* 専門分野 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-4">
-              専門分野 <span className="text-xs font-normal text-red-500">（必須）</span>
+              専門分野 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-4"
@@ -878,23 +877,23 @@ export default function EditProfilePage() {
           {/* 経験年数 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-exp">
-              経験年数 <span className="text-xs font-normal text-red-500">（必須）</span>
+              経験（何年目ですか？） <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
             <div className="flex items-center gap-2">
               <input id="field-exp"
                 type="number"
-                min="0"
+                min="1"
                 value={experienceYears}
                 onChange={(e) =>
                   setExperienceYears(e.target.value)
                 }
-                placeholder="例：5"
+                placeholder="例：3"
                 className="w-full border rounded-xl px-4 py-3"
-               aria-label="例：5"/>
+               aria-label="経験（何年目か）"/>
 
               <span className="whitespace-nowrap">
-                年
+                年目
               </span>
             </div>
           </div>

@@ -33,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     place && `${place}`,
     pt.workplace && `${pt.workplace}に勤務`,
     role,
-    pt.experience_years ? `経験${pt.experience_years}年` : null,
+    pt.experience_years ? `${pt.experience_years}年目` : null,
     pt.review_count ? `レビュー${pt.review_count}件` : null,
   ]
     .filter(Boolean)
