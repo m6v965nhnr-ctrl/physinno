@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
+import { toHiragana } from "@/lib/format";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import WorkplaceAutosuggest from "@/components/WorkplaceAutosuggest";
@@ -21,6 +22,8 @@ export default function EditProfilePage() {
   const [accountType, setAccountType] = useState<AccountType | null>(null);
 
   const [fullName, setFullName] = useState("");
+  // ふりがな（PTを探すで、ひらがなでも名前が見つかるようにする）
+  const [fullNameKana, setFullNameKana] = useState("");
   const [workplace, setWorkplace] = useState("");
   const [hideWorkplace, setHideWorkplace] = useState(false);
   const [hospitalId, setHospitalId] = useState<string | null>(null);
@@ -124,6 +127,7 @@ export default function EditProfilePage() {
       setProfileId(data.id);
 
       setFullName(data.full_name || "");
+      setFullNameKana(data.full_name_kana || "");
       // 勤務先を非公開にしているときは、本人だけが読める pt_private から読み込む
       const hidden = Boolean(data.hide_workplace);
       setHideWorkplace(hidden);
@@ -382,6 +386,7 @@ export default function EditProfilePage() {
     const requiredFields: { label: string; filled: boolean; focusId: string }[] = [
       { label: "アイコン", filled: Boolean(profileImage || selectedImage), focusId: "icon-section" },
       { label: "名前", filled: Boolean(fullName.trim()), focusId: "field-1" },
+      { label: "ふりがな", filled: Boolean(fullNameKana.trim()), focusId: "field-kana" },
       { label: "勤務先", filled: Boolean(workplace.trim()), focusId: "field-2" },
       { label: "所属部署", filled: Boolean(department.trim()), focusId: "field-3" },
       { label: "専門分野", filled: Boolean(specialty.trim()), focusId: "field-4" },
@@ -449,6 +454,7 @@ export default function EditProfilePage() {
     const profileData = {
       user_id: userId,
       full_name: fullName,
+      full_name_kana: toHiragana(fullNameKana.replace(/\s+/g, "")) || null,
       workplace,
       hospital_id: hospitalId,
       department,
@@ -772,6 +778,23 @@ export default function EditProfilePage() {
               placeholder="例：田中 太郎"
               className="w-full border rounded-xl px-4 py-3"
             />
+          </div>
+
+          {/* ふりがな */}
+          <div>
+            <label className="block font-semibold mb-2" htmlFor="field-kana">
+              ふりがな <span className="text-xs font-normal text-red-500">（必須）</span>
+            </label>
+
+            <input id="field-kana"
+              value={fullNameKana}
+              onChange={(e) =>
+                setFullNameKana(e.target.value)
+              }
+              placeholder="例：たなか たろう"
+              className="w-full border rounded-xl px-4 py-3"
+            />
+            <p className="mt-1 text-xs text-gray-500">「PTを探す」で、ひらがなでも名前が見つかるようになります</p>
           </div>
 
           {/* 勤務先（入力すると病院ページの候補が出て、選ぶと連携できる） */}

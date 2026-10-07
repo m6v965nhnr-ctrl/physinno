@@ -4,18 +4,20 @@ import { supabase } from "@/lib/supabase";
 // 投稿・コメントの読み取りは、サーバー側の関数(list_posts / list_comments)を通す。
 // 公開範囲の外の人には本文を返さず、匿名の投稿には作者の情報を返さない(画面側で隠しているのではない)
 
-export type Visibility = "public" | "followers" | "private";
+export type Visibility = "public" | "followers" | "private" | "group";
 
 export const VISIBILITY_LABEL: Record<Visibility, string> = {
   public: "全員に公開",
   followers: "フォロワーだけ",
   private: "自分だけ",
+  group: "グループのメンバーだけ",
 };
 
 export const VISIBILITY_HINT: Record<Visibility, string> = {
   public: "ログインしていない人にも読まれます",
   followers: "あなたをフォローしている人だけが読めます",
   private: "あなたにだけ見えます（ポートフォリオの下書き向け）",
+  group: "選んだグループに参加している人だけが読めます",
 };
 
 export type TargetLevel = "all" | "student" | "newcomer" | "junior" | "mid" | "veteran";
@@ -77,6 +79,8 @@ export type FeedPost = {
   target_level: TargetLevel;
   restricted: boolean; // 本文は見せず、題名だけ見せている
   is_mine: boolean;
+  group_id?: string | null; // グループのメンバー向けの投稿
+  group_name?: string | null;
 };
 
 export async function listPosts(params: {
@@ -86,14 +90,17 @@ export async function listPosts(params: {
   limit?: number;
   level?: TargetLevel | null;
   id?: string | null;
+  group?: string | null;
 }): Promise<FeedPost[]> {
-  const { data } = await supabase.rpc("list_posts", {
+  // list_posts_v2: グループ向けの投稿（メンバーだけが読める）に対応した版
+  const { data } = await supabase.rpc("list_posts_v2", {
     p_author: params.author ?? null,
     p_types: params.types ?? null,
     p_before: params.before ?? null,
     p_limit: params.limit ?? 30,
     p_level: params.level ?? null,
     p_id: params.id ?? null,
+    p_group: params.group ?? null,
   });
   return (data ?? []) as FeedPost[];
 }

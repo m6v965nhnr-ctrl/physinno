@@ -15,3 +15,8 @@ export function ptNameWithTitle(fullName: string | null | undefined) {
   const name = fullName?.trim();
   return name ? `${name} PT` : DEFAULT_PT_NAME;
 }
+
+// カタカナをひらがなに直す（名前のふりがな検索・保存用）
+export function toHiragana(text: string): string {
+  return text.replace(/[ァ-ヶ]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+}

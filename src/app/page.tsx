@@ -65,7 +65,6 @@ const ENTRANCES = [
 
 const TRY_LINKS = [
   { href: "/kokushi", title: "国試の過去問を解く", body: "第57回〜第61回の全1,000問。正答つき・ログイン不要" },
-  { href: "/pts", title: "理学療法士を探す", body: "地域や専門分野から、プロフィールとポートフォリオを見られます" },
   { href: "/pts?mode=hospitals", title: "病院を探す", body: "リハビリ科のある全国約5,000病院の情報と、PTの職場口コミ" },
   { href: "/columns", title: "コラムを読む", body: "給料・転職・認定理学療法士・症例発表の書き方など" },
 ];
@@ -251,7 +250,7 @@ export default function LandingPage() {
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-lg font-bold text-gray-900">登録しなくても、まず試せます</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
             {TRY_LINKS.map((t) => (
               <li key={t.href}>
                 <Link href={t.href} className="block h-full rounded-2xl bg-[#f7faf9] p-5 transition hover:bg-[#eef6f4]">
@@ -430,9 +429,6 @@ export default function LandingPage() {
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/kokushi" className="hover:text-gray-700">
             国試過去問
-          </Link>
-          <Link href="/pts" className="hover:text-gray-700">
-            PTを探す
           </Link>
           <Link href="/pts?mode=hospitals" className="hover:text-gray-700">
             病院を探す

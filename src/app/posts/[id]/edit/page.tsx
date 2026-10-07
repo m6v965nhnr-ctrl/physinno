@@ -51,6 +51,7 @@ export default function EditPostPage() {
       titlePublic: Boolean(data.title_public),
       anonymous: Boolean(data.is_anonymous),
       level: data.target_level ?? "all",
+      groupId: data.group_id ?? null,
     });
 
     setLoading(false);

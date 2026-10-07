@@ -565,10 +565,10 @@ export default function PaperSearch() {
 
       {mode === "ai" && (
         <>
-          <p className="mb-3 text-xs text-gray-500">
+          <p className="mb-1 text-[11px] leading-snug text-gray-500">
             聞きたいことを文章で入力すると、AIが意図を汲み取って論文を探し、見つかった論文の要約を根拠に回答します。続けて質問すると、会話の流れを踏まえて答えます（AI回答はログインが必要です）。
           </p>
-          <p className="mb-3 text-xs text-gray-400">
+          <p className="mb-2 text-[10px] leading-snug text-gray-400">
             ※ 質問は外部のAI事業者（Google）に送信されます。氏名や患者さんなど、個人を特定できる情報は入力しないでください。
             <a href="/privacy" className="ml-1 underline">詳細</a>
           </p>
@@ -603,7 +603,7 @@ export default function PaperSearch() {
                 ? "例：膝OAに運動療法は効果があるか"
                 : "キーワード（例：変形性膝関節症 運動療法）"
             }
-            className="w-full rounded-full border-none bg-gray-100 py-3 pl-11 pr-10 text-sm text-gray-900 outline-none ring-0 focus:bg-white focus:shadow-[0_0_0_2px_rgba(0,0,0,0.08)]"
+            className="w-full rounded-full border-none bg-gray-100 py-2.5 pl-11 pr-10 text-sm text-gray-900 outline-none ring-0 focus:bg-white focus:shadow-[0_0_0_2px_rgba(0,0,0,0.08)]"
             aria-label={mode === "ai" ? "AIモードで論文を検索" : "論文検索キーワード"}
           />
 
@@ -652,7 +652,7 @@ export default function PaperSearch() {
       <button
         onClick={() => handleSearch()}
         disabled={searching || !query.trim()}
-        className="mt-2 w-full rounded-full bg-black py-3 text-white disabled:opacity-50"
+        className="mt-2 w-full rounded-full bg-black py-2.5 text-white disabled:opacity-50"
       >
         {searching
           ? "検索中…"
@@ -692,43 +692,24 @@ export default function PaperSearch() {
 
               {!searching && results.length === 0 && (
                 <p className="text-sm text-gray-400">
-                  見つかりませんでした。下のリンクから他のサイトも確認してみてください
+                  見つかりませんでした。上のボタンから他のサイトも確認してみてください
                 </p>
               )}
 
-              {!searching && results.length > 0 && (
-                <div className="flex items-center justify-between">
-                  <button
-                    onClick={() => handleTranslateTitles(results)}
-                    disabled={translatingTitles}
-                    className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
-                  >
-                    {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={() => setShowSummaries((v) => !v)}
-                      aria-pressed={showSummaries}
-                      className={`rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
-                        showSummaries
-                          ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-                          : "border-gray-200 text-gray-600"
-                      }`}
-                    >
-                      {showSummaries ? "📄 要約を閉じる" : "📄 要約を表示"}
-                    </button>
-
-                    {userId && (
-                      <button
-                        onClick={() => setView("saved")}
-                        className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
-                      >
-                        📑 保存リスト（{savedPapers.length}）
-                      </button>
-                    )}
-                  </div>
-                </div>
+              {!searching && (
+                <>
+                  <OtherSiteButtons query={query} />
+                  {results.length > 0 && (
+                    <ResultToolbar
+                      onTranslate={() => handleTranslateTitles(results)}
+                      translating={translatingTitles}
+                      showSummaries={showSummaries}
+                      onToggleSummaries={() => setShowSummaries((v) => !v)}
+                      savedCount={userId ? savedPapers.length : null}
+                      onOpenSaved={() => setView("saved")}
+                    />
+                  )}
+                </>
               )}
 
               {results.map((r, i) => (
@@ -749,25 +730,14 @@ export default function PaperSearch() {
 
       {/* AIモード：質問を重ねるたびに会話のように積み上がる */}
       {mode === "ai" && aiTurns.length > 0 && (
-        <div className="mt-6">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => handleTranslateTitles(aiTurns.flatMap((t) => t.results))}
-              disabled={translatingTitles}
-              className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50 disabled:opacity-50"
-            >
-              {translatingTitles ? "翻訳中…" : "🌐 タイトルを日本語に翻訳"}
-            </button>
-
-            {userId && (
-              <button
-                onClick={() => setView("saved")}
-                className="rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
-              >
-                📑 保存リスト（{savedPapers.length}）
-              </button>
-            )}
-          </div>
+        <div className="mt-6 space-y-3">
+          <OtherSiteButtons query={query} />
+          <ResultToolbar
+            onTranslate={() => handleTranslateTitles(aiTurns.flatMap((t) => t.results))}
+            translating={translatingTitles}
+            savedCount={userId ? savedPapers.length : null}
+            onOpenSaved={() => setView("saved")}
+          />
 
           <div className="mt-4 space-y-6">
             {aiTurns.map((turn, ti) => (
@@ -802,7 +772,7 @@ export default function PaperSearch() {
 
                   {turn.results.length === 0 ? (
                     <p className="text-sm text-gray-400">
-                      見つかりませんでした。下のリンクから他のサイトも確認してみてください
+                      見つかりませんでした。上のボタンから他のサイトも確認してみてください
                     </p>
                   ) : (
                     turn.results.map((r, i) => (
@@ -841,7 +811,8 @@ export default function PaperSearch() {
         </div>
       )}
 
-      {/* APIがないサイトは検索語入りのリンクをその場で開けるようにする */}
+      {/* APIがないサイトは検索語入りのリンクをその場で開けるようにする（検索した後は、結果の上に名前だけのボタンで出す） */}
+      {!((mode === "normal" && searched) || (mode === "ai" && aiTurns.length > 0)) && (
       <div className="mt-8">
         <h2 className="text-sm font-semibold text-gray-500">
           他のサイトでも探す（APIがないためリンクで開きます）
@@ -861,6 +832,7 @@ export default function PaperSearch() {
           ))}
         </div>
       </div>
+      )}
 
       {userId && (
         <button
@@ -868,6 +840,90 @@ export default function PaperSearch() {
           className="mt-8 text-sm font-semibold text-gray-500 hover:text-gray-700"
         >
           📑 保存した論文（{savedPapers.length}）を見る
+        </button>
+      )}
+    </div>
+  );
+}
+
+// 検索した後に結果の上へ出す、APIのないサイトへのリンク（名前だけのボタン）
+function OtherSiteButtons({ query }: { query: string }) {
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {PAPER_LINK_SOURCES.map((s) => (
+        <a
+          key={s.key}
+          href={s.build(query.trim())}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600 hover:bg-gray-50"
+        >
+          {s.label} ↗
+        </a>
+      ))}
+    </div>
+  );
+}
+
+// 検索結果の操作ボタン。1行目：翻訳・要約、2行目：保存リスト（保存している数）
+function ResultToolbar({
+  onTranslate,
+  translating,
+  showSummaries,
+  onToggleSummaries,
+  savedCount,
+  onOpenSaved,
+}: {
+  onTranslate: () => void;
+  translating: boolean;
+  showSummaries?: boolean;
+  onToggleSummaries?: () => void;
+  savedCount: number | null;
+  onOpenSaved: () => void;
+}) {
+  return (
+    <div className="space-y-2">
+      <div className="flex flex-wrap items-center gap-2">
+        <button
+          onClick={onTranslate}
+          disabled={translating}
+          className="rounded-full border border-gray-200 px-4 py-1.5 text-left text-xs leading-snug text-gray-600 hover:bg-gray-50 disabled:opacity-50"
+        >
+          {translating ? (
+            "翻訳中…"
+          ) : (
+            <>
+              🌐 タイトルを
+              <br />
+              日本語に翻訳
+            </>
+          )}
+        </button>
+
+        {onToggleSummaries && (
+          <button
+            onClick={onToggleSummaries}
+            aria-pressed={showSummaries}
+            className={`rounded-full border px-4 py-1.5 text-xs hover:bg-gray-50 ${
+              showSummaries
+                ? "border-emerald-200 bg-emerald-50 text-emerald-700"
+                : "border-gray-200 text-gray-600"
+            }`}
+          >
+            {showSummaries ? "📄 要約を閉じる" : "📄 要約を表示"}
+          </button>
+        )}
+      </div>
+
+      {savedCount !== null && (
+        <button
+          onClick={onOpenSaved}
+          className="inline-flex items-center gap-1.5 rounded-full border border-gray-200 px-4 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
+        >
+          📑 保存リスト
+          <span className="rounded-full bg-gray-900 px-1.5 text-[10px] font-semibold text-white">
+            {savedCount}
+          </span>
         </button>
       )}
     </div>

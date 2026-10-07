@@ -24,6 +24,7 @@ import ReportButton from "@/components/ReportButton";
 type Profile = {
   user_id: string;
   full_name: string | null;
+  profile_image: string | null;
 };
 
 export default function GroupDetailPage() {
@@ -80,7 +81,7 @@ export default function GroupDetailPage() {
       if (userIds.length > 0) {
         const { data: profileData } = await supabase
           .from("pt_profiles")
-          .select("user_id, full_name")
+          .select("user_id, full_name, profile_image")
           .in("user_id", userIds);
 
         const map: Record<string, Profile> = {};
@@ -280,40 +281,69 @@ export default function GroupDetailPage() {
 
         {member && (
           <>
-            <div className="mt-6 space-y-3">
+            <div className="mt-6">
               {messages.length === 0 && (
                 <p className="text-center text-sm text-gray-400">
                   まだメッセージがありません。最初の投稿をしてみましょう
                 </p>
               )}
 
-              {messages.map((m) => {
+              {messages.map((m, index) => {
                 const isMe = m.user_id === userId;
-                const name = ptName(profiles[m.user_id]?.full_name ?? null);
+                const profile = profiles[m.user_id];
+                const name = ptName(profile?.full_name ?? null);
+                // インスタのように、同じ人が続けて送ったときはアイコンと名前を最初だけ出す
+                const previous = index > 0 ? messages[index - 1] : null;
+                const firstOfRun = !previous || previous.user_id !== m.user_id;
 
                 return (
                   <div
                     key={m.id}
-                    className={`flex flex-col ${isMe ? "items-end" : "items-start"}`}
+                    className={`flex items-start gap-2 ${isMe ? "justify-end" : "justify-start"} ${
+                      firstOfRun ? "mt-3" : "mt-0.5"
+                    }`}
                   >
-                    <p className="flex items-center gap-2 text-[11px] text-gray-400">
-                      {name}
+                    {!isMe && (
+                      <div className="w-8 shrink-0">
+                        {firstOfRun &&
+                          (profile?.profile_image ? (
+                            <img
+                              loading="lazy"
+                              decoding="async"
+                              src={profile.profile_image}
+                              alt={name}
+                              className="h-8 w-8 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[9px] text-gray-500">
+                              PT
+                            </div>
+                          ))}
+                      </div>
+                    )}
+
+                    <div className={`flex max-w-[80%] flex-col ${isMe ? "items-end" : "items-start"}`}>
+                      {!isMe && firstOfRun && (
+                        <p className="flex items-center gap-2 text-[11px] text-gray-400">
+                          {name}
+                        </p>
+                      )}
+                      <div
+                        className={`mt-0.5 whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm ${
+                          isMe
+                            ? "bg-relight-gradient text-white"
+                            : "border border-gray-100 bg-white text-gray-900"
+                        }`}
+                      >
+                        {m.content}
+                      </div>
                       {!isMe && (
                         <ReportButton
                           targetType="group_message"
                           targetId={m.id}
-                          className="text-[10px]"
+                          className="mt-0.5 px-1 text-[10px]"
                         />
                       )}
-                    </p>
-                    <div
-                      className={`mt-0.5 max-w-[80%] whitespace-pre-wrap rounded-2xl px-4 py-2.5 text-sm ${
-                        isMe
-                          ? "bg-relight-gradient text-white"
-                          : "border border-gray-100 bg-white text-gray-900"
-                      }`}
-                    >
-                      {m.content}
                     </div>
                   </div>
                 );

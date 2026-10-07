@@ -430,7 +430,7 @@ export default function HomePage() {
             className="inline-flex w-1/3 items-center justify-center gap-1.5 rounded-xl border border-gray-200 bg-white py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔍</span>
-            症例・論文
+            投稿検索
           </Link>
 
           <Link
@@ -522,7 +522,9 @@ export default function HomePage() {
                     <div className="flex flex-wrap gap-1.5 px-5 pb-2">
                       {post.visibility !== "public" && (
                         <span className="rounded-full bg-amber-50 px-2.5 py-0.5 text-[11px] font-medium text-amber-700">
-                          🔒 {VISIBILITY_LABEL[post.visibility]}
+                          {post.visibility === "group" && post.group_name
+                            ? `👥 ${post.group_name}のメンバーだけ`
+                            : `🔒 ${VISIBILITY_LABEL[post.visibility]}`}
                         </span>
                       )}
                       {post.is_anonymous && post.is_mine && (

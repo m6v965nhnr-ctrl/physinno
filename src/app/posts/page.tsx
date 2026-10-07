@@ -127,12 +127,12 @@ export default function AcademicCommunityPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-8 pb-28">
       <div className="mx-auto max-w-2xl">
-        <Link href="/pts" className="text-sm text-gray-400 hover:text-gray-700">
+        <Link href="/home" className="text-sm text-gray-400 hover:text-gray-700">
           ← 戻る
         </Link>
 
         <div className="mt-3 flex items-center justify-between">
-          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">学術（症例・論文）</h1>
+          <h1 className="text-2xl font-semibold tracking-tight text-gray-900">投稿検索</h1>
 
           <Link
             href="/posts/create"

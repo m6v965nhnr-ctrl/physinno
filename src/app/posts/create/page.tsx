@@ -13,13 +13,33 @@ import {
 import { notify } from "@/lib/notify";
 import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 
-type PostType = "normal" | AchievementCategory;
+// 症例報告（投稿検索の「症例報告」で探せる）
+type PostType = "normal" | "case" | AchievementCategory;
+type FormType = "case" | AchievementCategory;
 
+// 題名つきで入力する投稿（症例報告と実績）
 function isAchievementCategory(
   value: PostType | null
-): value is AchievementCategory {
-  return !!value && (ACHIEVEMENT_CATEGORIES as string[]).includes(value);
+): value is FormType {
+  return !!value && (value === "case" || (ACHIEVEMENT_CATEGORIES as string[]).includes(value));
 }
+
+const FORM_LABEL: Record<FormType, string> = {
+  case: "症例報告",
+  ...ACHIEVEMENT_CATEGORY_LABEL,
+};
+
+const FORM_FIELD_CONFIG: Record<
+  FormType,
+  { titlePlaceholder: string; memoLabel: string; showConferenceName: boolean }
+> = {
+  case: {
+    titlePlaceholder: "症例のタイトル（例: 脳梗塞後の右片麻痺、歩行自立までの経過）",
+    memoLabel: "症例の概要（患者さんが特定される情報は書かないでください）",
+    showConferenceName: false,
+  },
+  ...ACHIEVEMENT_FIELD_CONFIG,
+};
 
 export default function CreatePostPage() {
   const [type, setType] = useState<PostType | null>(null);
@@ -165,7 +185,10 @@ export default function CreatePostPage() {
       }
 
       notify("投稿しました");
-      window.location.href = audience.visibility === "private" ? "/mypage" : "/home";
+      window.location.href =
+        audience.visibility === "group" && audience.groupId
+          ? `/groups/${audience.groupId}`
+          : audience.visibility === "private" ? "/mypage" : "/home";
     } finally {
       setPosting(false);
     }
@@ -199,7 +222,7 @@ export default function CreatePostPage() {
         return;
       }
 
-      const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[type];
+      const fieldConfig = FORM_FIELD_CONFIG[type];
 
       let details: Record<string, string> = {};
 
@@ -250,12 +273,15 @@ export default function CreatePostPage() {
 
       if (error) {
         console.error("ACHIEVEMENT POST ERROR", error);
-        notify("実績の投稿に失敗しました");
+        notify("投稿に失敗しました");
         return;
       }
 
-      notify("実績を投稿しました");
-      window.location.href = audience.visibility === "private" ? "/mypage/achievements" : "/home";
+      notify(type === "case" ? "症例を投稿しました" : "実績を投稿しました");
+      window.location.href =
+        audience.visibility === "group" && audience.groupId
+          ? `/groups/${audience.groupId}`
+          : audience.visibility === "private" ? "/mypage/achievements" : "/home";
     } finally {
       setPosting(false);
     }
@@ -314,6 +340,23 @@ export default function CreatePostPage() {
               </div>
             </button>
 
+            {/* 症例報告 */}
+            <button
+              onClick={() => setType("case")}
+              className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
+            >
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
+                  🩺
+                </div>
+
+                <div>
+                  <p className="text-base font-semibold text-gray-900">症例報告</p>
+                  <p className="mt-1 text-sm text-gray-400">担当した症例を共有・相談</p>
+                </div>
+              </div>
+            </button>
+
             {/* 実績（学会発表・院内症例発表・研修受講・論文・その他） */}
             {ACHIEVEMENT_CATEGORIES.map((c) => (
               <button
@@ -348,7 +391,7 @@ export default function CreatePostPage() {
    * 実績：詳細入力
    */
   if (isAchievementCategory(type)) {
-    const fieldConfig = ACHIEVEMENT_FIELD_CONFIG[type];
+    const fieldConfig = FORM_FIELD_CONFIG[type];
 
     return (
       <main className="min-h-screen bg-[#fafafa] pb-24">
@@ -362,7 +405,7 @@ export default function CreatePostPage() {
             </button>
 
             <h1 className="text-lg font-semibold text-gray-900">
-              {ACHIEVEMENT_CATEGORY_LABEL[type]}
+              {FORM_LABEL[type]}
             </h1>
 
             <button
@@ -379,7 +422,7 @@ export default function CreatePostPage() {
           <div className="rounded-2xl border border-gray-100 bg-white p-5">
             <div className="mb-5">
               <span className="rounded-full bg-emerald-50 px-3 py-1 text-xs font-semibold text-emerald-600">
-                {ACHIEVEMENT_CATEGORY_LABEL[type]}
+                {FORM_LABEL[type]}
               </span>
             </div>
 
@@ -691,25 +734,27 @@ function AttachmentFields({
 }) {
   return (
     <>
-      {/* 疾患分類 */}
+      {/* 疾患分類（投稿検索の「疾患分類」と同じ選択肢） */}
       <div className="mt-6 border-t border-gray-100 pt-5">
-        <label className="text-sm font-semibold text-gray-900" htmlFor="field-7">
-          疾患分類（任意）
-        </label>
-
-        <select id="field-7"
-          value={diseaseCategory}
-          onChange={(event) => setDiseaseCategory(event.target.value)}
-          className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-gray-500"
-        >
-          <option value="">指定しない</option>
-
-          {DISEASE_CATEGORIES.map((category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          ))}
-        </select>
+        <p className="text-sm font-semibold text-gray-900">疾患分類（任意）</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {["", ...DISEASE_CATEGORIES].map((category) => {
+            const active = diseaseCategory === category;
+            return (
+              <button
+                key={category || "none"}
+                type="button"
+                aria-pressed={active}
+                onClick={() => setDiseaseCategory(category)}
+                className={`rounded-full px-4 py-1.5 text-sm font-medium transition ${
+                  active ? "bg-black text-white" : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+                }`}
+              >
+                {category || "指定しない"}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* 添付資料 */}

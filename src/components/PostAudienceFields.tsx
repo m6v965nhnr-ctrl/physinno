@@ -1,8 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
+import { listMyGroups } from "@/lib/groups";
 import {
   LEVELS,
-  LEVEL_LABEL,
+  LEVEL_SHORT,
   TargetLevel,
   VISIBILITY_HINT,
   VISIBILITY_LABEL,
@@ -14,6 +17,8 @@ export type Audience = {
   titlePublic: boolean;
   anonymous: boolean;
   level: TargetLevel;
+  // visibility が "group" のとき、公開するグループ
+  groupId: string | null;
 };
 
 export const DEFAULT_AUDIENCE: Audience = {
@@ -21,20 +26,45 @@ export const DEFAULT_AUDIENCE: Audience = {
   titlePublic: false,
   anonymous: false,
   level: "all",
+  groupId: null,
 };
 
 // 投稿に保存する列に直す
 export function audiencePayload(a: Audience, hasTitle: boolean) {
+  const isGroup = a.visibility === "group" && !!a.groupId;
+  const visibility = a.visibility === "group" && !a.groupId ? "private" : a.visibility;
   return {
-    visibility: a.visibility,
-    is_public: a.visibility === "public",
-    title_public: a.visibility !== "public" && hasTitle ? a.titlePublic : false,
-    is_anonymous: a.visibility === "public" ? a.anonymous : false,
+    visibility,
+    is_public: visibility === "public",
+    // グループ向けの投稿は、題名もメンバーにしか見せない
+    title_public: visibility !== "public" && !isGroup && hasTitle ? a.titlePublic : false,
+    is_anonymous: visibility === "public" ? a.anonymous : false,
     target_level: a.level,
+    group_id: isGroup ? a.groupId : null,
   };
 }
 
 const VISIBILITIES = Object.keys(VISIBILITY_LABEL) as Visibility[];
+
+type MyGroup = { id: string; name: string };
+
+// 自分が参加しているグループ（投稿をグループのメンバーだけに公開するときに使う）
+function useMyGroups() {
+  const [groups, setGroups] = useState<MyGroup[]>([]);
+  useEffect(() => {
+    supabase.auth.getUser().then(async ({ data: { user } }) => {
+      if (!user) return;
+      const rows = await listMyGroups(user.id);
+      setGroups(rows.map((g) => ({ id: g.id, name: g.name })));
+    });
+  }, []);
+  return groups;
+}
+
+const levelChip = (active: boolean) =>
+  `rounded-full px-4 py-1.5 text-sm font-medium transition ${
+    active ? "bg-black text-white" : "border border-gray-200 bg-white text-gray-600 hover:bg-gray-50"
+  }`;
 
 // 投稿の「誰に見せるか」「匿名にするか」「題名だけ公開するか」「どのレベル向けか」
 export default function PostAudienceFields({
@@ -49,6 +79,9 @@ export default function PostAudienceFields({
   allowAnonymous?: boolean;
 }) {
   const set = (patch: Partial<Audience>) => onChange({ ...value, ...patch });
+  const groups = useMyGroups();
+  // 参加しているグループがあるときだけ「グループのメンバーだけ」を選べる
+  const options = VISIBILITIES.filter((v) => v !== "group" || groups.length > 0 || value.visibility === "group");
 
   return (
     <fieldset className="mt-6 space-y-5 border-t border-gray-100 pt-5">
@@ -57,7 +90,7 @@ export default function PostAudienceFields({
       <div>
         <p className="text-sm font-semibold text-gray-900">誰に見せますか？</p>
         <div className="mt-2 space-y-2">
-          {VISIBILITIES.map((v) => (
+          {options.map((v) => (
             <label
               key={v}
               className={`flex cursor-pointer items-start gap-3 rounded-xl border px-3 py-3 ${
@@ -68,7 +101,13 @@ export default function PostAudienceFields({
                 type="radio"
                 name="post-visibility"
                 checked={value.visibility === v}
-                onChange={() => set({ visibility: v, anonymous: v === "public" ? value.anonymous : false })}
+                onChange={() =>
+                  set({
+                    visibility: v,
+                    anonymous: v === "public" ? value.anonymous : false,
+                    groupId: v === "group" ? value.groupId ?? groups[0]?.id ?? null : null,
+                  })
+                }
                 className="mt-1"
               />
               <span>
@@ -79,7 +118,27 @@ export default function PostAudienceFields({
           ))}
         </div>
 
-        {value.visibility !== "public" && hasTitle && (
+        {value.visibility === "group" && (
+          <div className="mt-3">
+            <label className="text-xs font-semibold text-gray-500" htmlFor="post-group">
+              公開するグループ
+            </label>
+            <select
+              id="post-group"
+              value={value.groupId ?? ""}
+              onChange={(e) => set({ groupId: e.target.value || null })}
+              className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-gray-900"
+            >
+              {groups.map((g) => (
+                <option key={g.id} value={g.id}>
+                  {g.name}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {value.visibility !== "public" && value.visibility !== "group" && hasTitle && (
           <label className="mt-3 flex cursor-pointer items-start gap-3">
             <input
               type="checkbox"
@@ -120,23 +179,22 @@ export default function PostAudienceFields({
       )}
 
       <div>
-        <label className="text-sm font-semibold text-gray-900" htmlFor="post-level">
-          どのレベルの人向けですか？
-        </label>
-        <select
-          id="post-level"
-          value={value.level}
-          onChange={(e) => set({ level: e.target.value as TargetLevel })}
-          className="mt-2 w-full rounded-xl border border-gray-200 bg-white px-3 py-3 text-sm text-gray-900"
-        >
+        <p className="text-sm font-semibold text-gray-900">レベル（どのレベルの人向けですか？）</p>
+        <div className="mt-2 flex flex-wrap gap-2">
           {LEVELS.map((l) => (
-            <option key={l} value={l}>
-              {LEVEL_LABEL[l]}
-            </option>
+            <button
+              key={l}
+              type="button"
+              aria-pressed={value.level === l}
+              onClick={() => set({ level: l })}
+              className={levelChip(value.level === l)}
+            >
+              {l === "all" ? "どのレベルでも" : LEVEL_SHORT[l]}
+            </button>
           ))}
-        </select>
+        </div>
         <p className="mt-1 text-xs text-gray-500">
-          読む人が、自分の年次に合う投稿を絞り込めます。迷ったら「どのレベルでも」で大丈夫です。
+          「投稿検索」のレベルで絞り込んだときに出ます。迷ったら「どのレベルでも」で大丈夫です。
         </p>
       </div>
     </fieldset>

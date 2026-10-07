@@ -5,6 +5,14 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
+import { listMyGroups } from "@/lib/groups";
+
+type GroupRow = {
+  id: string;
+  name: string;
+  lastAt: string | null;
+  lastText: string | null;
+};
 
 type Conversation = {
   id: string;
@@ -26,6 +34,10 @@ export default function MessagesPage() {
   const [conversations, setConversations] = useState<Conversation[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [unreadIds, setUnreadIds] = useState<Set<string>>(new Set());
+  // 会話ごとの最新メッセージの時刻（グループと混ぜて新しい順に並べる）
+  const [lastAtByConversation, setLastAtByConversation] = useState<Record<string, string>>({});
+  // 作った・参加したグループ（メッセージ一覧にグループ名で表示して、そこからチャットできる）
+  const [groups, setGroups] = useState<GroupRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -53,6 +65,33 @@ export default function MessagesPage() {
     }
 
     setUser(user);
+
+    // 参加しているグループと、それぞれの最新メッセージ
+    const myGroups = await listMyGroups(user.id);
+    if (myGroups.length > 0) {
+      const { data: groupMessages } = await supabase
+        .from("group_messages")
+        .select("group_id, content, created_at")
+        .in("group_id", myGroups.map((g) => g.id))
+        .order("created_at", { ascending: false })
+        .limit(500);
+
+      const latestByGroup: Record<string, { content: string; created_at: string }> = {};
+      (groupMessages || []).forEach((m) => {
+        if (!latestByGroup[m.group_id]) latestByGroup[m.group_id] = m;
+      });
+
+      setGroups(
+        myGroups.map((g) => ({
+          id: g.id,
+          name: g.name,
+          lastAt: latestByGroup[g.id]?.created_at ?? g.created_at,
+          lastText: latestByGroup[g.id]?.content ?? null,
+        }))
+      );
+    } else {
+      setGroups([]);
+    }
 
 
     const { data, error } = await supabase
@@ -122,6 +161,12 @@ export default function MessagesPage() {
       });
 
       setUnreadIds(unread);
+
+      const lastAt: Record<string, string> = {};
+      Object.entries(latestByConversation).forEach(([id, m]) => {
+        lastAt[id] = m.created_at;
+      });
+      setLastAtByConversation(lastAt);
     }
 
 
@@ -208,13 +253,13 @@ export default function MessagesPage() {
           </h1>
 
           <p className="mt-1 text-xs text-gray-400">
-            PTとのメッセージ
+            PTとのメッセージ・参加しているグループ
           </p>
         </div>
       </header>
 
       <div className="mx-auto max-w-2xl px-4 py-4">
-        {conversations.length === 0 ? (
+        {conversations.length === 0 && groups.length === 0 ? (
           <div className="flex min-h-[50vh] items-center justify-center">
             <p className="text-sm text-gray-400">
               まだメッセージはありません
@@ -222,59 +267,89 @@ export default function MessagesPage() {
           </div>
         ) : (
           <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
-            {conversations.map((conversation) => {
-              const otherId =
-                conversation.user1_id === user?.id
-                  ? conversation.user2_id
-                  : conversation.user1_id;
-
-              const profile = profiles[otherId];
-              const unread = unreadIds.has(conversation.id);
-
-              return (
-                <Link
-                  key={conversation.id}
-                  href={`/messages/${otherId}`}
-                  className={`flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0 ${
-                    unread ? "bg-cyan-50/60" : ""
-                  }`}
-                >
-                  {profile?.profile_image ? (
-                    <img loading="lazy" decoding="async"
-                      src={profile.profile_image}
-                      alt={profile.full_name || "PT"}
-                      className="h-12 w-12 rounded-full object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
-                      PT
+            {[
+              ...groups.map((g) => ({
+                key: `g-${g.id}`,
+                at: g.lastAt ?? "",
+                node: (
+                  <Link
+                    key={`g-${g.id}`}
+                    href={`/groups/${g.id}`}
+                    className="flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-relight-gradient text-xl text-white">
+                      👥
                     </div>
-                  )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-semibold text-gray-900">{g.name}</p>
+                      <p className="mt-1 truncate text-xs text-gray-400">
+                        {g.lastText ?? "グループのチャットを開く"}
+                      </p>
+                    </div>
+                    <span className="text-gray-300">→</span>
+                  </Link>
+                ),
+              })),
+              ...conversations.map((conversation) => {
+                const otherId =
+                  conversation.user1_id === user?.id
+                    ? conversation.user2_id
+                    : conversation.user1_id;
 
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className={`text-sm text-gray-900 ${
-                        unread ? "font-bold" : "font-semibold"
+                const profile = profiles[otherId];
+                const unread = unreadIds.has(conversation.id);
+
+                return {
+                  key: `c-${conversation.id}`,
+                  at: lastAtByConversation[conversation.id] ?? conversation.created_at,
+                  node: (
+                    <Link
+                      key={`c-${conversation.id}`}
+                      href={`/messages/${otherId}`}
+                      className={`flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0 ${
+                        unread ? "bg-cyan-50/60" : ""
                       }`}
                     >
-                      {ptName(profile?.full_name)}
-                    </p>
+                      {profile?.profile_image ? (
+                        <img loading="lazy" decoding="async"
+                          src={profile.profile_image}
+                          alt={profile.full_name || "PT"}
+                          className="h-12 w-12 rounded-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
+                          PT
+                        </div>
+                      )}
 
-                    <p className="mt-1 text-xs text-gray-400">
-                      メッセージを見る
-                    </p>
-                  </div>
+                      <div className="min-w-0 flex-1">
+                        <p
+                          className={`text-sm text-gray-900 ${
+                            unread ? "font-bold" : "font-semibold"
+                          }`}
+                        >
+                          {ptName(profile?.full_name)}
+                        </p>
 
-                  {unread && (
-                    <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" />
-                  )}
+                        <p className="mt-1 text-xs text-gray-400">
+                          メッセージを見る
+                        </p>
+                      </div>
 
-                  <span className="text-gray-300">
-                    →
-                  </span>
-                </Link>
-              );
-            })}
+                      {unread && (
+                        <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" />
+                      )}
+
+                      <span className="text-gray-300">
+                        →
+                      </span>
+                    </Link>
+                  ),
+                };
+              }),
+            ]
+              .sort((x, y) => (y.at > x.at ? 1 : y.at < x.at ? -1 : 0))
+              .map((item) => item.node)}
           </div>
         )}
       </div>

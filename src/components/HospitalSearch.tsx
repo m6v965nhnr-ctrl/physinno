@@ -167,7 +167,7 @@ export default function HospitalSearch() {
 
   return (
     <div>
-      <div className="flex justify-end">
+      <div className="mb-3 flex justify-start">
         <button
           type="button"
           onClick={() => setShowAddForm((v) => !v)}
@@ -233,7 +233,7 @@ export default function HospitalSearch() {
         </div>
       )}
 
-      <div className="space-y-3">
+      <div className="space-y-2">
         <input
           value={keyword}
           onChange={(e) => setKeyword(e.target.value)}
@@ -241,14 +241,14 @@ export default function HospitalSearch() {
             if (e.key === "Enter") handleSearch();
           }}
           placeholder="病院名（例：横須賀市立市民病院）"
-          className="w-full rounded-full border px-5 py-3"
+          className="w-full rounded-full border px-5 py-2"
           aria-label="病院名"
         />
 
         <select
           value={prefecture}
           onChange={(e) => setPrefecture(e.target.value)}
-          className="w-full rounded-full border px-5 py-3"
+          className="w-full rounded-full border px-5 py-2"
           aria-label="都道府県"
         >
           <option value="">都道府県：未選択</option>
@@ -263,7 +263,7 @@ export default function HospitalSearch() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           disabled={!prefecture || cityOptions.length === 0}
-          className="w-full rounded-full border px-5 py-3 disabled:bg-gray-50 disabled:text-gray-400"
+          className="w-full rounded-full border px-5 py-2 disabled:bg-gray-50 disabled:text-gray-400"
           aria-label="市区町村"
         >
           <option value="">
@@ -279,7 +279,7 @@ export default function HospitalSearch() {
         <select
           value={size}
           onChange={(e) => setSize(e.target.value as WorkplaceSize | "")}
-          className="w-full rounded-full border px-5 py-3"
+          className="w-full rounded-full border px-5 py-2"
           aria-label="病院の規模"
         >
           <option value="">規模を指定しない</option>
@@ -319,7 +319,7 @@ export default function HospitalSearch() {
             <select
               value={bedType}
               onChange={(e) => setBedType(e.target.value as BedType | "")}
-              className="w-full rounded-full border px-5 py-3"
+              className="w-full rounded-full border px-5 py-2"
               aria-label="病床の種類"
             >
               <option value="">病床の種類を指定しない</option>
@@ -335,7 +335,7 @@ export default function HospitalSearch() {
         <button
           onClick={handleSearch}
           disabled={searching}
-          className="w-full rounded-full bg-black py-3 text-white disabled:opacity-50"
+          className="w-full rounded-full bg-black py-2 text-white disabled:opacity-50"
         >
           {searching ? "検索中…" : "🔍 検索"}
         </button>
