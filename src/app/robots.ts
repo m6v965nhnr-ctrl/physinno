@@ -17,6 +17,7 @@ export default function robots(): MetadataRoute.Robots {
         "/columns/*",
         "/kokushi",
         "/kokushi/*",
+        "/evidence-levels",
         "/terms",
         "/privacy",
       ],

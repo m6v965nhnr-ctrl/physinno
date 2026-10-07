@@ -20,6 +20,7 @@ import {
   toggleBookmark,
 } from "@/lib/quiz";
 import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizClass";
+import { shareContent, shareUrl } from "@/lib/share";
 
 type Params = {
   unit: string | null;
@@ -248,6 +249,20 @@ export default function QuizPlayPage() {
           )}
 
           <div className="grid gap-2">
+            {!isAssignment && scored.length > 0 && (
+              <button
+                onClick={() =>
+                  shareContent({
+                    title: "理学療法士国家試験 過去問ドリル",
+                    text: `理学療法士国家試験の過去問ドリル、${ok}/${scored.length}問 正解（正答率${percent(ok, scored.length)}%）！ #理学療法士 #国試`,
+                    url: shareUrl("/kokushi", "drill-result"),
+                  })
+                }
+                className="rounded-full border border-sky-300 bg-sky-50 py-2.5 text-sm font-medium text-sky-800"
+              >
+                この結果を友達に送る
+              </button>
+            )}
             {!isAssignment && (
               <button
                 onClick={() => load(params)}
@@ -464,7 +479,23 @@ export default function QuizPlayPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <ReportButton targetType="quiz_question" targetId={q.id} />
+              <div className="flex items-center gap-3">
+                <ReportButton targetType="quiz_question" targetId={q.id} />
+                {!isAssignment && (
+                  <button
+                    onClick={() =>
+                      shareContent({
+                        title: `${questionLabel(q)}｜理学療法士国家試験`,
+                        text: `理学療法士国家試験 ${questionLabel(q)}、解ける？ #理学療法士 #国試`,
+                        url: shareUrl(`/kokushi/${q.exam_no}/${q.session}/${q.no}`, "drill-question"),
+                      })
+                    }
+                    className="text-xs text-sky-700 underline"
+                  >
+                    この問題を友達に送る
+                  </button>
+                )}
+              </div>
               <button onClick={next} className="rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white">
                 {idx + 1 >= questions.length ? "結果を見る" : "次の問題へ"}
               </button>

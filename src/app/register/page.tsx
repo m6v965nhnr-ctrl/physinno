@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
+import { getAttribution } from "@/lib/attribution";
 import { graduationYearOptions } from "@/lib/student";
 
 type AccountType = "pt" | "general" | "student";
@@ -92,6 +93,8 @@ export default function RegisterPage() {
           account_type: accountType,
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
+          // どのリンクから来たか（運営の集計用。utm_source などがあるときだけ入る）
+          ...getAttribution(),
         },
       },
     });

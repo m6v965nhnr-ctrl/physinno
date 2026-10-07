@@ -770,6 +770,9 @@ export default function PaperSearch() {
             <p className="mt-1.5 text-[10px] leading-4 text-gray-500">
               複数選べます（どれかに当てはまる論文が出ます）。ボタンに触れると詳しい説明が出ます。
               「推定」の印は、題名・要約の文面からの判定です。レベルは目安なので、原文で確認してください。
+              <a href="/evidence-levels" target="_blank" rel="noopener noreferrer" className="ml-1 text-sky-700 underline">
+                早見表
+              </a>
             </p>
           </div>
         )}
