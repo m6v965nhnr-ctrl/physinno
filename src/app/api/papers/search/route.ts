@@ -10,6 +10,13 @@
 
 import { containsJapanese, translateText } from "@/lib/server/mymemory";
 import { translateMedicalJapanese } from "@/lib/server/medicalGlossary";
+import {
+  EvidenceLevel,
+  classifyEvidence,
+  europePmcLevelFilter,
+  isEvidenceLevel,
+  pubmedLevelFilter,
+} from "@/lib/evidence";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 25;
@@ -35,6 +42,8 @@ type PaperResult = {
   // AIモード用。要約が取得できたソース（Semantic Scholar・Europe PMC）のみ入る
   abstract?: string | null;
   aiSummary?: string | null;
+  // エビデンスレベル（出版タイプ・題名・要約から判定。分からないときは入らない）
+  evidenceLevel?: EvidenceLevel | null;
 };
 
 function decodeEntities(raw: string): string {
@@ -74,19 +83,37 @@ type PubMedSummaryItem = {
   pubdate?: string;
 };
 
-async function searchPubMed(query: string): Promise<PaperResult[]> {
-  const base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
-
-  const esearchRes = await fetch(
-    `${base}/esearch.fcgi?db=pubmed&retmode=json&retmax=15&term=${encodeURIComponent(query)}`,
+async function pubmedEsearch(term: string, retmax: number): Promise<string[]> {
+  const res = await fetch(
+    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}&term=${encodeURIComponent(term)}`,
     { signal: AbortSignal.timeout(8000) }
   );
-  if (!esearchRes.ok) return [];
+  if (!res.ok) return [];
 
-  const esearchData = (await esearchRes.json()) as {
-    esearchresult?: { idlist?: string[] };
-  };
-  const ids = esearchData.esearchresult?.idlist ?? [];
+  const data = (await res.json()) as { esearchresult?: { idlist?: string[] } };
+  return data.esearchresult?.idlist ?? [];
+}
+
+async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promise<PaperResult[]> {
+  const base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
+
+  // エビデンスレベルの指定があるときは、出版タイプ・MeSHで、PubMed側で絞り込む。
+  // 複数のレベルを選んだときは、レベルごとに検索して（PubMedは1秒に3回までなので、少し間をあけて）、
+  // どのレベルの論文も出るようにする
+  let ids: string[] = [];
+
+  if (levels.length <= 1) {
+    const filter = pubmedLevelFilter(levels);
+    ids = await pubmedEsearch(filter ? `(${query}) AND ${filter}` : query, 15);
+  } else {
+    const per = Math.max(4, Math.ceil(15 / levels.length));
+    for (const [i, level] of levels.entries()) {
+      if (i > 0) await new Promise((r) => setTimeout(r, 400));
+      ids.push(...(await pubmedEsearch(`(${query}) AND ${pubmedLevelFilter([level])}`, per).catch(() => [])));
+    }
+    ids = [...new Set(ids)];
+  }
+
   if (ids.length === 0) return [];
 
   const esummaryRes = await fetch(
@@ -102,7 +129,9 @@ async function searchPubMed(query: string): Promise<PaperResult[]> {
   if (!result) return [];
 
   // esummaryにはアブストラクトが含まれないため、efetchで別途取得する（失敗しても検索結果は返す）
-  const abstracts = await fetchPubMedAbstracts(ids).catch(() => ({}) as Record<string, string>);
+  const details = await fetchPubMedDetails(ids).catch(
+    () => ({}) as Record<string, { abstract: string | null; level: EvidenceLevel | null }>
+  );
 
   return ids
     .map((id) => result[id])
@@ -115,11 +144,14 @@ async function searchPubMed(query: string): Promise<PaperResult[]> {
       journal: item.fulljournalname || item.source || null,
       year: (item.pubdate ?? "").slice(0, 4) || null,
       url: `https://pubmed.ncbi.nlm.nih.gov/${item.uid}/`,
-      abstract: abstracts[item.uid] ?? null,
+      abstract: details[item.uid]?.abstract ?? null,
+      evidenceLevel: details[item.uid]?.level ?? null,
     }));
 }
 
-async function fetchPubMedAbstracts(ids: string[]): Promise<Record<string, string>> {
+async function fetchPubMedDetails(
+  ids: string[]
+): Promise<Record<string, { abstract: string | null; level: EvidenceLevel | null }>> {
   const res = await fetch(
     `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id=${ids.join(",")}`,
     { signal: AbortSignal.timeout(8000) }
@@ -127,7 +159,7 @@ async function fetchPubMedAbstracts(ids: string[]): Promise<Record<string, strin
   if (!res.ok) return {};
 
   const xml = await res.text();
-  const out: Record<string, string> = {};
+  const out: Record<string, { abstract: string | null; level: EvidenceLevel | null }> = {};
 
   for (const article of xml.split("<PubmedArticle>").slice(1)) {
     const pmid = article.match(/<PMID[^>]*>(\d+)<\/PMID>/)?.[1];
@@ -142,7 +174,19 @@ async function fetchPubMedAbstracts(ids: string[]): Promise<Record<string, strin
       })
       .filter(Boolean);
 
-    if (parts.length > 0) out[pmid] = parts.join(" ");
+    // 出版タイプ（Randomized Controlled Trial など）とMeSH（Cohort Studies など）から、レベルを判定する
+    const types = [...article.matchAll(/<PublicationType[^>]*>([^<]+)<\/PublicationType>/g)].map((m) => m[1]);
+    const mesh = [...article.matchAll(/<DescriptorName[^>]*>([^<]+)<\/DescriptorName>/g)].map((m) => m[1]);
+    const title = article.match(/<ArticleTitle[^>]*>([\s\S]*?)<\/ArticleTitle>/)?.[1] ?? "";
+
+    out[pmid] = {
+      abstract: parts.length > 0 ? parts.join(" ") : null,
+      level: classifyEvidence({
+        types: [...types, ...mesh.filter((m) => /cohort|case-control|cross-sectional|prospective|retrospective|longitudinal/i.test(m))],
+        title: decodeEntities(title),
+        abstract: parts.join(" "),
+      }),
+    };
   }
 
   return out;
@@ -296,12 +340,13 @@ type SemanticScholarItem = {
   year?: number;
   externalIds?: { DOI?: string };
   url?: string;
+  publicationTypes?: string[] | null;
 };
 
 async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
   const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
     query
-  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds`;
+  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds,publicationTypes`;
 
   const headers: Record<string, string> = {
     "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)",
@@ -336,6 +381,13 @@ async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
         (item.externalIds?.DOI ? `https://doi.org/${item.externalIds.DOI}` : ""),
       abstract: item.abstract || null,
       aiSummary: item.tldr?.text || null,
+      evidenceLevel: classifyEvidence({
+        types: (item.publicationTypes ?? []).map((t) =>
+          t === "MetaAnalysis" ? "meta-analysis" : t === "CaseReport" ? "case report" : t === "Editorial" ? "editorial" : t
+        ),
+        title: item.title,
+        abstract: item.abstract,
+      }),
     }))
     .filter((r) => r.url);
 }
@@ -352,13 +404,27 @@ type EuropePmcItem = {
   source?: string;
   id?: string;
   abstractText?: string;
+  pubTypeList?: { pubType?: string[] };
 };
 
-async function searchEuropePmc(query: string): Promise<PaperResult[]> {
+async function searchEuropePmc(
+  query: string,
+  levels: EvidenceLevel[] = [],
+  pageSize = 15
+): Promise<PaperResult[]> {
+  if (levels.length > 1) {
+    const per = Math.max(4, Math.ceil(15 / levels.length));
+    const lists = await Promise.all(levels.map((l) => searchEuropePmc(query, [l], per).catch(() => [])));
+    return lists.flat();
+  }
+
+  const filter = europePmcLevelFilter(levels);
+  const term = filter ? `(${query}) AND ${filter}` : query;
+
   const res = await fetch(
     `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(
-      query
-    )}&format=json&pageSize=15&resultType=core`,
+      term
+    )}&format=json&pageSize=${pageSize}&resultType=core`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -382,6 +448,11 @@ async function searchEuropePmc(query: string): Promise<PaperResult[]> {
           ? `https://europepmc.org/article/${item.source}/${item.id}`
           : "",
       abstract: item.abstractText ? decodeEntities(item.abstractText) : null,
+      evidenceLevel: classifyEvidence({
+        types: item.pubTypeList?.pubType ?? [],
+        title: item.title,
+        abstract: item.abstractText,
+      }),
     }))
     .filter((r) => r.url);
 }
@@ -542,7 +613,7 @@ async function searchDoaj(query: string): Promise<PaperResult[]> {
     .filter((r) => r.url);
 }
 
-const SOURCE_SEARCHERS: Record<PaperSource, (q: string) => Promise<PaperResult[]>> = {
+const SOURCE_SEARCHERS: Record<PaperSource, (q: string, levels?: EvidenceLevel[]) => Promise<PaperResult[]>> = {
   pubmed: searchPubMed,
   jstage: searchJStage,
   cinii: searchCinii,
@@ -592,6 +663,12 @@ export async function GET(request: Request) {
         ]
   );
 
+  // エビデンスレベルの絞り込み（例: levels=I,II）。空なら絞り込まない
+  const levels = (searchParams.get("levels") ?? "")
+    .split(",")
+    .map((v) => v.trim())
+    .filter(isEvidenceLevel);
+
   const isJa = containsJapanese(q);
   const [enTranslated, jaTranslated] = await Promise.all([
     isJa ? toEnglishQuery(q) : Promise.resolve(null),
@@ -613,7 +690,7 @@ export async function GET(request: Request) {
     const queries = key === "jstage" || key === "cinii" ? bilingualQueries : [enQuery];
 
     tasks.push(
-      Promise.all(queries.map(searcher)).then((lists) => dedupe(lists.flat()))
+      Promise.all(queries.map((query) => searcher(query, levels))).then((lists) => dedupe(lists.flat()))
     );
     taskLabels.push(key);
   });
@@ -631,7 +708,25 @@ export async function GET(request: Request) {
     }
   });
 
-  const merged = dedupe(results).sort((a, b) => {
+  // どのサイトの論文にも、題名・要約からレベルを付ける（出版タイプで付いているものは、そのまま）
+  for (const r of results) {
+    if (!r.evidenceLevel) {
+      r.evidenceLevel = classifyEvidence({ title: r.title, abstract: r.abstract });
+    }
+  }
+
+  // 指定があるとき: PubMed・Europe PMC は検索の段階で絞り込み済み。それ以外のサイトは、判定したレベルで絞る
+  const filtered =
+    levels.length === 0
+      ? results
+      : results.filter(
+          (r) =>
+            r.source === "pubmed" ||
+            (r.evidenceLevel && levels.includes(r.evidenceLevel)) ||
+            (r.source === "europepmc" && (!r.evidenceLevel || levels.includes(r.evidenceLevel)))
+        );
+
+  const merged = dedupe(filtered).sort((a, b) => {
     const ay = a.year ? Number(a.year) : -1;
     const by = b.year ? Number(b.year) : -1;
     return by - ay;

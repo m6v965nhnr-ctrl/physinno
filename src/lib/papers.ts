@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import type { EvidenceLevel } from "@/lib/evidence";
 
 export type PaperSource =
   | "pubmed"
@@ -21,6 +22,8 @@ export type PaperResult = {
   // AIモード用。Semantic Scholar・Europe PMCなど要約が取得できたソースのみ入る
   abstract?: string | null;
   aiSummary?: string | null;
+  // エビデンスレベル（出版タイプ・題名・要約から判定。分からないときは入らない）
+  evidenceLevel?: EvidenceLevel | null;
 };
 
 export type SavedPaper = {
@@ -96,10 +99,12 @@ export const PAPER_LINK_SOURCES = [
 
 export async function searchPapers(
   query: string,
-  sources: PaperSource[]
+  sources: PaperSource[],
+  levels: EvidenceLevel[] = []
 ): Promise<{ results: PaperResult[]; error: string | null; translatedQuery: string | null }> {
   try {
     const params = new URLSearchParams({ q: query, sources: sources.join(",") });
+    if (levels.length > 0) params.set("levels", levels.join(","));
     const res = await fetch(`/api/papers/search?${params.toString()}`);
     const data = await res.json();
 

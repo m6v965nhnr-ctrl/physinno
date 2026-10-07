@@ -1,5 +1,6 @@
 "use client";
 
+import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
@@ -119,6 +120,14 @@ function ResultCard({
       <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
         {PAPER_SOURCE_LABEL[r.source]}
       </span>
+      {r.evidenceLevel && (
+        <span
+          className="ml-1.5 rounded-full bg-sky-100 px-2 py-0.5 text-xs font-semibold text-sky-800"
+          title={EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.label}
+        >
+          レベル{r.evidenceLevel}・{EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.short}
+        </span>
+      )}
 
       <a
         href={r.url}
@@ -249,6 +258,10 @@ export default function PaperSearch() {
   const [titleTranslations, setTitleTranslations] = useState<Record<string, string>>({});
   const [translatingTitles, setTranslatingTitles] = useState(false);
 
+  // エビデンスレベルの絞り込み（空 = 絞り込まない）
+  const [levels, setLevels] = useState<Set<EvidenceLevel>>(new Set());
+  const [showLevels, setShowLevels] = useState(false);
+
   const [enabledSources, setEnabledSources] = useState<Set<PaperSource>>(
     new Set(PAPER_SOURCES.map((s) => s.key))
   );
@@ -311,7 +324,7 @@ export default function PaperSearch() {
     }
 
     const { results: newResults, error, translatedQuery: newTranslatedQuery } =
-      await searchPapers(q, [...enabledSources]);
+      await searchPapers(q, [...enabledSources], [...levels]);
 
     setSearching(false);
     setQuery(q);
@@ -329,7 +342,7 @@ export default function PaperSearch() {
 
     const rewrite = await aiRewriteQuery(q, history);
     const { results: found, error, translatedQuery: foundTranslated } =
-      await searchPapers(rewrite.query ?? q, [...enabledSources]);
+      await searchPapers(rewrite.query ?? q, [...enabledSources], [...levels]);
 
     let answer: string | null = null;
     let ordered = found;
@@ -675,6 +688,75 @@ export default function PaperSearch() {
             {s.label}
           </label>
         ))}
+      </div>
+
+      {/* エビデンスレベルで絞り込む（Minds 2007 の分類） */}
+      <div className="mt-3 rounded-2xl border border-sky-100 bg-sky-50/60 p-3">
+        <button
+          type="button"
+          onClick={() => setShowLevels((v) => !v)}
+          aria-expanded={showLevels}
+          className="flex w-full items-center justify-between text-left text-sm font-semibold text-sky-900"
+        >
+          <span>
+            エビデンスレベルで絞る
+            {levels.size > 0 && (
+              <span className="ml-2 rounded-full bg-sky-600 px-2 py-0.5 text-xs font-semibold text-white">
+                {levels.size}件選択中
+              </span>
+            )}
+          </span>
+          <span className="text-xs text-sky-700">{showLevels ? "▲" : "▼"}</span>
+        </button>
+
+        {showLevels && (
+          <div className="mt-3 overflow-hidden rounded-xl border border-gray-200 bg-white">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-sky-600 text-white">
+                <tr>
+                  <th className="w-24 px-3 py-2 font-semibold">レベル</th>
+                  <th className="px-3 py-2 font-semibold">内容</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {EVIDENCE_LEVELS.map((l) => (
+                  <tr key={l.key} className={levels.has(l.key) ? "bg-sky-50" : ""}>
+                    <td className="px-3 py-2">
+                      <label className="flex items-center gap-2 font-semibold text-gray-900">
+                        <input
+                          type="checkbox"
+                          checked={levels.has(l.key)}
+                          onChange={() =>
+                            setLevels((prev) => {
+                              const next = new Set(prev);
+                              if (next.has(l.key)) next.delete(l.key);
+                              else next.add(l.key);
+                              return next;
+                            })
+                          }
+                        />
+                        {l.key}
+                      </label>
+                    </td>
+                    <td className="px-3 py-2 leading-6 text-gray-700">{l.label}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+
+        {showLevels && (
+          <p className="mt-2 text-xs leading-5 text-gray-500">
+            複数選べます（選んだどれかに当てはまる論文が出ます）。PubMed・Europe PMCは、検索の段階で絞り込みます。ほかのサイトは、題名・要約の文面から推定するので、判定できない論文は出ません。
+            レベルは目安です。個々の研究の質は、原文で確認してください。
+            {levels.size > 0 && (
+              <button type="button" onClick={() => setLevels(new Set())} className="ml-2 text-sky-700 underline">
+                選択を解除
+              </button>
+            )}
+          </p>
+        )}
       </div>
 
       {/* ノーマルモード：1回ごとに結果を置き換える */}
