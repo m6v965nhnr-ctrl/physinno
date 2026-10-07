@@ -468,7 +468,7 @@ export default function SeminarNews() {
                       : c.iso === todayIso
                         ? "border-gray-400"
                         : "border-gray-100"
-                  } ${c.iso < todayIso ? "text-gray-300" : "text-gray-800"}`}
+                  } ${c.iso < todayIso ? "text-gray-400" : "text-gray-800"}`}
                 >
                   <span>{c.day}</span>
                   {c.count > 0 && (

@@ -109,7 +109,7 @@ export default function CertificateAttachments({
 
               <button
                 onClick={() => handleDelete(a.id)}
-                className="shrink-0 text-gray-300 hover:text-gray-500"
+                className="shrink-0 text-gray-400 hover:text-gray-700"
                 aria-label="削除"
               >
                 ×

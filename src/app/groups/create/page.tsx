@@ -108,7 +108,7 @@ export default function CreateGroupPage() {
                 <span className="block text-sm font-medium">非公開</span>
                 <span
                   className={`mt-1 block text-xs ${
-                    isPrivate ? "text-gray-300" : "text-gray-500"
+                    isPrivate ? "text-white/90" : "text-gray-500"
                   }`}
                 >
                   招待リンクを知る人だけ参加できる
@@ -127,7 +127,7 @@ export default function CreateGroupPage() {
                 <span className="block text-sm font-medium">公開</span>
                 <span
                   className={`mt-1 block text-xs ${
-                    !isPrivate ? "text-gray-300" : "text-gray-500"
+                    !isPrivate ? "text-white/90" : "text-gray-500"
                   }`}
                 >
                   一覧から誰でも参加できる

@@ -173,7 +173,7 @@ const jsonLd = {
   ],
 };
 
-const gradient = { backgroundImage: "var(--relight-gradient)" };
+const gradient = { backgroundImage: "var(--relight-gradient-strong)" };
 
 function PrimaryCta({ label = "理学療法士として無料ではじめる" }: { label?: string }) {
   return (

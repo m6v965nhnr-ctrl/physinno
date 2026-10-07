@@ -178,7 +178,7 @@ export default function RegisterPage() {
                     </span>
                     <span
                       className={`mt-1 block text-xs ${
-                        selected ? "text-gray-300" : "text-gray-500"
+                        selected ? "text-white/90" : "text-gray-500"
                       }`}
                     >
                       {option.description}

@@ -858,7 +858,7 @@ export default function PortfolioPage() {
                     load();
                   }}
                   aria-label="この目標を削除"
-                  className="shrink-0 px-2 py-1 text-gray-300 hover:text-gray-500"
+                  className="shrink-0 px-2 py-1 text-gray-400 hover:text-gray-700"
                 >
                   ×
                 </button>
@@ -911,7 +911,7 @@ export default function PortfolioPage() {
                       load();
                     }}
                     aria-label={`${s.name}を削除`}
-                    className="ml-1 px-1.5 text-gray-300 hover:text-gray-500"
+                    className="ml-1 px-1.5 text-gray-400 hover:text-gray-700"
                   >
                     ×
                   </button>
@@ -981,7 +981,7 @@ function EntryCard({
         onClick={() => {
           if (window.confirm("この項目を削除しますか？")) onDelete();
         }}
-        className="shrink-0 px-2 py-1 text-gray-300 hover:text-gray-500"
+        className="shrink-0 px-2 py-1 text-gray-400 hover:text-gray-700"
         aria-label="この項目を削除">
         ×
       </button>

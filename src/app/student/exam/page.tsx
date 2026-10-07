@@ -279,7 +279,7 @@ export default function ExamPage() {
                   <button
                     onClick={() => handleDelete(l.id)}
                     aria-label="この記録を削除"
-                    className="shrink-0 text-gray-300 hover:text-gray-500"
+                    className="shrink-0 text-gray-400 hover:text-gray-700"
                   >
                     ×
                   </button>
