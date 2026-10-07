@@ -17,9 +17,9 @@ type Menu = {
 // PTのボトムナビには含めない（一般の方にはホーム相当の画面がないため残す）
 const PT_MENUS: Menu[] = [
   { href: "/mypage", icon: "○", label: "マイページ" },
-  { href: "/messages", icon: "💬", label: "メッセージ" },
-  { href: "/posts/create", icon: "+", label: "投稿" },
   { href: "/pts", icon: "⌕", label: "検索" },
+  { href: "/posts/create", icon: "+", label: "投稿" },
+  { href: "/messages", icon: "💬", label: "メッセージ" },
   { href: "/home", icon: "⌂", label: "ホーム" },
 ];
 
