@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -310,17 +311,19 @@ export default function MessagesPage() {
                         unread ? "bg-cyan-50/60" : ""
                       }`}
                     >
-                      {profile?.profile_image ? (
-                        <img loading="lazy" decoding="async"
-                          src={profile.profile_image}
-                          alt={profile.full_name || "PT"}
-                          className="h-12 w-12 rounded-full object-cover"
-                        />
-                      ) : (
-                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
-                          PT
-                        </div>
-                      )}
+                      <ProfileLink userId={otherId} name={profile?.full_name} nested className="shrink-0">
+                        {profile?.profile_image ? (
+                          <img loading="lazy" decoding="async"
+                            src={profile.profile_image}
+                            alt={profile.full_name || "PT"}
+                            className="h-12 w-12 rounded-full object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
+                            PT
+                          </div>
+                        )}
+                      </ProfileLink>
 
                       <div className="min-w-0 flex-1">
                         <p

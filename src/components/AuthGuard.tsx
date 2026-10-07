@@ -15,7 +15,7 @@ import {
 } from "@/lib/account";
 import { isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
-const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels"];
+const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student"];
 
 export default function AuthGuard({
   children,

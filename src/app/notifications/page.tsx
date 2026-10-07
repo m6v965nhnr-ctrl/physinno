@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -205,18 +206,22 @@ export default function NotificationsPage() {
                     <div className="flex h-full w-full items-center justify-center text-gray-300">
                       👥
                     </div>
-                  ) : actor?.profile_image ? (
-                    <img
-                      loading="lazy"
-                      decoding="async"
-                      src={actor.profile_image}
-                      alt=""
-                      className="h-full w-full object-cover"
-                    />
                   ) : (
-                    <div className="flex h-full w-full items-center justify-center text-gray-300">
-                      👤
-                    </div>
+                    <ProfileLink userId={n.actor_id} name={actor?.full_name} nested className="block h-full w-full">
+                      {actor?.profile_image ? (
+                        <img
+                          loading="lazy"
+                          decoding="async"
+                          src={actor.profile_image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex h-full w-full items-center justify-center text-gray-300">
+                          👤
+                        </div>
+                      )}
+                    </ProfileLink>
                   )}
                 </div>
 

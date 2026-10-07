@@ -1,3 +1,4 @@
+import { profileIdFilter } from "@/lib/profileId";
 import type { Metadata } from "next";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -11,7 +12,7 @@ async function getPt(id: string) {
     .select(
       "id, full_name, qualification, specialty, workplace, prefecture, city, experience_years, biography, profile_image, rating, review_count"
     )
-    .eq("id", id)
+    .or(profileIdFilter(id))
     .maybeSingle();
 
   return data;

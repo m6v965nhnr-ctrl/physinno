@@ -1,3 +1,4 @@
+import { profileIdFilter } from "@/lib/profileId";
 import type { Metadata } from "next";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME } from "@/lib/site";
@@ -11,7 +12,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { data: pt } = await supabasePublic
     .from("pt_profiles")
     .select("full_name, qualification, specialty")
-    .eq("id", id)
+    .or(profileIdFilter(id))
     .maybeSingle();
 
   if (!pt) {

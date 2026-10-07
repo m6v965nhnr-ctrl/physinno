@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
+import { useGuestRole } from "@/lib/guestRole";
 
 type Menu = {
   href: string;
@@ -24,15 +25,28 @@ const PT_MENUS: Menu[] = [
 ];
 
 // ログインしていない訪問者（ゲスト閲覧）：見て回るための最小限のメニューと、登録への入口
-const GUEST_MENUS: Menu[] = [
+// 立場（PT／学生）を選んだゲストごとに、メニューを変える
+const GUEST_MENUS_PT: Menu[] = [
   { href: "/home", icon: "⌂", label: "ホーム" },
+  { href: "/pts", icon: "⌕", label: "検索" },
+  { href: "/pts?mode=ideas", icon: "💡", label: "臨床アイデア" },
+  { href: "/register", icon: "○", label: "登録・ログイン" },
+];
+const GUEST_MENUS_STUDENT: Menu[] = [
+  { href: "/guest/student", icon: "⌂", label: "学生ホーム" },
+  { href: "/kokushi", icon: "📝", label: "過去問" },
+  { href: "/pts?mode=hospitals", icon: "🏥", label: "病院" },
+  { href: "/register?type=student", icon: "○", label: "登録・ログイン" },
+];
+const GUEST_MENUS_UNSET: Menu[] = [
+  { href: "/guest", icon: "⌂", label: "見てみる" },
   { href: "/pts", icon: "⌕", label: "検索" },
   { href: "/kokushi", icon: "📝", label: "過去問" },
   { href: "/register", icon: "○", label: "登録・ログイン" },
 ];
 
 // ゲスト用のメニューを出さないページ（トップ・認証まわり）
-const NO_NAV_PATHS = ["/", "/login", "/register", "/forgot-password", "/reset-password"];
+const NO_NAV_PATHS = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/guest"];
 
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ
 const GENERAL_MENUS: Menu[] = [
@@ -48,6 +62,7 @@ export default function BottomNavWrapper() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [checked, setChecked] = useState(false);
+  const guestRole = useGuestRole();
   const [unreadNotifCount, setUnreadNotifCount] = useState(0);
   const [unreadMessageCount, setUnreadMessageCount] = useState(0);
   const userIdRef = useRef<string | null>(null);
@@ -151,14 +166,33 @@ export default function BottomNavWrapper() {
   }
 
   // ログインしていない訪問者には、ゲスト用のメニューを出す
-  const menus = !loggedIn ? GUEST_MENUS : accountType === "general" ? GENERAL_MENUS : PT_MENUS;
+  const menus = !loggedIn
+    ? guestRole === "pt"
+      ? GUEST_MENUS_PT
+      : guestRole === "student"
+        ? GUEST_MENUS_STUDENT
+        : GUEST_MENUS_UNSET
+    : accountType === "general"
+      ? GENERAL_MENUS
+      : PT_MENUS;
 
   function isActive(href: string) {
-    if (href === "/home" || href === "/posts/create") {
-      return pathname === href;
+    const [base, query] = href.split("?");
+    const search = typeof window !== "undefined" ? window.location.search : "";
+
+    // 「?mode=ideas」のように、同じページの中のタブを指すメニュー
+    if (query) return pathname === base && search.includes(query);
+
+    // 同じページ（/pts）でも、タブを指す別のメニューがあるときは、そちらを優先する
+    if (pathname === base && menus.some((m) => m.href.startsWith(`${base}?`) && search.includes(m.href.split("?")[1]))) {
+      return false;
     }
 
-    return pathname === href || pathname.startsWith(`${href}/`);
+    if (base === "/home" || base === "/posts/create") {
+      return pathname === base;
+    }
+
+    return pathname === base || pathname.startsWith(`${base}/`);
   }
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -305,27 +306,32 @@ export default function GroupDetailPage() {
                   >
                     {!isMe && (
                       <div className="w-8 shrink-0">
-                        {firstOfRun &&
-                          (profile?.profile_image ? (
-                            <img
-                              loading="lazy"
-                              decoding="async"
-                              src={profile.profile_image}
-                              alt={name}
-                              className="h-8 w-8 rounded-full object-cover"
-                            />
-                          ) : (
-                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[9px] text-gray-500">
-                              PT
-                            </div>
-                          ))}
+                        {firstOfRun && (
+                          <ProfileLink userId={m.user_id} name={name}>
+                            {profile?.profile_image ? (
+                              <img
+                                loading="lazy"
+                                decoding="async"
+                                src={profile.profile_image}
+                                alt={name}
+                                className="h-8 w-8 rounded-full object-cover"
+                              />
+                            ) : (
+                              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[9px] text-gray-500">
+                                PT
+                              </div>
+                            )}
+                          </ProfileLink>
+                        )}
                       </div>
                     )}
 
                     <div className={`flex max-w-[80%] flex-col ${isMe ? "items-end" : "items-start"}`}>
                       {!isMe && firstOfRun && (
                         <p className="flex items-center gap-2 text-[11px] text-gray-400">
-                          {name}
+                          <ProfileLink userId={m.user_id} name={name}>
+                            {name}
+                          </ProfileLink>
                         </p>
                       )}
                       <div

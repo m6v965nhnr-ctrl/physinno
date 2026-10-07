@@ -46,7 +46,11 @@
 
   --relight-gradient: linear-gradient(135deg, #55c7dc 0%, #45d0c2 50%, #4ed7a7 100%);
 
-  /* 白文字を載せるボタン・バナー用。どの位置でも、白文字が 4.5:1 以上 */
+  /* 主要なボタン・バナー用の、明るいグラデーション。文字は、濃いティール（--on-brand）で、どの位置でも 7:1 以上 */
+  --relight-gradient-bright: linear-gradient(135deg, #4fc4dc 0%, #45cfc3 50%, #4fd8a6 100%);
+  --on-brand: #062f3a;
+
+  /* 白文字を載せたい所（濃いめの面）用。どの位置でも、白文字が 4.5:1 以上 */
   --relight-gradient-strong: linear-gradient(135deg, #0b7a90 0%, #0b7d80 50%, #0a7f6f 100%);
 
   --relight-light: #f2fffb;
@@ -153,11 +157,20 @@ li {
   color: #0a7a6a !important;
 }
 
-/* 白文字を載せる、ブランドのグラデーション（バナー・主要なボタン） */
+/* 主要なボタン・バナー（ブランドの明るいグラデーション＋濃いティールの文字）。
+   マークアップに text-white と書いてある所も、この面の上では濃い文字にする */
 .bg-relight-gradient,
-.relight-button {
-  background: var(--relight-gradient-strong) !important;
-  color: #ffffff !important;
+.relight-button,
+.bg-black,
+.bg-gray-900 {
+  background: var(--relight-gradient-bright) !important;
+  color: var(--on-brand) !important;
+}
+
+.bg-relight-gradient [class*="text-white"],
+.bg-black [class*="text-white"],
+.bg-gray-900 [class*="text-white"] {
+  color: var(--on-brand) !important;
 }
 
 .relight-button {
@@ -178,12 +191,10 @@ li {
   border-color: var(--color-brand-400) !important;
 }
 
-/* 主要な操作（これまで、黒いボタンとして書いていた所）: ブランド色の塗りつぶし＋白文字 */
+/* 主要な操作（これまで、黒いボタンとして書いていた所）に、やわらかい影 */
 .bg-black,
 .bg-gray-900 {
-  background: var(--relight-gradient-strong) !important;
-  color: #ffffff !important;
-  box-shadow: 0 4px 14px rgba(11, 122, 144, 0.2);
+  box-shadow: 0 4px 14px rgba(11, 122, 144, 0.18);
 }
 
 .bg-black:hover,

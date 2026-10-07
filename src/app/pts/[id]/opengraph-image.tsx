@@ -1,3 +1,4 @@
+import { profileIdFilter } from "@/lib/profileId";
 import { ImageResponse } from "next/og";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { ptName } from "@/lib/format";
@@ -35,7 +36,7 @@ export default async function PtOpengraphImage({
     .select(
       "full_name, qualification, specialty, workplace, prefecture, city, experience_years, review_count"
     )
-    .eq("id", id)
+    .or(profileIdFilter(id))
     .maybeSingle();
 
   const name = ptName(pt?.full_name || null);

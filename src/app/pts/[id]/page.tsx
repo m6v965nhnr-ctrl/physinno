@@ -1,6 +1,7 @@
 
 "use client";
 
+import { profileIdFilter } from "@/lib/profileId";
 import { listPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -61,7 +62,7 @@ export default function PTProfile() {
     } = await supabase
       .from("pt_profiles")
 .select("*")
-.eq("id", id)
+.or(profileIdFilter(id))
 .limit(1);
 
     if (ptError) {

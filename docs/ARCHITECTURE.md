@@ -92,3 +92,10 @@
 - PTの投稿は DB: `clinical_ideas`（疾患 slug にひも付く。投稿できるのは `pt` のみ、読めるのは `pt`・`student`）と `clinical_idea_reactions`（like/save/practiced）。表は **自分の行だけ**直接読める。他人の投稿は RPC `list_clinical_ideas`（匿名の投稿は、`author_id`・名前・資格・経験を返さない）、件数は `clinical_idea_counts`、反応は `toggle_idea_reaction`。1日20件まで（トリガー）。通報の対象 `clinical_idea` を追加済み（`admin_list_reports` / `admin_resolve_report`）。
 - AIに相談: `POST /api/ideas/suggest`（Gemini）。入力は選択式・数値のみ（`src/lib/ideasAi.ts` の一覧にない値は、サーバーで拒否）。入力は保存しない。根拠は、疾患の編集部まとめ＋PTの投稿（人気順5件。ユーザーのトークンで RPC を呼ぶ）。出力は「検討できる選択肢」と、各選択肢の論文検索の語。1人あたり1時間10回（メモリ上の簡易制限）。`/privacy` の外部送信の表に記載済み。
 - 論文検索への連携: `/pts?mode=papers&q=…`（`PaperSearch` が `?q=` を読んで検索する）。
+
+## ゲスト閲覧と、トップページ（2026-10-08〜）
+- ログインなしで見られるページ: `isPublicGuestPath`（`src/lib/account.ts`）。`/home`・`/home/pt-search`・`/posts`・`/ideas`・`/ideas/[slug]`、ほかに `/guest`（立場の選択）・`/guest/student`（学生の入口）。ログイン中の人は、これまでどおり AuthGuard の確認（初回プロフィール登録・一般アカウントの制限）を通る。操作（投稿・いいね・コメント・保存・AI・メッセージ）は、画面側で登録を案内する（`GuestBanner` / `useIsGuest`）。
+- 立場（PT／学生）: `src/lib/guestRole.ts`（localStorage。サーバーには送らない）。未選択のゲストが `/home` を開くと `/guest` へ。下部ナビは、立場ごとに変わる（`BottomNavWrapper`）。
+- トップページ（`src/app/page.tsx`）: ヘッダーに「中を見てみる」を常に残し、その下を、タブ（はじめに・できること・学生のみなさんへ・はじめ方・よくある質問。`LpTabs`）で切り替える。全タブの内容は HTML に含める（検索エンジン用）。アプリの画面の見本は、コードで描いた（`src/components/lp/Mocks.tsx`）。
+- アイコン→プロフィール: `ProfileLink`（`nested` は、リンクの中に置くとき用）。`/pts/[id]` は、プロフィール id でも user_id でも開ける（`src/lib/profileId.ts`）。
+- 色: 主要なボタン・バナーは、明るいブランドのグラデーション＋濃いティールの文字（`--relight-gradient-bright` / `--on-brand`）。白文字を載せたい濃い面は `--relight-gradient-strong`。

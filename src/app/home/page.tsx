@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -14,6 +15,7 @@ import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
 import GuestBanner from "@/components/GuestBanner";
+import { getGuestRole } from "@/lib/guestRole";
 import {
   FeedComment,
   FeedPost,
@@ -141,6 +143,11 @@ export default function HomePage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
+      // ゲストは、先に「PTか、学生か」を選んでもらう
+      if (!getGuestRole()) {
+        window.location.replace("/guest");
+        return;
+      }
       setGuest(true);
     } else {
       setUserId(user.id);
@@ -759,17 +766,19 @@ export default function HomePage() {
                                 key={comment.id}
                                 className="flex items-start gap-3"
                               >
-                                {commentProfile.profile_image ? (
-                                  <img loading="lazy" decoding="async"
-                                    src={commentProfile.profile_image}
-                                    alt=""
-                                    className="w-8 h-8 rounded-full object-cover"
-                                  />
-                                ) : (
-                                  <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm">
-                                    {authorOfAnon ? "🕶" : "👤"}
-                                  </div>
-                                )}
+                                <ProfileLink userId={authorOfAnon ? null : comment.user_id} name={commentProfile.full_name} className="shrink-0">
+                                  {commentProfile.profile_image ? (
+                                    <img loading="lazy" decoding="async"
+                                      src={commentProfile.profile_image}
+                                      alt=""
+                                      className="w-8 h-8 rounded-full object-cover"
+                                    />
+                                  ) : (
+                                    <div className="w-8 h-8 rounded-full bg-gray-200 flex items-center justify-center text-sm">
+                                      {authorOfAnon ? "🕶" : "👤"}
+                                    </div>
+                                  )}
+                                </ProfileLink>
 
                                 <div className="flex-1">
                                   <div className="flex items-center gap-2">

@@ -1,5 +1,6 @@
 "use client";
 
+import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -248,17 +249,19 @@ export default function MessagePage() {
             ←
           </Link>
 
-          {profile?.profile_image ? (
-            <img loading="lazy" decoding="async"
-              src={profile.profile_image}
-              alt={profile.full_name || "プロフィール"}
-              className="h-10 w-10 rounded-full object-cover"
-            />
-          ) : (
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
-              PT
-            </div>
-          )}
+          <ProfileLink userId={id} name={profile?.full_name} className="shrink-0">
+            {profile?.profile_image ? (
+              <img loading="lazy" decoding="async"
+                src={profile.profile_image}
+                alt={profile.full_name || "プロフィール"}
+                className="h-10 w-10 rounded-full object-cover"
+              />
+            ) : (
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-100 text-xs text-gray-400">
+                PT
+              </div>
+            )}
+          </ProfileLink>
 
           <div>
             <p className="text-sm font-semibold text-gray-900">
@@ -332,18 +335,21 @@ export default function MessagePage() {
                 >
                   {!mine && (
                     <div className="w-8 shrink-0">
-                      {showIcon &&
-                        (profile?.profile_image ? (
-                          <img loading="lazy" decoding="async"
-                            src={profile.profile_image}
-                            alt={profile.full_name || "PT"}
-                            className="h-8 w-8 rounded-full object-cover"
-                          />
-                        ) : (
-                          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[9px] text-gray-500">
-                            PT
-                          </div>
-                        ))}
+                      {showIcon && (
+                        <ProfileLink userId={id} name={profile?.full_name}>
+                          {profile?.profile_image ? (
+                            <img loading="lazy" decoding="async"
+                              src={profile.profile_image}
+                              alt={profile.full_name || "PT"}
+                              className="h-8 w-8 rounded-full object-cover"
+                            />
+                          ) : (
+                            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-[9px] text-gray-500">
+                              PT
+                            </div>
+                          )}
+                        </ProfileLink>
+                      )}
                     </div>
                   )}
 
