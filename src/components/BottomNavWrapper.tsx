@@ -23,6 +23,17 @@ const PT_MENUS: Menu[] = [
   { href: "/home", icon: "⌂", label: "ホーム" },
 ];
 
+// ログインしていない訪問者（ゲスト閲覧）：見て回るための最小限のメニューと、登録への入口
+const GUEST_MENUS: Menu[] = [
+  { href: "/home", icon: "⌂", label: "ホーム" },
+  { href: "/pts", icon: "⌕", label: "検索" },
+  { href: "/kokushi", icon: "📝", label: "過去問" },
+  { href: "/register", icon: "○", label: "登録・ログイン" },
+];
+
+// ゲスト用のメニューを出さないページ（トップ・認証まわり）
+const NO_NAV_PATHS = ["/", "/login", "/register", "/forgot-password", "/reset-password"];
+
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ
 const GENERAL_MENUS: Menu[] = [
   { href: "/pts", icon: "⌕", label: "検索" },
@@ -134,20 +145,13 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // ログイン前のページでは表示しない
-  if (
-    pathname === "/" ||
-    pathname === "/login" ||
-    pathname === "/register"
-  ) {
+  // トップ・ログイン・登録のページでは表示しない
+  if (NO_NAV_PATHS.includes(pathname)) {
     return null;
   }
 
-  if (!loggedIn) {
-    return null;
-  }
-
-  const menus = accountType === "general" ? GENERAL_MENUS : PT_MENUS;
+  // ログインしていない訪問者には、ゲスト用のメニューを出す
+  const menus = !loggedIn ? GUEST_MENUS : accountType === "general" ? GENERAL_MENUS : PT_MENUS;
 
   function isActive(href: string) {
     if (href === "/home" || href === "/posts/create") {

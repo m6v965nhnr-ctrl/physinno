@@ -13,6 +13,7 @@ import { ptNameWithTitle } from "@/lib/format";
 import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
+import GuestBanner from "@/components/GuestBanner";
 import {
   FeedComment,
   FeedPost,
@@ -63,6 +64,8 @@ export default function HomePage() {
   const [loadingMore, setLoadingMore] = useState(false);
   const [hasMore, setHasMore] = useState(false);
   const [userId, setUserId] = useState("");
+  // ログインしていない訪問者（見るだけ。いいね・コメント・フォローなどは、登録を案内する）
+  const [guest, setGuest] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
 
   // 名前・アイコンを取得して state に足す（匿名などで user_id が無いものは飛ばす）
@@ -138,19 +141,18 @@ export default function HomePage() {
     } = await supabase.auth.getUser();
 
     if (!user) {
-      window.location.href = "/login";
-      return;
+      setGuest(true);
+    } else {
+      setUserId(user.id);
+
+      const { count } = await supabase
+        .from("notifications")
+        .select("id", { count: "exact", head: true })
+        .eq("user_id", user.id)
+        .eq("is_read", false);
+
+      setUnreadCount(count || 0);
     }
-
-    setUserId(user.id);
-
-    const { count } = await supabase
-      .from("notifications")
-      .select("id", { count: "exact", head: true })
-      .eq("user_id", user.id)
-      .eq("is_read", false);
-
-    setUnreadCount(count || 0);
 
     const firstPage = await fetchPostPage();
 
@@ -183,8 +185,13 @@ export default function HomePage() {
     loadHome();
   }, []);
 
+  function askRegister() {
+    notify("この操作は、無料登録（またはログイン）後に使えます");
+  }
+
   async function toggleLike(postId: string) {
     if (!userId) {
+      askRegister();
       return;
     }
 
@@ -260,7 +267,12 @@ export default function HomePage() {
   async function addComment(postId: string) {
     const text = commentText[postId]?.trim();
 
-    if (!text || !userId) {
+    if (!userId) {
+      askRegister();
+      return;
+    }
+
+    if (!text) {
       return;
     }
 
@@ -412,9 +424,10 @@ export default function HomePage() {
 
         {/* 通知・投稿検索・グループ・PT検索（常にヘッダーの下に固定表示） */}
         <div className="flex gap-1.5 bg-white px-5 pt-4">
+          {!guest && (
           <Link
             href="/notifications"
-            className="relative inline-flex w-1/4 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="relative inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔔</span>
             通知
@@ -424,35 +437,44 @@ export default function HomePage() {
               </span>
             )}
           </Link>
+          )}
 
           <Link
             href="/posts"
-            className="inline-flex w-1/4 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔍</span>
             投稿検索
           </Link>
 
+          {!guest && (
           <Link
             href="/groups"
-            className="inline-flex w-1/4 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">👥</span>
             グループ
           </Link>
+          )}
 
           <Link
             href="/home/pt-search"
-            className="inline-flex w-1/4 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🧑‍⚕️</span>
             PT検索
           </Link>
         </div>
 
-        <ProfileNameNudge userId={userId} />
-        <HospitalReviewNudge userId={userId} />
-        <HomeAudienceCard userId={userId} />
+        {guest && (
+          <div className="bg-white px-5 pt-4">
+            <GuestBanner text="ログインなしで、アプリの中を見られます。投稿・いいね・コメント・保存・メッセージは、無料登録後に使えます。" />
+          </div>
+        )}
+
+        {!guest && <ProfileNameNudge userId={userId} />}
+        {!guest && <HospitalReviewNudge userId={userId} />}
+        {!guest && <HomeAudienceCard userId={userId} />}
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">

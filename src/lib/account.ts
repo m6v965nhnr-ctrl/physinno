@@ -103,3 +103,11 @@ const PUBLIC_KOKUSHI_PATH = /^\/kokushi(\/.*)?$/;
 export function isPublicKokushiPath(pathname: string) {
   return PUBLIC_KOKUSHI_PATH.test(pathname);
 }
+
+// ログインなしで「見て、触れる」ページ（ゲスト閲覧）。投稿・コメント・メッセージ・保存などの操作は、ページ側で登録を案内する。
+// /ideas/new・/ideas/ai・/ideas/saved は、ログインが必要なので含めない
+const PUBLIC_GUEST_PATH = /^\/(home|home\/pt-search|posts|ideas|ideas\/(?!new$|ai$|saved$)[^/]+)$/;
+
+export function isPublicGuestPath(pathname: string) {
+  return PUBLIC_GUEST_PATH.test(pathname);
+}

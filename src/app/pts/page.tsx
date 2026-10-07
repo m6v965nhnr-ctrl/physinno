@@ -19,6 +19,13 @@ const PT_MODES: [SearchMode, string][] = [
   ["ideas", "臨床アイデア"],
   ["hospitals", "病院を探す"],
 ];
+// ログインしていない訪問者（ゲスト閲覧）: 論文 / 臨床アイデア / 病院 / PT。見て触れる（保存・投稿・AIなどは登録後）
+const GUEST_MODES: [SearchMode, string][] = [
+  ["papers", "論文"],
+  ["ideas", "臨床アイデア"],
+  ["hospitals", "病院"],
+  ["pts", "PT"],
+];
 const OTHER_MODES: [SearchMode, string][] = [
   ["hospitals", "病院を探す"],
   ["pts", "PTを探す"],
@@ -69,7 +76,7 @@ function PTSearchPageInner() {
     });
   }, []);
 
-  const modes = isPt ? PT_MODES : OTHER_MODES;
+  const modes = isPt ? PT_MODES : !loggedIn ? GUEST_MODES : OTHER_MODES;
   // URLやタブの指定がないとき・選べないモードのときは、いちばん左のタブ
   const mode: SearchMode =
     searchMode && modes.some(([key]) => key === searchMode) ? searchMode : modes[0][0];
@@ -107,7 +114,7 @@ function PTSearchPageInner() {
             role="tablist"
             aria-label="探すの種類"
             className={`mb-5 grid ${
-              modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
+              modes.length === 4 ? "grid-cols-4" : modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
             } rounded-full border border-gray-200 p-1 text-sm font-medium`}
           >
             {modes.map(([key, label]) => (

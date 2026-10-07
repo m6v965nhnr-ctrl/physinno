@@ -10,6 +10,7 @@ import {
   isPublicHospitalPath,
   isPublicPostPath,
   isPublicKokushiPath,
+  isPublicGuestPath,
   isPublicPtPath,
 } from "@/lib/account";
 import { isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
@@ -62,6 +63,11 @@ export default function AuthGuard({
       if (cancelled) return;
 
       if (!user) {
+        // ゲスト閲覧ができるページは、ログインなしでも開ける（ログイン中の人は、これまでどおり下の確認へ進む）
+        if (isPublicGuestPath(pathname)) {
+          setChecking(false);
+          return;
+        }
         router.replace("/");
         return;
       }

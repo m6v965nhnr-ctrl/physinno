@@ -8,6 +8,7 @@ import { getMyAccountType, type AccountType } from "@/lib/account";
 import { getCategory, getTopic } from "@/content/ideas";
 import { PtIdea, listIdeas } from "@/lib/ideas";
 import PtIdeaCard from "@/components/PtIdeaCard";
+import GuestBanner, { useIsGuest } from "@/components/GuestBanner";
 
 const paperLink = (q: string) => `/pts?mode=papers&q=${encodeURIComponent(q)}`;
 
@@ -17,6 +18,7 @@ export default function TopicPage() {
   const category = topic ? getCategory(topic.category) : undefined;
 
   const [account, setAccount] = useState<AccountType | null>(null);
+  const guest = useIsGuest();
   const [ideas, setIdeas] = useState<PtIdea[] | null>(null);
   const [sort, setSort] = useState<"new" | "popular">("new");
   const [openIdea, setOpenIdea] = useState<number | null>(null);
@@ -65,15 +67,23 @@ export default function TopicPage() {
           <Link href={paperLink(topic.searchQuery)} className="rounded-full border border-sky-200 bg-sky-50 px-4 py-2 text-xs font-medium text-sky-900">
             📚 この疾患の論文を探す
           </Link>
-          <Link href={`/ideas/ai?topic=${topic.slug}`} className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-800">
-            ✨ AIに相談する
-          </Link>
+          {!guest && (
+            <Link href={`/ideas/ai?topic=${topic.slug}`} className="rounded-full border border-gray-200 bg-white px-4 py-2 text-xs font-medium text-gray-800">
+              ✨ AIに相談する
+            </Link>
+          )}
           {account === "pt" && (
             <Link href={`/ideas/new?topic=${topic.slug}`} className="rounded-full bg-black px-4 py-2 text-xs font-medium text-white">
               ＋ 自分のアイデアを登録
             </Link>
           )}
         </div>
+
+        {guest && (
+          <div className="mt-4">
+            <GuestBanner text="評価とリハビリのアイデアは、ログインなしで見られます。AIに相談・アイデアの登録・みんなのアイデアは、無料登録後に使えます。" />
+          </div>
+        )}
 
         <p className="mt-3 rounded-xl bg-amber-50 px-3 py-2 text-xs leading-5 text-amber-900">
           編集部が、公開されているガイドライン等からまとめた一般的な参考情報です（PTによる内容の確認は順次）。「必ずこうする」ではなく「検討できる選択肢」として使い、実際の判断は、医師の指示・院内のプロトコル・ご自身の評価に従ってください。
@@ -160,8 +170,16 @@ export default function TopicPage() {
         </div>
 
         <div className="mt-3 space-y-3">
-          {ideas === null && <p className="text-sm text-gray-400">読み込み中…</p>}
-          {ideas?.length === 0 && (
+          {guest && (
+            <div className={`${card} text-sm leading-6 text-gray-600`}>
+              PTが登録したアイデアは、無料登録（PT・学生）後に読めます。
+              <Link href="/register" className="ml-1 underline">
+                無料で登録する
+              </Link>
+            </div>
+          )}
+          {!guest && ideas === null && <p className="text-sm text-gray-400">読み込み中…</p>}
+          {!guest && ideas?.length === 0 && (
             <div className={`${card} text-sm leading-6 text-gray-600`}>
               まだ、投稿はありません。
               {account === "pt" ? (

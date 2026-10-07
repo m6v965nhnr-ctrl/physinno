@@ -65,6 +65,7 @@ const ENTRANCES = [
 ];
 
 const TRY_LINKS = [
+  { href: "/home", title: "アプリの中を見てみる", body: "ホーム・論文検索・臨床アイデア・病院・PT検索を、登録なしで見て触れます（投稿・保存などは登録後）" },
   { href: "/kokushi", title: "国試の過去問を解く", body: "第57回〜第61回の全1,000問。正答つき・ログイン不要" },
   { href: "/pts?mode=hospitals", title: "病院を探す", body: "リハビリ科のある全国約5,000病院の情報と、PTの職場口コミ" },
   { href: "/columns", title: "コラムを読む", body: "給料・転職・認定理学療法士・症例発表の書き方など" },
@@ -239,6 +240,10 @@ export default function LandingPage() {
             ))}
           </div>
           <p className="mt-4 text-sm text-gray-600">
+            <Link href="/home" className="font-semibold underline">
+              まず、ログインなしで、中を見てみる
+            </Link>
+            <span className="mx-2 text-gray-300">|</span>
             登録無料・メールアドレスだけで1分。
             <Link href="/register?type=general" className="ml-1 underline">
               理学療法士を探したい一般の方はこちら
@@ -251,7 +256,7 @@ export default function LandingPage() {
       <section className="px-6 pb-12">
         <div className="mx-auto max-w-5xl">
           <h2 className="text-lg font-bold text-gray-900">登録しなくても、まず試せます</h2>
-          <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+          <ul className="mt-4 grid gap-3 sm:grid-cols-2">
             {TRY_LINKS.map((t) => (
               <li key={t.href}>
                 <Link href={t.href} className="block h-full rounded-2xl bg-[#f7faf9] p-5 transition hover:bg-[#eef6f4]">

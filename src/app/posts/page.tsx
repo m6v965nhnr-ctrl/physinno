@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 import { ptNameWithTitle } from "@/lib/format";
 import { ACHIEVEMENT_CATEGORY_LABEL } from "@/lib/achievements";
+import GuestBanner, { useIsGuest } from "@/components/GuestBanner";
 import {
   FeedPost,
   LEVELS,
@@ -36,6 +37,7 @@ const ACADEMIC_TYPES: { key: string; label: string }[] = [
 const ALL_ACADEMIC = ACADEMIC_TYPES.map((t) => t.key);
 
 export default function AcademicCommunityPage() {
+  const guest = useIsGuest();
   const [posts, setPosts] = useState<FeedPost[]>([]);
   const [profiles, setProfiles] = useState<Record<string, Profile>>({});
   const [loading, setLoading] = useState(true);
@@ -134,17 +136,25 @@ export default function AcademicCommunityPage() {
         <div className="mt-3 flex items-center justify-between">
           <h1 className="text-2xl font-semibold tracking-tight text-gray-900">投稿検索</h1>
 
+          {!guest && (
           <Link
-            href="/posts/create"
-            className="rounded-full bg-relight-gradient px-4 py-2 text-sm font-medium text-white"
-          >
-            投稿する
-          </Link>
+              href="/posts/create"
+              className="rounded-full bg-relight-gradient px-4 py-2 text-sm font-medium text-white"
+            >
+              投稿する
+            </Link>
+          )}
         </div>
 
         <p className="mt-1 text-sm text-gray-500">
           症例報告・論文・発表を、自分のレベルに合うものから探せます
         </p>
+
+        {guest && (
+          <div className="mt-4">
+            <GuestBanner text="ログインなしで、公開されている投稿を探せます。投稿・いいね・コメントは、無料登録後に使えます。" />
+          </div>
+        )}
 
         {/* レベル */}
         <p className="mt-5 text-xs font-semibold text-gray-500">レベル</p>
