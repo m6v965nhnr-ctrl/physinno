@@ -1,5 +1,6 @@
 "use client";
 
+import { REFERENCE_URL_ERROR, safeHttpUrl } from "@/lib/url";
 import PostAudienceFields, { Audience, DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -147,6 +148,11 @@ export default function CreatePostPage() {
       return;
     }
 
+    if (referenceUrl.trim() && !safeHttpUrl(referenceUrl)) {
+      notify(REFERENCE_URL_ERROR);
+      return;
+    }
+
     setPosting(true);
 
     try {
@@ -174,7 +180,7 @@ export default function CreatePostPage() {
           image_url: mediaUrl,
           post_type: "normal",
           disease_category: diseaseCategory || null,
-          reference_url: referenceUrl.trim() || null,
+          reference_url: safeHttpUrl(referenceUrl),
           ...audiencePayload(audience, false),
         });
 
@@ -201,6 +207,11 @@ export default function CreatePostPage() {
 
     if (!title.trim()) {
       notify("タイトルを入力してください");
+      return;
+    }
+
+    if (referenceUrl.trim() && !safeHttpUrl(referenceUrl)) {
+      notify(REFERENCE_URL_ERROR);
       return;
     }
 
@@ -267,7 +278,7 @@ export default function CreatePostPage() {
         achieved_on: achievedOn,
         ...audiencePayload(audience, title.trim() !== ""),
         disease_category: diseaseCategory || null,
-        reference_url: referenceUrl.trim() || null,
+        reference_url: safeHttpUrl(referenceUrl),
         details,
       });
 

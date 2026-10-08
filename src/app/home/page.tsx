@@ -1,5 +1,6 @@
 "use client";
 
+import { safeHttpUrl } from "@/lib/url";
 import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -697,9 +698,13 @@ export default function HomePage() {
                           </a>
                         )}
 
-                        {post.reference_url && (
+                        {post.reference_url && !safeHttpUrl(post.reference_url) && (
+                          <p className="text-xs leading-5 text-gray-600">参考：{post.reference_url}</p>
+                        )}
+
+                        {safeHttpUrl(post.reference_url) && (
                           <a
-                            href={post.reference_url}
+                            href={safeHttpUrl(post.reference_url) ?? undefined}
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(event) =>
