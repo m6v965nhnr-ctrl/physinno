@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { useMyAccount } from "@/lib/useMyAccount";
+import QuizHero from "@/components/student/QuizHero";
+import StudentHomePosts from "@/components/student/StudentHomePosts";
 import {
   StudentItem,
   StudentProfile,
@@ -23,12 +25,11 @@ import {
 const LINKS = [
   { href: "/student/tracker", icon: "🗂️", title: "実習・就活トラッカー", body: "実習先・病院見学・応募・提出物を管理" },
   { href: "/student/exam", icon: "⏳", title: "国試カウントダウン", body: "学習ログと、科目ごとの積み上げ" },
-  { href: "/student/quiz", icon: "🎯", title: "過去問ドリル", body: "国家試験の過去問を、単元ごとに一問一答で" },
   { href: "/student/exams", icon: "📚", title: "試験情報（学校の科目ごと）", body: "出題の傾向・勉強法・過去問を、同じ学校で共有" },
   { href: "/student/questions", icon: "🙋", title: "先輩に質問", body: "実習・国試・就活を現役PTに相談" },
   { href: "/student/report-helper", icon: "📝", title: "実習レポート支援", body: "考察の論文探し、構成・誤字脱字チェック（AI）" },
   { href: "/pts?tab=search&mode=hospitals", icon: "🏥", title: "病院・実習先を探す", body: "診療科や実習生の声から比較" },
-  { href: "/student/settings", icon: "⚙️", title: "設定", body: "名前・卒業予定年・国試日" },
+  { href: "/student/settings", icon: "⚙️", title: "設定", body: "名前・卒業予定年（国試の日は、自動で計算）" },
 ];
 
 function dayText(days: number) {
@@ -154,6 +155,9 @@ export default function StudentHomePage() {
           </div>
         </section>
 
+        {/* 一問一答ドリル（メイン機能） */}
+        <QuizHero />
+
         {/* 今週の学習 */}
         <Link href="/student/exam" className="block rounded-2xl bg-white p-4 shadow-sm transition hover:bg-gray-50">
           <div className="flex items-center justify-between">
@@ -211,6 +215,9 @@ export default function StudentHomePage() {
             </ul>
           )}
         </section>
+
+        {/* PTの最新の投稿 */}
+        <StudentHomePosts />
 
         {/* 各機能 */}
         <section className="grid grid-cols-1 gap-3 sm:grid-cols-2">

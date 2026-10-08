@@ -42,11 +42,10 @@ export function graduationYearOptions(now: Date = new Date()): number[] {
   return Array.from({ length: 7 }, (_, i) => first + i);
 }
 
-// 理学療法士国家試験は例年2月の第3日曜(日程は厚生労働省の公表を確認すること)。目安として使う
+// 理学療法士国家試験は、卒業する年の2月（直近の第60回は2025年2月23日、第61回は2026年2月23日）。
+// 卒業予定の年から、「2月23日ごろ」を目安として、自動で計算する（本人に入力はさせない）。実際の日程は、厚生労働省の公表で確認すること
 export function estimatedExamDate(graduationYear: number): Date {
-  const feb1 = new Date(graduationYear, 1, 1);
-  const firstSunday = 1 + ((7 - feb1.getDay()) % 7);
-  return new Date(graduationYear, 1, firstSunday + 14);
+  return new Date(graduationYear, 1, 23);
 }
 
 export function toDateInput(d: Date): string {
@@ -74,10 +73,9 @@ export type StudentCountdown = {
 };
 
 export function computeCountdown(profile: StudentProfile, now: Date = new Date()): StudentCountdown {
-  const examIsEstimate = !profile.national_exam_date;
-  const examDate = profile.national_exam_date
-    ? new Date(`${profile.national_exam_date}T00:00:00`)
-    : estimatedExamDate(profile.graduation_year);
+  // 国試の日は、卒業予定年から自動で計算する（以前に入力された日付があっても、使わない）
+  const examIsEstimate = true;
+  const examDate = estimatedExamDate(profile.graduation_year);
 
   const graduationDate = new Date(profile.graduation_year, 2, 31);
   const switchDate = new Date(profile.graduation_year, 3, 1);

@@ -99,3 +99,8 @@
 - トップページ（`src/app/page.tsx`）: ヘッダーに「中を見てみる」を常に残し、その下を、タブ（はじめに・できること・学生のみなさんへ・はじめ方・よくある質問。`LpTabs`）で切り替える。全タブの内容は HTML に含める（検索エンジン用）。アプリの画面の見本は、コードで描いた（`src/components/lp/Mocks.tsx`）。
 - アイコン→プロフィール: `ProfileLink`（`nested` は、リンクの中に置くとき用）。`/pts/[id]` は、プロフィール id でも user_id でも開ける（`src/lib/profileId.ts`）。
 - 色: 主要なボタン・バナーは、明るいブランドのグラデーション＋濃いティールの文字（`--relight-gradient-bright` / `--on-brand`）。白文字を載せたい濃い面は `--relight-gradient-strong`。
+
+## 学生ホームと、先輩に質問の表示（2026-10-08）
+- 国試の日は、入力させない。卒業予定年から、2月23日ごろを目安として自動で計算する（`estimatedExamDate`。`computeCountdown` は、保存済みの `national_exam_date` を使わない）。設定画面は、保存のたびに `national_exam_date` を null にする。
+- 学生ホーム（`/student`）: 一番上に「一問一答ドリル」（`QuizHero`：解いた数・正答率、今日の10問、間違えた問題の復習）、その下に今週の学習。PTの最新の投稿（`StudentHomePosts`）も出す。学生も、PTの公開投稿を読める（`list_posts` は、アカウントの種類で制限していない）。
+- PTのホーム（`/home`）: 学生からの質問（`HomeQuestionsStrip`。回答のないものを先に、3件）を、投稿の一覧の上に出す。質問は、学生が「匿名／名前を出す」を選ぶ（`student_questions.is_anonymous`。匿名の質問は、`list_student_questions` が投稿者を返さない）。

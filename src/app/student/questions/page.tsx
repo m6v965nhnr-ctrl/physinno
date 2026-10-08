@@ -179,10 +179,26 @@ export default function StudentQuestionsPage() {
               />
             </label>
 
-            <label className="flex items-center gap-2 text-xs text-gray-600">
-              <input type="checkbox" checked={anonymous} onChange={(e) => setAnonymous(e.target.checked)} />
-              匿名で投稿する（名前を表示しません）
-            </label>
+            <fieldset>
+              <legend className="text-xs text-gray-500">PTのホームに、質問として表示されます。名前を出しますか？</legend>
+              <div className="mt-1.5 grid grid-cols-2 gap-2">
+                {([
+                  [true, "匿名で質問する", "名前は、表示しません"],
+                  [false, "名前を出して質問する", "「○○さん（学生）」と表示"],
+                ] as const).map(([v, label, hint]) => (
+                  <label
+                    key={String(v)}
+                    className={`cursor-pointer rounded-xl border px-3 py-2.5 text-left ${
+                      anonymous === v ? "border-gray-900 bg-gray-50" : "border-gray-200"
+                    }`}
+                  >
+                    <input type="radio" name="q-anonymous" checked={anonymous === v} onChange={() => setAnonymous(v)} className="sr-only" />
+                    <span className="block text-sm font-semibold text-gray-900">{label}</span>
+                    <span className="block text-[11px] text-gray-600">{hint}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
 
             <p className="rounded-xl bg-amber-50 p-3 text-[11px] leading-5 text-amber-800">
               実習先の指導者の個人名や、患者さんが特定できる情報（氏名・年齢・日付・病名の組み合わせなど）は書かないでください。

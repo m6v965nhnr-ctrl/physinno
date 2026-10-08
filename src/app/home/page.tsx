@@ -16,6 +16,7 @@ import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
 import GuestBanner from "@/components/GuestBanner";
+import HomeQuestionsStrip from "@/components/HomeQuestionsStrip";
 import { getGuestRole } from "@/lib/guestRole";
 import {
   FeedComment,
@@ -483,6 +484,7 @@ export default function HomePage() {
         {!guest && <ProfileNameNudge userId={userId} />}
         {!guest && <HospitalReviewNudge userId={userId} />}
         {!guest && <HomeAudienceCard userId={userId} />}
+        {!guest && <HomeQuestionsStrip userId={userId} />}
 
         {/* 投稿一覧 */}
         <div className="space-y-4 py-4">

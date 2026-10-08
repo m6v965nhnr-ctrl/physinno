@@ -12,7 +12,6 @@ import {
   estimatedExamDate,
   getMyStudentProfile,
   graduationYearOptions,
-  toDateInput,
   updateMyStudentProfile,
 } from "@/lib/student";
 
@@ -26,7 +25,6 @@ export default function StudentSettingsPage() {
   const [biography, setBiography] = useState("");
   const [schoolName, setSchoolName] = useState("");
   const [graduationYear, setGraduationYear] = useState(0);
-  const [examDate, setExamDate] = useState("");
   const [loaded, setLoaded] = useState(false);
   const [saving, setSaving] = useState(false);
   const [schoolOptions, setSchoolOptions] = useState<School[]>([]);
@@ -65,7 +63,6 @@ export default function StudentSettingsPage() {
       setBiography(profile?.biography ?? "");
       setSchoolName(student?.school_name ?? "");
       setGraduationYear(student?.graduation_year ?? graduationYearOptions()[0]);
-      setExamDate(student?.national_exam_date ?? "");
       setLoaded(true);
     })();
   }, [userId]);
@@ -110,7 +107,8 @@ export default function StudentSettingsPage() {
 
     const error = await updateMyStudentProfile(userId, {
       graduation_year: graduationYear,
-      national_exam_date: examDate || null,
+      // 国試の日は、卒業予定年から自動で計算する。以前の入力は、消す
+      national_exam_date: null,
     });
 
     setSaving(false);
@@ -158,7 +156,7 @@ export default function StudentSettingsPage() {
 
   const years = graduationYearOptions();
   if (graduationYear && !years.includes(graduationYear)) years.unshift(graduationYear);
-  const estimated = toDateInput(estimatedExamDate(graduationYear));
+  const estimatedDate = estimatedExamDate(graduationYear);
 
   return (
     <main className="min-h-screen bg-white px-6 py-10 pb-28">
@@ -253,18 +251,16 @@ export default function StudentSettingsPage() {
               </span>
             </label>
 
-            <label className="block text-sm font-medium">
-              国家試験の日（任意）
-              <input
-                type="date"
-                value={examDate}
-                onChange={(e) => setExamDate(e.target.value)}
-                className="mt-1 block w-full min-w-0 rounded-2xl border border-gray-200 px-4 py-3 text-sm font-normal outline-none focus:border-gray-400"
-              />
-              <span className="mt-1 block text-xs font-normal leading-5 text-gray-400">
-                未入力のときは、例年の目安（{estimated}ごろ、2月の第3日曜）で数えます。日程は厚生労働省の公表で確認してください。
-              </span>
-            </label>
+            <div className="rounded-2xl bg-gray-50 p-4">
+              <p className="text-sm font-medium text-gray-900">国家試験の日</p>
+              <p className="mt-1 text-sm text-gray-900">
+                {estimatedDate.getFullYear()}年{estimatedDate.getMonth() + 1}月{estimatedDate.getDate()}日ごろ
+                <span className="ml-2 rounded-full bg-white px-2 py-0.5 text-[11px] text-gray-600">卒業予定から自動で計算</span>
+              </p>
+              <p className="mt-1 text-xs leading-5 text-gray-600">
+                入力はいりません。カウントダウンは、この日で数えます。実際の日程は、厚生労働省の発表で確認してください。
+              </p>
+            </div>
           </section>
 
           <button
