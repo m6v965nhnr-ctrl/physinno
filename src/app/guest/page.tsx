@@ -82,6 +82,13 @@ export default function GuestChooserPage() {
           をご覧ください。
         </p>
         <p className="mt-2 text-sm text-gray-600">
+          ご意見・ご要望は、
+          <Link href="/feedback" className="mx-1 font-medium underline">
+            意見箱
+          </Link>
+          へ（匿名・登録なし）。
+        </p>
+        <p className="mt-2 text-sm text-gray-600">
           もう決まっている方は、
           <Link href="/register" className="mx-1 font-medium underline">
             無料で登録

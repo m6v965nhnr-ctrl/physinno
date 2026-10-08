@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import AdminReports from "@/components/AdminReports";
 import AdminTeacherRequests from "@/components/AdminTeacherRequests";
 import AdminSignupSources from "@/components/AdminSignupSources";
+import AdminFeedback from "@/components/AdminFeedback";
 
 type Stats = {
   users: number;
@@ -152,6 +153,7 @@ export default function AdminPage() {
 
       <div className="mx-auto max-w-6xl px-5 py-6">
         <AdminReports />
+        <AdminFeedback />
         <AdminSignupSources />
         <AdminTeacherRequests />
 

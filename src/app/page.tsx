@@ -206,8 +206,21 @@ export default function LandingPage() {
         <div className="snap-center"><MockKokushi /></div>
       </div>
 
+      {/* 意見箱 */}
+      <div className="mt-12 flex flex-col gap-4 rounded-3xl bg-gray-50 p-6 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-lg font-bold tracking-tight md:text-xl">みんなで、作っていきたい。</h2>
+          <p className="mt-1 text-sm leading-7 text-gray-700">
+            困っていること、こんな機能がほしい、を教えてください。登録なし・匿名で送れる「意見箱」があります。
+          </p>
+        </div>
+        <Link href="/feedback" className="inline-block shrink-0 rounded-full bg-black px-6 py-3 text-center text-sm font-semibold text-white">
+          意見箱を開く →
+        </Link>
+      </div>
+
       {/* 個人情報 */}
-      <div className="mt-12 rounded-3xl border border-gray-200 bg-white p-6">
+      <div className="mt-6 rounded-3xl border border-gray-200 bg-white p-6">
         <p className="text-xs font-semibold text-gray-500">PRIVACY</p>
         <h2 className="mt-1 text-lg font-bold tracking-tight md:text-xl">個人情報は、使う人が自分で決められます</h2>
         <ul className="mt-4 grid gap-3 text-sm leading-6 text-gray-700 sm:grid-cols-2">
@@ -434,6 +447,7 @@ export default function LandingPage() {
           <Link href="/pts?mode=hospitals" className="hover:text-gray-900">病院を探す</Link>
           <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>
           <Link href="/columns" className="hover:text-gray-900">コラム</Link>
+          <Link href="/feedback" className="hover:text-gray-900">意見箱</Link>
           <Link href="/terms" className="hover:text-gray-900">利用規約</Link>
           <Link href="/privacy" className="hover:text-gray-900">プライバシーポリシー</Link>
         </div>

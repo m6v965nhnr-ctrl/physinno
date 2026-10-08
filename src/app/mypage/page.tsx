@@ -623,6 +623,13 @@ export default function MyPage() {
             運営へのメッセージ
           </Link>
 
+          <Link
+            href="/feedback"
+            className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
+          >
+            意見箱（匿名で、意見を送る）
+          </Link>
+
           {/* ログアウト */}
           <div className="pt-4">
             <button
@@ -833,6 +840,13 @@ function GeneralMyPage({
           className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
         >
           運営へのメッセージ
+        </Link>
+
+        <Link
+          href="/feedback"
+          className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
+        >
+          意見箱（匿名で、意見を送る）
         </Link>
 
         <button
