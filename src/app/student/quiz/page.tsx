@@ -149,20 +149,31 @@ export default function QuizHomePage() {
 
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
         <section className="rounded-2xl bg-white p-4 shadow-sm">
-          <div className="flex items-end justify-between">
-            <div>
-              <p className="text-xs text-gray-500">あなたの進み具合</p>
-              <p className="mt-1 text-2xl font-bold tracking-tight">
+          <p className="text-xs text-gray-500">あなたの進み具合</p>
+          <div className="mt-2 grid grid-cols-3 gap-2 text-center">
+            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
+              <p className="text-[11px] text-gray-500">解いた</p>
+              <p className="mt-0.5 text-xl font-bold tracking-tight">
                 {answered}
-                <span className="ml-1 text-sm font-medium text-gray-500">/ {total}問 解いた</span>
+                <span className="ml-0.5 text-[11px] font-medium text-gray-500">/ {total}問</span>
               </p>
-              <p className="mt-0.5 text-xs text-gray-500">そのうち正解 {correct}問</p>
             </div>
-            <p className="text-right text-xs text-gray-500">
-              正答率（最後の答えで数えます）
-              <span className="ml-1 text-lg font-bold text-gray-900">{percent(correct, answered)}%</span>
-            </p>
+            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
+              <p className="text-[11px] text-gray-500">正解</p>
+              <p className="mt-0.5 text-xl font-bold tracking-tight">
+                {correct}
+                <span className="ml-0.5 text-[11px] font-medium text-gray-500">問</span>
+              </p>
+            </div>
+            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
+              <p className="text-[11px] text-gray-500">正答率</p>
+              <p className="mt-0.5 text-xl font-bold tracking-tight">
+                {percent(correct, answered)}
+                <span className="ml-0.5 text-[11px] font-medium text-gray-500">%</span>
+              </p>
+            </div>
           </div>
+          <p className="mt-1.5 text-[11px] text-gray-500">正答率は、最後の答えで数えます</p>
           <div className="mt-3">
             <ProgressBar answered={answered} total={total} />
           </div>

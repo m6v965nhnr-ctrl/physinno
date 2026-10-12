@@ -81,19 +81,19 @@ export default function QuizSchoolRanking() {
         </p>
       ) : (
         <>
-          <ol className="mt-3 space-y-2">
+          <ol className="mt-3 grid grid-cols-3 gap-2">
             {podium.map((r, i) => (
               <li
                 key={`p${i}`}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
+                className={`flex min-w-0 flex-col items-center rounded-xl px-2 py-3 text-center ${
                   r.is_me ? "bg-amber-100 ring-1 ring-amber-300" : "bg-amber-50"
                 }`}
               >
                 <span className="text-2xl" aria-label={`${r.rank}位`}>
                   {MEDAL[r.rank - 1]}
                 </span>
-                <span className="min-w-0 flex-1 truncate text-sm font-semibold text-gray-900">{displayName(r)}</span>
-                <span className="shrink-0 text-sm font-bold text-gray-900">
+                <span className="mt-1 w-full truncate text-xs font-semibold text-gray-900">{displayName(r)}</span>
+                <span className="mt-0.5 text-base font-bold text-gray-900">
                   {r.correct}
                   <span className="ml-0.5 text-[11px] font-medium text-gray-500">問</span>
                 </span>
