@@ -202,6 +202,9 @@ export default function QuizHomePage() {
               {findingTerms ? "探し中…" : "探す"}
             </button>
           </div>
+          <p className="mt-2 text-[11px] leading-4 text-gray-500">
+            ※ 国試では、人名のついた病名や評価法は、英語で書かれていることがあります（例：Parkinson、Brunnstrom、Guillain）。見つからないときは、英語でも探してみてください。
+          </p>
         </section>
 
         <section className="grid grid-cols-2 gap-2">
