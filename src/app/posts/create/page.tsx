@@ -319,69 +319,32 @@ export default function CreatePostPage() {
           </div>
         </header>
 
-        <div className="mx-auto max-w-2xl px-5 py-5">
-          <div className="space-y-4">
-            {/* 通常投稿 */}
-            <button
-              onClick={() => setType("normal")}
-              className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
-                  📝
-                </div>
-
-                <div>
-                  <p className="text-base font-semibold text-gray-900">
-                    通常投稿
-                  </p>
-
-                  <p className="mt-1 text-sm text-gray-400">
-                    写真や動画、日々の気づきなどを投稿
-                  </p>
-                </div>
-              </div>
-            </button>
-
-            {/* 症例報告 */}
-            <button
-              onClick={() => setType("case")}
-              className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
-                  🩺
-                </div>
-
-                <div>
-                  <p className="text-base font-semibold text-gray-900">症例報告</p>
-                  <p className="mt-1 text-sm text-gray-400">担当した症例を共有・相談</p>
-                </div>
-              </div>
-            </button>
-
-            {/* 実績（学会発表・院内症例発表・研修受講・論文・その他） */}
-            {ACHIEVEMENT_CATEGORIES.map((c) => (
+        <div className="mx-auto max-w-2xl px-5 py-3">
+          <div className="space-y-2">
+            {(
+              [
+                { key: "normal", icon: "📝", title: "通常投稿", desc: "写真や動画、日々の気づきなどを投稿" },
+                { key: "case", icon: "🩺", title: "症例報告", desc: "担当した症例を共有・相談" },
+                ...ACHIEVEMENT_CATEGORIES.map((c) => ({
+                  key: c as string,
+                  icon: "🏅",
+                  title: ACHIEVEMENT_CATEGORY_LABEL[c],
+                  desc: `${ACHIEVEMENT_CATEGORY_LABEL[c]}の実績を投稿`,
+                })),
+              ] as { key: string; icon: string; title: string; desc: string }[]
+            ).map((item) => (
               <button
-                key={c}
-                onClick={() => setType(c)}
-                className="w-full rounded-2xl border border-gray-200 bg-white p-6 text-left transition hover:border-gray-400 hover:shadow-sm"
+                key={item.key}
+                onClick={() => setType(item.key as PostType)}
+                className="flex w-full items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-2.5 text-left transition hover:border-gray-400 hover:shadow-sm"
               >
-                <div className="flex items-center gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 text-2xl">
-                    🏅
-                  </div>
-
-                  <div>
-                    <p className="text-base font-semibold text-gray-900">
-                      {ACHIEVEMENT_CATEGORY_LABEL[c]}
-                    </p>
-
-                    <p className="mt-1 text-sm text-gray-400">
-                      {ACHIEVEMENT_CATEGORY_LABEL[c]}の実績を投稿
-                    </p>
-                  </div>
-                </div>
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-lg">
+                  {item.icon}
+                </span>
+                <span className="min-w-0">
+                  <span className="block text-sm font-semibold text-gray-900">{item.title}</span>
+                  <span className="block truncate text-xs text-gray-500">{item.desc}</span>
+                </span>
               </button>
             ))}
           </div>

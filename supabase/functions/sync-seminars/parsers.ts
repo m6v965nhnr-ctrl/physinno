@@ -943,3 +943,64 @@ export function parseIcs(ics: string, site: PrefSite, pageUrl: string, today: st
 
   return out;
 }
+
+// ========================================
+// ウゴイタラボ（pro.ugoitalab.com）セミナー一覧（Shopify の商品情報 JSON）
+// ========================================
+export const UGOITA_PRODUCTS_URL =
+  "https://pro.ugoitalab.com/collections/seminar_search_top/products.json";
+
+type UgoitaProduct = {
+  handle?: string;
+  title?: string;
+  body_html?: string;
+  product_type?: string;
+  variants?: { price?: string }[];
+};
+
+export function parseUgoita(products: UgoitaProduct[], today: string): Seminar[] {
+  const out: Seminar[] = [];
+
+  for (const p of products) {
+    const handle = p.handle ?? "";
+    const m = handle.match(/^(\d{4})(\d{2})(\d{2})/);
+    if (!m || !p.title) continue;
+
+    const date = `${m[1]}-${m[2]}-${m[3]}`;
+    if (date < today) continue;
+
+    const title = stripTags(p.title).replace(/^\d{1,2}\.\d{1,2}\s*/, "").trim();
+    if (!title) continue;
+
+    const type = p.product_type ?? "";
+    const prices = (p.variants ?? []).map((v) => Number(v.price)).filter((n) => Number.isFinite(n) && n >= 0);
+    const fee = prices.length > 0 ? Math.min(...prices) : null;
+
+    const lecturer = title.match(/【([^】]+?)(?:先生)?】/)?.[1] ?? null;
+    const body = stripTags((p.body_html ?? "").replace(/<script[\s\S]*?<\/script>/gi, " "));
+
+    out.push({
+      id: `ugoita:${handle}`,
+      source: "ugoita",
+      source_label: "ウゴイタラボ",
+      title: truncate(title, 200) ?? title,
+      organizer: "ウゴイタラボ",
+      kind: type === "イベント" ? "イベント" : "セミナー",
+      start_date: date,
+      end_date: date,
+      date_text: `${Number(m[1])}年${Number(m[2])}月${Number(m[3])}日`,
+      // 「LIVEセミナー（ZOOM）」と「リピート配信」はオンライン。実技セミナーは会場の記載がないため不明
+      format: /LIVE|リピート|配信|ZOOM/i.test(`${type}${p.title}`) ? "online" : null,
+      prefecture: null,
+      region: null,
+      fee_text: fee === null ? null : `${fee.toLocaleString("ja-JP")}円（税込）`,
+      fee_yen: fee,
+      is_free: fee === 0,
+      fields: classifyFields(`${title} ${body.slice(0, 300)}`),
+      summary: truncate([type, lecturer ? `講師：${lecturer}` : "", body].filter(Boolean).join(" / "), 300),
+      url: `https://pro.ugoitalab.com/products/${handle}`,
+    });
+  }
+
+  return out;
+}

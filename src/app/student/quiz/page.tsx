@@ -114,6 +114,7 @@ export default function QuizHomePage() {
   const correct = units.reduce((a, u) => a + u.correct, 0);
 
   const fields = Array.from(new Set(units.map((u) => u.field)));
+  const sortedExams = [...(exams ?? [])].sort((x, y) => y.exam_no - x.exam_no);
 
   function start() {
     if (!target) return;
@@ -148,43 +149,45 @@ export default function QuizHomePage() {
       </header>
 
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
-        <div className="grid items-start gap-4 sm:grid-cols-2">
-        <section className={`rounded-2xl bg-white p-4 shadow-sm ${accountType === "student" ? "" : "sm:col-span-2"}`}>
-          <p className="text-xs text-gray-500">あなたの進み具合</p>
-          <div className="mt-2 grid grid-cols-3 gap-2 text-center">
-            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
-              <p className="text-[11px] text-gray-500">解いた</p>
-              <p className="mt-0.5 text-xl font-bold tracking-tight">
-                {answered}
-                <span className="block text-[11px] font-medium leading-4 text-gray-500">/ {total}問</span>
-              </p>
-            </div>
-            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
-              <p className="text-[11px] text-gray-500">正解</p>
-              <p className="mt-0.5 text-xl font-bold tracking-tight">
-                {correct}
-                <span className="ml-0.5 text-[11px] font-medium text-gray-500">問</span>
-              </p>
-            </div>
-            <div className="rounded-xl bg-gray-50 px-2 py-2.5">
-              <p className="text-[11px] text-gray-500">正答率</p>
-              <p className="mt-0.5 text-xl font-bold tracking-tight">
-                {percent(correct, answered)}
-                <span className="ml-0.5 text-[11px] font-medium text-gray-500">%</span>
-              </p>
-            </div>
-          </div>
-          <p className="mt-1.5 text-[11px] text-gray-500">正答率は、最後の答えで数えます</p>
-          <div className="mt-3">
-            <ProgressBar answered={answered} total={total} />
-          </div>
-          <button
-            onClick={() => setTarget({ kind: "all", name: "すべての問題" })}
-            className="mt-3 w-full rounded-full bg-black py-2.5 text-sm font-medium text-white"
+        <div className="grid gap-4 sm:grid-cols-2">
+          <section
+            className={`flex flex-col rounded-2xl bg-white p-4 shadow-sm ${accountType === "student" ? "" : "sm:col-span-2"}`}
           >
-            全範囲からランダムに解く
-          </button>
-        </section>
+            <p className="text-xs text-gray-500">あなたの進み具合</p>
+            <dl className="mt-2 space-y-1.5">
+              <div className="flex items-baseline justify-between rounded-xl bg-gray-50 px-3 py-2.5">
+                <dt className="text-xs text-gray-500">解いた</dt>
+                <dd className="text-xl font-bold tracking-tight">
+                  {answered}
+                  <span className="ml-1 text-xs font-medium text-gray-500">/ {total}問</span>
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between rounded-xl bg-gray-50 px-3 py-2.5">
+                <dt className="text-xs text-gray-500">正解</dt>
+                <dd className="text-xl font-bold tracking-tight">
+                  {correct}
+                  <span className="ml-1 text-xs font-medium text-gray-500">問</span>
+                </dd>
+              </div>
+              <div className="flex items-baseline justify-between rounded-xl bg-gray-50 px-3 py-2.5">
+                <dt className="text-xs text-gray-500">正答率</dt>
+                <dd className="text-xl font-bold tracking-tight">
+                  {percent(correct, answered)}
+                  <span className="ml-1 text-xs font-medium text-gray-500">%</span>
+                </dd>
+              </div>
+            </dl>
+            <p className="mt-1.5 text-[11px] text-gray-500">正答率は、最後の答えで数えます</p>
+            <div className="mt-auto pt-3">
+              <ProgressBar answered={answered} total={total} />
+              <button
+                onClick={() => setTarget({ kind: "all", name: "すべての問題" })}
+                className="mt-3 w-full rounded-full bg-black py-2.5 text-sm font-medium text-white"
+              >
+                全範囲からランダムに解く
+              </button>
+            </div>
+          </section>
 
         {/* 同じ学校の学生どうしのランキング（学生のみ） */}
         {accountType === "student" && <QuizSchoolRanking />}
@@ -263,10 +266,10 @@ export default function QuizHomePage() {
               <details key={f} open={fi === 0} className="group rounded-2xl bg-white shadow-sm">
                 <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3">
                   <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900">{f}</span>
-                  <span className="w-16 shrink-0 sm:w-24">
+                  <span className="w-24 shrink-0 sm:w-44">
                     <ProgressBar answered={fAnswered} total={fTotal} />
                   </span>
-                  <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                  <span className="w-20 shrink-0 text-right text-xs text-gray-500">
                     {fAnswered > 0 ? `${fAnswered}/${fTotal}問` : `${fTotal}問`}
                   </span>
                   <span className="shrink-0 text-gray-400 transition group-open:rotate-180" aria-hidden>
@@ -286,10 +289,10 @@ export default function QuizHomePage() {
                       className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition hover:bg-gray-50"
                     >
                       <span className="min-w-0 flex-1 text-sm font-medium leading-5 text-gray-900">{u.name}</span>
-                      <span className="w-16 shrink-0 sm:w-24">
+                      <span className="w-24 shrink-0 sm:w-44">
                         <ProgressBar answered={u.answered} total={u.total} />
                       </span>
-                      <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                      <span className="w-20 shrink-0 text-right text-xs text-gray-500">
                         {u.answered > 0 ? `${u.answered}/${u.total}問` : `${u.total}問`}
                       </span>
                     </button>
@@ -300,23 +303,27 @@ export default function QuizHomePage() {
           })}
 
         {tab === "exam" && (
-          <div className="space-y-2">
-            {(exams ?? []).map((e) => (
+          <div className="divide-y divide-gray-100 overflow-hidden rounded-2xl bg-white shadow-sm">
+            {sortedExams.map((e) => (
               <button
                 key={e.exam_no}
                 onClick={() => setTarget({ kind: "exam", id: e.exam_no, name: `第${e.exam_no}回` })}
-                className="block w-full rounded-2xl bg-white p-4 text-left shadow-sm transition hover:bg-gray-50"
+                title={
+                  e.answered === 0
+                    ? "まだ解いていません"
+                    : `${e.answered}問 解いた ・ 正解 ${e.correct}問 ・ 正答率 ${percent(e.correct, e.answered)}%`
+                }
+                className="flex w-full items-center gap-3 px-4 py-3 text-left transition hover:bg-gray-50"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <span className="text-sm font-semibold">第{e.exam_no}回 理学療法士国家試験</span>
-                  <span className="shrink-0 text-xs text-gray-500">{e.total}問</span>
-                </div>
-                <div className="mt-2">
+                <span className="min-w-0 flex-1 text-sm font-semibold leading-5 text-gray-900">
+                  第{e.exam_no}回 理学療法士国家試験
+                </span>
+                <span className="w-24 shrink-0 sm:w-44">
                   <ProgressBar answered={e.answered} total={e.total} />
-                </div>
-                <p className="mt-1.5 text-[11px] text-gray-400">
-                  {e.answered === 0 ? "まだ解いていません" : `${e.answered}問 解いた ・ 正解 ${e.correct}問 ・ 正答率 ${percent(e.correct, e.answered)}%`}
-                </p>
+                </span>
+                <span className="w-20 shrink-0 text-right text-xs text-gray-500">
+                  {e.answered > 0 ? `${e.answered}/${e.total}問` : `${e.total}問`}
+                </span>
               </button>
             ))}
           </div>
@@ -327,28 +334,30 @@ export default function QuizHomePage() {
             <p className="text-xs leading-5 text-gray-500">
               1回分の午前または午後を、本番と同じ解答時間（{MOCK_MINUTES}分）で、通して解きます。答え合わせは、最後にまとめて行います。
             </p>
-            {(exams ?? []).map((e) => (
-              <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
-                <p className="text-sm font-semibold">第{e.exam_no}回 理学療法士国家試験</p>
-                <div className="mt-3 grid grid-cols-2 gap-2">
-                  {(["am", "pm"] as const).map((sess) => {
-                    const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
-                    return (
-                      <Link
-                        key={sess}
-                        href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
-                        className="rounded-xl border border-gray-200 p-3 text-center transition hover:bg-gray-50"
-                      >
-                        <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
-                        <span className="mt-0.5 block text-[11px] text-gray-500">
-                          {m ? `前回 ${m.last_score}/${m.last_total}問 ・ 最高 ${m.best_score}問` : "まだ解いていません"}
-                        </span>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
+            <div className="grid grid-cols-2 gap-3">
+              {sortedExams.map((e) => (
+                <section key={e.exam_no} className="rounded-2xl bg-white p-3 shadow-sm">
+                  <p className="text-sm font-semibold">第{e.exam_no}回</p>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5">
+                    {(["am", "pm"] as const).map((sess) => {
+                      const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
+                      return (
+                        <Link
+                          key={sess}
+                          href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
+                          className="rounded-xl border border-gray-200 px-1 py-2 text-center transition hover:bg-gray-50"
+                        >
+                          <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
+                          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">
+                            {m ? `${m.last_score}/${m.last_total}問` : "未挑戦"}
+                          </span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
           </div>
         )}
 
