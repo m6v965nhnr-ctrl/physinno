@@ -148,14 +148,15 @@ export default function QuizHomePage() {
       </header>
 
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
-        <section className="rounded-2xl bg-white p-4 shadow-sm">
+        <div className="grid items-start gap-4 sm:grid-cols-2">
+        <section className={`rounded-2xl bg-white p-4 shadow-sm ${accountType === "student" ? "" : "sm:col-span-2"}`}>
           <p className="text-xs text-gray-500">あなたの進み具合</p>
           <div className="mt-2 grid grid-cols-3 gap-2 text-center">
             <div className="rounded-xl bg-gray-50 px-2 py-2.5">
               <p className="text-[11px] text-gray-500">解いた</p>
               <p className="mt-0.5 text-xl font-bold tracking-tight">
                 {answered}
-                <span className="ml-0.5 text-[11px] font-medium text-gray-500">/ {total}問</span>
+                <span className="block text-[11px] font-medium leading-4 text-gray-500">/ {total}問</span>
               </p>
             </div>
             <div className="rounded-xl bg-gray-50 px-2 py-2.5">
@@ -187,6 +188,7 @@ export default function QuizHomePage() {
 
         {/* 同じ学校の学生どうしのランキング（学生のみ） */}
         {accountType === "student" && <QuizSchoolRanking />}
+        </div>
 
         {/* キーワードで絞る */}
         <section className="rounded-2xl bg-white p-4 shadow-sm">
@@ -253,33 +255,49 @@ export default function QuizHomePage() {
         </div>
 
         {tab === "unit" &&
-          fields.map((f) => (
-            <section key={f}>
-              <h2 className="mb-2 text-xs font-semibold text-gray-500">{f}</h2>
-              <div className="space-y-2">
-                {units
-                  .filter((u) => u.field === f && u.total > 0)
-                  .map((u) => (
+          fields.map((f, fi) => {
+            const list = units.filter((u) => u.field === f && u.total > 0);
+            const fTotal = list.reduce((acc, u) => acc + u.total, 0);
+            const fAnswered = list.reduce((acc, u) => acc + u.answered, 0);
+            return (
+              <details key={f} open={fi === 0} className="group rounded-2xl bg-white shadow-sm">
+                <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3">
+                  <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900">{f}</span>
+                  <span className="w-16 shrink-0 sm:w-24">
+                    <ProgressBar answered={fAnswered} total={fTotal} />
+                  </span>
+                  <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                    {fAnswered > 0 ? `${fAnswered}/${fTotal}問` : `${fTotal}問`}
+                  </span>
+                  <span className="shrink-0 text-gray-400 transition group-open:rotate-180" aria-hidden>
+                    ▾
+                  </span>
+                </summary>
+                <div className="divide-y divide-gray-100 border-t border-gray-100">
+                  {list.map((u) => (
                     <button
                       key={u.id}
                       onClick={() => setTarget({ kind: "unit", id: u.id, name: u.name })}
-                      className="block w-full rounded-2xl bg-white p-4 text-left shadow-sm transition hover:bg-gray-50"
+                      title={
+                        u.answered === 0
+                          ? "まだ解いていません"
+                          : `${u.answered}問 解いた ・ 正解 ${u.correct}問 ・ 正答率 ${percent(u.correct, u.answered)}%`
+                      }
+                      className="flex w-full items-center gap-3 px-4 py-2.5 text-left transition hover:bg-gray-50"
                     >
-                      <div className="flex items-start justify-between gap-3">
-                        <span className="text-sm font-semibold">{u.name}</span>
-                        <span className="shrink-0 text-xs text-gray-500">{u.total}問</span>
-                      </div>
-                      <div className="mt-2">
+                      <span className="min-w-0 flex-1 text-sm font-medium leading-5 text-gray-900">{u.name}</span>
+                      <span className="w-16 shrink-0 sm:w-24">
                         <ProgressBar answered={u.answered} total={u.total} />
-                      </div>
-                      <p className="mt-1.5 text-[11px] text-gray-400">
-                        {u.answered === 0 ? "まだ解いていません" : `${u.answered}問 解いた ・ 正解 ${u.correct}問 ・ 正答率 ${percent(u.correct, u.answered)}%`}
-                      </p>
+                      </span>
+                      <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                        {u.answered > 0 ? `${u.answered}/${u.total}問` : `${u.total}問`}
+                      </span>
                     </button>
                   ))}
-              </div>
-            </section>
-          ))}
+                </div>
+              </details>
+            );
+          })}
 
         {tab === "exam" && (
           <div className="space-y-2">
