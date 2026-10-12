@@ -13,7 +13,7 @@ import {
   isPublicGuestPath,
   isPublicPtPath,
 } from "@/lib/account";
-import { isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
+import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback"];
 
@@ -99,7 +99,17 @@ export default function AuthGuard({
           return;
         }
 
-        // PT以外は対象外。このタブでは再確認しない
+        // 学生は、名前が入っていなければ、設定画面から先へ進めない
+        if (accountType === "student") {
+          if (!pathname.startsWith("/student/settings") && !(await hasStudentName(user.id))) {
+            if (cancelled) return;
+            router.replace("/student/settings?welcome=1");
+            return;
+          }
+          if (cancelled) return;
+        }
+
+        // 確認が済んだ。このタブでは再確認しない
         markOnboarded(user.id);
       }
 

@@ -35,6 +35,7 @@ const ACCOUNT_TYPE_OPTIONS: {
 export default function RegisterPage() {
   const router = useRouter();
 
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
@@ -73,6 +74,12 @@ export default function RegisterPage() {
       return;
     }
 
+    if (!fullName.trim()) {
+      setError("名前を入力してください");
+      document.getElementById("field-name")?.focus();
+      return;
+    }
+
     if (!email || !password) {
       setError("メールアドレスとパスワードを入力してください");
       return;
@@ -92,6 +99,7 @@ export default function RegisterPage() {
         // DBトリガー on_auth_user_created が users.account_type / referred_by に保存します
         data: {
           account_type: accountType,
+          full_name: fullName.trim().slice(0, 50),
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
           // どのリンクから来たか（運営の集計用。utm_source などがあるときだけ入る）
@@ -220,6 +228,28 @@ export default function RegisterPage() {
           )}
 
           <div>
+            <label className="mb-2 block text-sm font-medium" htmlFor="field-name">
+              名前 <span className="text-xs font-normal text-red-500">（必須）</span>
+            </label>
+
+            <input id="field-name"
+              type="text"
+              name="name"
+              autoComplete="name"
+              maxLength={50}
+              required
+              value={fullName}
+              onChange={(e) => setFullName(e.target.value)}
+              placeholder={accountType === "student" ? "山田 太郎（ニックネームでも可）" : "山田 太郎"}
+              className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+            />
+
+            <p className="mt-2 text-xs leading-5 text-gray-400">
+              コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。
+            </p>
+          </div>
+
+          <div>
             <label className="mb-2 block text-sm font-medium" htmlFor="field-1">
               メールアドレス
             </label>
@@ -284,7 +314,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed}
+            disabled={loading || !agreed || !fullName.trim()}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : "新規登録"}

@@ -123,10 +123,19 @@ export default function EditProfilePage() {
       setIdPhotoPreview(signed?.signedUrl || "");
     }
 
+    // 登録フォームで入力した名前を、はじめの値にする
+    const { data: me } = await supabase
+      .from("users")
+      .select("full_name")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (!data && me?.full_name) setFullName(me.full_name);
+
     if (data) {
       setProfileId(data.id);
 
-      setFullName(data.full_name || "");
+      setFullName(data.full_name || me?.full_name || "");
       setFullNameKana(data.full_name_kana || "");
       // 勤務先を非公開にしているときは、本人だけが読める pt_private から読み込む
       const hidden = Boolean(data.hide_workplace);

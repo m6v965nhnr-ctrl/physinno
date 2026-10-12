@@ -25,6 +25,17 @@ export async function isOnboarded(userId: string): Promise<boolean> {
   return false;
 }
 
+// 学生は、名前が入っているかだけを確認する（pt_profiles は、名前を保存する先として共用している）
+export async function hasStudentName(userId: string): Promise<boolean> {
+  const { data } = await supabase
+    .from("pt_profiles")
+    .select("full_name")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  return Boolean(data?.full_name?.trim());
+}
+
 // 初回登録が済むまでも開けるページ（入力画面そのものと、規約・問い合わせなど）
 const ALLOWED_BEFORE_ONBOARDING = ["/mypage/edit", "/contact", "/terms", "/privacy"];
 

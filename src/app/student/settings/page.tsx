@@ -50,16 +50,17 @@ export default function StudentSettingsPage() {
     if (!userId) return;
 
     (async () => {
-      const [{ data: profile }, student] = await Promise.all([
+      const [{ data: profile }, student, { data: me }] = await Promise.all([
         supabase
           .from("pt_profiles")
           .select("full_name, biography")
           .eq("user_id", userId)
           .maybeSingle(),
         getMyStudentProfile(userId),
+        supabase.from("users").select("full_name").eq("id", userId).maybeSingle(),
       ]);
 
-      setFullName(profile?.full_name ?? "");
+      setFullName(profile?.full_name || me?.full_name || "");
       setBiography(profile?.biography ?? "");
       setSchoolName(student?.school_name ?? "");
       setGraduationYear(student?.graduation_year ?? graduationYearOptions()[0]);
