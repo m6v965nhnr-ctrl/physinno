@@ -365,9 +365,10 @@ export default function PortfolioView({
         </div>
 
         {/* =========================
-            基本情報
+            基本情報（PDFでは左）＋ サマリー（PDFでは右の空いたところ）
         ========================= */}
-        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:gap-4 print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
+        <div className="print:flex print:items-start print:gap-5 print:break-inside-avoid">
+        <section className="flex flex-col gap-6 rounded-3xl border border-gray-100 bg-white p-8 shadow-[0_2px_12px_rgba(0,0,0,0.03)] sm:flex-row print:min-w-0 print:flex-1 print:gap-4 print:rounded-none print:border-0 print:p-0 print:shadow-none print:break-inside-avoid">
           {/* 証明写真（非公開：本人が見ている時だけ表示。PDF保存は本人の画面から行う） */}
           {myUserId && myUserId === pt.user_id && (
             <div className="mx-auto h-40 w-32 shrink-0 overflow-hidden rounded-lg border border-gray-200 bg-gray-50 sm:mx-0 print:h-28 print:w-24">
@@ -432,7 +433,7 @@ export default function PortfolioView({
         {/* =========================
             サマリー（ひと目でわかる概要）
         ========================= */}
-        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-4 print:break-inside-avoid">
+        <section className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-4 print:mt-0 print:w-56 print:shrink-0 print:grid-cols-2! print:break-inside-avoid">
           <SummaryTile label="症例経験" value={caseCount} />
           <SummaryTile label="保有資格" value={certifications.length} />
           <SummaryTile
@@ -448,6 +449,7 @@ export default function PortfolioView({
             value={achievements.filter((a) => a.category === "training").length}
           />
         </section>
+        </div>
 
         {/* =========================
             I. 経歴

@@ -1,0 +1,5 @@
+-- 一問一答の学校内ランキング（本番には Supabase MCP で適用済み）
+-- student_profiles.ranking_hidden（ランキングで名前を出さない）
+-- school_rank_key(text): 学校名を「〇〇大学」までにそろえる（学部・学科の書き方の違いをまとめる）
+-- quiz_school_ranking(): 同じ学校の学生の正解数（last_correct の問題数）で順位。上位10位＋自分の順位
+-- set_quiz_ranking_hidden(boolean)

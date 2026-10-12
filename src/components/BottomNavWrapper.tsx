@@ -26,18 +26,6 @@ const PT_MENUS: Menu[] = [
 
 // ログインしていない訪問者（ゲスト閲覧）：見て回るための最小限のメニューと、登録への入口
 // 立場（PT／学生）を選んだゲストごとに、メニューを変える
-const GUEST_MENUS_PT: Menu[] = [
-  { href: "/home", icon: "⌂", label: "ホーム" },
-  { href: "/pts", icon: "⌕", label: "検索" },
-  { href: "/pts?mode=ideas", icon: "💡", label: "臨床アイデア" },
-  { href: "/register", icon: "○", label: "登録・ログイン" },
-];
-const GUEST_MENUS_STUDENT: Menu[] = [
-  { href: "/guest/student", icon: "⌂", label: "学生ホーム" },
-  { href: "/kokushi", icon: "📝", label: "過去問" },
-  { href: "/pts?mode=hospitals", icon: "🏥", label: "病院" },
-  { href: "/register?type=student", icon: "○", label: "登録・ログイン" },
-];
 const GUEST_MENUS_UNSET: Menu[] = [
   { href: "/guest", icon: "⌂", label: "見てみる" },
   { href: "/pts", icon: "⌕", label: "検索" },
@@ -165,16 +153,17 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // ログインしていない訪問者には、ゲスト用のメニューを出す
-  const menus = !loggedIn
-    ? guestRole === "pt"
-      ? GUEST_MENUS_PT
-      : guestRole === "student"
-        ? GUEST_MENUS_STUDENT
-        : GUEST_MENUS_UNSET
-    : accountType === "general"
-      ? GENERAL_MENUS
-      : PT_MENUS;
+  // 立場（PT／学生）を選んで中を見ているゲストには、本物と同じメニューを「見るだけ」で出す（押せない）
+  const previewOnly = !loggedIn && (guestRole === "pt" || guestRole === "student");
+
+  // ログインしていない訪問者（立場を選んでいない人）には、ゲスト用のメニューを出す
+  const menus = previewOnly
+    ? PT_MENUS
+    : !loggedIn
+      ? GUEST_MENUS_UNSET
+      : accountType === "general"
+        ? GENERAL_MENUS
+        : PT_MENUS;
 
   function isActive(href: string) {
     const [base, query] = href.split("?");
@@ -211,6 +200,31 @@ export default function BottomNavWrapper() {
               : menu.href === "/messages"
               ? unreadMessageCount
               : 0;
+
+          // 見るだけのとき: 同じ見た目で、押せないメニュー（ホームだけ、いまの画面として濃く出す）
+          if (previewOnly) {
+            const here = menu.href === "/home";
+            return (
+              <span
+                key={menu.href}
+                aria-disabled="true"
+                title="無料登録すると使えます"
+                className={`flex min-w-[64px] cursor-not-allowed select-none flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 ${
+                  here ? "font-semibold text-black" : "text-gray-400"
+                }`}
+              >
+                <span
+                  aria-hidden="true"
+                  className={`relative flex h-7 items-center justify-center leading-none ${
+                    menu.href === "/posts/create" ? "text-3xl font-light" : "text-2xl"
+                  }`}
+                >
+                  {menu.icon}
+                </span>
+                <span className="text-[11px]">{menu.label}</span>
+              </span>
+            );
+          }
 
           return (
             <Link

@@ -131,3 +131,22 @@ export async function deleteIdea(id: string): Promise<boolean> {
   const { error } = await supabase.from("clinical_ideas").delete().eq("id", id);
   return !error;
 }
+
+// 編集部の「リハビリのアイデア」へのいいね（疾患ページの slug ＋ アイデアの見出しで識別）。数は、ログインなしでも見える
+export type EditorialLikes = Record<string, { count: number; mine: boolean }>;
+
+export async function listEditorialLikes(topicSlug: string): Promise<EditorialLikes> {
+  const { data } = await supabase.rpc("editorial_idea_likes", { p_topic: topicSlug });
+  const out: EditorialLikes = {};
+  for (const r of (data ?? []) as { idea_key: string; like_count: number | string; my_like: boolean }[]) {
+    out[r.idea_key] = { count: Number(r.like_count), mine: Boolean(r.my_like) };
+  }
+  return out;
+}
+
+// 戻り値は、操作後にいいね済みかどうか（失敗・未ログインは null）
+export async function toggleEditorialLike(topicSlug: string, ideaKey: string): Promise<boolean | null> {
+  const { data, error } = await supabase.rpc("toggle_editorial_idea_like", { p_topic: topicSlug, p_key: ideaKey });
+  if (error) return null;
+  return Boolean(data);
+}

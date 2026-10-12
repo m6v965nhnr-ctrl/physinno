@@ -1,0 +1,8 @@
+-- 適用済み（relight-tokyo）
+-- 1) 一問一答: キーワードで絞る
+--    quiz_keyword_match(q, keyword, related): 2=問題文・選択肢にある / 1=解説・関連語にある / 0=なし
+--    quiz_list_questions_kw / quiz_mode_counts_kw（既存の quiz_list_questions / quiz_mode_counts に p_keyword・p_related を足した版）
+-- 2) 編集部の「リハビリのアイデア」へのいいね: clinical_idea_editorial_likes、editorial_idea_likes(topic)、toggle_editorial_idea_like(topic, key)
+-- 3) マイページの獲得いいね数: my_received_likes(p_user default null)
+--    自分の投稿へのいいね ＋ 自分が登録した臨床アイデアへのいいね（自分でつけたものは数えない）
+-- 関数の本文は Supabase 上の定義を参照

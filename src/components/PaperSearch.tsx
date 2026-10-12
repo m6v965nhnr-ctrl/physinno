@@ -144,17 +144,18 @@ function ResultCard({
         </span>
       )}
 
+      {/* 日本語に翻訳できたときは、日本語を見出しにして、原文のタイトルを下に小さく出す */}
       <a
         href={r.url}
         target="_blank"
         rel="noopener noreferrer"
         className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
       >
-        {r.title}
+        {titleTranslation ?? r.title}
       </a>
 
       {titleTranslation && (
-        <p className="mt-1 text-sm text-gray-600">{titleTranslation}</p>
+        <p className="mt-0.5 text-xs leading-5 text-gray-500">{r.title}</p>
       )}
 
       <p className="mt-1 text-xs text-gray-500">
@@ -249,6 +250,8 @@ function ResultCard({
 // AI一文要約つき）を結果の下に表示する。質問を重ねるたびに会話のように
 // 履歴が積み上がっていく。Consensusのような「全論文を1つの結論に合成する」
 // 機能ではなく、まずは要約つきで関連論文を探しやすくする第一段階という位置づけ。
+const AUTO_TRANSLATE_KEY = "relight:paper-auto-translate";
+
 export default function PaperSearch() {
   const [userId, setUserId] = useState<string | null>(null);
   const [view, setView] = useState<"search" | "saved">("search");
@@ -286,6 +289,25 @@ export default function PaperSearch() {
   // 保存済み論文のurl→saved_papers.id。保存/保存解除の両方をこのマップで判定する
   const [savedMap, setSavedMap] = useState<Record<string, string>>({});
   const [titleTranslations, setTitleTranslations] = useState<Record<string, string>>({});
+  // タイトルの自動翻訳（検索したら、日本語の見出しを自動で出す）。この端末に、オン・オフを覚えておく
+  const [autoTranslate, setAutoTranslate] = useState(true);
+  useEffect(() => {
+    try {
+      if (window.localStorage.getItem(AUTO_TRANSLATE_KEY) === "off") setAutoTranslate(false);
+    } catch {
+      // 保存できない環境では、オンのまま
+    }
+  }, []);
+  function toggleAutoTranslate(targets: PaperResult[]) {
+    const next = !autoTranslate;
+    setAutoTranslate(next);
+    try {
+      window.localStorage.setItem(AUTO_TRANSLATE_KEY, next ? "on" : "off");
+    } catch {
+      // 保存できなくても、この画面の間は切り替わる
+    }
+    if (next) handleTranslateTitles(targets);
+  }
   const [translatingTitles, setTranslatingTitles] = useState(false);
 
   // エビデンスレベルの絞り込み（空 = 絞り込まない）
@@ -363,6 +385,7 @@ export default function PaperSearch() {
     setResults(newResults);
     setTranslatedQuery(newTranslatedQuery);
     setSearched(true);
+    if (autoTranslate && newResults.length > 0) handleTranslateTitles(newResults);
 
     if (error) notify(error);
   }
@@ -417,6 +440,7 @@ export default function PaperSearch() {
       },
     ]);
     setQuery("");
+    if (autoTranslate && ordered.length > 0) handleTranslateTitles(ordered);
     setTimeout(() => {
       conversationEndRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
     }, 50);
@@ -648,7 +672,7 @@ export default function PaperSearch() {
                 ? "例：膝OAに運動療法は効果があるか"
                 : "キーワード（例：変形性膝関節症 運動療法）"
             }
-            className="w-full rounded-full border-none bg-gray-100 py-2.5 pl-11 pr-10 text-sm text-gray-900 outline-none ring-0 focus:bg-white focus:shadow-[0_0_0_2px_rgba(0,0,0,0.08)]"
+            className="w-full rounded-full border-2 border-gray-300 bg-white py-2.5 pl-11 pr-10 text-sm text-gray-900 shadow-sm outline-none placeholder:text-gray-400 focus:border-gray-900"
             aria-label={mode === "ai" ? "AIモードで論文を検索" : "論文検索キーワード"}
           />
 
@@ -823,7 +847,8 @@ export default function PaperSearch() {
                   <OtherSiteButtons query={query} />
                   {results.length > 0 && (
                     <ResultToolbar
-                      onTranslate={() => handleTranslateTitles(results)}
+                      onTranslate={() => toggleAutoTranslate(results)}
+                      autoTranslate={autoTranslate}
                       translating={translatingTitles}
                       showSummaries={showSummaries}
                       onToggleSummaries={() => setShowSummaries((v) => !v)}
@@ -879,7 +904,8 @@ export default function PaperSearch() {
         <div className="mt-6 space-y-3">
           <OtherSiteButtons query={query} />
           <ResultToolbar
-            onTranslate={() => handleTranslateTitles(aiTurns.flatMap((t) => t.results))}
+            onTranslate={() => toggleAutoTranslate(aiTurns.flatMap((t) => t.results))}
+            autoTranslate={autoTranslate}
             translating={translatingTitles}
             savedCount={userId ? savedPapers.length : null}
             onOpenSaved={() => setView("saved")}
@@ -1014,6 +1040,7 @@ function OtherSiteButtons({ query }: { query: string }) {
 // 検索結果の操作ボタン。翻訳・要約・保存リスト（保存している数）を、1列に並べる
 function ResultToolbar({
   onTranslate,
+  autoTranslate,
   translating,
   showSummaries,
   onToggleSummaries,
@@ -1021,6 +1048,7 @@ function ResultToolbar({
   onOpenSaved,
 }: {
   onTranslate: () => void;
+  autoTranslate: boolean;
   translating: boolean;
   showSummaries?: boolean;
   onToggleSummaries?: () => void;
@@ -1032,12 +1060,15 @@ function ResultToolbar({
 
   return (
     <div className="flex gap-2">
+      {/* 日本語タイトルの自動翻訳のオン・オフ */}
       <button
         onClick={onTranslate}
-        disabled={translating}
-        className={`${base} flex-1 border-gray-200 text-gray-600 disabled:opacity-50`}
+        aria-pressed={autoTranslate}
+        className={`${base} flex-1 ${
+          autoTranslate ? "border-sky-200 bg-sky-50 text-sky-800" : "border-gray-200 text-gray-600"
+        }`}
       >
-        {translating ? "翻訳中…" : "🌐 タイトル翻訳"}
+        {translating ? "翻訳中…" : autoTranslate ? "🌐 日本語タイトル ON" : "🌐 日本語タイトル OFF"}
       </button>
 
       {onToggleSummaries && (

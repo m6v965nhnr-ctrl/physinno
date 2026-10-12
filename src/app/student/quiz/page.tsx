@@ -4,6 +4,7 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useMyAccount } from "@/lib/useMyAccount";
+import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import { OFFICIAL_EXAMS, officialPage, officialPdfs } from "@/lib/quizPdf";
 import {
   MODES,
@@ -15,13 +16,18 @@ import {
   MockSummary,
   MOCK_MINUTES,
   getMockSummary,
+  fetchRelatedTerms,
   getModeCounts,
   listQuizExams,
   listQuizUnits,
   percent,
 } from "@/lib/quiz";
 
-type Target = { kind: "unit"; id: string; name: string } | { kind: "exam"; id: number; name: string } | { kind: "all"; name: string };
+type Target =
+  | { kind: "unit"; id: string; name: string }
+  | { kind: "exam"; id: number; name: string }
+  | { kind: "all"; name: string }
+  | { kind: "keyword"; keyword: string; related: string[]; name: string };
 
 const COUNTS = [10, 20, 50, 0];
 
@@ -50,6 +56,19 @@ export default function QuizHomePage() {
   const [n, setN] = useState(20);
   const [shuffle, setShuffle] = useState(true);
 
+  // キーワードで絞る（例: 糖尿病）
+  const [keyword, setKeyword] = useState("");
+  const [findingTerms, setFindingTerms] = useState(false);
+
+  async function searchByKeyword() {
+    const kw = keyword.replace(/[%_|\\]/g, "").trim().slice(0, 40);
+    if (!kw) return;
+    setFindingTerms(true);
+    const related = await fetchRelatedTerms(kw);
+    setFindingTerms(false);
+    setTarget({ kind: "keyword", keyword: kw, related, name: `「${kw}」の問題` });
+  }
+
   useEffect(() => {
     if (loading) return;
     listQuizUnits().then(setUnits);
@@ -60,7 +79,11 @@ export default function QuizHomePage() {
   useEffect(() => {
     if (!target) return;
     setCounts(null);
-    getModeCounts(target.kind === "unit" ? target.id : null, target.kind === "exam" ? target.id : null).then(
+    getModeCounts(
+      target.kind === "unit" ? target.id : null,
+      target.kind === "exam" ? target.id : null,
+      target.kind === "keyword" ? { keyword: target.keyword, related: target.related } : null
+    ).then(
       (c) => {
         setCounts(c);
         // 前回間違えた問題があれば、最初からそれを選んでおく
@@ -97,6 +120,10 @@ export default function QuizHomePage() {
     const q = new URLSearchParams();
     if (target.kind === "unit") q.set("unit", target.id);
     if (target.kind === "exam") q.set("exam", String(target.id));
+    if (target.kind === "keyword") {
+      q.set("kw", target.keyword);
+      if (target.related.length > 0) q.set("rel", target.related.join("|"));
+    }
     q.set("mode", mode);
     q.set("n", String(n));
     q.set("order", shuffle ? "random" : "seq");
@@ -145,6 +172,36 @@ export default function QuizHomePage() {
           >
             全範囲からランダムに解く
           </button>
+        </section>
+
+        {/* 同じ学校の学生どうしのランキング（学生のみ） */}
+        {accountType === "student" && <QuizSchoolRanking />}
+
+        {/* キーワードで絞る */}
+        <section className="rounded-2xl bg-white p-4 shadow-sm">
+          <p className="text-sm font-semibold">🔎 キーワードで絞って解く</p>
+          <p className="mt-0.5 text-[11px] leading-4 text-gray-500">
+            例：「糖尿病」と入れると、問題文・選択肢に「糖尿病」がある問題と、関係する問題（HbA1c・インスリン・合併症など）を集めます
+          </p>
+          <div className="mt-3 flex gap-2">
+            <input
+              value={keyword}
+              onChange={(e) => setKeyword(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.nativeEvent.isComposing) searchByKeyword();
+              }}
+              placeholder="例：糖尿病、脳梗塞、ICF"
+              aria-label="キーワード"
+              className="min-w-0 flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm outline-none focus:border-gray-900"
+            />
+            <button
+              onClick={searchByKeyword}
+              disabled={findingTerms || !keyword.trim()}
+              className="shrink-0 rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40"
+            >
+              {findingTerms ? "探し中…" : "探す"}
+            </button>
+          </div>
         </section>
 
         <section className="grid grid-cols-2 gap-2">
@@ -343,6 +400,24 @@ export default function QuizHomePage() {
                 ×
               </button>
             </div>
+
+            {target.kind === "keyword" && (
+              <div className="rounded-xl bg-gray-50 p-3 text-xs leading-5 text-gray-600">
+                <p>
+                  問題文・選択肢に「{target.keyword}」がある問題：
+                  <span className="font-semibold text-gray-900">
+                    {counts?.direct_count === undefined ? "…" : `${counts.direct_count}問`}
+                  </span>
+                  （先に出題します）
+                </p>
+                {target.related.length > 0 && (
+                  <p className="mt-1">
+                    関係する言葉でも探しました：
+                    <span className="text-gray-900">{target.related.join("・")}</span>
+                  </p>
+                )}
+              </div>
+            )}
 
             <fieldset>
               <legend className="text-xs text-gray-500">出題する問題</legend>

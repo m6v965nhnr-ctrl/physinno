@@ -27,7 +27,7 @@ export type QuizUnit = {
 
 export type QuizExam = { exam_no: number; total: number; answered: number; correct: number };
 
-export type QuizModeCounts = { all_count: number; unanswered: number; wrong: number; bookmarked: number };
+export type QuizModeCounts = { all_count: number; unanswered: number; wrong: number; bookmarked: number; direct_count?: number };
 
 export type QuizQuestion = {
   id: string;
@@ -74,10 +74,46 @@ export async function listQuizExams(): Promise<QuizExam[]> {
   return (data ?? []) as QuizExam[];
 }
 
-export async function getModeCounts(unit: string | null, exam: number | null): Promise<QuizModeCounts> {
-  const { data } = await supabase.rpc("quiz_mode_counts", { p_unit: unit, p_exam: exam });
-  const row = (data ?? [])[0] as QuizModeCounts | undefined;
-  return row ?? { all_count: 0, unanswered: 0, wrong: 0, bookmarked: 0 };
+// キーワードで絞るとき: keyword が問題文・選択肢にある問題（direct）と、関連語・解説に出てくる問題
+export type QuizKeyword = { keyword: string; related: string[] };
+
+export async function getModeCounts(
+  unit: string | null,
+  exam: number | null,
+  kw?: QuizKeyword | null
+): Promise<QuizModeCounts & { direct_count?: number }> {
+  const { data } = kw
+    ? await supabase.rpc("quiz_mode_counts_kw", {
+        p_unit: unit,
+        p_exam: exam,
+        p_keyword: kw.keyword,
+        p_related: kw.related,
+      })
+    : await supabase.rpc("quiz_mode_counts", { p_unit: unit, p_exam: exam });
+  const row = (data ?? [])[0] as (QuizModeCounts & { direct_count?: number }) | undefined;
+  return row ?? { all_count: 0, unanswered: 0, wrong: 0, bookmarked: 0, direct_count: 0 };
+}
+
+// キーワードに関係する言葉を集める（AI。使えないときは、よく使う言いかえだけ）
+export async function fetchRelatedTerms(keyword: string): Promise<string[]> {
+  try {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    const res = await fetch("/api/quiz/related", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        ...(session ? { Authorization: `Bearer ${session.access_token}` } : {}),
+      },
+      body: JSON.stringify({ keyword }),
+    });
+    if (!res.ok) return [];
+    const json = (await res.json()) as { terms?: unknown };
+    return Array.isArray(json.terms) ? json.terms.filter((t): t is string => typeof t === "string").slice(0, 12) : [];
+  } catch {
+    return [];
+  }
 }
 
 export async function listQuizQuestions(params: {
@@ -86,14 +122,23 @@ export async function listQuizQuestions(params: {
   mode: QuizMode;
   limit: number | null;
   shuffle: boolean;
+  keyword?: QuizKeyword | null;
 }): Promise<QuizQuestion[]> {
-  const { data } = await supabase.rpc("quiz_list_questions", {
+  const base = {
     p_unit: params.unit,
     p_exam: params.exam,
     p_mode: params.mode,
     p_limit: params.limit,
     p_shuffle: params.shuffle,
-  });
+  };
+  // キーワードがあるときは、問題文・選択肢にある問題を先に出す
+  const { data } = params.keyword
+    ? await supabase.rpc("quiz_list_questions_kw", {
+        ...base,
+        p_keyword: params.keyword.keyword,
+        p_related: params.keyword.related,
+      })
+    : await supabase.rpc("quiz_list_questions", base);
   return (data ?? []) as QuizQuestion[];
 }
 
@@ -198,4 +243,27 @@ export type PrintQuestion = MockQuestion & {
 export async function listPrintQuestions(exam: number, session: "am" | "pm"): Promise<PrintQuestion[]> {
   const { data } = await supabase.rpc("quiz_print_exam", { p_exam: exam, p_session: session });
   return (data ?? []) as PrintQuestion[];
+}
+
+// 同じ学校の学生どうしの、一問一答の正解数ランキング（学校名は「〇〇大学」までで、まとめます）
+export type SchoolRankRow = { rank: number; correct: number; is_me: boolean; name: string | null };
+export type SchoolRanking = {
+  school: string | null;
+  members?: number;
+  my_rank?: number | null;
+  my_correct?: number | null;
+  my_hidden?: boolean | null;
+  top?: SchoolRankRow[];
+};
+
+export async function getSchoolRanking(): Promise<SchoolRanking | null> {
+  const { data, error } = await supabase.rpc("quiz_school_ranking");
+  if (error || !data) return null;
+  return data as SchoolRanking;
+}
+
+// ランキングで名前を出さない（オン・オフ）
+export async function setRankingHidden(hidden: boolean): Promise<boolean> {
+  const { error } = await supabase.rpc("set_quiz_ranking_hidden", { p_hidden: hidden });
+  return !error;
 }

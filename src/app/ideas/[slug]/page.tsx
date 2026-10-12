@@ -6,7 +6,8 @@ import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getMyAccountType, type AccountType } from "@/lib/account";
 import { getCategory, getTopic } from "@/content/ideas";
-import { PtIdea, listIdeas } from "@/lib/ideas";
+import { EditorialLikes, PtIdea, listEditorialLikes, listIdeas, toggleEditorialLike } from "@/lib/ideas";
+import { notify } from "@/lib/notify";
 import PtIdeaCard from "@/components/PtIdeaCard";
 import GuestBanner, { useIsGuest } from "@/components/GuestBanner";
 
@@ -22,6 +23,31 @@ export default function TopicPage() {
   const [ideas, setIdeas] = useState<PtIdea[] | null>(null);
   const [sort, setSort] = useState<"new" | "popular">("new");
   const [openIdea, setOpenIdea] = useState<number | null>(null);
+  // 編集部のアイデアごとの、いいね数と自分がいいね済みか
+  const [editorialLikes, setEditorialLikes] = useState<EditorialLikes>({});
+  const [liking, setLiking] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (slug) listEditorialLikes(slug).then(setEditorialLikes);
+  }, [slug]);
+
+  async function likeEditorial(key: string) {
+    if (guest) {
+      notify("いいねは、無料登録（PT・学生）後に使えます");
+      return;
+    }
+    setLiking(key);
+    const on = await toggleEditorialLike(slug, key);
+    setLiking(null);
+    if (on === null) {
+      notify("いいねできませんでした");
+      return;
+    }
+    setEditorialLikes((prev) => {
+      const cur = prev[key] ?? { count: 0, mine: false };
+      return { ...prev, [key]: { mine: on, count: Math.max(0, cur.count + (on ? 1 : -1)) } };
+    });
+  }
 
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
@@ -116,6 +142,26 @@ export default function TopicPage() {
                   </span>
                   <span className="mt-1 text-xs text-gray-400">{open ? "▲" : "▼"}</span>
                 </button>
+                <div className="mt-2 flex items-center gap-2">
+                  {(() => {
+                    const like = editorialLikes[idea.title] ?? { count: 0, mine: false };
+                    return (
+                      <button
+                        onClick={() => likeEditorial(idea.title)}
+                        disabled={liking !== null}
+                        aria-pressed={like.mine}
+                        className={`rounded-full border px-3 py-1 text-xs transition ${
+                          like.mine
+                            ? "border-sky-300 bg-sky-100 text-sky-900"
+                            : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                        }`}
+                      >
+                        👍 {like.mine ? "いいね済み" : "いいね"}
+                        <span className="ml-1 font-semibold">{like.count}</span>
+                      </button>
+                    );
+                  })()}
+                </div>
                 {open && (
                   <div className="mt-3 space-y-2 border-t border-gray-100 pt-3 text-sm leading-6">
                     <p>

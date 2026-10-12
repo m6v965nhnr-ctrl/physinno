@@ -43,6 +43,8 @@ export default function MyPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [followCount, setFollowCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
+  // 獲得いいね数（自分の投稿と、登録した臨床アイデアへのいいね）
+  const [receivedLikes, setReceivedLikes] = useState(0);
   const [loading, setLoading] = useState(true);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [email, setEmail] = useState("");
@@ -169,6 +171,12 @@ export default function MyPage() {
       .eq("followed_user", user.id);
 
     setFollowerCount(followerData?.length || 0);
+
+    // =========================
+    // 獲得いいね数
+    // =========================
+    const { data: likeTotal } = await supabase.rpc("my_received_likes");
+    setReceivedLikes(typeof likeTotal === "number" ? likeTotal : Number(likeTotal) || 0);
 
     // =========================
     // 実績・資格更新の進捗
@@ -361,7 +369,7 @@ export default function MyPage() {
         {/* =========================
             投稿・フォロー・フォロワー（カバー写真の外＝白背景）
         ========================= */}
-        <div className="flex justify-center gap-8 mt-6 text-center">
+        <div className="flex justify-center gap-6 mt-6 text-center">
 
           <div className="text-center">
             <p className="font-semibold">
@@ -385,6 +393,16 @@ export default function MyPage() {
               フォロー
             </p>
           </Link>
+
+          <div className="text-center">
+            <p className="font-semibold">
+              {receivedLikes}
+            </p>
+
+            <p className="text-sm text-gray-500">
+              獲得いいね
+            </p>
+          </div>
 
           <Link
             href="/mypage/followers"

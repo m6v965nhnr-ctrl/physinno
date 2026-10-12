@@ -319,16 +319,8 @@ export default function CreatePostPage() {
           </div>
         </header>
 
-        <div className="mx-auto max-w-2xl px-5 py-10">
-          <h2 className="text-center text-xl font-semibold text-gray-900">
-            何を投稿しますか？
-          </h2>
-
-          <p className="mt-2 text-center text-sm text-gray-400">
-            投稿する内容を選択してください
-          </p>
-
-          <div className="mt-8 space-y-4">
+        <div className="mx-auto max-w-2xl px-5 py-5">
+          <div className="space-y-4">
             {/* 通常投稿 */}
             <button
               onClick={() => setType("normal")}

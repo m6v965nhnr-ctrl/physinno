@@ -432,8 +432,8 @@ export default function HomePage() {
         </header>
 
         {/* 通知・投稿検索・グループ・PT検索（常にヘッダーの下に固定表示） */}
-        <div className="flex gap-1.5 bg-white px-5 pt-4">
-          {!guest && (
+        {/* ゲスト（ログインなし）のときも、本物と同じボタンを出す。ただし見るだけで、押せない */}
+        <div inert={guest} className="flex gap-1.5 bg-white px-5 pt-4">
           <Link
             href="/notifications"
             className="relative inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
@@ -446,7 +446,6 @@ export default function HomePage() {
               </span>
             )}
           </Link>
-          )}
 
           <Link
             href="/posts"
@@ -456,7 +455,6 @@ export default function HomePage() {
             投稿検索
           </Link>
 
-          {!guest && (
           <Link
             href="/groups"
             className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
@@ -464,7 +462,6 @@ export default function HomePage() {
             <span aria-hidden="true">👥</span>
             グループ
           </Link>
-          )}
 
           <Link
             href="/home/pt-search"

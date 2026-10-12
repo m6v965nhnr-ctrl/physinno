@@ -104,7 +104,8 @@ export default function PtIdeaCard({
               }`}
             >
               {REACTION_LABEL[k].icon} {on ? REACTION_LABEL[k].on : REACTION_LABEL[k].off}
-              {count > 0 && <span className="ml-1 font-semibold">{count}</span>}
+              {/* いいねの数は、0件でもみんなに見えるように出す */}
+              {(k === "like" || count > 0) && <span className="ml-1 font-semibold">{count}</span>}
             </button>
           );
         })}

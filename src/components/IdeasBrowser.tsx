@@ -59,6 +59,19 @@ export default function IdeasBrowser() {
         </Link>
       )}
 
+      <Link
+        href="/training"
+        className="mt-2 flex items-center justify-between rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3"
+      >
+        <span>
+          <span className="block text-sm font-semibold text-emerald-900">💪 筋肉・部位から訓練を探す</span>
+          <span className="mt-0.5 block text-[11px] leading-4 text-emerald-800/80">
+            「この筋肉、いつものやり方だと反応がよくない」ときの訓練レパートリー
+          </span>
+        </span>
+        <span aria-hidden className="text-emerald-700">›</span>
+      </Link>
+
       {/* 登録の操作と、調べる操作を、線と見出しで分ける */}
       <div className="my-6 flex items-center gap-3" role="separator" aria-label="ここから、アイデアを調べる">
         <span className="h-px flex-1 bg-gray-200" />

@@ -13,6 +13,7 @@ import {
   answerQuestion,
   imageUrl,
   listQuizQuestions,
+  type QuizKeyword,
   listQuizUnits,
   percent,
   questionLabel,
@@ -29,6 +30,7 @@ type Params = {
   n: number;
   shuffle: boolean;
   assignment: string | null; // クラスの課題のとき、課題のid
+  keyword: QuizKeyword | null; // キーワードで絞ったとき
 };
 
 function readParams(): Params {
@@ -42,6 +44,12 @@ function readParams(): Params {
     n: Number.isFinite(n) ? n : 20,
     shuffle: q.get("order") !== "seq",
     assignment: q.get("assignment"),
+    keyword: q.get("kw")
+      ? {
+          keyword: (q.get("kw") ?? "").slice(0, 50),
+          related: (q.get("rel") ?? "").split("|").map((t) => t.trim()).filter(Boolean).slice(0, 12),
+        }
+      : null,
   };
 }
 
@@ -87,6 +95,7 @@ export default function QuizPlayPage() {
       mode: p.mode,
       limit: p.n === 0 ? null : p.n,
       shuffle: p.shuffle,
+      keyword: p.keyword,
     });
     setQuestions(qs);
     setBookmarks(Object.fromEntries(qs.map((q) => [q.id, q.bookmarked])));
@@ -210,7 +219,7 @@ export default function QuizPlayPage() {
     const ok = scored.filter((r) => r.correct).length;
     const wrong = results.filter((r) => r.correct === false);
 
-    const wrongParams: Params = { unit: params.unit, exam: params.exam, mode: "wrong", n: 0, shuffle: true, assignment: null };
+    const wrongParams: Params = { unit: params.unit, exam: params.exam, mode: "wrong", n: 0, shuffle: true, assignment: null, keyword: params.keyword };
 
     return (
       <main className="min-h-screen bg-[#fafafa] pb-28">
