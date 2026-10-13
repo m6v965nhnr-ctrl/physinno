@@ -16,6 +16,7 @@ const WHO = {
   ptf: { hair: "#3a2a2a", hairHi: "#6b4a4a", shirt: "#27b5a2", shirtSh: "#1e8f80", style: "pony", brows: "#3a2a2a" },
   senior: { hair: "#3b2c25", hairHi: "#6a5247", shirt: "#2b78a3", shirtSh: "#205b7d", style: "short", glasses: true, brows: "#3b2c25" },
   student: { hair: "#5a3b28", hairHi: "#8a6046", shirt: "#f5f7fb", shirtSh: "#d4dbe8", style: "messy", tie: "#26407a", brows: "#5a3b28" },
+  friend: { hair: "#2f3e5c", hairHi: "#56688f", shirt: "#f2c14e", shirtSh: "#cf9f2f", style: "messy", brows: "#2f3e5c" },
   grandma: { hair: "#dfe3ea", hairHi: "#ffffff", shirt: "#f3a6b9", shirtSh: "#d98197", style: "bun", glasses: false, brows: "#aab0bb", wrinkle: true },
   grandpa: { hair: "#e8ebf0", hairHi: "#ffffff", shirt: "#86b3dc", shirtSh: "#6590b8", style: "bald", glasses: true, brows: "#c9ced8", wrinkle: true },
 };
@@ -165,6 +166,11 @@ function background(name) {
   if (name === "desk")
     return `<rect width="1000" height="1500" fill="#eef1f8"/><rect y="1000" width="1000" height="500" fill="#c8b79a"/><path d="M0 1000 H1000" stroke="${INK}" stroke-width="6"/>${win(680, 110)}
       <g><rect x="60" y="260" width="320" height="520" rx="10" fill="#d9c7a6" stroke="${INK}" stroke-width="6"/><path d="M60 430 H380 M60 600 H380" stroke="${INK}" stroke-width="5"/><rect x="90" y="300" width="40" height="120" fill="#e66" stroke="${INK}" stroke-width="4"/><rect x="140" y="310" width="36" height="110" fill="#6a9" stroke="${INK}" stroke-width="4"/><rect x="186" y="296" width="44" height="124" fill="#69c" stroke="${INK}" stroke-width="4"/><rect x="90" y="470" width="50" height="124" fill="#ec6" stroke="${INK}" stroke-width="4"/><rect x="150" y="480" width="40" height="114" fill="#c8a" stroke="${INK}" stroke-width="4"/></g>`;
+  if (name === "street")
+    return `<rect width="1000" height="1500" fill="#bfe4ff"/><rect y="560" width="1000" height="940" fill="#cfd8e3"/><path d="M0 560 H1000" stroke="${INK}" stroke-width="6"/>
+      <g stroke="${INK}" stroke-width="6"><rect x="30" y="200" width="200" height="360" fill="#f4d8c0"/><rect x="250" y="120" width="260" height="440" fill="#d4e2f0"/><rect x="530" y="240" width="200" height="320" fill="#f1e0a8"/><rect x="750" y="160" width="230" height="400" fill="#d9e8d4"/></g>
+      <g fill="#fff" stroke="${INK}" stroke-width="4"><rect x="60" y="240" width="50" height="60"/><rect x="140" y="240" width="50" height="60"/><rect x="290" y="170" width="60" height="70"/><rect x="400" y="170" width="60" height="70"/><rect x="560" y="280" width="50" height="60"/><rect x="790" y="210" width="60" height="70"/><rect x="890" y="210" width="60" height="70"/></g>
+      <path d="M0 1000 H1000" stroke="#fff" stroke-width="10" stroke-dasharray="70 50"/><ellipse cx="860" cy="470" rx="90" ry="70" fill="#9bd6a1" stroke="${INK}" stroke-width="6"/><rect x="850" y="500" width="20" height="60" fill="#8a6a4a" stroke="${INK}" stroke-width="4"/>`;
   return `<rect width="1000" height="1500" fill="#eaf2ff"/>`;
 }
 
@@ -191,8 +197,18 @@ function fx(list = [], focus = [500, 760]) {
 }
 
 // 吹き出し。tail は話し手の口の方向（x,y）。位置 (cx,cy) は中心
-function bubble(text, cx, cy, tail, opts = {}) {
-  const lines = String(text).split("\n");
+function wrapLine(l, max) {
+  const a = [...l];
+  if (a.length <= max) return [l];
+  // 句読点・記号で、真ん中に近い所を探して分ける
+  let best = -1, bd = 1e9;
+  a.forEach((c, i) => { if ("、。？！…）」 ".includes(c) && i < a.length - 1) { const d = Math.abs(i + 1 - a.length / 2); if (d < bd) { bd = d; best = i + 1; } } });
+  if (best < 0 || best < 3 || a.length - best < 3) best = Math.ceil(a.length / 2);
+  return [...wrapLine(a.slice(0, best).join(""), max), ...wrapLine(a.slice(best).join(""), max)];
+}
+function bubble(text, cx0, cy, tail, opts = {}) {
+  const lines = String(text).split("\n").flatMap((l) => wrapLine(l, 12));
+  const cx = Math.max(60 + Math.min(430, ([...lines.reduce((m, l) => (l.length > m.length ? l : m), "")].length * (opts.fs ?? 58) + 90) / 2), Math.min(940 - Math.min(430, ([...lines.reduce((m, l) => (l.length > m.length ? l : m), "")].length * (opts.fs ?? 58) + 90) / 2), cx0));
   const fs = opts.fs ?? 58;
   const lw = Math.max(...lines.map((l) => [...l].length)) * fs;
   const w = lw + 90, h = lines.length * (fs * 1.32) + 56;

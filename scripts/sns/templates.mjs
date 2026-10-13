@@ -234,7 +234,7 @@ export const tt = {
         ${d.items
           .map((t, k) =>
             k < count
-              ? `<div class="card" style="padding:38px 40px;font-size:52px;font-weight:700;line-height:1.4;display:flex;gap:26px;${k === count - 1 ? "border-color:#5fd6c4;" : "opacity:.72;"}"><span class="acc" style="font-weight:900">${k + 1}</span><span>${br(t)}</span></div>`
+              ? `<div class="card" style="padding:38px 40px;font-size:54px;font-weight:700;line-height:1.4;display:flex;gap:26px;${k === count - 1 ? "border-color:#5fd6c4;" : "opacity:.72;"}"><span class="acc" style="font-weight:900">${k + 1}</span><span>${br(t)}</span></div>`
               : `<div style="height:${count ? 138 : 0}px"></div>`
           )
           .join("")}
