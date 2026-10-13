@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
 import type { PtProfile } from "@/lib/types";
 
 export type WorkplaceSize = "small" | "medium" | "large";
@@ -21,10 +22,11 @@ export type Hospital = {
   size: string | null;
   // 採用情報は自動収集せず、在籍PTが手入力する前提のフリーテキスト
   recruitment_info: string | null;
-  created_by: string | null;
+  // 病院を登録した人・運営している人のID。DBの権限で、読めない（常に undefined）。書き込みのときだけ使う
+  created_by?: string | null;
   // 病院側が自分でこのページを運営したい場合、将来的にここへ本人のuser_idを
   // 紐付ける想定（今回はスキーマのみ用意。実際の運営申請フローは未実装）
-  claimed_by: string | null;
+  claimed_by?: string | null;
   // 厚労省オープンデータから一括登録した病院には出典を記録する
   // （公共データ利用規約PDL1.0の出典明記・加工表示の義務に対応）
   data_source: string | null;
@@ -131,7 +133,7 @@ export async function searchHospitals({
   departments?: string[];
   bedType?: BedType;
 }): Promise<Hospital[]> {
-  let query = supabase.from("hospitals").select("*").order("name");
+  let query = supabase.from("hospitals").select(HOSPITAL_COLUMNS).order("name");
 
   // 正式名称（例：「公益社団法人〇〇　△△病院」）で登録されているため、
   // 一般的に呼ばれる名前の一部でも見つかるよう部分一致で検索する
@@ -145,7 +147,7 @@ export async function searchHospitals({
   if (bedType === "psychiatric") query = query.gt("beds_psychiatric", 0);
 
   const { data } = await query.limit(100);
-  return data ?? [];
+  return (data as Hospital[] | null) ?? [];
 }
 
 // 選択された都道府県に実在する市区町村だけをプルダウンに出すため、
@@ -170,11 +172,11 @@ export async function listCitiesByPrefecture(
 export async function getHospital(id: string): Promise<Hospital | null> {
   const { data } = await supabase
     .from("hospitals")
-    .select("*")
+    .select(HOSPITAL_COLUMNS)
     .eq("id", id)
     .maybeSingle();
 
-  return data ?? null;
+  return (data as Hospital | null) ?? null;
 }
 
 export async function createHospital({
@@ -211,10 +213,10 @@ export async function createHospital({
       size: size || null,
       created_by: createdBy,
     })
-    .select()
+    .select(HOSPITAL_COLUMNS)
     .single();
 
-  return { hospital: data ?? null, error: error?.message ?? null };
+  return { hospital: (data as Hospital | null) ?? null, error: error?.message ?? null };
 }
 
 export async function listPtsByHospital(hospitalId: string): Promise<PtProfile[]> {
@@ -361,24 +363,10 @@ export async function updateRecruitmentInfo(
 
 export async function canEditHospitalData(
   hospitalId: string,
-  userId: string
+  _userId: string
 ): Promise<boolean> {
-  const [{ data: staffRow }, { data: hospitalRow }] = await Promise.all([
-    supabase
-      .from("pt_profiles")
-      .select("id")
-      .eq("user_id", userId)
-      .eq("hospital_id", hospitalId)
-      .maybeSingle(),
-    supabase
-      .from("hospitals")
-      .select("created_by, claimed_by")
-      .eq("id", hospitalId)
-      .maybeSingle(),
-  ]);
-
-  if (staffRow) return true;
-  if (!hospitalRow) return false;
-
-  return hospitalRow.created_by === userId || hospitalRow.claimed_by === userId;
+  // 在籍している・作成した・運営している人かどうかは、サーバー側（DB関数）で判定する
+  // （作成者・運営者のIDは、画面からは読めないため）
+  const { data } = await supabase.rpc("can_edit_hospital_data", { p_hospital: hospitalId });
+  return data === true;
 }

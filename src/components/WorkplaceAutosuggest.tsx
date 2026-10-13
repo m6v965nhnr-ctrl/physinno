@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { Hospital } from "@/lib/hospitals";
+import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
 
 // 勤務先の自由入力と病院ページの紐付けを1つの入力欄に統合したコンポーネント。
 // 入力すると一致する病院(正式名称)が候補として出て、選べば紐付く。
@@ -31,10 +32,10 @@ export default function WorkplaceAutosuggest({
 
     supabase
       .from("hospitals")
-      .select("*")
+      .select(HOSPITAL_COLUMNS)
       .eq("id", hospitalId)
       .maybeSingle()
-      .then(({ data }) => setLinkedHospital(data));
+      .then(({ data }) => setLinkedHospital((data as Hospital | null) ?? null));
   }, [hospitalId]);
 
   function handleChange(text: string) {
@@ -54,11 +55,11 @@ export default function WorkplaceAutosuggest({
     debounceRef.current = setTimeout(async () => {
       const { data } = await supabase
         .from("hospitals")
-        .select("*")
+        .select(HOSPITAL_COLUMNS)
         .ilike("name", `%${text.trim()}%`)
         .limit(8);
 
-      setSuggestions(data ?? []);
+      setSuggestions((data as Hospital[] | null) ?? []);
       setShowSuggestions(true);
     }, 250);
   }

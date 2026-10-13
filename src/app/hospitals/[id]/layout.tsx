@@ -3,13 +3,14 @@ import type { Metadata } from "next";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Hospital } from "@/lib/hospitals";
+import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
 import { HospitalInitialProvider } from "./HospitalInitial";
 
 type Props = { params: Promise<{ id: string }>; children: React.ReactNode };
 
 // メタ情報と構造化データで同じ病院を使うので、1回のリクエストの中では、1度だけ取得する
 const getHospital = cache(async (id: string) => {
-  const { data } = await supabasePublic.from("hospitals").select("*").eq("id", id).maybeSingle();
+  const { data } = await supabasePublic.from("hospitals").select(HOSPITAL_COLUMNS).eq("id", id).maybeSingle();
   return (data as Hospital | null) ?? null;
 });
 
