@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import { HomeLink, MessageScreen } from "@/components/states";
+import { reportClientError } from "@/lib/errorReport";
 
 // 画面の表示中に予期しないエラーが起きたとき（真っ白にならないように）
 export default function ErrorPage({
@@ -13,6 +14,7 @@ export default function ErrorPage({
 }) {
   useEffect(() => {
     console.error(error);
+    reportClientError(error, "error-boundary");
   }, [error]);
 
   return (

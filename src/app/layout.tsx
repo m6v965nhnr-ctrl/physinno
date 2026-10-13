@@ -4,6 +4,7 @@ import AuthGuard from "@/components/AuthGuard";
 import BottomNavWrapper from "@/components/BottomNavWrapper";
 import Toaster from "@/components/Toaster";
 import ConfirmHost from "@/components/ConfirmHost";
+import ErrorReporter from "@/components/ErrorReporter";
 import AttributionCapture from "@/components/AttributionCapture";
 import MetaPixel from "@/components/MetaPixel";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
@@ -68,6 +69,7 @@ export default function RootLayout({
         <MetaPixel />
         <Toaster />
         <ConfirmHost />
+        <ErrorReporter />
       </body>
     </html>
   );

@@ -672,6 +672,9 @@ export default function MyPage() {
             </button>
           </div>
 
+          <Link href="/mypage/delete-account" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
+            退会する（アカウントの削除）
+          </Link>
         </div>
 
         {/* =========================
@@ -875,6 +878,10 @@ function GeneralMyPage({
         >
           ログアウト
         </button>
+
+        <Link href="/mypage/delete-account" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
+          退会する（アカウントの削除）
+        </Link>
       </div>
     </main>
   );

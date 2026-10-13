@@ -284,6 +284,9 @@ export default function StudentSettingsPage() {
           <button onClick={handleLogout} className="block text-left text-gray-400 underline underline-offset-4">
             ログアウト
           </button>
+          <Link href="/mypage/delete-account" className="block text-gray-400 underline underline-offset-4">
+            退会する（アカウントの削除）
+          </Link>
         </section>
       </div>
     </main>
