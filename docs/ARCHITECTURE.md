@@ -115,3 +115,10 @@
 - DB: 外部キーの索引を追加（20261021_fk_indexes）。`notifications` の INSERT は、follow / endorsement（実際の関係がある場合のみ）と、自分宛ての group 系だけ（20261021_notifications_insert_policy）。いいね・コメント・回答・卒業の通知は SECURITY DEFINER 経由。
 - 自動テスト: `npm run e2e`（Playwright。インストール済みの Chrome を使う）。公開ページの確認。ログイン後は、環境変数でテスト用アカウントを渡したときだけ。
 - 病院ページ(`/hospitals/[id]`)に、Hospital の構造化データ(JSON-LD)をサーバー側で出力。
+
+## 登録を増やす仕組み（2026-10-13）
+- 登録直後: 学生は、設定が終わったら最初の10問へ（`/student/settings` → quiz play）。PTは、ホームの「はじめの3歩」（論文を探す→保存→いいね。`FirstStepCard`、端末に進み具合を保存）。
+- LINEで送る: `LineShareButton`（招待カード・過去問の結果画面）。
+- しばらく使っていない人へのお知らせ: `users.last_seen_at`（1日1回、`touchLastSeen`）。DBの `queue_inactive_reminders`（pg_cron 毎日10:00 JST）が、3週間使っていない人へ1通（60日に1通まで、1回50人まで、全体と種類別（reminder）のスイッチを尊重）。メール本文は `/api/notify-email` の `reminder`。
+- 養成校ページ: `/schools`、`/schools/[slug]`（大学。`src/content/schools/pt-universities.ts`。第61回・大学新卒。出典: 旺文社 教育情報センター（厚生労働省発表資料に基づく）。取り出しは `scripts/schools/extract-obunsha.mjs`）。専門学校・短大は、公表資料が確認できていないため、なし。
+- SNS: `scripts/sns/`（`templates.mjs` `render.mjs` `PngsToMp4.swift`、内容は `content/weekN.json`）。画像はChrome、動画はmacOS標準のAVFoundation。素材は `_sns/`（Git管理外）。毎日12:30に、スケジュールタスク `relight-sns-daily-post` が、Chrome（Claude in Chrome）で Instagram と X に投稿し、`リサーチ/sns_log.md` に記録。毎週日曜20:00に `relight-sns-weekly-plan` が来週分を作る。毎週月曜9:00の `relight-weekly-growth-report` が、登録・SNSの数字を分析。
