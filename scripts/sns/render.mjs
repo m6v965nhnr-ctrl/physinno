@@ -53,6 +53,27 @@ for (const post of posts) {
       await shot(slides[s.type](s, i + 1, n), { width: 1080, height: 1350 }, join(dir, `${String(i + 1).padStart(2, "0")}.png`));
     }
     console.log(`carousel ${post.slug}: ${n}枚`);
+
+    // TikTok用: 同じスライドを、縦長（1080x1920）の動画にする（1枚あたり3.5秒。表紙は3秒）
+    const list = [];
+    const fdir = join(dir, "tiktok_frames");
+    mkdirSync(fdir, { recursive: true });
+    for (let i = 0; i < n; i++) {
+      const slidePath = join(dir, `${String(i + 1).padStart(2, "0")}.png`);
+      const htmlPath = join(fdir, `f${i + 1}.html`);
+      writeFileSync(
+        htmlPath,
+        `<!doctype html><html><body style="margin:0;width:1080px;height:1920px;background:#0a1224;background-image:radial-gradient(1200px 700px at 100% 0%,rgba(78,215,167,.16),transparent 60%),radial-gradient(900px 600px at 0% 100%,rgba(85,199,220,.14),transparent 60%);position:relative"><img src="file://${slidePath}" style="position:absolute;left:0;top:285px;width:1080px;height:1350px;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 70px,#000 calc(100% - 70px),transparent 100%)"></body></html>`
+      );
+      const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+      await page.goto(`file://${htmlPath}`, { waitUntil: "load" });
+      const out = join(fdir, `f${i + 1}.png`);
+      await page.screenshot({ path: out });
+      await page.close();
+      list.push(`${out}\t${i === 0 ? 3 : 3.5}`);
+    }
+    writeFileSync(join(dir, "tiktok_list.txt"), list.join("\n"));
+    execFileSync(encoder, [join(dir, "tiktok.mp4"), join(dir, "tiktok_list.txt")], { stdio: "inherit" });
   } else if (post.kind === "reel") {
     const q = post.quiz;
     const size = { width: 1080, height: 1920 };
@@ -78,6 +99,13 @@ for (const post of posts) {
     console.log(`reel ${post.slug}`);
   }
   writeFileSync(join(dir, "caption.txt"), post.ig?.caption ?? "");
+  // TikTok用の説明文: Instagramの文面から、「プロフィールのリンクから」の案内と、ハッシュタグ（最大5個）に整える
+  {
+    const cap = (post.ig?.caption ?? "").split("\n");
+    const tags = (cap.find((l) => l.trim().startsWith("#")) ?? "").split(/\s+/).filter(Boolean).slice(0, 5).join(" ");
+    const body = cap.filter((l) => !l.trim().startsWith("#")).join("\n").trim();
+    writeFileSync(join(dir, "tiktok.txt"), `${body}\n\n${tags}`.slice(0, 1900));
+  }
   writeFileSync(join(dir, "x.txt"), post.x?.text ?? "");
 }
 
