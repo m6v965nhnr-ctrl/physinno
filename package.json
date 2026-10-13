@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "smoke": "node scripts/smoke.mjs"
+    "smoke": "node scripts/smoke.mjs",
+    "check": "tsc --noEmit && next build"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.4",
