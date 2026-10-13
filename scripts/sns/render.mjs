@@ -8,7 +8,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node:fs";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { reel, slides } from "./templates.mjs";
+import { reel, slides, tt } from "./templates.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../..");
@@ -97,10 +97,35 @@ for (const post of posts) {
     writeFileSync(join(dir, "list.txt"), list.join("\n"));
     execFileSync(encoder, [join(dir, "reel.mp4"), join(dir, "list.txt")], { stdio: "inherit" });
     console.log(`reel ${post.slug}`);
+  } else if (post.kind.startsWith("tt-")) {
+    // TikTok専用（あるある・豆知識・4コマ漫画）。1フレームずつ描いて、縦動画（tiktok.mp4）にする
+    const size = { width: 1080, height: 1920 };
+    const fdir = join(dir, "tiktok_frames");
+    mkdirSync(fdir, { recursive: true });
+    const plan = [];
+    if (post.kind === "tt-manga") {
+      for (let k = 1; k <= 4; k++) plan.push([`p${k}`, tt.manga(post, k), k === 1 ? 3 : 2.8]);
+    } else if (post.kind === "tt-aruaru") {
+      plan.push(["t", tt.aruaru(post, 0), 2.2]);
+      for (let k = 1; k <= post.items.length; k++) plan.push([`i${k}`, tt.aruaru(post, k), k === post.items.length ? 3 : 2.2]);
+    } else {
+      post.cards.forEach((c, k) => plan.push([`c${k + 1}`, tt.card(c), c.sec ?? 3.5]));
+    }
+    plan.push(["cta", reel.cta(post.cta), 3]);
+    const list = [];
+    for (const [name, html, sec] of plan) {
+      const f = join(fdir, `${name}.png`);
+      await shot(html, size, f);
+      list.push(`${f}\t${sec}`);
+    }
+    writeFileSync(join(dir, "tiktok_list.txt"), list.join("\n"));
+    execFileSync(encoder, [join(dir, "tiktok.mp4"), join(dir, "tiktok_list.txt")], { stdio: "inherit" });
+    console.log(`${post.kind} ${post.slug}`);
   }
   writeFileSync(join(dir, "caption.txt"), post.ig?.caption ?? "");
   // TikTok用の説明文: Instagramの文面から、「プロフィールのリンクから」の案内と、ハッシュタグ（最大5個）に整える
-  {
+  if (post.tt) writeFileSync(join(dir, "tiktok.txt"), post.tt.caption);
+  else {
     const cap = (post.ig?.caption ?? "").split("\n");
     const tags = (cap.find((l) => l.trim().startsWith("#")) ?? "").split(/\s+/).filter(Boolean).slice(0, 5).join(" ");
     const body = cap.filter((l) => !l.trim().startsWith("#")).join("\n").trim();
