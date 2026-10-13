@@ -23,6 +23,15 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 - 権限の確認は、`begin; set local role …; select set_config('request.jwt.claims', …); … rollback;` で、anon / 別ユーザーから見えないことをテストする。
 - 匿名の投稿・質問・意見は、投稿者の情報をサーバーから返さない（RPC で出し分け）。
 
+## 2.5 共通の部品（新しく作る前に、まず使う）
+- 確認ダイアログ: `askConfirm()`（`src/lib/confirm.ts`）。ブラウザ標準の `confirm()` は使わない。`if (!(await askConfirm("…"))) return;`
+- 通知: `notify()`（`src/lib/notify.ts`）。「元に戻す」は第3引数 `{ label, onAction }`。
+- 読み込み中・空・失敗: `LoadingScreen` / `EmptyState` / `ErrorState`（`src/components/states.tsx`）。エラー画面・404 は `src/app/error.tsx` `not-found.tsx`。
+- 検索の入力欄・ボタン・チップ: `src/lib/ui.ts`（`INPUT_CLASS` `PRIMARY_BUTTON_CLASS` `chipClass`）。
+- 入力欄には、名前（`<label>` か `aria-label`）を付ける。アイコンだけのボタンにも `aria-label`。
+- 通知（notifications）をブラウザから直接作れるのは follow / endorsement / group系だけ。ほかはRPC・トリガー経由（RLSで制限済み）。
+- ゲストでは呼べないRPC（`authenticated` のみ）を、ゲスト画面から呼ばない（401になる）。先に `getSession()` で確認する。
+
 ## 3. 公開範囲（ログインなしで見える画面）
 - ゲスト閲覧は `src/lib/account.ts` の `isPublicGuestPath` と `AuthGuard.tsx` の公開パスで決まる。新しい画面を公開する／しないは、ここを必ず確認。
 - PT専用は `PT_ONLY_PATH_PREFIXES`。学生もPTの公開投稿は読める。
@@ -32,7 +41,8 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 2. `npm run build`（Vercel と同じビルド。通らなければ push しない）
 3. `npx eslint --quiet`（既知の 2 件は `PaperSearch.tsx` の `react-hooks/immutability`。**増やさない**）
 4. 画面を変えたときは、`preview_start`（.claude/launch.json）で実際に開いて確認。ログインが要る画面は、ゲストで見える範囲＋DBテストで確認し、見られなかった範囲を報告で正直に書く。
-5. デプロイ後: `node scripts/smoke.mjs`（公開ページの簡易テスト）。
+5. 画面の自動テスト: `npm run dev` を起動して `npm run e2e`（公開ページ13画面が、真っ白・エラー画面・コンソールエラーなしで開く。Chrome を使う）。ログイン後の画面も見るときは、テスト用アカウントを環境変数 `E2E_EMAIL` / `E2E_PASSWORD` で渡す（コードにもチャットにも書かない。本物のユーザーのパスワードは使わない）。
+6. デプロイ後: `node scripts/smoke.mjs` と `node scripts/e2e.mjs https://relight-1wet.vercel.app`。
 
 ## 5. 公開（毎回、確認を待たずに行う）
 - 変更ごとに commit → `main` に push → Vercel のデプロイが READY になるまで確認（Vercel MCP の `list_deployments`。プロジェクト `prj_PGCaWITBK4kxS7ar1xVzbP8mFiS7`）。

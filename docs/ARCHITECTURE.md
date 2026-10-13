@@ -49,7 +49,7 @@
 - 学術の一覧は `/posts`(症例・論文・院内症例発表・学会発表・研修)。読む人のレベルは、プロフィールの経験年数(`levelOfReader`: 1〜3年=新人、4〜7=若手、8〜15=中堅、16〜=ベテラン、学生=学生)から決め、最初はそのレベルで絞る。絞り込みは、そのレベル向けと「どのレベルでも」の投稿。
 - 勤務先を隠す: `pt_profiles.hide_workplace`。true のとき、トリガー `pt_profiles_hide_workplace` が、`workplace / hospital_id / department / workplace_size` を `pt_private.hidden_*`(本人だけが読める)へ移し、公開のプロフィールの値を null にする。false に戻すと、元の値を `pt_profiles` に戻す。画面側で隠すのではなく、値そのものを公開用の表に置かない。編集画面と自分のマイページは、`pt_private` から読んで本人にだけ表示する。
 - マイグレーションは、`20261010_posts_privacy.sql`(加えるだけ) → 新しい画面を公開 → `20261010_posts_privacy_lockdown.sql`(直接の読み取りを絞る) の順に適用した。
-- 既知の課題: `notifications` の INSERT ポリシーは「actor_id が本人」だけを見ているため、宛先を指定した通知を、任意のユーザーに送れる(今回の対象外)。
+- (解決済み 2026-10-13) `notifications` の INSERT ポリシーを、宛先・種類を縛る形に変更した。
 
 ## 通報・削除申請
 - `reports` に通報を保存(クライアントは `target_type / target_id / reason / detail` の列だけ書ける。状態・対応メモは運営のみ)。
@@ -104,3 +104,14 @@
 - 国試の日は、入力させない。卒業予定年から、2月23日ごろを目安として自動で計算する（`estimatedExamDate`。`computeCountdown` は、保存済みの `national_exam_date` を使わない）。設定画面は、保存のたびに `national_exam_date` を null にする。
 - 学生ホーム（`/student`）: 一番上に「一問一答ドリル」（`QuizHero`：解いた数・正答率、今日の10問、間違えた問題の復習）、その下に今週の学習。PTの最新の投稿（`StudentHomePosts`）も出す。学生も、PTの公開投稿を読める（`list_posts` は、アカウントの種類で制限していない）。
 - PTのホーム（`/home`）: 学生からの質問（`HomeQuestionsStrip`。回答のないものを先に、3件）を、投稿の一覧の上に出す。質問は、学生が「匿名／名前を出す」を選ぶ（`student_questions.is_anonymous`。匿名の質問は、`list_student_questions` が投稿者を返さない）。
+
+
+## 共通部品と安全網（2026-10-13）
+- 画面: `src/app/error.tsx` / `global-error.tsx` / `not-found.tsx` / `loading.tsx`。読み込み中・空・失敗は `src/components/states.tsx`。
+- 確認ダイアログは `askConfirm()`（`ConfirmHost` が layout に1つ）。通知は `notify()`（`Toaster`）。ブラウザ標準の `confirm()` / `alert()` は使わない。
+- 検索（論文・病院・PT）の見た目は `src/lib/ui.ts` に共通化。
+- マイページの「今日やること」は `TodayTodos`、PTホームの「はじめの1歩」は `FirstStepCard`（端末の localStorage で進み具合を覚える。`src/lib/firstSteps.ts`）。
+- ゲストが登録・ログインしたあと、見ていた画面へ戻す: `?next=`（`src/lib/returnTo.ts`。サイト内のパスだけ許可）。プロフィール入力が終わったあとに戻る。
+- DB: 外部キーの索引を追加（20261021_fk_indexes）。`notifications` の INSERT は、follow / endorsement（実際の関係がある場合のみ）と、自分宛ての group 系だけ（20261021_notifications_insert_policy）。いいね・コメント・回答・卒業の通知は SECURITY DEFINER 経由。
+- 自動テスト: `npm run e2e`（Playwright。インストール済みの Chrome を使う）。公開ページの確認。ログイン後は、環境変数でテスト用アカウントを渡したときだけ。
+- 病院ページ(`/hospitals/[id]`)に、Hospital の構造化データ(JSON-LD)をサーバー側で出力。

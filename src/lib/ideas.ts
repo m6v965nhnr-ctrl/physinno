@@ -81,6 +81,12 @@ export async function listIdeas(opts: {
 }
 
 export async function ideaCounts(): Promise<Record<string, number>> {
+  // PTの投稿は、ログイン中のPT・学生だけに見せる（ゲストは件数も取れない。無駄な問い合わせをしない）
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
+  if (!session) return {};
+
   const { data } = await supabase.rpc("clinical_idea_counts");
   const out: Record<string, number> = {};
   for (const r of (data ?? []) as { topic_slug: string; n: number | string }[]) out[r.topic_slug] = Number(r.n);

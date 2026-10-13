@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 import { QuizModeCounts, getModeCounts, listQuizExams, percent } from "@/lib/quiz";
 
 // 学生ホームの、いちばん目立つ場所に置く「一問一答ドリル」（メイン機能）。
@@ -11,7 +12,11 @@ export default function QuizHero() {
   const [stat, setStat] = useState<{ total: number; answered: number; correct: number } | null>(null);
 
   useEffect(() => {
-    Promise.all([getModeCounts(null, null), listQuizExams()]).then(([c, exams]) => {
+    // ゲストの見本表示（ログインなし）では、記録がないので、問い合わせない
+    supabase.auth.getSession().then(async ({ data: { session } }) => {
+      if (!session) return;
+
+      const [c, exams] = await Promise.all([getModeCounts(null, null), listQuizExams()]);
       setCounts(c);
       setStat({
         total: exams.reduce((a, e) => a + e.total, 0),
