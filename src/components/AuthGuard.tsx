@@ -10,6 +10,7 @@ import {
   isPublicHospitalPath,
   isPublicPostPath,
   isPublicKokushiPath,
+  isPublicSchoolPath,
   isPublicGuestPath,
   isPublicPtPath,
 } from "@/lib/account";
@@ -39,7 +40,8 @@ export default function AuthGuard({
         isPublicPostPath(pathname) ||
         isPublicColumnPath(pathname) ||
         isPublicHospitalPath(pathname) ||
-        isPublicKokushiPath(pathname)
+        isPublicKokushiPath(pathname) ||
+        isPublicSchoolPath(pathname)
       ) {
         setChecking(false);
         return;
@@ -148,7 +150,8 @@ export default function AuthGuard({
     !isPublicPostPath(pathname) &&
     !isPublicColumnPath(pathname) &&
     !isPublicHospitalPath(pathname) &&
-    !isPublicKokushiPath(pathname)
+    !isPublicKokushiPath(pathname) &&
+    !isPublicSchoolPath(pathname)
   ) {
     return (
       <main className="min-h-screen bg-[#fafafa] flex items-center justify-center">

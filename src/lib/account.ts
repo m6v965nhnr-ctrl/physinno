@@ -104,6 +104,13 @@ export function isPublicKokushiPath(pathname: string) {
   return PUBLIC_KOKUSHI_PATH.test(pathname);
 }
 
+// 理学療法士養成校（大学）の、国家試験の合格状況ページ（SEO用。誰でも読める）
+const PUBLIC_SCHOOL_PATH = /^\/schools(\/.*)?$/;
+
+export function isPublicSchoolPath(pathname: string) {
+  return PUBLIC_SCHOOL_PATH.test(pathname);
+}
+
 // ログインなしで「見て、触れる」ページ（ゲスト閲覧）。投稿・コメント・メッセージ・保存などの操作は、ページ側で登録を案内する。
 // /ideas/new・/ideas/ai・/ideas/saved は、ログインが必要なので含めない
 const PUBLIC_GUEST_PATH = /^\/(home|home\/pt-search|posts|ideas|ideas\/(?!new$|ai$|saved$)[^/]+|training)$/;

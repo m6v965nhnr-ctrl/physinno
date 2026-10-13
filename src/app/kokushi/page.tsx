@@ -85,6 +85,13 @@ export default async function KokushiIndexPage() {
           <KokushiCta />
         </div>
 
+        <p className="mt-6 text-sm text-gray-700">
+          <Link href="/schools" className="font-semibold underline">
+            大学ごとの国家試験 合格状況（第61回・新卒）
+          </Link>
+          も、まとめています。
+        </p>
+
         <h2 className="mt-12 text-lg font-bold text-gray-900">過去問の効果的な使い方</h2>
         <div className="mt-4 space-y-4">
           {TIPS.map((t) => (

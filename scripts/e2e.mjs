@@ -32,6 +32,8 @@ const PUBLIC_PAGES = [
   ["/pts?mode=ideas", "臨床アイデア"],
   ["/columns", "コラム"],
   ["/kokushi", "国家試験"],
+  ["/schools", "合格状況"],
+  ["/schools/%E9%A0%86%E5%A4%A9%E5%A0%82%E5%A4%A7%E5%AD%A6", "順天堂大学"],
   ["/feedback", ""],
   ["/terms", "利用規約"],
   ["/privacy", "プライバシー"],

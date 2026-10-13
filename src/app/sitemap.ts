@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
+import { PT_UNIVERSITIES } from "@/content/schools/pt-universities";
 import { QUESTIONS_PER_SESSION, SESSIONS, getPublicExams, questionPath } from "@/lib/kokushi";
 
 // 1時間ごとに再生成する（新しく登録されたPTのプロフィールもそのうち反映される）
@@ -80,5 +81,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ),
   ]);
 
-  return [...staticEntries, ...columnEntries, ...kokushiEntries, ...ptEntries, ...hospitalEntries];
+  // 理学療法士養成校（大学）の、国家試験の合格状況
+  const schoolEntries: MetadataRoute.Sitemap = [
+    { url: `${SITE_URL}/schools`, lastModified: now, changeFrequency: "yearly" as const, priority: 0.8 },
+    ...PT_UNIVERSITIES.map((u) => ({
+      url: `${SITE_URL}/schools/${encodeURIComponent(u.slug)}`,
+      lastModified: now,
+      changeFrequency: "yearly" as const,
+      priority: 0.7,
+    })),
+  ];
+
+  return [...staticEntries, ...columnEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
 }

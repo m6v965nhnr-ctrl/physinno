@@ -21,6 +21,7 @@ import PtEvidenceLevelGuide from "./pt-evidence-level-guide";
 import PubmedSearchForPt from "./pubmed-search-for-pt";
 import PtHowToReadPapers from "./pt-how-to-read-papers";
 import PtPracticumReportGuide from "./pt-practicum-report-guide";
+import PtHowToBecome from "./pt-how-to-become";
 
 export const COLUMN_BODIES: Record<string, ComponentType> = {
   "case-presentation-how-to": CasePresentationHowTo,
@@ -45,4 +46,5 @@ export const COLUMN_BODIES: Record<string, ComponentType> = {
   "pubmed-search-for-pt": PubmedSearchForPt,
   "pt-how-to-read-papers": PtHowToReadPapers,
   "pt-practicum-report-guide": PtPracticumReportGuide,
+  "pt-how-to-become": PtHowToBecome,
 };

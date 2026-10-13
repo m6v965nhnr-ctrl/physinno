@@ -444,6 +444,7 @@ export default function LandingPage() {
       <footer className="px-6 py-8 text-center text-xs text-gray-600">
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>
+          <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>
           <Link href="/pts?mode=hospitals" className="hover:text-gray-900">病院を探す</Link>
           <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>
           <Link href="/columns" className="hover:text-gray-900">コラム</Link>

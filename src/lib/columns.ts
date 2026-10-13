@@ -210,6 +210,15 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-10-13",
     updatedAt: "2026-10-13",
   },
+  {
+    slug: "pt-how-to-become",
+    title: "理学療法士になるには｜大学・短期大学・専門学校の違いと、学校の選び方",
+    description:
+      "理学療法士になるまでの流れ（養成校で3年以上学ぶ→国家試験→免許）と、大学・短期大学・専門学校の違い、学校を選ぶときに見ておきたい5つの点を整理しました。",
+    category: "学生・国試",
+    publishedAt: "2026-10-13",
+    updatedAt: "2026-10-13",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {
