@@ -2,17 +2,15 @@ import { cache } from "react";
 import type { Metadata } from "next";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import type { Hospital } from "@/lib/hospitals";
+import { HospitalInitialProvider } from "./HospitalInitial";
 
 type Props = { params: Promise<{ id: string }>; children: React.ReactNode };
 
 // メタ情報と構造化データで同じ病院を使うので、1回のリクエストの中では、1度だけ取得する
 const getHospital = cache(async (id: string) => {
-  const { data } = await supabasePublic
-    .from("hospitals")
-    .select("name, prefecture, city, address, phone, website")
-    .eq("id", id)
-    .maybeSingle();
-  return data;
+  const { data } = await supabasePublic.from("hospitals").select("*").eq("id", id).maybeSingle();
+  return (data as Hospital | null) ?? null;
 });
 
 export async function generateMetadata({ params }: Pick<Props, "params">): Promise<Metadata> {
@@ -50,22 +48,34 @@ export default async function HospitalLayout({ params, children }: Props) {
   const { id } = await params;
   const hospital = await getHospital(id);
 
-  if (!hospital) return children;
+  if (!hospital) return <HospitalInitialProvider hospital={null}>{children}</HospitalInitialProvider>;
 
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "Hospital",
-    name: hospital.name,
-    url: `${SITE_URL}/hospitals/${id}`,
-    ...(hospital.website ? { sameAs: [hospital.website] } : {}),
-    ...(hospital.phone ? { telephone: hospital.phone } : {}),
-    address: {
-      "@type": "PostalAddress",
-      addressCountry: "JP",
-      ...(hospital.prefecture ? { addressRegion: hospital.prefecture } : {}),
-      ...(hospital.city ? { addressLocality: hospital.city } : {}),
-      ...(hospital.address ? { streetAddress: hospital.address } : {}),
-    },
+    "@graph": [
+      {
+        "@type": "Hospital",
+        name: hospital.name,
+        url: `${SITE_URL}/hospitals/${id}`,
+        ...(hospital.website ? { sameAs: [hospital.website] } : {}),
+        ...(hospital.phone ? { telephone: hospital.phone } : {}),
+        address: {
+          "@type": "PostalAddress",
+          addressCountry: "JP",
+          ...(hospital.prefecture ? { addressRegion: hospital.prefecture } : {}),
+          ...(hospital.city ? { addressLocality: hospital.city } : {}),
+          ...(hospital.address ? { streetAddress: hospital.address } : {}),
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
+          { "@type": "ListItem", position: 2, name: "病院を探す", item: `${SITE_URL}/pts?mode=hospitals` },
+          { "@type": "ListItem", position: 3, name: hospital.name, item: `${SITE_URL}/hospitals/${id}` },
+        ],
+      },
+    ],
   };
 
   return (
@@ -75,7 +85,7 @@ export default async function HospitalLayout({ params, children }: Props) {
         // "<" をエスケープして、文字列から <script> を抜け出せないようにする
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
-      {children}
+      <HospitalInitialProvider hospital={hospital}>{children}</HospitalInitialProvider>
     </>
   );
 }

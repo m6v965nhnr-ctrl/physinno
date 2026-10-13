@@ -37,6 +37,7 @@ import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
 import ReportButton from "@/components/ReportButton";
 import { LoadingScreen } from "@/components/states";
+import { useHospitalInitial } from "./HospitalInitial";
 
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
@@ -49,7 +50,9 @@ export default function HospitalDetailPage() {
   const [isPt, setIsPt] = useState(false);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
 
-  const [hospital, setHospital] = useState<Hospital | null>(null);
+  // サーバーで取得した基本情報があれば、最初の表示から出す（読み込み中の画面を挟まない）
+  const initialHospital = useHospitalInitial();
+  const [hospital, setHospital] = useState<Hospital | null>(initialHospital);
   const [notFound, setNotFound] = useState(false);
   const [pts, setPts] = useState<PtProfile[]>([]);
   const [followerCount, setFollowerCount] = useState(0);
@@ -98,10 +101,12 @@ export default function HospitalDetailPage() {
   const [recruitmentInput, setRecruitmentInput] = useState("");
   const [savingRecruitment, setSavingRecruitment] = useState(false);
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(!initialHospital);
+  // 在籍PT・口コミ・疾患比率などの取得が終わったか（基本情報は、サーバーから先に出る）
+  const [dataReady, setDataReady] = useState(!initialHospital);
 
   async function load() {
-    setLoading(true);
+    if (!initialHospital) setLoading(true);
 
     const h = await getHospital(id);
     if (!h) {
@@ -152,6 +157,7 @@ export default function HospitalDetailPage() {
     }
 
     setLoading(false);
+    setDataReady(true);
   }
 
   useEffect(() => {
@@ -370,6 +376,10 @@ export default function HospitalDetailPage() {
           )}
         </div>
 
+        {!dataReady && <p className="mt-6 text-center text-sm text-gray-500">口コミ・疾患比率を読み込み中…</p>}
+
+        {dataReady && (
+          <>
         {pts.length > 0 && (
           <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
             <h2 className="text-sm font-semibold text-gray-500">在籍PT</h2>
@@ -688,6 +698,8 @@ export default function HospitalDetailPage() {
             ))}
           </div>
         </section>
+          </>
+        )}
       </div>
     </main>
   );

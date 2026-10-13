@@ -201,6 +201,15 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-10-07",
     updatedAt: "2026-10-07",
   },
+  {
+    slug: "pt-practicum-report-guide",
+    title: "臨床実習レポートの書き方｜構成・考察・提出前チェックのコツ【理学療法学生向け】",
+    description:
+      "臨床実習のレポートで悩む理学療法学生へ。情報から解釈・問題点・ゴール・プログラムまでの基本の流れ、事実と解釈の書き分け、提出前のチェックリストを解説します。",
+    category: "学生・国試",
+    publishedAt: "2026-10-13",
+    updatedAt: "2026-10-13",
+  },
 ];
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {

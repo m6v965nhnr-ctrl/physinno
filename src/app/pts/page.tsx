@@ -33,7 +33,18 @@ const OTHER_MODES: [SearchMode, string][] = [
 
 export default function PTSearchPage() {
   return (
-    <Suspense fallback={null}>
+    <Suspense
+      fallback={
+        // 最初のHTML（検索エンジンが読む部分）。画面が準備できると、検索の画面に置き換わる
+        <main className="mx-auto max-w-2xl px-5 py-10">
+          <h1 className="text-2xl font-semibold text-gray-900">PT・論文・病院を探す</h1>
+          <p className="mt-3 text-sm leading-7 text-gray-600">
+            全国の理学療法士（PT）を地域や専門分野から探せます。論文は、日本語でも英語でも、PubMedなど9つのサイトをまとめて検索。
+            病院は、基本情報と、職場環境の口コミを確認できます。
+          </p>
+        </main>
+      }
+    >
       <PTSearchPageInner />
     </Suspense>
   );
