@@ -4,6 +4,8 @@ import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import { markPaperSearched } from "@/lib/firstSteps";
+import { PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 import {
   PAPER_LINK_SOURCES,
   PAPER_SOURCE_LABEL,
@@ -369,6 +371,7 @@ export default function PaperSearch() {
     setShowRecent(false);
     setSearching(true);
     saveRecentSearch(q);
+    markPaperSearched();
     setRecentSearches(loadRecentSearches());
 
     if (mode === "ai") {
@@ -721,7 +724,7 @@ export default function PaperSearch() {
       <button
         onClick={() => handleSearch()}
         disabled={searching || !query.trim()}
-        className="mt-2 w-full rounded-full bg-black py-2.5 text-white disabled:opacity-50"
+        className={`mt-2 ${PRIMARY_BUTTON_CLASS}`}
       >
         {searching
           ? "検索中…"

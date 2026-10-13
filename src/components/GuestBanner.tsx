@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import { withReturnTo } from "@/lib/returnTo";
 
 // ログインしていない訪問者に、「見るだけ」であることと、登録の案内を出す。ログイン中は、何も出さない
 export function useIsGuest() {
@@ -17,6 +18,12 @@ export function useIsGuest() {
 
 export default function GuestBanner({ text }: { text?: string }) {
   const guest = useIsGuest();
+  // 登録・ログインのあとに、いま見ている画面へ戻すため
+  const [here, setHere] = useState("");
+  useEffect(() => {
+    setHere(window.location.pathname + window.location.search);
+  }, []);
+
   if (!guest) return null;
 
   return (
@@ -25,10 +32,10 @@ export default function GuestBanner({ text }: { text?: string }) {
         {text ?? "いまは、ゲストとして見ています。無料登録すると、投稿・コメント・保存・メッセージが使えます。"}
       </p>
       <div className="flex shrink-0 gap-2">
-        <Link href="/register" className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-gray-900">
+        <Link href={withReturnTo("/register", here)} className="rounded-full bg-white px-4 py-2 text-xs font-semibold text-gray-900">
           無料で登録
         </Link>
-        <Link href="/login" className="rounded-full border border-gray-900/40 px-4 py-2 text-xs font-semibold text-gray-900">
+        <Link href={withReturnTo("/login", here)} className="rounded-full border border-gray-900/40 px-4 py-2 text-xs font-semibold text-gray-900">
           ログイン
         </Link>
         <Link href="/guest" className="px-1 py-2 text-xs text-gray-900 underline">

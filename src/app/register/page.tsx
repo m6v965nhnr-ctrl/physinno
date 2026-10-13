@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { getAttribution } from "@/lib/attribution";
 import { trackRegistration } from "@/lib/metaPixel";
 import { graduationYearOptions } from "@/lib/student";
+import { rememberReturnTo, takeReturnTo } from "@/lib/returnTo";
 
 type AccountType = "pt" | "general" | "student";
 
@@ -54,6 +55,9 @@ export default function RegisterPage() {
     if (type === "pt" || type === "general" || type === "student") {
       setAccountType(type);
     }
+
+    // ゲストとして見ていた画面（?next=）を覚えておき、プロフィールの入力が終わったら、そこへ戻す
+    rememberReturnTo(params.get("next"));
 
     const ref = params.get("ref");
     if (ref) {
@@ -127,7 +131,7 @@ export default function RegisterPage() {
     // 学生は、名前と養成校・卒業予定年などを入れる設定画面へ案内する
     router.push(
       accountType === "general"
-        ? "/pts"
+        ? (takeReturnTo() ?? "/pts")
         : accountType === "student"
           ? "/student/settings?welcome=1"
           : "/mypage/edit?welcome=1"

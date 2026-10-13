@@ -54,7 +54,9 @@ export default function StudentHomeView({
   const countdown = computeCountdown(profile);
   const events: UpcomingEvent[] = upcomingEvents(items);
   const stats = computeStudyStats(logs);
-  const switchSoon = countdown.switchDays <= 31 && countdown.switchDays >= 0;
+  // 4月1日のPT切り替えの案内は、約3か月前（1月ごろ）から出す。1か月前からは、目立つ色にする
+  const switchSoon = countdown.switchDays <= 92 && countdown.switchDays >= 0;
+  const switchVerySoon = countdown.switchDays <= 31;
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
@@ -92,11 +94,19 @@ export default function StudentHomeView({
         )}
 
         {switchSoon && (
-          <div className="rounded-2xl bg-amber-50 p-4 text-sm leading-6 text-amber-800">
+          <div
+            className={`rounded-2xl p-4 text-sm leading-6 ${
+              switchVerySoon ? "bg-amber-50 text-amber-900" : "bg-brand-50 text-gray-800"
+            }`}
+          >
             <p className="font-semibold">
               {profile.graduation_year}年4月1日（{dayText(countdown.switchDays)}）に、PTのアカウントに自動で切り替わります
             </p>
-            <p className="mt-1 text-xs">
+            <p className="mt-1 text-xs leading-5">
+              切り替わると、実習・就活トラッカーや国試カウントダウンなど、学生向けの機能は使えなくなります（記録は残ります）。
+              投稿・検索・メッセージなどは、そのまま使えます。切り替わったあとは、勤務先や専門分野などのプロフィールを入力しましょう。
+            </p>
+            <p className="mt-1 text-xs leading-5">
               国試に合格できなかった場合などは、
               <Link href="/student/settings" className="underline">
                 設定

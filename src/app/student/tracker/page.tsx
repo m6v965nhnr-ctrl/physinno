@@ -254,7 +254,7 @@ export default function TrackerPage() {
                   </p>
                 ) : (
                   <>
-                    <input
+                    <input aria-label="病院名の一部を入力（例: 市民病院）"
                       value={hospitalQuery}
                       onChange={(e) => setHospitalQuery(e.target.value)}
                       placeholder="病院名の一部を入力（例: 市民病院）"

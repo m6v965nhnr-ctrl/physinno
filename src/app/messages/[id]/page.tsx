@@ -387,7 +387,7 @@ export default function MessagePage() {
 
       <div className="fixed bottom-16 left-0 right-0 z-30 border-t border-gray-100 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-2xl items-center gap-2 px-4 py-3">
-          <input
+          <input aria-label="メッセージを入力…"
             type="text"
             value={content}
             onChange={(e) => setContent(e.target.value)}

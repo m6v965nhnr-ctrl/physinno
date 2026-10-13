@@ -19,6 +19,7 @@ import {
 import { internshipReviewCounts } from "@/lib/internship";
 import { PREFECTURES } from "@/lib/prefectures";
 import { notify } from "@/lib/notify";
+import { INPUT_CLASS, PRIMARY_BUTTON_CLASS, chipClass } from "@/lib/ui";
 
 // 病院はPTが作成・編集できる施設ページ。検索結果から /hospitals/{id} に
 // 遷移すると、フォローや職場環境の口コミを見られる。
@@ -183,23 +184,23 @@ export default function HospitalSearch() {
             探している病院・クリニックが見つからない場合、ページを新規に追加できます（公式サイトのURLを貼り付けるだけでもOK）
           </p>
 
-          <input
+          <input aria-label="病院名（必須）"
             value={newName}
             onChange={(e) => setNewName(e.target.value)}
             placeholder="病院名（必須）"
-            className="w-full rounded-full border px-4 py-2.5 text-sm"
+            className={INPUT_CLASS}
           />
-          <input
+          <input aria-label="公式サイトURL（任意）"
             value={newWebsite}
             onChange={(e) => setNewWebsite(e.target.value)}
             type="url"
             placeholder="公式サイトURL（任意）"
-            className="w-full rounded-full border px-4 py-2.5 text-sm"
+            className={INPUT_CLASS}
           />
           <select
             value={newPrefecture}
             onChange={(e) => setNewPrefecture(e.target.value)}
-            className="w-full rounded-full border px-4 py-2.5 text-sm"
+            className={INPUT_CLASS}
             aria-label="都道府県（任意）"
           >
             <option value="">都道府県：未選択</option>
@@ -210,9 +211,10 @@ export default function HospitalSearch() {
             ))}
           </select>
           <select
+            aria-label="規模"
             value={newSize}
             onChange={(e) => setNewSize(e.target.value as WorkplaceSize | "")}
-            className="w-full rounded-full border px-4 py-2.5 text-sm"
+            className={INPUT_CLASS}
           >
             <option value="">規模：未設定</option>
             {(Object.keys(WORKPLACE_SIZE_LABEL) as WorkplaceSize[]).map((key) => (
@@ -226,7 +228,7 @@ export default function HospitalSearch() {
             type="button"
             onClick={handleAddHospital}
             disabled={adding}
-            className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
+            className={PRIMARY_BUTTON_CLASS}
           >
             {adding ? "追加中…" : "この内容で追加する"}
           </button>
@@ -241,14 +243,14 @@ export default function HospitalSearch() {
             if (e.key === "Enter") handleSearch();
           }}
           placeholder="病院名（例：横須賀市立市民病院）"
-          className="w-full rounded-full border px-5 py-2"
+          className={INPUT_CLASS}
           aria-label="病院名"
         />
 
         <select
           value={prefecture}
           onChange={(e) => setPrefecture(e.target.value)}
-          className="w-full rounded-full border px-5 py-2"
+          className={INPUT_CLASS}
           aria-label="都道府県"
         >
           <option value="">都道府県：未選択</option>
@@ -263,7 +265,7 @@ export default function HospitalSearch() {
           value={city}
           onChange={(e) => setCity(e.target.value)}
           disabled={!prefecture || cityOptions.length === 0}
-          className="w-full rounded-full border px-5 py-2 disabled:bg-gray-50 disabled:text-gray-400"
+          className={INPUT_CLASS}
           aria-label="市区町村"
         >
           <option value="">
@@ -279,7 +281,7 @@ export default function HospitalSearch() {
         <select
           value={size}
           onChange={(e) => setSize(e.target.value as WorkplaceSize | "")}
-          className="w-full rounded-full border px-5 py-2"
+          className={INPUT_CLASS}
           aria-label="病院の規模"
         >
           <option value="">規模を指定しない</option>
@@ -305,9 +307,7 @@ export default function HospitalSearch() {
                       onClick={() =>
                         setDepartments((prev) => (on ? prev.filter((v) => v !== d) : [...prev, d]))
                       }
-                      className={`rounded-full border px-3 py-1.5 text-xs ${
-                        on ? "border-black bg-black text-white" : "border-gray-200 text-gray-600"
-                      }`}
+                      className={chipClass(on)}
                     >
                       {d}
                     </button>
@@ -319,7 +319,7 @@ export default function HospitalSearch() {
             <select
               value={bedType}
               onChange={(e) => setBedType(e.target.value as BedType | "")}
-              className="w-full rounded-full border px-5 py-2"
+              className={INPUT_CLASS}
               aria-label="病床の種類"
             >
               <option value="">病床の種類を指定しない</option>
@@ -335,7 +335,7 @@ export default function HospitalSearch() {
         <button
           onClick={handleSearch}
           disabled={searching}
-          className="w-full rounded-full bg-black py-2 text-white disabled:opacity-50"
+          className={PRIMARY_BUTTON_CLASS}
         >
           {searching ? "検索中…" : "🔍 検索"}
         </button>

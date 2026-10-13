@@ -417,6 +417,7 @@ export default function HospitalDetailPage() {
                   </span>
                   <input
                     type="number"
+                    aria-label={`${category}の割合（%）`}
                     min={0}
                     max={100}
                     value={ratioInputs[category] ?? "0"}
@@ -481,7 +482,7 @@ export default function HospitalDetailPage() {
               <p className="text-xs text-gray-400">
                 募集職種・待遇・連絡先など、在籍PTが把握している採用情報を入力してください
               </p>
-              <textarea
+              <textarea aria-label="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
                 value={recruitmentInput}
                 onChange={(e) => setRecruitmentInput(e.target.value)}
                 rows={5}
@@ -610,7 +611,7 @@ export default function HospitalDetailPage() {
                 />
               </div>
 
-              <textarea
+              <textarea aria-label="職場環境・雰囲気・教育体制など（任意）"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
                 placeholder="職場環境・雰囲気・教育体制など（任意）"

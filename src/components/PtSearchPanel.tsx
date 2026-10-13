@@ -5,6 +5,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle, toHiragana } from "@/lib/format";
+import { INPUT_CLASS, PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 
 // PostgREST の or() 条件に入れても壊れないように、区切り文字やワイルドカードを取り除く
 function sanitize(text: string) {
@@ -69,7 +70,7 @@ export default function PtSearchPanel({ loggedIn = true, showTitle = true }: { l
     setSearching(false);
   }
 
-  const inputClass = "w-full border rounded-full px-5 py-2";
+  const inputClass = INPUT_CLASS;
 
   return (
     <>
@@ -126,7 +127,7 @@ export default function PtSearchPanel({ loggedIn = true, showTitle = true }: { l
               <button
                 onClick={searchPT}
                 disabled={searching}
-                className="w-full bg-black text-white rounded-full py-2 disabled:opacity-50"
+                className={PRIMARY_BUTTON_CLASS}
               >
                 {searching ? "検索中…" : "🔍 検索"}
               </button>

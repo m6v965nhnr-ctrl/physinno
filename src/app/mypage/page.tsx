@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import ReferralCard from "@/components/ReferralCard";
-import ProfileCompletenessCard from "@/components/ProfileCompletenessCard";
+import TodayTodos from "@/components/TodayTodos";
 import CertificateAttachments from "@/components/CertificateAttachments";
 import MedicalHistorySection from "@/components/MedicalHistorySection";
 import { AccountType, getMyAccountType } from "@/lib/account";
@@ -420,7 +420,7 @@ export default function MyPage() {
 
         </div>
 
-        <ProfileCompletenessCard profile={profile} />
+        <TodayTodos userId={userId} profile={profile} />
 
         {/* =========================
             ポートフォリオへの導線
@@ -530,6 +530,7 @@ export default function MyPage() {
                     </div>
 
                     <button
+                      aria-label="この実績投稿を削除"
                       onClick={() => handleDeleteAchievement(a.id)}
                       className="shrink-0 text-gray-400 hover:text-gray-700"
                     >

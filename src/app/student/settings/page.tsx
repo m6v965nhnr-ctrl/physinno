@@ -15,6 +15,7 @@ import {
   updateMyStudentProfile,
 } from "@/lib/student";
 import { askConfirm } from "@/lib/confirm";
+import { takeReturnTo } from "@/lib/returnTo";
 import { LoadingScreen } from "@/components/states";
 
 // 学生の設定: 名前・自己紹介(他のユーザーに見える)と、養成校・卒業予定年・国試日(本人だけに表示)
@@ -122,7 +123,7 @@ export default function StudentSettingsPage() {
     }
 
     notify("保存しました");
-    router.push("/student");
+    router.push(welcome ? (takeReturnTo() ?? "/student") : "/student");
   }
 
   async function handleBecomePt() {

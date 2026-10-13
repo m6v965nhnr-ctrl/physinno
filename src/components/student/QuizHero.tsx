@@ -59,9 +59,15 @@ export default function QuizHero() {
           className="flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]"
         >
           <span>
-            <span className="block text-base font-extrabold">▶ 今日の10問を解く</span>
+            <span className="block text-base font-extrabold">
+              {stat && answered === 0 ? "▶ まず10問、解いてみよう" : "▶ 今日の10問を解く"}
+            </span>
             <span className="block text-xs font-semibold text-gray-600">
-              {todayMode === "unanswered" ? "まだ解いていない問題から、ランダムに" : "全問から、ランダムに"}
+              {stat && answered === 0
+                ? "はじめの1歩。約3分で、答えると、すぐ解説が出ます"
+                : todayMode === "unanswered"
+                  ? "まだ解いていない問題から、ランダムに"
+                  : "全問から、ランダムに"}
             </span>
           </span>
           <span aria-hidden="true" className="text-xl font-bold">

@@ -14,6 +14,7 @@ import {
 } from "@/lib/profileSync";
 import { notify } from "@/lib/notify";
 import { markOnboarded } from "@/lib/onboarding";
+import { takeReturnTo } from "@/lib/returnTo";
 
 export default function EditProfilePage() {
   const router = useRouter();
@@ -558,7 +559,7 @@ export default function EditProfilePage() {
 
     notify("プロフィールを保存しました");
 
-    router.push(welcome ? "/home" : "/mypage");
+    router.push(welcome ? (takeReturnTo() ?? "/home") : "/mypage");
   }
 
   if (loading) {

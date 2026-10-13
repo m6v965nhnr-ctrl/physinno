@@ -171,6 +171,15 @@ export default function PTProfile() {
 
       if (!error) {
         setFollowing(false);
+        notify("フォローを解除しました", "info", {
+          label: "元に戻す",
+          onAction: async () => {
+            const { error: refollowError } = await supabase
+              .from("follows")
+              .insert({ following_user: user.id, followed_user: pt.user_id });
+            if (!refollowError) setFollowing(true);
+          },
+        });
       }
     } else {
       const { error } = await supabase

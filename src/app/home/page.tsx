@@ -14,6 +14,7 @@ import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
 import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
+import FirstStepCard from "@/components/FirstStepCard";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
 import GuestBanner from "@/components/GuestBanner";
 import HomeQuestionsStrip from "@/components/HomeQuestionsStrip";
@@ -479,6 +480,7 @@ export default function HomePage() {
         )}
 
         {!guest && <ProfileNameNudge userId={userId} />}
+        {!guest && <FirstStepCard userId={userId} />}
         {!guest && <HospitalReviewNudge userId={userId} />}
         {!guest && <HomeAudienceCard userId={userId} />}
         {!guest && <HomeQuestionsStrip userId={userId} />}

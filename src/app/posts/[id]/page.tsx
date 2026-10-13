@@ -523,7 +523,7 @@ export default function PostDetailPage() {
               </h3>
 
               <div className="flex gap-3">
-                <input
+                <input aria-label="コメントを書く"
                   value={commentText}
                   onChange={(e) =>
                     setCommentText(e.target.value)

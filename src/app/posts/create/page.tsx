@@ -364,6 +364,7 @@ export default function CreatePostPage() {
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
             <button
+              aria-label="投稿の種類の選択に戻る"
               onClick={() => setType(null)}
               className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
             >
@@ -603,6 +604,7 @@ export default function CreatePostPage() {
       <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-2xl items-center justify-between px-5 py-4">
           <button
+            aria-label="投稿の種類の選択に戻る"
             onClick={() => setType(null)}
             className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100"
           >

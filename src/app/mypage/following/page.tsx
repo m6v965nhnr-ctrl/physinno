@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import { LoadingScreen } from "@/components/states";
 import { ptName } from "@/lib/format";
 
 type Profile = {
@@ -110,15 +111,25 @@ export default function FollowingPage() {
           profile.user_id !== userId
       )
     );
+
+    notify("フォローを解除しました", "info", {
+      label: "元に戻す",
+      onAction: async () => {
+        const { error: refollowError } = await supabase
+          .from("follows")
+          .insert({ following_user: user.id, followed_user: userId });
+        if (refollowError) {
+          notify("元に戻せませんでした");
+          return;
+        }
+        loadFollowing();
+      },
+    });
   }
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-white flex items-center justify-center">
-        <p className="text-gray-500">
-          読み込み中…
-        </p>
-      </main>
+      <LoadingScreen />
     );
   }
 

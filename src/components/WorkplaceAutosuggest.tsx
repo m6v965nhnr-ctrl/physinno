@@ -72,7 +72,7 @@ export default function WorkplaceAutosuggest({
 
   return (
     <div className="relative">
-      <input
+      <input aria-label="例：横須賀（入力すると病院の候補が出ます）"
         value={value}
         onChange={(e) => handleChange(e.target.value)}
         onFocus={() => suggestions.length > 0 && setShowSuggestions(true)}

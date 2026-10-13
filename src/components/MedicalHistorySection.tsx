@@ -116,13 +116,13 @@ export default function MedicalHistorySection({ userId }: { userId: string }) {
       )}
 
       <div className="mt-4 space-y-2 rounded-xl bg-gray-50 p-3">
-        <input
+        <input aria-label="病名・症状名（例：変形性膝関節症）"
           value={conditionName}
           onChange={(e) => setConditionName(e.target.value)}
           placeholder="病名・症状名（例：変形性膝関節症）"
           className="w-full rounded-full border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-gray-400"
         />
-        <textarea
+        <textarea aria-label="メモ（任意）"
           value={memo}
           onChange={(e) => setMemo(e.target.value)}
           placeholder="メモ（任意）"

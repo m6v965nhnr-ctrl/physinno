@@ -158,6 +158,7 @@ export default function AchievementsPage() {
                   </div>
 
                   <button
+                    aria-label="この実績投稿を削除"
                     onClick={() => handleDeleteAchievement(a.id)}
                     className="shrink-0 text-gray-400 hover:text-gray-700"
                   >

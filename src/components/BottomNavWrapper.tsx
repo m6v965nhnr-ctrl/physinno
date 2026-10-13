@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { withReturnTo } from "@/lib/returnTo";
 import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
@@ -157,13 +158,20 @@ export default function BottomNavWrapper() {
   const previewOnly = !loggedIn && (guestRole === "pt" || guestRole === "student");
 
   // ログインしていない訪問者（立場を選んでいない人）には、ゲスト用のメニューを出す
-  const menus = previewOnly
+  const baseMenus = previewOnly
     ? PT_MENUS
     : !loggedIn
       ? GUEST_MENUS_UNSET
       : accountType === "general"
         ? GENERAL_MENUS
         : PT_MENUS;
+
+  // ゲストの「登録・ログイン」は、いま見ている画面を覚えて、登録のあとに戻す
+  const menus = baseMenus.map((m) =>
+    !loggedIn && m.href === "/register"
+      ? { ...m, href: withReturnTo("/register", pathname + (typeof window !== "undefined" ? window.location.search : "")) }
+      : m
+  );
 
   function isActive(href: string) {
     const [base, query] = href.split("?");

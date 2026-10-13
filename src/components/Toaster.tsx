@@ -19,7 +19,7 @@ export default function Toaster() {
 
       window.setTimeout(
         () => setToasts((prev) => prev.filter((t) => t.id !== id)),
-        detail.kind === "error" ? 6000 : 4000
+        detail.action ? 8000 : detail.kind === "error" ? 6000 : 4000
       );
     }
 
@@ -42,6 +42,18 @@ export default function Toaster() {
           }`}
         >
           {t.message}
+          {t.action && (
+            <button
+              type="button"
+              onClick={() => {
+                t.action?.onAction();
+                setToasts((prev) => prev.filter((x) => x.id !== t.id));
+              }}
+              className="ml-3 rounded-full border border-white/60 px-3 py-0.5 text-xs font-semibold text-white"
+            >
+              {t.action.label}
+            </button>
+          )}
         </div>
       ))}
     </div>

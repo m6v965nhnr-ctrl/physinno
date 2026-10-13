@@ -1,17 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
 import { getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
+import { rememberReturnTo, takeReturnTo } from "@/lib/returnTo";
 
 export default function LoginPage() {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  // ゲストとして見ていた画面から来たとき（?next=）は、ログインのあとにそこへ戻す
+  useEffect(() => {
+    rememberReturnTo(new URLSearchParams(window.location.search).get("next"));
+  }, []);
 
   async function login() {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -53,7 +59,7 @@ export default function LoginPage() {
       accountType = (await syncMyAccountType()) ?? accountType;
     }
 
-    router.push(accountType === "general" ? "/pts" : "/home");
+    router.push(takeReturnTo() ?? (accountType === "general" ? "/pts" : "/home"));
   }
 
   return (
