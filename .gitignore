@@ -45,3 +45,9 @@ next-env.d.ts
 
 # graphify の出力（再生成できる）
 graphify-out/
+
+# SNS・チラシ・動画の素材（再生成できる。リポジトリには入れない）
+_sns/
+_sns_next/
+_reels/
+_flyer/
