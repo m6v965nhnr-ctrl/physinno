@@ -105,3 +105,38 @@ export async function getUserFromRequest(request: Request) {
   const { data } = await client.auth.getUser(token);
   return data.user ?? null;
 }
+
+// AI機能の、1日あたりの使用回数の上限（ユーザーごと・全体）。DBの take_ai_quota で数える。
+// 上限を超えていたら、そのまま返せる Response を返す。問題なければ null。
+// 数える仕組み自体が失敗したときは、止めずに使わせる（DBの一時的な不調で、機能を止めないため）
+export async function takeAiQuota(request: Request, feature: string): Promise<Response | null> {
+  const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
+  if (!token) return null;
+
+  try {
+    const client = createClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      { global: { headers: { Authorization: `Bearer ${token}` } } }
+    );
+    const { data, error } = await client.rpc("take_ai_quota", { p_feature: feature });
+    if (error) return null;
+
+    if (data === "user_limit") {
+      return Response.json(
+        { error: "今日、この機能で使える回数に達しました。明日、またお試しください", code: "rate_limited" },
+        { status: 429 }
+      );
+    }
+    if (data === "global_limit") {
+      return Response.json(
+        { error: "AI機能が混み合っています。明日、またお試しください", code: "rate_limited" },
+        { status: 429 }
+      );
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+}

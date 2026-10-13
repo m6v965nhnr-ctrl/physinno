@@ -3,7 +3,7 @@
 // 公開エンドポイントで無料枠を使い切られないよう、ログイン済みのユーザーだけ使える。
 // 論文の要約は、公開されている文章（個人情報ではない）。
 
-import { generateText, getUserFromRequest, isGeminiConfigured } from "@/lib/server/gemini";
+import { generateText, getUserFromRequest, isGeminiConfigured, takeAiQuota } from "@/lib/server/gemini";
 import { containsJapanese, translateText } from "@/lib/server/mymemory";
 
 export const dynamic = "force-dynamic";
@@ -55,7 +55,10 @@ export async function POST(request: Request) {
     return Response.json({ translation: text, engine: "none" });
   }
 
-  if (isGeminiConfigured()) {
+  // 1日の上限を超えたら、AIは使わず、下の予備の翻訳へ進む
+  const limited = isGeminiConfigured() ? await takeAiQuota(request, "translate_abstract") : null;
+
+  if (isGeminiConfigured() && !limited) {
     try {
       const translation = await generateText({
         system: SYSTEM,

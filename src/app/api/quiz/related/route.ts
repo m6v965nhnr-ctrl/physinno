@@ -3,7 +3,7 @@
 // - ログイン済みの人だけ（AIの無料枠を守るため）。AIが使えないときは、よく使う言いかえだけを返す。
 // - 入力は保存しない。AIの呼び出し先は Google（Gemini）。
 
-import { generateText, getUserFromRequest, isGeminiConfigured } from "@/lib/server/gemini";
+import { generateText, getUserFromRequest, isGeminiConfigured, takeAiQuota } from "@/lib/server/gemini";
 
 export const dynamic = "force-dynamic";
 export const maxDuration = 20;
@@ -49,6 +49,10 @@ export async function POST(request: Request) {
 
   const user = await getUserFromRequest(request);
   if (!user || !isGeminiConfigured() || !allowed(user.id)) {
+    return Response.json({ terms: fallback });
+  }
+  // 1日の上限を超えたら、AIは使わず、固定の候補を返す
+  if (await takeAiQuota(request, "quiz_related")) {
     return Response.json({ terms: fallback });
   }
 

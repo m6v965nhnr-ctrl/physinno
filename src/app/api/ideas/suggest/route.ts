@@ -5,7 +5,7 @@
 // - ログイン済みの PT・学生だけが使える。
 
 import { createClient } from "@supabase/supabase-js";
-import { generateText, getUserFromRequest, isGeminiConfigured } from "@/lib/server/gemini";
+import { generateText, getUserFromRequest, isGeminiConfigured, takeAiQuota } from "@/lib/server/gemini";
 import { getTopic } from "@/content/ideas";
 import {
   AGE_BANDS,
@@ -106,6 +106,9 @@ export async function POST(request: Request) {
   if (!allowed(user.id)) {
     return Response.json({ error: "1時間に使える回数に達しました。しばらくしてからお試しください", code: "rate_limited" }, { status: 429 });
   }
+
+  const limited = await takeAiQuota(request, "ideas");
+  if (limited) return limited;
 
   const topic = input.topic ? getTopic(input.topic) : undefined;
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "") ?? "";

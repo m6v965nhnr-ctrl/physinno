@@ -4,7 +4,7 @@
 // 学生とPTだけが使える。患者さんの個人情報らしき表現が含まれる入力は受け付けない。
 
 import { createClient } from "@supabase/supabase-js";
-import { generateText, getUserFromRequest, isGeminiConfigured } from "@/lib/server/gemini";
+import { generateText, getUserFromRequest, isGeminiConfigured, takeAiQuota } from "@/lib/server/gemini";
 import { findPrivacyRisk } from "@/lib/privacyCheck";
 
 export const dynamic = "force-dynamic";
@@ -91,6 +91,9 @@ export async function POST(request: Request) {
       { status: 422 }
     );
   }
+
+  const limited = await takeAiQuota(request, "report_helper");
+  if (limited) return limited;
 
   try {
     const raw = await generateText({

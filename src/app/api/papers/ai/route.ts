@@ -8,6 +8,7 @@ import {
   generateText,
   getUserFromRequest,
   isGeminiConfigured,
+  takeAiQuota,
 } from "@/lib/server/gemini";
 
 export const dynamic = "force-dynamic";
@@ -79,6 +80,9 @@ export async function POST(request: Request) {
   }
 
   const history = Array.isArray(body.history) ? body.history : [];
+
+  const limited = await takeAiQuota(request, "papers_ai");
+  if (limited) return limited;
 
   try {
     if (body.action === "query") {
