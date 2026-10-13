@@ -22,6 +22,7 @@ import {
 } from "@/lib/quiz";
 import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizClass";
 import { shareContent, shareUrl } from "@/lib/share";
+import { LoadingScreen } from "@/components/states";
 
 type Params = {
   unit: string | null;
@@ -183,9 +184,7 @@ export default function QuizPlayPage() {
 
   if (loading || !params || questions === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

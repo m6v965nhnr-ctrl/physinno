@@ -22,6 +22,8 @@ import {
   listMyClasses,
   requestTeacher,
 } from "@/lib/quizClass";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 const COUNT_OPTIONS = [5, 10, 20, 30, 50];
 
@@ -84,9 +86,7 @@ export default function QuizTeacherPage() {
 
   if (loading || status === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 
@@ -268,7 +268,7 @@ function ClassCard({
   }
 
   async function handleArchive() {
-    if (!confirm(`「${cls.name}」を閉じます。学生には、このクラスの課題が見えなくなります。よろしいですか？`)) return;
+    if (!await askConfirm(`「${cls.name}」を閉じます。学生には、このクラスの課題が見えなくなります。よろしいですか？`)) return;
     const ok = await archiveClass(cls.id);
     if (!ok) {
       notify("クラスを閉じられませんでした");

@@ -60,6 +60,7 @@ import {
   syncPortfolioToProfile,
 } from "@/lib/profileSync";
 import { notify } from "@/lib/notify";
+import { askConfirm } from "@/lib/confirm";
 
 type FieldType = "text" | "date" | "number" | "textarea" | "select" | "checkbox";
 
@@ -853,7 +854,7 @@ export default function PortfolioPage() {
 
                 <button
                   onClick={async () => {
-                    if (!window.confirm("この目標を削除しますか？")) return;
+                    if (!await askConfirm("この目標を削除しますか？")) return;
                     await deleteCareerGoal(g.id);
                     load();
                   }}
@@ -906,7 +907,7 @@ export default function PortfolioPage() {
                   )}
                   <button
                     onClick={async () => {
-                      if (!window.confirm("このスキルを削除しますか？")) return;
+                      if (!await askConfirm("このスキルを削除しますか？")) return;
                       await deleteSkill(s.id);
                       load();
                     }}
@@ -978,8 +979,8 @@ function EntryCard({
       </div>
 
       <button
-        onClick={() => {
-          if (window.confirm("この項目を削除しますか？")) onDelete();
+        onClick={async () => {
+          if (await askConfirm("この項目を削除しますか？")) onDelete();
         }}
         className="shrink-0 px-2 py-1 text-gray-400 hover:text-gray-700"
         aria-label="この項目を削除">

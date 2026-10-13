@@ -13,6 +13,7 @@ import {
   listStudentItems,
   listStudyLogs,
 } from "@/lib/student";
+import { LoadingScreen } from "@/components/states";
 
 // 学生のホーム: 卒業・国試までの日数、直近の予定、今週の学習、各機能への入口
 export default function StudentHomePage() {
@@ -49,9 +50,7 @@ export default function StudentHomePage() {
 
   if (loading || name === undefined || !profile) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

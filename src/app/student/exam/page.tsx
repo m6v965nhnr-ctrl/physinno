@@ -17,6 +17,8 @@ import {
   listStudyLogs,
   toDateInput,
 } from "@/lib/student";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 const CONFIDENCE_LABEL = ["", "まだ不安", "やや不安", "ふつう", "だいたい大丈夫", "自信あり"];
 
@@ -75,7 +77,7 @@ export default function ExamPage() {
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("この記録を削除しますか？")) return;
+    if (!await askConfirm("この記録を削除しますか？")) return;
     const error = await deleteStudyLog(id);
     if (error) {
       notify("削除できませんでした");
@@ -86,9 +88,7 @@ export default function ExamPage() {
 
   if (loading || !profile) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

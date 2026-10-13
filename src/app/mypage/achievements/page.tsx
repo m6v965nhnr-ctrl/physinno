@@ -14,6 +14,7 @@ import {
   listQualificationTargets,
 } from "@/lib/achievements";
 import QualificationTargets from "@/components/QualificationTargets";
+import { askConfirm } from "@/lib/confirm";
 
 export default function AchievementsPage() {
   const router = useRouter();
@@ -48,7 +49,7 @@ export default function AchievementsPage() {
   }
 
   async function handleDeleteAchievement(id: string) {
-    if (!confirm("この実績投稿を削除しますか？")) return;
+    if (!await askConfirm("この実績投稿を削除しますか？")) return;
     await deleteAchievement(id);
     load();
   }

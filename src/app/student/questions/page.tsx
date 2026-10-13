@@ -13,6 +13,8 @@ import {
   findPrivacyRisk,
   listQuestions,
 } from "@/lib/studentQa";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 const PAGE_SIZE = 30;
 
@@ -63,7 +65,7 @@ export default function StudentQuestionsPage() {
     const risk = findPrivacyRisk(`${title}\n${body}`);
     if (
       risk &&
-      !confirm(
+      !await askConfirm(
         `${risk}が含まれているようです。\n患者さんや個人が特定できる情報は書かないでください。このまま送信しますか？`
       )
     ) {
@@ -88,9 +90,7 @@ export default function StudentQuestionsPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

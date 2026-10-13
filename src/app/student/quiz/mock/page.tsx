@@ -17,6 +17,8 @@ import {
   percent,
   revealQuestion,
 } from "@/lib/quiz";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 type Session = "am" | "pm";
 
@@ -157,9 +159,7 @@ export default function MockExamPage() {
 
   if (loading || exam === null || questions === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 
@@ -291,13 +291,13 @@ export default function MockExamPage() {
     setFlags((f) => (f.includes(q.id) ? f.filter((x) => x !== q.id) : [...f, q.id]));
   }
 
-  function handleSubmit() {
+  async function handleSubmit() {
     const unanswered = qs.length - answeredCount;
     const msg =
       unanswered > 0
         ? `未回答が${unanswered}問あります。試験を終了して、このまま採点しますか？`
         : "試験を終了して、採点しますか？（採点すると、解答は変えられません）";
-    if (confirm(msg)) submit();
+    if (await askConfirm(msg)) submit();
   }
 
   const optionClass = (n: number) =>

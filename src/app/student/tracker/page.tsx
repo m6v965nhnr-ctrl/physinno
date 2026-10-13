@@ -21,6 +21,8 @@ import {
   listStudentItems,
   updateStudentItem,
 } from "@/lib/student";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 const KINDS: ItemKind[] = ["practicum", "job", "task"];
 
@@ -155,7 +157,7 @@ export default function TrackerPage() {
   }
 
   async function handleDelete(item: StudentItem) {
-    if (!confirm(`「${item.title}」を削除しますか？`)) return;
+    if (!await askConfirm(`「${item.title}」を削除しますか？`)) return;
     const error = await deleteStudentItem(item.id);
     if (error) {
       notify("削除できませんでした");
@@ -166,9 +168,7 @@ export default function TrackerPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

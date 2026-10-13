@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { PrintQuestion, imageUrl, listPrintQuestions } from "@/lib/quiz";
+import { LoadingScreen } from "@/components/states";
 
 const SESSION_LABEL = { am: "午前", pm: "午後" } as const;
 
@@ -29,9 +30,7 @@ export default function QuizPrintPage() {
 
   if (loading || exam === null || rows === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

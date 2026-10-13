@@ -7,6 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { getMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { POSITIONS, PURPOSES, REGIONS, TrainingInput, createTrainingMethod, getRegion } from "@/lib/training";
+import { LoadingScreen } from "@/components/states";
 
 export default function NewTrainingPage() {
   return (
@@ -80,9 +81,7 @@ function NewTrainingInner() {
 
   if (allowed === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

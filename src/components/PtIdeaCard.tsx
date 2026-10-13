@@ -6,6 +6,7 @@ import ReportButton from "@/components/ReportButton";
 import { notify } from "@/lib/notify";
 import { ptNameWithTitle } from "@/lib/format";
 import { PHASE_LABEL, PtIdea, REACTION_LABEL, ReactionKind, deleteIdea, toggleReaction } from "@/lib/ideas";
+import { askConfirm } from "@/lib/confirm";
 
 // PTが投稿したアイデア1件。いいね・保存・実践した、通報、（自分の投稿は）削除
 export default function PtIdeaCard({
@@ -39,7 +40,7 @@ export default function PtIdeaCard({
   }
 
   async function remove() {
-    if (!confirm("このアイデアを削除します。元に戻せません。よろしいですか？")) return;
+    if (!await askConfirm("このアイデアを削除します。元に戻せません。よろしいですか？")) return;
     const ok = await deleteIdea(state.id);
     if (!ok) {
       notify("削除に失敗しました");

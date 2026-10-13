@@ -17,6 +17,8 @@ import {
   getQuestion,
   listAnswers,
 } from "@/lib/studentQa";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 function formatDateTime(iso: string) {
   const d = new Date(iso);
@@ -53,7 +55,7 @@ export default function StudentQuestionPage() {
     const risk = findPrivacyRisk(text);
     if (
       risk &&
-      !confirm(
+      !await askConfirm(
         `${risk}が含まれているようです。\n患者さんや個人が特定できる情報は書かないでください。このまま送信しますか？`
       )
     ) {
@@ -74,13 +76,13 @@ export default function StudentQuestionPage() {
   }
 
   async function handleDeleteAnswer(answerId: string) {
-    if (!confirm("この回答を削除しますか？")) return;
+    if (!await askConfirm("この回答を削除しますか？")) return;
     await deleteAnswer(answerId);
     load();
   }
 
   async function handleDeleteQuestion() {
-    if (!confirm("この質問を削除しますか？回答も一緒に消えます。")) return;
+    if (!await askConfirm("この質問を削除しますか？回答も一緒に消えます。")) return;
     const error = await deleteQuestion(id);
     if (error) {
       notify("削除できませんでした");
@@ -91,9 +93,7 @@ export default function StudentQuestionPage() {
 
   if (loading || question === undefined) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

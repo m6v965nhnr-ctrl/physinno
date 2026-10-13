@@ -31,6 +31,7 @@ import type { CareerGoal } from "@/lib/portfolio";
 import type { PtProfile } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import { notify } from "@/lib/notify";
+import { LoadingScreen } from "@/components/states";
 
 type CaseReport = {
   id: string;
@@ -264,9 +265,7 @@ export default function PortfolioView({
     }
 
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

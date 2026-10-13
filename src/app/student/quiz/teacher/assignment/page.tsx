@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { percent } from "@/lib/quiz";
 import { AssignmentResults, dueText, getAssignmentResults } from "@/lib/quizClass";
+import { LoadingScreen } from "@/components/states";
 
 // 先生用: 課題の結果（学生ごと・問題ごと）
 export default function QuizAssignmentResultsPage() {
@@ -23,9 +24,7 @@ export default function QuizAssignmentResultsPage() {
 
   if (loading || res === undefined) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

@@ -23,6 +23,7 @@ import type { Post, PtPrivate, PtProfile } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import QualificationTargets from "@/components/QualificationTargets";
 import { DEFAULT_PT_NAME, ptName, ptNameWithTitle } from "@/lib/format";
+import { askConfirm } from "@/lib/confirm";
 
 type MyReview = {
   id: string;
@@ -188,7 +189,7 @@ export default function MyPage() {
   }
 
   async function handleDeleteAchievement(id: string) {
-    if (!confirm("この実績投稿を削除しますか？")) return;
+    if (!await askConfirm("この実績投稿を削除しますか？")) return;
     await deleteAchievement(id);
     loadMyPage();
   }

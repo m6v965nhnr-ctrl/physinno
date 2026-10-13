@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { notify } from "@/lib/notify";
 import { TeacherRequest, listTeacherRequests, resolveTeacherRequest } from "@/lib/quizClass";
+import { askConfirm } from "@/lib/confirm";
 
 // 運営用: 過去問ドリルの「先生」の申請を、承認・却下する
 export default function AdminTeacherRequests() {
@@ -21,7 +22,7 @@ export default function AdminTeacherRequests() {
   }, [load]);
 
   async function act(r: TeacherRequest, approve: boolean) {
-    if (!confirm(`${r.full_name ?? r.email ?? "このユーザー"}（${r.school_name}）の申請を${approve ? "承認" : "却下"}します。よろしいですか？`)) {
+    if (!await askConfirm(`${r.full_name ?? r.email ?? "このユーザー"}（${r.school_name}）の申請を${approve ? "承認" : "却下"}します。よろしいですか？`)) {
       return;
     }
     setBusyId(r.id);

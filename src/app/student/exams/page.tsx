@@ -15,6 +15,7 @@ import {
   getMySchool,
   listExamSubjects,
 } from "@/lib/exams";
+import { LoadingScreen } from "@/components/states";
 
 // 試験情報: 学年・学期を選ぶと科目が並び、科目を開くと、その試験のコメントと投稿ができる
 export default function ExamsPage() {
@@ -75,9 +76,7 @@ export default function ExamsPage() {
 
   if (loading || school === undefined) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

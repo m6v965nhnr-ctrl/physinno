@@ -14,6 +14,8 @@ import {
   graduationYearOptions,
   updateMyStudentProfile,
 } from "@/lib/student";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 // 学生の設定: 名前・自己紹介(他のユーザーに見える)と、養成校・卒業予定年・国試日(本人だけに表示)
 export default function StudentSettingsPage() {
@@ -125,7 +127,7 @@ export default function StudentSettingsPage() {
 
   async function handleBecomePt() {
     if (
-      !confirm(
+      !await askConfirm(
         "PTのアカウントに切り替えますか？\n学生向けの機能（実習・就活トラッカー、国試カウントダウンなど）は使えなくなります。\n（記録したデータは残ります）"
       )
     ) {
@@ -149,9 +151,7 @@ export default function StudentSettingsPage() {
 
   if (loading || !loaded) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

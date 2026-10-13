@@ -17,6 +17,7 @@ import {
 } from "@/lib/internship";
 import { notify } from "@/lib/notify";
 import { PRACTICUM_TYPES, PRACTICUM_TYPE_LABEL, PracticumType } from "@/lib/student";
+import { askConfirm } from "@/lib/confirm";
 
 const defaultScores = (): Record<InternshipAxis, number> => ({
   guidance: 5,
@@ -128,7 +129,7 @@ export default function InternshipReviews({
   }
 
   async function handleDelete() {
-    if (!mine || !confirm("あなたの投稿を削除しますか？")) return;
+    if (!mine || !await askConfirm("あなたの投稿を削除しますか？")) return;
     await deleteInternshipReview(mine.id);
     setOpen(false);
     load();

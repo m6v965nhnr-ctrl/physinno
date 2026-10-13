@@ -23,6 +23,8 @@ import {
   uploadExamFile,
   validateExamFile,
 } from "@/lib/exams";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 function formatDate(iso: string) {
   const d = new Date(iso);
@@ -104,7 +106,7 @@ export default function ExamSubjectPage() {
     const risk = findPrivacyRisk(`${tendency}\n${recalled}`);
     if (
       risk &&
-      !confirm(`${risk}が含まれているようです。\n個人が特定できる情報（先生や学生の個人名など）は書かないでください。このまま投稿しますか？`)
+      !await askConfirm(`${risk}が含まれているようです。\n個人が特定できる情報（先生や学生の個人名など）は書かないでください。このまま投稿しますか？`)
     ) {
       return;
     }
@@ -151,7 +153,7 @@ export default function ExamSubjectPage() {
   }
 
   async function handleDelete(note: ExamNote) {
-    if (!confirm("あなたの投稿を削除しますか？（添付ファイルも消えます）")) return;
+    if (!await askConfirm("あなたの投稿を削除しますか？（添付ファイルも消えます）")) return;
     const error = await deleteExamNote(note);
     if (error) {
       notify("削除できませんでした");
@@ -171,9 +173,7 @@ export default function ExamSubjectPage() {
 
   if (loading || subject === undefined) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

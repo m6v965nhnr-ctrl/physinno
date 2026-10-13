@@ -36,6 +36,7 @@ import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
 import ReportButton from "@/components/ReportButton";
+import { LoadingScreen } from "@/components/states";
 
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
@@ -264,9 +265,7 @@ export default function HospitalDetailPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

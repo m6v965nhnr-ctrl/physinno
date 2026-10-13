@@ -15,6 +15,7 @@ import {
   updateQualificationTarget,
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
+import { askConfirm } from "@/lib/confirm";
 
 const QUALIFICATION_EXAMPLES = [
   "認定理学療法士",
@@ -130,7 +131,7 @@ export default function QualificationTargets({
   }
 
   async function handleDelete(id: string) {
-    if (!confirm("この目標を削除しますか？")) return;
+    if (!await askConfirm("この目標を削除しますか？")) return;
     await deleteQualificationTarget(id);
     onChanged();
   }

@@ -21,6 +21,7 @@ import { notify } from "@/lib/notify";
 import { ptName } from "@/lib/format";
 import { SITE_URL } from "@/lib/site";
 import ReportButton from "@/components/ReportButton";
+import { LoadingScreen } from "@/components/states";
 
 type Profile = {
   user_id: string;
@@ -206,9 +207,7 @@ export default function GroupDetailPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

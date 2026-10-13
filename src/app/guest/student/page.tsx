@@ -5,6 +5,7 @@ import Link from "next/link";
 import { setGuestRole } from "@/lib/guestRole";
 import StudentHomeView from "@/components/student/StudentHomeView";
 import type { StudentProfile } from "@/lib/student";
+import { LoadingScreen } from "@/components/states";
 
 // 学生として、ログインなしで見るとき: 本物の学生ホームと同じ画面を、見るだけで出す（ボタンは押せない）
 export default function GuestStudentPage() {
@@ -20,9 +21,7 @@ export default function GuestStudentPage() {
 
   if (!profile) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

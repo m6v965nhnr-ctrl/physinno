@@ -14,6 +14,8 @@ import {
   listMyJoinedClasses,
 } from "@/lib/quizClass";
 import { percent } from "@/lib/quiz";
+import { askConfirm } from "@/lib/confirm";
+import { LoadingScreen } from "@/components/states";
 
 // 先生が作ったクラスに入って、配られた課題を解く画面
 export default function QuizClassesPage() {
@@ -40,7 +42,7 @@ export default function QuizClassesPage() {
     if (!c || busy) return;
 
     if (
-      !confirm(
+      !await askConfirm(
         "このクラスの先生に、配られた課題の結果（あなたの名前と、正解・不正解）が見えるようになります。普段の自習の記録は見えません。クラスには、いつでも退出できます。参加しますか？"
       )
     ) {
@@ -62,7 +64,7 @@ export default function QuizClassesPage() {
   }
 
   async function handleLeave(c: MyClass) {
-    if (!confirm(`「${c.name}」から退出します。先生には、この課題の結果が見えなくなります。よろしいですか？`)) return;
+    if (!await askConfirm(`「${c.name}」から退出します。先生には、この課題の結果が見えなくなります。よろしいですか？`)) return;
     const ok = await leaveClass(c.id);
     if (!ok) {
       notify("退出に失敗しました");
@@ -73,9 +75,7 @@ export default function QuizClassesPage() {
 
   if (loading || classes === null) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

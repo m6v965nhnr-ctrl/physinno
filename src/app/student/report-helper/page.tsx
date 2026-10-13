@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import { findPrivacyRisk } from "@/lib/privacyCheck";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { LoadingScreen } from "@/components/states";
 
 type Mode = "structure" | "sources";
 
@@ -111,9 +112,7 @@ export default function ReportHelperPage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-white">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

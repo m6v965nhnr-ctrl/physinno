@@ -1,0 +1,29 @@
+-- 外部キーに索引がなかった27か所に、索引を追加する（データが増えたときの検索・削除の遅さを防ぐ）。
+-- 既存のデータ・動作は変わらない。
+create index if not exists clinical_idea_editorial_likes_user_id_idx on public.clinical_idea_editorial_likes (user_id);
+create index if not exists clinical_idea_reactions_user_id_idx on public.clinical_idea_reactions (user_id);
+create index if not exists exam_notes_user_id_idx on public.exam_notes (user_id);
+create index if not exists exam_subjects_created_by_idx on public.exam_subjects (created_by);
+create index if not exists group_members_user_id_idx on public.group_members (user_id);
+create index if not exists group_messages_group_id_idx on public.group_messages (group_id);
+create index if not exists group_messages_user_id_idx on public.group_messages (user_id);
+create index if not exists groups_owner_id_idx on public.groups (owner_id);
+create index if not exists hospital_disease_ratios_updated_by_idx on public.hospital_disease_ratios (updated_by);
+create index if not exists hospital_reviews_user_id_idx on public.hospital_reviews (user_id);
+create index if not exists hospitals_claimed_by_idx on public.hospitals (claimed_by);
+create index if not exists hospitals_created_by_idx on public.hospitals (created_by);
+create index if not exists notifications_group_id_idx on public.notifications (group_id);
+create index if not exists operator_messages_user_id_idx on public.operator_messages (user_id);
+create index if not exists quiz_assignment_answers_user_id_idx on public.quiz_assignment_answers (user_id);
+create index if not exists quiz_assignment_answers_question_id_idx on public.quiz_assignment_answers (question_id);
+create index if not exists quiz_progress_question_id_idx on public.quiz_progress (question_id);
+create index if not exists schools_created_by_idx on public.schools (created_by);
+create index if not exists skill_endorsements_endorser_id_idx on public.skill_endorsements (endorser_id);
+create index if not exists student_answers_user_id_idx on public.student_answers (user_id);
+create index if not exists student_items_hospital_id_idx on public.student_items (hospital_id);
+create index if not exists student_profiles_school_id_idx on public.student_profiles (school_id);
+create index if not exists student_questions_user_id_idx on public.student_questions (user_id);
+create index if not exists student_questions_hospital_id_idx on public.student_questions (hospital_id);
+create index if not exists training_method_reactions_user_id_idx on public.training_method_reactions (user_id);
+create index if not exists training_methods_user_id_idx on public.training_methods (user_id);
+create index if not exists users_referred_by_idx on public.users (referred_by);

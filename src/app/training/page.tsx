@@ -18,6 +18,7 @@ import {
   toggleTrainingReaction,
   trainingCounts,
 } from "@/lib/training";
+import { askConfirm } from "@/lib/confirm";
 
 export default function TrainingPage() {
   return (
@@ -97,7 +98,7 @@ function TrainingInner() {
   }
 
   async function remove(item: TrainingMethod) {
-    if (!window.confirm("この訓練を削除しますか？")) return;
+    if (!await askConfirm("この訓練を削除しますか？")) return;
     if (await deleteTrainingMethod(item.id)) {
       notify("削除しました");
       load();

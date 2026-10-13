@@ -9,6 +9,7 @@ import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import ReportButton from "@/components/ReportButton";
 import { MedicalHistoryEntry, listPublicMedicalHistory } from "@/lib/medicalHistory";
+import { LoadingScreen } from "@/components/states";
 
 type Message = {
   id: string;
@@ -232,9 +233,7 @@ export default function MessagePage() {
 
   if (loading) {
     return (
-      <main className="flex min-h-screen items-center justify-center bg-[#fafafa]">
-        <p className="text-sm text-gray-400">読み込み中…</p>
-      </main>
+      <LoadingScreen />
     );
   }
 

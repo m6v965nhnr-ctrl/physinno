@@ -11,6 +11,7 @@ import {
 } from "@/lib/reports";
 import { notify } from "@/lib/notify";
 import { adminRemoveExamNoteFile } from "@/lib/exams";
+import { askConfirm } from "@/lib/confirm";
 
 type Filter = "open" | "resolved" | "dismissed";
 
@@ -43,7 +44,7 @@ export default function AdminReports() {
         ? `この${REPORT_TARGET_LABEL[report.target_type]}を削除して、通報を対応済みにします。元に戻せません。よろしいですか？`
         : null;
 
-    if (confirmText && !confirm(confirmText)) return;
+    if (confirmText && !await askConfirm(confirmText)) return;
 
     const note = action === "delete" ? "運営が削除" : undefined;
 

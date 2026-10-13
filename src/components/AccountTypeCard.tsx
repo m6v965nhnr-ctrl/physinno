@@ -6,6 +6,7 @@ import {
   AccountType,
   setMyAccountType,
 } from "@/lib/account";
+import { askConfirm } from "@/lib/confirm";
 
 const OPTIONS: { value: "pt" | "general"; description: string }[] = [
   { value: "pt", description: "PT同士で交流・情報共有" },
@@ -29,7 +30,7 @@ export default function AccountTypeCard({
 
     if (
       accountType &&
-      !confirm(`アカウントの種類を「${label}」に変更しますか？`)
+      !await askConfirm(`アカウントの種類を「${label}」に変更しますか？`)
     ) {
       return;
     }
