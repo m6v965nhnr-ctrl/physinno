@@ -8,7 +8,6 @@ import { markPaperSearched } from "@/lib/firstSteps";
 import { PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 import {
   PAPER_LINK_SOURCES,
-  PAPER_SOURCE_LABEL,
   PAPER_SOURCES,
   PaperResult,
   PaperSource,
@@ -19,9 +18,11 @@ import {
   listSavedPapers,
   savePaper,
   searchPapers,
-  translateAbstract,
   translateTitles,
 } from "@/lib/papers";
+
+import { ResultCard } from "@/components/papers/ResultCard";
+import { OtherSiteButtons, ResultToolbar } from "@/components/papers/SearchControls";
 
 const RECENT_SEARCHES_KEY = "relight:paper-search:recent";
 const RECENT_SEARCHES_MAX = 6;
@@ -56,187 +57,6 @@ function saveRecentSearch(query: string) {
   } catch {
     // localStorageが使えない環境では履歴機能だけ無効化する
   }
-}
-
-function ResultCard({
-  r,
-  mode,
-  showSummary,
-  titleTranslation,
-  isSaved,
-  onToggleSave,
-  refNumber,
-}: {
-  r: PaperResult;
-  mode: "normal" | "ai";
-  showSummary: boolean;
-  titleTranslation?: string;
-  isSaved: boolean;
-  onToggleSave: () => void;
-  refNumber?: number;
-}) {
-  const [expanded, setExpanded] = useState(false);
-  // 要約の日本語訳（翻訳ボタンを押したときに取得）
-  const [abstractJa, setAbstractJa] = useState<string | null>(null);
-  const [showJa, setShowJa] = useState(true);
-  const [translating, setTranslating] = useState(false);
-  const [translateNote, setTranslateNote] = useState<string | null>(null);
-  const summaryVisible = mode === "ai" || showSummary;
-  const abstractIsJapanese = /[぀-ヿ㐀-鿿]/.test(r.abstract ?? "");
-
-  async function handleTranslate() {
-    if (!r.abstract || translating) return;
-
-    if (abstractJa) {
-      setShowJa((v) => !v);
-      return;
-    }
-
-    setTranslating(true);
-    setTranslateNote(null);
-    const res = await translateAbstract(r.abstract);
-    setTranslating(false);
-
-    if (!res.translation) {
-      setTranslateNote(
-        res.reason === "unauthorized"
-          ? "翻訳はログインが必要です"
-          : "翻訳できませんでした。時間をおいてお試しください"
-      );
-      return;
-    }
-
-    setAbstractJa(res.translation);
-    setShowJa(true);
-    if (res.partial) setTranslateNote("一部だけ翻訳できました。残りは原文でご確認ください");
-  }
-  const abstractIsLong = (r.abstract?.length ?? 0) > 280;
-
-  return (
-    <div className="rounded-2xl border border-gray-100 p-4">
-      {refNumber !== undefined && (
-        <span className="mr-1.5 rounded-full bg-emerald-600 px-2 py-0.5 text-xs font-semibold text-white">
-          [{refNumber}]
-        </span>
-      )}
-      <span className="rounded-full bg-gray-100 px-2 py-0.5 text-xs text-gray-500">
-        {PAPER_SOURCE_LABEL[r.source]}
-      </span>
-      {r.evidenceLevel && (
-        <span
-          className={`ml-1.5 rounded-full px-2 py-0.5 text-[11px] font-semibold ${
-            r.evidenceBasis === "text"
-              ? "border border-dashed border-sky-300 bg-white text-sky-700"
-              : "bg-sky-100 text-sky-800"
-          }`}
-          title={`${EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.label ?? ""}${
-            r.evidenceBasis === "text"
-              ? "（題名・要約の文面からの推定です。原文で確認してください）"
-              : "（出版タイプなどから判定）"
-          }`}
-        >
-          レベル{r.evidenceLevel}・{EVIDENCE_LEVELS.find((l) => l.key === r.evidenceLevel)?.short}
-          {r.evidenceBasis === "text" && "（推定）"}
-        </span>
-      )}
-
-      {typeof r.citationCount === "number" && (
-        <span className="ml-1.5 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600" title="他の論文に引用された数">
-          引用 {r.citationCount.toLocaleString()}
-        </span>
-      )}
-
-      {/* 日本語に翻訳できたときは、日本語を見出しにして、原文のタイトルを下に小さく出す */}
-      <a
-        href={r.url}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="mt-2 block text-sm font-semibold text-gray-900 hover:underline"
-      >
-        {titleTranslation ?? r.title}
-      </a>
-
-      {titleTranslation && (
-        <p className="mt-0.5 text-xs leading-5 text-gray-500">{r.title}</p>
-      )}
-
-      <p className="mt-1 text-xs text-gray-500">
-        {[r.journal, r.year].filter(Boolean).join(" ・ ")}
-      </p>
-      {r.authors && (
-        <p className="mt-0.5 truncate text-xs text-gray-400">{r.authors}</p>
-      )}
-
-      {summaryVisible && (r.aiSummary || r.abstract) && (
-        <div className="mt-2 rounded-xl bg-emerald-50 px-3 py-2">
-          {r.aiSummary && (
-            <p className="text-xs font-medium text-emerald-700">✨ {r.aiSummary}</p>
-          )}
-          {r.abstract && (
-            <>
-              <p
-                className={`mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-700 ${
-                  expanded ? "" : "line-clamp-4"
-                }`}
-              >
-                {abstractJa && showJa ? abstractJa : r.abstract}
-              </p>
-              <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1">
-                {(abstractIsLong || (abstractJa && showJa)) && (
-                  <button
-                    type="button"
-                    onClick={() => setExpanded((v) => !v)}
-                    className="text-xs text-emerald-700 underline"
-                  >
-                    {expanded ? "閉じる" : "続きを読む"}
-                  </button>
-                )}
-                {!abstractIsJapanese && (
-                  <button
-                    type="button"
-                    onClick={handleTranslate}
-                    disabled={translating}
-                    className="rounded-full border border-emerald-300 bg-white px-3 py-1 text-xs font-medium text-emerald-700 disabled:opacity-50"
-                  >
-                    {translating
-                      ? "翻訳中…"
-                      : abstractJa
-                        ? showJa
-                          ? "原文（英語）に戻す"
-                          : "🌐 日本語を表示"
-                        : "🌐 日本語に翻訳"}
-                  </button>
-                )}
-              </div>
-              {abstractJa && showJa && (
-                <p className="mt-1 text-xs leading-5 text-gray-500">
-                  機械翻訳です。数値や結論は、原文でも確認してください。
-                </p>
-              )}
-              {translateNote && <p className="mt-1 text-xs text-red-600">{translateNote}</p>}
-            </>
-          )}
-        </div>
-      )}
-
-      {summaryVisible && !r.aiSummary && !r.abstract && (
-        <p className="mt-2 text-xs text-gray-400">
-          この検索サイトからは要約を取得できませんでした。リンク先で確認できます。
-        </p>
-      )}
-
-      <button
-        onClick={onToggleSave}
-        className={`mt-2 rounded-full border px-4 py-1.5 text-xs ${
-          isSaved
-            ? "border-emerald-200 bg-emerald-50 text-emerald-700"
-            : "border-sky-200 bg-sky-100 text-sky-800 hover:bg-sky-200"
-        }`}
-      >
-        {isSaved ? "✓ 保存済み（解除）" : "＋ 保存"}
-      </button>
-    </div>
-  );
 }
 
 // PTがいつも論文を探すときに何サイトも回っている手間を減らすための横断検索。
@@ -1015,81 +835,6 @@ export default function PaperSearch() {
           className="mt-8 text-sm font-semibold text-gray-500 hover:text-gray-700"
         >
           📑 保存した論文（{savedPapers.length}）を見る
-        </button>
-      )}
-    </div>
-  );
-}
-
-// 検索した後に結果の上へ出す、APIのないサイトへのリンク（名前だけのボタン）
-function OtherSiteButtons({ query }: { query: string }) {
-  return (
-    <div className="flex flex-wrap gap-1.5">
-      {PAPER_LINK_SOURCES.map((s) => (
-        <a
-          key={s.key}
-          href={s.build(query.trim())}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="rounded-full border border-gray-200 px-3 py-1 text-xs text-gray-600 hover:bg-gray-50"
-        >
-          {s.label} ↗
-        </a>
-      ))}
-    </div>
-  );
-}
-
-// 検索結果の操作ボタン。翻訳・要約・保存リスト（保存している数）を、1列に並べる
-function ResultToolbar({
-  onTranslate,
-  autoTranslate,
-  translating,
-  showSummaries,
-  onToggleSummaries,
-  savedCount,
-  onOpenSaved,
-}: {
-  onTranslate: () => void;
-  autoTranslate: boolean;
-  translating: boolean;
-  showSummaries?: boolean;
-  onToggleSummaries?: () => void;
-  savedCount: number | null;
-  onOpenSaved: () => void;
-}) {
-  const base =
-    "flex items-center justify-center gap-1 whitespace-nowrap rounded-full border px-2 py-2 text-xs hover:bg-gray-50";
-
-  return (
-    <div className="flex gap-2">
-      {/* 日本語タイトルの自動翻訳のオン・オフ */}
-      <button
-        onClick={onTranslate}
-        aria-pressed={autoTranslate}
-        className={`${base} flex-1 ${
-          autoTranslate ? "border-sky-200 bg-sky-50 text-sky-800" : "border-gray-200 text-gray-600"
-        }`}
-      >
-        {translating ? "翻訳中…" : autoTranslate ? "🌐 日本語タイトル ON" : "🌐 日本語タイトル OFF"}
-      </button>
-
-      {onToggleSummaries && (
-        <button
-          onClick={onToggleSummaries}
-          aria-pressed={showSummaries}
-          className={`${base} flex-1 ${
-            showSummaries ? "border-emerald-200 bg-emerald-50 text-emerald-700" : "border-gray-200 text-gray-600"
-          }`}
-        >
-          {showSummaries ? "📄 要約を閉じる" : "📄 要約表示"}
-        </button>
-      )}
-
-      {savedCount !== null && (
-        <button onClick={onOpenSaved} className={`${base} flex-1 border-gray-200 text-gray-600`}>
-          📑 保存リスト
-          <span className="rounded-full bg-gray-900 px-1.5 text-[10px] font-semibold text-white">{savedCount}</span>
         </button>
       )}
     </div>

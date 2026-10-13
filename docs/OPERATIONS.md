@@ -43,3 +43,12 @@
 ## 退会
 - マイページの「退会する」→ `/mypage/delete-account`。投稿は、匿名で残すか、削除するかを選ぶ。DB関数 `delete_my_account`。運営は不可。
 - 画像などのファイルは、画面側で先に削除する。バックアップに残る情報は、一定期間後に消える（プライバシーポリシー10章）。
+
+## 病院テーブルの列の権限（2026-10-13）
+- `hospitals.created_by` / `claimed_by`（病院を登録・運営している人のユーザーID）は、ログインの有無に関わらず、読めない（列の権限で閉じた。20261029）。勤務先を隠している人が、IDから特定されるのを防ぐため。
+- 画面は `HOSPITAL_COLUMNS`（`src/lib/hospitalColumns.ts`）の列だけを読む。`select("*")` は、この表では使えない。
+- **病院テーブルに列を足したとき**: `HOSPITAL_COLUMNS` と、DBの `grant select (列) on public.hospitals to anon, authenticated` の両方に足す（足さないと、その列は読めない）。
+- 編集できる人（在籍PT・作成者・運営者）の判定は、DB関数 `can_edit_hospital_data`。
+
+## 通知メール
+- 全体のスイッチ＋種類ごと（コメント・メッセージ・フォロー・質問への回答）のスイッチ。`users.email_notification_kinds`。オフにした種類だけを持つ。

@@ -30,6 +30,9 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 - 検索の入力欄・ボタン・チップ: `src/lib/ui.ts`（`INPUT_CLASS` `PRIMARY_BUTTON_CLASS` `chipClass`）。
 - 入力欄には、名前（`<label>` か `aria-label`）を付ける。アイコンだけのボタンにも `aria-label`。
 - 通知（notifications）をブラウザから直接作れるのは follow / endorsement / group系だけ。ほかはRPC・トリガー経由（RLSで制限済み）。
+- 病院テーブル(`hospitals`)は `select("*")` 禁止。`HOSPITAL_COLUMNS` を使う（作成者・運営者IDは、列の権限で読めない）。列を足したら、grant も足す。
+- 退会は `delete_my_account`（`docs/OPERATIONS.md`）。ユーザーに紐づく表を足したら、退会で消えるか（auth.users への外部キーのCASCADEか、この関数への追記）を必ず確認する。
+- AIの窓口を足したら、`takeAiQuota` を呼び、上限を `take_ai_quota` に足す。
 - ゲストでは呼べないRPC（`authenticated` のみ）を、ゲスト画面から呼ばない（401になる）。先に `getSession()` で確認する。
 
 ## 3. 公開範囲（ログインなしで見える画面）
