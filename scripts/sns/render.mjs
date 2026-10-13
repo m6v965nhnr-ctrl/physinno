@@ -9,6 +9,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, rmSync } from "node
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { reel, slides, tt } from "./templates.mjs";
+import { panelSVG } from "./manga.mjs";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const root = resolve(here, "../..");
@@ -104,7 +105,18 @@ for (const post of posts) {
     mkdirSync(fdir, { recursive: true });
     const plan = [];
     if (post.kind === "tt-manga") {
-      for (let k = 1; k <= 4; k++) plan.push([`p${k}`, tt.manga(post, k), k === 1 ? 3 : 2.8]);
+      // 1コマずつ全画面で見せる（絵が大きく、台詞も読みやすい）。作画は manga.mjs
+      const FONT = `<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');*{margin:0;box-sizing:border-box}body{width:1080px;height:1920px;background:#0a1224;font-family:'Noto Sans JP',sans-serif;color:#fff;position:relative;overflow:hidden;background-image:radial-gradient(1200px 700px at 100% 0%,rgba(78,215,167,.16),transparent 60%),radial-gradient(900px 600px at 0% 100%,rgba(85,199,220,.14),transparent 60%)}</style>`;
+      const title = `<div style="position:absolute;left:60px;top:70px;font-size:44px;font-weight:700">Re:light</div><div style="position:absolute;right:60px;top:56px;font-size:30px;font-weight:700;color:#06303a;padding:14px 30px;border-radius:999px;background:linear-gradient(90deg,#55c7dc,#4ed7a7)">${post.tag ?? "PT漫画"}</div>`;
+      plan.push(["t", `<!doctype html><html><head><meta charset="utf-8">${FONT}</head><body>${title}<div style="position:absolute;left:0;right:0;top:760px;text-align:center"><div style="display:inline-block;font-size:40px;font-weight:700;color:#5fd6c4;padding:8px 26px;border-radius:999px;background:rgba(95,214,196,.14)">${post.series ?? "リハ現場の4コマ"}</div><div style="font-size:112px;font-weight:900;line-height:1.25;margin-top:46px">${post.title.replace(/\n/g, "<br>")}</div></div></body></html>`, 2]);
+      post.panels.forEach((pn, k) => {
+        const dots = [0, 1, 2, 3].map((j) => `<span style="display:inline-block;width:${j === k ? 56 : 18}px;height:18px;border-radius:9px;margin:0 8px;background:${j === k ? "#4ed7a7" : "#33415c"}"></span>`).join("");
+        plan.push([
+          `p${k + 1}`,
+          `<!doctype html><html><head><meta charset="utf-8">${FONT}</head><body>${title}<div style="position:absolute;left:40px;top:190px;width:1000px;height:1500px;border:8px solid #1b1b2f;border-radius:6px;box-shadow:0 0 0 6px #fff;overflow:hidden;background:#fff">${panelSVG(pn)}</div><div style="position:absolute;left:0;right:0;top:1750px;text-align:center">${dots}</div><div style="position:absolute;left:0;right:0;top:1810px;text-align:center;font-size:28px;color:#8aa0bd">@re.light0717　フィクションです</div></body></html>`,
+          k === 3 ? 4.2 : 3.4,
+        ]);
+      });
     } else if (post.kind === "tt-aruaru") {
       plan.push(["t", tt.aruaru(post, 0), 2.2]);
       for (let k = 1; k <= post.items.length; k++) plan.push([`i${k}`, tt.aruaru(post, k), k === post.items.length ? 3 : 2.2]);
