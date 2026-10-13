@@ -1,6 +1,6 @@
 import json,re
 U="https://relight-1wet.vercel.app"
-def link(camp,path="/"): return f"{U}{path}?utm_source=x&utm_medium=social&utm_campaign={camp}"
+def link(camp,path="/"): return f"{U}{path}{'&' if '?' in path else '?'}utm_source=x&utm_medium=social&utm_campaign={camp}"
 def weight(t):
     t2=re.sub(r'https?://\S+','',t); n=23*len(re.findall(r'https?://\S+',t))
     for ch in t2:

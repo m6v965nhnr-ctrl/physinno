@@ -127,7 +127,7 @@
    "caption": "論文検索、9つのサイトを一度に。\n\n・日本語で検索しても、英語論文も同時に探す\n・エビデンスレベルI〜VIで絞り込み\n・要約を日本語で読める・保存できる\n\n保存して、論文を探すときに見返してね。無料です。\n▶ プロフィールのリンクから\n\n#理学療法士 #理学療法 #PT #リハビリ #新人PT #臨床 #論文検索 #エビデンス"
   },
   "x": {
-   "text": "論文検索、9サイトを一度に。\nPubMed・J-STAGE・CiNii・PEDro・Semantic Scholar・Europe PMC・OpenAlex・ClinicalTrials.gov・DOAJ\n日本語で検索→英語にも自動変換。エビデンスレベルで絞り込み、要約は日本語で。無料。\nhttps://relight-1wet.vercel.app/pts?mode=papers?utm_source=x&utm_medium=social&utm_campaign=paper-search-9sites\n#理学療法士"
+   "text": "論文検索、9サイトを一度に。\nPubMed・J-STAGE・CiNii・PEDro・Semantic Scholar・Europe PMC・OpenAlex・ClinicalTrials.gov・DOAJ\n日本語で検索→英語にも自動変換。エビデンスレベルで絞り込み、要約は日本語で。無料。\nhttps://relight-1wet.vercel.app/pts?mode=papers&utm_source=x&utm_medium=social&utm_campaign=paper-search-9sites\n#理学療法士"
   }
  },
  {
@@ -875,7 +875,7 @@
    "caption": "新人PTの「先輩に聞かないと分からない」を、自分で調べられるように。\n\n・診療報酬の区分から疾患を選ぶ\n・評価とリハビリのアイデアが見られる\n・PTは自分のアイデアを登録・共有できる\n\n保存して、臨床の引き出しを増やそう。\n▶ プロフィールのリンクから\n\n#理学療法士 #理学療法 #PT #リハビリ #新人PT #臨床 #臨床アイデア"
   },
   "x": {
-   "text": "臨床アイデア機能\n\n診療報酬の区分→疾患→まず見たい評価と、リハビリのアイデア。\nPTは自分のアイデアを共有でき、よく使われているものが分かります。\n※一般的な参考情報。判断は医師の指示と自分の評価で。\nhttps://relight-1wet.vercel.app/pts?mode=ideas?utm_source=x&utm_medium=social&utm_campaign=clinical-ideas\n#理学療法士"
+   "text": "臨床アイデア機能\n\n診療報酬の区分→疾患→まず見たい評価と、リハビリのアイデア。\nPTは自分のアイデアを共有でき、よく使われているものが分かります。\n※一般的な参考情報。判断は医師の指示と自分の評価で。\nhttps://relight-1wet.vercel.app/pts?mode=ideas&utm_source=x&utm_medium=social&utm_campaign=clinical-ideas\n#理学療法士"
   }
  },
  {
@@ -952,7 +952,7 @@
    "caption": "見学の前に、職場環境を知っておく。\n\n・職場環境・教育体制・給与・残業・有休・風通しの6項目\n・全国約5,000病院を検索できる\n・投稿はPTアカウントのみ（匿名もOK）\n\n就活・転職を考えている人に、送ってあげてね。\n▶ プロフィールのリンクから\n\n#理学療法士 #理学療法 #PT #リハビリ #新人PT #臨床 #転職 #病院見学"
   },
   "x": {
-   "text": "求人票に書いていないことほど、入職してから気づく。\n\nPTの口コミ6項目：職場環境／教育体制／給与／残業／有休消化率／風通し\n全国約5,000病院を検索できます。\nhttps://relight-1wet.vercel.app/pts?mode=hospitals?utm_source=x&utm_medium=social&utm_campaign=hospital-reviews\n#理学療法士"
+   "text": "求人票に書いていないことほど、入職してから気づく。\n\nPTの口コミ6項目：職場環境／教育体制／給与／残業／有休消化率／風通し\n全国約5,000病院を検索できます。\nhttps://relight-1wet.vercel.app/pts?mode=hospitals&utm_source=x&utm_medium=social&utm_campaign=hospital-reviews\n#理学療法士"
   }
  },
  {
@@ -1021,7 +1021,7 @@
    "caption": "AIに論文を探してもらう、安全な使い方。\n\n・普通の文章で質問できる\n・見つかった論文だけをもとに回答（引用番号つき）\n・質問に、患者さんが特定できる情報は入れない\n\n保存して、使う前に見返してね。\n▶ プロフィールのリンクから\n\n#理学療法士 #理学療法 #PT #リハビリ #新人PT #臨床 #AI #論文検索"
   },
   "x": {
-   "text": "論文検索のAIモード\n\n・普通の文章で質問OK\n・見つかった論文だけをもとに回答（引用番号つき）\n・氏名・患者さんの情報は入力しないこと\n・回答は参考情報\nhttps://relight-1wet.vercel.app/pts?mode=papers?utm_source=x&utm_medium=social&utm_campaign=ai-mode\n#理学療法士"
+   "text": "論文検索のAIモード\n\n・普通の文章で質問OK\n・見つかった論文だけをもとに回答（引用番号つき）\n・氏名・患者さんの情報は入力しないこと\n・回答は参考情報\nhttps://relight-1wet.vercel.app/pts?mode=papers&utm_source=x&utm_medium=social&utm_campaign=ai-mode\n#理学療法士"
   }
  },
  {
@@ -1653,7 +1653,7 @@
    "caption": "診療報酬の疾患別リハビリテーション料は、8つの区分。\n\n・心大血管疾患・脳血管疾患等・運動器・呼吸器\n・廃用症候群・がん患者・障害児（者）・難病患者\n・算定の条件は最新の通知で確認\n\n保存して、基本の確認に使ってね。\n▶ プロフィールのリンクから\n\n#理学療法士 #理学療法 #PT #リハビリ #新人PT #臨床 #診療報酬"
   },
   "x": {
-   "text": "疾患別リハビリテーション料の8つの区分\n\n心大血管疾患／脳血管疾患等／運動器／呼吸器／廃用症候群／がん患者／障害児（者）／難病患者\n\n※算定条件は最新の通知で確認を\nhttps://relight-1wet.vercel.app/pts?mode=ideas?utm_source=x&utm_medium=social&utm_campaign=rehab-categories\n#理学療法士"
+   "text": "疾患別リハビリテーション料の8つの区分\n\n心大血管疾患／脳血管疾患等／運動器／呼吸器／廃用症候群／がん患者／障害児（者）／難病患者\n\n※算定条件は最新の通知で確認を\nhttps://relight-1wet.vercel.app/pts?mode=ideas&utm_source=x&utm_medium=social&utm_campaign=rehab-categories\n#理学療法士"
   }
  },
  {
