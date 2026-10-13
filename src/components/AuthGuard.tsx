@@ -13,6 +13,7 @@ import {
   isPublicGuestPath,
   isPublicPtPath,
 } from "@/lib/account";
+import { isAdminUser } from "@/lib/admin";
 import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback"];
@@ -69,6 +70,13 @@ export default function AuthGuard({
           return;
         }
         router.replace("/");
+        return;
+      }
+
+      // 運営のアカウントは、PTの初回プロフィール入力などを求めない（運営画面に、そのまま入れる）
+      if (await isAdminUser(user.id)) {
+        if (cancelled) return;
+        setChecking(false);
         return;
       }
 

@@ -7,6 +7,7 @@ import AdminTeacherRequests from "@/components/AdminTeacherRequests";
 import AdminSignupSources from "@/components/AdminSignupSources";
 import AdminFeedback from "@/components/AdminFeedback";
 import AdminClientErrors from "@/components/AdminClientErrors";
+import AdminAnalytics from "@/components/admin/AdminAnalytics";
 
 type Stats = {
   users: number;
@@ -137,30 +138,68 @@ export default function AdminPage() {
   return (
     <main className="min-h-screen bg-gray-50 pb-20">
       <header className="sticky top-0 z-20 border-b bg-white">
-        <div className="mx-auto max-w-6xl px-5 py-5">
-          <p className="text-xs font-medium text-gray-400">
-            PHYSINNO ADMIN
-          </p>
+        <div className="mx-auto max-w-6xl px-5 py-4">
+          <div className="flex items-start justify-between gap-3">
+            <div>
+              <p className="text-xs font-medium text-gray-500">Re:light 運営</p>
+              <h1 className="mt-0.5 text-2xl font-semibold text-gray-900">運営ダッシュボード</h1>
+            </div>
+            <button
+              type="button"
+              onClick={async () => {
+                await supabase.auth.signOut();
+                window.location.href = "/";
+              }}
+              className="shrink-0 rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
+            >
+              ログアウト
+            </button>
+          </div>
 
-          <h1 className="mt-1 text-2xl font-semibold text-gray-900">
-            運営ダッシュボード
-          </h1>
-
-          <p className="mt-1 text-sm text-gray-500">
-            Re:lightの利用状況を確認できます。
-          </p>
+          {/* 目次（押すと、その項目へ移動） */}
+          <nav aria-label="運営画面の目次" className="-mx-1 mt-3 flex gap-1.5 overflow-x-auto pb-1">
+            {[
+              ["analytics", "登録の分析"],
+              ["reports", "通報"],
+              ["feedback", "意見箱"],
+              ["errors", "画面のエラー"],
+              ["sources", "登録の経路"],
+              ["teachers", "先生の申請"],
+              ["usage", "利用状況"],
+              ["users", "ユーザー一覧"],
+            ].map(([id, label]) => (
+              <a
+                key={id}
+                href={`#${id}`}
+                className="shrink-0 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs text-gray-700 hover:bg-gray-50"
+              >
+                {label}
+              </a>
+            ))}
+          </nav>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-5 py-6">
-        <AdminReports />
-        <AdminFeedback />
+        <AdminAnalytics />
 
-        <AdminClientErrors />
-        <AdminSignupSources />
-        <AdminTeacherRequests />
+        <div id="reports" className="scroll-mt-28">
+          <AdminReports />
+        </div>
+        <div id="feedback" className="scroll-mt-28">
+          <AdminFeedback />
+        </div>
+        <div id="errors" className="scroll-mt-28">
+          <AdminClientErrors />
+        </div>
+        <div id="sources" className="scroll-mt-28">
+          <AdminSignupSources />
+        </div>
+        <div id="teachers" className="scroll-mt-28">
+          <AdminTeacherRequests />
+        </div>
 
-        <section>
+        <section id="usage" className="scroll-mt-28">
           <h2 className="mb-4 text-lg font-semibold text-gray-900">
             利用状況
           </h2>
@@ -287,7 +326,7 @@ export default function AdminPage() {
           </div>
         </section>
 
-        <section className="mt-8">
+        <section id="users" className="mt-8 scroll-mt-28">
           <div className="mb-4">
             <h2 className="text-lg font-semibold text-gray-900">
               登録ユーザー一覧

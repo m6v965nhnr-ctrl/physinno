@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { withReturnTo } from "@/lib/returnTo";
+import { isAdminUser } from "@/lib/admin";
 import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
@@ -51,6 +52,8 @@ export default function BottomNavWrapper() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [checked, setChecked] = useState(false);
+  // 運営のアカウントには、下のメニュー（ホーム・検索など）を出さない
+  const [isAdmin, setIsAdmin] = useState(false);
   const guestRole = useGuestRole();
   const [unreadNotifCount, setUnreadNotifCount] = useState(0);
   const [unreadMessageCount, setUnreadMessageCount] = useState(0);
@@ -83,11 +86,21 @@ export default function BottomNavWrapper() {
 
       if (!userId) {
         if (!mounted) return;
+        setIsAdmin(false);
         setLoggedIn(false);
         setAccountType(null);
         setChecked(true);
         setUnreadNotifCount(0);
         setUnreadMessageCount(0);
+        return;
+      }
+
+      const admin = await isAdminUser(userId);
+      if (!mounted) return;
+      setIsAdmin(admin);
+      if (admin) {
+        setLoggedIn(true);
+        setChecked(true);
         return;
       }
 
@@ -146,6 +159,11 @@ export default function BottomNavWrapper() {
 
   // ログイン状態の確認が終わるまで何も表示しない
   if (!checked) {
+    return null;
+  }
+
+  // 運営のアカウントには、メニューを出さない
+  if (isAdmin) {
     return null;
   }
 
