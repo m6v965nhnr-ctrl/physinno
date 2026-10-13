@@ -4,7 +4,7 @@ import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
-import { markPaperSearched } from "@/lib/firstSteps";
+import { markPaperSaved, markPaperSearched } from "@/lib/firstSteps";
 import { PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 import {
   PAPER_LINK_SOURCES,
@@ -320,6 +320,7 @@ export default function PaperSearch() {
       return;
     }
 
+    markPaperSaved();
     setSavedMap((prev) => ({ ...prev, [paper.url]: id }));
     setSavedPapers((prev) => [
       {

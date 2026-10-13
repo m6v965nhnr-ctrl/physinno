@@ -123,7 +123,13 @@ export default function StudentSettingsPage() {
     }
 
     notify("保存しました");
-    router.push(welcome ? (takeReturnTo() ?? "/student") : "/student");
+    if (welcome) {
+      // 登録直後は、設定が終わったら、そのまま最初の10問へ（登録後に何も起きない、を防ぐ）
+      notify("まず10問、解いてみましょう");
+      router.push(takeReturnTo() ?? "/student/quiz/play?mode=unanswered&n=10&order=random");
+      return;
+    }
+    router.push("/student");
   }
 
   async function handleBecomePt() {

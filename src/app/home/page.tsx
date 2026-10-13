@@ -15,6 +15,7 @@ import { ptNameWithTitle } from "@/lib/format";
 import ProfileNameNudge from "@/components/ProfileNameNudge";
 import HospitalReviewNudge from "@/components/HospitalReviewNudge";
 import FirstStepCard from "@/components/FirstStepCard";
+import { markLiked } from "@/lib/firstSteps";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
 import GuestBanner from "@/components/GuestBanner";
 import HomeQuestionsStrip from "@/components/HomeQuestionsStrip";
@@ -249,6 +250,7 @@ export default function HomePage() {
       return;
     }
 
+    markLiked();
     setLikes((prev) => ({
       ...prev,
       [postId]: [...(prev[postId] || []), data],
@@ -486,7 +488,7 @@ export default function HomePage() {
         {!guest && <HomeQuestionsStrip userId={userId} />}
 
         {/* 投稿一覧 */}
-        <div className="space-y-4 py-4">
+        <div id="feed" className="space-y-4 py-4">
           {posts.length === 0 ? (
             <div className="bg-white px-5 py-12 text-center">
               <p className="text-gray-400">まだ投稿がありません</p>

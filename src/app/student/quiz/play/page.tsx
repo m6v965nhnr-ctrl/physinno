@@ -1,5 +1,6 @@
 "use client";
 
+import LineShareButton from "@/components/LineShareButton";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import ReportButton from "@/components/ReportButton";
@@ -270,6 +271,13 @@ export default function QuizPlayPage() {
               >
                 この結果を友達に送る
               </button>
+            )}
+            {!isAssignment && scored.length > 0 && (
+              <LineShareButton
+                text={`理学療法士国家試験の過去問ドリルを解いたよ（${ok}/${scored.length}問 正解）。登録なしで、1問ずつ解けるよ`}
+                url={shareUrl("/kokushi", "drill-result-line")}
+                label="LINEで友達に送る"
+              />
             )}
             {!isAssignment && (
               <button

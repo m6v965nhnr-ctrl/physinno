@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import { SITE_URL } from "@/lib/site";
+import LineShareButton from "@/components/LineShareButton";
 
 // 招待リンク経由の登録者数を表示し、リンクをコピーできるカード
 export default function ReferralCard({ userId }: { userId: string }) {
@@ -60,6 +61,13 @@ export default function ReferralCard({ userId }: { userId: string }) {
       >
         招待リンクを共有
       </button>
+
+      <LineShareButton
+        className="mt-2 w-full"
+        text="理学療法士・学生のためのアプリ Re:light、無料で使えるよ。過去問・論文検索・実習先の口コミがそろってる"
+        url={link}
+        label="LINEで友達に送る"
+      />
     </div>
   );
 }

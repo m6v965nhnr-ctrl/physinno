@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 
-type Kind = "comment" | "message" | "follow" | "answer";
+type Kind = "comment" | "message" | "follow" | "answer" | "reminder";
 
 const KINDS: { kind: Kind; label: string; hint: string }[] = [
   { kind: "comment", label: "コメント", hint: "あなたの投稿にコメントがついたとき" },
   { kind: "message", label: "メッセージ", hint: "メッセージが届いたとき" },
   { kind: "follow", label: "フォロー", hint: "フォローされたとき" },
   { kind: "answer", label: "質問への回答", hint: "「先輩に質問」に回答がついたとき" },
+  { kind: "reminder", label: "お知らせ（しばらく使っていないとき）", hint: "3週間ほど使っていないときに、使える機能をお知らせします（60日に1通まで）" },
 ];
 
 function Switch({

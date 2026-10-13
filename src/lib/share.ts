@@ -28,3 +28,8 @@ export async function shareContent({ title, text, url }: { title: string; text: 
     notify("コピーに失敗しました。手動でリンクを選択してください");
   }
 }
+
+// LINE で送る（スマホではLINEアプリが開き、送り先を選べる）。日本のPT・学生は、LINEでの共有がいちばん届く
+export function lineShareUrl(text: string, url: string): string {
+  return `https://line.me/R/share?text=${encodeURIComponent(`${text}\n${url}`)}`;
+}

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { withReturnTo } from "@/lib/returnTo";
 import { isAdminUser } from "@/lib/admin";
+import { touchLastSeen } from "@/lib/lastSeen";
 import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
@@ -95,6 +96,7 @@ export default function BottomNavWrapper() {
         return;
       }
 
+      touchLastSeen();
       const admin = await isAdminUser(userId);
       if (!mounted) return;
       setIsAdmin(admin);

@@ -14,6 +14,8 @@ const KINDS = {
   message: { subject: (a: string) => `${a}さんからメッセージが届きました`, path: "/messages" },
   follow: { subject: (a: string) => `${a}さんにフォローされました`, path: "/notifications" },
   answer: { subject: (a: string) => `${a}さんがあなたの質問に回答しました`, path: "/notifications" },
+  // しばらく使っていない人へのお知らせ（3週間。1人あたり、60日に1通まで）
+  reminder: { subject: () => "しばらくぶりです。こんな機能が使えます", path: "/" },
 } as const;
 
 type Kind = keyof typeof KINDS;
@@ -50,6 +52,7 @@ export async function POST(request: Request) {
     to?: string;
     kind?: string;
     actor?: string;
+    account_type?: string;
   } | null;
 
   const to = clean(body?.to, 254);
@@ -69,17 +72,50 @@ export async function POST(request: Request) {
     auth: { user, pass },
   });
 
-  const text = [
-    template.subject(actor),
-    "",
-    `内容の確認は ${SITE_NAME} を開いてください。`,
-    `${SITE_URL}${template.path}`,
-    "",
-    "――",
-    "このメールは、あなたの通知設定にもとづいて自動で送っています。",
-    "メッセージやコメントの本文は、このメールには含まれません。",
-    `通知メールを止めたいときは、こちらの画面の「メールで通知を受け取る」をオフにしてください: ${SITE_URL}/notifications`,
-  ].join("\n");
+  const accountType = clean(body?.account_type, 12);
+
+  const reminderBody = (): string[] => {
+    const utm = "utm_source=email&utm_medium=reminder";
+    const lines =
+      accountType === "student"
+        ? [
+            "Re:lightを、しばらくお使いになっていないようです。国試対策には、こんな機能があります。",
+            "",
+            `・今日の10問（約3分。答えるとすぐ解説）: ${SITE_URL}/student/quiz/play?mode=unanswered&n=10&order=random&${utm}`,
+            `・間違えた問題の復習 / 模擬試験: ${SITE_URL}/student?${utm}`,
+            `・実習・就活の管理、実習先の口コミ: ${SITE_URL}/student?${utm}`,
+          ]
+        : [
+            "Re:lightを、しばらくお使いになっていないようです。臨床の合間に、こんな機能があります。",
+            "",
+            `・論文検索（日本語でも英語でも、9つのサイトを同時に。エビデンスレベルで絞り込み）: ${SITE_URL}/pts?mode=papers&${utm}`,
+            `・臨床アイデア（疾患ごとの、評価とリハビリの引き出し）: ${SITE_URL}/pts?mode=ideas&${utm}`,
+            `・研修・学会情報（毎日更新）: ${SITE_URL}/pts?tab=news&${utm}`,
+          ];
+    return [...lines, "", `${SITE_NAME}を開く: ${SITE_URL}/?${utm}`];
+  };
+
+  const text = (
+    kind === "reminder"
+      ? [
+          ...reminderBody(),
+          "",
+          "――",
+          `${SITE_NAME}（運営: ${SITE_NAME}編集部）からの、ご利用状況にもとづく自動のお知らせです。`,
+          `このお知らせを止めたいときは、こちらの画面の「お知らせ（しばらく使っていないとき）」をオフにしてください: ${SITE_URL}/notifications`,
+        ]
+      : [
+          template.subject(actor),
+          "",
+          `内容の確認は ${SITE_NAME} を開いてください。`,
+          `${SITE_URL}${template.path}`,
+          "",
+          "――",
+          "このメールは、あなたの通知設定にもとづいて自動で送っています。",
+          "メッセージやコメントの本文は、このメールには含まれません。",
+          `通知メールを止めたいときは、こちらの画面の「メールで通知を受け取る」をオフにしてください: ${SITE_URL}/notifications`,
+        ]
+  ).join("\n");
 
   try {
     await transporter.sendMail({
