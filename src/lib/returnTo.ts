@@ -39,3 +39,23 @@ export function withReturnTo(base: "/register" | "/login", current: string): str
   const path = safeReturnPath(current);
   return path ? `${base}?next=${encodeURIComponent(path)}` : base;
 }
+
+// 登録が、どの画面から始まったか（運営の集計用）。パスだけ（クエリ・個人情報は含めない）。
+// 優先: ゲストとして見ていた画面（?next=）→ 同じサイト内の、ひとつ前のページ
+export function signupFromPath(): string | undefined {
+  try {
+    const next = safeReturnPath(new URLSearchParams(window.location.search).get("next"));
+    if (next) return next.split("?")[0].slice(0, 80);
+
+    if (document.referrer) {
+      const ref = new URL(document.referrer);
+      if (ref.origin === window.location.origin) {
+        const path = safeReturnPath(ref.pathname);
+        if (path) return path.slice(0, 80);
+      }
+    }
+  } catch {
+    // 取れなければ、記録しない
+  }
+  return undefined;
+}

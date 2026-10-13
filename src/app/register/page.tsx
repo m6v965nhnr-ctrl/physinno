@@ -7,7 +7,7 @@ import { supabase } from "@/lib/supabase";
 import { getAttribution } from "@/lib/attribution";
 import { trackRegistration } from "@/lib/metaPixel";
 import { graduationYearOptions } from "@/lib/student";
-import { rememberReturnTo, takeReturnTo } from "@/lib/returnTo";
+import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
 
 type AccountType = "pt" | "general" | "student";
 
@@ -108,6 +108,8 @@ export default function RegisterPage() {
           graduation_year: accountType === "student" ? graduationYear : undefined,
           // どのリンクから来たか（運営の集計用。utm_source などがあるときだけ入る）
           ...getAttribution(),
+          // どの画面から登録が始まったか（パスだけ。運営の集計用）
+          signup_from: signupFromPath(),
         },
       },
     });

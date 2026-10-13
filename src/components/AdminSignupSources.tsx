@@ -4,17 +4,23 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 
 type Row = { utm_source: string; utm_medium: string | null; utm_campaign: string | null; signups: number };
+type PageRow = { signup_from: string; signups: number };
 
 // 運営用: 最近の登録が、どのリンクから来たか（Instagram・広告・紹介など）
 export default function AdminSignupSources() {
   const [days, setDays] = useState(30);
   const [rows, setRows] = useState<Row[] | null>(null);
+  const [pages, setPages] = useState<PageRow[] | null>(null);
 
   useEffect(() => {
     let mounted = true;
     setRows(null);
+    setPages(null);
     supabase.rpc("admin_signup_sources", { p_days: days }).then(({ data }) => {
       if (mounted) setRows(((data ?? []) as Row[]).map((r) => ({ ...r, signups: Number(r.signups) })));
+    });
+    supabase.rpc("admin_signup_pages", { p_days: days }).then(({ data }) => {
+      if (mounted) setPages(((data ?? []) as PageRow[]).map((r) => ({ ...r, signups: Number(r.signups) })));
     });
     return () => {
       mounted = false;
@@ -73,6 +79,26 @@ export default function AdminSignupSources() {
               ))}
             </tbody>
           </table>
+        )}
+
+        {/* どの画面から登録が始まったか */}
+        <h3 className="mt-6 text-sm font-semibold text-gray-900">どの画面から登録が始まったか</h3>
+        <p className="mt-1 text-xs leading-5 text-gray-500">
+          ゲストとして見ていた画面や、トップのボタンなど。ここが多い画面は、登録したくなる入口になっています。
+        </p>
+        {pages === null ? (
+          <p className="mt-3 text-sm text-gray-400">読み込み中…</p>
+        ) : pages.length === 0 ? (
+          <p className="mt-3 text-sm text-gray-400">この期間の登録はありません。</p>
+        ) : (
+          <ul className="mt-3 divide-y divide-gray-100 text-sm">
+            {pages.map((r) => (
+              <li key={r.signup_from} className="flex items-center justify-between py-1.5">
+                <span className="font-mono text-gray-800">{r.signup_from}</span>
+                <span className="font-semibold text-gray-900">{r.signups}</span>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
     </section>
