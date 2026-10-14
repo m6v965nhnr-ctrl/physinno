@@ -83,7 +83,8 @@ try {
   // 1.5) トップページは、リンクのUTMに合わせて最初のタブが変わる（lpEntrance.ts の対応表）
   const LP_CASES = [
     ["/", "tab-start"],
-    ["/?utm_source=tiktok&utm_campaign=profile", "tab-student"],
+    ["/?utm_source=tiktok&utm_campaign=profile", "tab-features"],
+    ["/?utm_source=tiktok&utm_campaign=feature-papers", "tab-features"],
     ["/?utm_source=ig&utm_campaign=quiz-watt", "tab-student"],
     ["/?utm_source=x&utm_campaign=profile", "tab-features"],
     ["/?utm_source=ig&utm_campaign=memo-berg", "tab-features"],
