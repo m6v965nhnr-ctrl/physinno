@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabase";
 import { toHiragana } from "@/lib/format";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
-import WorkplaceAutosuggest from "@/components/WorkplaceAutosuggest";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
   SyncFields,
@@ -27,7 +26,6 @@ export default function EditProfilePage() {
   const [fullNameKana, setFullNameKana] = useState("");
   const [workplace, setWorkplace] = useState("");
   const [hideWorkplace, setHideWorkplace] = useState(false);
-  const [hospitalId, setHospitalId] = useState<string | null>(null);
   const [department, setDepartment] = useState("");
   const [specialty, setSpecialty] = useState("");
   const [qualification, setQualification] = useState("");
@@ -142,7 +140,6 @@ export default function EditProfilePage() {
       const hidden = Boolean(data.hide_workplace);
       setHideWorkplace(hidden);
       setWorkplace((hidden ? privateData?.hidden_workplace : data.workplace) || "");
-      setHospitalId((hidden ? privateData?.hidden_hospital_id : data.hospital_id) || null);
       setDepartment((hidden ? privateData?.hidden_department : data.department) || "");
       setSpecialty(data.specialty || "");
       setQualification(data.qualification || "");
@@ -465,7 +462,8 @@ export default function EditProfilePage() {
       full_name: fullName,
       full_name_kana: toHiragana(fullNameKana.replace(/\s+/g, "")) || null,
       workplace,
-      hospital_id: hospitalId,
+      // 勤務先は、病院ページとは、連携しない（自由入力のみ）
+      hospital_id: null,
       department,
       hide_workplace: hideWorkplace,
       specialty,
@@ -806,17 +804,18 @@ export default function EditProfilePage() {
             <p className="mt-1 text-xs text-gray-500">「PTを探す」で、ひらがなでも名前が見つかるようになります</p>
           </div>
 
-          {/* 勤務先（入力すると病院ページの候補が出て、選ぶと連携できる） */}
+          {/* 勤務先（自由入力。病院ページとは、連携しない） */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-2">
               勤務先 <span className="text-xs font-normal text-red-500">（必須）</span>
             </label>
 
-            <WorkplaceAutosuggest
+            <input
+              id="field-2"
               value={workplace}
-              onValueChange={setWorkplace}
-              hospitalId={hospitalId}
-              onHospitalIdChange={setHospitalId}
+              onChange={(e) => setWorkplace(e.target.value)}
+              placeholder="例：〇〇病院"
+              className="w-full border rounded-xl px-4 py-3"
             />
 
             <label className="mt-3 flex cursor-pointer items-start gap-3">
@@ -829,7 +828,7 @@ export default function EditProfilePage() {
               <span>
                 <span className="block text-sm font-medium">勤務先と所属部署を、ほかの人に公開しない</span>
                 <span className="block text-xs leading-5 text-gray-500">
-                  オンにすると、勤務先・所属部署・病院ページとの連携が、ほかの人には見えなくなります
+                  オンにすると、勤務先・所属部署が、ほかの人には見えなくなります
                   （サーバーにも公開用としては保存しません）。あなたの画面には、そのまま表示されます。
                 </span>
               </span>
