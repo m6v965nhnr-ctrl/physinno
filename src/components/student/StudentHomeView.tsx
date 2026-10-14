@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import QuizHero from "@/components/student/QuizHero";
+import AddToHomeButton from "@/components/AddToHomeButton";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
 import {
   StudentItem,
@@ -139,6 +140,9 @@ export default function StudentHomeView({
             <p className="mt-1 text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
           </div>
         </section>
+
+        {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
+        <AddToHomeButton />
 
         {/* 一問一答ドリル（メイン機能） */}
         <QuizHero />

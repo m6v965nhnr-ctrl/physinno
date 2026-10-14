@@ -96,6 +96,9 @@ export function GeneralMyPage({
           </Link>
         </section>
 
+        {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
+        <AddToHomeButton />
+
         {/* 自分のレビュー */}
         <section className="rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
           <h2 className="text-lg font-semibold text-gray-900">
@@ -137,7 +140,7 @@ export function GeneralMyPage({
         {userId && <MedicalHistorySection userId={userId} />}
 
         {userId && <ReferralCard userId={userId} />}
-        <AddToHomeButton />
+        <AddToHomeButton placement="bottom" />
 
         {/* アカウントの種類 */}
         <AccountTypeCard
