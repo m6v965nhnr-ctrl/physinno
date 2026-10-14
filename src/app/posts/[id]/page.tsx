@@ -341,7 +341,7 @@ export default function PostDetailPage() {
             </button>
 
             {user && !isOwner && (
-              <ReportButton targetType="post" targetId={post.id} className="px-2 py-2 text-sm" />
+              <ReportButton targetType="post" targetId={post.id} authorId={post.user_id} className="px-2 py-2 text-sm" />
             )}
 
             {isOwner && (
@@ -644,7 +644,7 @@ function CommentItem({
             )}
 
             {currentUserId && !comment.is_mine && (
-              <ReportButton targetType="comment" targetId={comment.id} />
+              <ReportButton targetType="comment" targetId={comment.id} authorId={comment.user_id} />
             )}
 
           </div>

@@ -162,6 +162,10 @@ export function GeneralMyPage({
           ログアウト
         </button>
 
+        <Link href="/mypage/blocked" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
+          ブロック中のユーザー
+        </Link>
+
         <Link href="/mypage/delete-account" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
           退会する（アカウントの削除）
         </Link>

@@ -119,7 +119,7 @@ export default function PtIdeaCard({
       </div>
 
       <div className="mt-2 flex items-center justify-between">
-        <ReportButton targetType="clinical_idea" targetId={state.id} />
+        <ReportButton targetType="clinical_idea" targetId={state.id} authorId={state.author_id} />
         {state.is_mine && (
           <button onClick={remove} className="text-xs text-gray-400 underline">
             削除

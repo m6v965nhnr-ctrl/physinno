@@ -346,6 +346,7 @@ export default function GroupDetailPage() {
                         <ReportButton
                           targetType="group_message"
                           targetId={m.id}
+                          authorId={m.user_id}
                           className="mt-0.5 px-1 text-[10px]"
                         />
                       )}

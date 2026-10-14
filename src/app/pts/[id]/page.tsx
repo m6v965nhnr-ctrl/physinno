@@ -20,6 +20,7 @@ import type { AuthUser, PtProfile, Review } from "@/lib/types";
 import { notify } from "@/lib/notify";
 import { ptName } from "@/lib/format";
 import PortfolioView from "@/components/PortfolioView";
+import BlockUserButton from "@/components/BlockUserButton";
 
 type CaseReport = {
   id: string;
@@ -422,6 +423,8 @@ export default function PTProfile() {
                 </div>
               </Link>
             </div>
+
+            {pt.user_id && <BlockUserButton userId={pt.user_id} className="mt-3" />}
 
           </div>
         </section>

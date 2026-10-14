@@ -141,7 +141,7 @@ export default function StudentQuestionPage() {
                 削除
               </button>
             ) : (
-              <ReportButton targetType="student_question" targetId={question.id} />
+              <ReportButton targetType="student_question" targetId={question.id} authorId={question.author_id} />
             )}
           </div>
         </article>
@@ -182,7 +182,7 @@ export default function StudentQuestionPage() {
                       削除
                     </button>
                   ) : (
-                    <ReportButton targetType="student_answer" targetId={a.id} />
+                    <ReportButton targetType="student_answer" targetId={a.id} authorId={a.author_id} />
                   )}
                 </div>
               </li>

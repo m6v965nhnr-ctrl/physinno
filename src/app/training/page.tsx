@@ -263,7 +263,7 @@ function TrainingInner() {
                 </div>
 
                 <div className="mt-2 flex items-center justify-between">
-                  <ReportButton targetType="training_method" targetId={t.id} />
+                  <ReportButton targetType="training_method" targetId={t.id} authorId={t.author_id} />
                   {t.is_mine && (
                     <button onClick={() => remove(t)} className="text-xs text-gray-400 underline">
                       削除

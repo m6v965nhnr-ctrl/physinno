@@ -4,6 +4,8 @@ import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import { askConfirm } from "@/lib/confirm";
+import { blockUser } from "@/lib/blocks";
 import {
   REPORT_REASONS,
   REPORT_REASON_LABEL,
@@ -13,14 +15,17 @@ import {
   submitReport,
 } from "@/lib/reports";
 
-// 投稿・コメント・メッセージ・口コミを運営へ通報する(削除の申出もここから)
+// 投稿・コメント・メッセージ・口コミを運営へ通報する(削除の申出もここから)。
+// authorId を渡すと、同じ画面から投稿者をブロックもできる（匿名で投稿者が分からないときは渡さない）。
 export default function ReportButton({
   targetType,
   targetId,
+  authorId,
   className = "",
 }: {
   targetType: ReportTargetType;
   targetId: string;
+  authorId?: string | null;
   className?: string;
 }) {
   const titleId = useId();
@@ -52,6 +57,27 @@ export default function ReportButton({
     setOpen(true);
   }
 
+  async function handleBlock() {
+    if (!authorId) return;
+    if (
+      !(await askConfirm(
+        "この人をブロックしますか？ この人の投稿・コメント・メッセージが、あなたには表示されなくなります（相手には伝わりません。設定からいつでも解除できます）",
+        { okLabel: "ブロックする", danger: true },
+      ))
+    ) {
+      return;
+    }
+    const error = await blockUser(authorId);
+    if (error) {
+      notify(error);
+      return;
+    }
+    setOpen(false);
+    notify("ブロックしました。この人の内容は表示されなくなります");
+    // 画面に読み込み済みの内容から、すぐに取り除くため
+    setTimeout(() => window.location.reload(), 900);
+  }
+
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     setSending(true);
@@ -79,7 +105,7 @@ export default function ReportButton({
         disabled={done}
         className={`text-xs text-gray-400 hover:text-gray-600 disabled:cursor-default disabled:hover:text-gray-400 ${className}`}
       >
-        {done ? "通報済み" : "通報"}
+        {done ? "通報済み" : authorId ? "通報・ブロック" : "通報"}
       </button>
 
       {open && (
@@ -150,6 +176,16 @@ export default function ReportButton({
               </Link>
               からお願いします。
             </p>
+
+            {authorId && (
+              <button
+                type="button"
+                onClick={handleBlock}
+                className="mt-3 w-full rounded-full border border-red-200 py-2 text-sm text-red-600"
+              >
+                この投稿者をブロックする（通報はせずに）
+              </button>
+            )}
 
             <div className="mt-4 flex gap-2">
               <button

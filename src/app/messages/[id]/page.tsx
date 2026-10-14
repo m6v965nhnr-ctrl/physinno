@@ -373,6 +373,7 @@ export default function MessagePage() {
                         <ReportButton
                           targetType="message"
                           targetId={message.id}
+                          authorId={message.sender_id}
                           className="text-[10px]"
                         />
                       )}
