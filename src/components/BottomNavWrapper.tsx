@@ -212,15 +212,33 @@ export default function BottomNavWrapper() {
     return pathname === base || pathname.startsWith(`${base}/`);
   }
 
+  // いま開いているメニューの位置（なければ -1）。ここに、背景の丸がスライドして移動する
+  const activeIndex = previewOnly
+    ? menus.findIndex((m) => m.href === "/home")
+    : menus.findIndex((m) => isActive(m.href));
+
   return (
     <nav
       aria-label="メインメニュー"
       className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
-      <div className="mx-auto flex max-w-xl items-center justify-around px-1 py-2">
-        {menus.map((menu) => {
-          const active = isActive(menu.href);
+      <div
+        className="relative mx-auto grid max-w-xl items-center px-1 py-2"
+        style={{ gridTemplateColumns: `repeat(${menus.length}, minmax(0, 1fr))` }}
+      >
+        {/* いまの場所を示す背景（メニューを切り替えると、なめらかに横へ動く） */}
+        <span
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-2 left-1 top-2 rounded-2xl bg-gray-100 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+          style={{
+            width: `calc((100% - 0.5rem) / ${menus.length})`,
+            transform: `translateX(${Math.max(activeIndex, 0) * 100}%)`,
+            opacity: activeIndex >= 0 ? 1 : 0,
+          }}
+        />
+        {menus.map((menu, index) => {
+          const active = index === activeIndex;
 
           const badgeCount =
             menu.href === "/notifications"
@@ -229,27 +247,41 @@ export default function BottomNavWrapper() {
               ? unreadMessageCount
               : 0;
 
+          const inner = (
+            <span
+              className={`flex flex-col items-center gap-0.5 transition-transform duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none ${
+                active ? "scale-110" : ""
+              }`}
+            >
+              <span
+                aria-hidden="true"
+                className={`relative flex h-7 items-center justify-center leading-none ${
+                  menu.href === "/posts/create" ? "text-3xl font-light" : "text-2xl"
+                }`}
+              >
+                {menu.icon}
+                {badgeCount > 0 && (
+                  <span className="absolute -right-1.5 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-semibold text-white">
+                    {badgeCount > 9 ? "9+" : badgeCount}
+                  </span>
+                )}
+              </span>
+              <span className="text-[11px]">{menu.label}</span>
+            </span>
+          );
+
           // 見るだけのとき: 同じ見た目で、押せないメニュー（ホームだけ、いまの画面として濃く出す）
           if (previewOnly) {
-            const here = menu.href === "/home";
             return (
               <span
                 key={menu.href}
                 aria-disabled="true"
                 title="無料登録すると使えます"
-                className={`flex min-w-[64px] cursor-not-allowed select-none flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 ${
-                  here ? "font-semibold text-black" : "text-gray-400"
+                className={`relative z-10 flex cursor-not-allowed select-none justify-center rounded-2xl px-2 py-1.5 ${
+                  active ? "font-semibold text-black" : "text-gray-400"
                 }`}
               >
-                <span
-                  aria-hidden="true"
-                  className={`relative flex h-7 items-center justify-center leading-none ${
-                    menu.href === "/posts/create" ? "text-3xl font-light" : "text-2xl"
-                  }`}
-                >
-                  {menu.icon}
-                </span>
-                <span className="text-[11px]">{menu.label}</span>
+                {inner}
               </span>
             );
           }
@@ -264,31 +296,11 @@ export default function BottomNavWrapper() {
                   ? `${menu.label}（未読${badgeCount}件）`
                   : undefined
               }
-              className={`flex min-w-[64px] flex-col items-center gap-0.5 rounded-xl px-2 py-1.5 transition active:scale-95 ${
-                active
-                  ? "font-semibold text-black"
-                  : "text-gray-400"
+              className={`relative z-10 flex justify-center rounded-2xl px-2 py-1.5 transition-colors active:opacity-70 ${
+                active ? "font-semibold text-black" : "text-gray-400"
               }`}
             >
-              <span
-                aria-hidden="true"
-                className={`relative flex h-7 items-center justify-center leading-none ${
-                  menu.href === "/posts/create"
-                    ? "text-3xl font-light"
-                    : "text-2xl"
-                }`}
-              >
-                {menu.icon}
-                {badgeCount > 0 && (
-                  <span className="absolute -right-1.5 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-semibold text-white">
-                    {badgeCount > 9 ? "9+" : badgeCount}
-                  </span>
-                )}
-              </span>
-
-              <span className="text-[11px]">
-                {menu.label}
-              </span>
+              {inner}
             </Link>
           );
         })}

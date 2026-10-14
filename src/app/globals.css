@@ -491,3 +491,23 @@ html {
   background: #f7faf9;
   font-weight: 600;
 }
+
+/* ページを開いたときに、すっと現れる（下のメニューで画面を切り替えるときのなめらかさ）。位置を動かさないので、固定表示の部品に影響しない */
+@keyframes page-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.page-in {
+  animation: page-in 0.22s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-in {
+    animation: none;
+  }
+}

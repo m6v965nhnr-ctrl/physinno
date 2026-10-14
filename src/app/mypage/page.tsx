@@ -7,7 +7,6 @@ import { supabase } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import MyPageMenu from "@/components/MyPageMenu";
-import TodayTodos from "@/components/TodayTodos";
 import CertificateAttachments from "@/components/CertificateAttachments";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
@@ -412,8 +411,6 @@ export default function MyPage() {
           </Link>
 
         </div>
-
-        <TodayTodos userId={userId} profile={profile} />
 
         {/* =========================
             ポートフォリオへの導線
