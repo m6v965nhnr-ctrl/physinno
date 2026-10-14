@@ -163,7 +163,7 @@ export default function RegisterPage() {
 
           <div>
             <p className="mb-2 block text-sm font-medium">
-              アカウントの種類
+              アカウントの種類 <span className="text-xs font-normal text-red-500">（必須）</span>
             </p>
 
             <div
@@ -318,9 +318,19 @@ export default function RegisterPage() {
             </p>
           )}
 
+          {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
+          {(() => {
+            const missing = [!accountType && "アカウントの種類", !fullName.trim() && "名前", !agreed && "利用規約への同意"].filter(Boolean);
+            return missing.length > 0 ? (
+              <p className="text-center text-xs text-red-600" role="status">
+                未入力：{missing.join("・")}
+              </p>
+            ) : null;
+          })()}
+
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || !fullName.trim()}
+            disabled={loading || !agreed || !accountType || !fullName.trim()}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : "新規登録"}
