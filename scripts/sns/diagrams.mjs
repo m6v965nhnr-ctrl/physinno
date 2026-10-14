@@ -26,7 +26,7 @@ export const diagrams = {
     ${txt(520, 180, "1", 52, W, "start")}${txt(520, 300, "2", 52, A, "start")}${txt(450, 395, "ゆっくり・力まず", 32, M)}`),
   // Borg 6-20
   borg: wrap(`${txt(450, 70, "Borgスケール（6〜20）", 38, T)}
-    ${Array.from({ length: 15 }, (_, i) => { const v = 6 + i, x = 70 + i * 58.5; const on = v >= 11 && v <= 13; return `<rect x="${x - 24}" y="130" width="48" height="${60 + i * 8}" rx="10" fill="${on ? A : LINE}"/>${txt(x, 125, v, 26, on ? A : M)}`; }).join("")}
+    ${Array.from({ length: 15 }, (_, i) => { const v = 6 + i, x = 105 + i * 52.5; const on = v >= 11 && v <= 13; return `<rect x="${x - 21}" y="130" width="42" height="${60 + i * 8}" rx="10" fill="${on ? A : LINE}"/>${txt(x, 125, v, 26, on ? A : M)}`; }).join("")}
     <path d="M70 330 H830" stroke="${LINE}" stroke-width="4"/>${txt(130, 375, "非常に楽", 26, M)}${txt(450, 375, "11〜13：楽〜ややきつい（目安）", 30, A)}${txt(790, 375, "最大", 26, M)}`),
   // 握力 基準
   grip: wrap(`${txt(450, 62, "握力の基準（AWGS 2019）", 38, T)}
