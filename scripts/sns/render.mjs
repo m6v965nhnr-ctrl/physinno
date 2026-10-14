@@ -25,6 +25,32 @@ if (!existsSync(encoder)) {
   execFileSync("swiftc", ["-O", join(here, "PngsToMp4.swift"), "-o", encoder], { stdio: "inherit" });
 }
 
+// ---- ナレーション・セリフの音声（macOS の say）。VOICE=1 で有効 ----
+const VOICES = { pt: "Eddy (日本語（日本）)", senior: "Rocko (日本語（日本）)", student: "Reed (日本語（日本）)", ptf: "Flo (日本語（日本）)", friend: "Sandy (日本語（日本）)", grandma: "Grandma (日本語（日本）)", grandpa: "Grandpa (日本語（日本）)", narr: "Kyoko" };
+const muxer = "/tmp/MuxAudio";
+if (process.env.VOICE && !existsSync(muxer)) execFileSync("swiftc", ["-O", join(here, "MuxAudio.swift"), "-o", muxer], { stdio: "inherit" });
+// ---- BGM（オリジナル。music.mjs）。NO_MUSIC=1 で無効 ----
+const withMusic = !process.env.NO_MUSIC;
+function bgm(dir, seconds, slug) {
+  let h = 0;
+  for (const c of slug) h = (h * 31 + c.charCodeAt(0)) >>> 0;
+  const f = join(dir, "bgm.wav");
+  execFileSync("node", [join(here, "music.mjs"), String(seconds.toFixed(2)), f, String(h % 4)], { stdio: "ignore" });
+  return f;
+}
+if (withMusic && !existsSync(muxer)) execFileSync("swiftc", ["-O", join(here, "MuxAudio.swift"), "-o", muxer], { stdio: "inherit" });
+let voiceN = 0;
+function speak(dir, text, who = "narr", rate = 185) {
+  const clean = String(text).replace(/\n/g, "、").replace(/[（(][^）)]*[）)]/g, "").replace(/…+/g, "、").replace(/[「」]/g, "").trim();
+  if (!clean) return null;
+  mkdirSync(join(dir, "voice"), { recursive: true });
+  const f = join(dir, "voice", `${String(++voiceN).padStart(3, "0")}.aiff`);
+  execFileSync("say", ["-v", VOICES[who] ?? VOICES.narr, "-r", String(rate), "-o", f, "--", clean]);
+  const info = execFileSync("afinfo", [f]).toString();
+  const d = parseFloat((info.match(/estimated duration: ([\d.]+)/) ?? [])[1] ?? "1");
+  return { f, d };
+}
+
 const browser = await chromium.launch({ channel: "chrome", headless: true });
 
 async function shot(html, size, file) {
@@ -97,6 +123,11 @@ for (const post of posts) {
     }
     writeFileSync(join(dir, "list.txt"), list.join("\n"));
     execFileSync(encoder, [join(dir, "reel.mp4"), join(dir, "list.txt")], { stdio: "inherit" });
+    if (withMusic) { // TikTok用は、BGMつき（Instagram・Xの reel.mp4 は、そのまま）
+      const total = plan.reduce((s, p) => s + p[2], 0);
+      writeFileSync(join(dir, "audio_list.txt"), `0.00\t${bgm(dir, total, post.slug)}`);
+      execFileSync(muxer, [join(dir, "tiktok.mp4"), join(dir, "reel.mp4"), join(dir, "audio_list.txt")], { stdio: "inherit" });
+    }
     console.log(`reel ${post.slug}`);
   } else if (post.kind.startsWith("tt-")) {
     // TikTok専用（あるある・豆知識・4コマ漫画）。1フレームずつ描いて、縦動画（tiktok.mp4）にする
@@ -104,23 +135,48 @@ for (const post of posts) {
     const fdir = join(dir, "tiktok_frames");
     mkdirSync(fdir, { recursive: true });
     const plan = [];
+    const alist = [];
+    let atime = 0;
+    const addVoice = (text, who, base) => { // 音声を、今のシーンの開始位置に置いて、シーンの長さを返す
+      if (!process.env.VOICE) return base;
+      const v = speak(dir, text, who);
+      if (!v) return base;
+      alist.push(`${(atime + 0.3).toFixed(2)}\t${v.f}`);
+      const sec = Math.max(base, v.d + 0.9);
+      atime += sec;
+      return sec;
+    };
     if (post.kind === "tt-manga") {
       // 1コマずつ全画面で見せる（絵が大きく、台詞も読みやすい）。作画は manga.mjs
       const FONT = `<style>@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap');*{margin:0;box-sizing:border-box}body{width:1080px;height:1920px;background:#0a1224;font-family:'Noto Sans JP',sans-serif;color:#fff;position:relative;overflow:hidden;background-image:radial-gradient(1200px 700px at 100% 0%,rgba(78,215,167,.16),transparent 60%),radial-gradient(900px 600px at 0% 100%,rgba(85,199,220,.14),transparent 60%)}</style>`;
       // 冒頭1〜3秒が勝負（アルゴリズムは、冒頭の離脱・完走・保存・シェアを見る）。タイトル画面は置かず、1コマ目から見せる。
       const head = `<div style="position:absolute;left:50px;top:36px;font-size:30px;font-weight:700;color:#06303a;padding:10px 26px;border-radius:999px;background:linear-gradient(90deg,#55c7dc,#4ed7a7)">${post.series ?? "PT漫画"}${post.no ? ` #${post.no}` : ""}</div><div style="position:absolute;right:50px;top:44px;font-size:32px;font-weight:700;color:#9fb0c8">Re:light</div><div style="position:absolute;left:50px;right:50px;top:96px;font-size:${post.hook.length > 16 ? 50 : 58}px;font-weight:900;line-height:1.2;color:#fff">${post.hook}</div>`;
+      // 音声: セリフを、話す順に読む。コマの長さは、音声の長さに合わせる
+      const pdur = [2.6, 2.6, 2.8, 3.6];
+      if (process.env.VOICE) {
+        let t = 0;
+        post.panels.forEach((pn, k) => {
+          let local = 0.35;
+          for (const s of pn.says) {
+            const v = speak(dir, s.text, pn.chars[s.i]?.who);
+            if (v) { alist.push(`${(t + local).toFixed(2)}\t${v.f}`); local += v.d + 0.3; }
+          }
+          pdur[k] = Math.max(pdur[k], local + 0.5);
+          t += pdur[k];
+        });
+      }
       post.panels.forEach((pn, k) => {
         const dots = [0, 1, 2, 3].map((j) => `<span style="display:inline-block;width:${j === k ? 56 : 18}px;height:18px;border-radius:9px;margin:0 8px;background:${j === k ? "#4ed7a7" : "#33415c"}"></span>`).join("");
         plan.push([
           `p${k + 1}`,
           `<!doctype html><html><head><meta charset="utf-8">${FONT}</head><body>${head}<div style="position:absolute;left:40px;top:190px;width:1000px;height:1500px;border:8px solid #1b1b2f;border-radius:6px;box-shadow:0 0 0 6px #fff;overflow:hidden;background:#fff">${panelSVG(pn)}</div><div style="position:absolute;left:0;right:0;top:1752px;text-align:center">${dots}</div><div style="position:absolute;left:0;right:0;top:1815px;text-align:center;font-size:28px;color:#8aa0bd">${post.title}　@re.light0717　フィクションです</div></body></html>`,
-          [2.6, 2.6, 2.8, 3.6][k],
+          pdur[k],
         ]);
       });
     } else if (post.kind === "tt-aruaru") {
-      for (let k = 1; k <= post.items.length; k++) plan.push([`i${k}`, tt.aruaru(post, k), k === post.items.length ? 2.8 : 2.0]);
+      for (let k = 1; k <= post.items.length; k++) plan.push([`i${k}`, tt.aruaru(post, k), addVoice(`${k}、${post.items[k - 1]}`, "narr", k === post.items.length ? 2.8 : 2.0)]);
     } else {
-      post.cards.forEach((c, k) => plan.push([`c${k + 1}`, tt.card(c), c.sec ?? 3.5]));
+      post.cards.forEach((c, k) => plan.push([`c${k + 1}`, tt.card(c), addVoice([c.heading, c.body, ...(c.points ?? [])].filter(Boolean).join("。"), "narr", c.sec ?? 3.5)]));
     }
     if (!post.noCta) plan.push(["cta", reel.cta(post.cta), 1.8]);
     const list = [];
@@ -130,7 +186,13 @@ for (const post of posts) {
       list.push(`${f}\t${sec}`);
     }
     writeFileSync(join(dir, "tiktok_list.txt"), list.join("\n"));
-    execFileSync(encoder, [join(dir, "tiktok.mp4"), join(dir, "tiktok_list.txt")], { stdio: "inherit" });
+    const useAudio = process.env.VOICE || withMusic;
+    execFileSync(encoder, [join(dir, useAudio ? "silent.mp4" : "tiktok.mp4"), join(dir, "tiktok_list.txt")], { stdio: "inherit" });
+    if (useAudio) {
+      if (withMusic) alist.unshift(`0.00\t${bgm(dir, plan.reduce((s, p) => s + p[2], 0), post.slug)}`);
+      writeFileSync(join(dir, "audio_list.txt"), alist.join("\n"));
+      execFileSync(muxer, [join(dir, "tiktok.mp4"), join(dir, "silent.mp4"), join(dir, "audio_list.txt")], { stdio: "inherit" });
+    }
     console.log(`${post.kind} ${post.slug}`);
   }
   writeFileSync(join(dir, "caption.txt"), post.ig?.caption ?? "");

@@ -1,6 +1,7 @@
 // SNS用の画像（カルーセル 1080x1350 / リール 1080x1920）を作るHTMLテンプレート。
 // 配色・書体は、これまでの投稿（_sns/）と、アプリのブランドに合わせる。
 
+import { diagrams } from "./diagrams.mjs";
 const esc = (s) => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 // 改行（\n）→ <br>
 const br = (s) => esc(s).replace(/\n/g, "<br>");
@@ -246,8 +247,9 @@ export const tt = {
     ttShell(`${ttTop(d.tag ?? "リハの豆知識")}
       <div style="margin:auto 0">
         ${d.kicker ? `<div class="pill" style="font-size:38px">${esc(d.kicker)}</div>` : ""}
-        <h1 style="font-size:${d.heading.length > 22 ? 78 : 92}px;margin-top:40px">${br(d.heading)}</h1>
-        ${d.body ? `<p style="font-size:48px;line-height:1.65;margin-top:50px" class="muted">${br(d.body)}</p>` : ""}
+        <h1 style="font-size:${(() => { const m = Math.max(...d.heading.split("\n").map((l) => [...l].length)); return m > 12 ? 70 : m > 9 ? 82 : 92; })()}px;margin-top:40px">${br(d.heading)}</h1>
+        ${d.visual ? `<div style="margin-top:50px;display:flex;justify-content:center">${diagrams[d.visual]}</div>` : ""}
+        ${d.body ? `<p style="font-size:${d.visual ? 44 : 48}px;line-height:1.6;margin-top:${d.visual ? 40 : 50}px" class="muted">${br(d.body)}</p>` : ""}
         ${d.points ? `<div style="margin-top:50px;display:flex;flex-direction:column;gap:22px">${d.points.map((t, k) => `<div class="card" style="padding:34px 38px;font-size:52px;font-weight:700;line-height:1.4;display:flex;gap:24px"><span class="acc" style="font-weight:900">${k + 1}</span><span>${br(t)}</span></div>`).join("")}</div>` : ""}
       </div>
       <div class="foot" style="font-size:27px;line-height:1.5"><span>${br(d.source ?? "")}</span></div>`),
