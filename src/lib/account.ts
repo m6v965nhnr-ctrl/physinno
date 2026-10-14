@@ -79,6 +79,23 @@ export async function getMyAccountType(
   return type === "pt" || type === "general" || type === "student" ? type : null;
 }
 
+// 通信の失敗と、「本当に未設定」を区別して返す（失敗のときに、設定済みの人を未設定扱いにしないため）
+export async function getMyAccountTypeChecked(
+  userId: string
+): Promise<{ ok: true; type: AccountType | null } | { ok: false }> {
+  const { data, error } = await supabase
+    .from("users")
+    .select("account_type")
+    .eq("id", userId)
+    .maybeSingle();
+
+  if (error) return { ok: false };
+
+  const type = data?.account_type;
+
+  return { ok: true, type: type === "pt" || type === "general" || type === "student" ? type : null };
+}
+
 // 卒業予定年を過ぎた学生を、その場で PT に切り替える(毎日の自動処理とは別に、ログイン時にも実行する)。
 // 戻り値: 切り替え後(または現在)のアカウント種類
 export async function syncMyAccountType(): Promise<AccountType | null> {

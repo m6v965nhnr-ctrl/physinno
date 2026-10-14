@@ -5,6 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
   getMyAccountType,
+  getMyAccountTypeChecked,
   isPtOnlyPath,
   isPublicColumnPath,
   isPublicHospitalPath,
@@ -31,16 +32,21 @@ async function hasAccountType(userId: string): Promise<boolean> {
   } catch {
     // 保存できない環境では、毎回確認する
   }
-  const type = await getMyAccountType(userId);
-  if (type) {
+  const result = await getMyAccountTypeChecked(userId);
+  // 通信に失敗したときは、止めない（設定済みの人を、設定の画面へ送ってしまわないため）
+  if (!result.ok) return true;
+  if (result.type) {
     try {
       sessionStorage.setItem(key, "1");
     } catch {
       // 何もしない
     }
   }
-  return !!type;
+  return !!result.type;
 }
+
+// ホーム画面のアプリとして開いたときは、ログインなしで見られるゲスト用の画面は出さない（これらの画面だけ、ログインなしでも開ける）
+const STANDALONE_OPEN_PATHS = ["/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/feedback"];
 
 export default function AuthGuard({
   children,
@@ -56,6 +62,18 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
+      // ホーム画面のアプリで、ログインしていないときは、どの画面から始まっても、ログイン画面へ
+      if (isStandaloneApp() && !STANDALONE_OPEN_PATHS.includes(pathname)) {
+        const {
+          data: { session: s0 },
+        } = await supabase.auth.getSession();
+        if (cancelled) return;
+        if (!s0) {
+          router.replace("/login");
+          return;
+        }
+      }
+
       // 種類が未設定の人は、設定の画面から先へ進めない（運営のアカウントは対象外）
       if (!SETUP_EXEMPT_PATHS.includes(pathname)) {
         const {

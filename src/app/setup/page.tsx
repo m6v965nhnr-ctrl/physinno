@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { getMyAccountType, landingPathFor, setMyAccountType } from "@/lib/account";
+import { getMyAccountTypeChecked, landingPathFor, setMyAccountType } from "@/lib/account";
 import StudentSetupForm from "@/components/StudentSetupForm";
 
 // アカウントの種類が未設定の人が、最初に必ず通る画面（ここで決めるまで、他の画面には進めない）。
@@ -11,6 +11,7 @@ import StudentSetupForm from "@/components/StudentSetupForm";
 export default function SetupAccountPage() {
   const router = useRouter();
   const [ready, setReady] = useState(false);
+  const [loadFailed, setLoadFailed] = useState(false);
   const [choice, setChoice] = useState<"pt" | "student" | null>(null);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -26,11 +27,16 @@ export default function SetupAccountPage() {
         router.replace("/login");
         return;
       }
-      const type = await getMyAccountType(session.user.id);
+      const result = await getMyAccountTypeChecked(session.user.id);
       if (!alive) return;
+      // 通信に失敗したときは、設定を求めない（設定済みの人の種類を、上書きしてしまわないため）
+      if (!result.ok) {
+        setLoadFailed(true);
+        return;
+      }
       // すでに設定済みの人は、ここに用はない
-      if (type) {
-        router.replace(landingPathFor(type));
+      if (result.type) {
+        router.replace(landingPathFor(result.type));
         return;
       }
       setReady(true);
@@ -52,6 +58,21 @@ export default function SetupAccountPage() {
     }
     // 画面の確認（PTは、初回のプロフィール入力など）は、移動先で行われる
     window.location.href = landingPathFor(type);
+  }
+
+  if (loadFailed) {
+    return (
+      <main className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-white px-6 text-center">
+        <p className="text-sm text-gray-600">読み込めませんでした。通信を確認して、もう一度お試しください。</p>
+        <button
+          type="button"
+          onClick={() => window.location.reload()}
+          className="rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white"
+        >
+          もう一度読み込む
+        </button>
+      </main>
+    );
   }
 
   if (!ready) {
