@@ -125,3 +125,9 @@
 - しばらく使っていない人へのお知らせ: `users.last_seen_at`（1日1回、`touchLastSeen`）。DBの `queue_inactive_reminders`（pg_cron 毎日10:00 JST）が、3週間使っていない人へ1通（60日に1通まで、1回50人まで、全体と種類別（reminder）のスイッチを尊重）。メール本文は `/api/notify-email` の `reminder`。
 - 養成校ページ: `/schools`、`/schools/[slug]`（大学。`src/content/schools/pt-universities.ts`。第61回・大学新卒。出典: 旺文社 教育情報センター（厚生労働省発表資料に基づく）。取り出しは `scripts/schools/extract-obunsha.mjs`）。専門学校・短大は、公表資料が確認できていないため、なし。
 - SNS: `scripts/sns/`（`templates.mjs` `render.mjs` `PngsToMp4.swift`、内容は `content/weekN.json`）。画像はChrome、動画はmacOS標準のAVFoundation。素材は `_sns/`（Git管理外）。毎日12:30に、スケジュールタスク `relight-sns-daily-post` が、Chrome（Claude in Chrome）で Instagram と X に投稿し、`リサーチ/sns_log.md` に記録。毎週日曜20:00に `relight-sns-weekly-plan` が来週分を作る。毎週月曜9:00の `relight-weekly-growth-report` が、登録・SNSの数字を分析。
+
+## ブロック機能（2026-10-14〜）
+- `user_blocks`（ブロックする人→される人。本人にだけ見える）。追加・解除は RPC の `block_user` / `unblock_user`（フォロー関係も外す）、一覧は `list_my_blocks`。
+- ブロックした人の内容を除く仕組み: 画面から直接読む表（posts・comments・messages・group_messages・hospital_reviews・internship_reviews・student_questions/answers・clinical_ideas・training_methods・exam_notes）に、restrictive な select ポリシー `hide_blocked_*`（`is_blocked_by_me(user_id)`）。security definer の一覧関数（`list_posts_v2`・`list_comments`・`get_hospital_reviews`・`get_internship_reviews`・`list_student_questions/answers`・`get_student_question`・`list_clinical_ideas`・`list_training_methods`）には、同じ条件を where に入れてある。**新しい「他人の内容」を返す関数を作るときは、`not public.is_blocked_by_me(...)` を入れること。**
+- ブロックされた側は、会話の作成・メッセージ送信が、ポリシーで拒否される（`private.blocks_me`。`private` スキーマ＝API に公開されないので、ブロックされたことは相手に分からない）。
+- 画面: `ReportButton` に `authorId` を渡すと「通報・ブロック」になる。プロフィールは `BlockUserButton`、解除は `/mypage/blocked`。匿名で投稿者が分からない内容（口コミ・試験メモ・クイズ問題）は、通報のみ。
