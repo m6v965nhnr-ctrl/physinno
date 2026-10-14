@@ -118,3 +118,10 @@ const PUBLIC_GUEST_PATH = /^\/(home|home\/pt-search|posts|ideas|ideas\/(?!new$|a
 export function isPublicGuestPath(pathname: string) {
   return PUBLIC_GUEST_PATH.test(pathname);
 }
+
+
+// ログインした直後（とホーム画面のアプリを開いたとき）に最初に開く画面。
+// PT・一般の方は、いちばん使われる「検索」、学生はマイページ
+export function landingPathFor(accountType: AccountType | null | undefined): string {
+  return accountType === "student" ? "/mypage" : "/pts";
+}

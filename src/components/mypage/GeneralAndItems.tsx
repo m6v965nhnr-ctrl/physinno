@@ -1,5 +1,7 @@
 "use client";
 
+import AddToHomeButton from "@/components/AddToHomeButton";
+import MyPageMenu from "@/components/MyPageMenu";
 import Link from "next/link";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import ReferralCard from "@/components/ReferralCard";
@@ -56,7 +58,8 @@ export function GeneralMyPage({
   onLogout: () => void;
 }) {
   return (
-    <main className="min-h-screen bg-[#fafafa] px-5 py-12 pb-28">
+    <main className="relative min-h-screen bg-[#fafafa] px-5 py-12 pb-28">
+      <MyPageMenu onLogout={onLogout} />
       <div className="mx-auto max-w-2xl space-y-5">
 
         {/* プロフィール */}
@@ -134,34 +137,13 @@ export function GeneralMyPage({
         {userId && <MedicalHistorySection userId={userId} />}
 
         {userId && <ReferralCard userId={userId} />}
+        <AddToHomeButton />
 
         {/* アカウントの種類 */}
         <AccountTypeCard
           accountType="general"
           onChanged={onAccountTypeChanged}
         />
-
-        <Link
-          href="/feedback"
-          className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
-        >
-          運営へのメッセージ・意見箱
-        </Link>
-
-        <button
-          onClick={onLogout}
-          className="w-full rounded-full border border-gray-300 bg-white py-3 text-sm font-medium text-gray-700 hover:bg-gray-50 active:scale-[0.98]"
-        >
-          ログアウト
-        </button>
-
-        <Link href="/mypage/blocked" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
-          ブロック中のユーザー
-        </Link>
-
-        <Link href="/mypage/delete-account" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
-          退会する（アカウントの削除）
-        </Link>
       </div>
     </main>
   );

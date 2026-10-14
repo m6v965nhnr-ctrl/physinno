@@ -75,21 +75,21 @@ export const PAPER_LINK_SOURCES = [
   {
     key: "physiopedia",
     label: "Physiopedia",
-    note: "理学療法士向けの世界最大のリファレンスWiki（APIがないためリンクで開きます）",
+    note: "理学療法士向けの世界最大のリファレンスWiki",
     build: (q: string) =>
       `https://www.physio-pedia.com/Special:Search?search=${encodeURIComponent(q)}&fulltext=1`,
   },
   {
     key: "cochrane",
     label: "Cochrane Library",
-    note: "システマティックレビューの世界標準（APIがないためリンクで開きます）",
+    note: "システマティックレビューの世界標準",
     build: (q: string) =>
       `https://www.cochranelibrary.com/search?q=${encodeURIComponent(q)}`,
   },
   {
     key: "scholar",
     label: "Google Scholar",
-    note: "分野横断（APIがないためリンクで開きます）",
+    note: "分野横断",
     build: (q: string) =>
       `https://scholar.google.com/scholar?hl=ja&q=${encodeURIComponent(q)}`,
   },

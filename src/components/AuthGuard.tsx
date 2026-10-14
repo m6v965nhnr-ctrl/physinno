@@ -18,7 +18,7 @@ import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
 import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
-const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback"];
+const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start"];
 
 export default function AuthGuard({
   children,

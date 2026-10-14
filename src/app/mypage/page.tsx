@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
 import AddToHomeButton from "@/components/AddToHomeButton";
+import MyPageMenu from "@/components/MyPageMenu";
 import TodayTodos from "@/components/TodayTodos";
 import CertificateAttachments from "@/components/CertificateAttachments";
 import { AccountType, getMyAccountType } from "@/lib/account";
@@ -285,10 +286,11 @@ export default function MyPage() {
             プロフィール上部
             （カバー写真はアバター〜評価までを背景として覆う）
         ========================= */}
-        <div className="relative -mx-6 -mt-12 overflow-hidden">
+        <div className="relative -mx-6 -mt-12">
+          <MyPageMenu onLogout={handleLogout} />
 
           {/* カバー写真 */}
-          <div className="absolute inset-0">
+          <div className="absolute inset-0 overflow-hidden">
             {profile?.cover_image ? (
               <img loading="lazy" decoding="async"
                 src={profile.cover_image}
@@ -627,43 +629,6 @@ export default function MyPage() {
 
           <ReferralCard userId={userId} />
           <AddToHomeButton />
-
-          <Link
-            href="/feedback"
-            className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
-          >
-            運営へのメッセージ・意見箱
-          </Link>
-
-          {/* ログアウト */}
-          <div className="pt-4">
-            <button
-              onClick={handleLogout}
-              className="
-                w-full
-                rounded-full
-                border
-                border-gray-300
-                bg-white
-                py-3
-                text-sm
-                font-medium
-                text-gray-700
-                hover:bg-gray-50
-                active:scale-[0.98]
-              "
-            >
-              ログアウト
-            </button>
-          </div>
-
-          <Link href="/mypage/blocked" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
-            ブロック中のユーザー
-          </Link>
-
-          <Link href="/mypage/delete-account" className="block pt-2 text-center text-xs text-gray-500 underline underline-offset-4">
-            退会する（アカウントの削除）
-          </Link>
         </div>
 
         {/* =========================

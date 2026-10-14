@@ -810,23 +810,24 @@ export default function PaperSearch() {
       {/* APIがないサイトは検索語入りのリンクをその場で開けるようにする（検索した後は、結果の上に名前だけのボタンで出す） */}
       {!((mode === "normal" && searched) || (mode === "ai" && aiTurns.length > 0)) && (
       <div className="mt-8">
-        <h2 className="text-sm font-semibold text-gray-500">
-          他のサイトでも探す（APIがないためリンクで開きます）
-        </h2>
-        <div className="mt-3 grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-2 gap-2">
           {PAPER_LINK_SOURCES.map((s) => (
             <a
               key={s.key}
               href={s.build(query.trim())}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-2xl border border-gray-100 p-3 hover:border-gray-300"
+              className="rounded-2xl border border-gray-100 px-3 py-2.5 hover:border-gray-300"
             >
               <p className="text-sm font-medium text-gray-900">{s.label}</p>
-              <p className="mt-0.5 text-xs text-gray-400">{s.note}</p>
+              {/* 行の途中で折り返さず、カードの幅いっぱいまで使う */}
+              <p className="mt-0.5 text-xs leading-5 text-gray-400 [text-wrap:wrap] [word-break:normal]">{s.note}</p>
             </a>
           ))}
         </div>
+        <p className="mt-2 whitespace-nowrap text-[11px] text-gray-400">
+          他のサイトでも探す（APIがないためリンクで開きます）
+        </p>
       </div>
       )}
 

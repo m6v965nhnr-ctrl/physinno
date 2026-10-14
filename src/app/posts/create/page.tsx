@@ -303,7 +303,7 @@ export default function CreatePostPage() {
    */
   if (!type) {
     return (
-      <main className="flex min-h-screen flex-col bg-[#fafafa] pb-24">
+      <main className="flex min-h-dvh flex-col bg-[#fafafa] pb-24">
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-2xl items-center px-5 py-4">
             <Link

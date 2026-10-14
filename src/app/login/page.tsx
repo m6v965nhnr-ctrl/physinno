@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { useRouter } from "next/navigation";
-import { getMyAccountType, syncMyAccountType } from "@/lib/account";
+import { getMyAccountType, landingPathFor, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { rememberReturnTo, takeReturnTo } from "@/lib/returnTo";
 
@@ -51,7 +51,7 @@ export default function LoginPage() {
       return;
     }
 
-    // 一般の方は検索、PTはホームへ
+    // PT・一般の方は検索、学生はマイページへ
     let accountType = await getMyAccountType(user.id);
 
     // 卒業予定年を過ぎた学生は、ここでPTに切り替える
@@ -59,7 +59,7 @@ export default function LoginPage() {
       accountType = (await syncMyAccountType()) ?? accountType;
     }
 
-    router.push(takeReturnTo() ?? (accountType === "general" ? "/pts" : "/home"));
+    router.push(takeReturnTo() ?? landingPathFor(accountType));
   }
 
   return (

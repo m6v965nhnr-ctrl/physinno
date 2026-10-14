@@ -9,7 +9,16 @@ export default function AddToHomeButton() {
   const { mode, promptInstall } = useInstall();
   const [showSteps, setShowSteps] = useState(false);
 
-  if (mode !== "ios" && mode !== "android") return null;
+  if (mode === null) return null;
+
+  if (mode === "installed") {
+    return (
+      <div className="mt-3 rounded-2xl border border-gray-100 bg-white p-5">
+        <p className="text-sm font-semibold text-gray-900">スマホのホーム画面に追加</p>
+        <p className="mt-1 text-xs leading-5 text-gray-500">追加済みです。このアプリのアイコンから、いつでも開けます。</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-3 rounded-2xl border border-gray-100 bg-white p-5">
@@ -22,7 +31,13 @@ export default function AddToHomeButton() {
       >
         ホーム画面に追加する
       </button>
-      {mode === "ios" && showSteps && (
+      {mode === "none" && showSteps && (
+        <p className="mt-3 text-xs leading-6 text-gray-700">
+          スマホのブラウザ（iPhoneはSafari、AndroidはChrome）でこのページを開き、メニューから「ホーム画面に追加」を選んでください。
+          LINEやInstagramの中で開いているときは、「ブラウザで開く」から開き直してください。
+        </p>
+      )}
+      {mode !== "none" && mode !== "android" && showSteps && (
         <ol className="mt-3 list-decimal space-y-1 pl-5 text-xs leading-6 text-gray-700">
           <li>Safariで、この画面を開いたままにします</li>
           <li>画面下の共有ボタン（□に↑）を押します</li>
