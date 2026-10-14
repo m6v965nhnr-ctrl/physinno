@@ -303,7 +303,7 @@ export default function CreatePostPage() {
    */
   if (!type) {
     return (
-      <main className="min-h-screen bg-[#fafafa] pb-24">
+      <main className="flex min-h-screen flex-col bg-[#fafafa] pb-24">
         <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-2xl items-center px-5 py-4">
             <Link
@@ -319,8 +319,9 @@ export default function CreatePostPage() {
           </div>
         </header>
 
-        <div className="mx-auto max-w-2xl px-5 py-3">
-          <div className="space-y-2">
+        {/* スマホでは、いちばん下のカードの下辺が、下のメニューの上にちょうど来るよう、残りの高さを均等に使う */}
+        <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 py-3">
+          <div className="flex flex-1 flex-col gap-2">
             {(
               [
                 { key: "normal", icon: "📝", title: "通常投稿", desc: "写真や動画、日々の気づきなどを投稿" },
@@ -336,7 +337,7 @@ export default function CreatePostPage() {
               <button
                 key={item.key}
                 onClick={() => setType(item.key as PostType)}
-                className="flex w-full items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-2.5 text-left transition hover:border-gray-400 hover:shadow-sm"
+                className="flex w-full flex-1 items-center gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-2.5 text-left transition hover:border-gray-400 hover:shadow-sm sm:flex-none"
               >
                 <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-gray-100 text-lg">
                   {item.icon}

@@ -294,27 +294,19 @@ export default function HospitalSearch() {
 
         {hasDetailData && (
           <>
-            <fieldset>
-              <legend className="mb-1.5 px-1 text-xs text-gray-500">診療科（選んだものすべてがある病院）</legend>
-              <div className="flex flex-wrap gap-1.5">
-                {DEPARTMENT_FILTERS.map((d) => {
-                  const on = departments.includes(d);
-                  return (
-                    <button
-                      key={d}
-                      type="button"
-                      aria-pressed={on}
-                      onClick={() =>
-                        setDepartments((prev) => (on ? prev.filter((v) => v !== d) : [...prev, d]))
-                      }
-                      className={chipClass(on)}
-                    >
-                      {d}
-                    </button>
-                  );
-                })}
-              </div>
-            </fieldset>
+            <select
+              value={departments[0] || ""}
+              onChange={(e) => setDepartments(e.target.value ? [e.target.value] : [])}
+              className={INPUT_CLASS}
+              aria-label="診療科"
+            >
+              <option value="">診療科を指定しない</option>
+              {DEPARTMENT_FILTERS.map((d) => (
+                <option key={d} value={d}>
+                  {d}
+                </option>
+              ))}
+            </select>
 
             <select
               value={bedType}

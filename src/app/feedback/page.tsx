@@ -9,7 +9,7 @@ const CATEGORIES = [
   { key: "request", label: "こんな機能がほしい" },
   { key: "problem", label: "困っていること・使いにくい所" },
   { key: "question", label: "質問" },
-  { key: "other", label: "その他" },
+  { key: "other", label: "その他（削除の申し出など）" },
 ] as const;
 
 const ROLES = [
@@ -65,13 +65,13 @@ export default function FeedbackPage() {
           ← Re:light
         </Link>
 
-        <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">意見箱</h1>
+        <h1 className="mt-4 text-2xl font-bold tracking-tight text-gray-900">運営へのメッセージ・意見箱</h1>
         <p className="mt-2 text-sm leading-7 text-gray-700">
           みんなで、このアプリを作っていきたいと思っています。今、困っていること、こんな機能がほしい、使いにくい所など、なんでも教えてください。
         </p>
         <p className="mt-2 rounded-xl bg-white p-3 text-xs leading-6 text-gray-600">
           <strong className="text-gray-900">匿名で送れます。</strong>
-          ログインは、いりません。ログイン中でも、あなたのアカウントとは、ひも付けません。返信がほしいときだけ、連絡先を書いてください（任意）。患者さんが特定される情報は、書かないでください。
+          ログインは、いりません。ログイン中でも、あなたのアカウントとは、ひも付けません。返信がほしいとき（削除の申し出・不具合の確認など）だけ、連絡先を書いてください（任意）。患者さんが特定される情報は、書かないでください。
         </p>
 
         {done ? (

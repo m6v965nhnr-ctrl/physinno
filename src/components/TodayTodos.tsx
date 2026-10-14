@@ -32,7 +32,7 @@ export function profileCompleteness(profile: Partial<PtProfile> | null) {
   };
 }
 
-// マイページの「今日やること」。プロフィール・学生からの質問・今日の10問を、1枚にまとめる
+// マイページの「今日やること」。プロフィール・学生からの質問・論文検索を、1枚にまとめる
 export default function TodayTodos({
   userId,
   profile,
@@ -75,10 +75,10 @@ export default function TodayTodos({
   }
 
   todos.push({
-    key: "quiz",
-    title: "今日の10問で、力試し",
-    hint: "国試の過去問を、1問ずつ。約3分",
-    href: "/student/quiz/play?mode=unanswered&n=10&order=random",
+    key: "papers",
+    title: "論文検索を使ってみる",
+    hint: "日本語でも英語でも、PubMedなど9つのサイトをまとめて検索",
+    href: "/pts?tab=search&mode=papers",
   });
 
   return (

@@ -15,6 +15,7 @@ import {
   isPublicPtPath,
 } from "@/lib/account";
 import { isAdminUser } from "@/lib/admin";
+import { isStandaloneApp } from "@/lib/install";
 import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback"];
@@ -71,7 +72,8 @@ export default function AuthGuard({
           setChecking(false);
           return;
         }
-        router.replace("/");
+        // ホーム画面のアプリとして開いたときは、サイトの紹介ではなく、ログイン画面へ
+        router.replace(isStandaloneApp() ? "/login" : "/");
         return;
       }
 
@@ -133,7 +135,7 @@ export default function AuthGuard({
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_OUT" && !publicPaths.includes(pathname)) {
-        router.replace("/");
+        router.replace(isStandaloneApp() ? "/login" : "/");
       }
     });
 

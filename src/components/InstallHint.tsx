@@ -1,48 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useInstall } from "@/lib/install";
 
 const KEY = "relight-install-hint-dismissed";
 
-// Chromeのインストール案内イベント（型は標準にないので最小限だけ定義）
-type InstallEvent = Event & { prompt: () => Promise<void> };
-
-// 「ホーム画面に追加」の案内。すでにアプリとして開いている・閉じた人には出さない。
-// iPhone(Safari)は共有メニューから追加する手順を、Android(Chrome)はボタンで追加する。
+// 「ホーム画面に追加」の案内（ホーム）。すでにアプリとして開いている人・閉じた人には出さない。
 export default function InstallHint() {
-  const [mode, setMode] = useState<"ios" | "android" | null>(null);
-  const [installEvent, setInstallEvent] = useState<InstallEvent | null>(null);
+  const { mode, promptInstall } = useInstall();
+  const [dismissed, setDismissed] = useState(true);
 
   useEffect(() => {
     try {
-      if (localStorage.getItem(KEY)) return;
+      setDismissed(!!localStorage.getItem(KEY));
     } catch {
-      // 保存できない環境でも、案内は出す
+      setDismissed(false);
     }
-    const standalone =
-      window.matchMedia("(display-mode: standalone)").matches ||
-      (navigator as Navigator & { standalone?: boolean }).standalone === true;
-    if (standalone) return;
-
-    const ua = navigator.userAgent;
-    // iPadOS は Macintosh を名乗るので、タッチ対応かで見分ける
-    const ios = /iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
-    if (ios) {
-      // Safari以外（アプリ内ブラウザなど）では共有メニューに「ホーム画面に追加」が出ないので案内しない
-      if (/CriOS|FxiOS|EdgiOS|Line|Instagram|FBAN|FBAV|Twitter/.test(ua)) return;
-      setMode("ios");
-      return;
-    }
-    const onPrompt = (e: Event) => {
-      e.preventDefault();
-      setInstallEvent(e as InstallEvent);
-      setMode("android");
-    };
-    window.addEventListener("beforeinstallprompt", onPrompt);
-    return () => window.removeEventListener("beforeinstallprompt", onPrompt);
   }, []);
 
-  if (!mode) return null;
+  if (dismissed || (mode !== "ios" && mode !== "android")) return null;
 
   const dismiss = () => {
     try {
@@ -50,7 +26,7 @@ export default function InstallHint() {
     } catch {
       // 保存できなくても、この画面では閉じる
     }
-    setMode(null);
+    setDismissed(true);
   };
 
   return (
@@ -64,7 +40,7 @@ export default function InstallHint() {
         <button
           type="button"
           onClick={async () => {
-            await installEvent?.prompt();
+            await promptInstall();
             dismiss();
           }}
           className="mt-2 rounded-full bg-sky-600 px-4 py-1.5 text-xs font-semibold text-white"

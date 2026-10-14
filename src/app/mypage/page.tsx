@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
+import AddToHomeButton from "@/components/AddToHomeButton";
 import TodayTodos from "@/components/TodayTodos";
 import CertificateAttachments from "@/components/CertificateAttachments";
 import { AccountType, getMyAccountType } from "@/lib/account";
@@ -625,19 +626,13 @@ export default function MyPage() {
           </button>
 
           <ReferralCard userId={userId} />
-
-          <Link
-            href="/contact"
-            className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
-          >
-            運営へのメッセージ
-          </Link>
+          <AddToHomeButton />
 
           <Link
             href="/feedback"
             className="block w-full rounded-full border border-gray-200 bg-white py-3 text-center text-sm font-medium text-gray-600 hover:bg-gray-50"
           >
-            意見箱（匿名で、意見を送る）
+            運営へのメッセージ・意見箱
           </Link>
 
           {/* ログアウト */}

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { PIXEL_ENABLED } from "@/lib/metaPixel";
 import LpTabs from "@/components/lp/LpTabs";
+import StandaloneRedirect from "@/components/StandaloneRedirect";
 import { pickLpEntrance } from "@/lib/lpEntrance";
 import { MockHospital, MockIdeas, MockKokushi, MockPaperSearch, MockPost } from "@/components/lp/Mocks";
 
@@ -365,6 +366,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
 
   return (
     <main className="min-h-screen bg-white text-gray-900">
+      <StandaloneRedirect />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
       {/* ヘッダー（スクロールしても残る。「中を見てみる」は、ここにも） */}
