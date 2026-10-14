@@ -7,6 +7,7 @@ import ConfirmHost from "@/components/ConfirmHost";
 import ErrorReporter from "@/components/ErrorReporter";
 import AttributionCapture from "@/components/AttributionCapture";
 import MetaPixel from "@/components/MetaPixel";
+import UpdateNotifier from "@/components/UpdateNotifier";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_TITLE, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -70,6 +71,7 @@ export default function RootLayout({
         <Toaster />
         <ConfirmHost />
         <ErrorReporter />
+        <UpdateNotifier />
       </body>
     </html>
   );

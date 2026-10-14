@@ -77,17 +77,23 @@ function PTSearchPageInner() {
   // ログインしていない訪問者（検索エンジン経由など）には登録を案内する
   const [loggedIn, setLoggedIn] = useState(true);
 
+  // 立場の確認が終わるまでは、タブを出さない（確認前の仮の状態が、一瞬、他の人向けの画面として見えるのを防ぐ）
+  const [roleChecked, setRoleChecked] = useState(false);
+
   useEffect(() => {
     supabase.auth.getUser().then(async ({ data: { user } }) => {
       setLoggedIn(!!user);
       if (user) {
         const accountType = await getMyAccountType(user.id);
-        setIsPt(isPtLike(accountType));
+        // 種類がまだ入っていない古いアカウントは、下のメニューと同じく、PTとして扱う
+        setIsPt(accountType === null || isPtLike(accountType));
       }
+      setRoleChecked(true);
     });
   }, []);
 
   const modes = isPt ? PT_MODES : !loggedIn ? GUEST_MODES : OTHER_MODES;
+  if (!roleChecked) return <main className="min-h-screen bg-white px-6 py-8 pb-24" />;
   // URLやタブの指定がないとき・選べないモードのときは、いちばん左のタブ
   const mode: SearchMode =
     searchMode && modes.some(([key]) => key === searchMode) ? searchMode : modes[0][0];
