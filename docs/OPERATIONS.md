@@ -11,7 +11,7 @@
 |---|---|---|
 | アプリのコード | GitHub `m6v965nhnr-ctrl/physinno` | git clone → Vercel が自動デプロイ |
 | DBの構造（表・関数・権限） | `supabase/migrations/*.sql` | 新しい Supabase プロジェクトに、番号順に流す |
-| 国試の問題（約1,000問） | `scripts/quiz/` の取り込み手順と元PDF | 取り込みスクリプトで再作成 |
+| 国試の問題（約1,200問） | `scripts/quiz/` の取り込み手順と元PDF | 取り込みスクリプトで再作成 |
 | 病院・養成校のデータ | 取り込み元（厚労省等）と、取り込み手順 | 再取り込み |
 | **ユーザーのデータ（投稿・プロフィール・記録）** | **Supabase のバックアップだけ** | ダッシュボードの Restore |
 | 画像・添付 | Supabase Storage | Storage はDBのバックアップに含まれない場合がある。要確認 |

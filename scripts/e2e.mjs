@@ -42,7 +42,7 @@ const PUBLIC_PAGES = [
 ];
 
 // ログイン後の画面: PT・学生・一般で開ける範囲が違うので、「エラー画面にならないこと」だけを見る
-const LOGGED_IN_PAGES = ["/home", "/mypage", "/student", "/notifications", "/messages", "/groups", "/pts", "/ideas", "/training"];
+const LOGGED_IN_PAGES = ["/home", "/mypage", "/student", "/student/quiz", "/notifications", "/messages", "/groups", "/pts", "/ideas", "/training"];
 
 const ERROR_TEXTS = ["うまく表示できませんでした", "ページが見つかりません", "Application error"];
 
@@ -79,6 +79,24 @@ try {
   for (const [path, word] of PUBLIC_PAGES) {
     const { problems } = await checkPage(guest, path, word);
     report(`公開 ${path}`, problems.length === 0, problems.join(" / "));
+  }
+  // 1.5) トップページは、リンクのUTMに合わせて最初のタブが変わる（lpEntrance.ts の対応表）
+  const LP_CASES = [
+    ["/", "tab-start"],
+    ["/?utm_source=tiktok&utm_campaign=profile", "tab-student"],
+    ["/?utm_source=ig&utm_campaign=quiz-watt", "tab-student"],
+    ["/?utm_source=x&utm_campaign=profile", "tab-features"],
+    ["/?utm_source=ig&utm_campaign=memo-berg", "tab-features"],
+    ["/?utm_source=ig&utm_campaign=profile", "tab-start"],
+    ["/?utm_source=x&utm_campaign=quiz-b12#faq", "tab-faq"], // #リンクがあれば、そちらが優先
+  ];
+  for (const [path, tab] of LP_CASES) {
+    const page = await guest.newPage();
+    await page.goto(BASE + path, { waitUntil: "domcontentloaded", timeout: 30000 });
+    await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => {});
+    const on = await page.locator('[role="tab"][aria-selected="true"]').getAttribute("id");
+    report(`LPの最初のタブ ${path} → ${tab}`, on === tab, `実際: ${on}`);
+    await page.close();
   }
   await guest.close();
 

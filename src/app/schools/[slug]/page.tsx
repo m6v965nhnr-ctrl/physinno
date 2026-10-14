@@ -164,7 +164,7 @@ export default async function SchoolPage({ params }: Props) {
             Re:lightは、理学療法士と、理学療法士をめざす学生のための、無料のアプリです。
           </p>
           <ul className="mt-3 space-y-2 text-sm leading-7 text-gray-800">
-            <li>・<strong>国試の過去問</strong>（第57〜61回・約1,000問）を、1問ずつ解いて、すぐ解説</li>
+            <li>・<strong>国試の過去問</strong>（第56〜61回・約1,200問）を、1問ずつ解いて、すぐ解説</li>
             <li>・<strong>実習先の口コミ</strong>と、全国の病院情報</li>
             <li>・<strong>先輩に質問</strong>（匿名でもOK）、実習レポートの構成・誤字脱字のチェック</li>
           </ul>

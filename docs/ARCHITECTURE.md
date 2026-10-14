@@ -75,7 +75,7 @@
 - Supabase の「漏えいパスワード保護」はダッシュボード側の設定（有料プラン）。
 
 ## 過去問ドリル(理学療法士国家試験の一問一答)
-- 出典: 厚生労働省が公開している国家試験の問題・正答(公共データ利用規約 PDL1.0。出典表示が条件)。第59〜61回を取り込み済み。
+- 出典: 厚生労働省が公開している国家試験の問題・正答(公共データ利用規約 PDL1.0。出典表示が条件)。第56〜61回を取り込み済み。
 - テーブル: `quiz_units`(単元24) / `quiz_questions`(問題・正答・図のパス) / `quiz_progress`(本人の解答記録・ブックマーク)。どれも画面から直接は読めず、RPC(`quiz_*`)だけを通す。`quiz_can_use()` で学生・PTのみ。正答は `quiz_answer` / `quiz_reveal` を呼んだときだけ返る。
 - 画面: `/student/quiz`(単元・回の一覧、出題条件) → `/student/quiz/play`(一問一答、結果、間違い復習)。
 - 取り込み: `scripts/quiz/`(`build.py` がPDFから問題JSONと図の画像(webp)を作る → `classify.py` か手作業で単元を付ける → JSONを一時的に `public/` に置いてデプロイ → DBの `net.http_get` で取得して INSERT → JSONを削除)。図は `public/quiz/<回>/` に置く。
@@ -97,6 +97,7 @@
 - ログインなしで見られるページ: `isPublicGuestPath`（`src/lib/account.ts`）。`/home`・`/home/pt-search`・`/posts`・`/ideas`・`/ideas/[slug]`、ほかに `/guest`（立場の選択）・`/guest/student`（学生の入口）。ログイン中の人は、これまでどおり AuthGuard の確認（初回プロフィール登録・一般アカウントの制限）を通る。操作（投稿・いいね・コメント・保存・AI・メッセージ）は、画面側で登録を案内する（`GuestBanner` / `useIsGuest`）。
 - 立場（PT／学生）: `src/lib/guestRole.ts`（localStorage。サーバーには送らない）。未選択のゲストが `/home` を開くと `/guest` へ。下部ナビは、立場ごとに変わる（`BottomNavWrapper`）。
 - トップページ（`src/app/page.tsx`）: ヘッダーに「中を見てみる」を常に残し、その下を、タブ（はじめに・できること・学生のみなさんへ・はじめ方・よくある質問。`LpTabs`）で切り替える。全タブの内容は HTML に含める（検索エンジン用）。アプリの画面の見本は、コードで描いた（`src/components/lp/Mocks.tsx`）。
+- トップページの入口（2026-10-14〜）: `/?utm_source=…&utm_campaign=…` で、最初に開くタブと、最後のボタンの行き先（`/register?type=`）を変える（`src/lib/lpEntrance.ts` の `pickLpEntrance`、サーバー側で `searchParams` から決める＝ちらつきなし。そのため `/` は動的ページ）。対応: campaign が `quiz-*`/`kokushi-*`/`exam-*`/`student-*`、または source=`tiktok` → 「学生のみなさんへ」＋学生登録／campaign が `memo-*`/`tips-*`/`paper-*`/`ai-*`/`clinical-*`/`evidence-*`/`hospital-*`、または source=`x` → 「できること」／それ以外（UTMなし・`profile` など）→ 「はじめに」。campaign が source より優先。`#faq` などのハッシュがあればそちらが優先。タブは、そのあと自由に切り替えられる。確認は `scripts/e2e.mjs`。
 - アイコン→プロフィール: `ProfileLink`（`nested` は、リンクの中に置くとき用）。`/pts/[id]` は、プロフィール id でも user_id でも開ける（`src/lib/profileId.ts`）。
 - 色: 主要なボタン・バナーは、明るいブランドのグラデーション＋濃いティールの文字（`--relight-gradient-bright` / `--on-brand`）。白文字を載せたい濃い面は `--relight-gradient-strong`。
 

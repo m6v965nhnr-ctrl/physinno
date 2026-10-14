@@ -6,9 +6,9 @@ import KokushiCta from "./KokushiCta";
 
 export const revalidate = 86400;
 
-const TITLE = "理学療法士国家試験 過去問【第57回〜第61回】無料・正答つき";
+const TITLE = "理学療法士国家試験 過去問【第56回〜第61回】無料・正答つき";
 const DESCRIPTION =
-  "理学療法士国家試験の過去問（第57回〜第61回・各200問）を、ログインなしで無料公開。1問ずつ解いて正答を確認できます。無料登録で全問の解説・間違えた問題の復習・模擬試験も。";
+  "理学療法士国家試験の過去問（第56回〜第61回・各200問）を、ログインなしで無料公開。1問ずつ解いて正答を確認できます。無料登録で全問の解説・間違えた問題の復習・模擬試験も。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -57,7 +57,7 @@ export default async function KokushiIndexPage() {
         <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">
           理学療法士国家試験 過去問
           <span className="block text-base font-semibold text-gray-600 sm:text-lg">
-            第57回〜第61回・全{totalQuestions.toLocaleString()}問を無料で（正答つき）
+            第56回〜第61回・全{totalQuestions.toLocaleString()}問を無料で（正答つき）
           </span>
         </h1>
 

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { PIXEL_ENABLED } from "@/lib/metaPixel";
 import LpTabs from "@/components/lp/LpTabs";
+import { pickLpEntrance } from "@/lib/lpEntrance";
 import { MockHospital, MockIdeas, MockKokushi, MockPaperSearch, MockPost } from "@/components/lp/Mocks";
 
 // 検索から来た人が「自分向けだ」と分かり、そのまま登録できるランディングページ
@@ -18,7 +19,7 @@ const TABS = [
 
 const TRY_LINKS = [
   { href: "/guest", icon: "👀", title: "アプリの中を見てみる", body: "PTか学生かを選ぶと、ログインなしで、見て触れます" },
-  { href: "/kokushi", icon: "📝", title: "国試の過去問を解く", body: "第57〜61回・全1,000問。正答つき・登録不要" },
+  { href: "/kokushi", icon: "📝", title: "国試の過去問を解く", body: "第56〜61回・全1,200問。正答つき・登録不要" },
   { href: "/pts?mode=hospitals", icon: "🏥", title: "病院を探す", body: "全国約5,000病院と、PTの職場口コミ" },
   { href: "/evidence-levels", icon: "📚", title: "エビデンスレベル早見表", body: "論文の強さの見分け方を、1枚で" },
 ];
@@ -44,7 +45,7 @@ const FEATURES = [
 ];
 
 const STUDENT_FEATURES = [
-  { icon: "📝", title: "国試の過去問ドリル", body: "第57〜61回の全1,000問。全問の解説、間違えた問題の復習、時間を計る模擬試験、科目ごとの正答率。" },
+  { icon: "📝", title: "国試の過去問ドリル", body: "第56〜61回の全1,200問。全問の解説、間違えた問題の復習、時間を計る模擬試験、科目ごとの正答率。" },
   { icon: "🗂", title: "実習・就活トラッカー", body: "実習先、病院見学、応募、提出物の期限を、ひとつに。病院ページから、ワンタップで追加。" },
   { icon: "⏱", title: "国試カウントダウンと学習ログ", body: "試験日までの日数、科目ごとの勉強時間、連続記録。" },
   { icon: "🙋", title: "実習先の口コミと、先輩への質問", body: "実習生の声が見られ、現役のPTに、匿名で質問できます。実習レポートは、構成と誤字脱字をAIがチェック（代筆はしません）。" },
@@ -52,7 +53,7 @@ const STUDENT_FEATURES = [
 
 const ENTRANCES = [
   { href: "/register?type=pt", who: "理学療法士の方", title: "臨床と学びを、もっと広く", body: "症例相談・論文検索・臨床アイデア・研修情報" },
-  { href: "/register?type=student", who: "学生の方", title: "国試・実習・就活をひとつに", body: "過去問1,000問・実習先の口コミ・応募の管理" },
+  { href: "/register?type=student", who: "学生の方", title: "国試・実習・就活をひとつに", body: "過去問1,200問・実習先の口コミ・応募の管理" },
 ];
 
 const STEPS = [
@@ -83,7 +84,7 @@ const FAQS = [
   },
   {
     q: "国家試験の過去問は無料で解けますか？",
-    a: "はい。第57回〜第61回の理学療法士国家試験（全1,000問）は、ログインなしで1問ずつ解いて正答を確認できます。学生アカウントで無料登録すると、全問の解説、間違えた問題だけの復習、時間を計る模擬試験、科目ごとの正答率も使えます。",
+    a: "はい。第56回〜第61回の理学療法士国家試験（全1,200問）は、ログインなしで1問ずつ解いて正答を確認できます。学生アカウントで無料登録すると、全問の解説、間違えた問題だけの復習、時間を計る模擬試験、科目ごとの正答率も使えます。",
   },
   {
     q: "どんな症例を投稿できますか？",
@@ -164,7 +165,12 @@ function Check() {
   );
 }
 
-export default function LandingPage() {
+export default async function LandingPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
+  // どのリンクから来たかで、最初に開くタブと最後のボタンの行き先を変える（本文は全タブ共通・HTMLに含める）
+  const q = await searchParams;
+  const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+  const entrance = pickLpEntrance(one(q.utm_source), one(q.utm_campaign));
+
   const startPanel = (
     <div className="mx-auto max-w-5xl px-6 py-10">
       {/* まず試す */}
@@ -424,6 +430,7 @@ export default function LandingPage() {
       {/* タブ */}
       <LpTabs
         tabs={TABS}
+        initialTab={entrance.tab}
         panels={{ start: startPanel, features: featuresPanel, student: studentPanel, howto: howtoPanel, faq: faqPanel }}
       />
 
@@ -432,7 +439,7 @@ export default function LandingPage() {
         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">学びと経験を、つながりに変えよう。</h2>
         <p className="mt-3 text-sm">登録無料・メールアドレスだけで1分。</p>
         <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3">
-          <Link href="/register?type=pt" className="block rounded-full bg-gray-900 px-6 py-4 text-center text-base font-medium text-white">
+          <Link href={`/register?type=${entrance.register}`} className="block rounded-full bg-gray-900 px-6 py-4 text-center text-base font-medium text-white">
             無料ではじめる
           </Link>
           <Link href="/guest" className="block rounded-full bg-white px-6 py-3 text-center text-sm font-semibold text-gray-900">
