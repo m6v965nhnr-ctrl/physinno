@@ -177,7 +177,7 @@ export type QualificationTarget = {
   kind: QualificationKind | null;
   field: string | null;
   mode: QualificationMode | null;
-  checklist: Record<string, boolean> | null;
+  checklist: Record<string, boolean | number> | null;
 };
 
 export async function listQualificationTargets(
@@ -236,7 +236,7 @@ export async function updateQualificationTarget(id: string, input: Qualification
 }
 
 // 条件のチェック（自分で完了を記録する項目）を保存する
-export async function setQualificationChecklist(id: string, checklist: Record<string, boolean>) {
+export async function setQualificationChecklist(id: string, checklist: Record<string, boolean | number>) {
   const { error } = await supabase.from("qualification_targets").update({ checklist }).eq("id", id);
 
   return error ? error.message : null;

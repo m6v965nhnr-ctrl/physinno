@@ -71,6 +71,8 @@ export type Requirement = {
   label: string;
   detail?: string;
   url?: string;
+  // 「12コマ」のように、いくつ済んだかを数える項目（自分で数を入力する）。なければ、チェックだけ
+  count?: { total: number; unit: string };
   auto?:
     | { type: "points"; need: number }
     | { type: "count"; categories: AchievementCategory[]; need: number; note: string };
@@ -98,18 +100,21 @@ export function requirementsFor(kind: QualificationKind, mode: QualificationMode
       items: [
         {
           key: "zenki",
+          count: { total: 54, unit: "コマ" },
           label: "前期研修を修了する",
           detail: "入会後、最短2年。全54コマ（座学22コマ＋実地研修32コマ）。座学は士会の研修会かeラーニング（マイページから無料で申込）",
           url: `${BASE}/zenki-kouki/`,
         },
         {
           key: "kouki",
+          count: { total: 51, unit: "コマ" },
           label: "後期研修を修了する",
           detail: "前期のあと、最短3年。座学51コマ＋実地経験3年（36か月）。講座Cは27コマ中19コマ",
           url: `${BASE}/zenki-kouki/`,
         },
         {
           key: "kouki-e",
+          count: { total: 6, unit: "コマ" },
           label: "後期研修の「症例検討会（講座E）」を6コマ分",
           detail: "E-1〜E-3の3テーマで、各2コマ。発表1回＝1コマ、聴講3回＝1コマ（eラーニングは対象外）",
           url: `${BASE}/zenki-kouki/`,
@@ -159,18 +164,21 @@ export function requirementsFor(kind: QualificationKind, mode: QualificationMode
         { key: "pre", label: "登録理学療法士であること（前提）", url: `${BASE}/nintei/` },
         {
           key: "shitei",
+          count: { total: 12, unit: "コマ" },
           label: "指定研修カリキュラムを受講する",
           detail: "全分野共通。12コマ（1コマ90分、計18時間）の本会eラーニング。受講費12,000円（税別）。同じ年度内に全コマ",
           url: `${BASE}/nintei/`,
         },
         {
           key: "rinsho",
-          label: `臨床認定カリキュラム${f}を受講する`,
+          count: { total: 20, unit: "コマ" },
+          label: `臨床認定カリキュラム${f}を受講する（20コマ以上）`,
           detail: "分野別。必須15コマ＋選択5コマ以上。教育機関に申し込み（費用・形式は機関ごと）。申請の前年度までに完了",
           url: `${BASE}/certif-specialized/nintei_curriculum/`,
         },
         {
           key: "taikai",
+          count: { total: 2, unit: "日" },
           label: "日本理学療法学術研修大会に、全日程参加する",
           detail: "基本は2日間すべて。発表は不要。例年5〜6月ごろ（士会・ブロックの学会は対象外）",
           url: `${BASE}/nintei/`,
@@ -207,6 +215,7 @@ export function requirementsFor(kind: QualificationKind, mode: QualificationMode
         {
           key: "renewal-training",
           label: "更新時研修を受講する",
+          count: { total: 5, unit: "コマ" },
           detail: "共通4コマ＋分野別1コマ（計5コマ・5時間）の本会eラーニング。1分野5,000円（税別）",
           url: `${BASE}/nintei/`,
         },
@@ -229,6 +238,7 @@ export function requirementsFor(kind: QualificationKind, mode: QualificationMode
         { key: "pre", label: "登録理学療法士であること（前提）", url: `${BASE}/senmon/` },
         {
           key: "shitei",
+          count: { total: 12, unit: "コマ" },
           label: "指定研修カリキュラムを受講する",
           detail: "全分野共通。12コマ（計18時間）の本会eラーニング。受講費12,000円（税別）。同じ年度内に全コマ",
           url: `${BASE}/senmon/`,
@@ -313,6 +323,7 @@ export function requirementsFor(kind: QualificationKind, mode: QualificationMode
       {
         key: "renewal-training",
         label: "更新時研修を受講する",
+          count: { total: 5, unit: "コマ" },
         detail: "共通4コマ＋分野別1コマ（計5コマ・5時間）の本会eラーニング。1分野5,000円（税別）",
         url: `${BASE}/senmon/`,
       },
@@ -346,6 +357,8 @@ export const POINT_GUIDE: { label: string; points: string }[] = [
 export type RequirementStatus = {
   req: Requirement;
   done: boolean;
+  // 数える項目（コマ数など）の、いまの数と必要な数。ポイント・実績から自動で数える項目も、ここに入る
+  progress: { value: number; need: number; unit: string } | null;
   // 自動で数えた現在の値（ポイントや件数）。手動の項目は null
   value: number | null;
   need: number | null;
@@ -359,7 +372,7 @@ type TargetLike = {
   field: string | null;
   cycle_start: string;
   renewal_years: number;
-  checklist: Record<string, boolean> | null;
+  checklist: Record<string, boolean | number> | null;
 };
 
 export function evaluateRequirements(
@@ -379,7 +392,8 @@ export function evaluateRequirements(
   });
 
   const statuses = set.items.map((req): RequirementStatus => {
-    const checked = !!target.checklist?.[req.key];
+    const raw = target.checklist?.[req.key];
+    const checked = raw === true;
 
     if (req.auto?.type === "points") {
       const value = inCycle.reduce((sum, a) => sum + (a.points || 0), 0);
@@ -388,6 +402,7 @@ export function evaluateRequirements(
       return {
         req,
         done,
+        progress: { value, need: req.auto.need, unit: "点" },
         value,
         need: req.auto.need,
         next: done ? "達成" : `あと${Math.round(left * 10) / 10}点（研修・学会参加・発表などを記録して、ポイントを入れてください）`,
@@ -401,13 +416,27 @@ export function evaluateRequirements(
       return {
         req,
         done,
+        progress: { value, need: req.auto.need, unit: "件" },
         value,
         need: req.auto.need,
         next: done ? "達成" : "まだ記録がありません（実績を記録すると、自動で数えます）",
       };
     }
 
-    return { req, done: checked, value: null, need: null, next: checked ? "完了" : "完了したら、チェックしてください" };
+    if (req.count) {
+      const value = Math.max(0, Math.min(req.count.total, Number(raw) || 0));
+      const done = value >= req.count.total;
+      return {
+        req,
+        done,
+        progress: { value, need: req.count.total, unit: req.count.unit },
+        value,
+        need: req.count.total,
+        next: done ? "完了" : `あと${req.count.total - value}${req.count.unit}`,
+      };
+    }
+
+    return { req, done: checked, progress: null, value: null, need: null, next: checked ? "完了" : "完了したら、チェックしてください" };
   });
 
   return { statuses, doneCount: statuses.filter((s) => s.done).length, total: statuses.length };

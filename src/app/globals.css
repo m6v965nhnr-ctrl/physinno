@@ -88,9 +88,7 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-:lang(ja) {
-  word-break: auto-phrase;
-}
+/* 日本語は、行の右端いっぱいまで使って折り返す（文節ごとの折り返し・行末をそろえる折り返しは、右に空白が残るため使わない） */
 
 h1,
 h2,
@@ -99,9 +97,24 @@ h4 {
   text-wrap: balance;
 }
 
-p,
-li {
-  text-wrap: pretty;
+/* iPhoneの日付・時刻の入力欄は、そのままだと枠の幅をはみ出して、右に長くなる */
+input[type="date"],
+input[type="time"],
+input[type="month"],
+input[type="datetime-local"] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+  max-width: 100%;
+  text-align: left;
+}
+
+input[type="date"]::-webkit-date-and-time-value,
+input[type="time"]::-webkit-date-and-time-value,
+input[type="month"]::-webkit-date-and-time-value,
+input[type="datetime-local"]::-webkit-date-and-time-value {
+  text-align: left;
+  min-height: 1.25em;
 }
 
 @media (prefers-color-scheme: dark) {
