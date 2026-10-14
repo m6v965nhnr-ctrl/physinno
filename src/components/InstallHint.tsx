@@ -34,7 +34,7 @@ export default function InstallHint() {
       <p className="text-sm font-semibold text-sky-900">ホーム画面に追加すると、アプリのように開けます</p>
       {mode === "ios" ? (
         <p className="mt-1 text-xs leading-5 text-sky-800">
-          Safariの下にある共有ボタン（□に↑）から「ホーム画面に追加」を選んでください。
+          Safariの共有ボタン（□に↑）から「ホーム画面に追加」を選んでください。見当たらないときは、メニュー上の「表示を増やす」を押すと出ます。LINE・Instagramの中のときは、先にSafariで開き直してください。
         </p>
       ) : (
         <button

@@ -412,6 +412,9 @@ export default function MyPage() {
 
         </div>
 
+        {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
+        <AddToHomeButton />
+
         {/* =========================
             ポートフォリオへの導線
         ========================= */}
@@ -625,7 +628,6 @@ export default function MyPage() {
           </button>
 
           <ReferralCard userId={userId} />
-          <AddToHomeButton />
         </div>
 
         {/* =========================
