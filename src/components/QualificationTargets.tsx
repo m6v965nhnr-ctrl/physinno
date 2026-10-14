@@ -14,6 +14,16 @@ import {
   deleteQualificationTarget,
   updateQualificationTarget,
 } from "@/lib/achievements";
+import QualificationCard from "@/components/QualificationCard";
+import {
+  KIND_LABEL,
+  MODE_LABEL,
+  QualificationKind,
+  QualificationMode,
+  fieldsFor,
+  requirementsFor,
+  targetName,
+} from "@/lib/qualificationCatalog";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
 
@@ -27,6 +37,10 @@ const QUALIFICATION_EXAMPLES = [
 const today = () => new Date().toISOString().slice(0, 10);
 
 type FormState = {
+  // 登録・認定・専門理学療法士から選ぶか、自分で設定するか（まだ選んでいないときは ""）
+  kind: QualificationKind | "custom" | "";
+  field: string;
+  mode: QualificationMode;
   name: string;
   unit: QualificationUnit;
   requiredTotal: string;
@@ -36,6 +50,9 @@ type FormState = {
 };
 
 const emptyForm = (): FormState => ({
+  kind: "",
+  field: "",
+  mode: "acquire",
   name: "",
   unit: "count",
   requiredTotal: "20",
@@ -46,6 +63,9 @@ const emptyForm = (): FormState => ({
 
 function formFrom(t: QualificationTarget): FormState {
   return {
+    kind: t.kind ?? "custom",
+    field: t.field ?? "",
+    mode: t.mode ?? "acquire",
     name: t.name,
     unit: t.unit,
     requiredTotal: String(t.required_total),
@@ -93,26 +113,54 @@ export default function QualificationTargets({
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
 
-    if (!form.name.trim()) {
-      notify("資格名を入力してください");
+    if (form.kind === "") {
+      notify("資格の種類を選んでください");
       return;
     }
 
-    if (form.categories.length === 0) {
-      notify("数える対象の実績を、1つ以上選択してください");
+    const isCatalog = form.kind !== "custom";
+    const kind = isCatalog ? (form.kind as QualificationKind) : null;
+
+    if (!isCatalog) {
+      if (!form.name.trim()) {
+        notify("資格名を入力してください");
+        return;
+      }
+
+      if (form.categories.length === 0) {
+        notify("数える対象の実績を、1つ以上選択してください");
+        return;
+      }
+    } else if (fieldsFor(kind as QualificationKind).length > 0 && !form.field) {
+      notify("分野を選んでください");
       return;
     }
 
     setSaving(true);
 
-    const input = {
-      name: form.name,
-      requiredTotal: Number(form.requiredTotal),
-      renewalYears: Number(form.renewalYears),
-      cycleStart: form.cycleStart,
-      unit: form.unit,
-      categories: form.categories,
-    };
+    // 登録・認定・専門は、協会の条件から、必要な数・サイクルを決める
+    const set = kind ? requirementsFor(kind, form.mode, form.field || null) : null;
+
+    const input = kind && set
+      ? {
+          name: targetName(kind, form.mode, form.field || null),
+          requiredTotal: form.mode === "renew" ? set.points ?? set.items.length : set.items.length,
+          renewalYears: set.cycleYears,
+          cycleStart: form.cycleStart,
+          unit: (form.mode === "renew" ? "points" : "count") as QualificationUnit,
+          categories: ACHIEVEMENT_CATEGORIES,
+          kind,
+          field: form.field || null,
+          mode: form.mode,
+        }
+      : {
+          name: form.name,
+          requiredTotal: Number(form.requiredTotal),
+          renewalYears: Number(form.renewalYears),
+          cycleStart: form.cycleStart,
+          unit: form.unit,
+          categories: form.categories,
+        };
 
     const error =
       editingId === "new"
@@ -139,7 +187,7 @@ export default function QualificationTargets({
   return (
     <div>
       <div className="flex items-center justify-between">
-        <h3 className="text-base font-semibold">資格更新の目標</h3>
+        <h3 className="text-base font-semibold">資格の目標（取得・更新）</h3>
 
         {editingId === null ? (
           <button onClick={startNew} className="text-sm text-relight-blue">
@@ -157,6 +205,114 @@ export default function QualificationTargets({
           onSubmit={handleSubmit}
           className="mt-4 space-y-4 rounded-2xl border border-gray-100 p-4"
         >
+          <fieldset>
+            <legend className="text-xs text-gray-500">資格の種類</legend>
+            <div className="mt-1 grid grid-cols-2 gap-2">
+              {(["registered", "certified", "specialist"] as QualificationKind[]).map((k) => (
+                <label
+                  key={k}
+                  className={`cursor-pointer rounded-xl border px-3 py-2 text-sm ${
+                    form.kind === k ? "border-black bg-gray-50" : "border-gray-200"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="qualification-kind"
+                    value={k}
+                    checked={form.kind === k}
+                    onChange={() => setForm({ ...form, kind: k, field: "" })}
+                    className="mr-2"
+                  />
+                  {KIND_LABEL[k]}
+                </label>
+              ))}
+              <label
+                className={`cursor-pointer rounded-xl border px-3 py-2 text-sm ${
+                  form.kind === "custom" ? "border-black bg-gray-50" : "border-gray-200"
+                }`}
+              >
+                <input
+                  type="radio"
+                  name="qualification-kind"
+                  value="custom"
+                  checked={form.kind === "custom"}
+                  onChange={() => setForm({ ...form, kind: "custom", field: "" })}
+                  className="mr-2"
+                />
+                その他（自分で設定）
+              </label>
+            </div>
+          </fieldset>
+
+          {form.kind !== "" && form.kind !== "custom" && (
+            <>
+              {fieldsFor(form.kind).length > 0 ? (
+                <label className="block text-xs text-gray-500">
+                  分野（{KIND_LABEL[form.kind]}の、どの分野？）
+                  <select
+                    value={form.field}
+                    onChange={(e) => setForm({ ...form, field: e.target.value })}
+                    className="mt-1 w-full rounded-xl border bg-white px-4 py-2.5 text-sm text-gray-900"
+                    required
+                  >
+                    <option value="">分野を選ぶ</option>
+                    {fieldsFor(form.kind).map((f) => (
+                      <option key={f} value={f}>
+                        {f}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              ) : (
+                <p className="rounded-xl bg-gray-50 px-3 py-2 text-xs leading-5 text-gray-600">
+                  登録理学療法士には、分野の区別はありません（認定・専門理学療法士にだけ、分野があります）。
+                </p>
+              )}
+
+              <fieldset>
+                <legend className="text-xs text-gray-500">目的</legend>
+                <div className="mt-1 grid grid-cols-2 gap-2">
+                  {(["acquire", "renew"] as QualificationMode[]).map((m) => (
+                    <label
+                      key={m}
+                      className={`cursor-pointer rounded-xl border px-3 py-2 text-sm ${
+                        form.mode === m ? "border-black bg-gray-50" : "border-gray-200"
+                      }`}
+                    >
+                      <input
+                        type="radio"
+                        name="qualification-mode"
+                        value={m}
+                        checked={form.mode === m}
+                        onChange={() => setForm({ ...form, mode: m })}
+                        className="mr-2"
+                      />
+                      {MODE_LABEL[m]}
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+
+              {form.mode === "renew" && (
+                <label className="block text-xs text-gray-500">
+                  更新サイクルの開始日（取得・更新した年度の4月1日など。この日以降の実績を数えます）
+                  <input
+                    type="date"
+                    value={form.cycleStart}
+                    onChange={(e) => setForm({ ...form, cycleStart: e.target.value })}
+                    className="mt-1 block w-full min-w-0 rounded-xl border px-4 py-2.5 text-sm text-gray-900"
+                  />
+                </label>
+              )}
+
+              <p className="text-[11px] leading-5 text-gray-400">
+                日本理学療法士協会の条件をもとに、「あと何をすればいいか」を、マイページに表示します。
+              </p>
+            </>
+          )}
+
+          {form.kind === "custom" && (
+          <>
           <label className="block text-xs text-gray-500">
             資格・目標の名前
             <input
@@ -270,9 +426,12 @@ export default function QualificationTargets({
             必要な数や期間は、協会の案内などを見て設定してください（あとから変更できます）。
           </p>
 
+          </>
+          )}
+
           <button
             type="submit"
-            disabled={saving}
+            disabled={saving || form.kind === ""}
             className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
           >
             {saving ? "保存中…" : editingId === "new" ? "この目標を追加" : "変更を保存"}
@@ -285,6 +444,19 @@ export default function QualificationTargets({
           <p className="text-sm text-gray-400">まだ目標が設定されていません。</p>
         ) : (
           targets.map((t) => {
+            if (t.kind && t.mode) {
+              return (
+                <QualificationCard
+                  key={t.id}
+                  target={t}
+                  achievements={achievements}
+                  onEdit={() => startEdit(t)}
+                  onDelete={() => handleDelete(t.id)}
+                  onChanged={onChanged}
+                />
+              );
+            }
+
             const p = computeQualificationProgress(t, achievements);
             const unit = t.unit === "points" ? "ポイント" : "回";
             const years = Math.floor(p.monthsRemaining / 12);

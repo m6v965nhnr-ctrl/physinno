@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { listPosts } from "@/lib/posts";
+import { QualificationKind, QualificationMode, evaluateRequirements } from "@/lib/qualificationCatalog";
 
 export type AchievementCategory =
   | "conference"
@@ -172,6 +173,11 @@ export type QualificationTarget = {
   created_at: string;
   unit: QualificationUnit;
   count_categories: AchievementCategory[];
+  // 登録・認定・専門理学療法士から選んだ目標のとき（自分で設定した目標は null）
+  kind: QualificationKind | null;
+  field: string | null;
+  mode: QualificationMode | null;
+  checklist: Record<string, boolean> | null;
 };
 
 export async function listQualificationTargets(
@@ -193,10 +199,16 @@ export type QualificationInput = {
   cycleStart: string;
   unit: QualificationUnit;
   categories: AchievementCategory[];
+  kind?: QualificationKind | null;
+  field?: string | null;
+  mode?: QualificationMode | null;
 };
 
 function toRow(input: QualificationInput) {
   return {
+    kind: input.kind ?? null,
+    field: input.field ?? null,
+    mode: input.mode ?? null,
     name: input.name.trim(),
     required_total: Math.max(1, Math.round(input.requiredTotal) || 1),
     renewal_years: Math.max(1, Math.round(input.renewalYears) || 1),
@@ -219,6 +231,13 @@ export async function updateQualificationTarget(id: string, input: Qualification
     .from("qualification_targets")
     .update(toRow(input))
     .eq("id", id);
+
+  return error ? error.message : null;
+}
+
+// 条件のチェック（自分で完了を記録する項目）を保存する
+export async function setQualificationChecklist(id: string, checklist: Record<string, boolean>) {
+  const { error } = await supabase.from("qualification_targets").update({ checklist }).eq("id", id);
 
   return error ? error.message : null;
 }
@@ -273,11 +292,18 @@ export function computeQualificationProgress(
   });
 
   const isPoints = target.unit === "points";
-  const value = isPoints
-    ? counted.reduce((sum, a) => sum + a.points, 0)
-    : counted.length;
 
-  const remaining = Math.max(0, target.required_total - value);
+  // 登録・認定・専門の「取得」は、条件のうち、いくつ済んだかで数える
+  const acquire = target.kind && target.mode === "acquire" ? evaluateRequirements({ ...target, kind: target.kind, mode: target.mode }, achievements) : null;
+  const required = acquire ? acquire.total : target.required_total;
+
+  const value = acquire
+    ? acquire.doneCount
+    : isPoints
+      ? counted.reduce((sum, a) => sum + a.points, 0)
+      : counted.length;
+
+  const remaining = Math.max(0, required - value);
   const achieved = remaining === 0;
 
   const withPoints = counted.filter((a) => a.points > 0);
@@ -310,7 +336,7 @@ export function computeQualificationProgress(
     activityCount: counted.length,
     remaining,
     achieved,
-    percent: Math.min(100, Math.round((value / target.required_total) * 100)),
+    percent: Math.min(100, Math.round((value / required) * 100)),
     deadline,
     monthsRemaining,
     expired,
