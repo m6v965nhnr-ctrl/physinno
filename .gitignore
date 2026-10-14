@@ -51,3 +51,10 @@ _sns/
 _sns_next/
 _reels/
 _flyer/
+
+# iPhoneアプリ（Capacitor）の生成物
+ios/App/App/public
+ios/App/App/capacitor.config.json
+ios/App/build/
+ios/DerivedData/
+ios/App/Pods
