@@ -16,6 +16,8 @@ const KINDS = {
   answer: { subject: (a: string) => `${a}さんがあなたの質問に回答しました`, path: "/notifications" },
   // しばらく使っていない人へのお知らせ（3週間。1人あたり、60日に1通まで）
   reminder: { subject: () => "しばらくぶりです。こんな機能が使えます", path: "/" },
+  // アカウントの種類（PT・学生）が未設定の人への、設定のお願い（運営から。種類が決まれば、対象から外れる）
+  setup: { subject: () => "かざねよりお願い：アカウントの種類を設定してください", path: "/mypage/edit" },
 } as const;
 
 type Kind = keyof typeof KINDS;
@@ -95,8 +97,35 @@ export async function POST(request: Request) {
     return [...lines, "", `${SITE_NAME}を開く: ${SITE_URL}/?${utm}`];
   };
 
+  const setupBody = (): string[] => {
+    const utm = "utm_source=email&utm_medium=setup";
+    return [
+      "かざねよりお願いです。",
+      "",
+      "アカウントの種類（理学療法士か学生）が、いま「未設定」になっています。",
+      "設定してもらうと、論文検索など、いろんな機能が使えるようになります！",
+      "",
+      "【設定のしかた】",
+      "1. 下のリンクを開く（または、マイページ →「プロフィール編集」を開く）",
+      "2. いちばん下の「アカウントの種類」で、「PT（理学療法士）」か「学生」を選ぶ",
+      `   ${SITE_URL}/mypage/edit?${utm}`,
+      "",
+      "あと、ホーム画面に追加できるようにしました。やってみてください！",
+      "マイページの「同僚を招待する」の下にあるボタンから、数タップでできます。",
+      "",
+      `${SITE_NAME}を開く: ${SITE_URL}/?${utm}`,
+    ];
+  };
+
   const text = (
-    kind === "reminder"
+    kind === "setup"
+      ? [
+          ...setupBody(),
+          "",
+          "――",
+          `${SITE_NAME}（運営）からの、アカウント設定のお願いです。設定が済むと、このメールは届かなくなります。`,
+        ]
+      : kind === "reminder"
       ? [
           ...reminderBody(),
           "",

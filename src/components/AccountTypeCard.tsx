@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { supabase } from "@/lib/supabase";
 import {
   ACCOUNT_TYPE_LABEL,
   AccountType,
@@ -22,6 +23,34 @@ export default function AccountTypeCard({
 }) {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
+  // 未設定のアカウントだけ、「学生」も選べる（卒業予定年と学校名を聞く）
+  const [studentForm, setStudentForm] = useState(false);
+  const [gradYear, setGradYear] = useState("");
+  const [school, setSchool] = useState("");
+
+  // 卒業予定年の選択肢（4月以降は、来年から。サーバー側の決まりと同じ）
+  const jst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+  const minYear = jst.getFullYear() + (jst.getMonth() + 1 <= 3 ? 0 : 1);
+  const years = Array.from({ length: 7 }, (_, i) => minYear + i);
+
+  async function becomeStudent() {
+    if (!gradYear || saving) {
+      setError("卒業予定年を選んでください");
+      return;
+    }
+    setSaving(true);
+    setError("");
+    const { error: rpcError } = await supabase.rpc("become_student", {
+      p_graduation_year: Number(gradYear),
+      p_school: school.trim() || null,
+    });
+    setSaving(false);
+    if (rpcError) {
+      setError("設定できませんでした。時間をおいて、もう一度お試しください");
+      return;
+    }
+    window.location.href = "/student/settings?welcome=1";
+  }
 
   async function change(type: "pt" | "general") {
     if (type === accountType || saving) return;
@@ -65,7 +94,7 @@ export default function AccountTypeCard({
       <p className="mt-1 text-xs text-gray-500">
         {accountType
           ? `現在：${ACCOUNT_TYPE_LABEL[accountType]}（資格は自己申告です）`
-          : "まだ設定されていません。PTか一般かを選んでください。"}
+          : "まだ設定されていません。PT・学生・一般のどれかを選んでください。"}
       </p>
 
       <div
@@ -106,6 +135,53 @@ export default function AccountTypeCard({
           );
         })}
       </div>
+
+      {!accountType && (
+        <div className="mt-3">
+          <button
+            type="button"
+            onClick={() => setStudentForm((v) => !v)}
+            aria-expanded={studentForm}
+            className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3 text-left hover:border-gray-400"
+          >
+            <span className="block text-sm font-medium text-gray-900">学生（理学療法学科などで学んでいる）</span>
+            <span className="mt-1 block text-xs text-gray-500">国試の過去問・実習の管理・先輩に質問ができます</span>
+          </button>
+          {studentForm && (
+            <div className="mt-2 space-y-2 rounded-2xl bg-gray-50 p-3">
+              <select
+                value={gradYear}
+                onChange={(e) => setGradYear(e.target.value)}
+                aria-label="卒業予定年"
+                className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm"
+              >
+                <option value="">卒業予定年を選ぶ</option>
+                {years.map((y) => (
+                  <option key={y} value={y}>
+                    {y}年（{y}年3月卒業予定）
+                  </option>
+                ))}
+              </select>
+              <input
+                value={school}
+                onChange={(e) => setSchool(e.target.value)}
+                maxLength={80}
+                placeholder="学校名（任意）"
+                aria-label="学校名"
+                className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm"
+              />
+              <button
+                type="button"
+                onClick={becomeStudent}
+                disabled={saving}
+                className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-50"
+              >
+                {saving ? "設定しています…" : "学生として設定する"}
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {error && (
         <p className="mt-3 rounded-xl bg-red-50 px-3 py-2 text-xs text-red-600">
