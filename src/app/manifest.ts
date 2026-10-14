@@ -11,12 +11,13 @@ export default function manifest(): MetadataRoute.Manifest {
     start_url: "/home",
     scope: "/",
     display: "standalone",
-    background_color: "#ffffff",
-    theme_color: "#45d0c2",
+    background_color: "#041129",
+    theme_color: "#041129",
     icons: [
-      { src: "/pwa/icon?size=192", sizes: "192x192", type: "image/png", purpose: "any" },
-      { src: "/pwa/icon?size=512", sizes: "512x512", type: "image/png", purpose: "any" },
-      { src: "/pwa/icon?size=512&maskable=1", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/icons/relight-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: "/icons/relight-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
+      // ロゴは中央の約70%に収まっているので、そのまま丸型などに切り取られても欠けない
+      { src: "/icons/relight-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

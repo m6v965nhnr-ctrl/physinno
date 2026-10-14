@@ -62,7 +62,7 @@ check("POST /api/papers/ai は未ログインで 401/503", [401, 503].includes(a
 // 5) ホーム画面に追加するための設定と、通知メールAPIの認可
 const manifest = await get("/manifest.webmanifest");
 check("manifest.webmanifest が200", manifest.res.status === 200, `status=${manifest.res.status}`);
-const icon = await fetch(BASE + "/pwa/icon?size=192");
+const icon = await fetch(BASE + "/icons/relight-192.png");
 check("アプリアイコン(PNG)が取得できる", icon.status === 200 && (icon.headers.get("content-type") || "").includes("image/png"), `status=${icon.status}`);
 const notify = await get("/api/notify-email", {
   method: "POST",
