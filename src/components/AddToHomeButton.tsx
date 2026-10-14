@@ -7,7 +7,8 @@ import { isInAppBrowser, isIosDevice, useInstall } from "@/lib/install";
 //  - iPhone(Safari): 共有ボタン →（見当たらなければ「表示を増やす」）→「ホーム画面に追加」
 //  - LINE・Instagramなどの中: 先に、Safari（Androidは Chrome）で開き直す
 //  - Android(Chrome): ワンタップ。出ないときは、メニュー（⋮）から
-export default function AddToHomeButton() {
+// placement: "top"＝まだ追加していない人に、目立つ場所で出す／"bottom"＝追加済みの人に、小さく「追加済み」を出す（招待の下）
+export default function AddToHomeButton({ placement = "top" }: { placement?: "top" | "bottom" }) {
   const { mode, promptInstall } = useInstall();
   const [open, setOpen] = useState(false);
   const [inApp, setInApp] = useState(false);
@@ -18,8 +19,21 @@ export default function AddToHomeButton() {
     setIos(isIosDevice());
   }, []);
 
-  // 追加済みのアプリの中では、出さない（場所を取らない）
-  if (mode === null || mode === "installed") return null;
+  if (mode === null) return null;
+
+  // 追加済みの人は、招待の下に、小さく「追加済み」だけ。まだの人は、上の、目立つカードだけ
+  if (mode === "installed") {
+    if (placement !== "bottom") return null;
+    return (
+      <p className="mt-3 flex items-center gap-2 rounded-2xl bg-emerald-50 px-4 py-3 text-xs leading-5 text-emerald-900">
+        <span aria-hidden="true" className="text-lg">
+          📲
+        </span>
+        ホーム画面に追加済みです。アイコンから、1タップで開けます。
+      </p>
+    );
+  }
+  if (placement === "bottom") return null;
 
   const step = "flex gap-3 text-sm leading-6 text-gray-800";
   const num = "mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gray-900 text-xs font-bold text-white";
@@ -106,9 +120,13 @@ export default function AddToHomeButton() {
                   右上の<b>「追加」</b>を押して、完了です。
                 </span>
               </li>
-              <li className="text-xs leading-5 text-gray-500">
-                ※ 初めて、ホーム画面のアイコンから開くときだけ、もう一度ログインが必要です（iPhoneの仕様で、Safariとは別になります）。<br />
-                ※ Safari以外のブラウザ（Chromeなど）で、共有メニューに出ないときは、Safariで開き直してください。
+              <li className="space-y-1 text-xs leading-5 text-gray-900">
+                <span className="block">
+                  ※ Safari以外のブラウザ（Chromeなど）や、LINE・Instagramなどのアプリの中で開いていて、共有メニューに「ホーム画面に追加」が出ないときは、Safariで開き直してください。
+                </span>
+                <span className="block">
+                  ※ 初めて、ホーム画面のアイコンから開くときだけ、もう一度ログインが必要です（iPhoneの仕様で、Safariとは別になります）。
+                </span>
               </li>
             </ol>
           ) : (

@@ -628,6 +628,7 @@ export default function MyPage() {
           </button>
 
           <ReferralCard userId={userId} />
+          <AddToHomeButton placement="bottom" />
         </div>
 
         {/* =========================

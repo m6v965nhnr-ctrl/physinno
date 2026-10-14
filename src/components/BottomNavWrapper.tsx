@@ -1,5 +1,6 @@
 "use client";
 
+import NavIcon from "@/components/NavIcons";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -255,11 +256,9 @@ export default function BottomNavWrapper() {
             >
               <span
                 aria-hidden="true"
-                className={`relative flex h-7 items-center justify-center leading-none ${
-                  menu.href === "/posts/create" ? "text-3xl font-light" : "text-2xl"
-                }`}
+                className="relative flex h-7 w-7 items-center justify-center leading-none"
               >
-                {menu.icon}
+                <NavIcon href={menu.href} />
                 {badgeCount > 0 && (
                   <span className="absolute -right-1.5 -top-0.5 flex h-4 min-w-[16px] items-center justify-center rounded-full bg-red-500 px-1 text-[9px] font-semibold text-white">
                     {badgeCount > 9 ? "9+" : badgeCount}
