@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+import StreakBadge from "@/components/student/StreakBadge";
 import { QuizModeCounts, getModeCounts, listQuizExams, percent } from "@/lib/quiz";
 
 // 学生ホームの、いちばん目立つ場所に置く「一問一答ドリル」（メイン機能）。
@@ -36,7 +37,10 @@ export default function QuizHero() {
 
   return (
     <section aria-labelledby="quiz-hero-title" className="overflow-hidden rounded-3xl bg-relight-gradient p-5 shadow-sm">
-      <p className="inline-block rounded-full bg-white/70 px-3 py-0.5 text-[11px] font-bold">メイン機能</p>
+      <div className="flex flex-wrap items-center gap-2">
+        <p className="inline-block rounded-full bg-white/70 px-3 py-0.5 text-[11px] font-bold">メイン機能</p>
+        <StreakBadge className="bg-white/70" />
+      </div>
       <h2 id="quiz-hero-title" className="mt-2 text-2xl font-extrabold tracking-tight">
         🎯 一問一答ドリル
       </h2>

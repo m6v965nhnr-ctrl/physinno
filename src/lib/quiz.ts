@@ -94,6 +94,13 @@ export async function getModeCounts(
   return row ?? { all_count: 0, unanswered: 0, wrong: 0, bookmarked: 0, direct_count: 0 };
 }
 
+// 学習の連続日数(日本時間)。今日まだ解いていなければ、昨日までの連続を返す
+export async function getStreak(): Promise<{ streak: number; doneToday: boolean } | null> {
+  const { data } = await supabase.rpc("quiz_streak");
+  const row = (data ?? [])[0] as { streak: number; done_today: boolean } | undefined;
+  return row ? { streak: row.streak, doneToday: row.done_today } : null;
+}
+
 // キーワードに関係する言葉を集める（AI。使えないときは、よく使う言いかえだけ）
 export async function fetchRelatedTerms(keyword: string): Promise<string[]> {
   try {

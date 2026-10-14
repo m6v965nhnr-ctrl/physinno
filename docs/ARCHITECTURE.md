@@ -85,6 +85,8 @@
 - PDF・印刷: 一覧の「PDF・印刷」タブに、厚生労働省の公式PDF(問題・別冊・正答)へのリンク(`src/lib/quizPdf.ts`)と、解説つきの印刷用ページ `/student/quiz/print`(RPC `quiz_print_exam`)がある。印刷用ページは、ブラウザの印刷から「PDFに保存」で、PDFにできる。
 - 外部の解説: `quiz_questions.ref_url` に、明日へブログの該当ページ(5問ごと)のURLを入れ、答え合わせ画面にリンクを出す。文章の転載はしない。
 - 先生用のクラスと課題(`supabase/migrations/20261009_quiz_classes.sql`): PTアカウントが `/student/quiz/teacher` で申請(`quiz_teacher_requests`) → 運営が `/admin` で承認(`quiz_teachers`)。先生は `quiz_classes`(6文字の参加コード)を作り、`quiz_assignments`(単元・回・難易度で、問題をランダムに選んで固定)を配る。学生は `/student/quiz/classes` でコードを入れて参加(`quiz_class_members`)し、`/student/quiz/play?assignment=<id>` で解く。課題の解答は `quiz_assignment_answers` に最初の1回だけ記録(通常のドリルの記録 `quiz_progress` にも反映)。先生に見えるのは、いまクラスにいる学生の、配った課題の結果(名前・正誤)だけ(`/student/quiz/teacher/assignment?id=`)。学生はいつでも退出でき、退出すると先生の画面から消える。難易度は `quiz_progress` の全ユーザーの正答率から自動(5人以上が解いた問題だけ。80%以上=かんたん、50〜80%=ふつう、50%未満=むずかしい)。テーブルはすべてクライアントから直接は読み書きできず、SECURITY DEFINER の関数だけで操作する。
+- 間違えた問題の解き直し(2026-10-14): `quiz_progress.last_correct is false` の問題だけを出す `mode=wrong`(単元・回で絞れる。ホームの「間違えた問題を復習」、一覧の「前回間違えた問題」)。正解すると `last_correct` が true になり、対象から外れる。0問のときは、一覧に案内の文、`/student/quiz/play` に「いまありません」の画面を出す。
+- 学習の連続日数(20261101_quiz_streak.sql): `quiz_study_days`(user_id, 日本時間の日。本人も直接は読めない)。`quiz_progress` の解答が増えたときのトリガー(`quiz_note_study_day`)が記録する(ブックマークの切り替えでは増えない。通常・模擬試験・課題のどれでも)。RPC `quiz_streak()` が連続日数と今日解いたかを返し、今日まだなら昨日までの連続を返す。表示は `StreakBadge`(学生ホームの一問一答と、一覧の見出し。1日以上のときだけ)。導入前の日は復元できないため、既存ユーザーは最後に解いた日だけ補った。退会は auth.users への CASCADE で消える。
 
 ## 臨床アイデア（2026-10-08〜）
 - 場所: `/pts` の「臨床アイデア」タブ（PT・学生のみ）と `/ideas`。`/ideas` は `PT_ONLY_PATH_PREFIXES` に入れてあり、一般アカウントは開けない。

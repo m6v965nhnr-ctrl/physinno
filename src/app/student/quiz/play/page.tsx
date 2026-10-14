@@ -204,7 +204,11 @@ export default function QuizPlayPage() {
       <main className="min-h-screen bg-[#fafafa] px-6 py-10">
         <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 text-center shadow-sm">
           <p className="text-sm text-gray-600">
-            {isAssignment ? "この課題を開けません。クラスから退出したか、課題が削除された可能性があります。" : "この条件に合う問題はありません。"}
+            {isAssignment
+              ? "この課題を開けません。クラスから退出したか、課題が削除された可能性があります。"
+              : params.mode === "wrong"
+                ? "間違えた問題は、いまありません。ぜんぶ解き直せました。この調子です。"
+                : "この条件に合う問題はありません。"}
           </p>
           <Link href={backHref} className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
             戻る

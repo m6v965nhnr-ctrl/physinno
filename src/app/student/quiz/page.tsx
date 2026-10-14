@@ -23,6 +23,7 @@ import {
   percent,
 } from "@/lib/quiz";
 import { LoadingScreen } from "@/components/states";
+import StreakBadge from "@/components/student/StreakBadge";
 
 type Target =
   | { kind: "unit"; id: string; name: string }
@@ -140,7 +141,10 @@ export default function QuizHomePage() {
           <Link href={accountType === "student" ? "/student" : "/home"} className="text-sm text-gray-400">
             ← {accountType === "student" ? "学生ホーム" : "ホーム"}
           </Link>
-          <h1 className="mt-2 text-xl font-semibold tracking-tight">過去問ドリル</h1>
+          <div className="mt-2 flex flex-wrap items-center gap-2">
+            <h1 className="text-xl font-semibold tracking-tight">過去問ドリル</h1>
+            <StreakBadge className="bg-gray-100" />
+          </div>
           <p className="mt-1 text-xs leading-5 text-gray-500">
             理学療法士国家試験の過去問を、単元ごとに一問一答で。答えはその場で確認できます。
           </p>
@@ -487,6 +491,11 @@ export default function QuizHomePage() {
                   );
                 })}
               </div>
+              {counts && counts.wrong === 0 && (
+                <p className="mt-2 text-xs leading-5 text-gray-500">
+                  間違えた問題はありません。間違えた問題が出ると、ここから解き直せます。
+                </p>
+              )}
             </fieldset>
 
             <fieldset>
