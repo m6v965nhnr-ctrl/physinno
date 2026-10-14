@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import {
   Attachment,
   deleteAttachment,
+  getAttachmentUrl,
   listAttachments,
   uploadAttachment,
 } from "@/lib/portfolio";
@@ -98,14 +99,17 @@ export default function CertificateAttachments({
               key={a.id}
               className="flex items-center justify-between gap-2 rounded-lg bg-white px-3 py-2"
             >
-              <a
-                href={a.file_url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="min-w-0 flex-1 truncate text-xs text-gray-700 hover:underline"
+              <button
+                type="button"
+                onClick={async () => {
+                  const url = await getAttachmentUrl(a.file_url);
+                  if (url) window.open(url, "_blank", "noopener,noreferrer");
+                  else notify("ファイルを開けませんでした");
+                }}
+                className="min-w-0 flex-1 truncate text-left text-xs text-gray-700 hover:underline"
               >
                 📄 {a.file_name || "ファイル"}
-              </a>
+              </button>
 
               <button
                 onClick={() => handleDelete(a.id)}

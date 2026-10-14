@@ -77,7 +77,7 @@ export default function MyPage() {
 
     // 一般の方は自分のレビューとフォロー数だけ読み込む
     if (type === "general") {
-      await loadMyReviews(user.id);
+      await loadMyReviews();
 
       const { data: followingData } = await supabase
         .from("follows")
@@ -202,14 +202,10 @@ export default function MyPage() {
   // =========================
   // 自分が書いたレビュー（一般の方用）
   // =========================
-  async function loadMyReviews(userId: string) {
-    const { data: reviewData } = await supabase
-      .from("reviews")
-      .select("id, pt_id, rating, comment, created_at")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
+  async function loadMyReviews() {
+    const { data: reviewData } = await supabase.rpc("list_my_reviews");
 
-    const rows = reviewData || [];
+    const rows = (reviewData || []) as { id: string; pt_id: string; rating: number; comment: string | null; created_at: string }[];
     const ptIds = [...new Set(rows.map((r) => r.pt_id))];
     const nameMap: Record<string, string> = {};
 

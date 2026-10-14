@@ -81,16 +81,11 @@ export default function PTProfile() {
     setPt(ptData);
 
     // レビュー取得
-    const { data: reviewData } = await supabase
-      .from("reviews")
-      .select("*")
-      .eq("pt_id", ptData.id)
-      .order("created_at", {
-        ascending: false,
-      });
+    // 投稿者のID（user_id）を返さない関数から読む（匿名のレビューの投稿者を、API経由でも分からなくするため）
+    const { data: reviewData } = await supabase.rpc("list_pt_reviews", { p_pt: ptData.id });
 
     if (reviewData) {
-      setReviews(reviewData);
+      setReviews(reviewData as Review[]);
     }
 
     // フォロー状態取得

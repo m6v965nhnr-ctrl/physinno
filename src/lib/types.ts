@@ -50,7 +50,8 @@ export type PtPrivate = {
 export type Review = {
   id: string;
   pt_id: string | null;
-  user_id: string | null;
+  // 投稿者のIDは、画面には返さない（匿名のレビューの保護）。レビューを読む関数に、含まれない
+  user_id?: string | null;
   rating: number | null;
   comment: string | null;
   reviewer_type: string | null;

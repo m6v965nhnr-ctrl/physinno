@@ -547,21 +547,26 @@ export async function uploadAttachment(params: {
     return uploadError.message;
   }
 
-  const { data } = supabase.storage
-    .from("portfolio-files")
-    .getPublicUrl(filePath);
-
+  // ファイルは、非公開の保管庫に置く（誰でも開ける公開URLは作らない）。保存するのは、場所（パス）だけ。
+  // 開くときに、短時間だけ有効な署名つきURLを作る（getAttachmentUrl）
   const { error } = await supabase.from("attachments").insert({
     user_id: params.userId,
     entity_type: params.entityType,
     entity_id: params.entityId,
-    file_url: data.publicUrl,
+    file_url: filePath,
     file_name: params.file.name,
     label: params.label || null,
     is_public: params.isPublic ?? false,
   });
 
   return error ? error.message : null;
+}
+
+// 添付ファイルを開くための、署名つきURL（1時間だけ有効）。昔の公開URL（http…）は、そのまま返す
+export async function getAttachmentUrl(fileUrl: string): Promise<string | null> {
+  if (/^https?:\/\//.test(fileUrl)) return fileUrl;
+  const { data } = await supabase.storage.from("portfolio-files").createSignedUrl(fileUrl, 3600);
+  return data?.signedUrl ?? null;
 }
 
 export async function deleteAttachment(id: string) {
