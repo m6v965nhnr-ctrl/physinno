@@ -809,19 +809,22 @@ export default function PaperSearch() {
 
       {/* APIがないサイトは検索語入りのリンクをその場で開けるようにする（検索した後は、結果の上に名前だけのボタンで出す） */}
       {!((mode === "normal" && searched) || (mode === "ai" && aiTurns.length > 0)) && (
-      <div className="mt-8">
-        <div className="space-y-1.5">
+      <div className="mt-3">
+        <div className="grid grid-cols-2 gap-1.5">
           {PAPER_LINK_SOURCES.map((s) => (
             <a
               key={s.key}
               href={s.build(query.trim())}
               target="_blank"
               rel="noopener noreferrer"
-              className="block rounded-2xl border border-gray-100 px-3 py-1.5 hover:border-gray-300"
+              className="block rounded-2xl border border-gray-100 px-2.5 py-1.5 hover:border-gray-300"
             >
-              {/* 名前と説明を別の行に分け、説明は右端まで使って1行に収める */}
+              {/* 名前と説明を別の行に分け、説明は枠の右端まで使う */}
               <p className="text-sm font-medium leading-5 text-gray-900">{s.label}</p>
-              <p className="text-xs leading-4 text-gray-400 [text-wrap:wrap] [word-break:normal]">{s.note}</p>
+              {/* 全体の折り返し設定（auto-phrase・pretty）は、Tailwindより強いので、ここだけ直接指定して、枠の右端まで使う */}
+              <p className="text-xs leading-4 text-gray-400" style={{ wordBreak: "normal", textWrap: "wrap" }}>
+                {s.note}
+              </p>
             </a>
           ))}
         </div>
