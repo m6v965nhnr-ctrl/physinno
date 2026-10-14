@@ -35,6 +35,7 @@ import ReviewRadarChart from "@/components/ReviewRadarChart";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
+import { askConfirm } from "@/lib/confirm";
 import ReportButton from "@/components/ReportButton";
 import { LoadingScreen } from "@/components/states";
 import { useHospitalInitial } from "./HospitalInitial";
@@ -213,7 +214,25 @@ export default function HospitalDetailPage() {
     setReviews(await listHospitalReviews(id));
   }
 
-  function openRatioEditor() {
+  // 病院の情報を編集する前に、「本当にここで働いていますか？」を聞く（「はい」と答えたPTだけが、編集できる。記録は本人にだけ見える）
+  async function ensureCanEdit(): Promise<boolean> {
+    if (canEditRatios) return true;
+    const ok = await askConfirm(
+      "あなたは本当に、ここで働いていますか？\n「はい」を押した方だけが、この病院の情報（疾患比率・採用情報）を編集できます。どこで働いているかは、ほかの人には表示されません。",
+      { okLabel: "はい、働いています", cancelLabel: "いいえ" },
+    );
+    if (!ok) return false;
+    const { error } = await supabase.rpc("confirm_hospital_work", { p_hospital: id });
+    if (error) {
+      notify("確認できませんでした。PTのアカウントで、もう一度お試しください");
+      return false;
+    }
+    setCanEditRatios(true);
+    return true;
+  }
+
+  async function openRatioEditor() {
+    if (!(await ensureCanEdit())) return;
     const current: Record<string, string> = {};
     for (const category of DISEASE_CATEGORIES) {
       const existing = diseaseRatios.find((r) => r.category === category);
@@ -247,7 +266,8 @@ export default function HospitalDetailPage() {
     setEditingRatios(false);
   }
 
-  function openRecruitmentEditor() {
+  async function openRecruitmentEditor() {
+    if (!(await ensureCanEdit())) return;
     setRecruitmentInput(hospital?.recruitment_info ?? "");
     setEditingRecruitment(true);
   }
@@ -405,7 +425,7 @@ export default function HospitalDetailPage() {
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
-            {canEditRatios && !editingRatios && (
+            {(canEditRatios || isPt) && !editingRatios && (
               <button
                 onClick={openRatioEditor}
                 className="text-xs text-gray-400 hover:text-gray-700"
@@ -469,7 +489,7 @@ export default function HospitalDetailPage() {
             </div>
           ) : (
             <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{canEditRatios && "（在籍PTが入力できます）"}
+              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
             </p>
           )}
         </section>
@@ -477,7 +497,7 @@ export default function HospitalDetailPage() {
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
-            {canEditRatios && !editingRecruitment && (
+            {(canEditRatios || isPt) && !editingRecruitment && (
               <button
                 onClick={openRecruitmentEditor}
                 className="text-xs text-gray-400 hover:text-gray-700"
@@ -522,7 +542,7 @@ export default function HospitalDetailPage() {
             </p>
           ) : (
             <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{canEditRatios && "（在籍PTが入力できます）"}
+              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
             </p>
           )}
         </section>
