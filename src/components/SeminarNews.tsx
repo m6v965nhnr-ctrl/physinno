@@ -5,7 +5,9 @@ import {
   FIELDS,
   KINDS,
   REGIONS,
+  SEMINAR_SITES,
   Seminar,
+  siteOf,
   listSavedSeminarIds,
   listUpcomingSeminars,
   setSeminarSaved,
@@ -76,6 +78,7 @@ export default function SeminarNews() {
   const [dateFrom, setDateFrom] = useState("");
   const [dateTo, setDateTo] = useState("");
   const [fee, setFee] = useState("");
+  const [sites, setSites] = useState<string[]>(SEMINAR_SITES.map((x) => x.key));
 
   const [visibleCount, setVisibleCount] = useState(30);
   const [selected, setSelected] = useState<Seminar | null>(null);
@@ -123,7 +126,11 @@ export default function SeminarNews() {
     const maxFee = fee === "" ? null : Number(fee);
     const regionPrefs = region ? REGIONS[region] || [] : [];
 
+    const known = SEMINAR_SITES.map((x) => x.key) as string[];
     return items.filter((s) => {
+      const site = siteOf(s.source);
+      // 一覧にないサイトは、他のサイトがすべて外されるまで隠さない
+      if (known.includes(site) ? !sites.includes(site) : sites.length === 0) return false;
       if (words.length > 0) {
         const text = [s.title, s.organizer, s.summary, s.prefecture, s.kind, s.source_label]
           .filter(Boolean)
@@ -160,7 +167,7 @@ export default function SeminarNews() {
 
       return true;
     });
-  }, [items, keyword, region, prefectures, includeOnline, format, fields, kinds, dateFrom, dateTo, fee]);
+  }, [items, keyword, region, prefectures, includeOnline, format, fields, kinds, dateFrom, dateTo, fee, sites]);
 
   const activeFilterCount =
     (region || prefectures.length > 0 ? 1 : 0) +
@@ -181,6 +188,7 @@ export default function SeminarNews() {
     setDateFrom("");
     setDateTo("");
     setFee("");
+    setSites(SEMINAR_SITES.map((x) => x.key));
     setVisibleCount(30);
   }
 
@@ -243,6 +251,23 @@ export default function SeminarNews() {
           placeholder="キーワード（研修名・主催・地名など）"
           className="w-full rounded-full border px-5 py-3"
          aria-label="キーワード（研修名・主催・地名など）"/>
+
+        {/* 情報を持ってくるサイト */}
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">
+          {SEMINAR_SITES.map((x) => (
+            <label key={x.key} className="flex items-center gap-1.5">
+              <input
+                type="checkbox"
+                checked={sites.includes(x.key)}
+                onChange={() => {
+                  setSites(toggle(sites, x.key));
+                  setVisibleCount(30);
+                }}
+              />
+              {x.label}
+            </label>
+          ))}
+        </div>
 
         <div className="flex gap-2">
           <button

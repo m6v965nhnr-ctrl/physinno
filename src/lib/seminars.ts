@@ -34,6 +34,20 @@ export const REGIONS: Record<string, string[]> = {
   "九州・沖縄": ["福岡県", "佐賀県", "長崎県", "熊本県", "大分県", "宮崎県", "鹿児島県", "沖縄県"],
 };
 
+// 情報を持ってくるサイト（チェックボックスで選ぶ）。source の細かい違い（pref-xxx など）は、まとめて1つにする
+export const SEMINAR_SITES = [
+  { key: "ptotst", label: "PT-OT-ST.NET" },
+  { key: "jpta", label: "日本理学療法士協会" },
+  { key: "pref", label: "都道府県理学療法士会" },
+  { key: "ugoita", label: "ウゴイタラボ" },
+] as const;
+
+export function siteOf(source: string): string {
+  if (source.startsWith("jpta")) return "jpta";
+  if (source.startsWith("pref-") || source === "pt-kanagawa") return "pref";
+  return source; // ptotst, ugoita（新しい取得元は、そのまま別のサイトとして扱われ、表示から漏れない）
+}
+
 export const KINDS = ["学術大会・学会", "研修会", "講習会", "講義", "セミナー", "イベント"];
 
 export const FIELDS = [
