@@ -37,7 +37,7 @@ const GUEST_MENUS_UNSET: Menu[] = [
 ];
 
 // ゲスト用のメニューを出さないページ（トップ・認証まわり）
-const NO_NAV_PATHS = ["/", "/start", "/login", "/register", "/forgot-password", "/reset-password", "/guest"];
+const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest"];
 
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ
 const GENERAL_MENUS: Menu[] = [

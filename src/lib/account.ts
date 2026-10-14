@@ -121,7 +121,9 @@ export function isPublicGuestPath(pathname: string) {
 
 
 // ログインした直後（とホーム画面のアプリを開いたとき）に最初に開く画面。
-// PT・一般の方は、いちばん使われる「検索」、学生はマイページ
+// PT・一般の方は、いちばん使われる「検索」、学生はマイページ。種類が未設定なら、設定の画面
 export function landingPathFor(accountType: AccountType | null | undefined): string {
+  // 種類が未設定の人は、先に設定の画面へ
+  if (!accountType) return "/setup";
   return accountType === "student" ? "/mypage" : "/pts";
 }

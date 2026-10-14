@@ -20,6 +20,28 @@ import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded }
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start"];
 
+// アカウントの種類が未設定の人は、これらを除く、どの画面にも進めない（/setup へ送る）
+const SETUP_EXEMPT_PATHS = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/feedback", "/setup", "/start"];
+
+// 種類が設定済みか。設定済みと分かった人は、このタブでは再確認しない（毎回の画面移動で問い合わせないため）
+async function hasAccountType(userId: string): Promise<boolean> {
+  const key = `relight-has-type-${userId}`;
+  try {
+    if (sessionStorage.getItem(key)) return true;
+  } catch {
+    // 保存できない環境では、毎回確認する
+  }
+  const type = await getMyAccountType(userId);
+  if (type) {
+    try {
+      sessionStorage.setItem(key, "1");
+    } catch {
+      // 何もしない
+    }
+  }
+  return !!type;
+}
+
 export default function AuthGuard({
   children,
 }: {
@@ -34,6 +56,19 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
+      // 種類が未設定の人は、設定の画面から先へ進めない（運営のアカウントは対象外）
+      if (!SETUP_EXEMPT_PATHS.includes(pathname)) {
+        const {
+          data: { session: early },
+        } = await supabase.auth.getSession();
+        if (cancelled) return;
+        if (early?.user && !(await hasAccountType(early.user.id)) && !(await isAdminUser(early.user.id))) {
+          if (cancelled) return;
+          router.replace("/setup");
+          return;
+        }
+      }
+
       // PT検索・プロフィール・投稿個別ページ・コラム・病院ページはログインなしで閲覧できる（コメント等の操作は各ページ側でログインを促す）
       if (
         publicPaths.includes(pathname) ||
