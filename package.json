@@ -9,7 +9,8 @@
     "lint": "eslint",
     "smoke": "node scripts/smoke.mjs",
     "check": "tsc --noEmit && next build",
-    "e2e": "node scripts/e2e.mjs"
+    "e2e": "node scripts/e2e.mjs",
+    "security": "node scripts/security-check.mjs"
   },
   "dependencies": {
     "@capacitor/core": "^8.5.3",
