@@ -187,6 +187,14 @@ export default function AuthGuard({
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT") {
+        // ログアウトした直後は、Face IDのログインを、自動で始めない
+        try {
+          sessionStorage.setItem("relight-logged-out", "1");
+        } catch {
+          // 何もしない
+        }
+      }
       if (event === "SIGNED_OUT" && !publicPaths.includes(pathname)) {
         router.replace(isStandaloneApp() ? "/login" : "/");
       }

@@ -2,12 +2,36 @@
 
 import { useEffect, useId, useRef, useState } from "react";
 import Link from "next/link";
+import { biometricAvailable, clearSavedLogin, hasSavedLogin, rememberDeclinedBiometric } from "@/lib/biometric";
+import { notify } from "@/lib/notify";
 
 // マイページ左上の「⋯」メニュー。運営へのメッセージ・意見箱／ログアウト／ブロック中のユーザー／退会
 export default function MyPageMenu({ onLogout, className = "" }: { onLogout: () => void; className?: string }) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const menuId = useId();
+  // iPhoneアプリで、顔認証が使えるときだけ: Face IDログインの、オン／オフ（null＝使えない）
+  const [faceOn, setFaceOn] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      if (!(await biometricAvailable())) return;
+      setFaceOn(await hasSavedLogin());
+    })();
+  }, []);
+
+  async function toggleFace() {
+    setOpen(false);
+    if (faceOn) {
+      await clearSavedLogin();
+      rememberDeclinedBiometric(true);
+      setFaceOn(false);
+      notify("Face IDログインを解除しました");
+    } else {
+      rememberDeclinedBiometric(false);
+      notify("次にパスワードでログインするとき、Face IDの設定をご案内します");
+    }
+  }
 
   useEffect(() => {
     if (!open) return;
@@ -55,6 +79,11 @@ export default function MyPageMenu({ onLogout, className = "" }: { onLogout: () 
           <Link role="menuitem" href="/mypage/blocked" className={`${item} border-t border-gray-100`} onClick={() => setOpen(false)}>
             ブロック中のユーザー
           </Link>
+          {faceOn !== null && (
+            <button role="menuitem" type="button" onClick={toggleFace} className={`${item} border-t border-gray-100`}>
+              {faceOn ? "Face IDログイン：オン（タップで解除）" : "Face IDログインを設定する"}
+            </button>
+          )}
           <button
             role="menuitem"
             type="button"
