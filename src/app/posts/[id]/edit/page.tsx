@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
+import MediaPicker from "@/components/posts/MediaPicker";
+import { postMediaUrls, removePostMedia, uploadPostMedia } from "@/lib/postMedia";
 import PostAudienceFields, { Audience, DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 
 export default function EditPostPage() {
@@ -15,6 +17,9 @@ export default function EditPostPage() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [audience, setAudience] = useState<Audience>(DEFAULT_AUDIENCE);
+  const [original, setOriginal] = useState<string[]>([]);
+  const [existing, setExisting] = useState<string[]>([]);
+  const [newFiles, setNewFiles] = useState<File[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
 
@@ -46,6 +51,8 @@ export default function EditPostPage() {
 
     setTitle(data.title || "");
     setContent(data.content || "");
+    setOriginal(postMediaUrls(data));
+    setExisting(postMediaUrls(data));
     setAudience({
       visibility: data.visibility ?? (data.is_public === false ? "private" : "public"),
       titlePublic: Boolean(data.title_public),
@@ -68,8 +75,8 @@ export default function EditPostPage() {
       return;
     }
 
-    if (!content.trim()) {
-      notify("本文を入力してください");
+    if (!content.trim() && existing.length + newFiles.length === 0) {
+      notify("本文または写真・資料を入れてください");
       return;
     }
 
@@ -85,11 +92,22 @@ export default function EditPostPage() {
       return;
     }
 
+    const uploaded = await uploadPostMedia(user.id, newFiles);
+
+    if (!uploaded) {
+      setSaving(false);
+      return;
+    }
+
+    const media = [...existing, ...uploaded];
+
     const { error } = await supabase
       .from("posts")
       .update({
         title: title.trim(),
         content: content.trim(),
+        image_url: media[0] ?? null,
+        media_urls: media,
         ...audiencePayload(audience, title.trim() !== ""),
       })
       .eq("id", id)
@@ -98,9 +116,13 @@ export default function EditPostPage() {
 
     if (error) {
       notify(error.message);
+      await removePostMedia(uploaded);
       setSaving(false);
       return;
     }
+
+    // 外した添付は、保管庫からも消す（更新が成功してから）
+    await removePostMedia(original.filter((u) => !existing.includes(u)));
 
     notify("投稿を更新しました");
 
@@ -171,6 +193,13 @@ export default function EditPostPage() {
               focus:ring-gray-200
             "
            aria-label="本文"/>
+
+          <MediaPicker
+            files={newFiles}
+            onChange={setNewFiles}
+            existing={existing}
+            onRemoveExisting={(u) => setExisting(existing.filter((x) => x !== u))}
+          />
 
           <PostAudienceFields value={audience} onChange={setAudience} hasTitle={title.trim() !== ""} />
 

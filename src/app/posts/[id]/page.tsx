@@ -1,5 +1,7 @@
 "use client";
 
+import { PostMediaFiles, PostMediaVisual } from "@/components/posts/PostMedia";
+import { postMediaUrls } from "@/lib/postMedia";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
@@ -479,24 +481,10 @@ export default function PostDetailPage() {
             </p>
 
           {/* 添付資料 */}
-{post.image_url && (
-  <div className="mt-6">
-    <a
-      href={post.image_url}
-      target="_blank"
-      rel="noopener noreferrer"
-     className="inline-block rounded-lg border bg-gray-50 px-3 py-2 text-sm"
-    >
-      📄 添付した資料を開く
-    </a>
-
-    <img loading="lazy" decoding="async"
-      src={post.image_url}
-      alt="添付資料"
-      className="mt-4 w-full max-h-[700px] rounded-xl object-contain"
-    />
-  </div>
-)}
+            <PostMediaVisual urls={postMediaUrls(post)} detail />
+            <div className="mt-4 space-y-2">
+              <PostMediaFiles urls={postMediaUrls(post)} />
+            </div>
 
             {/* 動画 */}
             {post.video_url && (

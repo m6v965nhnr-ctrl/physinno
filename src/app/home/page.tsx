@@ -1,5 +1,7 @@
 "use client";
 
+import { PostMediaFiles, PostMediaVisual } from "@/components/posts/PostMedia";
+import { mediaKind, postMediaUrls } from "@/lib/postMedia";
 import { safeHttpUrl } from "@/lib/url";
 import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
@@ -665,13 +667,7 @@ export default function HomePage() {
                       )}
 
                       {/* 写真 */}
-                      {post.image_url && (
-                        <img loading="lazy" decoding="async"
-                          src={post.image_url}
-                          alt="投稿画像"
-                          className="mt-4 w-full max-h-[600px] rounded-xl object-cover"
-                        />
-                      )}
+                      <PostMediaVisual urls={postMediaUrls(post)} />
 
                       {/* 動画 */}
                       {post.video_url && (
@@ -685,21 +681,9 @@ export default function HomePage() {
                     </Link>
 
                     {/* 添付資料・参考URL */}
-                    {(post.image_url || post.reference_url) && (
+                    {(postMediaUrls(post).some((u) => mediaKind(u) === "pdf") || post.reference_url) && (
                       <div className="mt-3 space-y-2">
-                        {post.image_url && (
-                          <a
-                            href={post.image_url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(event) =>
-                              event.stopPropagation()
-                            }
-                            className="block w-fit rounded-lg border bg-gray-50 px-2.5 py-1.5 text-xs text-gray-600 hover:bg-gray-100"
-                          >
-                            📄 添付資料を開く
-                          </a>
-                        )}
+                        <PostMediaFiles urls={postMediaUrls(post)} compact />
 
                         {post.reference_url && !safeHttpUrl(post.reference_url) && (
                           <p className="text-xs leading-5 text-gray-600">参考：{post.reference_url}</p>

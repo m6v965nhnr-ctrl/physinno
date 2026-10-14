@@ -81,6 +81,7 @@ export type FeedPost = {
   is_mine: boolean;
   group_id?: string | null; // グループのメンバー向けの投稿
   group_name?: string | null;
+  media_urls?: string[] | null;
 };
 
 export async function listPosts(params: {

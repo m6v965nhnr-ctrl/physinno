@@ -66,6 +66,7 @@ export type Post = {
   title: string | null;
   content: string | null;
   image_url: string | null;
+  media_urls?: string[] | null;
   video_url: string | null;
   media_url: string | null;
   like_count: number | null;

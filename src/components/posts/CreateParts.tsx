@@ -31,21 +31,21 @@ export function LabeledInput({
   );
 }
 
+import MediaPicker from "@/components/posts/MediaPicker";
+
 // 疾患分類・写真動画資料の添付・参考URL（通常投稿・実績投稿どちらでも使う共通項目）
 export function AttachmentFields({
   diseaseCategory,
   setDiseaseCategory,
-  mediaFile,
-  previewUrl,
-  onMediaChange,
+  mediaFiles,
+  setMediaFiles,
   referenceUrl,
   setReferenceUrl,
 }: {
   diseaseCategory: string;
   setDiseaseCategory: (value: string) => void;
-  mediaFile: File | null;
-  previewUrl: string | null;
-  onMediaChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  mediaFiles: File[];
+  setMediaFiles: (files: File[]) => void;
   referenceUrl: string;
   setReferenceUrl: (value: string) => void;
 }) {
@@ -76,56 +76,7 @@ export function AttachmentFields({
 
       {/* 添付資料 */}
       <div className="mt-6 border-t border-gray-100 pt-5">
-        <label className="flex cursor-pointer items-center gap-3 rounded-xl px-3 py-4 transition hover:bg-gray-50">
-          <span className="text-2xl">📎</span>
-
-          <div>
-            <p className="text-sm font-medium text-gray-900">
-              写真・動画・資料を追加
-            </p>
-
-            <p className="mt-1 text-xs text-gray-400">
-              写真・動画・PDFなどを1つ選択できます
-            </p>
-          </div>
-
-          <input
-            type="file"
-            accept="image/*,video/*,.pdf"
-            onChange={onMediaChange}
-            className="hidden"
-          />
-        </label>
-
-        {previewUrl && mediaFile && (
-          <div className="mt-4 overflow-hidden rounded-2xl border border-gray-100">
-            {mediaFile.type === "application/pdf" ? (
-              <div className="flex items-center gap-3 bg-gray-50 p-5">
-                <span className="text-3xl">📄</span>
-
-                <div>
-                  <p className="text-sm font-medium text-gray-900">
-                    {mediaFile.name}
-                  </p>
-
-                  <p className="mt-1 text-xs text-gray-400">PDF資料</p>
-                </div>
-              </div>
-            ) : mediaFile.type.startsWith("video/") ? (
-              <video
-                src={previewUrl}
-                controls
-                className="max-h-[500px] w-full object-contain"
-              />
-            ) : (
-              <img loading="lazy" decoding="async"
-                src={previewUrl}
-                alt="資料プレビュー"
-                className="max-h-[500px] w-full object-contain"
-              />
-            )}
-          </div>
-        )}
+        <MediaPicker files={mediaFiles} onChange={setMediaFiles} />
       </div>
 
       {/* 参考URL */}

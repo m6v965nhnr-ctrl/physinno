@@ -12,6 +12,7 @@ import {
   AchievementCategory,
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
+import { uploadPostMedia } from "@/lib/postMedia";
 import { AttachmentFields, LabeledInput } from "@/components/posts/CreateParts";
 
 // 症例報告（投稿検索の「症例報告」で探せる）
@@ -72,8 +73,7 @@ export default function CreatePostPage() {
   const [pmid, setPmid] = useState("");
   const [readDate, setReadDate] = useState("");
 
-  const [mediaFile, setMediaFile] = useState<File | null>(null);
-  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [mediaFiles, setMediaFiles] = useState<File[]>([]);
 
   const [posting, setPosting] = useState(false);
 
@@ -99,51 +99,8 @@ export default function CreatePostPage() {
     }
   }, []);
 
-  function handleMediaChange(
-    event: React.ChangeEvent<HTMLInputElement>
-  ) {
-    const file = event.target.files?.[0];
-
-    if (!file) {
-      return;
-    }
-
-    setMediaFile(file);
-
-    const url = URL.createObjectURL(file);
-    setPreviewUrl(url);
-  }
-
-  async function uploadMedia(userId: string) {
-    if (!mediaFile) {
-      return null;
-    }
-
-    const extension =
-      mediaFile.name.split(".").pop() || "file";
-
-    const fileName =
-      `${userId}/${Date.now()}.${extension}`;
-
-    const { error: uploadError } = await supabase.storage
-      .from("post-media")
-      .upload(fileName, mediaFile);
-
-    if (uploadError) {
-      console.error("MEDIA UPLOAD ERROR", uploadError);
-      notify("資料のアップロードに失敗しました");
-      return null;
-    }
-
-    const { data } = supabase.storage
-      .from("post-media")
-      .getPublicUrl(fileName);
-
-    return data.publicUrl;
-  }
-
   async function handleNormalPost() {
-    if (!content.trim() && !mediaFile) {
+    if (!content.trim() && mediaFiles.length === 0) {
       notify("本文または写真・動画・資料を入力してください");
       return;
     }
@@ -165,9 +122,9 @@ export default function CreatePostPage() {
         return;
       }
 
-      const mediaUrl = await uploadMedia(user.id);
+      const mediaUrls = await uploadPostMedia(user.id, mediaFiles);
 
-      if (mediaFile && !mediaUrl) {
+      if (!mediaUrls) {
         return;
       }
 
@@ -177,7 +134,8 @@ export default function CreatePostPage() {
           user_id: user.id,
           title: null,
           content: content.trim(),
-          image_url: mediaUrl,
+          image_url: mediaUrls[0] ?? null,
+          media_urls: mediaUrls,
           post_type: "normal",
           disease_category: diseaseCategory || null,
           reference_url: safeHttpUrl(referenceUrl),
@@ -227,9 +185,9 @@ export default function CreatePostPage() {
         return;
       }
 
-      const mediaUrl = await uploadMedia(user.id);
+      const mediaUrls = await uploadPostMedia(user.id, mediaFiles);
 
-      if (mediaFile && !mediaUrl) {
+      if (!mediaUrls) {
         return;
       }
 
@@ -270,7 +228,8 @@ export default function CreatePostPage() {
         user_id: user.id,
         title: title.trim(),
         content: content.trim(),
-        image_url: mediaUrl,
+        image_url: mediaUrls[0] ?? null,
+          media_urls: mediaUrls,
         post_type: type,
         conference_name: fieldConfig.showConferenceName
           ? conferenceName.trim() || null
@@ -583,9 +542,8 @@ export default function CreatePostPage() {
             <AttachmentFields
               diseaseCategory={diseaseCategory}
               setDiseaseCategory={setDiseaseCategory}
-              mediaFile={mediaFile}
-              previewUrl={previewUrl}
-              onMediaChange={handleMediaChange}
+              mediaFiles={mediaFiles}
+              setMediaFiles={setMediaFiles}
               referenceUrl={referenceUrl}
               setReferenceUrl={setReferenceUrl}
             />
@@ -640,9 +598,8 @@ export default function CreatePostPage() {
           <AttachmentFields
             diseaseCategory={diseaseCategory}
             setDiseaseCategory={setDiseaseCategory}
-            mediaFile={mediaFile}
-            previewUrl={previewUrl}
-            onMediaChange={handleMediaChange}
+            mediaFiles={mediaFiles}
+            setMediaFiles={setMediaFiles}
             referenceUrl={referenceUrl}
             setReferenceUrl={setReferenceUrl}
           />
