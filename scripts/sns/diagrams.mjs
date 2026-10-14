@@ -40,4 +40,7 @@ export const diagrams = {
     <rect x="70" y="120" width="760" height="56" rx="28" fill="${LINE}"/><rect x="70" y="120" width="${760 * 20 / 30}" height="56" rx="28" fill="${A}"/>${txt(70, 215, "HDS-R", 30, A, "start")}${txt(70 + 760 * 20 / 30, 215, "20点以下", 32, A)}
     <rect x="70" y="270" width="760" height="56" rx="28" fill="${LINE}"/><rect x="70" y="270" width="${760 * 23 / 30}" height="56" rx="28" fill="${W}"/>${txt(70, 365, "MMSE", 30, W, "start")}${txt(70 + 760 * 23 / 30, 365, "23点以下", 32, W)}
     ${txt(450, 420, "診断ではなく、スクリーニング", 28, M)}`),
+  // MMT 0〜5
+  mmt: wrap(`${txt(450, 62, "MMT（徒手筋力テスト）", 38, T)}
+    ${[["0", "収縮なし"], ["1", "わずかに収縮"], ["2", "重力を除けば動く"], ["3", "重力に抗して動く"], ["4", "抵抗に抗して動く"], ["5", "正常"]].map(([n, s], i) => { const on = n === "3"; const x = 60 + i * 130, h = 50 + i * 30; return `<rect x="${x}" y="${390 - h - 60}" width="110" height="${h}" rx="14" fill="${on ? A : LINE}"/>${txt(x + 55, 390 - h - 70, n, 40, on ? A : M)}${txt(x + 55, 400 - 22, s.length > 6 ? s.slice(0, 5) : s, 22, on ? A : M)}${s.length > 6 ? txt(x + 55, 400 + 4, s.slice(5), 22, on ? A : M) : ""}`; }).join("")}`),
 };
