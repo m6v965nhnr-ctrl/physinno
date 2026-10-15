@@ -23,6 +23,12 @@ const rows = readFileSync(process.argv[2], "utf8")
       delete r.annual_stated_min;
       delete r.annual_stated_max;
     }
+    // 月給が低すぎる（時給や手当の取り違え）値は入れない。上限が下限の1.6倍を超える幅広い範囲は、複数の職種が混ざっているので、上限を入れない
+    if (r.monthly_min < 170000) {
+      delete r.monthly_min;
+      delete r.monthly_max;
+    }
+    if (r.monthly_max > r.monthly_min * 1.6) delete r.monthly_max;
     return Object.fromEntries(KEYS.filter((k) => r[k] !== undefined).map((k) => [k, r[k]]));
   });
 
