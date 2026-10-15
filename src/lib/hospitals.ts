@@ -154,7 +154,7 @@ export type ReviewAxis = (typeof REVIEW_AXES)[number];
 
 export const REVIEW_AXIS_LABEL: Record<ReviewAxis, string> = {
   work_environment: "職場環境",
-  education_system: "教育体制",
+  education_system: "教育体制（新人教育）",
   salary: "給与",
   overtime: "残業の少なさ",
   paid_leave: "有休消化率",
@@ -177,6 +177,28 @@ export type HospitalReview = {
   comment: string | null;
   is_anonymous: boolean;
   created_at: string;
+  // 数字で答える欄（任意。答えていなければ null）
+  women_friendly: number | null;
+  employment_type: string | null;
+  annual_income: number | null; // 万円
+  monthly_overtime_hours: number | null;
+  annual_holidays: number | null;
+};
+
+export type ReviewExtra = {
+  women_friendly: number | null;
+  employment_type: string | null;
+  annual_income: number | null;
+  monthly_overtime_hours: number | null;
+  annual_holidays: number | null;
+};
+
+export const EMPTY_REVIEW_EXTRA: ReviewExtra = {
+  women_friendly: null,
+  employment_type: null,
+  annual_income: null,
+  monthly_overtime_hours: null,
+  annual_holidays: null,
 };
 
 export type RecruitFilters = {
@@ -388,6 +410,7 @@ export async function upsertHospitalReview({
   overallScore,
   comment,
   isAnonymous,
+  extra = EMPTY_REVIEW_EXTRA,
 }: {
   hospitalId: string;
   userId: string;
@@ -395,6 +418,7 @@ export async function upsertHospitalReview({
   overallScore: number;
   comment?: string;
   isAnonymous: boolean;
+  extra?: ReviewExtra;
 }): Promise<string | null> {
   const { error } = await supabase.from("hospital_reviews").upsert(
     {
@@ -404,6 +428,7 @@ export async function upsertHospitalReview({
       overall_score: overallScore,
       comment: comment?.trim() || null,
       is_anonymous: isAnonymous,
+      ...extra,
     },
     { onConflict: "hospital_id,user_id" }
   );

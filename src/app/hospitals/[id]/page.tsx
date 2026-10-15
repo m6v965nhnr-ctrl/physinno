@@ -12,7 +12,10 @@ import {
   DiseaseRatio,
   Hospital,
   HospitalReview,
+  EMPLOYMENT_TYPES,
+  EMPTY_REVIEW_EXTRA,
   REVIEW_AXES,
+  ReviewExtra,
   REVIEW_AXIS_LABEL,
   ReviewAxis,
   WORKPLACE_SIZE_LABEL,
@@ -71,6 +74,8 @@ export default function HospitalDetailPage() {
     openness: 5,
   });
   const [overallScore, setOverallScore] = useState(5);
+  const [extra, setExtra] = useState<ReviewExtra>(EMPTY_REVIEW_EXTRA);
+  const [extraText, setExtraText] = useState({ annual_income: "", monthly_overtime_hours: "", annual_holidays: "" });
   const [comment, setComment] = useState("");
   const [isAnonymous, setIsAnonymous] = useState(true);
   const [submitting, setSubmitting] = useState(false);
@@ -153,6 +158,18 @@ export default function HospitalDetailPage() {
           openness: mine.openness,
         });
         setOverallScore(mine.overall_score);
+        setExtra({
+          women_friendly: mine.women_friendly ?? null,
+          employment_type: mine.employment_type ?? null,
+          annual_income: mine.annual_income ?? null,
+          monthly_overtime_hours: mine.monthly_overtime_hours ?? null,
+          annual_holidays: mine.annual_holidays ?? null,
+        });
+        setExtraText({
+          annual_income: mine.annual_income != null ? String(mine.annual_income) : "",
+          monthly_overtime_hours: mine.monthly_overtime_hours != null ? String(mine.monthly_overtime_hours) : "",
+          annual_holidays: mine.annual_holidays != null ? String(mine.annual_holidays) : "",
+        });
         setComment(mine.comment ?? "");
         setIsAnonymous(mine.is_anonymous);
       }
@@ -194,6 +211,23 @@ export default function HospitalDetailPage() {
       return;
     }
 
+    const ranges = { annual_income: [100, 3000, "年収"], monthly_overtime_hours: [0, 300, "月の残業"], annual_holidays: [50, 200, "年間休日"] } as const;
+    const parsed: Record<string, number | null> = {};
+    for (const k of Object.keys(ranges) as (keyof typeof ranges)[]) {
+      const raw = extraText[k].trim();
+      if (raw === "") {
+        parsed[k] = null;
+        continue;
+      }
+      const n = Math.round(Number(raw));
+      const [lo, hi, label] = ranges[k];
+      if (!Number.isFinite(n) || n < lo || n > hi) {
+        notify(`${label}は ${lo}〜${hi} の数字で入れてください`);
+        return;
+      }
+      parsed[k] = n;
+    }
+
     setSubmitting(true);
     const error = await upsertHospitalReview({
       hospitalId: id,
@@ -202,6 +236,7 @@ export default function HospitalDetailPage() {
       overallScore,
       comment,
       isAnonymous,
+      extra: { ...extra, ...parsed },
     });
     setSubmitting(false);
 
@@ -308,6 +343,20 @@ export default function HospitalDetailPage() {
     reviews.length > 0
       ? reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length
       : null;
+
+  // 数字で答えてもらった項目の平均（少人数で個人が特定されないよう、3件以上そろったものだけ出す）
+  const avgOf = (pick: (r: HospitalReview) => number | null | undefined) => {
+    const vals = reviews.map(pick).filter((v): v is number => typeof v === "number");
+    return vals.length >= 3 ? { avg: vals.reduce((a, b) => a + b, 0) / vals.length, n: vals.length } : null;
+  };
+  const reviewStats = [
+    { label: "年収（口コミの平均）", s: avgOf((r) => r.annual_income), fmt: (v: number) => `${Math.round(v)}万円` },
+    { label: "月の残業（平均）", s: avgOf((r) => r.monthly_overtime_hours), fmt: (v: number) => `${Math.round(v)}時間` },
+    { label: "年間休日（平均）", s: avgOf((r) => r.annual_holidays), fmt: (v: number) => `${Math.round(v)}日` },
+    { label: "女性の働きやすさ", s: avgOf((r) => r.women_friendly), fmt: (v: number) => `${v.toFixed(1)} / 10` },
+  ]
+    .filter((x) => x.s)
+    .map((x) => ({ label: x.label, value: x.fmt(x.s!.avg), n: x.s!.n }));
 
   // 項目ごとの平均点（レーダーチャート用）
   const axisAverages = REVIEW_AXES.map((axis) => ({
@@ -594,6 +643,18 @@ export default function HospitalDetailPage() {
             </div>
           )}
 
+          {reviewStats.length > 0 && (
+            <dl className="mt-3 grid grid-cols-2 gap-2 text-center">
+              {reviewStats.map((st) => (
+                <div key={st.label} className="rounded-2xl bg-gray-50 px-3 py-2">
+                  <dt className="text-[11px] text-gray-500">{st.label}</dt>
+                  <dd className="text-sm font-semibold text-gray-900">{st.value}</dd>
+                  <dd className="text-[10px] text-gray-400">{st.n}件の回答</dd>
+                </div>
+              ))}
+            </dl>
+          )}
+
           {isPt && reviewModalOpen && (
             <div
               className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center"
@@ -652,6 +713,56 @@ export default function HospitalDetailPage() {
                   className="mt-1 w-full"
                   aria-label="総合点"
                 />
+              </div>
+
+              <div className="space-y-2 border-t border-gray-200 pt-3">
+                <p className="text-xs font-semibold text-gray-500">数字で答える（任意。答えた分だけ、平均が出ます）</p>
+                <select
+                  aria-label="女性の働きやすさ"
+                  value={extra.women_friendly ?? ""}
+                  onChange={(e) => setExtra((p) => ({ ...p, women_friendly: e.target.value ? Number(e.target.value) : null }))}
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm"
+                >
+                  <option value="">女性の働きやすさ：答えない</option>
+                  {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((n) => (
+                    <option key={n} value={n}>
+                      女性の働きやすさ：{n} / 10
+                    </option>
+                  ))}
+                </select>
+                <select
+                  aria-label="雇用形態"
+                  value={extra.employment_type ?? ""}
+                  onChange={(e) => setExtra((p) => ({ ...p, employment_type: e.target.value || null }))}
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm"
+                >
+                  <option value="">雇用形態：答えない</option>
+                  {EMPLOYMENT_TYPES.map((t) => (
+                    <option key={t} value={t}>
+                      {t}
+                    </option>
+                  ))}
+                </select>
+                <div className="grid grid-cols-3 gap-2">
+                  {(
+                    [
+                      ["annual_income", "年収（万円）", "例：450", 100, 3000],
+                      ["monthly_overtime_hours", "月の残業（時間）", "例：10", 0, 300],
+                      ["annual_holidays", "年間休日（日）", "例：120", 50, 200],
+                    ] as const
+                  ).map(([k, label, ph, lo, hi]) => (
+                    <input
+                      key={k}
+                      aria-label={label}
+                      inputMode="numeric"
+                      placeholder={`${label} ${ph}`}
+                      value={extraText[k]}
+                      onChange={(e) => setExtraText((p) => ({ ...p, [k]: e.target.value }))}
+                      title={`${lo}〜${hi}`}
+                      className="min-w-0 rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-xs"
+                    />
+                  ))}
+                </div>
               </div>
 
               <textarea aria-label="職場環境・雰囲気・教育体制など（任意）"
@@ -715,6 +826,20 @@ export default function HospitalDetailPage() {
                     </span>
                   ))}
                 </div>
+
+                {(r.employment_type || r.annual_income || r.monthly_overtime_hours != null || r.annual_holidays || r.women_friendly) && (
+                  <p className="mt-2 text-xs text-gray-700">
+                    {[
+                      r.employment_type,
+                      r.annual_income ? `年収 ${r.annual_income}万円` : null,
+                      r.monthly_overtime_hours != null ? `残業 月${r.monthly_overtime_hours}時間` : null,
+                      r.annual_holidays ? `年間休日 ${r.annual_holidays}日` : null,
+                      r.women_friendly ? `女性の働きやすさ ${r.women_friendly}/10` : null,
+                    ]
+                      .filter(Boolean)
+                      .join(" ・ ")}
+                  </p>
+                )}
 
                 {r.comment && (
                   <p className="mt-2 whitespace-pre-wrap text-sm leading-6 text-gray-700">
