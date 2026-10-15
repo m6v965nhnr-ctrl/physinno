@@ -11,6 +11,8 @@ const IGNORE = [
   /Non-Error promise rejection/i,
   /ChunkLoadError|Loading chunk .* failed|Failed to load chunk/i,
   /NotAllowedError|play\(\) request was interrupted/i,
+  // 他のアプリの中で開いたときに、そのアプリが差し込む部品（Googleアプリなどの内蔵ブラウザ・iPhoneの拡張機能）のエラー
+  /iabjs:\/\/|webkit-masked-url:|Java exception was raised during method invocation/i,
 ];
 
 const sent = new Set<string>();
