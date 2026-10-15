@@ -80,23 +80,24 @@ try {
     const { problems } = await checkPage(guest, path, word);
     report(`公開 ${path}`, problems.length === 0, problems.join(" / "));
   }
-  // 1.5) トップページは、リンクのUTMに合わせて最初のタブが変わる（lpEntrance.ts の対応表）
+  // 1.5) トップページは、リンクのUTMに合わせて、最初の画面の主役（PT／学生）が変わる（lpEntrance.ts の対応表）
   const LP_CASES = [
-    ["/", "tab-start"],
-    ["/?utm_source=tiktok&utm_campaign=profile", "tab-features"],
-    ["/?utm_source=tiktok&utm_campaign=feature-papers", "tab-features"],
-    ["/?utm_source=ig&utm_campaign=quiz-watt", "tab-student"],
-    ["/?utm_source=x&utm_campaign=profile", "tab-features"],
-    ["/?utm_source=ig&utm_campaign=memo-berg", "tab-features"],
-    ["/?utm_source=ig&utm_campaign=profile", "tab-start"],
-    ["/?utm_source=x&utm_campaign=quiz-b12#faq", "tab-faq"], // #リンクがあれば、そちらが優先
+    ["/", "type=pt"],
+    ["/?utm_source=tiktok&utm_campaign=profile", "type=pt"],
+    ["/?utm_source=tiktok&utm_campaign=feature-papers", "type=pt"],
+    ["/?utm_source=ig&utm_campaign=quiz-watt", "type=student"],
+    ["/?utm_source=x&utm_campaign=profile", "type=pt"],
+    ["/?utm_source=ig&utm_campaign=memo-berg", "type=pt"],
+    ["/?utm_source=ig&utm_campaign=profile", "type=pt"],
   ];
-  for (const [path, tab] of LP_CASES) {
+  for (const [path, want] of LP_CASES) {
     const page = await guest.newPage();
     await page.goto(BASE + path, { waitUntil: "domcontentloaded", timeout: 30000 });
     await page.waitForLoadState("networkidle", { timeout: 15000 }).catch(() => {});
-    const on = await page.locator('[role="tab"][aria-selected="true"]').getAttribute("id");
-    report(`LPの最初のタブ ${path} → ${tab}`, on === tab, `実際: ${on}`);
+    const href = await page.locator('[data-lp="primary-entrance"]').getAttribute("href");
+    report(`LPの最初の登録ボタン ${path} → ${want}`, !!href && href.includes(want), `実際: ${href}`);
+    const stickyOk = (await page.locator("text=無料ではじめる").count()) > 0;
+    report(`LPに登録ボタンがある ${path}`, stickyOk, "「無料ではじめる」が見つからない");
     await page.close();
   }
   await guest.close();
