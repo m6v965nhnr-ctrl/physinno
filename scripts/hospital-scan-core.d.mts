@@ -1,0 +1,21 @@
+export type ScanResult = {
+  hospital_id?: string;
+  employment_types?: string[];
+  tags?: string[];
+  monthly_min?: number;
+  monthly_max?: number;
+  bonus_months?: number;
+  annual_stated_min?: number;
+  annual_stated_max?: number;
+  weekly_off_days?: number;
+  annual_holidays?: number;
+  access_station?: string;
+  access_minutes?: number;
+  access_mode?: "walk" | "bus" | "shuttle" | "car";
+  source_url?: string | null;
+};
+export function setPdfToText(fn: (buf: Uint8Array) => Promise<string>): void;
+export function scan(h: { id: string; website: string }): Promise<ScanResult>;
+export function analyze(pages: { url: string; text: string }[]): ScanResult;
+export function toText(html: string): string;
+export function safeUrl(raw: string): URL | null;
