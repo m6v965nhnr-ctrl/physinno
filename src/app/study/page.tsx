@@ -6,7 +6,7 @@ import { LoadingScreen } from "@/components/states";
 
 // 勉強（一問一答）。マイページとは、別の機能として、下のメニューから開く
 export default function StudyPage() {
-  const { loading } = useMyAccount(["student", "pt"]);
+  const { loading, accountType } = useMyAccount(["student", "pt"]);
   if (loading) return <LoadingScreen />;
 
   return (
@@ -17,7 +17,7 @@ export default function StudyPage() {
         </div>
       </header>
       <div className="mx-auto max-w-2xl px-5 py-4">
-        <StudyHub />
+        <StudyHub isStudent={accountType === "student"} />
       </div>
     </main>
   );

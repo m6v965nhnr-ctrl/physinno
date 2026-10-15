@@ -9,7 +9,7 @@ import { LoadingScreen } from "@/components/states";
 
 // 先生用: 課題の結果（学生ごと・問題ごと）
 export default function QuizAssignmentResultsPage() {
-  const { loading } = useMyAccount(["pt"], "/student/quiz");
+  const { loading } = useMyAccount(["pt"], "/study");
   const [res, setRes] = useState<AssignmentResults | null | undefined>(undefined);
 
   useEffect(() => {

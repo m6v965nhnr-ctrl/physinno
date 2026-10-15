@@ -83,7 +83,7 @@ export default function QuizClassesPage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/student/quiz" className="text-sm text-gray-400">
+          <Link href="/study" className="text-sm text-gray-400">
             ← 過去問ドリル
           </Link>
           <h1 className="mt-2 text-xl font-semibold tracking-tight">クラスの課題</h1>

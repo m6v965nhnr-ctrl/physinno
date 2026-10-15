@@ -40,7 +40,7 @@ export default function QuizPrintPage() {
     <main className="min-h-screen bg-white pb-16 text-gray-900 print:pb-0">
       <div className="mx-auto max-w-3xl px-6 py-6 print:max-w-none print:px-0 print:py-0">
         <div className="print:hidden">
-          <Link href="/student/quiz" className="text-sm text-gray-400">
+          <Link href="/study" className="text-sm text-gray-400">
             ← 過去問ドリル
           </Link>
           <div className="mt-3 space-y-3 rounded-2xl border border-gray-200 bg-gray-50 p-4 text-sm">

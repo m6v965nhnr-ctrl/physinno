@@ -2,8 +2,25 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import StreakBadge from "@/components/student/StreakBadge";
-import { QuizExam, QuizModeCounts, QuizUnit, getModeCounts, getStreak, listQuizExams, listQuizUnits, percent } from "@/lib/quiz";
+import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
+import { OFFICIAL_EXAMS, officialPage, officialPdfs } from "@/lib/quizPdf";
+import {
+  MOCK_MINUTES,
+  MockSummary,
+  QuizExam,
+  QuizMode,
+  QuizModeCounts,
+  QuizUnit,
+  fetchRelatedTerms,
+  getMockSummary,
+  getModeCounts,
+  getStreak,
+  listQuizExams,
+  listQuizUnits,
+  percent,
+} from "@/lib/quiz";
 
 function Bar({ answered, total }: { answered: number; total: number }) {
   return (
@@ -13,20 +30,46 @@ function Bar({ answered, total }: { answered: number; total: number }) {
   );
 }
 
-// 「投稿」の中の「勉強」。国試の過去問を、一問一答で解く。
-// 大きな「今日の10問」を最上段に、次に近道（復習・ブックマーク・模擬試験）、そのあとに科目・回から選べる
-export default function StudyHub() {
+function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-pressed={on}
+      className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${on ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-600"}`}
+    >
+      {children}
+    </button>
+  );
+}
+
+type Setting = "auto" | QuizMode;
+type Tab = "unit" | "exam" | "mock" | "pdf";
+
+// 勉強（一問一答）。進み具合・今日の10問・近道・科目／回／模擬試験／PDF・キーワード・大学内ランキング・クラスの課題を、1つの画面に。
+// 「出題の設定」（どの問題を・どの順で・何問）は、ここで選んで、下のどこから始めても使われる
+export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) {
+  const router = useRouter();
   const [units, setUnits] = useState<QuizUnit[] | null>(null);
   const [exams, setExams] = useState<QuizExam[]>([]);
+  const [mocks, setMocks] = useState<MockSummary[]>([]);
   const [counts, setCounts] = useState<QuizModeCounts | null>(null);
   const [streak, setStreak] = useState<{ streak: number; doneToday: boolean } | null>(null);
 
+  const [mode, setMode] = useState<Setting>("auto");
+  const [order, setOrder] = useState<"random" | "seq">("random");
+  const [n, setN] = useState(0); // 0 = 最後まで
+  const [tab, setTab] = useState<Tab>("unit");
+  const [keyword, setKeyword] = useState("");
+  const [finding, setFinding] = useState(false);
+
   useEffect(() => {
-    Promise.all([listQuizUnits(), listQuizExams(), getModeCounts(null, null), getStreak()]).then(([u, e, c, s]) => {
+    Promise.all([listQuizUnits(), listQuizExams(), getModeCounts(null, null), getStreak(), getMockSummary()]).then(([u, e, c, s, m]) => {
       setUnits(u);
       setExams(e);
       setCounts(c);
       setStreak(s);
+      setMocks(m);
     });
   }, []);
 
@@ -37,19 +80,34 @@ export default function StudyHub() {
   const total = units.reduce((a, u) => a + u.total, 0);
   const answered = units.reduce((a, u) => a + u.answered, 0);
   const correct = units.reduce((a, u) => a + u.correct, 0);
-  const rate = percent(correct, answered);
 
-  // まだ解いていない問題があれば、そこから。なければ全問から
-  const todayMode = counts && counts.unanswered > 0 ? "unanswered" : "all";
-  // n=0 は、最後まで（全問）。「今日の10問」だけ、10問で終わる
-  const play = (extra: string, mode: string = todayMode, n = 0) => `/student/quiz/play?${extra}${extra ? "&" : ""}mode=${mode}&n=${n}&order=random`;
+  // 出題の設定を使った、問題の画面へのリンク。「おまかせ」は、まだ解いていない問題があればそれ、なければ全問
+  const href = (extra: string, hasUnanswered: boolean) => {
+    const m: QuizMode = mode === "auto" ? (hasUnanswered ? "unanswered" : "all") : mode;
+    return `/student/quiz/play?${extra}${extra ? "&" : ""}mode=${m}&n=${n}&order=${order}`;
+  };
+  const fixed = (m: QuizMode, count: number) => `/student/quiz/play?mode=${m}&n=${count}&order=random`;
 
+  const todayUnanswered = !!counts && counts.unanswered > 0;
   const fields = Array.from(new Set(units.map((u) => u.field)));
   const sortedExams = [...exams].sort((x, y) => y.exam_no - x.exam_no);
 
+  async function searchKeyword() {
+    const kw = keyword.replace(/[%_|\\]/g, "").trim().slice(0, 40);
+    if (!kw) return;
+    setFinding(true);
+    const related = await fetchRelatedTerms(kw);
+    setFinding(false);
+    const q = new URLSearchParams({ kw });
+    if (related.length > 0) q.set("rel", related.join("|"));
+    router.push(href(q.toString(), false));
+  }
+
+  const tile = "rounded-2xl bg-white p-3 text-center shadow-sm transition active:scale-[0.98]";
+
   return (
-    <div className="space-y-5">
-      {/* 今日の10問 */}
+    <div className="space-y-4">
+      {/* いちばん上：今日の10問と、進み具合 */}
       <section className="rounded-3xl bg-relight-gradient p-5 shadow-sm" aria-labelledby="study-title">
         <div className="flex items-center justify-between gap-2">
           <h2 id="study-title" className="text-xl font-extrabold tracking-tight">
@@ -59,138 +117,312 @@ export default function StudyHub() {
         </div>
         <p className="mt-1 text-sm font-semibold">国試の過去問を、1問ずつ。答えたら、すぐ解説。</p>
 
-        <Link href={play("", todayMode, 10)} className="mt-4 flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]">
+        <Link href={fixed(todayUnanswered ? "unanswered" : "all", 10)} className="mt-4 flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]">
           <span>
             <span className="block text-lg font-extrabold">{answered === 0 ? "▶ まず10問、解いてみよう" : "▶ 今日の10問"}</span>
             <span className="block text-xs font-semibold text-gray-600">
-              {streak && !streak.doneToday ? "今日は、まだ解いていません" : todayMode === "unanswered" ? "まだ解いていない問題から" : "全問から、ランダムに"}
-              ・約3分
+              {streak && !streak.doneToday ? "今日は、まだ解いていません" : todayUnanswered ? "まだ解いていない問題から" : "全問から、ランダムに"}・約3分
             </span>
           </span>
           <span aria-hidden="true" className="text-2xl font-bold">→</span>
         </Link>
 
         <div className="mt-3 rounded-2xl bg-white/70 p-3">
-          <div className="flex items-end justify-between text-sm font-bold">
-            <span>
-              解いた問題 <span className="text-xl">{answered.toLocaleString()}</span>
-              <span className="text-xs font-semibold"> / {total.toLocaleString()}問</span>
-            </span>
-            <span>
-              正答率 <span className="text-xl">{answered > 0 ? rate : "-"}</span>
-              {answered > 0 && <span className="text-xs font-semibold">%</span>}
-            </span>
+          <p className="text-xs font-semibold">あなたの進み具合</p>
+          <div className="mt-1 grid grid-cols-3 gap-2 text-center">
+            <div>
+              <p className="text-xl font-extrabold">{answered.toLocaleString()}</p>
+              <p className="text-[10px] font-semibold">解いた（/{total.toLocaleString()}）</p>
+            </div>
+            <div>
+              <p className="text-xl font-extrabold">{correct.toLocaleString()}</p>
+              <p className="text-[10px] font-semibold">正解</p>
+            </div>
+            <div>
+              <p className="text-xl font-extrabold">{answered > 0 ? `${percent(correct, answered)}%` : "-"}</p>
+              <p className="text-[10px] font-semibold">正答率</p>
+            </div>
           </div>
           <div className="mt-2 h-2 overflow-hidden rounded-full bg-white" aria-hidden="true">
             <div className="h-full rounded-full bg-gray-900" style={{ width: `${percent(answered, total)}%` }} />
           </div>
+          <p className="mt-1 text-[10px] font-medium">正答率は、最後の答えで数えます</p>
         </div>
       </section>
 
       {/* 近道 */}
-      <section className="grid grid-cols-3 gap-2" aria-label="近道">
+      <section className="grid grid-cols-4 gap-2" aria-label="近道">
         {counts && counts.wrong > 0 ? (
-          <Link href={play("", "wrong")} className="rounded-2xl bg-white p-3 text-center shadow-sm transition active:scale-[0.98]">
+          <Link href={fixed("wrong", 0)} className={tile}>
             <span aria-hidden="true" className="text-xl">🔁</span>
-            <span className="mt-1 block text-xs font-bold text-gray-900">間違いの復習</span>
+            <span className="mt-1 block text-[11px] font-bold text-gray-900">復習</span>
             <span className="block text-[11px] font-semibold text-red-500">{counts.wrong}問</span>
           </Link>
         ) : (
-          <div className="rounded-2xl bg-white p-3 text-center opacity-50 shadow-sm">
+          <div className={`${tile} opacity-50`}>
             <span aria-hidden="true" className="text-xl">🔁</span>
-            <span className="mt-1 block text-xs font-bold text-gray-900">間違いの復習</span>
+            <span className="mt-1 block text-[11px] font-bold text-gray-900">復習</span>
             <span className="block text-[11px] text-gray-400">まだなし</span>
           </div>
         )}
         {counts && counts.bookmarked > 0 ? (
-          <Link href={play("", "bookmarked")} className="rounded-2xl bg-white p-3 text-center shadow-sm transition active:scale-[0.98]">
+          <Link href={fixed("bookmarked", 0)} className={tile}>
             <span aria-hidden="true" className="text-xl">🔖</span>
-            <span className="mt-1 block text-xs font-bold text-gray-900">ブックマーク</span>
+            <span className="mt-1 block text-[11px] font-bold text-gray-900">保存</span>
             <span className="block text-[11px] font-semibold text-gray-600">{counts.bookmarked}問</span>
           </Link>
         ) : (
-          <div className="rounded-2xl bg-white p-3 text-center opacity-50 shadow-sm">
+          <div className={`${tile} opacity-50`}>
             <span aria-hidden="true" className="text-xl">🔖</span>
-            <span className="mt-1 block text-xs font-bold text-gray-900">ブックマーク</span>
+            <span className="mt-1 block text-[11px] font-bold text-gray-900">保存</span>
             <span className="block text-[11px] text-gray-400">まだなし</span>
           </div>
         )}
-        <Link href="/student/quiz/mock" className="rounded-2xl bg-white p-3 text-center shadow-sm transition active:scale-[0.98]">
-          <span aria-hidden="true" className="text-xl">⏱</span>
-          <span className="mt-1 block text-xs font-bold text-gray-900">模擬試験</span>
-          <span className="block text-[11px] font-semibold text-gray-600">160分</span>
+        <Link href={href("", todayUnanswered)} className={tile}>
+          <span aria-hidden="true" className="text-xl">🎲</span>
+          <span className="mt-1 block text-[11px] font-bold text-gray-900">全範囲</span>
+          <span className="block text-[11px] font-semibold text-gray-600">{total.toLocaleString()}問</span>
         </Link>
+        <button type="button" onClick={() => setTab("mock")} className={tile}>
+          <span aria-hidden="true" className="text-xl">⏱</span>
+          <span className="mt-1 block text-[11px] font-bold text-gray-900">模擬試験</span>
+          <span className="block text-[11px] font-semibold text-gray-600">{MOCK_MINUTES}分</span>
+        </button>
       </section>
 
-      {/* 科目から */}
+      {/* 出題の設定 */}
       <section className="rounded-3xl bg-white p-4 shadow-sm">
-        <h3 className="text-sm font-bold text-gray-900">科目から選ぶ</h3>
-        <p className="mt-0.5 text-xs text-gray-500">選ぶと、すぐに始まります。最後の問題まで続けて解けます（やめるのは、いつでも）</p>
-        <div className="mt-3 divide-y divide-gray-100">
-          {fields.map((f) => {
-            const list = units.filter((u) => u.field === f).sort((a, b) => a.sort - b.sort);
+        <h3 className="text-sm font-bold text-gray-900">出題の設定</h3>
+        <p className="mt-0.5 text-[11px] text-gray-500">下の科目・回・全範囲・キーワードから始めるとき、これが使われます</p>
+        <div className="mt-3 space-y-2.5">
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">問題</span>
+            <Chip on={mode === "auto"} onClick={() => setMode("auto")}>おまかせ</Chip>
+            <Chip on={mode === "all"} onClick={() => setMode("all")}>すべて</Chip>
+            <Chip on={mode === "unanswered"} onClick={() => setMode("unanswered")}>まだ解いていない</Chip>
+            <Chip on={mode === "wrong"} onClick={() => setMode("wrong")}>間違えた</Chip>
+            <Chip on={mode === "bookmarked"} onClick={() => setMode("bookmarked")}>保存した</Chip>
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">順番</span>
+            <Chip on={order === "random"} onClick={() => setOrder("random")}>ランダム</Chip>
+            <Chip on={order === "seq"} onClick={() => setOrder("seq")}>問題番号順</Chip>
+          </div>
+          <div className="flex flex-wrap items-center gap-1.5">
+            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">問題数</span>
+            {[10, 20, 50, 0].map((c) => (
+              <Chip key={c} on={n === c} onClick={() => setN(c)}>
+                {c === 0 ? "最後まで" : `${c}問`}
+              </Chip>
+            ))}
+          </div>
+        </div>
+        {mode === "auto" && <p className="mt-2 text-[11px] text-gray-400">おまかせ：まだ解いていない問題があれば、そこから。なければ、すべてから。</p>}
+      </section>
+
+      {/* 科目・回・模擬試験・PDF */}
+      <section className="space-y-3">
+        <div className="grid grid-cols-4 gap-1 rounded-full bg-gray-100 p-1 text-xs sm:text-sm" role="tablist" aria-label="問題の選び方">
+          {(
+            [
+              ["unit", "科目"],
+              ["exam", "回"],
+              ["mock", "模擬試験"],
+              ["pdf", "PDF"],
+            ] as const
+          ).map(([k, label]) => (
+            <button
+              key={k}
+              role="tab"
+              aria-selected={tab === k}
+              onClick={() => setTab(k)}
+              className={`rounded-full py-2 ${tab === k ? "bg-white font-semibold text-gray-900 shadow-sm" : "text-gray-500"}`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {tab === "unit" &&
+          fields.map((f, fi) => {
+            const list = units.filter((u) => u.field === f && u.total > 0).sort((a, b) => a.sort - b.sort);
             const a = list.reduce((s, u) => s + u.answered, 0);
             const t = list.reduce((s, u) => s + u.total, 0);
             return (
-              <details key={f} className="group py-1">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-3">
-                  <span className="min-w-0">
-                    <span className="block text-sm font-semibold text-gray-900">{f}</span>
-                    <span className="block text-[11px] text-gray-500">
-                      {a}/{t}問
-                    </span>
+              <details key={f} open={fi === 0} className="group rounded-2xl bg-white shadow-sm">
+                <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3">
+                  <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900">{f}</span>
+                  <span className="w-20 shrink-0">
+                    <Bar answered={a} total={t} />
                   </span>
-                  <span aria-hidden="true" className="text-xs text-gray-400 group-open:rotate-180">▼</span>
+                  <span className="w-16 shrink-0 text-right text-xs text-gray-500">{a > 0 ? `${a}/${t}` : `${t}問`}</span>
+                  <span aria-hidden="true" className="shrink-0 text-gray-400 transition group-open:rotate-180">▾</span>
                 </summary>
-                <ul className="mb-2 space-y-1.5">
+                <div className="divide-y divide-gray-100 border-t border-gray-100">
                   {list.map((u) => (
-                    <li key={u.id}>
-                      <Link href={play(`unit=${u.id}`, u.answered < u.total ? "unanswered" : "all")} className="block rounded-xl bg-gray-50 px-3 py-2.5 transition active:scale-[0.99]">
-                        <span className="flex items-center justify-between gap-2 text-sm">
-                          <span className="min-w-0 truncate font-medium text-gray-900">{u.name}</span>
-                          <span className="shrink-0 text-[11px] text-gray-500">
+                    <Link
+                      key={u.id}
+                      href={href(`unit=${u.id}`, u.answered < u.total)}
+                      className="flex items-center gap-3 px-4 py-2.5 transition active:bg-gray-50"
+                    >
+                      <span className="min-w-0 flex-1 text-sm font-medium leading-5 text-gray-900">{u.name}</span>
+                      <span className="w-20 shrink-0">
+                        <Bar answered={u.answered} total={u.total} />
+                      </span>
+                      <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                        {u.answered > 0 ? (
+                          <>
                             {u.answered}/{u.total}
-                            {u.answered > 0 && <span className="ml-1 font-semibold text-emerald-600">{percent(u.correct, u.answered)}%</span>}
-                          </span>
-                        </span>
-                        <span className="mt-1.5 block">
-                          <Bar answered={u.answered} total={u.total} />
-                        </span>
-                      </Link>
-                    </li>
+                            <span className="block font-semibold text-emerald-600">{percent(u.correct, u.answered)}%</span>
+                          </>
+                        ) : (
+                          `${u.total}問`
+                        )}
+                      </span>
+                    </Link>
                   ))}
-                </ul>
+                </div>
               </details>
             );
           })}
-        </div>
-      </section>
 
-      {/* 回から */}
-      <section className="rounded-3xl bg-white p-4 shadow-sm">
-        <h3 className="text-sm font-bold text-gray-900">回から選ぶ</h3>
-        <ul className="mt-3 grid grid-cols-2 gap-2">
-          {sortedExams.map((e) => (
-            <li key={e.exam_no}>
-              <Link href={play(`exam=${e.exam_no}`, e.answered < e.total ? "unanswered" : "all")} className="block rounded-xl bg-gray-50 px-3 py-2.5 transition active:scale-[0.99]">
-                <span className="flex items-center justify-between text-sm font-semibold text-gray-900">
-                  第{e.exam_no}回
-                  <span className="text-[11px] font-normal text-gray-500">
-                    {e.answered}/{e.total}
-                  </span>
-                </span>
-                <span className="mt-1.5 block">
+        {tab === "exam" && (
+          <div className="divide-y divide-gray-100 overflow-hidden rounded-2xl bg-white shadow-sm">
+            {sortedExams.map((e) => (
+              <Link key={e.exam_no} href={href(`exam=${e.exam_no}`, e.answered < e.total)} className="flex items-center gap-3 px-4 py-3 transition active:bg-gray-50">
+                <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900">第{e.exam_no}回</span>
+                <span className="w-24 shrink-0">
                   <Bar answered={e.answered} total={e.total} />
                 </span>
+                <span className="w-16 shrink-0 text-right text-xs text-gray-500">
+                  {e.answered > 0 ? (
+                    <>
+                      {e.answered}/{e.total}
+                      <span className="block font-semibold text-emerald-600">{percent(e.correct, e.answered)}%</span>
+                    </>
+                  ) : (
+                    `${e.total}問`
+                  )}
+                </span>
               </Link>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        )}
+
+        {tab === "mock" && (
+          <div className="space-y-3">
+            <p className="text-xs leading-5 text-gray-500">
+              1回分の午前または午後を、本番と同じ解答時間（{MOCK_MINUTES}分）で、通して解きます。答え合わせは、最後にまとめて行います。
+            </p>
+            <div className="grid grid-cols-2 gap-3">
+              {sortedExams.map((e) => (
+                <section key={e.exam_no} className="rounded-2xl bg-white p-3 shadow-sm">
+                  <p className="text-sm font-semibold">第{e.exam_no}回</p>
+                  <div className="mt-2 grid grid-cols-2 gap-1.5">
+                    {(["am", "pm"] as const).map((sess) => {
+                      const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
+                      return (
+                        <Link
+                          key={sess}
+                          href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
+                          className="rounded-xl border border-gray-200 px-1 py-2 text-center transition active:bg-gray-50"
+                        >
+                          <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
+                          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">{m ? `${m.last_score}/${m.last_total}問` : "未挑戦"}</span>
+                        </Link>
+                      );
+                    })}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {tab === "pdf" && (
+          <div className="space-y-3">
+            <p className="text-xs leading-5 text-gray-500">
+              厚生労働省が公開している公式の問題・正答のPDFと、このアプリで作った、解説つきの印刷用ページ（PDFで保存できます）です。
+            </p>
+            {OFFICIAL_EXAMS.map((e) => (
+              <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
+                <p className="text-sm font-semibold">
+                  第{e.exam_no}回 <span className="text-xs font-normal text-gray-500">（{e.date}実施）</span>
+                </p>
+                <p className="mt-3 text-xs font-semibold text-gray-600">公式PDF（厚生労働省）</p>
+                <ul className="mt-1.5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                  {officialPdfs(e).map((f) => (
+                    <li key={f.href}>
+                      <a href={f.href} target="_blank" rel="noopener noreferrer" className="block rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-800">
+                        📄 {f.label}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+                <p className="mt-1.5 text-[11px] text-gray-400">
+                  <a href={officialPage(e)} target="_blank" rel="noopener noreferrer" className="underline">
+                    厚生労働省の公開ページ
+                  </a>
+                </p>
+                <p className="mt-3 text-xs font-semibold text-gray-600">解説つき（印刷・PDF保存）</p>
+                <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                  {(["am", "pm"] as const).map((sess) => (
+                    <Link key={sess} href={`/student/quiz/print?exam=${e.exam_no}&session=${sess}`} className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs text-gray-800">
+                      🖨️ {sess === "am" ? "午前" : "午後"}（問題・正答・解説）
+                    </Link>
+                  ))}
+                </div>
+              </section>
+            ))}
+          </div>
+        )}
       </section>
 
-      <Link href="/student/quiz" className="block rounded-2xl border border-gray-200 bg-white px-4 py-3 text-center text-sm font-medium text-gray-700">
-        すべての機能（キーワード検索・PDF・学校ランキング）→
-      </Link>
+      {/* キーワード */}
+      <section className="rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-sm font-semibold">🔎 キーワードで解く</p>
+        <p className="mt-0.5 text-[11px] leading-4 text-gray-500">
+          例：「糖尿病」と入れると、問題文・選択肢に「糖尿病」がある問題と、関係する問題（HbA1c・インスリン・合併症など）を集めます
+        </p>
+        <div className="mt-3 flex gap-2">
+          <input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.nativeEvent.isComposing) searchKeyword();
+            }}
+            placeholder="例：糖尿病、脳梗塞、ICF"
+            aria-label="キーワード"
+            className="min-w-0 flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm outline-none focus:border-gray-900"
+          />
+          <button onClick={searchKeyword} disabled={finding || !keyword.trim()} className="shrink-0 rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40">
+            {finding ? "探し中…" : "探す"}
+          </button>
+        </div>
+        <p className="mt-2 text-[11px] leading-4 text-gray-500">
+          ※ 人名のついた病名や評価法は、英語で書かれていることがあります（例：Parkinson、Brunnstrom）。見つからないときは、英語でも探してみてください。
+        </p>
+      </section>
+
+      {/* 同じ学校の学生どうしのランキング（学生のみ） */}
+      {isStudent && <QuizSchoolRanking />}
+
+      {/* クラス */}
+      <section className="grid grid-cols-2 gap-2">
+        <Link href="/student/quiz/classes" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
+          <span className="block text-sm font-semibold">📋 クラスの課題</span>
+          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">先生から配られた課題を解く</span>
+        </Link>
+        <Link href="/student/quiz/teacher" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
+          <span className="block text-sm font-semibold">👩‍🏫 先生の方はこちら</span>
+          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">クラスを作って課題を配る</span>
+        </Link>
+      </section>
+
+      <p className="text-[11px] leading-5 text-gray-400">
+        問題・正答の出典: 厚生労働省ホームページ（理学療法士国家試験の問題および正答）。画面に表示するにあたり、問題の整形と単元の分類をしています。
+        分類や文字の読み取りに誤りがある場合は、問題の画面の「通報」からお知らせください。図の問題は、厚生労働省が公開している図をそのまま表示しています。
+      </p>
     </div>
   );
 }

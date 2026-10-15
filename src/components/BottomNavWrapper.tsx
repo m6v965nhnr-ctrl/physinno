@@ -70,12 +70,25 @@ export default function BottomNavWrapper() {
     const isField = (el: Element | null) =>
       !!el && el.matches('textarea, select, [contenteditable="true"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="file"])');
     const update = () => setTyping(touch.matches && isField(document.activeElement));
-    const onOut = () => setTimeout(update, 0); // 別の入力欄に移るときに、一瞬だけ出ないように
+    // キーボードを閉じたあとに、画面の下に固定したものの位置が、キーボードがあったときのまま戻らないことがある（iPhone）。
+    // 少しだけ画面を動かして、位置を計算し直させる
+    const reflow = () => {
+      if (!touch.matches || isField(document.activeElement)) return;
+      window.scrollBy(0, 1);
+      window.scrollBy(0, -1);
+    };
+    const onOut = () => {
+      setTimeout(update, 0); // 別の入力欄に移るときに、一瞬だけ出ないように
+      setTimeout(reflow, 120);
+      setTimeout(reflow, 500);
+    };
+    window.visualViewport?.addEventListener("resize", reflow);
     document.addEventListener("focusin", update);
     document.addEventListener("focusout", onOut);
     return () => {
       document.removeEventListener("focusin", update);
       document.removeEventListener("focusout", onOut);
+      window.visualViewport?.removeEventListener("resize", reflow);
     };
   }, []);
 

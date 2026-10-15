@@ -170,7 +170,7 @@ export default function MockExamPage() {
       <main className="min-h-screen bg-[#fafafa] px-6 py-10">
         <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 text-center shadow-sm">
           <p className="text-sm text-gray-600">この回の問題は、まだありません。</p>
-          <Link href="/student/quiz" className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+          <Link href="/study" className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
             戻る
           </Link>
         </div>
@@ -184,7 +184,7 @@ export default function MockExamPage() {
       <main className="min-h-screen bg-[#fafafa] pb-28">
         <header className="border-b border-gray-100 bg-white px-6 py-5">
           <div className="mx-auto max-w-2xl">
-            <Link href="/student/quiz" className="text-sm text-gray-400">
+            <Link href="/study" className="text-sm text-gray-400">
               ← 過去問ドリル
             </Link>
             <h1 className="mt-2 text-xl font-semibold tracking-tight">模擬試験　{title}</h1>
@@ -503,7 +503,7 @@ function ResultView({
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/student/quiz" className="text-sm text-gray-400">
+          <Link href="/study" className="text-sm text-gray-400">
             ← 過去問ドリル
           </Link>
           <h1 className="mt-2 text-xl font-semibold tracking-tight">模擬試験の結果　{title}</h1>
@@ -578,7 +578,7 @@ function ResultView({
           <button onClick={onRetry} className="rounded-full bg-black py-2.5 text-sm font-medium text-white">
             もう一度、この回の模擬試験を解く
           </button>
-          <Link href="/student/quiz" className="rounded-full border border-gray-300 py-2.5 text-center text-sm text-gray-800">
+          <Link href="/study" className="rounded-full border border-gray-300 py-2.5 text-center text-sm text-gray-800">
             過去問ドリルに戻る
           </Link>
         </div>

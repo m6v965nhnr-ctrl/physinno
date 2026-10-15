@@ -29,7 +29,7 @@ const COUNT_OPTIONS = [5, 10, 20, 30, 50];
 
 // 先生用: クラスを作って、参加コードを配り、課題（単元・回・難易度で選んだ問題）を出す
 export default function QuizTeacherPage() {
-  const { loading } = useMyAccount(["pt"], "/student/quiz");
+  const { loading } = useMyAccount(["pt"], "/study");
 
   const [status, setStatus] = useState<TeacherStatus | null>(null);
   const [classes, setClasses] = useState<TeacherClass[]>([]);
@@ -94,7 +94,7 @@ export default function QuizTeacherPage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/student/quiz" className="text-sm text-gray-400">
+          <Link href="/study" className="text-sm text-gray-400">
             ← 過去問ドリル
           </Link>
           <h1 className="mt-2 text-xl font-semibold tracking-tight">先生用：クラスと課題</h1>
