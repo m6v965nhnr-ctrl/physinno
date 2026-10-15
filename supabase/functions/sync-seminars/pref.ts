@@ -19,7 +19,11 @@ export type PrefDeps = {
   // all: すべて / articles: 記事・PDFのみ / calendar: 公開Googleカレンダーのみ
   // （SupabaseのEdge FunctionからはGoogleカレンダーが429で取れないため、Vercel側で取得する）
   mode?: "all" | "articles" | "calendar";
+  // 1件にまとめる関数（学会・団体のサイトでは candidateToOrgSeminar を渡す。省略時は士会用）
+  toSeminar?: (c: Candidate, range: DateRangeLike, dateText: string | null, site: PrefSite) => Seminar;
 };
+
+type DateRangeLike = Parameters<typeof candidateToSeminar>[1];
 
 const MAX_CANDIDATES = 25;
 const MAX_PDFS = 6;
@@ -30,6 +34,7 @@ const MAX_CALENDARS = 6;
 export async function syncPrefSite(site: PrefSite, deps: PrefDeps) {
   const { today } = deps;
   const mode = deps.mode ?? "all";
+  const toSeminar = deps.toSeminar ?? candidateToSeminar;
   const rows: Seminar[] = [];
   const stat = { candidates: 0, found: 0, pdf: 0, calendar: 0 };
 
@@ -91,7 +96,7 @@ export async function syncPrefSite(site: PrefSite, deps: PrefDeps) {
     const range = titleDateRange(c.text, today);
     if (range) {
       if (range.end >= today) {
-        rows.push(candidateToSeminar(c, range, null, site));
+        rows.push(toSeminar(c, range, null, site));
         stat.found++;
       }
     } else {
@@ -141,7 +146,7 @@ export async function syncPrefSite(site: PrefSite, deps: PrefDeps) {
     }
 
     if (range && range.end >= today) {
-      rows.push(candidateToSeminar(c, range, dateText, site));
+      rows.push(toSeminar(c, range, dateText, site));
       stat.found++;
     }
   }

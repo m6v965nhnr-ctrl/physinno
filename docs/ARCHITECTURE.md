@@ -137,3 +137,9 @@
 - ブロックした人の内容を除く仕組み: 画面から直接読む表（posts・comments・messages・group_messages・hospital_reviews・internship_reviews・student_questions/answers・clinical_ideas・training_methods・exam_notes）に、restrictive な select ポリシー `hide_blocked_*`（`is_blocked_by_me(user_id)`）。security definer の一覧関数（`list_posts_v2`・`list_comments`・`get_hospital_reviews`・`get_internship_reviews`・`list_student_questions/answers`・`get_student_question`・`list_clinical_ideas`・`list_training_methods`）には、同じ条件を where に入れてある。**新しい「他人の内容」を返す関数を作るときは、`not public.is_blocked_by_me(...)` を入れること。**
 - ブロックされた側は、会話の作成・メッセージ送信が、ポリシーで拒否される（`private.blocks_me`。`private` スキーマ＝API に公開されないので、ブロックされたことは相手に分からない）。
 - 画面: `ReportButton` に `authorId` を渡すと「通報・ブロック」になる。プロフィールは `BlockUserButton`、解除は `/mypage/blocked`。匿名で投稿者が分からない内容（口コミ・試験メモ・クイズ問題）は、通報のみ。
+
+## Events（研修・学会）の主催・学会フィルター（2026-10-15〜）
+- 団体の一覧は `src/lib/seminarOrgs.ts`（18分野・約190団体。公式サイトのURLがあるものは約100）。イベントは `orgCodeOf()` で団体に振り分ける（取得元 `org-<code>` → 主催者名・別名 → 題名 → どれにも当たらなければ「民間・その他」）。振り分けは画面側で行い、DBに列は持たない。
+- 画面: `SeminarOrgFilter`（分野ごとの開閉・分野ごとの一括チェック・団体名の検索・件数）。何も選ばなければ、すべて表示。
+- 取り込み: `/api/cron/org-seminars`（毎日。団体を4つに分け、1日に1/4。士会用の汎用スクレイパー `syncPrefSite` を、`candidateToOrgSeminar` で流用。`isUsableOrgEvent` で、録画・更新通知・日付の取り違えを除く）。最初の一括は `scripts/sync-org-seminars.mts`（ローカルで実行し、一時トークンで `ingest_seminars` へ）。
+- SNSは利用規約上、自動では集めない。

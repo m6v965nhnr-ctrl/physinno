@@ -16,6 +16,8 @@ import {
 } from "@/lib/seminars";
 import { notify } from "@/lib/notify";
 import { SeminarDetail, SeminarList } from "@/components/seminars/SeminarParts";
+import SeminarOrgFilter from "@/components/seminars/SeminarOrgFilter";
+import { orgCodeOf } from "@/lib/seminarOrgs";
 
 type FormatFilter = "" | "online" | "offline";
 
@@ -79,6 +81,8 @@ export default function SeminarNews() {
   const [dateTo, setDateTo] = useState("");
   const [fee, setFee] = useState("");
   const [sites, setSites] = useState<string[]>(SEMINAR_SITES.map((x) => x.key));
+  // 主催・学会（団体コード）。空なら、すべて
+  const [orgs, setOrgs] = useState<string[]>([]);
 
   const [visibleCount, setVisibleCount] = useState(30);
   const [selected, setSelected] = useState<Seminar | null>(null);
@@ -117,6 +121,13 @@ export default function SeminarNews() {
     [items, savedIds]
   );
 
+  const orgOf = useMemo(() => new Map(items.map((s) => [s.id, orgCodeOf(s)])), [items]);
+  const orgCounts = useMemo(() => {
+    const c: Record<string, number> = {};
+    orgOf.forEach((code) => (c[code] = (c[code] ?? 0) + 1));
+    return c;
+  }, [orgOf]);
+
   const filtered = useMemo(() => {
     const words = keyword
       .trim()
@@ -128,6 +139,7 @@ export default function SeminarNews() {
 
     const known = SEMINAR_SITES.map((x) => x.key) as string[];
     return items.filter((s) => {
+      if (orgs.length > 0 && !orgs.includes(orgOf.get(s.id) ?? "private")) return false;
       const site = siteOf(s.source);
       // 一覧にないサイトは、他のサイトがすべて外されるまで隠さない
       if (known.includes(site) ? !sites.includes(site) : sites.length === 0) return false;
@@ -167,9 +179,10 @@ export default function SeminarNews() {
 
       return true;
     });
-  }, [items, keyword, region, prefectures, includeOnline, format, fields, kinds, dateFrom, dateTo, fee, sites]);
+  }, [items, keyword, region, prefectures, includeOnline, format, fields, kinds, dateFrom, dateTo, fee, sites, orgs, orgOf]);
 
   const activeFilterCount =
+    (orgs.length > 0 ? 1 : 0) +
     (region || prefectures.length > 0 ? 1 : 0) +
     (format ? 1 : 0) +
     (fields.length > 0 ? 1 : 0) +
@@ -189,6 +202,7 @@ export default function SeminarNews() {
     setDateTo("");
     setFee("");
     setSites(SEMINAR_SITES.map((x) => x.key));
+    setOrgs([]);
     setVisibleCount(30);
   }
 
@@ -251,6 +265,16 @@ export default function SeminarNews() {
           placeholder="キーワード（研修名・主催・地名など）"
           className="w-full rounded-full border px-5 py-3"
          aria-label="キーワード（研修名・主催・地名など）"/>
+
+        {/* 主催・学会（分野ごとのプルダウン。チェックで選ぶ） */}
+        <SeminarOrgFilter
+          counts={orgCounts}
+          selected={orgs}
+          onChange={(next) => {
+            setOrgs(next);
+            setVisibleCount(30);
+          }}
+        />
 
         {/* 情報を持ってくるサイト */}
         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">

@@ -817,6 +817,42 @@ export function candidateToSeminar(
   });
 }
 
+// 学会・団体のサイト（士会以外）の告知を、研修・学会の1件にする。取得元は org-<団体コード>
+export function candidateToOrgSeminar(
+  c: Candidate,
+  range: DateRange,
+  dateText: string | null,
+  site: PrefSite
+): Seminar {
+  return finalize({
+    id: `org-${site.code}:${shortHash(c.href)}`,
+    source: `org-${site.code}`,
+    source_label: site.name,
+    title: c.text,
+    organizer: site.name,
+    date_text: truncate(dateText, 160),
+    start_date: range.start,
+    end_date: range.end,
+    format: formatFromText(c.text + " " + (dateText ?? "")),
+    prefecture: findPrefecture(c.text + " " + (dateText ?? "")),
+    fee_text: null,
+    summary: "学会・団体サイトの告知です。詳細・申込は元のページでご確認ください。",
+    url: c.href,
+  });
+}
+
+// 学会・団体サイトの告知から、研修・学会として載せるべきでないものを除く（お知らせの更新通知・録画・終了・日付の取り違え）
+const ORG_NOISE_RE = /動画|録画|アーカイブ|オンデマンド|配信終了|受付(?:を)?終了|募集(?:を)?終了|終了しました|を更新しました|を掲載しました|を公開しました|ホームページはこちら|ご参加登録|参加登録受付|会員向け|入会/;
+
+export function isUsableOrgEvent(s: Seminar, today: string) {
+  if (ORG_NOISE_RE.test(s.title)) return false;
+  if (s.end_date < today) return false;
+  const days = (Date.parse(s.end_date) - Date.parse(s.start_date)) / 86_400_000;
+  if (days > 14) return false; // 長い期間は、複数の催しの寄せ集めや、掲載期間の取り違え
+  if (Date.parse(s.start_date) - Date.parse(today) > 500 * 86_400_000) return false;
+  return true;
+}
+
 // タイトルに月日が入っている場合はそれを使う
 export function titleDateRange(rawTitle: string, today: string): DateRange | null {
   // 「締切り：9月30日」のような申込期限は開催日ではないので除く
