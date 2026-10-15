@@ -817,6 +817,14 @@ export function candidateToSeminar(
   });
 }
 
+// 他の取得元（こくちーず・Doorkeeper など）が、1件の研修・学会を作るときの窓口（種別・分野・地域・料金は、ここで補う）
+export function buildSeminar(
+  base: Omit<Seminar, "kind" | "fields" | "region" | "fee_yen" | "is_free"> &
+    Partial<Pick<Seminar, "kind" | "fields" | "region" | "fee_yen" | "is_free">>
+): Seminar {
+  return finalize(base);
+}
+
 // 学会・団体のサイト（士会以外）の告知を、研修・学会の1件にする。取得元は org-<団体コード>
 export function candidateToOrgSeminar(
   c: Candidate,

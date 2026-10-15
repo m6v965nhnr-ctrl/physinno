@@ -34,9 +34,10 @@ export default function SeminarOrgFilter({
   const groups = useMemo(
     () =>
       ORG_GROUPS.map((g) => {
-        const orgs = SEMINAR_ORGS.filter((o) => o.group === g).filter(
-          (o) => !q || o.name.toLowerCase().includes(q) || o.aliases.some((a) => a.toLowerCase().includes(q))
-        );
+        // 公式サイトがなく、いま載っている研修もない団体は、出さない（存在を確認できていない団体を、選ばせないため）
+        const orgs = SEMINAR_ORGS.filter((o) => o.group === g)
+          .filter((o) => !!o.url || (counts[o.code] ?? 0) > 0)
+          .filter((o) => !q || o.name.toLowerCase().includes(q) || o.aliases.some((a) => a.toLowerCase().includes(q)));
         return { name: g, orgs, total: orgs.reduce((n, o) => n + (counts[o.code] ?? 0), 0) };
       }).filter((g) => g.orgs.length > 0),
     [q, counts]

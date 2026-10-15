@@ -40,11 +40,14 @@ export const SEMINAR_SITES = [
   { key: "jpta", label: "日本理学療法士協会" },
   { key: "pref", label: "都道府県理学療法士会" },
   { key: "ugoita", label: "ウゴイタラボ" },
+  { key: "community", label: "こくちーず・Doorkeeper（小さな勉強会）" },
 ] as const;
 
 export function siteOf(source: string): string {
   if (source.startsWith("jpta")) return "jpta";
   if (source.startsWith("pref-") || source === "pt-kanagawa") return "pref";
+  if (source === "kokuchpro" || source === "doorkeeper") return "community";
+  if (source.startsWith("org-")) return "org"; // 学会・団体の公式サイト（取得元のチェックでは、いつも表示する。団体は、別の絞り込みで選ぶ）
   return source; // ptotst, ugoita（新しい取得元は、そのまま別のサイトとして扱われ、表示から漏れない）
 }
 

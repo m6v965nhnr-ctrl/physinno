@@ -143,3 +143,5 @@
 - 画面: `SeminarOrgFilter`（分野ごとの開閉・分野ごとの一括チェック・団体名の検索・件数）。何も選ばなければ、すべて表示。
 - 取り込み: `/api/cron/org-seminars`（毎日。団体を4つに分け、1日に1/4。士会用の汎用スクレイパー `syncPrefSite` を、`candidateToOrgSeminar` で流用。`isUsableOrgEvent` で、録画・更新通知・日付の取り違えを除く）。最初の一括は `scripts/sync-org-seminars.mts`（ローカルで実行し、一時トークンで `ingest_seminars` へ）。
 - SNSは利用規約上、自動では集めない。
+- 小さな勉強会: `/api/cron/community-seminars`（毎日）。こくちーず（検索結果ページ。robots.txt で許可）と Doorkeeper（公開API）から、理学療法・リハビリに関わる題名のものだけ拾う（`src/lib/server/communityEvents.ts`）。最初の一括は `scripts/sync-community-seminars.mts`。Peatix・connpass は、機械的なアクセスを許可していない（403・API鍵が必要）ので使わない。
+- 主催・学会の絞り込みには、公式サイトがなく、載っている研修もない団体は、出さない（`SeminarOrgFilter`）。
