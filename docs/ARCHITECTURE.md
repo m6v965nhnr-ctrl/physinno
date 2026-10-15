@@ -161,3 +161,8 @@
 - アプリ: Next.js を 16.4.1 に更新（重大な既知の脆弱性を解消。`npm audit` は0件）／セキュリティヘッダー（HSTS・X-Content-Type-Options・X-Frame-Options・Referrer-Policy・Permissions-Policy・CSP の frame-ancestors など。`next.config.ts`）／AI機能の利用回数の確認が失敗したときは、使わせない（以前は、通していた）。
 - 確認: `npm run security`（匿名で他人の情報が読めない・書けない）を、変更のたびに実行する。
 - ダッシュボードでしかできないもの（運営の作業）: Authentication → Policies の「Leaked password protection」をオン（プランによっては使えない）、バックアップ（PITR）とAuthのレート制限の確認。
+
+## HPの安全性の説明（Supabase / Vercel）
+- `src/app/page.tsx` の `INFRA` と安全性の帯に、使っている基盤（Supabase=DB・認証・保管庫、東京／Vercel=配信）と、各社が公表する認証（SOC 2 Type 2・ISO 27001）を記載。
+- 「各社の公式発表による」「Re:light自身の取得ではない」と明記。バックアップ・PITR等、プランに依存して未確認のことは書かない。
+- 認証の内容は変わりうるので、見直すときは各社のセキュリティページで再確認する。
