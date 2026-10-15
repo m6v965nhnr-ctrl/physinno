@@ -13,6 +13,8 @@ import {
 } from "@/lib/achievements";
 import { notify } from "@/lib/notify";
 import { uploadPostMedia } from "@/lib/postMedia";
+import StudyHub from "@/components/student/StudyHub";
+import { getMyAccountType } from "@/lib/account";
 import { AttachmentFields, LabeledInput } from "@/components/posts/CreateParts";
 
 // 症例報告（投稿検索の「症例報告」で探せる）
@@ -76,10 +78,18 @@ export default function CreatePostPage() {
   const [mediaFiles, setMediaFiles] = useState<File[]>([]);
 
   const [posting, setPosting] = useState(false);
+  // 学生には、「投稿」の中に「勉強（一問一答）」がある
+  const [isStudent, setIsStudent] = useState(false);
+  const [studyTab, setStudyTab] = useState(false);
 
   // 研修情報の「参加した」から来たときは、種類・題名・日付・主催を最初から入れておく
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    if (params.get("tab") === "study") setStudyTab(true);
+    supabase.auth.getUser().then(({ data: { user } }) => {
+      if (user) getMyAccountType(user.id).then((t) => setIsStudent(t === "student"));
+    });
+
     const presetType = params.get("type");
 
     if (presetType && (ACHIEVEMENT_CATEGORIES as string[]).includes(presetType)) {
@@ -260,6 +270,42 @@ export default function CreatePostPage() {
   /*
    * 投稿種類選択画面
    */
+  const studyTabs = isStudent ? (
+    <div role="tablist" aria-label="投稿か、勉強か" className="mx-auto grid w-full max-w-2xl grid-cols-2 gap-1 px-5 pt-3">
+      {([["post", "✏️ 投稿"], ["study", "🎯 勉強"]] as const).map(([k, label]) => {
+        const on = (k === "study") === studyTab;
+        return (
+          <button
+            key={k}
+            role="tab"
+            aria-selected={on}
+            onClick={() => setStudyTab(k === "study")}
+            className={`rounded-full py-2.5 text-sm font-bold transition ${on ? "bg-gray-900 text-white" : "bg-white text-gray-500 ring-1 ring-gray-200"}`}
+          >
+            {label}
+          </button>
+        );
+      })}
+    </div>
+  ) : null;
+
+  if (isStudent && studyTab && !type) {
+    return (
+      <main className="min-h-dvh bg-[#fafafa] pb-28">
+        <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
+          <div className="mx-auto flex max-w-2xl items-center px-5 py-4">
+            <Link href="/home" className="flex h-9 w-9 items-center justify-center rounded-full text-xl text-gray-500 hover:bg-gray-100">←</Link>
+            <h1 className="ml-3 text-lg font-semibold text-gray-900">投稿・勉強</h1>
+          </div>
+        </header>
+        {studyTabs}
+        <div className="mx-auto max-w-2xl px-5 py-4">
+          <StudyHub />
+        </div>
+      </main>
+    );
+  }
+
   if (!type) {
     return (
       <main className="flex min-h-dvh flex-col bg-[#fafafa] pb-24">
@@ -277,6 +323,8 @@ export default function CreatePostPage() {
             </h1>
           </div>
         </header>
+
+        {studyTabs}
 
         {/* スマホでは、いちばん下のカードの下辺が、下のメニューの上にちょうど来るよう、残りの高さを均等に使う */}
         <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-5 py-3">

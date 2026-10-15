@@ -145,3 +145,7 @@
 - SNSは利用規約上、自動では集めない。
 - 小さな勉強会: `/api/cron/community-seminars`（毎日）。こくちーず（検索結果ページ。robots.txt で許可）と Doorkeeper（公開API）から、理学療法・リハビリに関わる題名のものだけ拾う（`src/lib/server/communityEvents.ts`）。最初の一括は `scripts/sync-community-seminars.mts`。Peatix・connpass は、機械的なアクセスを許可していない（403・API鍵が必要）ので使わない。
 - 主催・学会の絞り込みには、公式サイトがなく、載っている研修もない団体は、出さない（`SeminarOrgFilter`）。
+
+## 学生の「投稿・勉強」とホームのかんたん投稿（2026-10-15〜）
+- 学生の下のメニュー「投稿・勉強」（`/posts/create`）の上に「✏️ 投稿／🎯 勉強」の切り替え（`?tab=study` で直接開ける）。勉強は `StudyHub`（今日の10問・間違いの復習・ブックマーク・模擬試験・科目から・回から。中身は、これまでの一問一答ドリルと同じ `/student/quiz/*`）。PTには、これまでどおり。
+- ホーム（`/home`）の上に `HomeComposer`（文章だけなら、その場で投稿。写真・症例などは「くわしく書く」へ）。学生には「🎯 勉強」の近道も出す。

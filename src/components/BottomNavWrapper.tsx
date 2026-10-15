@@ -185,7 +185,9 @@ export default function BottomNavWrapper() {
       ? GUEST_MENUS_UNSET
       : accountType === "general"
         ? GENERAL_MENUS
-        : PT_MENUS;
+        : accountType === "student"
+          ? PT_MENUS.map((m) => (m.href === "/posts/create" ? { ...m, label: "投稿・勉強" } : m))
+          : PT_MENUS;
 
   // ゲストの「登録・ログイン」は、いま見ている画面を覚えて、登録のあとに戻す
   const menus = baseMenus.map((m) =>

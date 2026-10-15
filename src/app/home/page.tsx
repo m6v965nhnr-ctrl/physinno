@@ -1,5 +1,6 @@
 "use client";
 
+import HomeComposer from "@/components/HomeComposer";
 import { PostMediaFiles, PostMediaVisual } from "@/components/posts/PostMedia";
 import { mediaKind, postMediaUrls } from "@/lib/postMedia";
 import { safeHttpUrl } from "@/lib/url";
@@ -483,6 +484,7 @@ export default function HomePage() {
           </div>
         )}
 
+        {!guest && userId && <HomeComposer userId={userId} onPosted={loadHome} />}
         {!guest && <ProfileNameNudge userId={userId} />}
         {!guest && <FirstStepCard userId={userId} />}
         {!guest && <InstallHint />}
