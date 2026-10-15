@@ -94,41 +94,56 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
 
   return (
     <div className="space-y-4">
-      {/* いちばん上：今日の10問と、進み具合 */}
-      <section className="rounded-3xl bg-relight-gradient p-5 shadow-sm" aria-labelledby="study-title">
+      {/* いちばん上：進み具合（細く） */}
+      <section className="rounded-2xl bg-relight-gradient px-4 py-3 shadow-sm" aria-labelledby="study-title">
         <div className="flex items-center justify-between gap-2">
-          <h2 id="study-title" className="text-xl font-extrabold tracking-tight">
+          <h2 id="study-title" className="text-base font-extrabold tracking-tight">
             🎯 一問一答
           </h2>
           <StreakBadge className="bg-white/70" />
         </div>
-        <p className="mt-1 text-sm font-semibold">国試の過去問を、1問ずつ。答えたら、すぐ解説。</p>
-
-        <div className="mt-3 rounded-2xl bg-white/70 p-3">
-          <p className="text-xs font-semibold">あなたの進み具合{streak && !streak.doneToday ? "（今日は、まだ解いていません）" : ""}</p>
-          <div className="mt-1 grid grid-cols-3 gap-2 text-center">
-            <div>
-              <p className="text-xl font-extrabold">{answered.toLocaleString()}</p>
-              <p className="text-[10px] font-semibold">解いた（/{total.toLocaleString()}）</p>
-            </div>
-            <div>
-              <p className="text-xl font-extrabold">{correct.toLocaleString()}</p>
-              <p className="text-[10px] font-semibold">正解</p>
-            </div>
-            <div>
-              <p className="text-xl font-extrabold">{answered > 0 ? `${percent(correct, answered)}%` : "-"}</p>
-              <p className="text-[10px] font-semibold">正答率</p>
-            </div>
-          </div>
-          <div className="mt-2 h-2 overflow-hidden rounded-full bg-white" aria-hidden="true">
-            <div className="h-full rounded-full bg-gray-900" style={{ width: `${percent(answered, total)}%` }} />
-          </div>
-          <p className="mt-1 text-[10px] font-medium">正答率は、最後の答えで数えます</p>
+        <div className="mt-2 flex items-end justify-between gap-2 text-center">
+          <p className="text-left">
+            <span className="text-xl font-extrabold">{answered.toLocaleString()}</span>
+            <span className="ml-0.5 text-[10px] font-semibold">/{total.toLocaleString()}問 解いた</span>
+          </p>
+          <p>
+            <span className="text-xl font-extrabold">{correct.toLocaleString()}</span>
+            <span className="ml-0.5 text-[10px] font-semibold">正解</span>
+          </p>
+          <p>
+            <span className="text-xl font-extrabold">{answered > 0 ? `${percent(correct, answered)}%` : "-"}</span>
+            <span className="ml-0.5 text-[10px] font-semibold">正答率</span>
+          </p>
+        </div>
+        <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-white/80" aria-hidden="true">
+          <div className="h-full rounded-full bg-gray-900" style={{ width: `${percent(answered, total)}%` }} />
         </div>
       </section>
 
+      {/* キーワード（細く）。ヒーローのすぐ下 */}
+      <section className="rounded-2xl bg-white px-3 py-2.5 shadow-sm">
+        <div className="flex items-center gap-2">
+          <span aria-hidden="true">🔎</span>
+          <input
+            value={keyword}
+            onChange={(e) => setKeyword(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" && !e.nativeEvent.isComposing) searchKeyword();
+            }}
+            placeholder="キーワードで解く（例：糖尿病、ICF）"
+            aria-label="キーワードで解く"
+            className="min-w-0 flex-1 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-sm outline-none focus:border-gray-900"
+          />
+          <button onClick={searchKeyword} disabled={finding || !keyword.trim()} className="shrink-0 rounded-full bg-black px-4 py-1.5 text-sm font-medium text-white disabled:opacity-40">
+            {finding ? "…" : "解く"}
+          </button>
+        </div>
+        <p className="mt-1 pl-6 text-[10px] leading-4 text-gray-400">関係する問題も集めます。人名のつく病名・評価法は、英語でも。</p>
+      </section>
+
       {/* 近道 */}
-      <section className="grid grid-cols-4 gap-2" aria-label="近道">
+      <section className="grid grid-cols-3 gap-2" aria-label="近道">
         {counts && counts.wrong > 0 ? (
           <Link href={fixed("wrong", 0)} className={tile}>
             <span aria-hidden="true" className="text-xl">🔁</span>
@@ -160,11 +175,6 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
           <span className="mt-1 block text-[11px] font-bold text-gray-900">全範囲</span>
           <span className="block text-[11px] font-semibold text-gray-600">{total.toLocaleString()}問</span>
         </Link>
-        <button type="button" onClick={() => setTab("mock")} className={tile}>
-          <span aria-hidden="true" className="text-xl">⏱</span>
-          <span className="mt-1 block text-[11px] font-bold text-gray-900">模擬試験</span>
-          <span className="block text-[11px] font-semibold text-gray-600">{MOCK_MINUTES}分</span>
-        </button>
       </section>
 
       {/* 出題の設定（科目・回・全範囲・キーワードから始めるとき、これが使われる） */}
@@ -355,32 +365,6 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
             ))}
           </div>
         )}
-      </section>
-
-      {/* キーワード */}
-      <section className="rounded-2xl bg-white p-4 shadow-sm">
-        <p className="text-sm font-semibold">🔎 キーワードで解く</p>
-        <p className="mt-0.5 text-[11px] leading-4 text-gray-500">
-          例：「糖尿病」と入れると、問題文・選択肢に「糖尿病」がある問題と、関係する問題（HbA1c・インスリン・合併症など）を集めます
-        </p>
-        <div className="mt-3 flex gap-2">
-          <input
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.nativeEvent.isComposing) searchKeyword();
-            }}
-            placeholder="例：糖尿病、脳梗塞、ICF"
-            aria-label="キーワード"
-            className="min-w-0 flex-1 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm outline-none focus:border-gray-900"
-          />
-          <button onClick={searchKeyword} disabled={finding || !keyword.trim()} className="shrink-0 rounded-full bg-black px-4 py-2 text-sm font-medium text-white disabled:opacity-40">
-            {finding ? "探し中…" : "探す"}
-          </button>
-        </div>
-        <p className="mt-2 text-[11px] leading-4 text-gray-500">
-          ※ 人名のついた病名や評価法は、英語で書かれていることがあります（例：Parkinson、Brunnstrom）。見つからないときは、英語でも探してみてください。
-        </p>
       </section>
 
       {/* 同じ学校の学生どうしのランキング（学生のみ） */}

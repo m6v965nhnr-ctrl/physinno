@@ -62,6 +62,61 @@ export default function BottomNavWrapper() {
   const userIdRef = useRef<string | null>(null);
   const prevPathnameRef = useRef(pathname);
 
+  // 下のメニューを、画面に見えている範囲の下に、いつも合わせる。
+  // iPhoneのホーム画面アプリで、スクロールすると、メニューが本文といっしょに上へついてきてしまうことがあったため、
+  // 見えている範囲（visualViewport）の下と、メニューの下がずれたら、そのずれだけ、transformで戻す。ずれがなければ、何もしない
+  useEffect(() => {
+    const NAV = 'nav[aria-label="メインメニュー"]';
+    let raf = 0;
+    const debug = new URLSearchParams(window.location.search).get("navdebug") === "1";
+    let box: HTMLDivElement | null = null;
+    if (debug) {
+      box = document.createElement("div");
+      box.style.cssText = "position:fixed;top:60px;left:6px;z-index:2147483647;background:rgba(0,0,0,.8);color:#0f0;font:11px/1.4 monospace;padding:6px;border-radius:6px;pointer-events:none;white-space:pre";
+      document.body.appendChild(box);
+    }
+    const fix = () => {
+      raf = 0;
+      const nav = document.querySelector<HTMLElement>(NAV);
+      if (!nav) return;
+      const vv = window.visualViewport;
+      const visibleBottom = vv ? vv.offsetTop + vv.height : window.innerHeight;
+      const cur = Number(nav.dataset.shift || 0);
+      const rect = nav.getBoundingClientRect();
+      const natural = rect.bottom - cur;
+      const diff = Math.round(visibleBottom - natural);
+      if (Math.abs(diff - cur) > 2) {
+        nav.dataset.shift = String(diff);
+        nav.style.transform = diff === 0 ? "" : `translateY(${diff}px)`;
+      }
+      if (box) {
+        box.textContent = [
+          `scrollY ${Math.round(window.scrollY)}  el.scrollTop ${Math.round(document.scrollingElement?.scrollTop ?? -1)}`,
+          `innerH ${window.innerHeight}  vv.h ${vv ? Math.round(vv.height) : "-"}  vv.top ${vv ? Math.round(vv.offsetTop) : "-"}  vv.pageTop ${vv ? Math.round(vv.pageTop) : "-"}`,
+          `nav.bottom ${Math.round(rect.bottom)}  shift ${nav.dataset.shift || 0}  docH ${document.documentElement.scrollHeight}`,
+        ].join("\n");
+      }
+    };
+    const schedule = () => {
+      if (!raf) raf = requestAnimationFrame(fix);
+    };
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    window.visualViewport?.addEventListener("scroll", schedule);
+    window.visualViewport?.addEventListener("resize", schedule);
+    const timer = window.setInterval(schedule, 700); // スクロールの余韻（慣性）のあいだも、合わせ続ける
+    schedule();
+    return () => {
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+      window.visualViewport?.removeEventListener("scroll", schedule);
+      window.visualViewport?.removeEventListener("resize", schedule);
+      window.clearInterval(timer);
+      if (raf) cancelAnimationFrame(raf);
+      box?.remove();
+    };
+  }, []);
+
   // スマホで文字を入力しているあいだは、下のメニューを隠す。
   // iPhoneは、キーボードが出ているときに画面をスクロールすると、画面の下に固定したメニューが、上のほうへ動いてしまうため
   const [typing, setTyping] = useState(false);

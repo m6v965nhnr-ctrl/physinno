@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
 import AddToHomeButton from "@/components/AddToHomeButton";
+import StudyCalendarCard from "@/components/student/StudyCalendarCard";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
 import {
   StudentItem,
@@ -10,8 +11,6 @@ import {
   StudyLog,
   UpcomingEvent,
   computeCountdown,
-  computeStudyStats,
-  formatMinutes,
   statusLabel,
   upcomingEvents,
 } from "@/lib/student";
@@ -53,7 +52,6 @@ export default function StudentHomeView({
 }) {
   const countdown = computeCountdown(profile);
   const events: UpcomingEvent[] = upcomingEvents(items);
-  const stats = computeStudyStats(logs);
   // 4月1日のPT切り替えの案内は、約3か月前（1月ごろ）から出す。1か月前からは、目立つ色にする
   const switchSoon = countdown.switchDays <= 92 && countdown.switchDays >= 0;
   const switchVerySoon = countdown.switchDays <= 31;
@@ -152,26 +150,8 @@ export default function StudentHomeView({
           <span aria-hidden="true" className="text-xl font-bold">→</span>
         </Link>
 
-        {/* 今週の学習 */}
-        <Link href="/student/exam" className="block rounded-2xl bg-white p-4 shadow-sm transition hover:bg-gray-50">
-          <div className="flex items-center justify-between">
-            <p className="text-sm font-semibold">今週の学習</p>
-            <span className="text-xs text-gray-400">記録する →</span>
-          </div>
-          <div className="mt-2 flex gap-6 text-sm">
-            <p>
-              <span className="text-xl font-bold">{formatMinutes(stats.weekMinutes)}</span>
-              <span className="ml-1 text-xs text-gray-500">/ 7日間</span>
-            </p>
-            <p>
-              <span className="text-xl font-bold">{stats.streakDays}</span>
-              <span className="ml-1 text-xs text-gray-500">日連続</span>
-            </p>
-          </div>
-          {!stats.studiedToday && (
-            <p className="mt-2 text-xs text-gray-400">今日はまだ記録がありません</p>
-          )}
-        </Link>
+        {/* 今日の学習（解いた問題の数・連続日数）と、やった日に色がつくカレンダー */}
+        <StudyCalendarCard preview={preview} />
 
         {/* 直近の予定 */}
         <section className="rounded-2xl bg-white p-4 shadow-sm">
