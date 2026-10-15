@@ -147,7 +147,7 @@ export default function StudentHomeView({
         <Link href="/study" className="flex items-center justify-between rounded-2xl bg-relight-gradient p-4 shadow-sm transition active:scale-[0.99]">
           <span>
             <span className="block text-base font-extrabold">🎯 勉強（一問一答）</span>
-            <span className="block text-xs font-semibold">国試の過去問を、1問ずつ。今日の10問・復習・模擬試験</span>
+            <span className="block text-xs font-semibold">国試の過去問を、1問ずつ。復習・模擬試験・ランキング</span>
           </span>
           <span aria-hidden="true" className="text-xl font-bold">→</span>
         </Link>

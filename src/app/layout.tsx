@@ -56,12 +56,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="min-h-screen">
+      <body className="flex min-h-dvh flex-col">
         <a href="#main-content" className="skip-link">
           本文へ移動
         </a>
 
-        <div id="main-content" tabIndex={-1} className="outline-none">
+        <div id="main-content" tabIndex={-1} className="flex-1 outline-none">
           <AuthGuard>{children}</AuthGuard>
         </div>
 

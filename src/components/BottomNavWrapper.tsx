@@ -257,7 +257,7 @@ export default function BottomNavWrapper() {
     <nav
       aria-label="メインメニュー"
       hidden={typing}
-      className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white print:hidden"
+      className="sticky bottom-0 z-[9999] mt-auto w-full border-t border-gray-200 bg-white print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div

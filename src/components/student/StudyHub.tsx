@@ -30,19 +30,6 @@ function Bar({ answered, total }: { answered: number; total: number }) {
   );
 }
 
-function Chip({ on, onClick, children }: { on: boolean; onClick: () => void; children: React.ReactNode }) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      aria-pressed={on}
-      className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${on ? "bg-gray-900 text-white" : "bg-gray-100 text-gray-600"}`}
-    >
-      {children}
-    </button>
-  );
-}
-
 type Setting = "auto" | QuizMode;
 type Tab = "unit" | "exam" | "mock" | "pdf";
 
@@ -117,18 +104,8 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         </div>
         <p className="mt-1 text-sm font-semibold">国試の過去問を、1問ずつ。答えたら、すぐ解説。</p>
 
-        <Link href={fixed(todayUnanswered ? "unanswered" : "all", 10)} className="mt-4 flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]">
-          <span>
-            <span className="block text-lg font-extrabold">{answered === 0 ? "▶ まず10問、解いてみよう" : "▶ 今日の10問"}</span>
-            <span className="block text-xs font-semibold text-gray-600">
-              {streak && !streak.doneToday ? "今日は、まだ解いていません" : todayUnanswered ? "まだ解いていない問題から" : "全問から、ランダムに"}・約3分
-            </span>
-          </span>
-          <span aria-hidden="true" className="text-2xl font-bold">→</span>
-        </Link>
-
         <div className="mt-3 rounded-2xl bg-white/70 p-3">
-          <p className="text-xs font-semibold">あなたの進み具合</p>
+          <p className="text-xs font-semibold">あなたの進み具合{streak && !streak.doneToday ? "（今日は、まだ解いていません）" : ""}</p>
           <div className="mt-1 grid grid-cols-3 gap-2 text-center">
             <div>
               <p className="text-xl font-extrabold">{answered.toLocaleString()}</p>
@@ -190,34 +167,36 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         </button>
       </section>
 
-      {/* 出題の設定 */}
-      <section className="rounded-3xl bg-white p-4 shadow-sm">
-        <h3 className="text-sm font-bold text-gray-900">出題の設定</h3>
-        <p className="mt-0.5 text-[11px] text-gray-500">下の科目・回・全範囲・キーワードから始めるとき、これが使われます</p>
-        <div className="mt-3 space-y-2.5">
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">問題</span>
-            <Chip on={mode === "auto"} onClick={() => setMode("auto")}>おまかせ</Chip>
-            <Chip on={mode === "all"} onClick={() => setMode("all")}>すべて</Chip>
-            <Chip on={mode === "unanswered"} onClick={() => setMode("unanswered")}>まだ解いていない</Chip>
-            <Chip on={mode === "wrong"} onClick={() => setMode("wrong")}>間違えた</Chip>
-            <Chip on={mode === "bookmarked"} onClick={() => setMode("bookmarked")}>保存した</Chip>
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">順番</span>
-            <Chip on={order === "random"} onClick={() => setOrder("random")}>ランダム</Chip>
-            <Chip on={order === "seq"} onClick={() => setOrder("seq")}>問題番号順</Chip>
-          </div>
-          <div className="flex flex-wrap items-center gap-1.5">
-            <span className="w-12 shrink-0 text-[11px] font-semibold text-gray-500">問題数</span>
-            {[10, 20, 50, 0].map((c) => (
-              <Chip key={c} on={n === c} onClick={() => setN(c)}>
-                {c === 0 ? "最後まで" : `${c}問`}
-              </Chip>
-            ))}
-          </div>
+      {/* 出題の設定（科目・回・全範囲・キーワードから始めるとき、これが使われる） */}
+      <section className="rounded-2xl bg-white p-3 shadow-sm" aria-label="出題の設定">
+        <div className="grid grid-cols-3 gap-2">
+          <label className="block">
+            <span className="mb-1 block text-[10px] font-semibold text-gray-500">問題</span>
+            <select value={mode} onChange={(e) => setMode(e.target.value as Setting)} className="w-full rounded-xl border border-gray-200 bg-white px-2 py-2 text-xs font-medium text-gray-900">
+              <option value="auto">おまかせ</option>
+              <option value="all">すべて</option>
+              <option value="unanswered">まだ解いていない</option>
+              <option value="wrong">間違えた</option>
+              <option value="bookmarked">保存した</option>
+            </select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-[10px] font-semibold text-gray-500">順番</span>
+            <select value={order} onChange={(e) => setOrder(e.target.value as "random" | "seq")} className="w-full rounded-xl border border-gray-200 bg-white px-2 py-2 text-xs font-medium text-gray-900">
+              <option value="random">ランダム</option>
+              <option value="seq">問題番号順</option>
+            </select>
+          </label>
+          <label className="block">
+            <span className="mb-1 block text-[10px] font-semibold text-gray-500">問題数</span>
+            <select value={n} onChange={(e) => setN(Number(e.target.value))} className="w-full rounded-xl border border-gray-200 bg-white px-2 py-2 text-xs font-medium text-gray-900">
+              <option value={0}>最後まで</option>
+              <option value={10}>10問</option>
+              <option value={20}>20問</option>
+              <option value={50}>50問</option>
+            </select>
+          </label>
         </div>
-        {mode === "auto" && <p className="mt-2 text-[11px] text-gray-400">おまかせ：まだ解いていない問題があれば、そこから。なければ、すべてから。</p>}
       </section>
 
       {/* 科目・回・模擬試験・PDF */}
