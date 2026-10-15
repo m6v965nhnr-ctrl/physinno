@@ -23,17 +23,50 @@ const out = process.argv[2] || "recruit.jsonl";
 const limit = Number(process.argv[3] || 100000);
 import { scan, setPdfToText } from "./hospital-scan-core.mjs";
 
-// 手元では pdftotext（先頭8ページ）で PDF を文字にする
-setPdfToText(async (buf) => {
+// 手元では pdftotext（先頭8ページ）で PDF を文字にする。文字がほとんど取れない（画像のPDF）ときは、
+// 先頭3ページを画像にして tesseract（日本語）で読む。OCRは重いので、同時に4つまで
+let ocrBusy = 0;
+const ocrWait = async () => {
+  while (ocrBusy >= 4) await new Promise((r) => setTimeout(r, 300));
+  ocrBusy++;
+};
+async function ocrPdf(tmp) {
+  await ocrWait();
+  const prefix = tmp.replace(/\.pdf$/, "");
+  const env = { ...process.env, OMP_THREAD_LIMIT: "1" };
+  try {
+    await run("pdftoppm", ["-r", "200", "-f", "1", "-l", "3", "-png", tmp, prefix], { timeout: 60000, env });
+    let out = "";
+    for (const n of ["1", "2", "3"]) {
+      const png = [`${prefix}-${n}.png`, `${prefix}-0${n}.png`].find((f) => existsSync(f));
+      if (!png) continue;
+      try {
+        const { stdout } = await run("tesseract", [png, "stdout", "-l", "jpn", "--psm", "6"], { timeout: 90000, maxBuffer: 5_000_000, env });
+        out += stdout + "\n";
+      } catch {}
+      try { unlinkSync(png); } catch {}
+    }
+    // OCR は、漢字の間に空白を入れがち。「初 任 給」→「初任給」
+    return out.replace(/(?<=[\u3000-\u9fff])[ \t]+(?=[\u3000-\u9fff])/g, "").replace(/(?<=\d)[ \t]+(?=[,，.]\d)/g, "");
+  } catch {
+    return "";
+  } finally {
+    ocrBusy--;
+  }
+}
+
+async function localPdfToText(buf) {
   const tmp = join(tmpdir(), `rl-${process.pid}-${pdfSeq++}.pdf`);
   writeFileSync(tmp, buf);
   try {
     const { stdout } = await run("pdftotext", ["-layout", "-l", "8", "-enc", "UTF-8", tmp, "-"], { timeout: 20000, maxBuffer: 5_000_000 });
-    return stdout;
+    if (stdout.replace(/\s/g, "").length >= 80) return stdout;
+    return await ocrPdf(tmp);
   } finally {
     try { unlinkSync(tmp); } catch {}
   }
-});
+}
+setPdfToText(localPdfToText);
 
 // ---------- 実行 ----------
 async function listHospitals() {
@@ -83,4 +116,4 @@ if (process.argv[1].endsWith("scan-hospital-recruit.mjs")) {
   console.error("finished");
 }
 
-export { scan };
+export { scan, localPdfToText };
