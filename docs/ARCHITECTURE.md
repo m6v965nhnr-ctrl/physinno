@@ -155,3 +155,9 @@
 - 下のメニューは、`position: fixed` をやめて、`position: sticky; bottom: 0`（ページの最後に、画面の下へ貼りつく）にした（2026-10-15）。iPhoneのホーム画面アプリで、スクロールすると、固定のメニューが画面の中ほどへ浮いてしまったため（画面録画で確認）。`body` は縦に並べる箱（`flex-col`・`min-h-dvh`）、本文は `flex-1`。メニューを「画面の下に固定」するものは、sticky を使う。
 - 下のメニューの位置合わせ（`BottomNavWrapper`）: 見えている範囲（visualViewport）の下と、メニューの下がずれたら、そのずれだけ transform で戻す（ずれがなければ何もしない）。URLに `?navdebug=1` を付けると、スクロールの量・見えている範囲・メニューの位置が、画面の左上に出る（原因の調査用）。
 - マイページ（学生）の「今日の学習」（`StudyCalendarCard`）: 今日解いた問題の数・連続日数と、やった日に色がつくカレンダー。日ごとの問題数は `quiz_study_days.solved`、カレンダーは RPC `quiz_study_calendar`（問題を解いた日と、学習ログの日）。
+
+## セキュリティの見直し（2026-10-15 反映）
+- DB（本番に適用済み）: reviews の user_id を読めなくする（読むのは `list_pt_reviews` / `list_my_reviews`）／portfolio-files を非公開（署名つきURL）／anon の書き込み・TRUNCATE などの権限を外す／users・pt_private・admin_users・メッセージ類の anon SELECT を外す／id-photos は画像のみ・8MBまで／資格の目標（qualification_targets）はログイン中だけ読める／使っていない `pts` 表は誰も読めない／免許番号は書き込まれても空にする／トリガー用関数 `pt_profiles_hide_workplace` は直接呼べない。マイグレーション: `20261106_security_hardening.sql`・`20261116_security_extra.sql`。
+- アプリ: Next.js を 16.4.1 に更新（重大な既知の脆弱性を解消。`npm audit` は0件）／セキュリティヘッダー（HSTS・X-Content-Type-Options・X-Frame-Options・Referrer-Policy・Permissions-Policy・CSP の frame-ancestors など。`next.config.ts`）／AI機能の利用回数の確認が失敗したときは、使わせない（以前は、通していた）。
+- 確認: `npm run security`（匿名で他人の情報が読めない・書けない）を、変更のたびに実行する。
+- ダッシュボードでしかできないもの（運営の作業）: Authentication → Policies の「Leaked password protection」をオン（プランによっては使えない）、バックアップ（PITR）とAuthのレート制限の確認。

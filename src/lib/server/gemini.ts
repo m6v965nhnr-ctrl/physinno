@@ -108,7 +108,7 @@ export async function getUserFromRequest(request: Request) {
 
 // AI機能の、1日あたりの使用回数の上限（ユーザーごと・全体）。DBの take_ai_quota で数える。
 // 上限を超えていたら、そのまま返せる Response を返す。問題なければ null。
-// 数える仕組み自体が失敗したときは、止めずに使わせる（DBの一時的な不調で、機能を止めないため）
+// 数える仕組み自体が失敗したときは、使わせない（上限なしで使われないため）
 export async function takeAiQuota(request: Request, feature: string): Promise<Response | null> {
   const token = request.headers.get("authorization")?.replace(/^Bearer\s+/i, "");
   if (!token) return null;
@@ -120,7 +120,8 @@ export async function takeAiQuota(request: Request, feature: string): Promise<Re
       { global: { headers: { Authorization: `Bearer ${token}` } } }
     );
     const { data, error } = await client.rpc("take_ai_quota", { p_feature: feature });
-    if (error) return null;
+    // 数える仕組みが失敗したときは、止める（上限なしで使われて、AIの費用を使い切られないため）
+    if (error) return unavailable();
 
     if (data === "user_limit") {
       return Response.json(
@@ -135,8 +136,12 @@ export async function takeAiQuota(request: Request, feature: string): Promise<Re
       );
     }
   } catch {
-    return null;
+    return unavailable();
   }
 
   return null;
+}
+
+function unavailable() {
+  return Response.json({ error: "AI機能が、一時的に使えません。しばらくして、もう一度お試しください", code: "unavailable" }, { status: 503 });
 }
