@@ -16,7 +16,7 @@ export default function LpStickyCta({ registerHref }: { registerHref: string }) 
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-50 border-t border-[var(--lp-g200)] bg-white/95 px-4 pt-3 shadow-[0_-6px_20px_rgba(10,61,42,0.10)] backdrop-blur transition-transform duration-300 md:hidden ${
+      className={`fixed inset-x-0 bottom-0 z-50 border-t border-[var(--lp-g200)] bg-white/95 px-4 pt-3 shadow-[0_-6px_20px_rgba(8,76,91,0.12)] backdrop-blur transition-transform duration-300 md:hidden ${
         show ? "translate-y-0" : "translate-y-full"
       }`}
       style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
@@ -26,7 +26,7 @@ export default function LpStickyCta({ registerHref }: { registerHref: string }) 
         <Link href="/guest" tabIndex={show ? 0 : -1} className="shrink-0 rounded-full border-2 border-[var(--lp-g700)] px-4 py-3 text-sm font-bold text-[var(--lp-g700)]">
           中を見る
         </Link>
-        <Link href={registerHref} tabIndex={show ? 0 : -1} className="flex-1 rounded-full bg-[var(--lp-g700)] px-4 py-3 text-center text-sm font-bold text-white">
+        <Link href={registerHref} tabIndex={show ? 0 : -1} className="flex-1 rounded-full bg-relight-gradient px-4 py-3 text-center text-sm font-bold">
           無料で登録する（1分）
         </Link>
       </div>

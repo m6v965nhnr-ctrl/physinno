@@ -92,7 +92,7 @@ const jsonLd = {
 };
 
 // ボタンの形（濃い緑＝登録、白＋緑の枠＝中を見る）
-const BTN_PRIMARY = "inline-flex items-center justify-center rounded-full bg-[var(--lp-g700)] px-7 py-4 text-base font-bold text-white shadow-[0_6px_16px_rgba(15,122,74,0.30)] transition hover:bg-[var(--lp-g800)] active:scale-[0.98]";
+const BTN_PRIMARY = "inline-flex items-center justify-center rounded-full bg-relight-gradient px-7 py-4 text-base font-bold shadow-[0_6px_16px_rgba(38,169,189,0.35)] transition hover:brightness-95 active:scale-[0.98]";
 const BTN_SECONDARY = "inline-flex items-center justify-center rounded-full border-2 border-[var(--lp-g700)] bg-white px-7 py-3.5 text-base font-bold text-[var(--lp-g700)] transition hover:bg-[var(--lp-g50)] active:scale-[0.98]";
 const SECTION_LABEL = "text-xs font-bold tracking-[0.14em] text-[var(--lp-g600)]";
 const H2 = "mt-2 text-2xl font-bold leading-snug tracking-tight md:text-3xl";
@@ -127,7 +127,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <Link href="/login" className="px-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
               ログイン
             </Link>
-            <Link href={registerHref} className="rounded-full bg-[var(--lp-g700)] px-4 py-2.5 text-sm font-bold text-white hover:bg-[var(--lp-g800)]">
+            <Link href={registerHref} className="rounded-full bg-relight-gradient px-4 py-2.5 text-sm font-bold">
               無料登録
             </Link>
           </nav>
@@ -164,14 +164,14 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
                   {...(i === 0 ? { "data-lp": "primary-entrance" } : {})}
                   className={`block rounded-2xl p-4 transition active:scale-[0.99] ${
                     i === 0
-                      ? "bg-[var(--lp-g700)] text-white shadow-[0_8px_20px_rgba(15,122,74,0.30)] hover:bg-[var(--lp-g800)]"
+                      ? "bg-relight-gradient shadow-[0_8px_20px_rgba(38,169,189,0.35)] hover:brightness-95"
                       : "border-2 border-[var(--lp-g700)] bg-white text-[var(--lp-g900)] hover:bg-[var(--lp-g50)]"
                   }`}
                 >
-                  <span className={`block text-[11px] font-bold ${i === 0 ? "text-[var(--lp-g200)]" : "text-[var(--lp-g600)]"}`}>{e.who}</span>
+                  <span className={`block text-[11px] font-bold ${i === 0 ? "text-[var(--on-brand)]/70" : "text-[var(--lp-g600)]"}`}>{e.who}</span>
                   <span className="mt-0.5 block text-[15px] font-bold leading-snug">{e.title}</span>
-                  <span className={`mt-1 block text-xs leading-5 ${i === 0 ? "text-white/85" : "text-gray-600"}`}>{e.body}</span>
-                  <span className={`mt-3 inline-block rounded-full px-4 py-1.5 text-xs font-bold ${i === 0 ? "bg-white text-[var(--lp-g800)]" : "bg-[var(--lp-g700)] text-white"}`}>
+                  <span className={`mt-1 block text-xs leading-5 ${i === 0 ? "text-[var(--on-brand)]/80" : "text-gray-600"}`}>{e.body}</span>
+                  <span className={`mt-3 inline-block rounded-full px-4 py-1.5 text-xs font-bold ${i === 0 ? "bg-white text-[var(--lp-g800)]" : "bg-relight-gradient"}`}>
                     無料ではじめる →
                   </span>
                 </Link>
@@ -231,7 +231,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
 
           <div className="mt-8 space-y-6">
             {/* 論文 */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(10,61,42,0.06)] md:p-8">
+            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
               <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">📚 論文を、9サイトまとめて探す</h3>
               <p className="mt-2 text-sm leading-7 text-gray-700">
                 日本語で検索すれば、自動で英語にも変換して、海外の論文も一緒に探します。見つけた論文は、エビデンスレベルで絞り込め、要約の日本語訳も読めます。普通の文章で質問する「AIモード」では、見つかった論文だけをもとに、引用番号つきで答えます。
@@ -252,7 +252,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             </article>
 
             {/* 臨床アイデア */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(10,61,42,0.06)] md:p-8">
+            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
               <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">💡 疾患から、評価とリハビリのアイデアを引く</h3>
               <p className="mt-2 text-sm leading-7 text-gray-700">
                 診療報酬の区分から疾患を選ぶと、まず見たい評価と、リハビリのアイデアが見られます。自分のアイデアを登録して共有でき、「実践した」の数で、よく使われているものが分かります。AIに相談もできます。
@@ -261,7 +261,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             </article>
 
             {/* 病院 */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(10,61,42,0.06)] md:flex md:items-center md:gap-8 md:p-8">
+            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:flex md:items-center md:gap-8 md:p-8">
               <div className="md:flex-1">
                 <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">🏥 職場選びに、リアルな情報を</h3>
                 <p className="mt-2 text-sm leading-7 text-gray-700">
@@ -380,7 +380,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           <ol className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map((s, i) => (
               <li key={s.title} className="relative rounded-2xl border border-[var(--lp-g200)] bg-[var(--lp-g50)] p-6">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--lp-g700)] text-sm font-bold text-white">{i + 1}</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-relight-gradient text-sm font-bold">{i + 1}</span>
                 <h3 className="mt-3 text-base font-bold text-[var(--lp-g900)]">{s.title}</h3>
                 <p className="mt-1 text-sm leading-7 text-gray-700">{s.body}</p>
               </li>
@@ -415,7 +415,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
       </section>
 
       {/* ⑨ 最後の登録 */}
-      <section className="bg-[var(--lp-g700)] px-6 py-16 text-center text-white">
+      <section className="bg-relight-gradient px-6 py-16 text-center">
         <h2 className="text-2xl font-bold leading-snug tracking-tight text-white md:text-3xl">学びと経験を、ひとつに。</h2>
         <p className="mt-3 text-sm text-white/90">登録無料・メールアドレスだけで1分。</p>
         <div className="mx-auto mt-6 flex max-w-sm flex-col gap-3">
