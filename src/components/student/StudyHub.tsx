@@ -41,7 +41,8 @@ export default function StudyHub() {
 
   // まだ解いていない問題があれば、そこから。なければ全問から
   const todayMode = counts && counts.unanswered > 0 ? "unanswered" : "all";
-  const play = (extra: string, mode: string = todayMode) => `/student/quiz/play?${extra}${extra ? "&" : ""}mode=${mode}&n=10&order=random`;
+  // n=0 は、最後まで（全問）。「今日の10問」だけ、10問で終わる
+  const play = (extra: string, mode: string = todayMode, n = 0) => `/student/quiz/play?${extra}${extra ? "&" : ""}mode=${mode}&n=${n}&order=random`;
 
   const fields = Array.from(new Set(units.map((u) => u.field)));
   const sortedExams = [...exams].sort((x, y) => y.exam_no - x.exam_no);
@@ -58,7 +59,7 @@ export default function StudyHub() {
         </div>
         <p className="mt-1 text-sm font-semibold">国試の過去問を、1問ずつ。答えたら、すぐ解説。</p>
 
-        <Link href={play("")} className="mt-4 flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]">
+        <Link href={play("", todayMode, 10)} className="mt-4 flex items-center justify-between rounded-2xl bg-white px-5 py-4 text-gray-900 shadow-sm transition active:scale-[0.99]">
           <span>
             <span className="block text-lg font-extrabold">{answered === 0 ? "▶ まず10問、解いてみよう" : "▶ 今日の10問"}</span>
             <span className="block text-xs font-semibold text-gray-600">
@@ -124,7 +125,7 @@ export default function StudyHub() {
       {/* 科目から */}
       <section className="rounded-3xl bg-white p-4 shadow-sm">
         <h3 className="text-sm font-bold text-gray-900">科目から選ぶ</h3>
-        <p className="mt-0.5 text-xs text-gray-500">選ぶと、すぐに10問が始まります</p>
+        <p className="mt-0.5 text-xs text-gray-500">選ぶと、すぐに始まります。最後の問題まで続けて解けます（やめるのは、いつでも）</p>
         <div className="mt-3 divide-y divide-gray-100">
           {fields.map((f) => {
             const list = units.filter((u) => u.field === f).sort((a, b) => a.sort - b.sort);

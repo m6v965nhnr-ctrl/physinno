@@ -186,7 +186,7 @@ export default function BottomNavWrapper() {
       : accountType === "general"
         ? GENERAL_MENUS
         : accountType === "student"
-          ? PT_MENUS.map((m) => (m.href === "/posts/create" ? { ...m, label: "投稿・勉強" } : m))
+          ? PT_MENUS.map((m) => (m.href === "/posts/create" ? { href: "/study", icon: "🎯", label: "勉強" } : m))
           : PT_MENUS;
 
   // ゲストの「登録・ログイン」は、いま見ている画面を覚えて、登録のあとに戻す
@@ -207,6 +207,9 @@ export default function BottomNavWrapper() {
     if (pathname === base && menus.some((m) => m.href.startsWith(`${base}?`) && search.includes(m.href.split("?")[1]))) {
       return false;
     }
+
+    // 勉強は、過去問を解く画面（/student/quiz/...）も含む
+    if (base === "/study") return pathname.startsWith("/study") || pathname.startsWith("/student/quiz");
 
     if (base === "/home" || base === "/posts/create") {
       return pathname === base;

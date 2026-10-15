@@ -2,7 +2,6 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
-import QuizHero from "@/components/student/QuizHero";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
 import {
@@ -144,8 +143,14 @@ export default function StudentHomeView({
         {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
         <AddToHomeButton />
 
-        {/* 一問一答ドリル（メイン機能） */}
-        <QuizHero />
+        {/* 一問一答は、マイページとは別の「勉強」（下のメニュー）に独立 */}
+        <Link href="/study" className="flex items-center justify-between rounded-2xl bg-relight-gradient p-4 shadow-sm transition active:scale-[0.99]">
+          <span>
+            <span className="block text-base font-extrabold">🎯 勉強（一問一答）</span>
+            <span className="block text-xs font-semibold">国試の過去問を、1問ずつ。今日の10問・復習・模擬試験</span>
+          </span>
+          <span aria-hidden="true" className="text-xl font-bold">→</span>
+        </Link>
 
         {/* 今週の学習 */}
         <Link href="/student/exam" className="block rounded-2xl bg-white p-4 shadow-sm transition hover:bg-gray-50">

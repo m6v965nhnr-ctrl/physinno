@@ -1,24 +1,16 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
-import { getMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 
 // ホームの上にある、かんたん投稿。文章だけなら、その場で投稿できる（写真・症例・実績などは、「くわしく書く」から）。
-// 学生には、「勉強」への近道も出す
 export default function HomeComposer({ userId, onPosted }: { userId: string; onPosted: () => void }) {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [posting, setPosting] = useState(false);
-  const [isStudent, setIsStudent] = useState(false);
-
-  useEffect(() => {
-    getMyAccountType(userId).then((t) => setIsStudent(t === "student"));
-  }, [userId]);
-
   async function post() {
     const content = text.trim();
     if (!content || posting) return;
@@ -53,11 +45,6 @@ export default function HomeComposer({ userId, onPosted }: { userId: string; onP
           >
             ✏️ いま、なにを共有しますか？
           </button>
-          {isStudent && (
-            <Link href="/posts/create?tab=study" className="shrink-0 rounded-full bg-relight-gradient px-4 py-3 text-xs font-bold">
-              🎯 勉強
-            </Link>
-          )}
         </div>
       ) : (
         <div>

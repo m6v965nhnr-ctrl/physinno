@@ -138,7 +138,7 @@ export default function QuizHomePage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href={accountType === "student" ? "/student" : "/home"} className="text-sm text-gray-400">
+          <Link href="/study" className="text-sm text-gray-400">
             ← {accountType === "student" ? "学生ホーム" : "ホーム"}
           </Link>
           <div className="mt-2 flex flex-wrap items-center gap-2">

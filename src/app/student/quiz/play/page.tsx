@@ -71,6 +71,8 @@ export default function QuizPlayPage() {
   const [busy, setBusy] = useState(false);
   const [results, setResults] = useState<Result[]>([]);
   const [bookmarks, setBookmarks] = useState<Record<string, boolean>>({});
+  // 結果の画面から、間違えた問題を開き直しているとき
+  const [fromResults, setFromResults] = useState(false);
 
   const load = useCallback(async (p: Params) => {
     setQuestions(null);
@@ -78,6 +80,7 @@ export default function QuizPlayPage() {
     setSelected([]);
     setReveal(null);
     setResults([]);
+    setFromResults(false);
 
     // クラスの課題: 前に答えた問題は飛ばして、続きから始める
     if (p.assignment) {
@@ -173,14 +176,46 @@ export default function QuizPlayPage() {
     window.scrollTo({ top: 0 });
   }
 
-  async function handleBookmark() {
-    if (!q) return;
-    const v = await toggleBookmark(q.id);
+  async function toggleBm(id: string) {
+    const v = await toggleBookmark(id);
     if (v === null) {
       notify("ブックマークに失敗しました");
       return;
     }
-    setBookmarks((b) => ({ ...b, [q.id]: v }));
+    setBookmarks((b) => ({ ...b, [id]: v }));
+  }
+
+  async function handleBookmark() {
+    if (!q) return;
+    await toggleBm(q.id);
+  }
+
+  // 結果の画面で、問題をタップ → その問題（正答・解説つき）に戻る
+  async function openReview(r: Result) {
+    if (!questions || busy) return;
+    const i = questions.findIndex((x) => x.id === r.question.id);
+    if (i < 0) return;
+    setBusy(true);
+    const rv = await revealQuestion(r.question.id);
+    setBusy(false);
+    if (!rv) {
+      notify("問題を開けませんでした。もう一度お試しください");
+      return;
+    }
+    setIdx(i);
+    setSelected(r.chosen);
+    setReveal({ ...rv, correct: r.correct === null ? undefined : r.correct });
+    setFromResults(true);
+    window.scrollTo({ top: 0 });
+  }
+
+  function backToResults() {
+    if (!questions) return;
+    setIdx(questions.length);
+    setSelected([]);
+    setReveal(null);
+    setFromResults(false);
+    window.scrollTo({ top: 0 });
   }
 
   if (loading || !params || questions === null) {
@@ -190,7 +225,7 @@ export default function QuizPlayPage() {
   }
 
   const isAssignment = Boolean(params.assignment);
-  const backHref = isAssignment ? "/student/quiz/classes" : "/student/quiz";
+  const backHref = isAssignment ? "/student/quiz/classes" : "/study";
   const scope = isAssignment
     ? "クラスの課題"
     : params.unit
@@ -247,14 +282,33 @@ export default function QuizPlayPage() {
           {wrong.length > 0 && (
             <section className="rounded-2xl bg-white p-4 shadow-sm">
               <p className="text-sm font-semibold">間違えた問題</p>
+              <p className="mt-0.5 text-[11px] text-gray-400">問題文をタップすると、その問題（正答・解説つき）に戻れます</p>
               <ul className="mt-2 space-y-2">
                 {wrong.map((r) => (
-                  <li key={r.question.id} className="text-sm leading-6 text-gray-700">
-                    <span className="mr-2 rounded-full bg-red-50 px-2 py-0.5 text-[10px] text-red-600">
-                      {questionLabel(r.question)}
-                    </span>
-                    {r.question.stem.slice(0, 60)}
-                    {r.question.stem.length > 60 ? "…" : ""}
+                  <li key={r.question.id} className="flex items-start gap-2 rounded-xl bg-gray-50 p-2.5">
+                    <button
+                      type="button"
+                      onClick={() => !isAssignment && openReview(r)}
+                      disabled={busy || isAssignment}
+                      className="min-w-0 flex-1 text-left text-sm leading-6 text-gray-800"
+                    >
+                      <span className="mr-2 rounded-full bg-red-50 px-2 py-0.5 text-[10px] text-red-600">
+                        {questionLabel(r.question)}
+                      </span>
+                      {r.question.stem.slice(0, 60)}
+                      {r.question.stem.length > 60 ? "…" : ""}
+                      {!isAssignment && <span className="ml-1 text-[11px] text-sky-700">解説を見る ›</span>}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => toggleBm(r.question.id)}
+                      aria-pressed={!!bookmarks[r.question.id]}
+                      className={`shrink-0 rounded-full border px-3 py-1.5 text-xs font-medium ${
+                        bookmarks[r.question.id] ? "border-amber-400 bg-amber-50 text-amber-700" : "border-gray-300 bg-white text-gray-600"
+                      }`}
+                    >
+                      {bookmarks[r.question.id] ? "★ 保存済み" : "☆ 保存"}
+                    </button>
                   </li>
                 ))}
               </ul>
@@ -303,7 +357,7 @@ export default function QuizPlayPage() {
               </button>
             )}
             <Link href={backHref} className="rounded-full border border-gray-300 py-2.5 text-center text-sm text-gray-800">
-              {isAssignment ? "課題の一覧に戻る" : "単元の一覧に戻る"}
+              {isAssignment ? "課題の一覧に戻る" : "勉強に戻る"}
             </Link>
           </div>
         </div>
@@ -333,9 +387,15 @@ export default function QuizPlayPage() {
       <header className="sticky top-0 z-10 border-b border-gray-100 bg-white px-6 py-3">
         <div className="mx-auto max-w-2xl">
           <div className="flex items-center justify-between text-xs text-gray-500">
-            <Link href={backHref} className="text-gray-400">
-              ← {isAssignment ? "あとで続ける" : "やめる"}
-            </Link>
+            {fromResults ? (
+              <button type="button" onClick={backToResults} className="text-gray-500">
+                ← 結果に戻る
+              </button>
+            ) : (
+              <Link href={backHref} className="text-gray-400">
+                ← {isAssignment ? "あとで続ける" : "やめる"}
+              </Link>
+            )}
             <span>
               {scope} ・ {idx + 1} / {questions.length}
             </span>
@@ -442,7 +502,7 @@ export default function QuizPlayPage() {
         {reveal && (
           <section className="space-y-3">
             <div
-              className={`rounded-2xl p-4 ${
+              className={`flex items-center justify-between gap-3 rounded-2xl p-4 ${
                 reveal.correct === true
                   ? "bg-emerald-50 text-emerald-900"
                   : reveal.correct === false
@@ -451,18 +511,24 @@ export default function QuizPlayPage() {
               }`}
               role="status"
             >
-              <p className="text-base font-bold">
-                {reveal.correct === true ? "正解！" : reveal.correct === false ? "不正解" : "答え"}
-              </p>
-              <p className="mt-1 text-sm">
-                正答:{" "}
-                {reveal.answers.length === 0
-                  ? "（この問題は、厚生労働省が採点の対象から除外しています）"
-                  : reveal.answers.map((s) => s.join("・")).join(" または ")}
-              </p>
-              {reveal.answers.length > 1 && (
-                <p className="mt-1 text-[11px] opacity-80">厚生労働省が、複数の答えを正解として認めた問題です。</p>
-              )}
+              <div className="min-w-0">
+                <p className="text-base font-bold">
+                  {reveal.correct === true ? "正解！" : reveal.correct === false ? "不正解" : "答え"}
+                </p>
+                <p className="mt-1 text-sm">
+                  正答:{" "}
+                  {reveal.answers.length === 0
+                    ? "（この問題は、厚生労働省が採点の対象から除外しています）"
+                    : reveal.answers.map((s) => s.join("・")).join(" または ")}
+                </p>
+                {reveal.answers.length > 1 && (
+                  <p className="mt-1 text-[11px] opacity-80">厚生労働省が、複数の答えを正解として認めた問題です。</p>
+                )}
+              </div>
+              {/* 解説を読まない人もいるので、正誤のすぐ右に「次へ」 */}
+              <button onClick={fromResults ? backToResults : next} className="shrink-0 rounded-full bg-black px-4 py-3 text-sm font-bold text-white">
+                {fromResults ? "結果に戻る" : idx + 1 >= questions.length ? "結果を見る" : "次の問題へ"} →
+              </button>
             </div>
 
             <div className="rounded-2xl bg-white p-4 shadow-sm">
@@ -516,8 +582,8 @@ export default function QuizPlayPage() {
                   </button>
                 )}
               </div>
-              <button onClick={next} className="rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white">
-                {idx + 1 >= questions.length ? "結果を見る" : "次の問題へ"}
+              <button onClick={fromResults ? backToResults : next} className="rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white">
+                {fromResults ? "結果に戻る" : idx + 1 >= questions.length ? "結果を見る" : "次の問題へ"}
               </button>
             </div>
           </section>
