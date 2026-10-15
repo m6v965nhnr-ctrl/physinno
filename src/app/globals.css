@@ -538,3 +538,9 @@ html {
   --lp-g800: #0a6477;
   --lp-g900: #084c5b;
 }
+
+/* 文字を入力しているあいだ（下のメニューが隠れているあいだ）は、メニューの上に置いた入力欄を、画面の下につける */
+body:has(nav[aria-label="メインメニュー"][hidden]) .above-nav {
+  bottom: 0 !important;
+  padding-bottom: env(safe-area-inset-bottom);
+}

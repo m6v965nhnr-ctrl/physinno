@@ -62,6 +62,23 @@ export default function BottomNavWrapper() {
   const userIdRef = useRef<string | null>(null);
   const prevPathnameRef = useRef(pathname);
 
+  // スマホで文字を入力しているあいだは、下のメニューを隠す。
+  // iPhoneは、キーボードが出ているときに画面をスクロールすると、画面の下に固定したメニューが、上のほうへ動いてしまうため
+  const [typing, setTyping] = useState(false);
+  useEffect(() => {
+    const touch = window.matchMedia("(pointer: coarse)");
+    const isField = (el: Element | null) =>
+      !!el && el.matches('textarea, select, [contenteditable="true"], input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="button"]):not([type="submit"]):not([type="file"])');
+    const update = () => setTyping(touch.matches && isField(document.activeElement));
+    const onOut = () => setTimeout(update, 0); // 別の入力欄に移るときに、一瞬だけ出ないように
+    document.addEventListener("focusin", update);
+    document.addEventListener("focusout", onOut);
+    return () => {
+      document.removeEventListener("focusin", update);
+      document.removeEventListener("focusout", onOut);
+    };
+  }, []);
+
   async function refreshUnreadCounts(userId: string) {
     const [{ count }, { data: unreadConvCount }] = await Promise.all([
       supabase
@@ -226,6 +243,7 @@ export default function BottomNavWrapper() {
   return (
     <nav
       aria-label="メインメニュー"
+      hidden={typing}
       className="fixed bottom-0 left-0 right-0 z-[9999] border-t border-gray-200 bg-white print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
