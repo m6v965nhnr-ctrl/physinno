@@ -37,7 +37,10 @@
 - トラッカー `student_items`、学習ログ `study_logs`、実習先の口コミ `internship_reviews`、質問 `student_questions` / 回答 `student_answers` はいずれも RLS で本人のみ。他人の分は、投稿者を返さない RPC(`get_internship_reviews`, `list_student_questions` など)経由でのみ読める(PT・学生のみ)。
 - 実習レポート支援は `/api/student/report-helper`(Gemini)。構成の点検と検索語の提案だけを行い、代筆はしない。患者情報らしき入力は `privacyCheck` で止める。
 - 試験情報: `schools`(学校。学生が名前で登録・候補から選択) → `exam_subjects`(学年×学期の科目。学生が追加) → `exam_notes`(年度・試験の種類・難易度・出題傾向・覚えている出題内容・添付ファイル)。読み書きは `is_school_member()`(同じ学校を登録した学生・卒業生)のみ。投稿者は `list_exam_notes` で返さない。添付は非公開バケット `exam-files`(パスは `学校ID/投稿者ID/…`、同じ学校のメンバーだけ読める)。通報で削除するときは、運営が画面側でファイル本体を先に削除する(`adminRemoveExamNoteFile`)。
-- `hospitals.departments / beds_*` は診療科・病床の絞り込み用(厚労省オープンデータから別途取り込む。未取り込みの間は絞り込み欄を出さない)。
+- `hospitals.departments / beds_*` は病床の絞り込み用（診療科での絞り込みは、2026-10-15 に廃止）(厚労省オープンデータから別途取り込む。未取り込みの間は絞り込み欄を出さない)。
+- 病院の採用の目安: `hospital_recruit`（1病院1行。雇用形態・月給・賞与の月数・年収・週休・年間休日・こだわり・アクセス）。年収 `annual_min/max` は生成列（記載の年収があればそれ、なければ 月給×(12＋賞与の月数)）。書けるのは `can_edit_hospital_data`（「ここで働いています」と答えたPT・登録者）と、Cron（`ingest_hospital_recruit`、シークレット必須）。検索は `hospital_recruit!inner` の埋め込みで絞る（`searchHospitals`）。
+- 定期更新（vercel.json）: `/api/cron/hospital-links`（毎日約170件のリンク切れ確認。`website_status=dead` はリンクを出さず、検索へ案内）、`/api/cron/hospital-recruit`（毎日約18件、病床の多い順。公式サイト→採用ページを読み、Geminiで項目を抜き出す。**原文の抜粋が実際にページにあるものだけ採用**。お金の項目は3〜9月だけ更新、初回のみ時期を問わない。在籍PTが入力した病院は上書きしない）。第三者の求人サイト（ジョブメドレー等）は、規約・著作権の面から、複製して取り込まない（必要ならリンクで案内する）。
+- リンク切れの一括確認は `scripts/check-hospital-links.mjs`（読み取りのみ）。
 
 ## 投稿の公開範囲・匿名投稿・勤務先を隠す設定
 - `posts` に `visibility`(public / followers / private)、`title_public`(題名だけ全員に見せる)、`is_anonymous`(匿名)、`target_level`(all / student / newcomer / junior / mid / veteran)を追加。`is_public` は古い画面との互換のため残し、トリガー `posts_sync_visibility` が `visibility` と食い違わないように保つ。匿名にできるのは `visibility = 'public'` の投稿だけ(CHECK 制約)。

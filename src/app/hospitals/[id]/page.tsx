@@ -1,5 +1,6 @@
 "use client";
 
+import HospitalRecruitCard from "@/components/HospitalRecruitCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -348,7 +349,7 @@ export default function HospitalDetailPage() {
             </p>
           )}
 
-          {hospital.website && (
+          {hospital.website && hospital.website_status !== "dead" ? (
             <a
               href={
                 hospital.website.startsWith("http")
@@ -360,6 +361,16 @@ export default function HospitalDetailPage() {
               className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
             >
               🌐 公式サイト
+            </a>
+          ) : (
+            // 登録されたURLが開けなくなっているとき（定期チェックで確認）は、リンクを出さず、検索へ案内する
+            <a
+              href={`https://www.google.com/search?q=${encodeURIComponent(`${hospital.name} ${hospital.city ?? ""} 公式サイト`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              🔎 公式サイトを検索
             </a>
           )}
 
@@ -506,6 +517,8 @@ export default function HospitalDetailPage() {
               </button>
             )}
           </div>
+
+          <HospitalRecruitCard hospitalId={id} canEdit={canEditRatios || isPt} ensureCanEdit={ensureCanEdit} />
 
           {editingRecruitment ? (
             <div className="mt-4 space-y-2">

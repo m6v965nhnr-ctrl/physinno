@@ -5,14 +5,22 @@ import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import {
+  ACCESS_MODE_LABEL,
+  ACCESS_OPTIONS,
+  ANNUAL_OPTIONS,
+  AccessMode,
+  BED_COUNT_OPTIONS,
   BED_TYPE_LABEL,
   BedType,
-  DEPARTMENT_FILTERS,
+  EMPLOYMENT_TYPES,
+  HOLIDAY_OPTIONS,
   Hospital,
+  RECRUIT_TAGS,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
+  accessLabel,
+  annualLabel,
   createHospital,
-  hasHospitalDetailData,
   listCitiesByPrefecture,
   searchHospitals,
 } from "@/lib/hospitals";
@@ -41,13 +49,20 @@ export default function HospitalSearch() {
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
 
-  // 診療科・病床の絞り込み(データが取り込まれているときだけ表示)と、実習生の声の件数
-  const [hasDetailData, setHasDetailData] = useState(false);
-  const [departments, setDepartments] = useState<string[]>(
-    () => (searchParams.get("dept") || "").split(",").filter(Boolean)
-  );
+  // 「絞り込み」の中身（規模・病床・年収・雇用形態・休日・アクセス・こだわり）と、実習生の声の件数
   const [bedType, setBedType] = useState<BedType | "">(
     () => (searchParams.get("beds") as BedType | "") || ""
+  );
+  const [bedCount, setBedCount] = useState(() => searchParams.get("bc") || "");
+  const [annual, setAnnual] = useState(() => searchParams.get("ann") || "");
+  const [employment, setEmployment] = useState(() => searchParams.get("emp") || "");
+  const [holiday, setHoliday] = useState(() => searchParams.get("hol") || "");
+  const [tags, setTags] = useState<string[]>(() => (searchParams.get("tag") || "").split(",").filter(Boolean));
+  const [accessMode, setAccessMode] = useState<AccessMode | "">(() => (searchParams.get("am") as AccessMode | "") || "");
+  const [accessMinutes, setAccessMinutes] = useState(() => searchParams.get("amin") || "");
+  const [recruitCount, setRecruitCount] = useState<number | null>(null);
+  const [showFilters, setShowFilters] = useState(
+    () => ["size", "beds", "bc", "ann", "emp", "hol", "tag", "am", "amin"].some((k) => searchParams.get(k))
   );
   const [reviewCounts, setReviewCounts] = useState<Record<string, number>>({});
 
@@ -76,8 +91,13 @@ export default function HospitalSearch() {
     listCitiesByPrefecture(prefecture).then(setCityOptions);
   }, [prefecture]);
 
+  // 給与などの情報が入っている病院の数（毎日少しずつ増える）
   useEffect(() => {
-    hasHospitalDetailData().then(setHasDetailData);
+    supabase
+      .from("hospital_recruit")
+      .select("hospital_id", { count: "exact", head: true })
+      .not("annual_max", "is", null)
+      .then(({ count }) => setRecruitCount(count ?? 0));
   }, []);
 
   // URLに検索条件があれば、マウント時に自動で検索を復元する
@@ -87,8 +107,14 @@ export default function HospitalSearch() {
       searchParams.get("prefecture") ||
       searchParams.get("city") ||
       searchParams.get("size") ||
-      searchParams.get("dept") ||
-      searchParams.get("beds")
+      searchParams.get("beds") ||
+      searchParams.get("bc") ||
+      searchParams.get("ann") ||
+      searchParams.get("emp") ||
+      searchParams.get("hol") ||
+      searchParams.get("tag") ||
+      searchParams.get("am") ||
+      searchParams.get("amin")
     ) {
       handleSearch();
     }
@@ -104,8 +130,16 @@ export default function HospitalSearch() {
       prefecture: prefecture || undefined,
       city: city || undefined,
       size: size || undefined,
-      departments: departments.length > 0 ? departments : undefined,
       bedType: bedType || undefined,
+      bedCount: bedCount || undefined,
+      recruit: {
+        annualMin: annual ? Number(annual) : undefined,
+        employment: employment || undefined,
+        holiday: holiday || undefined,
+        tags: tags.length > 0 ? tags : undefined,
+        accessMode: accessMode || undefined,
+        accessMinutes: accessMinutes ? Number(accessMinutes) : undefined,
+      },
     });
 
     setHospitals(results);
@@ -120,8 +154,14 @@ export default function HospitalSearch() {
       ["prefecture", prefecture],
       ["city", city],
       ["size", size],
-      ["dept", departments.join(",")],
       ["beds", bedType],
+      ["bc", bedCount],
+      ["ann", annual],
+      ["emp", employment],
+      ["hol", holiday],
+      ["tag", tags.join(",")],
+      ["am", accessMode],
+      ["amin", accessMinutes],
     ];
     entries.forEach(([key, value]) => {
       if (value) params.set(key, value);
@@ -129,6 +169,8 @@ export default function HospitalSearch() {
     });
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   }
+
+  const activeFilterCount = [size, bedType, bedCount, annual, employment, holiday, accessMode, accessMinutes].filter(Boolean).length + (tags.length > 0 ? 1 : 0);
 
   async function handleAddHospital() {
     if (!newName.trim()) {
@@ -278,50 +320,120 @@ export default function HospitalSearch() {
           ))}
         </select>
 
-        <select
-          value={size}
-          onChange={(e) => setSize(e.target.value as WorkplaceSize | "")}
-          className={INPUT_CLASS}
-          aria-label="病院の規模"
+        {/* 規模・病床・年収・雇用形態・休日・アクセス・こだわりを、1つにまとめる */}
+        <button
+          type="button"
+          onClick={() => setShowFilters((v) => !v)}
+          aria-expanded={showFilters}
+          className="flex w-full items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm font-medium text-gray-800"
         >
-          <option value="">規模を指定しない</option>
-          {(Object.keys(WORKPLACE_SIZE_LABEL) as WorkplaceSize[]).map((key) => (
-            <option key={key} value={key}>
-              {WORKPLACE_SIZE_LABEL[key]}
-            </option>
-          ))}
-        </select>
+          <span>
+            絞り込み（規模・病床・年収・雇用形態・休日・アクセス）
+            {activeFilterCount > 0 && (
+              <span className="ml-2 rounded-full bg-black px-2 py-0.5 text-[11px] text-white">{activeFilterCount}</span>
+            )}
+          </span>
+          <span aria-hidden="true" className="text-xs text-gray-400">
+            {showFilters ? "▲" : "▼"}
+          </span>
+        </button>
 
-        {hasDetailData && (
-          <>
-            <select
-              value={departments[0] || ""}
-              onChange={(e) => setDepartments(e.target.value ? [e.target.value] : [])}
-              className={INPUT_CLASS}
-              aria-label="診療科"
-            >
-              <option value="">診療科を指定しない</option>
-              {DEPARTMENT_FILTERS.map((d) => (
-                <option key={d} value={d}>
-                  {d}
+        {showFilters && (
+          <div className="space-y-2 rounded-2xl border border-gray-100 bg-gray-50 p-3">
+            <select value={size} onChange={(e) => setSize(e.target.value as WorkplaceSize | "")} className={INPUT_CLASS} aria-label="病院の規模">
+              <option value="">規模：指定しない</option>
+              {(Object.keys(WORKPLACE_SIZE_LABEL) as WorkplaceSize[]).map((key) => (
+                <option key={key} value={key}>
+                  {WORKPLACE_SIZE_LABEL[key]}
                 </option>
               ))}
             </select>
 
-            <select
-              value={bedType}
-              onChange={(e) => setBedType(e.target.value as BedType | "")}
-              className={INPUT_CLASS}
-              aria-label="病床の種類"
-            >
-              <option value="">病床の種類を指定しない</option>
+            <select value={bedCount} onChange={(e) => setBedCount(e.target.value)} className={INPUT_CLASS} aria-label="病床数">
+              <option value="">病床数：指定しない</option>
+              {BED_COUNT_OPTIONS.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
+                </option>
+              ))}
+            </select>
+
+            <select value={bedType} onChange={(e) => setBedType(e.target.value as BedType | "")} className={INPUT_CLASS} aria-label="病床の種類">
+              <option value="">病床の種類：指定しない</option>
               {(Object.keys(BED_TYPE_LABEL) as BedType[]).map((key) => (
                 <option key={key} value={key}>
                   {BED_TYPE_LABEL[key]}
                 </option>
               ))}
             </select>
-          </>
+
+            <select value={annual} onChange={(e) => setAnnual(e.target.value)} className={INPUT_CLASS} aria-label="年収">
+              <option value="">年収：指定しない</option>
+              {ANNUAL_OPTIONS.map((v) => (
+                <option key={v} value={v}>
+                  {v}万円以上
+                </option>
+              ))}
+            </select>
+
+            <select value={employment} onChange={(e) => setEmployment(e.target.value)} className={INPUT_CLASS} aria-label="雇用形態">
+              <option value="">雇用形態：指定しない</option>
+              {EMPLOYMENT_TYPES.map((v) => (
+                <option key={v} value={v}>
+                  {v}
+                </option>
+              ))}
+            </select>
+
+            <select value={holiday} onChange={(e) => setHoliday(e.target.value)} className={INPUT_CLASS} aria-label="休日">
+              <option value="">休日：指定しない</option>
+              {HOLIDAY_OPTIONS.map((o) => (
+                <option key={o.value} value={o.value}>
+                  {o.label}
+                </option>
+              ))}
+            </select>
+
+            <div className="grid grid-cols-2 gap-2">
+              <select value={accessMode} onChange={(e) => setAccessMode(e.target.value as AccessMode | "")} className={INPUT_CLASS} aria-label="アクセスの方法">
+                <option value="">アクセス：指定しない</option>
+                {(Object.keys(ACCESS_MODE_LABEL) as AccessMode[]).map((k) => (
+                  <option key={k} value={k}>
+                    {ACCESS_MODE_LABEL[k]}
+                  </option>
+                ))}
+              </select>
+              <select value={accessMinutes} onChange={(e) => setAccessMinutes(e.target.value)} className={INPUT_CLASS} aria-label="駅からの時間">
+                <option value="">駅からの時間：指定しない</option>
+                {ACCESS_OPTIONS.map((m) => (
+                  <option key={m} value={m}>
+                    {m}分以内
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              <p className="mb-1.5 mt-1 text-xs font-semibold text-gray-500">こだわりポイント</p>
+              <div className="flex flex-wrap gap-1.5">
+                {RECRUIT_TAGS.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    aria-pressed={tags.includes(t)}
+                    onClick={() => setTags(tags.includes(t) ? tags.filter((x) => x !== t) : [...tags, t])}
+                    className={chipClass(tags.includes(t))}
+                  >
+                    {t}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <p className="text-[11px] leading-5 text-gray-400">
+              年収・雇用形態・休日・アクセス・こだわりは、情報が入っている病院だけが対象です（年収が分かる病院：{recruitCount ?? "…"}件。病院の採用ページから毎日少しずつ増えます）。年収は、月給なら「月給×12」、賞与が「◯か月分」なら月給にかけて足した目安です。
+            </p>
+          </div>
         )}
 
         <button
@@ -360,9 +472,15 @@ export default function HospitalSearch() {
                 )}
                 {h.beds_total ? ` ・ ${h.beds_total}床` : ""}
               </p>
-              {h.departments && h.departments.length > 0 && (
-                <p className="mt-1 line-clamp-1 text-xs text-gray-400">
-                  {h.departments.filter((d) => DEPARTMENT_FILTERS.includes(d)).join("・") || h.departments.slice(0, 6).join("・")}
+              {h.hospital_recruit && (annualLabel(h.hospital_recruit) || accessLabel(h.hospital_recruit)) && (
+                <p className="mt-1 text-xs text-gray-600">
+                  {[
+                    annualLabel(h.hospital_recruit) && `年収の目安 ${annualLabel(h.hospital_recruit)}`,
+                    accessLabel(h.hospital_recruit),
+                    h.hospital_recruit.employment_types.join("・"),
+                  ]
+                    .filter(Boolean)
+                    .join(" ・ ")}
                 </p>
               )}
               {reviewCounts[h.id] > 0 && (

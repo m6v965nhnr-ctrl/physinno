@@ -37,8 +37,94 @@ export type Hospital = {
   beds_long_term: number | null;
   beds_psychiatric: number | null;
   beds_total: number | null;
+  // 公式サイトのリンクの確認結果（定期チェック）。dead のときは、リンクを出さない
+  website_status?: "ok" | "dead" | null;
   created_at: string;
+  // 採用の目安（検索のときだけ、いっしょに読む）
+  hospital_recruit?: HospitalRecruit | null;
 };
+
+export type AccessMode = "walk" | "bus" | "shuttle" | "car";
+
+export const ACCESS_MODE_LABEL: Record<AccessMode, string> = {
+  walk: "徒歩",
+  bus: "バス",
+  shuttle: "送迎バス",
+  car: "車",
+};
+
+export type HospitalRecruit = {
+  hospital_id: string;
+  employment_types: string[];
+  monthly_min: number | null;
+  monthly_max: number | null;
+  bonus_months: number | null;
+  annual_stated_min: number | null;
+  annual_stated_max: number | null;
+  // 年収: 月給だけなら「月給×12」、賞与が「◯か月分」なら「月給×(12＋か月数)」で、DBが自動で計算する
+  annual_min: number | null;
+  annual_max: number | null;
+  weekly_off_days: number | null;
+  annual_holidays: number | null;
+  tags: string[];
+  access_station: string | null;
+  access_minutes: number | null;
+  access_mode: AccessMode | null;
+  source_name: string | null;
+  source_url: string | null;
+  fetched_at: string | null;
+  updated_at: string;
+};
+
+export const EMPLOYMENT_TYPES = ["常勤", "非常勤", "パート"];
+
+// こだわりポイント（PT・OT人材バンクなどの絞り込みを参考にした、PTの病院探しで多い条件）
+export const RECRUIT_TAGS = [
+  "土日休み",
+  "土日祝休み",
+  "日祝休み",
+  "残業少なめ",
+  "賞与あり",
+  "昇給あり",
+  "住宅手当あり",
+  "寮あり",
+  "託児所あり",
+  "産休育休可",
+  "新卒可",
+  "教育充実",
+  "車通勤可",
+];
+
+export const ANNUAL_OPTIONS = [300, 350, 400, 450, 500, 550, 600];
+export const BED_COUNT_OPTIONS: { value: string; label: string; min: number; max: number | null }[] = [
+  { value: "s", label: "〜99床", min: 0, max: 99 },
+  { value: "m", label: "100〜299床", min: 100, max: 299 },
+  { value: "l", label: "300〜499床", min: 300, max: 499 },
+  { value: "xl", label: "500床以上", min: 500, max: null },
+];
+export const HOLIDAY_OPTIONS = [
+  { value: "w2", label: "週休2日以上" },
+  { value: "w3", label: "週休3日" },
+  { value: "h110", label: "年間休日110日以上" },
+  { value: "h120", label: "年間休日120日以上" },
+];
+export const ACCESS_OPTIONS = [5, 10, 15, 20];
+
+// 年収の表示（「450〜520万円」）。1つしか分からないときは、その値だけ
+export function annualLabel(r: Pick<HospitalRecruit, "annual_min" | "annual_max">): string | null {
+  const lo = r.annual_min ? Math.round(r.annual_min / 10000) : null;
+  const hi = r.annual_max ? Math.round(r.annual_max / 10000) : null;
+  if (lo && hi && lo !== hi) return `${lo}〜${hi}万円`;
+  const v = hi ?? lo;
+  return v ? `${v}万円` : null;
+}
+
+export function accessLabel(r: Pick<HospitalRecruit, "access_station" | "access_minutes" | "access_mode">): string | null {
+  if (!r.access_station && r.access_minutes == null) return null;
+  const mode = r.access_mode ? ACCESS_MODE_LABEL[r.access_mode] : "";
+  const min = r.access_minutes != null ? `${r.access_minutes}分` : "";
+  return `${r.access_station ? `${r.access_station} から ` : ""}${mode}${min}`.trim();
+}
 
 export type BedType = "general" | "long_term" | "psychiatric";
 
@@ -47,31 +133,6 @@ export const BED_TYPE_LABEL: Record<BedType, string> = {
   long_term: "療養病床あり（長期療養・生活期）",
   psychiatric: "精神病床あり",
 };
-
-// 病院探しで絞り込みに使う診療科(PTの就職・実習で関わりが多いもの)
-export const DEPARTMENT_FILTERS = [
-  "整形外科",
-  "脳神経外科",
-  "神経内科",
-  "リハビリテーション科",
-  "循環器内科",
-  "呼吸器内科",
-  "小児科",
-  "精神科",
-  "リウマチ科",
-  "救急科",
-];
-
-// 診療科・病床のデータが取り込まれているか(未取得のうちは絞り込み欄を出さない)
-export async function hasHospitalDetailData(): Promise<boolean> {
-  const { count } = await supabase
-    .from("hospitals")
-    .select("id", { count: "exact", head: true })
-    .not("departments", "is", null)
-    .limit(1);
-
-  return (count ?? 0) > 0;
-}
 
 export type DiseaseRatio = {
   id: string;
@@ -118,22 +179,39 @@ export type HospitalReview = {
   created_at: string;
 };
 
+export type RecruitFilters = {
+  annualMin?: number; // 万円
+  employment?: string;
+  holiday?: string;
+  tags?: string[];
+  accessMode?: AccessMode;
+  accessMinutes?: number;
+};
+
+export function hasRecruitFilters(f: RecruitFilters): boolean {
+  return !!(f.annualMin || f.employment || f.holiday || f.tags?.length || f.accessMode || f.accessMinutes);
+}
+
 export async function searchHospitals({
   keyword,
   prefecture,
   city,
   size,
-  departments,
   bedType,
+  bedCount,
+  recruit = {},
 }: {
   keyword?: string;
   prefecture?: string;
   city?: string;
   size?: WorkplaceSize;
-  departments?: string[];
   bedType?: BedType;
+  bedCount?: string;
+  recruit?: RecruitFilters;
 }): Promise<Hospital[]> {
-  let query = supabase.from("hospitals").select(HOSPITAL_COLUMNS).order("name");
+  // 給与・休日・アクセスで絞るときは、その情報がある病院だけ（!inner）。絞らないときは、あれば付ける
+  const inner = hasRecruitFilters(recruit) ? "!inner" : "";
+  let query = supabase.from("hospitals").select(`${HOSPITAL_COLUMNS}, hospital_recruit${inner}(*)`).order("name");
 
   // 正式名称（例：「公益社団法人〇〇　△△病院」）で登録されているため、
   // 一般的に呼ばれる名前の一部でも見つかるよう部分一致で検索する
@@ -141,13 +219,28 @@ export async function searchHospitals({
   if (prefecture) query = query.ilike("prefecture", `%${prefecture}%`);
   if (city) query = query.ilike("city", `%${city}%`);
   if (size) query = query.eq("size", size);
-  if (departments && departments.length > 0) query = query.contains("departments", departments);
   if (bedType === "general") query = query.gt("beds_general", 0);
   if (bedType === "long_term") query = query.gt("beds_long_term", 0);
   if (bedType === "psychiatric") query = query.gt("beds_psychiatric", 0);
 
+  const range = BED_COUNT_OPTIONS.find((o) => o.value === bedCount);
+  if (range) {
+    query = query.gte("beds_total", range.min);
+    if (range.max !== null) query = query.lte("beds_total", range.max);
+  }
+
+  if (recruit.annualMin) query = query.gte("hospital_recruit.annual_max", recruit.annualMin * 10000);
+  if (recruit.employment) query = query.contains("hospital_recruit.employment_types", [recruit.employment]);
+  if (recruit.holiday === "w2") query = query.gte("hospital_recruit.weekly_off_days", 2);
+  if (recruit.holiday === "w3") query = query.gte("hospital_recruit.weekly_off_days", 3);
+  if (recruit.holiday === "h110") query = query.gte("hospital_recruit.annual_holidays", 110);
+  if (recruit.holiday === "h120") query = query.gte("hospital_recruit.annual_holidays", 120);
+  if (recruit.tags && recruit.tags.length > 0) query = query.contains("hospital_recruit.tags", recruit.tags);
+  if (recruit.accessMode) query = query.eq("hospital_recruit.access_mode", recruit.accessMode);
+  if (recruit.accessMinutes) query = query.lte("hospital_recruit.access_minutes", recruit.accessMinutes);
+
   const { data } = await query.limit(100);
-  return (data as Hospital[] | null) ?? [];
+  return (data as unknown as Hospital[] | null) ?? [];
 }
 
 // 選択された都道府県に実在する市区町村だけをプルダウンに出すため、

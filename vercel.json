@@ -1,7 +1,24 @@
 {
   "crons": [
-    { "path": "/api/cron/jpta-seminars", "schedule": "0 15 * * *" },
-    { "path": "/api/cron/pref-seminars", "schedule": "5 15 * * *" },
-    { "path": "/api/cron/ugoita-seminars", "schedule": "10 15 * * *" }
+    {
+      "path": "/api/cron/jpta-seminars",
+      "schedule": "0 15 * * *"
+    },
+    {
+      "path": "/api/cron/pref-seminars",
+      "schedule": "5 15 * * *"
+    },
+    {
+      "path": "/api/cron/ugoita-seminars",
+      "schedule": "10 15 * * *"
+    },
+    {
+      "path": "/api/cron/hospital-links",
+      "schedule": "30 16 * * *"
+    },
+    {
+      "path": "/api/cron/hospital-recruit",
+      "schedule": "40 16 * * *"
+    }
   ]
 }
