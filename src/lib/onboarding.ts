@@ -25,15 +25,22 @@ export async function isOnboarded(userId: string): Promise<boolean> {
   return false;
 }
 
-// 学生は、名前が入っているかだけを確認する（pt_profiles は、名前を保存する先として共用している）
-export async function hasStudentName(userId: string): Promise<boolean> {
+// PT・学生は、名前が入っているかを確認する（pt_profiles は、名前を保存する先として共用している）。
+// 初回登録が済んでいる人も対象（以前の登録で名前が空のままの人にも、名前を求めるため）。確認できたら、このタブでは再確認しない
+let nameCache: string | null = null;
+
+export async function hasName(userId: string): Promise<boolean> {
+  if (nameCache === userId) return true;
+
   const { data } = await supabase
     .from("pt_profiles")
     .select("full_name")
     .eq("user_id", userId)
     .maybeSingle();
 
-  return Boolean(data?.full_name?.trim());
+  const ok = Boolean(data?.full_name?.trim());
+  if (ok) nameCache = userId;
+  return ok;
 }
 
 // 初回登録が済むまでも開けるページ（入力画面そのものと、規約・問い合わせなど）

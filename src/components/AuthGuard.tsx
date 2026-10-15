@@ -17,7 +17,7 @@ import {
 } from "@/lib/account";
 import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
-import { hasStudentName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
+import { hasName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start"];
 
@@ -84,6 +84,22 @@ export default function AuthGuard({
           if (cancelled) return;
           router.replace("/setup");
           return;
+        }
+
+        // PT・学生は、名前が入っていなければ、名前を入れる画面から先へ進めない（初回登録が済んでいる人も、公開のページも対象）
+        if (
+          early?.user &&
+          !isAllowedBeforeOnboarding(pathname) &&
+          !pathname.startsWith("/student/settings") &&
+          !(await hasName(early.user.id)) &&
+          !(await isAdminUser(early.user.id))
+        ) {
+          const type = await getMyAccountType(early.user.id);
+          if (cancelled) return;
+          if (type === "pt" || type === "student") {
+            router.replace(type === "pt" ? "/mypage/edit?welcome=1" : "/student/settings?welcome=1");
+            return;
+          }
         }
       }
 
@@ -162,16 +178,6 @@ export default function AuthGuard({
         if (accountType === "pt") {
           router.replace("/mypage/edit?welcome=1");
           return;
-        }
-
-        // 学生は、名前が入っていなければ、設定画面から先へ進めない
-        if (accountType === "student") {
-          if (!pathname.startsWith("/student/settings") && !(await hasStudentName(user.id))) {
-            if (cancelled) return;
-            router.replace("/student/settings?welcome=1");
-            return;
-          }
-          if (cancelled) return;
         }
 
         // 確認が済んだ。このタブでは再確認しない
