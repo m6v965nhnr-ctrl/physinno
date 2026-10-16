@@ -37,6 +37,9 @@ export default function QuizTeacherPage() {
   const [exams, setExams] = useState<QuizExam[]>([]);
 
   const [school, setSchool] = useState("");
+  // 押したのに作れなかったときだけ、足りないものを出す
+  const [triedRequest, setTriedRequest] = useState(false);
+  const [triedClass, setTriedClass] = useState(false);
   const [note, setNote] = useState("");
   const [className, setClassName] = useState("");
   const [busy, setBusy] = useState(false);
@@ -58,7 +61,11 @@ export default function QuizTeacherPage() {
   }, [loading, load]);
 
   async function handleRequest() {
-    if (!school.trim() || busy) return;
+    if (busy) return;
+    if (!school.trim()) {
+      setTriedRequest(true);
+      return;
+    }
     setBusy(true);
     const ok = await requestTeacher(school.trim(), note.trim());
     setBusy(false);
@@ -71,7 +78,12 @@ export default function QuizTeacherPage() {
   }
 
   async function handleCreateClass() {
-    if (!className.trim() || busy) return;
+    if (busy) return;
+    if (!className.trim()) {
+      setTriedClass(true);
+      return;
+    }
+    setTriedClass(false);
     setBusy(true);
     const r = await createClass(className.trim());
     setBusy(false);
@@ -148,11 +160,16 @@ export default function QuizTeacherPage() {
             />
             <button
               onClick={handleRequest}
-              disabled={busy || !school.trim()}
+              disabled={busy}
               className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
             >
               先生として申請する
             </button>
+            {triedRequest && !school.trim() && (
+              <p className="text-xs text-red-600" role="status">
+                申請できません：所属（学校名など）を入れてください
+              </p>
+            )}
           </section>
         )}
 
@@ -177,13 +194,13 @@ export default function QuizTeacherPage() {
                 />
                 <button
                   onClick={handleCreateClass}
-                  disabled={busy || !className.trim()}
+                  disabled={busy}
                   className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40"
                 >
                   作る
                 </button>
               </div>
-              {!className.trim() && (
+              {triedClass && !className.trim() && (
                 <p className="text-xs text-red-600" role="status">
                   作れない理由：クラス名を入れてください
                 </p>
@@ -230,6 +247,7 @@ function ClassCard({
   const [due, setDue] = useState("");
   const [pool, setPool] = useState<PoolCounts | null>(null);
   const [busy, setBusy] = useState(false);
+  const [triedCreate, setTriedCreate] = useState(false);
 
   const loadAssignments = useCallback(async () => {
     setAssignments(await listAssignments(cls.id));
@@ -262,9 +280,9 @@ function ClassCard({
     : null;
 
   async function handleCreate() {
-    if (!title.trim() || busy) return;
-    if (available === 0) {
-      notify("この条件に合う問題がありません。条件を変えてください");
+    if (busy) return;
+    if (!title.trim() || available === 0) {
+      setTriedCreate(true);
       return;
     }
     setBusy(true);
@@ -463,7 +481,7 @@ function ClassCard({
               !title.trim() && "課題の名前を入れてください（いちばん上の欄）",
               available === 0 && "この単元・回の組み合わせに、問題がありません。単元か回を変えてください",
             ].filter(Boolean);
-            return reasons.length > 0 ? (
+            return triedCreate && reasons.length > 0 ? (
               <p className="text-xs leading-5 text-red-600" role="status">
                 作れない理由：{reasons.join(" ／ ")}
               </p>
@@ -473,7 +491,7 @@ function ClassCard({
           <div className="flex gap-2">
             <button
               onClick={handleCreate}
-              disabled={busy || !title.trim() || available === 0}
+              disabled={busy}
               className="flex-1 rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
             >
               この条件で、下書きを作る（配る前に、問題を調整できます）
