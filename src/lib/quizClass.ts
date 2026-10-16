@@ -38,6 +38,7 @@ export type TeacherAssignment = {
   finished_count: number;
   answered_total: number;
   correct_total: number;
+  status?: "draft" | "published"; // 下書きは学生に見えない。古い画面との互換のため、省略されることがある
 };
 
 export type PoolCounts = { all_count: number; easy: number; normal: number; hard: number };
@@ -156,8 +157,90 @@ export async function createAssignment(params: {
 }
 
 export async function listAssignments(classId: string): Promise<TeacherAssignment[]> {
-  const { data } = await supabase.rpc("quiz_list_assignments", { p_class: classId });
-  return (data ?? []) as TeacherAssignment[];
+  const [list, statuses] = await Promise.all([
+    supabase.rpc("quiz_list_assignments", { p_class: classId }),
+    supabase.rpc("quiz_assignment_statuses", { p_class: classId }),
+  ]);
+  const st = new Map(((statuses.data ?? []) as { id: string; status: "draft" | "published" }[]).map((r) => [r.id, r.status]));
+  return ((list.data ?? []) as TeacherAssignment[]).map((a) => ({ ...a, status: st.get(a.id) ?? "published" }));
+}
+
+// ---- 先生: テストの作成（下書き → 問題の調整 → 公開） ----
+
+export type PreviewQuestion = {
+  id: string;
+  label: string;
+  unit: string | null;
+  intro: string | null;
+  stem: string;
+  choices: string[];
+  need: number;
+  answers: number[][];
+  explanation: string | null;
+  explanation_source: "ai" | "official" | null;
+  image: string | null;
+  choices_in_image: boolean;
+};
+
+export type AssignmentPreview = {
+  id: string;
+  class_id: string;
+  class_name: string;
+  title: string;
+  status: "draft" | "published";
+  due_at: string | null;
+  has_answers: boolean;
+  questions: PreviewQuestion[];
+};
+
+export type QuestionHit = { id: string; label: string; unit: string | null; stem: string };
+
+export async function getAssignmentPreview(id: string): Promise<AssignmentPreview | null> {
+  const { data, error } = await supabase.rpc("quiz_assignment_preview", { p_assignment: id });
+  if (error || !data) return null;
+  return data as AssignmentPreview;
+}
+
+export async function searchQuestions(params: {
+  unit: string | null;
+  exam: number | null;
+  difficulty: Difficulty;
+  keyword: string;
+}): Promise<QuestionHit[]> {
+  const { data } = await supabase.rpc("quiz_teacher_search_questions", {
+    p_unit: params.unit,
+    p_exam: params.exam,
+    p_difficulty: params.difficulty,
+    p_keyword: params.keyword || null,
+    p_limit: 30,
+  });
+  return (data ?? []) as QuestionHit[];
+}
+
+export async function setAssignmentQuestions(id: string, ids: string[]): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_set_assignment_questions", { p_assignment: id, p_ids: ids });
+  return !error;
+}
+
+export async function setAssignmentMeta(id: string, title: string, due: string | null): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_set_assignment_meta", { p_assignment: id, p_title: title, p_due: due });
+  return !error;
+}
+
+export async function publishAssignment(id: string): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_publish_assignment", { p_assignment: id });
+  return !error;
+}
+
+export async function duplicateAssignment(id: string): Promise<string | null> {
+  const { data, error } = await supabase.rpc("quiz_duplicate_assignment", { p_assignment: id });
+  if (error || !data) return null;
+  return data as string;
+}
+
+export async function deleteAssignment(id: string): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_delete_assignment", { p_assignment: id });
+  return !error;
 }
 
 export async function getAssignmentResults(id: string): Promise<AssignmentResults | null> {

@@ -35,6 +35,9 @@ export default function QuizClassesPage() {
   useEffect(() => {
     if (loading) return;
     load();
+    // 先生が送った参加用のURL（?code=XXXXXX）から開いたときは、コードを入れておく（参加は、確認のあとに本人が押す）
+    const c = new URLSearchParams(window.location.search).get("code");
+    if (c) setCode(c.trim().toUpperCase().slice(0, 6));
   }, [loading, load]);
 
   async function handleJoin() {

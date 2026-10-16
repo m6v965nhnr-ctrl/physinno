@@ -57,6 +57,9 @@ export default function QuizAssignmentResultsPage() {
           <p className="mt-1 text-xs text-gray-500">
             {res.total}問 ・ {dueText(res.due_at)}
           </p>
+          <Link href={`/student/quiz/teacher/test?id=${new URLSearchParams(window.location.search).get("id")}`} className="mt-1 inline-block text-[11px] text-sky-700">
+            問題の内容を見る・複製
+          </Link>
         </div>
       </header>
 

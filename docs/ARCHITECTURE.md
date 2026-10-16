@@ -183,3 +183,9 @@
 - 使える画面は、`/student/quiz/teacher` 以下だけ（`isTeacherPath`）。PT向けの画面（`isPtOnlyPath`）に入ると、`AuthGuard` が先生の画面へ戻す。下のメニューは出さない。ログアウト・退会は、先生の画面の上の行。ログイン後・ホーム画面アプリの最初の画面も、先生の画面（`landingPathFor`）。
 - DB: `quiz_can_use()` に teacher を含めた（課題を作るときの単元・回の一覧に必要。先生も、問題は試せる）。ランキングは学生だけなので影響なし。既存のPTが先生になる道（`quiz_request_teacher`）も、そのまま使える。
 - 注意: 先生を増やしたら、`AdminAnalytics` の種類別の集計（PT・学生・一般）には、まだ入っていない。
+
+## 先生のテスト作成（下書き → 調整 → 公開）（2026-10-16〜、20261119_quiz_test_builder.sql）
+- `quiz_assignments.status`（draft / published）を追加。これまでの課題は、すべて published。`quiz_create_assignment` で作ると draft になる。学生が使う3つの関数（`quiz_my_assignments` / `quiz_assignment_questions` / `quiz_assignment_answer`）と `quiz_class_dashboard` は、published だけを扱う。
+- 先生用の関数（すべて、`quiz_own_assignment` で「自分のクラスの課題か」を確認）: `quiz_teacher_search_questions`（単元・回・難易度・キーワード。正答は返さない）、`quiz_assignment_preview`（正答・解説つき）、`quiz_set_assignment_questions`（追加・削除・並べ替えをまとめて保存。**誰も解答していない課題だけ**。最大50問）、`quiz_set_assignment_meta`（題名・期限）、`quiz_publish_assignment`、`quiz_duplicate_assignment`（下書きとして複製）、`quiz_delete_assignment`（解答のない課題だけ）、`quiz_assignment_statuses`（一覧の下書き表示用。`quiz_list_assignments` の形は変えていない）。
+- 画面: `/student/quiz/teacher/test?id=`（作成・調整・公開・複製・削除）。一覧（`/student/quiz/teacher`）の「テストを作る」→ 下書きができ、この画面へ。クラスのカードに「参加用のURLをコピー」（`/student/quiz/classes?code=XXXXXX`。ログイン済みの学生は、コードが入った状態で開く。未ログインだと、トップへ戻されコードは引き継がれない）。
+- 仕様書（教員向け国試対策・学習分析）のうち、実装済みは Phase 1 の一部（作成・調整・保存・複製・URL配信（参加用）・回答・自動採点・結果）。配点・選択肢の入れ替え・問題文の編集・解答の公開時刻・QR・PDF・学生×分野のマトリクス・AI復習テストは、未実装。

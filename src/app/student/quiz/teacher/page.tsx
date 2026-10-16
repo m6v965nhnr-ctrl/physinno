@@ -277,12 +277,8 @@ function ClassCard({
       notify("課題を作れませんでした");
       return;
     }
-    notify("課題を配りました");
-    setCreating(false);
-    setTitle("");
-    setDue("");
-    loadAssignments();
-    onChanged();
+    // 下書きとして作られる。問題を確かめて、調整してから、配る
+    window.location.href = `/student/quiz/teacher/test?id=${id}`;
   }
 
   async function handleArchive() {
@@ -304,6 +300,16 @@ function ClassCard({
     }
   }
 
+  async function copyJoinUrl() {
+    const url = `${window.location.origin}/student/quiz/classes?code=${cls.join_code}`;
+    try {
+      await navigator.clipboard.writeText(url);
+      notify("参加用のURLをコピーしました。学生に送ってください");
+    } catch {
+      notify(`参加用のURL: ${url}`);
+    }
+  }
+
   return (
     <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-3">
@@ -317,6 +323,10 @@ function ClassCard({
         </button>
       </div>
 
+      <button onClick={copyJoinUrl} className="block w-full rounded-xl bg-gray-50 px-3 py-2 text-left text-sm font-medium text-gray-800 transition hover:bg-gray-100">
+        参加用のURLをコピー（学生がタップすると、コードが入った状態で開きます）
+      </button>
+
       <Link href={`/student/quiz/teacher/class?id=${cls.id}`} className="block rounded-xl bg-gray-50 px-3 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-100">
         クラスの状況を見る（学生ごと・単元ごと・苦手な問題） →
       </Link>
@@ -326,20 +336,30 @@ function ClassCard({
           {assignments.map((a) => (
             <li key={a.id}>
               <Link
-                href={`/student/quiz/teacher/assignment?id=${a.id}`}
+                href={a.status === "draft" ? `/student/quiz/teacher/test?id=${a.id}` : `/student/quiz/teacher/assignment?id=${a.id}`}
                 className="block rounded-xl border border-gray-200 p-3 transition hover:bg-gray-50"
               >
                 <div className="flex items-start justify-between gap-2">
                   <p className="min-w-0 truncate text-sm font-medium">{a.title}</p>
-                  <span className="shrink-0 text-xs text-gray-500">
-                    提出 {a.finished_count}/{a.member_count}人
-                  </span>
+                  {a.status === "draft" ? (
+                    <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">下書き</span>
+                  ) : (
+                    <span className="shrink-0 text-xs text-gray-500">
+                      提出 {a.finished_count}/{a.member_count}人
+                    </span>
+                  )}
                 </div>
                 <p className="mt-1 text-[11px] text-gray-500">
                   {a.n}問 ・ {dueText(a.due_at)}
+                  {a.status === "draft" ? " ・ 学生には、まだ見えません" : ""}
                   {a.answered_total > 0 ? ` ・ 平均正答率 ${percent(a.correct_total, a.answered_total)}%` : ""}
                 </p>
               </Link>
+              {a.status !== "draft" && (
+                <Link href={`/student/quiz/teacher/test?id=${a.id}`} className="mt-1 inline-block pl-1 text-[11px] text-sky-700">
+                  問題の内容を見る・複製
+                </Link>
+              )}
             </li>
           ))}
         </ul>
@@ -348,7 +368,7 @@ function ClassCard({
       {!creating ? (
         <div className="flex items-center justify-between">
           <button onClick={() => setCreating(true)} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white">
-            課題を作る
+            テストを作る
           </button>
           <button onClick={handleArchive} className="text-xs text-gray-400 underline">
             このクラスを閉じる
@@ -453,7 +473,7 @@ function ClassCard({
               disabled={busy || !title.trim() || available === 0}
               className="flex-1 rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
             >
-              この条件で、ランダムに選んで配る
+              この条件で、下書きを作る（配る前に、問題を調整できます）
             </button>
             <button onClick={() => setCreating(false)} className="rounded-full border border-gray-300 px-4 py-2.5 text-sm text-gray-700">
               やめる
