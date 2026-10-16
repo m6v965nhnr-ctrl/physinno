@@ -544,3 +544,33 @@ body:has(nav[aria-label="メインメニュー"][hidden]) .above-nav {
   bottom: 0 !important;
   padding-bottom: env(safe-area-inset-bottom);
 }
+
+/* 下のメニューのある画面は、画面全体をスクロールさせず、本文（#main-content）だけをスクロールさせる。
+   iPhoneで、一番上・一番下まで行ってさらに引っ張ったとき、下のメニューが本文といっしょに動かないようにするため（BottomNavWrapper が data-shell を付ける） */
+html[data-shell],
+html[data-shell] body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+html[data-shell] body {
+  height: 100dvh;
+  min-height: 0;
+}
+html[data-shell] #main-content {
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
+}
+@media print {
+  html[data-shell],
+  html[data-shell] body {
+    height: auto;
+    overflow: visible;
+  }
+  html[data-shell] #main-content {
+    overflow: visible;
+  }
+}

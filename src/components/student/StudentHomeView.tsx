@@ -116,25 +116,25 @@ export default function StudentHomeView({
 
         {/* カウントダウン */}
         <section className="grid grid-cols-2 gap-3">
-          <div className="rounded-2xl bg-white p-4 shadow-sm">
+          <div className="rounded-2xl bg-white px-3.5 py-2.5 shadow-sm">
             <p className="text-xs text-gray-500">国家試験まで</p>
-            <p className="mt-1 text-3xl font-bold tracking-tight">
+            <p className="text-2xl font-bold leading-tight tracking-tight">
               {countdown.examDays >= 0 ? countdown.examDays : 0}
               <span className="ml-1 text-sm font-medium text-gray-500">日</span>
             </p>
-            <p className="mt-1 text-[11px] text-gray-400">
-              {countdown.examDate.getFullYear()}年{countdown.examDate.getMonth() + 1}月
-              {countdown.examDate.getDate()}日{countdown.examIsEstimate ? "ごろ（目安）" : ""}
+            <p className="whitespace-nowrap text-[11px] text-gray-400">
+              {countdown.examDate.getFullYear()}/{countdown.examDate.getMonth() + 1}/{countdown.examDate.getDate()}
+              {countdown.examIsEstimate ? "ごろ（目安）" : ""}
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white p-4 shadow-sm">
+          <div className="rounded-2xl bg-white px-3.5 py-2.5 shadow-sm">
             <p className="text-xs text-gray-500">卒業まで</p>
-            <p className="mt-1 text-3xl font-bold tracking-tight">
+            <p className="text-2xl font-bold leading-tight tracking-tight">
               {countdown.graduationDays >= 0 ? countdown.graduationDays : 0}
               <span className="ml-1 text-sm font-medium text-gray-500">日</span>
             </p>
-            <p className="mt-1 text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
+            <p className="whitespace-nowrap text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
           </div>
         </section>
 

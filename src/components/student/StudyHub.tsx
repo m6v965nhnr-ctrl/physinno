@@ -233,12 +233,12 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         </div>
 
         {tab === "unit" &&
-          fields.map((f, fi) => {
+          fields.map((f) => {
             const list = units.filter((u) => u.field === f && u.total > 0).sort((a, b) => a.sort - b.sort);
             const a = list.reduce((s, u) => s + u.answered, 0);
             const t = list.reduce((s, u) => s + u.total, 0);
             return (
-              <details key={f} open={fi === 0} className="group rounded-2xl bg-white shadow-sm">
+              <details key={f} className="group rounded-2xl bg-white shadow-sm">
                 <summary className="flex cursor-pointer list-none items-center gap-3 px-4 py-3">
                   <span className="min-w-0 flex-1 text-sm font-semibold text-gray-900">{f}</span>
                   <span className="w-20 shrink-0">
@@ -371,15 +371,17 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
       {isStudent && <QuizSchoolRanking />}
 
       {/* クラス */}
-      <section className="grid grid-cols-2 gap-2">
+      <section className={`grid gap-2 ${isStudent ? "grid-cols-1" : "grid-cols-2"}`}>
         <Link href="/student/quiz/classes" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
           <span className="block text-sm font-semibold">📋 クラスの課題</span>
           <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">先生から配られた課題を解く</span>
         </Link>
-        <Link href="/student/quiz/teacher" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
-          <span className="block text-sm font-semibold">👩‍🏫 先生の方はこちら</span>
-          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">クラスを作って課題を配る</span>
-        </Link>
+        {!isStudent && (
+          <Link href="/student/quiz/teacher" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
+            <span className="block text-sm font-semibold">👩‍🏫 先生の方はこちら</span>
+            <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">クラスを作って課題を配る</span>
+          </Link>
+        )}
       </section>
 
       <p className="text-[11px] leading-5 text-gray-400">

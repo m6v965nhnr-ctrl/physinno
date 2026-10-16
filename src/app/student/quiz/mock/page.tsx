@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
+import { scrollPageToTop } from "@/lib/scroll";
 import { useMyAccount } from "@/lib/useMyAccount";
 import {
   MOCK_MINUTES,
@@ -139,7 +140,7 @@ export default function MockExamPage() {
       setUsedSeconds(seconds);
       setGrade(g);
       setPhase("result");
-      window.scrollTo({ top: 0 });
+      scrollPageToTop();
       if (auto) notify("時間になったので、採点しました");
     },
     [exam, session, startedAt, answers]
@@ -367,7 +368,7 @@ export default function MockExamPage() {
                     onClick={() => {
                       setIdx(i);
                       setShowNav(false);
-                      window.scrollTo({ top: 0 });
+                      scrollPageToTop();
                     }}
                     aria-label={`問${x.no}${done ? "（回答済み）" : ""}${fl ? "（見直す）" : ""}`}
                     className={`rounded-md py-1.5 text-[11px] ${
@@ -435,7 +436,7 @@ export default function MockExamPage() {
           <button
             onClick={() => {
               setIdx((i) => Math.max(0, i - 1));
-              window.scrollTo({ top: 0 });
+              scrollPageToTop();
             }}
             disabled={idx === 0}
             className="flex-1 rounded-full border border-gray-300 py-2.5 text-sm text-gray-700 disabled:opacity-40"
@@ -445,7 +446,7 @@ export default function MockExamPage() {
           <button
             onClick={() => {
               setIdx((i) => Math.min(qs.length - 1, i + 1));
-              window.scrollTo({ top: 0 });
+              scrollPageToTop();
             }}
             disabled={idx === qs.length - 1}
             className="flex-1 rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"

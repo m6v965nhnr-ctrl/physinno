@@ -5,6 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import ReportButton from "@/components/ReportButton";
 import { notify } from "@/lib/notify";
+import { scrollPageToTop } from "@/lib/scroll";
 import { useMyAccount } from "@/lib/useMyAccount";
 import {
   QuizMode,
@@ -227,7 +228,7 @@ export default function QuizPlayPage() {
     setIdx((i) => i + 1);
     setSelected([]);
     setReveal(null);
-    window.scrollTo({ top: 0 });
+    scrollPageToTop();
   }
 
   async function toggleBm(id: string) {
@@ -277,7 +278,7 @@ export default function QuizPlayPage() {
     setSelected(r.chosen);
     setReveal({ ...rv, correct: r.correct === null ? undefined : r.correct });
     setFromResults(true);
-    window.scrollTo({ top: 0 });
+    scrollPageToTop();
   }
 
   function backToResults() {
@@ -286,7 +287,7 @@ export default function QuizPlayPage() {
     setSelected([]);
     setReveal(null);
     setFromResults(false);
-    window.scrollTo({ top: 0 });
+    scrollPageToTop();
   }
 
   if (loading || !params || questions === null) {

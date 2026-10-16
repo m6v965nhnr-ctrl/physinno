@@ -245,6 +245,16 @@ export default function BottomNavWrapper() {
     }
   }, [pathname]);
 
+  // 下のメニューを出す画面かどうか（出す画面では、画面全体ではなく、本文だけをスクロールさせる。globals.css の data-shell）。
+  // iPhoneで、一番上・一番下まで行ってさらに引っ張ったときに、下のメニューが本文といっしょに動いてしまうのを防ぐため
+  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname) && !(loggedIn && accountType === "teacher");
+  useEffect(() => {
+    const root = document.documentElement;
+    if (shellOn) root.setAttribute("data-shell", "");
+    else root.removeAttribute("data-shell");
+    return () => root.removeAttribute("data-shell");
+  }, [shellOn]);
+
   // ログイン状態の確認が終わるまで何も表示しない
   if (!checked) {
     return null;
@@ -317,7 +327,7 @@ export default function BottomNavWrapper() {
     <nav
       aria-label="メインメニュー"
       hidden={typing}
-      className="sticky bottom-0 z-[9999] mt-auto w-full border-t border-gray-200 bg-white print:hidden"
+      className="sticky bottom-0 z-[9999] mt-auto w-full shrink-0 border-t border-gray-200 bg-white print:hidden"
       style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
     >
       <div
