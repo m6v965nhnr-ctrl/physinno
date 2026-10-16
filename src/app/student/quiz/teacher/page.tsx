@@ -1,507 +1,114 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { notify } from "@/lib/notify";
-import { supabase } from "@/lib/supabase";
-import { useMyAccount } from "@/lib/useMyAccount";
-import { QuizExam, QuizUnit, listQuizExams, listQuizUnits, percent } from "@/lib/quiz";
-import {
-  Difficulty,
-  PoolCounts,
-  TeacherAssignment,
-  TeacherClass,
-  TeacherStatus,
-  archiveClass,
-  createAssignment,
-  createClass,
-  dueText,
-  getPoolCounts,
-  getTeacherStatus,
-  listAssignments,
-  listMyClasses,
-  requestTeacher,
-} from "@/lib/quizClass";
-import { askConfirm } from "@/lib/confirm";
-import { LoadingScreen } from "@/components/states";
+import TeacherPage from "@/components/teacher/TeacherPage";
+import { useTeacherData } from "@/components/teacher/useTeacherData";
+import { dueText } from "@/lib/quizClass";
+import { percent } from "@/lib/quiz";
 
-const COUNT_OPTIONS = [5, 10, 20, 30, 50];
+// 先生用ホーム: いまの状況と、やることへの近道
+function HomeBody() {
+  const { classes, tests } = useTeacherData();
+  if (classes === null) return <p className="py-10 text-center text-sm text-gray-400">読み込み中…</p>;
 
-// 先生用: クラスを作って、参加コードを配り、課題（単元・回・難易度で選んだ問題）を出す
-export default function QuizTeacherPage() {
-  const { loading, accountType } = useMyAccount(["pt", "teacher"], "/study");
-
-  const [status, setStatus] = useState<TeacherStatus | null>(null);
-  const [classes, setClasses] = useState<TeacherClass[]>([]);
-  const [units, setUnits] = useState<QuizUnit[]>([]);
-  const [exams, setExams] = useState<QuizExam[]>([]);
-
-  const [school, setSchool] = useState("");
-  // 押したのに作れなかったときだけ、足りないものを出す
-  const [triedRequest, setTriedRequest] = useState(false);
-  const [triedClass, setTriedClass] = useState(false);
-  const [note, setNote] = useState("");
-  const [className, setClassName] = useState("");
-  const [busy, setBusy] = useState(false);
-
-  const load = useCallback(async () => {
-    const st = await getTeacherStatus();
-    setStatus(st);
-    if (st === "approved") {
-      const [cs, us, es] = await Promise.all([listMyClasses(), listQuizUnits(), listQuizExams()]);
-      setClasses(cs);
-      setUnits(us);
-      setExams(es);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (loading) return;
-    load();
-  }, [loading, load]);
-
-  async function handleRequest() {
-    if (busy) return;
-    if (!school.trim()) {
-      setTriedRequest(true);
-      return;
-    }
-    setBusy(true);
-    const ok = await requestTeacher(school.trim(), note.trim());
-    setBusy(false);
-    if (!ok) {
-      notify("申請に失敗しました。もう一度お試しください");
-      return;
-    }
-    notify("申請しました。運営が確認します");
-    load();
-  }
-
-  async function handleCreateClass() {
-    if (busy) return;
-    if (!className.trim()) {
-      setTriedClass(true);
-      return;
-    }
-    setTriedClass(false);
-    setBusy(true);
-    const r = await createClass(className.trim());
-    setBusy(false);
-    if (!r) {
-      notify("クラスを作れませんでした");
-      return;
-    }
-    setClassName("");
-    notify(`クラスを作りました。参加コード: ${r.join_code}`);
-    load();
-  }
-
-  if (loading || status === null) {
+  if (classes.length === 0) {
     return (
-      <LoadingScreen />
+      <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-sm font-semibold">はじめに、クラスを作りましょう</p>
+        <ol className="list-decimal space-y-1 pl-5 text-xs leading-6 text-gray-600">
+          <li>「クラス」で、クラスを作ります（6文字の参加コードが出ます）。</li>
+          <li>参加コード（または参加用のURL）を、学生に伝えます。</li>
+          <li>「テスト」で、国試の過去問からテストを作って、配ります。</li>
+          <li>「分析」で、学生ごと・分野ごとの状況を見ます。</li>
+        </ol>
+        <Link href="/student/quiz/teacher/classes" className="inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+          クラスを作る
+        </Link>
+      </section>
     );
   }
 
+  const students = classes.reduce((s, c) => s + c.member_count, 0);
+  const drafts = tests.filter((t) => t.status === "draft");
+  const published = tests.filter((t) => t.status !== "draft");
+  const waiting = published.filter((t) => t.member_count > 0 && t.finished_count < t.member_count).slice(0, 5);
+
   return (
-    <main className="min-h-screen bg-[#fafafa] pb-28">
-      <header className="border-b border-gray-100 bg-white px-6 py-5">
-        <div className="mx-auto max-w-2xl">
-          {accountType === "teacher" ? (
-            <div className="flex items-center justify-between text-sm text-gray-400">
-              <span>先生用</span>
-              <span className="flex gap-4">
-                <button
-                  onClick={async () => {
-                    await supabase.auth.signOut();
-                    window.location.href = "/";
-                  }}
-                >
-                  ログアウト
-                </button>
-                <Link href="/mypage/delete-account">退会</Link>
-              </span>
-            </div>
-          ) : (
-            <Link href="/study" className="text-sm text-gray-400">
-              ← 過去問ドリル
-            </Link>
-          )}
-          <h1 className="mt-2 text-xl font-semibold tracking-tight">先生用：クラスと課題</h1>
-          <p className="mt-1 text-xs leading-5 text-gray-500">
-            学生に課題を配って、結果をまとめて見られます。見えるのは、配った課題の結果（名前・正解・不正解）だけです。
-          </p>
-        </div>
-      </header>
-
-      <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
-        {(status === "none" || status === "rejected") && (
-          <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold">先生として使うには、申請が必要です</p>
-            <p className="text-xs leading-5 text-gray-500">
-              養成校などで教えている方が対象です。運営が確認して承認すると、クラスと課題を作れるようになります。
-              {status === "rejected" && " （前回の申請は承認されませんでした。内容を確かめて、もう一度申請できます）"}
+    <>
+      <section className="grid grid-cols-3 gap-2 text-center">
+        {[
+          ["クラス", classes.length, "つ"],
+          ["学生", students, "人"],
+          ["公開中のテスト", published.length, "件"],
+        ].map(([label, n, unit]) => (
+          <div key={label as string} className="rounded-2xl bg-white p-3 shadow-sm">
+            <p className="text-[11px] text-gray-500">{label}</p>
+            <p className="mt-1 text-xl font-bold">
+              {n}
+              <span className="text-xs font-medium text-gray-500">{unit}</span>
             </p>
-            <input
-              value={school}
-              onChange={(e) => setSchool(e.target.value)}
-              maxLength={100}
-              placeholder="所属（学校名など）"
-              aria-label="所属"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm"
-            />
-            <textarea
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-              maxLength={500}
-              rows={3}
-              placeholder="担当している科目や、確認に役立つことなど（任意）"
-              aria-label="補足"
-              className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm"
-            />
-            <button
-              onClick={handleRequest}
-              disabled={busy}
-              className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
-            >
-              先生として申請する
-            </button>
-            {triedRequest && !school.trim() && (
-              <p className="text-xs text-red-600" role="status">
-                申請できません：所属（学校名など）を入れてください
-              </p>
-            )}
-          </section>
-        )}
+          </div>
+        ))}
+      </section>
 
-        {status === "pending" && (
-          <section className="rounded-2xl bg-white p-4 text-sm leading-6 text-gray-700 shadow-sm">
-            申請を受け付けました。運営が確認しています。承認されると、この画面からクラスを作れます。
-          </section>
-        )}
+      <section className="grid grid-cols-2 gap-2">
+        <Link href="/student/quiz/teacher/tests?new=1" className="rounded-2xl bg-black px-4 py-3 text-center text-sm font-medium text-white">
+          テストを作る
+        </Link>
+        <Link href="/student/quiz/teacher/analysis" className="rounded-2xl border border-gray-300 bg-white px-4 py-3 text-center text-sm font-medium text-gray-800">
+          分析を見る
+        </Link>
+      </section>
 
-        {status === "approved" && (
-          <>
-            <section className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
-              <p className="text-sm font-semibold">クラスを作る</p>
-              <div className="flex gap-2">
-                <input
-                  value={className}
-                  onChange={(e) => setClassName(e.target.value)}
-                  maxLength={60}
-                  placeholder="クラス名（例：3年A組 国試対策）"
-                  aria-label="クラス名"
-                  className="min-w-0 flex-1 rounded-xl border border-gray-300 px-3 py-2 text-sm"
-                />
-                <button
-                  onClick={handleCreateClass}
-                  disabled={busy}
-                  className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40"
-                >
-                  作る
-                </button>
-              </div>
-              {triedClass && !className.trim() && (
-                <p className="text-xs text-red-600" role="status">
-                  作れない理由：クラス名を入れてください
-                </p>
-              )}
-              <p className="text-[11px] leading-5 text-gray-400">
-                作ると、6文字の参加コードが出ます。学生に伝えると、学生が「クラスの課題」から参加できます。
-              </p>
-            </section>
+      {drafts.length > 0 && (
+        <section className="rounded-2xl bg-white p-4 shadow-sm">
+          <p className="text-sm font-semibold">下書き（学生には、まだ見えません）</p>
+          <ul className="mt-2 divide-y divide-gray-100">
+            {drafts.map((t) => (
+              <li key={t.id}>
+                <Link href={`/student/quiz/teacher/test?id=${t.id}`} className="flex items-center justify-between gap-3 py-2 text-sm">
+                  <span className="min-w-0 truncate">{t.title}</span>
+                  <span className="shrink-0 text-[11px] text-sky-700">続きをつくる ›</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
-            {classes.length === 0 ? (
-              <p className="rounded-2xl bg-white p-4 text-xs leading-5 text-gray-500 shadow-sm">
-                クラスはまだありません。
-              </p>
-            ) : (
-              classes.map((c) => <ClassCard key={c.id} cls={c} units={units} exams={exams} onChanged={load} />)
-            )}
-          </>
+      <section className="rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-sm font-semibold">まだ終わっていない学生がいるテスト</p>
+        {waiting.length === 0 ? (
+          <p className="mt-2 text-xs leading-5 text-gray-500">{published.length === 0 ? "公開中のテストは、まだありません。" : "すべてのテストを、全員が終えています。"}</p>
+        ) : (
+          <ul className="mt-2 space-y-2">
+            {waiting.map((t) => (
+              <li key={t.id}>
+                <Link href={`/student/quiz/teacher/assignment?id=${t.id}`} className="block rounded-xl border border-gray-200 p-3 transition hover:bg-gray-50">
+                  <div className="flex items-start justify-between gap-2">
+                    <p className="min-w-0 truncate text-sm font-medium">{t.title}</p>
+                    <span className="shrink-0 text-xs text-gray-500">
+                      提出 {t.finished_count}/{t.member_count}人
+                    </span>
+                  </div>
+                  <p className="mt-1 text-[11px] text-gray-500">
+                    {t.class_name} ・ {dueText(t.due_at)}
+                    {t.answered_total > 0 ? ` ・ 平均正答率 ${percent(t.correct_total, t.answered_total)}%` : ""}
+                  </p>
+                </Link>
+              </li>
+            ))}
+          </ul>
         )}
-      </div>
-    </main>
+      </section>
+    </>
   );
 }
 
-function ClassCard({
-  cls,
-  units,
-  exams,
-  onChanged,
-}: {
-  cls: TeacherClass;
-  units: QuizUnit[];
-  exams: QuizExam[];
-  onChanged: () => void;
-}) {
-  const [assignments, setAssignments] = useState<TeacherAssignment[] | null>(null);
-  const [creating, setCreating] = useState(false);
-
-  const [title, setTitle] = useState("");
-  const [unit, setUnit] = useState("");
-  const [exam, setExam] = useState("");
-  // 難易度での絞り込みは、今後実装予定（それまでは、指定しない）
-  const difficulty: Difficulty = "any";
-  const [n, setN] = useState(10);
-  const [due, setDue] = useState("");
-  const [pool, setPool] = useState<PoolCounts | null>(null);
-  const [busy, setBusy] = useState(false);
-  const [triedCreate, setTriedCreate] = useState(false);
-
-  const loadAssignments = useCallback(async () => {
-    setAssignments(await listAssignments(cls.id));
-  }, [cls.id]);
-
-  useEffect(() => {
-    loadAssignments();
-  }, [loadAssignments]);
-
-  // 条件に合う問題の数(難易度別)
-  useEffect(() => {
-    if (!creating) return;
-    let cancelled = false;
-    getPoolCounts(unit || null, exam ? Number(exam) : null).then((p) => {
-      if (!cancelled) setPool(p);
-    });
-    return () => {
-      cancelled = true;
-    };
-  }, [creating, unit, exam]);
-
-  const available = pool
-    ? difficulty === "any"
-      ? pool.all_count
-      : difficulty === "easy"
-        ? pool.easy
-        : difficulty === "normal"
-          ? pool.normal
-          : pool.hard
-    : null;
-
-  async function handleCreate() {
-    if (busy) return;
-    if (!title.trim() || available === 0) {
-      setTriedCreate(true);
-      return;
-    }
-    setBusy(true);
-    const id = await createAssignment({
-      classId: cls.id,
-      title: title.trim(),
-      unit: unit || null,
-      exam: exam ? Number(exam) : null,
-      difficulty,
-      n,
-      due: due ? `${due}T23:59:59+09:00` : null,
-    });
-    setBusy(false);
-    if (!id) {
-      notify("課題を作れませんでした");
-      return;
-    }
-    // 下書きとして作られる。問題を確かめて、調整してから、配る
-    window.location.href = `/student/quiz/teacher/test?id=${id}`;
-  }
-
-  async function handleArchive() {
-    if (!await askConfirm(`「${cls.name}」を閉じます。学生には、このクラスの課題が見えなくなります。よろしいですか？`)) return;
-    const ok = await archiveClass(cls.id);
-    if (!ok) {
-      notify("クラスを閉じられませんでした");
-      return;
-    }
-    onChanged();
-  }
-
-  async function copyCode() {
-    try {
-      await navigator.clipboard.writeText(cls.join_code);
-      notify("参加コードをコピーしました");
-    } catch {
-      notify(`参加コード: ${cls.join_code}`);
-    }
-  }
-
-  async function copyJoinUrl() {
-    const url = `${window.location.origin}/student/quiz/classes?code=${cls.join_code}`;
-    try {
-      await navigator.clipboard.writeText(url);
-      notify("参加用のURLをコピーしました。学生に送ってください");
-    } catch {
-      notify(`参加用のURL: ${url}`);
-    }
-  }
-
+export default function TeacherHomePage() {
   return (
-    <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-      <div className="flex items-start justify-between gap-3">
-        <div className="min-w-0">
-          <p className="truncate text-sm font-semibold">{cls.name}</p>
-          <p className="mt-0.5 text-xs text-gray-500">学生 {cls.member_count}人 ・ 課題 {cls.assignment_count}件</p>
-        </div>
-        <button onClick={copyCode} className="shrink-0 rounded-xl bg-gray-50 px-3 py-2 text-center" aria-label="参加コードをコピー">
-          <span className="block text-[10px] text-gray-400">参加コード（タップでコピー）</span>
-          <span className="block text-lg font-bold tracking-[0.25em]">{cls.join_code}</span>
-        </button>
-      </div>
-
-      <button onClick={copyJoinUrl} className="block w-full rounded-xl bg-gray-50 px-3 py-2 text-left text-sm font-medium text-gray-800 transition hover:bg-gray-100">
-        参加用のURLをコピー（学生がタップすると、コードが入った状態で開きます）
-      </button>
-
-      <Link href={`/student/quiz/teacher/class?id=${cls.id}`} className="block rounded-xl bg-gray-50 px-3 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-100">
-        クラスの状況を見る（学生ごと・単元ごと・苦手な問題） →
-      </Link>
-
-      {assignments && assignments.length > 0 && (
-        <ul className="space-y-2">
-          {assignments.map((a) => (
-            <li key={a.id}>
-              <Link
-                href={a.status === "draft" ? `/student/quiz/teacher/test?id=${a.id}` : `/student/quiz/teacher/assignment?id=${a.id}`}
-                className="block rounded-xl border border-gray-200 p-3 transition hover:bg-gray-50"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <p className="min-w-0 truncate text-sm font-medium">{a.title}</p>
-                  {a.status === "draft" ? (
-                    <span className="shrink-0 rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700">下書き</span>
-                  ) : (
-                    <span className="shrink-0 text-xs text-gray-500">
-                      提出 {a.finished_count}/{a.member_count}人
-                    </span>
-                  )}
-                </div>
-                <p className="mt-1 text-[11px] text-gray-500">
-                  {a.n}問 ・ {dueText(a.due_at)}
-                  {a.status === "draft" ? " ・ 学生には、まだ見えません" : ""}
-                  {a.answered_total > 0 ? ` ・ 平均正答率 ${percent(a.correct_total, a.answered_total)}%` : ""}
-                </p>
-              </Link>
-              {a.status !== "draft" && (
-                <Link href={`/student/quiz/teacher/test?id=${a.id}`} className="mt-1 inline-block pl-1 text-[11px] text-sky-700">
-                  問題の内容を見る・複製
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
-
-      {!creating ? (
-        <div className="flex items-center justify-between">
-          <button onClick={() => setCreating(true)} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white">
-            テストを作る
-          </button>
-          <button onClick={handleArchive} className="text-xs text-gray-400 underline">
-            このクラスを閉じる
-          </button>
-        </div>
-      ) : (
-        <div className="space-y-3 rounded-xl bg-gray-50 p-3">
-          <input
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            maxLength={80}
-            placeholder="課題の名前（例：運動学 第1回）"
-            aria-label="課題の名前"
-            className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm"
-          />
-
-          <div className="grid grid-cols-2 gap-2">
-            <label className="text-[11px] text-gray-500">
-              単元
-              <select
-                value={unit}
-                onChange={(e) => setUnit(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900"
-              >
-                <option value="">すべて</option>
-                {units.map((u) => (
-                  <option key={u.id} value={u.id}>
-                    {u.name}
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="text-[11px] text-gray-500">
-              回
-              <select
-                value={exam}
-                onChange={(e) => setExam(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900"
-              >
-                <option value="">すべて</option>
-                {exams.map((x) => (
-                  <option key={x.exam_no} value={x.exam_no}>
-                    第{x.exam_no}回
-                  </option>
-                ))}
-              </select>
-            </label>
-          </div>
-
-          <p className="text-[11px] leading-5 text-gray-500">
-            {pool ? `この条件に合う問題: ${pool.all_count}問。` : ""}
-            難易度での絞り込みは、今後実装予定です。
-          </p>
-
-          <div className="grid grid-cols-2 gap-2">
-            <label className="text-[11px] text-gray-500">
-              問題数
-              <select
-                value={n}
-                onChange={(e) => setN(Number(e.target.value))}
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900"
-              >
-                {COUNT_OPTIONS.map((c) => (
-                  <option key={c} value={c}>
-                    {c}問
-                  </option>
-                ))}
-              </select>
-            </label>
-            <label className="text-[11px] text-gray-500">
-              期限（任意）
-              <input
-                type="date"
-                value={due}
-                onChange={(e) => setDue(e.target.value)}
-                className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900"
-              />
-            </label>
-          </div>
-
-          {available !== null && available < n && available > 0 && (
-            <p className="text-[11px] text-amber-700">この条件に合う問題は{available}問です。{available}問で配ります。</p>
-          )}
-
-          {(() => {
-            const reasons = [
-              !title.trim() && "課題の名前を入れてください（いちばん上の欄）",
-              available === 0 && "この単元・回の組み合わせに、問題がありません。単元か回を変えてください",
-            ].filter(Boolean);
-            return triedCreate && reasons.length > 0 ? (
-              <p className="text-xs leading-5 text-red-600" role="status">
-                作れない理由：{reasons.join(" ／ ")}
-              </p>
-            ) : null;
-          })()}
-
-          <div className="flex gap-2">
-            <button
-              onClick={handleCreate}
-              disabled={busy}
-              className="flex-1 rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40"
-            >
-              この条件で、下書きを作る（配る前に、問題を調整できます）
-            </button>
-            <button onClick={() => setCreating(false)} className="rounded-full border border-gray-300 px-4 py-2.5 text-sm text-gray-700">
-              やめる
-            </button>
-          </div>
-        </div>
-      )}
-    </section>
+    <TeacherPage title="先生用ホーム" description="学生に配ったテストの結果を、まとめて見られます。見えるのは、配ったテストの結果（名前・正解・不正解）だけです。">
+      <HomeBody />
+    </TeacherPage>
   );
 }

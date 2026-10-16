@@ -174,7 +174,7 @@ export default function RegisterPage() {
         </h1>
 
         <p className="mt-3 text-sm text-gray-500">
-          {isTeacher ? "大学・専門学校の先生向けです。クラスと課題をつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
+          {isTeacher ? "大学・専門学校の先生向けです。クラスとテストをつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
         </p>
 
         <div className="mt-10 space-y-5">

@@ -37,6 +37,24 @@ const GUEST_MENUS_UNSET: Menu[] = [
   { href: "/register", icon: "○", label: "登録・ログイン" },
 ];
 
+// 先生（クラス・テスト・分析）の画面のメニュー
+const TEACHER_BASE = "/student/quiz/teacher";
+const TEACHER_MENUS: Menu[] = [
+  { href: TEACHER_BASE, icon: "⌂", label: "ホーム" },
+  { href: `${TEACHER_BASE}/tests`, icon: "📝", label: "テスト" },
+  { href: `${TEACHER_BASE}/analysis`, icon: "📊", label: "分析" },
+  { href: `${TEACHER_BASE}/classes`, icon: "👥", label: "クラス" },
+  { href: `${TEACHER_BASE}/account`, icon: "○", label: "アカウント" },
+];
+
+// 先生のメニューの、いまの場所。テストの作成・課題の結果は「テスト」、クラスの状況は「分析」に含める
+function teacherActive(href: string, pathname: string) {
+  if (href === TEACHER_BASE) return pathname === TEACHER_BASE;
+  if (href.endsWith("/tests")) return /^\/student\/quiz\/teacher\/(tests|test|assignment)(\/|$)/.test(pathname);
+  if (href.endsWith("/analysis")) return /^\/student\/quiz\/teacher\/(analysis|class)(\/|$)/.test(pathname);
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 // ゲスト用のメニューを出さないページ（トップ・認証まわり）
 const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest", "/teachers"];
 
@@ -247,7 +265,7 @@ export default function BottomNavWrapper() {
 
   // 下のメニューを出す画面かどうか（出す画面では、画面全体ではなく、本文だけをスクロールさせる。globals.css の data-shell）。
   // iPhoneで、一番上・一番下まで行ってさらに引っ張ったときに、下のメニューが本文といっしょに動いてしまうのを防ぐため
-  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname) && !(loggedIn && accountType === "teacher");
+  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname);
   useEffect(() => {
     const root = document.documentElement;
     if (shellOn) root.setAttribute("data-shell", "");
@@ -270,16 +288,15 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // 先生のアカウントは、下のメニューを使わない（先生の画面の中だけで使う）
-  if (loggedIn && accountType === "teacher") {
-    return null;
-  }
-
   // 立場（PT／学生）を選んで中を見ているゲストには、本物と同じメニューを「見るだけ」で出す（押せない）
   const previewOnly = !loggedIn && (guestRole === "pt" || guestRole === "student");
 
   // ログインしていない訪問者（立場を選んでいない人）には、ゲスト用のメニューを出す
-  const baseMenus = previewOnly
+  // 先生のアカウント、または、先生の画面（PTの先生も）では、先生のメニュー
+  const teacherMode = loggedIn && (accountType === "teacher" || pathname.startsWith(TEACHER_BASE));
+  const baseMenus = teacherMode
+    ? TEACHER_MENUS
+    : previewOnly
     ? PT_MENUS
     : !loggedIn
       ? GUEST_MENUS_UNSET
@@ -297,6 +314,7 @@ export default function BottomNavWrapper() {
   );
 
   function isActive(href: string) {
+    if (teacherMode) return teacherActive(href, pathname);
     const [base, query] = href.split("?");
     const search = typeof window !== "undefined" ? window.location.search : "";
 

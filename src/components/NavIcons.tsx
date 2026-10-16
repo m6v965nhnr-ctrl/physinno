@@ -57,6 +57,41 @@ const PATHS: Record<string, React.ReactNode> = {
       <path d="M10 20.5a2.2 2.2 0 0 0 4 0" />
     </>
   ),
+  // 先生: ホーム（家）・テスト（書類）・分析（棒グラフ）・クラス（人たち）・アカウント（人）
+  "/student/quiz/teacher": (
+    <>
+      <path d="M4 11.2 12 4l8 7.2" />
+      <path d="M6 10v10h12V10" />
+    </>
+  ),
+  "/student/quiz/teacher/tests": (
+    <>
+      <path d="M6 3.5h8.5L19 8v12.5H6z" />
+      <path d="M14 3.5V8h5" />
+      <path d="M9 13h7M9 16.5h7" />
+    </>
+  ),
+  "/student/quiz/teacher/analysis": (
+    <>
+      <path d="M5 20V11" />
+      <path d="M12 20V4.5" />
+      <path d="M19 20v-6.5" />
+    </>
+  ),
+  "/student/quiz/teacher/classes": (
+    <>
+      <circle cx="9" cy="8.5" r="3" />
+      <path d="M3.5 19c.7-3 3-4.6 5.5-4.6s4.8 1.6 5.5 4.6" />
+      <circle cx="17" cy="9.5" r="2.4" />
+      <path d="M16 14.6c2.3.1 4.2 1.5 4.7 4.4" />
+    </>
+  ),
+  "/student/quiz/teacher/account": (
+    <>
+      <circle cx="12" cy="8" r="3.6" />
+      <path d="M4.5 20c.9-3.6 3.9-5.6 7.5-5.6s6.6 2 7.5 5.6" />
+    </>
+  ),
   // ゲスト: 見てみる（目）
   "/guest": (
     <>

@@ -197,3 +197,8 @@
 - iPhoneのホーム画面アプリで、一番上・一番下まで行ってさらに引っ張ると、画面全体が弾み、下のメニューも本文といっしょに動いてしまっていた（`sticky` / `fixed` / `visualViewport` の補正では、止まらなかった）。
 - 対策: 下のメニューを出す画面では、`BottomNavWrapper` が `<html data-shell>` を付ける。`globals.css` の `html[data-shell]` で、画面全体（html・body）はスクロールさせず（高さ100dvh・overflow hidden）、本文（`#main-content`）だけを `overflow-y: auto` でスクロールさせる。メニューは本文の外（flexの下）にあるので、本文が弾んでも動かない。トップ・ログイン・登録・先生の画面・運営は、これまでどおり（data-shellなし）。印刷（`@media print`）では解除する。
 - 注意: この画面では `window.scrollTo` / `window.scrollY` が効かない。画面を一番上へ戻すときは `scrollPageToTop()`（`src/lib/scroll.ts`）を使う。スクロール位置を読む処理を足すときも、`#main-content` を見る。
+
+## 先生の画面を、下のメニューで分ける（2026-10-16）
+- 先生（`account_type = 'teacher'`、および、先生に承認されたPT）の画面は、下のメニュー5つ: **ホーム**（`/student/quiz/teacher`。状況・下書き・まだ終わっていないテスト・近道）／**テスト**（`/tests`。作成・一覧。テストの作成画面 `/test`・課題の結果 `/assignment` も、このメニューの中）／**分析**（`/analysis`。クラスの状況。クラスは切り替え。`/class?id=` は直接リンク用）／**クラス**（`/classes`。作成・参加コード・URL・閉じる）／**アカウント**（`/account`。名前・状態・ログアウト・退会）。
+- 下のメニューは `BottomNavWrapper` の `TEACHER_MENUS`（`/student/quiz/teacher` 以下を開いているとき、または teacher アカウントのとき）。アイコンは `NavIcons`（href をキーにしている）。
+- 共通部品: `components/teacher/TeacherPage`（枠・先生の承認の確認＝申請の案内。`gated={false}` で承認の確認なし）／`useTeacherData`（クラスと、全クラスのテスト）／`NewTestForm`／`ClassDashboardView`。

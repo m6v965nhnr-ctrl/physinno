@@ -79,7 +79,7 @@ export default function QuizAssignmentResultsPage() {
       <main className="min-h-screen bg-[#fafafa] px-6 py-10">
         <div className="mx-auto max-w-2xl rounded-2xl bg-white p-6 text-center shadow-sm">
           <p className="text-sm text-gray-600">この課題の結果を表示できません。</p>
-          <Link href="/student/quiz/teacher" className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+          <Link href="/student/quiz/teacher/tests" className="mt-4 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
             戻る
           </Link>
         </div>
@@ -105,8 +105,8 @@ export default function QuizAssignmentResultsPage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/student/quiz/teacher" className="text-sm text-gray-400">
-            ← クラスと課題
+          <Link href="/student/quiz/teacher/tests" className="text-sm text-gray-400">
+            ← テスト
           </Link>
           <p className="mt-2 text-xs text-gray-400">{res.class_name}</p>
           <h1 className="text-xl font-semibold tracking-tight">{res.title}</h1>
