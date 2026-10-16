@@ -1,12 +1,24 @@
 import { supabase } from "@/lib/supabase";
 
-export type AccountType = "pt" | "general" | "student";
+export type AccountType = "pt" | "general" | "student" | "teacher";
 
 export const ACCOUNT_TYPE_LABEL: Record<AccountType, string> = {
   pt: "PT",
   general: "一般",
   student: "学生",
+  teacher: "先生",
 };
+
+function isAccountType(v: unknown): v is AccountType {
+  return v === "pt" || v === "general" || v === "student" || v === "teacher";
+}
+
+// 先生のアカウント（大学・専門学校の先生）が使える画面。それ以外のPT向けの画面は、先生の画面へ戻す
+export const TEACHER_HOME = "/student/quiz/teacher";
+
+export function isTeacherPath(pathname: string) {
+  return pathname === TEACHER_HOME || pathname.startsWith(`${TEACHER_HOME}/`);
+}
 
 // PTと同じ画面・機能を使えるアカウント(PT・学生)。一般の方だけが対象外
 export function isPtLike(type: AccountType | null) {
@@ -77,7 +89,7 @@ export async function getMyAccountType(
 
   const type = data?.account_type;
 
-  return type === "pt" || type === "general" || type === "student" ? type : null;
+  return isAccountType(type) ? type : null;
 }
 
 // 通信の失敗と、「本当に未設定」を区別して返す（失敗のときに、設定済みの人を未設定扱いにしないため）
@@ -94,7 +106,7 @@ export async function getMyAccountTypeChecked(
 
   const type = data?.account_type;
 
-  return { ok: true, type: type === "pt" || type === "general" || type === "student" ? type : null };
+  return { ok: true, type: isAccountType(type) ? type : null };
 }
 
 // 卒業予定年を過ぎた学生を、その場で PT に切り替える(毎日の自動処理とは別に、ログイン時にも実行する)。
@@ -103,7 +115,7 @@ export async function syncMyAccountType(): Promise<AccountType | null> {
   const { data, error } = await supabase.rpc("sync_my_account_type");
   if (error) return null;
 
-  return data === "pt" || data === "general" || data === "student" ? data : null;
+  return isAccountType(data) ? data : null;
 }
 
 // 本人のアカウント種類を変更（DB関数 set_my_account_type）
@@ -143,5 +155,6 @@ export function isPublicGuestPath(pathname: string) {
 export function landingPathFor(accountType: AccountType | null | undefined): string {
   // 種類が未設定の人は、先に設定の画面へ
   if (!accountType) return "/setup";
+  if (accountType === "teacher") return TEACHER_HOME;
   return accountType === "student" ? "/mypage" : "/pts";
 }

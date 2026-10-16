@@ -176,3 +176,10 @@
 - HP（`src/app/page.tsx`）の、学生の項の下の帯・ヘッダー（md以上）・フッターから `/teachers`（大学・専門学校の先生向けの紹介ページ。ログイン不要。`AuthGuard` の `publicPaths`、下のメニューなし、サイトマップに追加）へ。
 - ページの内容は、実際にある機能だけ（クラス・課題・クラスの状況）。「先生は理学療法士アカウントで登録 → `/student/quiz/teacher` で申請 → 運営が承認」。解説がAI作成で監修なしであることも書く。
 - 文末1〜2文字だけの折り返しは、`text-balance` と `inline-block` のかたまりで防ぐ。
+
+## 先生のアカウント `account_type = 'teacher'`（2026-10-16〜）
+- 入口: `/teachers` → `/register?type=teacher`（種類の選択なし。名前・所属（必須）・担当科目（任意）・メール・パスワード）。PTのプロフィール（`pt_profiles`）は作らない。名前は `users.full_name`。
+- 登録時: `handle_new_user`（20261118_teacher_accounts）が、`quiz_teacher_requests` に承認待ちの申請を作る（`school` / `teacher_note` は、サインアップのメタデータ）。運営が `/admin` で承認すると、`quiz_teachers` に入り、クラス・課題を作れる。承認までは、先生の画面に「確認中」と出る。
+- 使える画面は、`/student/quiz/teacher` 以下だけ（`isTeacherPath`）。PT向けの画面（`isPtOnlyPath`）に入ると、`AuthGuard` が先生の画面へ戻す。下のメニューは出さない。ログアウト・退会は、先生の画面の上の行。ログイン後・ホーム画面アプリの最初の画面も、先生の画面（`landingPathFor`）。
+- DB: `quiz_can_use()` に teacher を含めた（課題を作るときの単元・回の一覧に必要。先生も、問題は試せる）。ランキングは学生だけなので影響なし。既存のPTが先生になる道（`quiz_request_teacher`）も、そのまま使える。
+- 注意: 先生を増やしたら、`AdminAnalytics` の種類別の集計（PT・学生・一般）には、まだ入っていない。

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { AccountType, getMyAccountType } from "@/lib/account";
+import { AccountType, TEACHER_HOME, getMyAccountType } from "@/lib/account";
 
 // ログイン中のユーザーとアカウント種類を取得する。
 // allowed に含まれない種類の人(または未ログインの人)は、redirectTo(未指定なら /home)へ案内する
@@ -37,7 +37,7 @@ export function useMyAccount(allowed: AccountType[], redirectTo = "/home") {
       if (cancelled) return;
 
       if (!accountType || !allowedKey.split(",").includes(accountType)) {
-        router.replace(accountType === "general" ? "/pts" : redirectTo);
+        router.replace(accountType === "general" ? "/pts" : accountType === "teacher" ? TEACHER_HOME : redirectTo);
         return;
       }
 

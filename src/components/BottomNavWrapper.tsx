@@ -260,6 +260,11 @@ export default function BottomNavWrapper() {
     return null;
   }
 
+  // 先生のアカウントは、下のメニューを使わない（先生の画面の中だけで使う）
+  if (loggedIn && accountType === "teacher") {
+    return null;
+  }
+
   // 立場（PT／学生）を選んで中を見ているゲストには、本物と同じメニューを「見るだけ」で出す（押せない）
   const previewOnly = !loggedIn && (guestRole === "pt" || guestRole === "student");
 

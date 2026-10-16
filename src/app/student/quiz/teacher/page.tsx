@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
+import { supabase } from "@/lib/supabase";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { QuizExam, QuizUnit, listQuizExams, listQuizUnits, percent } from "@/lib/quiz";
 import {
@@ -29,7 +30,7 @@ const COUNT_OPTIONS = [5, 10, 20, 30, 50];
 
 // 先生用: クラスを作って、参加コードを配り、課題（単元・回・難易度で選んだ問題）を出す
 export default function QuizTeacherPage() {
-  const { loading } = useMyAccount(["pt"], "/study");
+  const { loading, accountType } = useMyAccount(["pt", "teacher"], "/study");
 
   const [status, setStatus] = useState<TeacherStatus | null>(null);
   const [classes, setClasses] = useState<TeacherClass[]>([]);
@@ -94,9 +95,26 @@ export default function QuizTeacherPage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/study" className="text-sm text-gray-400">
-            ← 過去問ドリル
-          </Link>
+          {accountType === "teacher" ? (
+            <div className="flex items-center justify-between text-sm text-gray-400">
+              <span>先生用</span>
+              <span className="flex gap-4">
+                <button
+                  onClick={async () => {
+                    await supabase.auth.signOut();
+                    window.location.href = "/";
+                  }}
+                >
+                  ログアウト
+                </button>
+                <Link href="/mypage/delete-account">退会</Link>
+              </span>
+            </div>
+          ) : (
+            <Link href="/study" className="text-sm text-gray-400">
+              ← 過去問ドリル
+            </Link>
+          )}
           <h1 className="mt-2 text-xl font-semibold tracking-tight">先生用：クラスと課題</h1>
           <p className="mt-1 text-xs leading-5 text-gray-500">
             学生に課題を配って、結果をまとめて見られます。見えるのは、配った課題の結果（名前・正解・不正解）だけです。

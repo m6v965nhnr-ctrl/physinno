@@ -75,7 +75,7 @@ export default function ResetPasswordPage() {
 
     const type = data.user ? await getMyAccountType(data.user.id) : null;
     setTimeout(() => {
-      window.location.href = type === "general" ? "/pts" : type === "student" ? "/student" : "/home";
+      window.location.href = type === "general" ? "/pts" : type === "student" ? "/student" : type === "teacher" ? "/student/quiz/teacher" : "/home";
     }, 1500);
   }
 

@@ -11,6 +11,8 @@ import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
 
 type AccountType = "pt" | "general" | "student";
 
+// 先生（大学・専門学校）は、種類を選ばせず、専用の入力欄だけにする（/register?type=teacher）。PTのプロフィールは作らない
+
 const ACCOUNT_TYPE_OPTIONS: {
   value: AccountType;
   label: string;
@@ -40,6 +42,9 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
+  const [isTeacher, setIsTeacher] = useState(false);
+  const [school, setSchool] = useState("");
+  const [teacherNote, setTeacherNote] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -52,7 +57,9 @@ export default function RegisterPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type");
-    if (type === "pt" || type === "general" || type === "student") {
+    if (type === "teacher") {
+      setIsTeacher(true);
+    } else if (type === "pt" || type === "general" || type === "student") {
       setAccountType(type);
     }
 
@@ -68,8 +75,14 @@ export default function RegisterPage() {
   async function handleRegister() {
     setError("");
 
-    if (!accountType) {
+    if (!isTeacher && !accountType) {
       setError("アカウントの種類（PT／学生／一般）を選んでください");
+      return;
+    }
+
+    if (isTeacher && !school.trim()) {
+      setError("所属（学校名）を入力してください");
+      document.getElementById("field-school")?.focus();
       return;
     }
 
@@ -102,7 +115,10 @@ export default function RegisterPage() {
       options: {
         // DBトリガー on_auth_user_created が users.account_type / referred_by に保存します
         data: {
-          account_type: accountType,
+          account_type: isTeacher ? "teacher" : accountType,
+          // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
+          school: isTeacher ? school.trim().slice(0, 100) : undefined,
+          teacher_note: isTeacher ? teacherNote.trim().slice(0, 500) : undefined,
           full_name: fullName.trim().slice(0, 50),
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
@@ -132,7 +148,9 @@ export default function RegisterPage() {
     // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。
     // 学生は、名前と養成校・卒業予定年などを入れる設定画面へ案内する
     router.push(
-      accountType === "general"
+      isTeacher
+        ? "/student/quiz/teacher"
+        : accountType === "general"
         ? (takeReturnTo() ?? "/pts")
         : accountType === "student"
           ? "/student/settings?welcome=1"
@@ -152,15 +170,16 @@ export default function RegisterPage() {
         </Link>
 
         <h1 className="mt-10 text-3xl font-semibold tracking-tight">
-          新規登録
+          {isTeacher ? "先生の新規登録" : "新規登録"}
         </h1>
 
         <p className="mt-3 text-sm text-gray-500">
-          Re:lightをはじめましょう
+          {isTeacher ? "大学・専門学校の先生向けです。クラスと課題をつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
         </p>
 
         <div className="mt-10 space-y-5">
 
+          {!isTeacher && (
           <div>
             <p className="mb-2 block text-sm font-medium">
               アカウントの種類 <span className="text-xs font-normal text-red-500">（必須）</span>
@@ -206,6 +225,7 @@ export default function RegisterPage() {
               資格は自己申告です。
             </p>
           </div>
+          )}
 
           {accountType === "student" && (
             <div>
@@ -251,9 +271,48 @@ export default function RegisterPage() {
             />
 
             <p className="mt-2 text-xs leading-5 text-gray-400">
-              コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。
+              {isTeacher
+                ? "クラスに参加した学生に、先生の名前として表示されます。"
+                : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
             </p>
           </div>
+
+          {isTeacher && (
+            <>
+              <div>
+                <label className="mb-2 block text-sm font-medium" htmlFor="field-school">
+                  所属（学校名・学科） <span className="text-xs font-normal text-red-500">（必須）</span>
+                </label>
+                <input
+                  id="field-school"
+                  type="text"
+                  maxLength={100}
+                  value={school}
+                  onChange={(e) => setSchool(e.target.value)}
+                  placeholder="例：○○大学 保健医療学部 理学療法学科"
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+                />
+              </div>
+
+              <div>
+                <label className="mb-2 block text-sm font-medium" htmlFor="field-note">
+                  担当科目など <span className="text-xs font-normal text-gray-400">（任意）</span>
+                </label>
+                <input
+                  id="field-note"
+                  type="text"
+                  maxLength={200}
+                  value={teacherNote}
+                  onChange={(e) => setTeacherNote(e.target.value)}
+                  placeholder="例：運動学、国家試験対策"
+                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+                />
+                <p className="mt-2 text-xs leading-5 text-gray-400">
+                  所属と担当は、運営が先生であることを確認するために使います。確認が済むと、クラスと課題を作れるようになります。
+                </p>
+              </div>
+            </>
+          )}
 
           <div>
             <label className="mb-2 block text-sm font-medium" htmlFor="field-1">
@@ -320,7 +379,7 @@ export default function RegisterPage() {
 
           {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
           {(() => {
-            const missing = [!accountType && "アカウントの種類", !fullName.trim() && "名前", !agreed && "利用規約への同意"].filter(Boolean);
+            const missing = [!isTeacher && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && !school.trim() && "所属", !agreed && "利用規約への同意"].filter(Boolean);
             return missing.length > 0 ? (
               <p className="text-center text-xs text-red-600" role="status">
                 未入力：{missing.join("・")}
@@ -330,10 +389,10 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || !accountType || !fullName.trim()}
+            disabled={loading || !agreed || (!isTeacher && !accountType) || !fullName.trim() || (isTeacher && !school.trim())}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
-            {loading ? "登録中…" : "新規登録"}
+            {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}
           </button>
 
           <p className="text-center text-sm text-gray-500">

@@ -45,7 +45,7 @@ function downloadCsv(d: ClassDashboard) {
 }
 
 export default function QuizClassDashboardPage() {
-  const { loading } = useMyAccount(["pt"], "/study");
+  const { loading } = useMyAccount(["pt", "teacher"], "/study");
   const [data, setData] = useState<ClassDashboard | null | undefined>(undefined);
   const [assignments, setAssignments] = useState<TeacherAssignment[]>([]);
 

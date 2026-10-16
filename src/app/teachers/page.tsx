@@ -22,9 +22,8 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { title: "無料でアカウントをつくる", body: "メールアドレスで、1分。先生は「理学療法士」のアカウントで登録します。" },
-  { title: "先生として申請する", body: "ログイン後、「先生用：クラスと課題」で、所属（学校名など）を書いて申請します。" },
-  { title: "運営が確認して、承認", body: "承認されると、クラスと課題を作れるようになります。" },
+  { title: "先生のアカウントを、無料でつくる", body: "お名前・所属・メールアドレスだけで、1分。PTのプロフィールなどは、いりません。" },
+  { title: "運営が確認して、承認", body: "登録した所属をもとに、運営が先生であることを確認します。承認されると、クラスと課題を作れるようになります。" },
   { title: "クラスをつくり、コードを伝える", body: "学生は「クラスの課題」にコードを入れて参加。課題を配れば、結果が集まります。" },
 ];
 
@@ -45,7 +44,7 @@ export default function TeachersPage() {
         </p>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <Link href="/register?type=pt" className="inline-flex items-center justify-center rounded-full bg-relight-gradient px-7 py-4 text-base font-bold shadow-[0_6px_16px_rgba(38,169,189,0.35)] transition hover:brightness-95">
+          <Link href="/register?type=teacher" className="inline-flex items-center justify-center rounded-full bg-relight-gradient px-7 py-4 text-base font-bold shadow-[0_6px_16px_rgba(38,169,189,0.35)] transition hover:brightness-95">
             無料で、先生のアカウントをつくる
           </Link>
           <Link href="/login?next=/student/quiz/teacher" className="inline-flex items-center justify-center rounded-full border-2 border-gray-300 bg-white px-7 py-3.5 text-base font-bold text-gray-800 transition hover:bg-gray-50">
@@ -99,7 +98,7 @@ export default function TeachersPage() {
             <li>解説は、AIが書いたもので、専門家の監修を受けていません。「AIが作成。誤りを含むことがある」と画面にも表示しています。先生に確認・監修していただける形を、ご相談したいと考えています。</li>
             <li>問題・正答は、厚生労働省が公開している国家試験のものです（第56〜61回）。</li>
             <li>まだ立ち上げたばかりで、先生の機能は、これから先生のご意見で育てていくものです。「こんな機能があれば使いたい」を、教えてください。</li>
-            <li>理学療法士以外の先生など、アカウントの種類でお困りの場合は、意見箱からお知らせください。</li>
+            <li>理学療法士でなくても、登録できます。うまく登録できないときは、意見箱からお知らせください。</li>
           </ul>
           <div className="mt-4">
             <Link href="/feedback" className="inline-flex items-center justify-center rounded-full border-2 border-gray-300 px-6 py-3 text-sm font-bold text-gray-800 hover:bg-gray-50">
