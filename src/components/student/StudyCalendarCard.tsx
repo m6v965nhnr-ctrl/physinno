@@ -64,7 +64,7 @@ export default function StudyCalendarCard({ preview = false }: { preview?: boole
   }
 
   return (
-    <section className="rounded-2xl bg-white p-4 shadow-sm" aria-label="今日の学習">
+    <section className="rounded-2xl bg-white px-4 py-3 shadow-sm" aria-label="今日の学習">
       <div className="flex items-center justify-between">
         <p className="text-sm font-semibold">今日の学習</p>
         <Link href="/study" className="text-xs font-semibold text-gray-500">
@@ -72,9 +72,9 @@ export default function StudyCalendarCard({ preview = false }: { preview?: boole
         </Link>
       </div>
 
-      <div className="mt-2 flex items-end gap-6">
+      <div className="mt-1 flex items-end gap-6">
         <p>
-          <span className="text-3xl font-extrabold tracking-tight">{loaded ? todaySolved : "-"}</span>
+          <span className="text-2xl font-extrabold tracking-tight">{loaded ? todaySolved : "-"}</span>
           <span className="ml-1 text-sm font-semibold text-gray-600">問 解いた</span>
           {todayMinutes > 0 && <span className="ml-2 text-xs text-gray-500">・{todayMinutes}分</span>}
         </p>
@@ -86,21 +86,21 @@ export default function StudyCalendarCard({ preview = false }: { preview?: boole
       </div>
 
       {/* カレンダー（やった日に色がつく） */}
-      <div className="mt-4">
+      <div className="mt-2">
         <div className="flex items-center justify-between">
-          <button type="button" onClick={() => move(-1)} aria-label="前の月" className="h-8 w-8 rounded-full text-gray-500 active:bg-gray-100">
+          <button type="button" onClick={() => move(-1)} aria-label="前の月" className="h-6 w-8 rounded-full text-gray-500 active:bg-gray-100">
             ‹
           </button>
           <p className="text-sm font-bold">
             {view.y}年{view.m + 1}月
             <span className="ml-2 text-xs font-medium text-gray-500">{monthCount}日</span>
           </p>
-          <button type="button" onClick={() => move(1)} disabled={isCurrent} aria-label="次の月" className="h-8 w-8 rounded-full text-gray-500 active:bg-gray-100 disabled:opacity-30">
+          <button type="button" onClick={() => move(1)} disabled={isCurrent} aria-label="次の月" className="h-6 w-8 rounded-full text-gray-500 active:bg-gray-100 disabled:opacity-30">
             ›
           </button>
         </div>
 
-        <div className="mt-2 grid grid-cols-7 gap-y-1.5 text-center text-[10px] text-gray-400">
+        <div className="mt-1 grid grid-cols-7 gap-y-0.5 text-center text-[10px] leading-4 text-gray-400">
           {["月", "火", "水", "木", "金", "土", "日"].map((w) => (
             <span key={w}>{w}</span>
           ))}
@@ -118,9 +118,9 @@ export default function StudyCalendarCard({ preview = false }: { preview?: boole
               <span key={iso} className="flex justify-center">
                 <span
                   title={info ? `${info.solved > 0 ? `${info.solved}問` : ""}${info.minutes > 0 ? ` ${info.minutes}分` : ""}`.trim() : undefined}
-                  className={`flex h-8 w-8 items-center justify-center rounded-full text-xs font-semibold ${
+                  className={`flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-semibold ${
                     done ? "bg-relight-gradient" : future ? "text-gray-300" : "bg-gray-100 text-gray-500"
-                  } ${isToday ? "ring-2 ring-gray-900 ring-offset-1" : ""}`}
+                  } ${isToday ? "ring-2 ring-gray-900 ring-offset-0" : ""}`}
                 >
                   {d}
                 </span>

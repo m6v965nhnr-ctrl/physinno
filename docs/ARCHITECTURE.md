@@ -189,3 +189,4 @@
 - 先生用の関数（すべて、`quiz_own_assignment` で「自分のクラスの課題か」を確認）: `quiz_teacher_search_questions`（単元・回・難易度・キーワード。正答は返さない）、`quiz_assignment_preview`（正答・解説つき）、`quiz_set_assignment_questions`（追加・削除・並べ替えをまとめて保存。**誰も解答していない課題だけ**。最大50問）、`quiz_set_assignment_meta`（題名・期限）、`quiz_publish_assignment`、`quiz_duplicate_assignment`（下書きとして複製）、`quiz_delete_assignment`（解答のない課題だけ）、`quiz_assignment_statuses`（一覧の下書き表示用。`quiz_list_assignments` の形は変えていない）。
 - 画面: `/student/quiz/teacher/test?id=`（作成・調整・公開・複製・削除）。一覧（`/student/quiz/teacher`）の「テストを作る」→ 下書きができ、この画面へ。クラスのカードに「参加用のURLをコピー」（`/student/quiz/classes?code=XXXXXX`。ログイン済みの学生は、コードが入った状態で開く。未ログインだと、トップへ戻されコードは引き継がれない）。
 - 仕様書（教員向け国試対策・学習分析）のうち、実装済みは Phase 1 の一部（作成・調整・保存・複製・URL配信（参加用）・回答・自動採点・結果）。配点・選択肢の入れ替え・問題文の編集・解答の公開時刻・QR・PDF・学生×分野のマトリクス・AI復習テストは、未実装。
+- 難易度での絞り込みは、画面から外した（2026-10-16。今後実装予定）。国試本番の問題別の正答率は公表されていない（`リサーチ/2026-10-16_国試の問題ごとの難易度データの有無.md`）。DBの `quiz_pool` の難易度（Re:lightの利用者の正答率）は残してあるが、画面は「指定しない」固定。

@@ -9,8 +9,6 @@ import { useMyAccount } from "@/lib/useMyAccount";
 import { QuizExam, QuizUnit, imageUrl, listQuizExams, listQuizUnits } from "@/lib/quiz";
 import {
   AssignmentPreview,
-  DIFFICULTY_LABEL,
-  Difficulty,
   QuestionHit,
   PreviewQuestion,
   deleteAssignment,
@@ -36,7 +34,6 @@ function QuestionDetail({ q }: { q: PreviewQuestion }) {
       {q.intro && <p className="text-gray-500">{q.intro}</p>}
       <p className="whitespace-pre-wrap text-gray-900">{q.stem}</p>
       {q.image && (
-        // eslint-disable-next-line @next/next/no-img-element
         <img src={imageUrl(q.image)} alt="問題の図" loading="lazy" className="max-h-72 w-full rounded-lg border border-gray-100 bg-white object-contain" />
       )}
       {q.choices_in_image ? (
@@ -78,7 +75,6 @@ export default function QuizTestBuilderPage() {
 
   const [fUnit, setFUnit] = useState("");
   const [fExam, setFExam] = useState("");
-  const [fDiff, setFDiff] = useState<Difficulty>("any");
   const [fKeyword, setFKeyword] = useState("");
   const [hits, setHits] = useState<QuestionHit[] | null>(null);
 
@@ -158,7 +154,7 @@ export default function QuizTestBuilderPage() {
 
   async function handleSearch() {
     setBusy(true);
-    setHits(await searchQuestions({ unit: fUnit || null, exam: fExam ? Number(fExam) : null, difficulty: fDiff, keyword: fKeyword.trim() }));
+    setHits(await searchQuestions({ unit: fUnit || null, exam: fExam ? Number(fExam) : null, difficulty: "any", keyword: fKeyword.trim() }));
     setBusy(false);
   }
 
@@ -305,11 +301,6 @@ export default function QuizTestBuilderPage() {
                   <option key={e.exam_no} value={e.exam_no}>第{e.exam_no}回</option>
                 ))}
               </select>
-              <select value={fDiff} onChange={(e) => setFDiff(e.target.value as Difficulty)} aria-label="難易度" className={selectClass}>
-                {(Object.keys(DIFFICULTY_LABEL) as Difficulty[]).map((d) => (
-                  <option key={d} value={d}>{DIFFICULTY_LABEL[d]}</option>
-                ))}
-              </select>
               <input value={fKeyword} onChange={(e) => setFKeyword(e.target.value)} placeholder="キーワード" aria-label="キーワード" className="rounded-xl border border-gray-300 px-3 py-2 text-sm" />
             </div>
             <button onClick={handleSearch} disabled={busy} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
@@ -340,7 +331,7 @@ export default function QuizTestBuilderPage() {
                 </ul>
               )
             )}
-            <p className="text-[11px] leading-5 text-gray-400">難易度は、全ユーザーの正答率から自動で決まります（5人以上が解いた問題だけ）。最大50問まで。</p>
+            <p className="text-[11px] leading-5 text-gray-400">難易度での絞り込みは、今後実装予定です。最大50問まで。</p>
           </section>
         )}
 

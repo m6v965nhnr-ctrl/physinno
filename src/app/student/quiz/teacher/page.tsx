@@ -7,7 +7,6 @@ import { supabase } from "@/lib/supabase";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { QuizExam, QuizUnit, listQuizExams, listQuizUnits, percent } from "@/lib/quiz";
 import {
-  DIFFICULTY_LABEL,
   Difficulty,
   PoolCounts,
   TeacherAssignment,
@@ -225,7 +224,8 @@ function ClassCard({
   const [title, setTitle] = useState("");
   const [unit, setUnit] = useState("");
   const [exam, setExam] = useState("");
-  const [difficulty, setDifficulty] = useState<Difficulty>("any");
+  // 難易度での絞り込みは、今後実装予定（それまでは、指定しない）
+  const difficulty: Difficulty = "any";
   const [n, setN] = useState(10);
   const [due, setDue] = useState("");
   const [pool, setPool] = useState<PoolCounts | null>(null);
@@ -250,14 +250,6 @@ function ClassCard({
       cancelled = true;
     };
   }, [creating, unit, exam]);
-
-  // 選んでいる難易度に問題がなくなったとき（単元・回を変えたとき）は、「指定しない」に戻して、理由を出す
-  const [resetNote, setResetNote] = useState("");
-  useEffect(() => {
-    if (!pool || difficulty === "any" || pool[difficulty] > 0) return;
-    setResetNote(`「${DIFFICULTY_LABEL[difficulty].split("（")[0]}」の問題が0問だったので、「指定しない」に戻しました`);
-    setDifficulty("any");
-  }, [pool, difficulty]);
 
   const available = pool
     ? difficulty === "any"
@@ -431,34 +423,10 @@ function ClassCard({
             </label>
           </div>
 
-          <fieldset>
-            <legend className="text-[11px] text-gray-500">難易度（全ユーザーの正答率から決まります）</legend>
-            <div className="mt-1 space-y-1">
-              {(Object.keys(DIFFICULTY_LABEL) as Difficulty[]).map((d) => {
-                const count = pool ? (d === "any" ? pool.all_count : pool[d]) : null;
-                return (
-                  <label key={d} className="flex items-center gap-2 text-sm">
-                    <input
-                      type="radio"
-                      name={`diff-${cls.id}`}
-                      checked={difficulty === d}
-                      disabled={count === 0}
-                      onChange={() => {
-                        setDifficulty(d);
-                        setResetNote("");
-                      }}
-                    />
-                    <span className={count === 0 ? "text-gray-400" : ""}>{DIFFICULTY_LABEL[d]}</span>
-                    {count !== null && <span className="text-[11px] text-gray-400">{count}問</span>}
-                  </label>
-                );
-              })}
-            </div>
-            <p className="mt-1 text-[11px] leading-5 text-gray-400">
-              難易度は、5人以上が解いた問題にだけ付きます。解いた人が少ないうちは、「指定しない」がおすすめです。0問の難易度は、選べません。
-            </p>
-            {resetNote && <p className="mt-1 text-[11px] leading-5 text-amber-700" role="status">{resetNote}</p>}
-          </fieldset>
+          <p className="text-[11px] leading-5 text-gray-500">
+            {pool ? `この条件に合う問題: ${pool.all_count}問。` : ""}
+            難易度での絞り込みは、今後実装予定です。
+          </p>
 
           <div className="grid grid-cols-2 gap-2">
             <label className="text-[11px] text-gray-500">
