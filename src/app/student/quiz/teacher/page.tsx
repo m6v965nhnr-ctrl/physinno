@@ -184,6 +184,11 @@ export default function QuizTeacherPage() {
                   作る
                 </button>
               </div>
+              {!className.trim() && (
+                <p className="text-xs text-red-600" role="status">
+                  作れない理由：クラス名を入れてください
+                </p>
+              )}
               <p className="text-[11px] leading-5 text-gray-400">
                 作ると、6文字の参加コードが出ます。学生に伝えると、学生が「クラスの課題」から参加できます。
               </p>
@@ -245,6 +250,14 @@ function ClassCard({
       cancelled = true;
     };
   }, [creating, unit, exam]);
+
+  // 選んでいる難易度に問題がなくなったとき（単元・回を変えたとき）は、「指定しない」に戻して、理由を出す
+  const [resetNote, setResetNote] = useState("");
+  useEffect(() => {
+    if (!pool || difficulty === "any" || pool[difficulty] > 0) return;
+    setResetNote(`「${DIFFICULTY_LABEL[difficulty].split("（")[0]}」の問題が0問だったので、「指定しない」に戻しました`);
+    setDifficulty("any");
+  }, [pool, difficulty]);
 
   const available = pool
     ? difficulty === "any"
@@ -425,16 +438,26 @@ function ClassCard({
                 const count = pool ? (d === "any" ? pool.all_count : pool[d]) : null;
                 return (
                   <label key={d} className="flex items-center gap-2 text-sm">
-                    <input type="radio" name={`diff-${cls.id}`} checked={difficulty === d} onChange={() => setDifficulty(d)} />
-                    <span>{DIFFICULTY_LABEL[d]}</span>
+                    <input
+                      type="radio"
+                      name={`diff-${cls.id}`}
+                      checked={difficulty === d}
+                      disabled={count === 0}
+                      onChange={() => {
+                        setDifficulty(d);
+                        setResetNote("");
+                      }}
+                    />
+                    <span className={count === 0 ? "text-gray-400" : ""}>{DIFFICULTY_LABEL[d]}</span>
                     {count !== null && <span className="text-[11px] text-gray-400">{count}問</span>}
                   </label>
                 );
               })}
             </div>
             <p className="mt-1 text-[11px] leading-5 text-gray-400">
-              難易度は、5人以上が解いた問題にだけ付きます。解いた人が少ないうちは、「指定しない」がおすすめです。
+              難易度は、5人以上が解いた問題にだけ付きます。解いた人が少ないうちは、「指定しない」がおすすめです。0問の難易度は、選べません。
             </p>
+            {resetNote && <p className="mt-1 text-[11px] leading-5 text-amber-700" role="status">{resetNote}</p>}
           </fieldset>
 
           <div className="grid grid-cols-2 gap-2">
@@ -466,6 +489,18 @@ function ClassCard({
           {available !== null && available < n && available > 0 && (
             <p className="text-[11px] text-amber-700">この条件に合う問題は{available}問です。{available}問で配ります。</p>
           )}
+
+          {(() => {
+            const reasons = [
+              !title.trim() && "課題の名前を入れてください（いちばん上の欄）",
+              available === 0 && "この単元・回の組み合わせに、問題がありません。単元か回を変えてください",
+            ].filter(Boolean);
+            return reasons.length > 0 ? (
+              <p className="text-xs leading-5 text-red-600" role="status">
+                作れない理由：{reasons.join(" ／ ")}
+              </p>
+            ) : null;
+          })()}
 
           <div className="flex gap-2">
             <button
