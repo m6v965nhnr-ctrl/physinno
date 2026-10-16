@@ -57,6 +57,57 @@ function readParams(): Params {
 
 type Result = { question: QuizQuestion; chosen: number[]; correct: boolean | null };
 
+// 結果の画面で、間違えた問題をひらいたときの中身（選択肢・自分の選択・正答・解説）
+function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[]; reveal: QuizReveal | undefined }) {
+  if (!reveal) return <p className="mt-2 px-1 text-xs text-gray-400">読み込み中…</p>;
+  const correctSet = new Set(reveal.answers.flat());
+  const mine = new Set(chosen);
+  return (
+    <div className="mt-2 space-y-2 rounded-xl bg-white p-3 text-sm leading-7 text-gray-800">
+      {q.intro && <p className="rounded-lg bg-gray-50 p-2 text-xs leading-6 text-gray-600">{q.intro}</p>}
+      <p className="whitespace-pre-wrap">{q.stem}</p>
+      {q.image && (
+        <img src={imageUrl(q.image)} alt="問題の図" loading="lazy" decoding="async" className="mx-auto max-h-80 w-full rounded-lg border border-gray-100 object-contain" />
+      )}
+      {q.choices_in_image ? (
+        <p className="text-xs text-gray-600">
+          選択肢は、図の中にあります。あなたの選択: {chosen.length ? chosen.join("・") : "なし"} ／ 正答: {reveal.answers.length === 0 ? "（採点対象外）" : reveal.answers.map((g) => g.join("・")).join(" または ")}
+        </p>
+      ) : (
+        <ol className="space-y-1">
+          {q.choices.map((c, i) => {
+            const n = i + 1;
+            const isCorrect = correctSet.has(n);
+            const isMine = mine.has(n);
+            return (
+              <li
+                key={n}
+                className={`rounded-lg px-2 py-1 text-sm ${
+                  isCorrect ? "bg-emerald-50 text-emerald-900" : isMine ? "bg-red-50 text-red-800" : "text-gray-700"
+                }`}
+              >
+                {n}. {c}
+                {isCorrect && <span className="ml-1 text-xs font-semibold">（正答）</span>}
+                {isMine && !isCorrect && <span className="ml-1 text-xs font-semibold">（あなたの選択）</span>}
+                {isMine && isCorrect && <span className="ml-1 text-xs">（あなたの選択）</span>}
+              </li>
+            );
+          })}
+        </ol>
+      )}
+      {reveal.explanation ? (
+        <div>
+          <p className="text-xs font-semibold text-gray-700">解説</p>
+          <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
+          {reveal.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-400">AIが作成した解説です。誤りを含むことがあります。</p>}
+        </div>
+      ) : (
+        <p className="text-xs text-gray-500">この問題の解説は、まだありません。</p>
+      )}
+    </div>
+  );
+}
+
 // 一問一答の画面。選ぶとすぐに正誤と正答が出る
 export default function QuizPlayPage() {
   const { loading } = useMyAccount(["student", "pt"]);
@@ -73,6 +124,9 @@ export default function QuizPlayPage() {
   const [bookmarks, setBookmarks] = useState<Record<string, boolean>>({});
   // 結果の画面から、間違えた問題を開き直しているとき
   const [fromResults, setFromResults] = useState(false);
+  // 課題の結果の画面で、ひらいている間違えた問題（その場でひらく）と、読み込んだ正答・解説
+  const [openWrong, setOpenWrong] = useState<string | null>(null);
+  const [reveals, setReveals] = useState<Record<string, QuizReveal>>({});
 
   const load = useCallback(async (p: Params) => {
     setQuestions(null);
@@ -191,6 +245,23 @@ export default function QuizPlayPage() {
   }
 
   // 結果の画面で、問題をタップ → その問題（正答・解説つき）に戻る
+  async function toggleWrong(r: Result) {
+    const id = r.question.id;
+    if (openWrong === id) {
+      setOpenWrong(null);
+      return;
+    }
+    setOpenWrong(id);
+    if (reveals[id]) return;
+    const rv = await revealQuestion(id);
+    if (!rv) {
+      notify("問題を開けませんでした。もう一度お試しください");
+      setOpenWrong(null);
+      return;
+    }
+    setReveals((m) => ({ ...m, [id]: rv }));
+  }
+
   async function openReview(r: Result) {
     if (!questions || busy) return;
     const i = questions.findIndex((x) => x.id === r.question.id);
@@ -282,14 +353,18 @@ export default function QuizPlayPage() {
           {wrong.length > 0 && (
             <section className="rounded-2xl bg-white p-4 shadow-sm">
               <p className="text-sm font-semibold">間違えた問題</p>
-              <p className="mt-0.5 text-[11px] text-gray-400">問題文をタップすると、その問題（正答・解説つき）に戻れます</p>
+              <p className="mt-0.5 text-[11px] text-gray-400">
+                {isAssignment ? "問題文をタップすると、選択肢・正答・解説が開きます" : "問題文をタップすると、その問題（正答・解説つき）に戻れます"}
+              </p>
               <ul className="mt-2 space-y-2">
                 {wrong.map((r) => (
-                  <li key={r.question.id} className="flex items-start gap-2 rounded-xl bg-gray-50 p-2.5">
+                  <li key={r.question.id} className="rounded-xl bg-gray-50 p-2.5">
+                   <div className="flex items-start gap-2">
                     <button
                       type="button"
-                      onClick={() => !isAssignment && openReview(r)}
-                      disabled={busy || isAssignment}
+                      onClick={() => (isAssignment ? toggleWrong(r) : openReview(r))}
+                      disabled={busy}
+                      aria-expanded={isAssignment ? openWrong === r.question.id : undefined}
                       className="min-w-0 flex-1 text-left text-sm leading-6 text-gray-800"
                     >
                       <span className="mr-2 rounded-full bg-red-50 px-2 py-0.5 text-[10px] text-red-600">
@@ -297,7 +372,9 @@ export default function QuizPlayPage() {
                       </span>
                       {r.question.stem.slice(0, 60)}
                       {r.question.stem.length > 60 ? "…" : ""}
-                      {!isAssignment && <span className="ml-1 text-[11px] text-sky-700">解説を見る ›</span>}
+                      <span className="ml-1 text-[11px] text-sky-700">
+                        {isAssignment ? (openWrong === r.question.id ? "閉じる ▲" : "解説を見る ▼") : "解説を見る ›"}
+                      </span>
                     </button>
                     <button
                       type="button"
@@ -309,6 +386,10 @@ export default function QuizPlayPage() {
                     >
                       {bookmarks[r.question.id] ? "★ 保存済み" : "☆ 保存"}
                     </button>
+                   </div>
+                   {isAssignment && openWrong === r.question.id && (
+                     <ReviewPanel q={r.question} chosen={r.chosen} reveal={reveals[r.question.id]} />
+                   )}
                   </li>
                 ))}
               </ul>
