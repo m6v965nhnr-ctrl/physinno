@@ -51,6 +51,15 @@ export type AssignmentResults = {
   questions: { id: string; label: string; stem: string; answered: number; correct: number }[];
 };
 
+export type ClassDashboard = {
+  class_name: string;
+  members: number;
+  assignments: number;
+  students: { name: string; finished: number; overdue: number; answered: number; correct: number; last_at: string | null }[];
+  units: { name: string; answered: number; correct: number }[];
+  weak: { id: string; label: string; stem: string; answered: number; correct: number }[];
+};
+
 export type MyClass = { id: string; name: string; teacher_name: string | null; joined_at: string };
 
 export type MyAssignment = {
@@ -155,6 +164,12 @@ export async function getAssignmentResults(id: string): Promise<AssignmentResult
   const { data, error } = await supabase.rpc("quiz_assignment_results", { p_assignment: id });
   if (error || !data) return null;
   return data as AssignmentResults;
+}
+
+export async function getClassDashboard(classId: string): Promise<ClassDashboard | null> {
+  const { data, error } = await supabase.rpc("quiz_class_dashboard", { p_class: classId });
+  if (error || !data) return null;
+  return data as ClassDashboard;
 }
 
 // ---- 学生: 参加と課題 ----

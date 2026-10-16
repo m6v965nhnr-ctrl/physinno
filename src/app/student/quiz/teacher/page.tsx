@@ -299,6 +299,10 @@ function ClassCard({
         </button>
       </div>
 
+      <Link href={`/student/quiz/teacher/class?id=${cls.id}`} className="block rounded-xl bg-gray-50 px-3 py-2 text-sm font-medium text-gray-800 transition hover:bg-gray-100">
+        クラスの状況を見る（学生ごと・単元ごと・苦手な問題） →
+      </Link>
+
       {assignments && assignments.length > 0 && (
         <ul className="space-y-2">
           {assignments.map((a) => (
