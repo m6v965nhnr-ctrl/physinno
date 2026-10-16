@@ -19,7 +19,7 @@ import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
 import { hasName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 
-const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start"];
+const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start", "/teachers"];
 
 // アカウントの種類が未設定の人は、これらを除く、どの画面にも進めない（/setup へ送る）
 const SETUP_EXEMPT_PATHS = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/feedback", "/setup", "/start"];

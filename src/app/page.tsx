@@ -144,6 +144,9 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <Link href="/guest" className="hidden rounded-full px-3 py-2 text-sm font-bold text-[var(--lp-g700)] hover:bg-[var(--lp-g50)] sm:inline-block">
               中を見てみる
             </Link>
+            <Link href="/teachers" className="hidden px-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900 md:inline-block">
+              先生の方へ
+            </Link>
             <Link href="/login" className="px-2 py-2 text-sm font-medium text-gray-600 hover:text-gray-900">
               ログイン
             </Link>
@@ -362,11 +365,22 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         </div>
       </section>
 
+      {/* 大学・専門学校の先生の入口 */}
+      <section className="bg-[var(--lp-g50)] px-6 py-10">
+        <div className="mx-auto flex max-w-5xl flex-col items-center gap-4 text-center md:flex-row md:justify-between md:text-left">
+          <div>
+            <h2 className="text-lg font-bold text-[var(--lp-g900)]">大学・専門学校の先生へ</h2>
+            <p className="mt-1 text-balance text-sm leading-7 text-gray-700">国試の一問一答を、クラスの課題として配れます。学生ごとの状況や、正答率の低い問題も見られます。</p>
+          </div>
+          <Link href="/teachers" className={`${BTN_SECONDARY} shrink-0`}>大学・専門学校の先生はこちら →</Link>
+        </div>
+      </section>
+
       {/* ⑥ 安心（口コミ・匿名・セキュリティ） */}
       <section id="safety" className="bg-[var(--lp-g900)] px-6 py-16 text-white">
         <div className="mx-auto max-w-5xl">
           <p className="text-xs font-bold tracking-[0.14em] text-[var(--lp-g300)]">SAFETY</p>
-          <h2 className="mt-2 text-2xl font-bold leading-snug tracking-tight text-white md:text-3xl">安心して本音を書けるように、守りを厚くしています</h2>
+          <h2 className="mt-2 text-balance text-2xl font-bold leading-snug tracking-tight text-white md:text-3xl">安心して本音を書けるように、守りを厚くしています</h2>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-white/80">口コミや相談は、安心して書けてこそ。見せる範囲も、名前を出すかどうかも、使う人が自分で決められます。情報を守る仕組みは、点検のたびに見直しています。</p>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {SAFETY.map((s) => (
@@ -464,10 +478,10 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             まず、中を見てみる
           </Link>
         </div>
-        <p className="mx-auto mt-8 max-w-md text-xs leading-6 text-white/80">
-          困っていること・ほしい機能は、登録なし・匿名の
-          <Link href="/feedback" className="mx-1 font-bold underline">意見箱</Link>
-          へ。みんなで、作っていきたい。
+        <p className="mx-auto mt-8 max-w-md text-balance text-xs leading-6 text-white/80">
+          <span className="inline-block">困っていること・ほしい機能は、</span>
+          <span className="inline-block">登録なし・匿名の<Link href="/feedback" className="mx-1 font-bold underline">意見箱</Link>へ。</span>
+          <span className="inline-block">みんなで、作っていきたい。</span>
         </p>
       </section>
 
@@ -475,6 +489,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         <div className="flex flex-wrap items-center justify-center gap-4">
           <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>
           <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>
+          <Link href="/teachers" className="hover:text-gray-900">大学・専門学校の先生へ</Link>
           <Link href="/pts?mode=hospitals" className="hover:text-gray-900">病院を探す</Link>
           <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>
           <Link href="/columns" className="hover:text-gray-900">コラム</Link>
