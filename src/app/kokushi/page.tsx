@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { examYear, getPublicExams } from "@/lib/kokushi";
+import ExamCountdown from "./ExamCountdown";
 import KokushiCta from "./KokushiCta";
 
 export const revalidate = 86400;
@@ -31,6 +32,14 @@ const TIPS = [
     title: "科目ごとの正答率で、勉強の配分を決める",
     body: "専門（運動学・評価学・治療学）と共通（解剖・生理・病理など）のどちらが弱いかを数字で見ると、残りの期間の使い方が決まります。",
   },
+];
+
+const GUIDES = [
+  { slug: "pt-kokushi-study-plan", label: "国家試験の勉強法｜過去問の使い方と最終学年のスケジュール" },
+  { slug: "pt-kokushi-pass-rate", label: "国家試験の合格率と合格基準｜過去5年の推移" },
+  { slug: "pt-practicum-report-guide", label: "臨床実習レポートの書き方｜構成・考察・提出前チェック" },
+  { slug: "resume-writing-pt", label: "履歴書・職務経歴書の書き方｜自己PR例文つき" },
+  { slug: "pt-how-to-become", label: "理学療法士になるには｜学校の違いと選び方" },
 ];
 
 export default async function KokushiIndexPage() {
@@ -65,6 +74,8 @@ export default async function KokushiIndexPage() {
           厚生労働省が公開している理学療法士国家試験の問題を、1問ずつ解いて正答を確認できます。
           ログインは不要で、解説も3問まで読めます。全問の解説・間違えた問題の復習・模擬試験は、無料登録で使えます。
         </p>
+
+        <ExamCountdown />
 
         <h2 className="mt-10 text-lg font-bold text-gray-900">回ごとに解く</h2>
         <ul className="mt-4 grid gap-3 sm:grid-cols-2">
@@ -101,6 +112,17 @@ export default async function KokushiIndexPage() {
             </section>
           ))}
         </div>
+
+        <h2 className="mt-12 text-lg font-bold text-gray-900">国試・実習・就活のガイド</h2>
+        <ul className="mt-4 space-y-2 text-sm">
+          {GUIDES.map((g) => (
+            <li key={g.slug}>
+              <Link href={`/columns/${g.slug}`} className="block rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-800 transition hover:border-gray-400">
+                {g.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
 
         <p className="mt-10 text-xs leading-6 text-gray-500">
           出典：厚生労働省ホームページ「理学療法士国家試験の問題及び正答」。正答は厚生労働省の発表に基づきます。採点から除外された問題には、その旨を表示しています。
