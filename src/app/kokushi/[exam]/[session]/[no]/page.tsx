@@ -5,6 +5,8 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import {
   QUESTIONS_PER_SESSION,
   SESSION_LABEL,
+  examYear,
+  getPublicList,
   getPublicQuestion,
   isSession,
   questionPath,
@@ -75,6 +77,12 @@ export default async function KokushiQuestionPage({ params }: Props) {
 
   const images = [q.image, ...(q.book_images ?? [])].filter(Boolean) as string[];
 
+  // 同じ回の、同じ単元の問題（内部リンク。ページの内容を、増やす）
+  const list = await getPublicList(q.exam_no);
+  const sameUnit = q.unit_name
+    ? list.filter((x) => x.unit_name === q.unit_name && !x.excluded && !(x.session === q.session && x.no === q.no)).slice(0, 8)
+    : [];
+
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-10">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
@@ -125,6 +133,35 @@ export default async function KokushiQuestionPage({ params }: Props) {
             />
           </div>
         </article>
+
+        <section className="mt-6 rounded-2xl border border-gray-100 bg-white p-5 text-sm leading-7 text-gray-700">
+          <h2 className="text-sm font-bold text-gray-900">この問題について</h2>
+          <p className="mt-1">
+            第{q.exam_no}回（{examYear(q.exam_no)}年）理学療法士国家試験の{SESSION_LABEL[q.session]}第{q.no}問です。
+            {q.unit_name ? `${q.field ? `${q.field}の` : ""}「${q.unit_name}」に分類しています。` : ""}
+            選択肢を選ぶと、正答が表示されます。解説つきで、1問ずつ解き進める一問一答は、無料登録後に、Re:lightで使えます。
+          </p>
+        </section>
+
+        {sameUnit.length > 0 && (
+          <section className="mt-4 rounded-2xl border border-gray-100 bg-white p-5" aria-labelledby="same-unit">
+            <h2 id="same-unit" className="text-sm font-bold text-gray-900">同じ回の、「{q.unit_name}」の問題</h2>
+            <ul className="mt-2 divide-y divide-gray-100">
+              {sameUnit.map((x) => (
+                <li key={`${x.session}-${x.no}`}>
+                  <Link href={questionPath(q.exam_no, x.session, x.no)} className="block py-2 text-sm text-gray-800 hover:text-black">
+                    <span className="mr-2 text-xs text-gray-500">{SESSION_LABEL[x.session]}{x.no}</span>
+                    {plain(x.stem).slice(0, 50)}
+                    {plain(x.stem).length > 50 ? "…" : ""}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 text-xs">
+              <Link href={`/kokushi/${q.exam_no}`} className="underline">第{q.exam_no}回の問題を、すべて見る</Link>
+            </p>
+          </section>
+        )}
 
         <div className="mt-6 flex items-center justify-between gap-3">
           {prev ? (
