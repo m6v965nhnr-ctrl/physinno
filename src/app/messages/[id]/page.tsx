@@ -10,6 +10,7 @@ import { ptName } from "@/lib/format";
 import ReportButton from "@/components/ReportButton";
 import { MedicalHistoryEntry, listPublicMedicalHistory } from "@/lib/medicalHistory";
 import { LoadingScreen } from "@/components/states";
+import { usePolling } from "@/lib/usePolling";
 
 type Message = {
   id: string;
@@ -43,7 +44,6 @@ export default function MessagePage() {
   useEffect(() => {
     if (!id) return;
 
-    let channel: ReturnType<typeof supabase.channel> | null = null;
     let cancelled = false;
 
     async function start() {
@@ -132,62 +132,43 @@ export default function MessagePage() {
       await supabase.rpc("mark_conversation_read", {
         p_conversation_id: conversation.id,
       });
-
-      /*
-       * Realtime
-       *
-       * .on() を先に設定してから .subscribe() する。
-       * これが重要。
-       */
-      channel = supabase
-        .channel(`messages-${conversation.id}`)
-        .on(
-          "postgres_changes",
-          {
-            event: "INSERT",
-            schema: "public",
-            table: "messages",
-            filter: `conversation_id=eq.${conversation.id}`,
-          },
-          (payload) => {
-            const newMessage = payload.new as Message;
-
-            setMessages((current) => {
-              if (current.some((message) => message.id === newMessage.id)) {
-                return current;
-              }
-
-              return [...current, newMessage];
-            });
-
-            // 開いている間に届いたメッセージも既読にする
-            supabase.rpc("mark_conversation_read", {
-              p_conversation_id: conversation.id,
-            });
-
-            // 相手から最初のメッセージが届いた時点で、公開された病歴が見えるようになる
-            if (newMessage.sender_id === id) {
-              listPublicMedicalHistory(id).then((history) => {
-                if (!cancelled) setMedicalHistory(history);
-              });
-            }
-          }
-        );
-
-      channel.subscribe();
     }
 
     start();
 
     return () => {
       cancelled = true;
-
-      if (channel) {
-        supabase.removeChannel(channel);
-        channel = null;
-      }
     };
   }, [id]);
+
+  // 新着は、画面が見えている間、数秒おきに取りに行く（Realtimeの接続を使わない）
+  usePolling(
+    async () => {
+      if (!conversationId) return;
+      const last = messages[messages.length - 1]?.created_at;
+      let query = supabase
+        .from("messages")
+        .select("*")
+        .eq("conversation_id", conversationId)
+        .order("created_at", { ascending: true });
+      if (last) query = query.gte("created_at", last);
+      const { data } = await query;
+      const fresh = ((data ?? []) as Message[]).filter((m) => !messages.some((x) => x.id === m.id));
+      if (fresh.length === 0) return;
+
+      setMessages((current) => [...current, ...fresh.filter((m) => !current.some((x) => x.id === m.id))]);
+
+      // 開いている間に届いたメッセージも既読にする
+      supabase.rpc("mark_conversation_read", { p_conversation_id: conversationId });
+
+      // 相手から最初のメッセージが届いた時点で、公開された病歴が見えるようになる
+      if (fresh.some((m) => m.sender_id === id)) {
+        listPublicMedicalHistory(id).then(setMedicalHistory);
+      }
+    },
+    4000,
+    !!conversationId
+  );
 
   async function sendMessage() {
     if (!user || !conversationId || !content.trim() || sending) {

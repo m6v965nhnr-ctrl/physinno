@@ -14,7 +14,33 @@ function cleanTranslation(raw: string): string {
     .trim();
 }
 
+// 同じ文の翻訳は、1日ぶん保存して、MyMemoryへの問い合わせ（無料枠は文字数の制限あり）を減らす。
+// 成功したものだけ保存する。サーバーの1インスタンスの中だけ（再起動・別インスタンスでは、また問い合わせる）
+const TRANSLATION_TTL_MS = 24 * 60 * 60 * 1000;
+const TRANSLATION_CACHE_MAX = 500;
+const translationCache = new Map<string, { value: string; at: number }>();
+
 export async function translateText(
+  text: string,
+  from: "ja" | "en",
+  to: "ja" | "en"
+): Promise<string | null> {
+  const key = `${from}|${to}|${text}`;
+  const hit = translationCache.get(key);
+  if (hit && Date.now() - hit.at < TRANSLATION_TTL_MS) return hit.value;
+
+  const value = await fetchTranslation(text, from, to);
+  if (value) {
+    if (translationCache.size >= TRANSLATION_CACHE_MAX) {
+      // 古いものから消す（Mapは、入れた順に並ぶ）
+      translationCache.delete(translationCache.keys().next().value as string);
+    }
+    translationCache.set(key, { value, at: Date.now() });
+  }
+  return value;
+}
+
+async function fetchTranslation(
   text: string,
   from: "ja" | "en",
   to: "ja" | "en"

@@ -29,9 +29,11 @@ const SITE: GuideSite = {
   links: [{ href: "/columns/certified-pt-renewal-2026", label: "更新の考え方" }],
 };
 
-const FIELDS = [
-  "脳卒中", "神経筋障害", "脊髄障害", "発達障害", "運動器", "切断", "スポーツ理学療法", "徒手理学療法", "循環", "呼吸", "代謝",
-  "地域理学療法", "健康増進・参加", "介護予防", "補装具", "物理療法", "褥瘡・創傷ケア", "疼痛管理", "臨床教育", "管理・運営", "学校教育",
+// 分野ごとの取得者数: 日本理学療法士協会「各資格の取得状況」（2026年3月31日データ）
+const FIELDS: [string, number][] = [
+  ["脳卒中", 4286], ["神経筋障害", 275], ["脊髄障害", 156], ["発達障害", 444], ["運動器", 5113], ["切断", 44], ["スポーツ理学療法", 989],
+  ["徒手理学療法", 298], ["循環", 1372], ["呼吸", 1608], ["代謝", 504], ["地域理学療法", 1666], ["健康増進・参加", 204], ["介護予防", 659],
+  ["補装具", 222], ["物理療法", 117], ["褥瘡・創傷ケア", 18], ["疼痛管理", 26], ["臨床教育", 276], ["管理・運営", 584], ["学校教育", 151],
 ];
 
 const REQUIREMENTS = [
@@ -53,7 +55,7 @@ const STEPS = [
 
 const FAQS = [
   { q: "認定理学療法士になるには、最短で何年かかりますか？", a: "登録理学療法士が前提です。登録理学療法士は、前期研修が最短2年、後期研修が最短3年（実地経験3年＝36か月を含む）とされています。そのあと、認定の要件を満たして、申請・試験になります。個人の状況で変わるので、公式の最新の案内で確かめてください。" },
-  { q: "試験は難しいですか？", a: "試験は、マークシートの五者択一で、共通問題9問＋分野の問題15問（1分野あたり）の計24問です。合格率や難しさは、公式ページでは確認できませんでした。" },
+  { q: "試験は難しいですか？合格率は？", a: "試験は、マークシートの五者択一で、共通問題9問＋分野の問題15問（1分野あたり）の計24問です。合格率は、協会の公式ページでは公表を確認できませんでした（合格発表は、合格者の一覧のみ）。数字を示している情報は、出どころを確かめてください。" },
   { q: "複数の分野を取れますか？", a: "同時に申請できるのは3分野までです。指定研修カリキュラム（①）は、1回の受講で足ります。申請料は1分野ごとにかかります。" },
   { q: "申請したあとに、キャンセルや返金はできますか？", a: "公式ページには、申請後の返金・キャンセルはできないと書かれています。" },
   { q: "更新で、学会発表や論文が必要ですか？", a: "2027年4月1日以降の更新申請からは、論文の投稿や、学会での筆頭演者としての発表は、必須の要件ではなくなります（活動としては、引き続き更新の点数になります）。それより前の更新申請は、現行の要件です。" },
@@ -65,7 +67,9 @@ const SOURCES = [
   { label: "認定・専門理学療法士制度について（同）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/new/certif-specialized/" },
   { label: "生涯学習制度の見直し（同）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/new/minaoshi/" },
   { label: "登録理学療法士の取得方法（同）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/new/zenki-kouki/" },
-  { label: "認定・専門理学療法士の分野・英語表記・定義（PDF。2022年11月版とみられる）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/asset/pdf/ninteisenmon_meishouteigi20221121.pdf" },
+  { label: "各資格の取得状況（分野別の取得者数・2026年3月31日データ）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/statistics/" },
+  { label: "2025年度eラーニングコンテンツ一覧（後期研修の申込金額）", url: "https://www.japanpt.or.jp/pt/seminar/asset/pdf/e-learning_20250402.pdf" },
+  { label: "認定・専門理学療法士の分野・英語表記・定義（PDF）", url: "https://www.japanpt.or.jp/pt/lifelonglearning/asset/pdf/ninteisenmon_meishouteigi20221121.pdf" },
 ];
 
 function H2({ children }: { children: React.ReactNode }) {
@@ -162,6 +166,8 @@ export default function CertifiedPtGuide() {
               <tbody className="divide-y divide-gray-100">
                 <tr><td className="px-3 py-2">指定研修カリキュラム（eラーニング）</td><td className="px-3 py-2">12,000円（税別）</td></tr>
                 <tr><td className="px-3 py-2">臨床認定カリキュラム</td><td className="px-3 py-2">教育機関ごとに違う</td></tr>
+                <tr><td className="px-3 py-2">日本理学療法学術研修大会の参加費</td><td className="px-3 py-2">大会ごとに違う（大会の公式サイトで確認）</td></tr>
+                <tr><td className="px-3 py-2">（前提）登録理学療法士の後期研修（eラーニング）</td><td className="px-3 py-2">1コマ300円〜600円、一部のセット2,000円（2025年度の協会の一覧）</td></tr>
                 <tr><td className="px-3 py-2">新規の申請料</td><td className="px-3 py-2">1分野につき10,000円（税別）</td></tr>
                 <tr><td className="px-3 py-2">更新の申請料</td><td className="px-3 py-2">1分野につき10,000円（税別）</td></tr>
                 <tr><td className="px-3 py-2">更新時研修（eラーニング）</td><td className="px-3 py-2">1分野につき5,000円（税別）</td></tr>
@@ -169,7 +175,7 @@ export default function CertifiedPtGuide() {
             </table>
           </div>
           <p className="mt-2 text-xs leading-6 text-gray-600">
-            登録理学療法士の後期研修（有料）や、学術研修大会の参加費、会費は、公式ページでは金額を確認できなかったので、載せていません。総額は、これらを足して、公式で確かめてください。
+            後期研修の金額は2025年度の一覧で、2026年度の金額は確認できていません。講座によっては、士会の研修会で受ける場合もあります。会費（協会＋都道府県士会）も別にかかりますが、都道府県ごとに違うため、載せていません。総額は、公式で確かめてください。
           </p>
         </div>
       </section>
@@ -177,10 +183,13 @@ export default function CertifiedPtGuide() {
       <section className="px-5 pb-8">
         <div className="mx-auto max-w-3xl">
           <H2>認定の分野（21分野）</H2>
-          <p className="mt-2 text-sm leading-7 text-gray-700">分野ごとに申請し、試験は共通問題＋その分野の問題です。分野の一覧は、協会のPDF（2022年11月版とみられる）によります。追加・変更がないか、公式で確かめてください。</p>
+          <p className="mt-2 text-sm leading-7 text-gray-700">分野ごとに申請し、試験は共通問題＋その分野の問題です。数字は、各分野の取得者数（2026年3月31日時点、協会の公表）です。人気や、取りやすさを示すものではありません。</p>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {FIELDS.map((f) => (
-              <li key={f} className="rounded-full border border-teal-200 bg-white px-3 py-1.5 text-xs font-medium text-teal-900">{f}</li>
+            {FIELDS.map(([f, n]) => (
+              <li key={f} className="rounded-full border border-teal-200 bg-white px-3 py-1.5 text-xs font-medium text-teal-900">
+                {f}
+                <span className="ml-1.5 font-normal text-gray-500">{n.toLocaleString()}人</span>
+              </li>
             ))}
           </ul>
         </div>

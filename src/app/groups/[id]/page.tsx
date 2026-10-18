@@ -22,6 +22,7 @@ import { ptName } from "@/lib/format";
 import { SITE_URL } from "@/lib/site";
 import ReportButton from "@/components/ReportButton";
 import { LoadingScreen } from "@/components/states";
+import { usePolling } from "@/lib/usePolling";
 
 type Profile = {
   user_id: string;
@@ -102,34 +103,20 @@ export default function GroupDetailPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
-  useEffect(() => {
-    if (!member || !id) return;
-
-    const channel = supabase
-      .channel(`group-messages-${id}`)
-      .on(
-        "postgres_changes",
-        {
-          event: "INSERT",
-          schema: "public",
-          table: "group_messages",
-          filter: `group_id=eq.${id}`,
-        },
-        (payload) => {
-          const newMessage = payload.new as GroupMessage;
-          setMessages((prev) =>
-            prev.some((m) => m.id === newMessage.id)
-              ? prev
-              : [...prev, newMessage]
-          );
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, [member, id]);
+  // 新着は、画面が見えている間、数秒おきに取りに行く（Realtimeの接続を使わない）
+  usePolling(
+    async () => {
+      const last = messages[messages.length - 1]?.created_at;
+      let query = supabase.from("group_messages").select("*").eq("group_id", id).order("created_at", { ascending: true });
+      if (last) query = query.gte("created_at", last);
+      const { data } = await query;
+      const fresh = ((data ?? []) as GroupMessage[]).filter((m) => !messages.some((x) => x.id === m.id));
+      if (fresh.length === 0) return;
+      setMessages((prev) => [...prev, ...fresh.filter((m) => !prev.some((x) => x.id === m.id))]);
+    },
+    4000,
+    !!member && !!id
+  );
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -177,7 +164,7 @@ export default function GroupDetailPage() {
       return;
     }
 
-    // リアルタイム配信を待たず、自分の画面には即座に反映する
+    // 新着の取得を待たず、自分の画面には即座に反映する
     if (data) {
       setMessages((prev) =>
         prev.some((m) => m.id === data.id) ? prev : [...prev, data]
