@@ -178,6 +178,14 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             </h1>
             <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">調べる・学ぶ・記録する。ぜんぶ、無料。</p>
             <p className="mt-1 text-sm leading-7 text-gray-600">理学療法士と、理学療法士をめざす学生のためのアプリです。</p>
+            <ul className="mt-3 flex flex-wrap gap-2" aria-label="特長">
+              {["かんたん", "無料", "1分で、終わる"].map((t) => (
+                <li key={t} className="rounded-full bg-[var(--lp-g100)] px-3.5 py-1.5 text-sm font-bold text-[var(--lp-g800)]">
+                  <span aria-hidden="true">✓ </span>
+                  {t}
+                </li>
+              ))}
+            </ul>
 
             <div className="mt-6 grid max-w-xl gap-3 sm:grid-cols-2">
               {entrances.map((e, i) => (
