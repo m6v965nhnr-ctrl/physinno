@@ -22,6 +22,7 @@ export default function robots(): MetadataRoute.Robots {
         "/paper-search",
         "/paper-search/*",
         "/certified-pt",
+        "/job-hunting",
         "/hospital-areas",
         "/hospital-areas/*",
         "/evidence-levels",

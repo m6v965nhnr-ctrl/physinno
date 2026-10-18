@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PREFECTURES } from "@/lib/prefectures";
+import { PREFECTURES, REGIONS } from "@/lib/prefectures";
 import { HOSPITAL_DATA_NOTE, countHospitalsByPrefecture } from "@/lib/hospitalAreas";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -40,25 +40,44 @@ export default async function HospitalAreasPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">← {SITE_NAME}</Link>
-        <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 text-balance sm:text-3xl">全国の病院を、都道府県から探す</h1>
+        <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 text-balance sm:text-3xl"><span className="inline-block">全国の病院を、</span><span className="inline-block">都道府県から探す</span></h1>
         <p className="mt-4 text-sm leading-7 text-gray-700">
           実習先や就職先の候補を探すための、リハビリテーション科のある病院の一覧です。各病院のページでは、基本情報のほか、理学療法士による職場環境の口コミや、採用情報（登録があるもの）を見られます。
         </p>
-        <ul className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
-          {PREFECTURES.map((p) => (
-            <li key={p}>
-              <Link href={`/hospital-areas/${encodeURIComponent(p)}`} className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm transition hover:border-gray-400">
-                <span className="font-medium text-gray-900">{p}</span>
-                <span className="text-xs text-gray-500">{counts[p] ?? 0}件</span>
-              </Link>
-            </li>
+        <nav aria-label="地方" className="mt-6 flex flex-wrap gap-2">
+          {REGIONS.map((r) => (
+            <a key={r.name} href={`#${r.name}`} className="rounded-full border border-gray-300 bg-white px-4 py-1.5 text-sm font-medium text-gray-800 hover:border-gray-500">
+              {r.name}
+            </a>
           ))}
-        </ul>
+        </nav>
+        {REGIONS.map((r) => {
+          const regionTotal = r.prefectures.reduce((sum, p) => sum + (counts[p] ?? 0), 0);
+          return (
+            <section key={r.name} id={r.name} className="mt-10 scroll-mt-6">
+              <h2 className="flex items-baseline gap-3 border-b-2 border-gray-900 pb-2 text-xl font-bold text-gray-900">
+                {r.name}
+                <span className="text-sm font-normal text-gray-500">{regionTotal.toLocaleString()}件</span>
+              </h2>
+              <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {r.prefectures.map((p) => (
+                  <li key={p}>
+                    <Link href={`/hospital-areas/${encodeURIComponent(p)}`} className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm transition hover:border-gray-400">
+                      <span className="font-medium text-gray-900">{p}</span>
+                      <span className="text-xs text-gray-500">{counts[p] ?? 0}件</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          );
+        })}
         <p className="mt-6 text-xs leading-6 text-gray-500">
           {HOSPITAL_DATA_NOTE}。都道府県によって、載っている件数に差があります（件数が少ない県は、データが十分でない可能性があります）。
         </p>
         <p className="mt-4 text-sm text-gray-700">
           全国で {total.toLocaleString()} 件。あわせて、
+          <Link href="/job-hunting" className="font-semibold underline">就活ガイド</Link>・
           <Link href="/certified-pt" className="font-semibold underline">認定理学療法士の取り方</Link>・
           <Link href="/kokushi" className="font-semibold underline">国試の過去問</Link>・
           <Link href="/paper-search" className="font-semibold underline">論文検索</Link>

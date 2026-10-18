@@ -2,6 +2,8 @@
 
 import { getLocalUser } from "@/lib/authUser";
 import PaperCredits from "@/components/papers/PaperCredits";
+import Link from "next/link";
+import { FREE_LIMIT, FreeUsage, freeUsage, recordFreeUse, waitText } from "@/lib/freeUsage";
 import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
@@ -75,9 +77,13 @@ function saveRecentSearch(query: string) {
 // 履歴が積み上がっていく。Consensusのような「全論文を1つの結論に合成する」
 // 機能ではなく、まずは要約つきで関連論文を探しやすくする第一段階という位置づけ。
 const AUTO_TRANSLATE_KEY = "relight:paper-auto-translate";
+const FREE_FEATURE = "paper-search";
+const FREE_REGISTER = "/register?type=pt&utm_source=paper-limit&utm_medium=web&utm_campaign=free-limit";
 
 export default function PaperSearch({ initialQuery: initialQueryProp }: { initialQuery?: string } = {}) {
   const [userId, setUserId] = useState<string | null>(null);
+  // 登録なし（ゲスト）のときだけ、1日5回までの無料枠を数える。null = まだ分からない／登録済み
+  const [guestUsage, setGuestUsage] = useState<FreeUsage | null>(null);
   const [view, setView] = useState<"search" | "saved">("search");
   const [mode, setMode] = useState<"normal" | "ai">("normal");
   const [query, setQuery] = useState("");
@@ -155,6 +161,7 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
     getLocalUser().then(({ data: { user } }) => {
       setUserId(user?.id ?? null);
       if (user) loadSaved(user.id);
+      else setGuestUsage(freeUsage(FREE_FEATURE));
     });
     setRecentSearches(loadRecentSearches());
 
@@ -190,6 +197,20 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
   async function handleSearch(overrideQuery?: string) {
     const q = (overrideQuery ?? query).trim();
     if (!q || enabledSources.size === 0) return;
+
+    // 登録なしは、24時間に5回まで（登録すると、制限なし）
+    const {
+      data: { user: sessionUser },
+    } = await getLocalUser();
+    if (!sessionUser) {
+      const u = freeUsage(FREE_FEATURE);
+      if (u.left <= 0) {
+        setGuestUsage(u);
+        return;
+      }
+      recordFreeUse(FREE_FEATURE);
+      setGuestUsage(freeUsage(FREE_FEATURE));
+    }
 
     setShowRecent(false);
     setSearching(true);
@@ -558,6 +579,29 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
               : "✨ AIで探す"
             : "🔍 検索"}
       </button>
+
+      {guestUsage && (
+        <div
+          className={`mt-3 rounded-2xl border px-4 py-3 text-sm leading-6 ${
+            guestUsage.left > 0 ? "border-teal-200 bg-teal-50 text-teal-900" : "border-amber-300 bg-amber-50 text-amber-900"
+          }`}
+          role="status"
+        >
+          {guestUsage.left > 0 ? (
+            <>
+              登録なしの無料検索は、<b>24時間に{FREE_LIMIT}回まで</b>（今日は、あと<b>{guestUsage.left}回</b>）。
+              <Link href={FREE_REGISTER} className="ml-1 font-bold underline">Re:lightに無料登録すると、回数の制限なしで使えます</Link>
+            </>
+          ) : (
+            <>
+              <b>無料の検索は、{FREE_LIMIT}回まで使いました。</b>
+              {guestUsage.resetAt ? `あと${waitText(guestUsage.resetAt)}で、また使えます。` : ""}
+              <span className="block">Re:lightに無料登録すると、<b>回数の制限なし</b>で検索できます（1分）。</span>
+              <Link href={FREE_REGISTER} className="mt-2 inline-block rounded-full bg-gray-900 px-5 py-2 text-sm font-bold text-white">無料で登録して、制限なしで使う</Link>
+            </>
+          )}
+        </div>
+      )}
 
       {/* 検索対象サイト（すべて絞り込みのチェックボックス） */}
       <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-gray-500">

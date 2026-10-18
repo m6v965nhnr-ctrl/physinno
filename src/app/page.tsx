@@ -501,6 +501,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           <Link href="/hospital-areas" className="hover:text-gray-900">病院を都道府県から探す</Link>
           <Link href="/paper-search" className="hover:text-gray-900">論文検索</Link>
           <Link href="/certified-pt" className="hover:text-gray-900">認定理学療法士ガイド</Link>
+          <Link href="/job-hunting" className="hover:text-gray-900">就活ガイド</Link>
           <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>
           <Link href="/columns" className="hover:text-gray-900">コラム</Link>
           <Link href="/feedback" className="hover:text-gray-900">意見箱</Link>

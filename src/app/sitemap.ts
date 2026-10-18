@@ -28,6 +28,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/paper-search/topics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     ...PAPER_TOPICS.map((t) => ({ url: `${SITE_URL}/paper-search/topics/${t.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/certified-pt`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${SITE_URL}/job-hunting`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/hospital-areas`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...PREFECTURES.map((p) => ({ url: `${SITE_URL}/hospital-areas/${encodeURIComponent(p)}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 })),
     { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },

@@ -115,7 +115,31 @@ export default function CertifiedPtGuide() {
     <PaperSiteFrame site={SITE}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
 
-      <section className="px-5 pb-6 pt-10">
+      <section className="px-5 pt-6">
+        <div className="mx-auto max-w-3xl overflow-hidden rounded-3xl bg-relight-gradient p-6 shadow-sm sm:p-8">
+          <p className="text-xs font-bold tracking-[0.14em] text-gray-900/70">Re:light なら</p>
+          <p className="mt-2 text-[34px] font-black leading-tight tracking-tight text-gray-900 sm:text-5xl">
+            認定PTの
+            <br />
+            取得・更新を、
+            <br />
+            かんたん管理。
+          </p>
+          <p className="mt-4 text-base font-bold leading-7 text-gray-900 sm:text-lg">
+            資格と分野を選ぶだけ。協会の条件にそって、「あと何をすればいいか」を自動で計算します。研修や学会の記録が、そのまま進捗になります。
+          </p>
+          <ul className="mt-4 space-y-1.5 text-sm font-semibold text-gray-900">
+            <li>✓ 登録・認定・専門理学療法士に対応（取得も、更新も）</li>
+            <li>✓ 記録を残すだけ。合計と「あと何回」は、自動で計算</li>
+            <li>✓ 無料・登録は1分</li>
+          </ul>
+          <Link href={REGISTER} className="mt-6 inline-block rounded-full bg-gray-900 px-8 py-4 text-base font-bold text-white shadow-sm">
+            無料で、管理をはじめる →
+          </Link>
+        </div>
+      </section>
+
+      <section className="px-5 pb-6 pt-8">
         <div className="mx-auto max-w-3xl">
           <p className="text-xs font-bold tracking-[0.14em] text-teal-700">CERTIFIED PT GUIDE</p>
           <h1 className="mt-2 text-2xl font-bold leading-snug tracking-tight text-balance sm:text-4xl">認定理学療法士の取り方を、公式情報で、1ページに。</h1>

@@ -47,6 +47,7 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
           ))}
           <Link href="/paper-search">論文検索</Link>
           <Link href="/certified-pt">認定理学療法士ガイド</Link>
+          <Link href="/job-hunting">就活ガイド</Link>
           <Link href="/hospital-areas">病院を探す</Link>
           <Link href="/kokushi">国試過去問</Link>
           <Link href="/evidence-levels">エビデンスレベル早見表</Link>

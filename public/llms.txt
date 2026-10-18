@@ -22,6 +22,7 @@
 - [理学療法士国家試験 過去問（第57回〜第61回・正答つき）](https://relight-1wet.vercel.app/kokushi): ログインなしで1問ずつ解いて正答を確認できる
 - [理学療法の論文検索（8サイトをまとめて・登録なし）](https://relight-1wet.vercel.app/paper-search): 日本語で入力すると英語にも変換して検索。使い方・テーマ別の探し方つき
 - [認定理学療法士の取り方（要件・流れ・費用・更新）](https://relight-1wet.vercel.app/certified-pt): 日本理学療法士協会の公式情報をもとに、確認日・出典つきでまとめたガイド
+- [理学療法士の就活ガイド（病院の選び方・見学・応募の流れ）](https://relight-1wet.vercel.app/job-hunting): 就活の流れ、病院を選ぶ10のポイント、病院見学で聞くことのチェックリスト
 - [全国の病院を都道府県から探す](https://relight-1wet.vercel.app/hospital-areas): リハビリテーション科のある約5,300病院（厚生労働省オープンデータ）
 - [理学療法士を探す](https://relight-1wet.vercel.app/pts): 地域・専門分野から理学療法士を検索
 - [エビデンスレベル早見表（I〜VI）](https://relight-1wet.vercel.app/evidence-levels): 研究デザインごとの論文の強さの目安（Minds 2007）
