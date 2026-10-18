@@ -86,7 +86,7 @@ export default function TeachersPage() {
         <section className="mt-10 rounded-2xl border border-gray-200 bg-white p-5" aria-labelledby="t-safe">
           <h2 id="t-safe" className="text-lg font-bold text-gray-900">学生の情報について</h2>
           <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-7 text-gray-700">
-            <li>先生に見えるのは、いまクラスにいる学生の、<strong>配った課題の結果（名前・正誤）だけ</strong>です。学生が自分で解いた通常の記録は、見えません。</li>
+            <li>先生に見えるのは、いまクラスにいる学生の、<strong>配ったテストの結果（名前・正誤）</strong>と、学生が「先生に見せる」をオンにした<strong>一問一答の進み具合</strong>（解いた数・正答率・分野ごと）です。進み具合の共有は、学生が、参加するときに選び、あとからいつでも変えられます。</li>
             <li>学生は、いつでもクラスを退出できます。退出すると、先生の画面から消えます。</li>
             <li>先生の機能は、運営が確認して承認します。クラスの作成・テストの配布・結果を見た操作は記録され、運営だけが確認できます。不適切な利用があれば、運営が、その先生の機能を停止します。</li>
             <li>クラスの参加コードは、間違いが続くと、しばらく使えなくなります。</li>

@@ -107,7 +107,7 @@ function HomeBody() {
 
 export default function TeacherHomePage() {
   return (
-    <TeacherPage title="先生用ホーム" description="学生に配ったテストの結果を、まとめて見られます。見えるのは、配ったテストの結果（名前・正解・不正解）だけです。">
+    <TeacherPage title="先生用ホーム" description="学生に配ったテストの結果を、まとめて見られます。学生が見せてよいとした、一問一答の進み具合も、分析から見られます。">
       <HomeBody />
     </TeacherPage>
   );

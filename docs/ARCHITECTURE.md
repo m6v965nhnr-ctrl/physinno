@@ -218,3 +218,8 @@
 - 書き込みの権限の整理（20261121）: 行のポリシーが無い書き込み（INSERT/UPDATE/DELETE）の権限を、`authenticated` から取り上げた（RLSで拒否されていた操作の、二重の守り）。さらに、**これから作る表は、書き込みの権限が最初から無い**（`alter default privileges`）。新しい表に書き込みをさせるときは、ポリシーと一緒に、`grant insert, update ... to authenticated` を、移行ファイルに明記する（忘れると permission denied になる）。
 - 先生のパスワードは、10文字以上（登録の画面）。メールの確認なしで登録できる設定のため、先生は、運営が所属を確認してから承認する。
 - 運営の画面でしかできないこと（Supabaseの管理画面）: 漏えいしたパスワードの拒否（Leaked password protection）・メール確認の有効化・認証の回数制限・バックアップの確認。
+
+## 先生: 一問一答の進み具合・選択肢の割合（2026-10-18、20261123相当 `class_progress_and_choice_stats`）
+- 分析（`/analysis`）に「テストの結果／一問一答の進み具合」の切り替え。進み具合（`quiz_class_progress` → `ClassProgressView`）は、学生ごとの 解いた数／全問・正答率（解答回数に対する正解）・最後に解いた日・分野ごと。並べ替え: 名前・最近やっていない・進みが少ない・正答率が低い。
+- **学生の同意が前提**: `quiz_class_members.share_progress`（既定 false）。クラスに参加するときのチェック（既定オン）で決め、あとから「クラスの課題」の画面で、クラスごとに変えられる（`quiz_set_share_progress`・`quiz_my_class_sharing`）。共有していない学生は、先生には「共有していません」とだけ出て、数字は返らない（DBの関数が、そもそも返さない）。以前に参加した学生は、本人がオンにするまで、非共有のまま。見た記録は `view_progress`（監査）。
+- 結果の画面（`/assignment`）の「問題ごと」: 問題をタップすると、その場で、問題文・図・選択肢ごとの「選んだ人の割合（人数）」・正答・解説（`quiz_assignment_choice_stats`＋`quiz_assignment_preview`）。複数選ぶ問題は、合計が100%を超える。

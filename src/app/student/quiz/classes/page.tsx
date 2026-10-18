@@ -8,7 +8,9 @@ import {
   MyAssignment,
   MyClass,
   dueText,
+  getMyClassSharing,
   joinClass,
+  setShareProgress,
   leaveClass,
   listMyAssignments,
   listMyJoinedClasses,
@@ -24,10 +26,14 @@ export default function QuizClassesPage() {
   const [classes, setClasses] = useState<MyClass[] | null>(null);
   const [assignments, setAssignments] = useState<MyAssignment[]>([]);
   const [code, setCode] = useState("");
+  // 一問一答の進み具合を、先生に見せるか（参加するときに選ぶ。あとから、クラスごとに変えられる）
+  const [shareOnJoin, setShareOnJoin] = useState(true);
+  const [sharing, setSharing] = useState<Record<string, boolean>>({});
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [cs, as] = await Promise.all([listMyJoinedClasses(), listMyAssignments()]);
+    const [cs, as, sh] = await Promise.all([listMyJoinedClasses(), listMyAssignments(), getMyClassSharing()]);
+    setSharing(sh);
     setClasses(cs);
     setAssignments(as);
   }, []);
@@ -46,7 +52,11 @@ export default function QuizClassesPage() {
 
     if (
       !await askConfirm(
-        "このクラスの先生に、配られた課題の結果（あなたの名前と、正解・不正解）が見えるようになります。普段の自習の記録は見えません。クラスには、いつでも退出できます。参加しますか？"
+        `このクラスの先生に、配られた課題の結果（あなたの名前と、正解・不正解）が見えるようになります。${
+          shareOnJoin
+            ? "あわせて、一問一答の進み具合（解いた数・正答率・分野ごとの正答率・最後に解いた日）も、先生に見えます。"
+            : "一問一答の進み具合（自分で解いた記録）は、先生に見えません。"
+        }どちらも、あとから変えられます。クラスには、いつでも退出できます。参加しますか？`
       )
     ) {
       return;
@@ -65,6 +75,8 @@ export default function QuizClassesPage() {
       return;
     }
 
+    // 進み具合の共有は、参加するときの選択のとおりにする
+    await setShareProgress(r.id, shareOnJoin);
     notify(`「${r.name}」に参加しました`);
     setCode("");
     load();
@@ -121,6 +133,10 @@ export default function QuizClassesPage() {
               参加
             </button>
           </div>
+          <label className="mt-2 flex items-start gap-2 text-xs leading-5 text-gray-600">
+            <input type="checkbox" checked={shareOnJoin} onChange={(e) => setShareOnJoin(e.target.checked)} className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>一問一答の進み具合（解いた数・正答率・分野ごと）も、先生に見せる。あとから、いつでも変えられます。</span>
+          </label>
         </section>
 
         <section>
@@ -177,9 +193,27 @@ export default function QuizClassesPage() {
                     <p className="truncate text-sm font-medium">{c.name}</p>
                     {c.teacher_name && <p className="text-[11px] text-gray-400">先生: {c.teacher_name}</p>}
                   </div>
-                  <button onClick={() => handleLeave(c)} className="shrink-0 text-xs text-gray-500 underline">
-                    退出する
-                  </button>
+                  <div className="flex shrink-0 flex-col items-end gap-1.5">
+                    <label className="flex items-center gap-1.5 text-[11px] text-gray-600">
+                      <input
+                        type="checkbox"
+                        checked={!!sharing[c.id]}
+                        onChange={async (e) => {
+                          const v = e.target.checked;
+                          setSharing((m) => ({ ...m, [c.id]: v }));
+                          if (!(await setShareProgress(c.id, v))) {
+                            setSharing((m) => ({ ...m, [c.id]: !v }));
+                            notify("変更できませんでした");
+                          }
+                        }}
+                        className="h-4 w-4"
+                      />
+                      進み具合を先生に見せる
+                    </label>
+                    <button onClick={() => handleLeave(c)} className="text-xs text-gray-500 underline">
+                      退出する
+                    </button>
+                  </div>
                 </li>
               ))}
             </ul>

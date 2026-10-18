@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
-import { QuizUnit, listQuizUnits, percent } from "@/lib/quiz";
-import { AssignmentMatrix, AssignmentResults, dueText, getAssignmentMatrix, getAssignmentResults } from "@/lib/quizClass";
+import { QuizUnit, imageUrl, listQuizUnits, percent } from "@/lib/quiz";
+import { AssignmentMatrix, AssignmentPreview, AssignmentResults, ChoiceStats, dueText, getAssignmentMatrix, getAssignmentPreview, getAssignmentResults, getChoiceStats } from "@/lib/quizClass";
 import { LoadingScreen } from "@/components/states";
 
 type View = "student" | "question" | "unit" | "matrix";
@@ -31,6 +31,10 @@ export default function QuizAssignmentResultsPage() {
   const [view, setView] = useState<View>("student");
   const [unitFilter, setUnitFilter] = useState("");
   const [lowFirst, setLowFirst] = useState(false);
+  // 問題ごと: ひらいている問題・問題の中身（正答・解説つき）・選択肢ごとの選んだ人数
+  const [openQ, setOpenQ] = useState<string | null>(null);
+  const [preview, setPreview] = useState<AssignmentPreview | null>(null);
+  const [stats, setStats] = useState<ChoiceStats | null>(null);
 
   useEffect(() => {
     if (loading) return;
@@ -42,6 +46,8 @@ export default function QuizAssignmentResultsPage() {
     setId(aid);
     getAssignmentResults(aid).then(setRes);
     getAssignmentMatrix(aid).then(setMatrix);
+    getAssignmentPreview(aid).then(setPreview);
+    getChoiceStats(aid).then(setStats);
     listQuizUnits().then(setUnits);
   }, [loading]);
 
@@ -215,20 +221,80 @@ export default function QuizAssignmentResultsPage() {
               <ul className="mt-2 divide-y divide-gray-100">
                 {questions.map((q) => {
                   const rate = percent(q.correct, q.answered);
+                  const detail = preview?.questions.find((x) => x.id === q.id);
+                  const st = stats?.[q.id];
+                  const isOpen = openQ === q.id;
+                  const correctSet = new Set(detail?.answers.flat() ?? []);
                   return (
                     <li key={q.id} className="py-2">
-                      <div className="flex items-center justify-between gap-3">
-                        <span className="text-[11px] text-gray-400">
-                          {q.label} ・ {unitName(q.unit || null)}
-                        </span>
-                        <span className={`text-xs font-semibold ${q.answered === 0 ? "text-gray-400" : rateClass(rate)}`}>
-                          {q.answered === 0 ? "未回答" : `${rate}%（${q.correct}/${q.answered}人）`}
-                        </span>
-                      </div>
-                      <p className="mt-0.5 text-xs leading-5 text-gray-600">
-                        {q.stem}
-                        {q.stem.length >= 80 ? "…" : ""}
-                      </p>
+                      <button type="button" onClick={() => setOpenQ(isOpen ? null : q.id)} aria-expanded={isOpen} className="block w-full text-left">
+                        <div className="flex items-center justify-between gap-3">
+                          <span className="text-[11px] text-gray-400">
+                            {q.label} ・ {unitName(q.unit || null)}
+                          </span>
+                          <span className={`text-xs font-semibold ${q.answered === 0 ? "text-gray-400" : rateClass(rate)}`}>
+                            {q.answered === 0 ? "未回答" : `${rate}%（${q.correct}/${q.answered}人）`}
+                          </span>
+                        </div>
+                        <p className="mt-0.5 text-xs leading-5 text-gray-600">
+                          {q.stem}
+                          {q.stem.length >= 80 ? "…" : ""}
+                          <span className="ml-1 text-[11px] text-sky-700">{isOpen ? "閉じる ▲" : "選択肢の割合を見る ▼"}</span>
+                        </p>
+                      </button>
+                      {isOpen && (
+                        <div className="mt-2 space-y-2 rounded-xl bg-gray-50 p-3 text-xs leading-6 text-gray-800">
+                          {!detail ? (
+                            <p className="text-gray-400">読み込み中…</p>
+                          ) : (
+                            <>
+                              {detail.intro && <p className="text-gray-500">{detail.intro}</p>}
+                              <p className="whitespace-pre-wrap text-gray-900">{detail.stem}</p>
+                              {detail.image && (
+                                <img src={imageUrl(detail.image)} alt="問題の図" loading="lazy" className="max-h-72 w-full rounded-lg border border-gray-100 bg-white object-contain" />
+                              )}
+                              {detail.choices_in_image ? (
+                                <p className="text-gray-600">
+                                  選択肢は、図の中にあります。正答: {detail.answers.length === 0 ? "（採点対象外）" : detail.answers.map((g) => g.join("・")).join(" または ")}
+                                </p>
+                              ) : (
+                                <ol className="space-y-1.5">
+                                  {detail.choices.map((c, i) => {
+                                    const n = i + 1;
+                                    const picked = st?.choices[String(n)] ?? 0;
+                                    const share = st && st.answered > 0 ? percent(picked, st.answered) : 0;
+                                    const isCorrect = correctSet.has(n);
+                                    return (
+                                      <li key={n} className={`rounded-lg px-2 py-1.5 ${isCorrect ? "bg-emerald-50" : "bg-white"}`}>
+                                        <div className="flex items-start justify-between gap-2">
+                                          <span className={isCorrect ? "font-semibold text-emerald-800" : ""}>
+                                            {n}. {c}
+                                            {isCorrect && <span className="ml-1 text-[11px]">（正答）</span>}
+                                          </span>
+                                          <span className="shrink-0 text-[11px] font-semibold text-gray-700">
+                                            {st ? `${share}%（${picked}人）` : "-"}
+                                          </span>
+                                        </div>
+                                        <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-gray-100" aria-hidden="true">
+                                          <div className={`h-full rounded-full ${isCorrect ? "bg-emerald-600" : "bg-gray-500"}`} style={{ width: `${share}%` }} />
+                                        </div>
+                                      </li>
+                                    );
+                                  })}
+                                </ol>
+                              )}
+                              {st && st.answered > 0 && detail.need > 1 && <p className="text-[11px] text-gray-500">複数選ぶ問題です。割合は、その選択肢を選んだ人の割合です（合計は100%を超えます）。</p>}
+                              {detail.explanation && (
+                                <div>
+                                  <p className="font-semibold text-gray-800">解説</p>
+                                  <p className="whitespace-pre-wrap">{detail.explanation}</p>
+                                  {detail.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-500">AIが作成した解説です。誤りを含むことがあります。</p>}
+                                </div>
+                              )}
+                            </>
+                          )}
+                        </div>
+                      )}
                     </li>
                   );
                 })}

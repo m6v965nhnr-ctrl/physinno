@@ -4,12 +4,14 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import TeacherPage from "@/components/teacher/TeacherPage";
 import ClassDashboardView from "@/components/teacher/ClassDashboardView";
+import ClassProgressView from "@/components/teacher/ClassProgressView";
 import { useTeacherData } from "@/components/teacher/useTeacherData";
 
 // 先生用: 分析（クラスの状況。学生ごと・分野ごと・正答率の低い問題・テストごと）
 function AnalysisBody() {
   const { classes } = useTeacherData(false);
   const [classId, setClassId] = useState("");
+  const [mode, setMode] = useState<"tests" | "progress">("tests");
 
   useEffect(() => {
     if (!classes || classes.length === 0) return;
@@ -47,14 +49,28 @@ function AnalysisBody() {
           ))}
         </div>
       )}
-      {classId && <ClassDashboardView key={classId} classId={classId} />}
+      <div role="group" aria-label="見るもの" className="flex gap-1.5">
+        {([["tests", "テストの結果"], ["progress", "一問一答の進み具合"]] as const).map(([k, label]) => (
+          <button
+            key={k}
+            type="button"
+            aria-pressed={mode === k}
+            onClick={() => setMode(k)}
+            className={`flex-1 rounded-full px-3 py-2 text-xs font-semibold ${mode === k ? "bg-black text-white" : "border border-gray-200 bg-white text-gray-700"}`}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      {classId && mode === "tests" && <ClassDashboardView key={classId} classId={classId} />}
+      {classId && mode === "progress" && <ClassProgressView key={classId} classId={classId} />}
     </>
   );
 }
 
 export default function TeacherAnalysisPage() {
   return (
-    <TeacherPage title="分析" description="学生ごと・分野ごと・正答率の低い問題を見て、授業や復習に生かせます。見えるのは、配ったテストの結果だけです。">
+    <TeacherPage title="分析" description="配ったテストの結果と、学生が見せてよいとした一問一答の進み具合を、学生ごと・分野ごとに見て、授業や復習に生かせます。">
       <AnalysisBody />
     </TeacherPage>
   );

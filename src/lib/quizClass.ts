@@ -66,6 +66,23 @@ export type AssignmentMatrix = {
   questions: { id: string; unit: string | null }[];
 };
 
+export type ClassProgress = {
+  class_name: string;
+  total: number;
+  unit_totals: Record<string, number>;
+  students: {
+    name: string;
+    shared: boolean;
+    answered: number | null;
+    attempts: number | null;
+    correct: number | null;
+    last_at: string | null;
+    units: { unit: string; answered: number; attempts: number; correct: number }[] | null;
+  }[];
+};
+
+export type ChoiceStats = Record<string, { answered: number; choices: Record<string, number> }>;
+
 export type MyClass = { id: string; name: string; teacher_name: string | null; joined_at: string };
 
 export type MyAssignment = {
@@ -304,7 +321,30 @@ export async function listQuizAudit(limit = 100): Promise<AdminAuditRow[]> {
   return (data ?? []) as AdminAuditRow[];
 }
 
+export async function getClassProgress(classId: string): Promise<ClassProgress | null> {
+  const { data, error } = await supabase.rpc("quiz_class_progress", { p_class: classId });
+  if (error || !data) return null;
+  return data as ClassProgress;
+}
+
+export async function getChoiceStats(assignmentId: string): Promise<ChoiceStats | null> {
+  const { data, error } = await supabase.rpc("quiz_assignment_choice_stats", { p_assignment: assignmentId });
+  if (error || !data) return null;
+  return data as ChoiceStats;
+}
+
 // ---- 学生: 参加と課題 ----
+
+// クラスごとの、「進み具合を先生に見せる」設定
+export async function getMyClassSharing(): Promise<Record<string, boolean>> {
+  const { data } = await supabase.rpc("quiz_my_class_sharing");
+  return Object.fromEntries(((data ?? []) as { class_id: string; share_progress: boolean }[]).map((r) => [r.class_id, r.share_progress]));
+}
+
+export async function setShareProgress(classId: string, share: boolean): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_set_share_progress", { p_class: classId, p_share: share });
+  return !error;
+}
 
 // 戻り値: 参加できたクラス ／ "throttled"（間違いが多すぎて、しばらく使えない）／ null（見つからない・使えない）
 export async function joinClass(code: string): Promise<{ id: string; name: string } | "throttled" | null> {
