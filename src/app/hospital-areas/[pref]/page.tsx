@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -60,7 +61,7 @@ export default async function HospitalAreaPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Link href="/hospital-areas" className="text-sm text-gray-500 hover:text-gray-800">← 都道府県の一覧</Link>
         <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 sm:text-3xl">{pref}の病院一覧</h1>

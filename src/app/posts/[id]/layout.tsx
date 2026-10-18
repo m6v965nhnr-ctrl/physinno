@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -122,7 +123,7 @@ export default async function PostLayout({
         <script
           type="application/ld+json"
           // eslint-disable-next-line react/no-danger
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }}
         />
       )}
       {children}

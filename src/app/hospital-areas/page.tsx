@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PREFECTURES, REGIONS } from "@/lib/prefectures";
@@ -37,7 +38,7 @@ export default async function HospitalAreasPage() {
   ];
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">← {SITE_NAME}</Link>
         <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 text-balance sm:text-3xl"><span className="inline-block">全国の病院を、</span><span className="inline-block">都道府県から探す</span></h1>

@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
@@ -33,7 +34,7 @@ export default function SchoolsIndexPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">
           ← {SITE_NAME}

@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -58,7 +59,7 @@ export default async function CertifiedFieldPage({ params }: Props) {
 
   return (
     <PaperSiteFrame site={site}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <section className="px-5 pb-6 pt-8">
         <div className="mx-auto max-w-3xl">

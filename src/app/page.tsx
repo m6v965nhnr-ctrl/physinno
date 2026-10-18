@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { PIXEL_ENABLED } from "@/lib/metaPixel";
@@ -134,7 +135,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
       <StandaloneRedirect />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       {/* ヘッダー（登録だけが、いちばん目立つボタン） */}
       <header className="sticky top-0 z-40 border-b border-[var(--lp-g100)] bg-white/95 backdrop-blur">

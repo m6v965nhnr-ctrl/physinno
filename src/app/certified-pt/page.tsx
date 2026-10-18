@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PaperSiteFrame, { type GuideSite } from "@/components/paper-search/PaperSiteFrame";
@@ -107,7 +108,7 @@ export default function CertifiedPtGuide() {
 
   return (
     <PaperSiteFrame site={SITE}>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
       <section className="px-5 pt-6">
         <div className="mx-auto max-w-3xl overflow-hidden rounded-3xl bg-relight-gradient p-6 shadow-sm sm:p-8">

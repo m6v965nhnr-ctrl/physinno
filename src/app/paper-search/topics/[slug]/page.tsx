@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -40,7 +41,7 @@ export default async function TopicPage({ params }: { params: Promise<{ slug: st
 
   return (
     <PaperSiteFrame>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-4xl px-5 py-10">
         <nav className="text-sm text-gray-500" aria-label="パンくず">
           <Link href="/paper-search" className="hover:text-gray-800">論文検索</Link>

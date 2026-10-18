@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import PaperCredits from "@/components/papers/PaperCredits";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -66,7 +67,7 @@ export default function PaperSearchLanding() {
 
   return (
     <PaperSiteFrame>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <section className="px-5 pb-6 pt-10">
         <div className="mx-auto max-w-4xl">
           <p className="text-xs font-bold tracking-[0.14em] text-teal-700">PAPER SEARCH</p>

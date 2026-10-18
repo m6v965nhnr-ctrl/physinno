@@ -1,3 +1,4 @@
+import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -85,7 +86,7 @@ export default async function KokushiQuestionPage({ params }: Props) {
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-10">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-2xl">
         <nav className="text-sm text-gray-500" aria-label="パンくずリスト">
           <Link href="/kokushi" className="hover:text-gray-800">過去問</Link>
