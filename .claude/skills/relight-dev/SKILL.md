@@ -23,6 +23,9 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 - 権限の確認は、`begin; set local role …; select set_config('request.jwt.claims', …); … rollback;` で、anon / 別ユーザーから見えないことをテストする。
 - 匿名の投稿・質問・意見は、投稿者の情報をサーバーから返さない（RPC で出し分け）。
 
+- **新しい表の書き込みは、最初から権限が無い**（2026-10-18〜 `alter default privileges`）。ポリシーを作ったら、`grant insert, update, delete on public.<表> to authenticated;`（必要な操作だけ。列を絞れるなら列で）を、同じ移行ファイルに書く。先生・クラス・結果など、他人の情報を見る関数は、`quiz_is_teacher()` か `quiz_own_assignment()` で確認し、**見たことを `quiz_audit_view` で記録**する（`stable` にしない）。
+- 権限の確認は、`node scripts/security-check.mjs`（匿名で、見えてはいけないものが見えないか）も使う。新しい先生用・運営用の関数を足したら、その関数を、このスクリプトの一覧に足す。
+
 ## 2.5 共通の部品（新しく作る前に、まず使う）
 - 確認ダイアログ: `askConfirm()`（`src/lib/confirm.ts`）。ブラウザ標準の `confirm()` は使わない。`if (!(await askConfirm("…"))) return;`
 - 通知: `notify()`（`src/lib/notify.ts`）。「元に戻す」は第3引数 `{ label, onAction }`。

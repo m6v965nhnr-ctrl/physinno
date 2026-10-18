@@ -8,6 +8,7 @@ import { TeacherStatus, getTeacherStatus } from "@/lib/quizClass";
 
 const STATUS_LABEL: Record<TeacherStatus, string> = {
   approved: "承認済み（クラスとテストを作れます）",
+  suspended: "停止中（運営が、先生の機能を止めています）",
   pending: "確認中（運営が確認しています）",
   rejected: "承認されませんでした（もう一度申請できます）",
   none: "未申請",

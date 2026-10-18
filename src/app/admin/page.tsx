@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import AdminReports from "@/components/AdminReports";
 import AdminTeacherRequests from "@/components/AdminTeacherRequests";
+import AdminTeacherSecurity from "@/components/AdminTeacherSecurity";
 import AdminSignupSources from "@/components/AdminSignupSources";
 import AdminFeedback from "@/components/AdminFeedback";
 import AdminClientErrors from "@/components/AdminClientErrors";
@@ -197,6 +198,7 @@ export default function AdminPage() {
         </div>
         <div id="teachers" className="scroll-mt-28">
           <AdminTeacherRequests />
+          <AdminTeacherSecurity />
         </div>
 
         <section id="usage" className="scroll-mt-28">

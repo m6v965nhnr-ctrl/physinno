@@ -56,6 +56,10 @@ export default function QuizClassesPage() {
     const r = await joinClass(c);
     setBusy(false);
 
+    if (r === "throttled") {
+      notify("コードの間違いが続いたため、しばらく参加できません。1時間ほどあけて、先生に確かめてからお試しください");
+      return;
+    }
     if (!r) {
       notify("参加コードが見つかりません。コードを確かめてください");
       return;

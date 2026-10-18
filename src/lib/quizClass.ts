@@ -5,7 +5,7 @@ import type { QuizQuestion, QuizReveal } from "@/lib/quiz";
 // 先生は、PTアカウントが申請して、運営が承認する。学生は参加コードでクラスに入る。
 // 先生に見えるのは、配った課題の結果(名前・正誤)だけ
 
-export type TeacherStatus = "approved" | "pending" | "rejected" | "none";
+export type TeacherStatus = "approved" | "suspended" | "pending" | "rejected" | "none";
 
 export type Difficulty = "any" | "easy" | "normal" | "hard";
 
@@ -266,11 +266,51 @@ export async function getAssignmentMatrix(id: string): Promise<AssignmentMatrix 
   return data as AssignmentMatrix;
 }
 
+// ---- 運営: 先生の一覧・停止・操作の記録 ----
+
+export type AdminTeacher = {
+  user_id: string;
+  email: string | null;
+  full_name: string | null;
+  school_name: string | null;
+  approved_at: string;
+  suspended: boolean;
+  class_count: number;
+  student_count: number;
+};
+
+export type AdminAuditRow = {
+  id: number;
+  created_at: string;
+  actor_email: string | null;
+  actor_name: string | null;
+  action: string;
+  target_type: string | null;
+  target_label: string | null;
+};
+
+export async function listAdminTeachers(): Promise<AdminTeacher[]> {
+  const { data } = await supabase.rpc("admin_list_teachers");
+  return (data ?? []) as AdminTeacher[];
+}
+
+export async function setTeacherSuspended(userId: string, suspended: boolean): Promise<boolean> {
+  const { error } = await supabase.rpc("admin_set_teacher_suspended", { p_user: userId, p_suspended: suspended });
+  return !error;
+}
+
+export async function listQuizAudit(limit = 100): Promise<AdminAuditRow[]> {
+  const { data } = await supabase.rpc("admin_list_quiz_audit", { p_limit: limit });
+  return (data ?? []) as AdminAuditRow[];
+}
+
 // ---- 学生: 参加と課題 ----
 
-export async function joinClass(code: string): Promise<{ id: string; name: string } | null> {
+// 戻り値: 参加できたクラス ／ "throttled"（間違いが多すぎて、しばらく使えない）／ null（見つからない・使えない）
+export async function joinClass(code: string): Promise<{ id: string; name: string } | "throttled" | null> {
   const { data, error } = await supabase.rpc("quiz_join_class", { p_code: code });
-  if (error || !data) return null;
+  if (error) return /too many/i.test(error.message) ? "throttled" : null;
+  if (!data || (data as { error?: string }).error) return null;
   return data as { id: string; name: string };
 }
 

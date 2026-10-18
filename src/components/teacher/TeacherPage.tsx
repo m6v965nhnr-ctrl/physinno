@@ -43,6 +43,18 @@ function Gate({ children }: { children: React.ReactNode }) {
   if (status === null) return <p className="py-10 text-center text-sm text-gray-400">読み込み中…</p>;
   if (status === "approved") return <>{children}</>;
 
+  if (status === "suspended") {
+    return (
+      <section className="rounded-2xl bg-white p-4 text-sm leading-6 text-gray-700 shadow-sm">
+        <p className="font-semibold">先生の機能は、いま停止されています</p>
+        <p className="mt-1 text-xs leading-5 text-gray-500">運営が、このアカウントの先生の機能を停止しています。心当たりがない場合や、ご不明な点は、意見箱からお知らせください。</p>
+        <Link href="/feedback" className="mt-3 inline-block rounded-full border border-gray-300 px-5 py-2 text-sm font-medium text-gray-800">
+          意見箱へ
+        </Link>
+      </section>
+    );
+  }
+
   if (status === "pending") {
     return (
       <section className="rounded-2xl bg-white p-4 text-sm leading-6 text-gray-700 shadow-sm">

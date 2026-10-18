@@ -88,5 +88,31 @@ for (const b of ["exam-files", "id-photos", "portfolio-files"]) {
   check(`匿名は ${b} の一覧を取れない`, !(Array.isArray(list.body) && list.body.length > 0), `status=${list.status}`);
 }
 
+// 7) 先生・クラス・テストまわり: 匿名は、表も、先生用・運営用の関数も、使えない
+for (const t of ["quiz_classes", "quiz_class_members", "quiz_assignments", "quiz_assignment_answers", "quiz_teachers", "quiz_teacher_requests", "quiz_audit_log", "quiz_join_attempts"]) {
+  const r = await req(`/rest/v1/${t}?select=*&limit=1`);
+  const rows = Array.isArray(r.body) ? r.body.length : 0;
+  check(`匿名は ${t} を読めない`, rows === 0, `status=${r.status} rows=${rows}`);
+}
+for (const [fn, body] of [
+  ["quiz_class_dashboard", { p_class: ZERO }],
+  ["quiz_assignment_results", { p_assignment: ZERO }],
+  ["quiz_assignment_matrix", { p_assignment: ZERO }],
+  ["quiz_assignment_preview", { p_assignment: ZERO }],
+  ["quiz_teacher_search_questions", {}],
+  ["quiz_set_assignment_questions", { p_assignment: ZERO, p_ids: [] }],
+  ["quiz_publish_assignment", { p_assignment: ZERO }],
+  ["quiz_delete_assignment", { p_assignment: ZERO }],
+  ["quiz_join_class", { p_code: "AAAAAA" }],
+  ["admin_list_teachers", {}],
+  ["admin_list_quiz_audit", {}],
+  ["admin_set_teacher_suspended", { p_user: ZERO, p_suspended: true }],
+  ["quiz_own_assignment", { p_assignment: ZERO }],
+  ["quiz_audit_view", { p_action: "view_class", p_target: ZERO }],
+]) {
+  const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });
+  check(`匿名は ${fn} を呼べない`, r.status >= 400, `status=${r.status}`);
+}
+
 console.log(failed ? `\n${failed} 件が失敗` : "\nすべて合格");
 process.exit(failed ? 1 : 0);

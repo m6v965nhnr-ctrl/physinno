@@ -102,8 +102,10 @@ export default function RegisterPage() {
       return;
     }
 
-    if (password.length < 8) {
-      setError("パスワードは8文字以上にしてください");
+    // 先生は、学生の結果を扱うので、パスワードは10文字以上
+    const minLen = isTeacher ? 10 : 8;
+    if (password.length < minLen) {
+      setError(`パスワードは${minLen}文字以上にしてください`);
       return;
     }
 
@@ -347,7 +349,7 @@ export default function RegisterPage() {
               onChange={(e) =>
                 setPassword(e.target.value)
               }
-              placeholder="8文字以上"
+              placeholder={isTeacher ? "10文字以上" : "8文字以上"}
               className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
             />
           </div>

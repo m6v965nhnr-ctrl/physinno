@@ -389,18 +389,15 @@ export default function EditProfilePage() {
       return;
     }
 
-    // プロフィールに必要な項目は必須（連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
+    // プロフィールに必要な項目は必須（所属部署・出身・生年月日・連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
     const requiredFields: { label: string; filled: boolean; focusId: string }[] = [
       { label: "アイコン", filled: Boolean(profileImage || selectedImage), focusId: "icon-section" },
       { label: "名前", filled: Boolean(fullName.trim()), focusId: "field-1" },
       { label: "ふりがな", filled: Boolean(fullNameKana.trim()), focusId: "field-kana" },
       { label: "勤務先", filled: Boolean(workplace.trim()), focusId: "field-2" },
-      { label: "所属部署", filled: Boolean(department.trim()), focusId: "field-3" },
       { label: "資格", filled: Boolean(qualification.trim()), focusId: "field-5" },
       { label: "経験（何年目か）", filled: experienceYears.trim() !== "", focusId: "field-exp" },
       { label: "学歴", filled: Boolean(education.trim()), focusId: "field-6" },
-      { label: "出身", filled: Boolean(hometown.trim()), focusId: "field-7" },
-      { label: "生年月日", filled: Boolean(birthDate), focusId: "field-8" },
       { label: "言語", filled: Boolean(language.trim()), focusId: "field-9" },
     ];
 
@@ -838,7 +835,7 @@ export default function EditProfilePage() {
           {/* 所属部署 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-3">
-              所属部署 <span className="text-xs font-normal text-red-500">（必須）</span>
+              所属部署 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-3"
@@ -926,7 +923,7 @@ export default function EditProfilePage() {
           {/* 出身 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-7">
-              出身 <span className="text-xs font-normal text-red-500">（必須）</span>
+              出身 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-7"
@@ -942,7 +939,7 @@ export default function EditProfilePage() {
           {/* 生年月日 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-8">
-              生年月日 <span className="text-xs font-normal text-red-500">（必須）</span>
+              生年月日 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-8"
