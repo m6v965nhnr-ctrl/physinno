@@ -122,6 +122,11 @@ export default async function KokushiIndexPage() {
               </Link>
             </li>
           ))}
+          <li>
+            <Link href="/hospital-areas" className="block rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-800 transition hover:border-gray-400">
+              実習先・就職先の病院を、都道府県から探す
+            </Link>
+          </li>
         </ul>
 
         <p className="mt-10 text-xs leading-6 text-gray-500">

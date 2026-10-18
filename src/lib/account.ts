@@ -142,7 +142,7 @@ export function isPublicSchoolPath(pathname: string) {
 }
 
 // 論文検索の入口サイト（/paper-search 以下）は、誰でも使える（検索流入用）
-const PUBLIC_PAPER_SITE_PATH = /^\/(paper-search|certified-pt)(\/.*)?$/;
+const PUBLIC_PAPER_SITE_PATH = /^\/(paper-search|certified-pt|hospital-areas)(\/.*)?$/;
 
 export function isPublicPaperSitePath(pathname: string) {
   return PUBLIC_PAPER_SITE_PATH.test(pathname);

@@ -1,0 +1,50 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { PREFECTURES } from "@/lib/prefectures";
+import { HOSPITAL_DATA_NOTE, countHospitalsByPrefecture } from "@/lib/hospitalAreas";
+import { SITE_NAME } from "@/lib/site";
+
+export const revalidate = 86400;
+
+const TITLE = "全国の病院を、都道府県から探す｜理学療法士・学生向け";
+const DESCRIPTION = "全国の病院（約5,000件）を、都道府県ごとに一覧できます。病床数・所在地を確認して、各病院のページで、理学療法士の職場環境の口コミ・採用情報を見られます。実習先や就職先を探す学生にも。";
+
+export const metadata: Metadata = {
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: "/hospital-areas" },
+  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/hospital-areas" },
+};
+
+export default async function HospitalAreasPage() {
+  const counts = await countHospitalsByPrefecture();
+  return (
+    <main className="min-h-screen bg-[#fafafa] px-6 py-12">
+      <div className="mx-auto max-w-3xl">
+        <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">← {SITE_NAME}</Link>
+        <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 text-balance sm:text-3xl">全国の病院を、都道府県から探す</h1>
+        <p className="mt-4 text-sm leading-7 text-gray-700">
+          実習先や就職先の候補を探すための、病院の一覧です。各病院のページでは、基本情報のほか、理学療法士による職場環境の口コミや、採用情報（登録があるもの）を見られます。
+        </p>
+        <ul className="mt-6 grid grid-cols-2 gap-2 sm:grid-cols-3">
+          {PREFECTURES.map((p) => (
+            <li key={p}>
+              <Link href={`/hospital-areas/${encodeURIComponent(p)}`} className="flex items-center justify-between rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm transition hover:border-gray-400">
+                <span className="font-medium text-gray-900">{p}</span>
+                <span className="text-xs text-gray-500">{counts[p] ?? 0}件</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <p className="mt-6 text-xs leading-6 text-gray-500">
+          {HOSPITAL_DATA_NOTE}。都道府県によって、載っている件数に差があります（件数が少ない県は、データが十分でない可能性があります）。
+        </p>
+        <div className="mt-8 rounded-2xl bg-relight-gradient px-6 py-5 text-white">
+          <p className="text-base font-semibold">口コミ・条件での絞り込みは、無料登録で</p>
+          <p className="mt-1 text-sm leading-6 text-white/95">給与・休日・診療科・病床数などで絞り込んで、気になる病院をフォローできます。</p>
+          <Link href="/register?utm_source=hospital-areas&utm_medium=web&utm_campaign=hospital-areas" className="mt-4 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900">無料ではじめる</Link>
+        </div>
+      </div>
+    </main>
+  );
+}
