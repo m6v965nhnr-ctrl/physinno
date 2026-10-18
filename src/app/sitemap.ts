@@ -3,6 +3,7 @@ import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
 import { PT_UNIVERSITIES } from "@/content/schools/pt-universities";
+import { PAPER_TOPICS } from "@/content/paperTopics";
 import { QUESTIONS_PER_SESSION, SESSIONS, getPublicExams, questionPath } from "@/lib/kokushi";
 
 // 1時間ごとに再生成する（新しく登録されたPTのプロフィールもそのうち反映される）
@@ -22,6 +23,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/kokushi`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/evidence-levels`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${SITE_URL}/teachers`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${SITE_URL}/paper-search`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${SITE_URL}/paper-search/topics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    ...PAPER_TOPICS.map((t) => ({ url: `${SITE_URL}/paper-search/topics/${t.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/privacy`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
   ];

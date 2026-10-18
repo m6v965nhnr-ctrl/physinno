@@ -231,3 +231,9 @@
 - 先生と学生の分離: 学校コードは、先生・学生で共通。所属の role は、先生のアカウント（または承認済みの先生）なら teacher、それ以外は student。**先生の機能そのもの（クラス・テスト・結果）は、これまでどおり「運営の承認＋自分のクラスだけ」**。学校コードを知っていても、他校の成績は見えない。クラスには、作った先生の学校が付く（`quiz_classes.school_id`）。学校の付いたクラスには、同じ学校の人だけが参加できる（`quiz_join_class` が `other_school` を返す）。
 - 画面: `/school`（学校コードを入れる・所属の確認・外れる）。一問一答の画面（勉強・問題・模擬・クラス）は、設定がオンで未所属なら `/school` へ（`useRequireQuizAccess`）。先生の画面は、承認済みでも未所属なら、学校コードの案内。運営: `AdminSchools`（学校の追加・編集・コード再発行・停止/再開・所属の人の一覧と取り外し・設定のオン/オフ）。操作は、すべて `quiz_audit_log` に記録（`school_join` `school_leave` `school_code_rotate` `school_active/suspended` `setting_school_required_on/off`）。
 - 将来の拡張: 契約の自動更新・請求は、まだ（`licensed_schools.plan` は名前だけ）。学校の管理者（学校ごとに、教員を管理する人）は、まだ。1人が複数校に所属する場合は、`school_members` の主キーを変える必要がある。
+
+## 論文検索の入口サイト `/paper-search`（2026-10-18。無料の第一段階）
+- 目的: 「理学療法 論文検索」などで来る人が、登録なしで、その場で悩みを解決できる入口。既存の `PaperSearch`（9サイト・日英同時・被引用数順）を再利用。同じコードの中に、独立した見た目（`PaperSiteFrame`）で作った。独自ドメインは、あとから割り当てる（`リサーチ/2026-10-18_SEO・集客サイト展開の設計案.md`）。
+- ページ: `/paper-search`（検索＋使い方＋9サイト＋FAQ＋JSON-LD）／`/paper-search/topics`（テーマ一覧）／`/paper-search/topics/[slug]`（14テーマ。`src/content/paperTopics.ts`。**検索語・関連語・探し方のコツだけ**。治療の効果などの医学的な主張は書かない）。結果は、`PaperSearch` の `initialQuery` で、その場で検索。
+- 公開: `isPublicPaperSitePath`（AuthGuard）・下のメニューなし・sitemap・robots。誘導は、フッター・末尾の「Re:lightを無料で使う」（`utm_source=paper-site`）。
+- 注意: 検索のAPIは、回数制限・キャッシュあり（`docs/OPERATIONS.md`）。テーマを増やすときは、`paperTopics.ts` に足す。`PAPER_TOPICS_UPDATED` を更新する。

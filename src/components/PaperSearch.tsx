@@ -74,7 +74,7 @@ function saveRecentSearch(query: string) {
 // 機能ではなく、まずは要約つきで関連論文を探しやすくする第一段階という位置づけ。
 const AUTO_TRANSLATE_KEY = "relight:paper-auto-translate";
 
-export default function PaperSearch() {
+export default function PaperSearch({ initialQuery: initialQueryProp }: { initialQuery?: string } = {}) {
   const [userId, setUserId] = useState<string | null>(null);
   const [view, setView] = useState<"search" | "saved">("search");
   const [mode, setMode] = useState<"normal" | "ai">("normal");
@@ -157,7 +157,8 @@ export default function PaperSearch() {
     setRecentSearches(loadRecentSearches());
 
     // 実習レポート支援などから「?q=」つきで開かれたときは、そのまま検索する
-    const initialQuery = new URLSearchParams(window.location.search).get("q")?.trim().slice(0, 200);
+    // （テーマ別ページなどは、props で、検索語を渡す）
+    const initialQuery = initialQueryProp ?? new URLSearchParams(window.location.search).get("q")?.trim().slice(0, 200);
     if (initialQuery) {
       setQuery(initialQuery);
       handleSearch(initialQuery);
