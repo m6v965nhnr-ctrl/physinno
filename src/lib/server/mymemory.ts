@@ -21,7 +21,9 @@ export async function translateText(
 ): Promise<string | null> {
   try {
     const res = await fetch(
-      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`,
+      `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}${
+        process.env.CONTACT_EMAIL ? `&de=${encodeURIComponent(process.env.CONTACT_EMAIL)}` : ""
+      }`,
       { signal: AbortSignal.timeout(6000) }
     );
     if (!res.ok) return null;

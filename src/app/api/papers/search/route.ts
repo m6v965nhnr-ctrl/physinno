@@ -94,9 +94,29 @@ type PubMedSummaryItem = {
   pubdate?: string;
 };
 
+// NCBI（PubMed）は、キーなしで1秒に3回、キーありで10回まで。サーバーの1つの実行環境の中では、呼び出しの間隔をあけて、上限に当たりにくくする
+// （環境変数 NCBI_API_KEY があれば、キーを付けて、間隔を短くする。CONTACT_EMAIL があれば、連絡先も付ける）
+let ncbiNext = 0;
+async function ncbiSlot() {
+  const gap = process.env.NCBI_API_KEY ? 110 : 350;
+  const now = Date.now();
+  const at = Math.max(now, ncbiNext);
+  ncbiNext = at + gap;
+  if (at > now) await new Promise((r) => setTimeout(r, at - now));
+}
+function ncbiUrl(url: string) {
+  const extra = [
+    "tool=relight",
+    process.env.CONTACT_EMAIL ? `email=${encodeURIComponent(process.env.CONTACT_EMAIL)}` : "",
+    process.env.NCBI_API_KEY ? `api_key=${encodeURIComponent(process.env.NCBI_API_KEY)}` : "",
+  ].filter(Boolean);
+  return `${url}${url.includes("?") ? "&" : "?"}${extra.join("&")}`;
+}
+
 async function pubmedEsearch(term: string, retmax: number): Promise<string[]> {
+  await ncbiSlot();
   const res = await fetch(
-    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}&term=${encodeURIComponent(term)}`,
+    ncbiUrl(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}&term=${encodeURIComponent(term)}`),
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -127,8 +147,9 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
 
   if (ids.length === 0) return [];
 
+  await ncbiSlot();
   const esummaryRes = await fetch(
-    `${base}/esummary.fcgi?db=pubmed&retmode=json&id=${ids.join(",")}`,
+    ncbiUrl(`${base}/esummary.fcgi?db=pubmed&retmode=json&id=${ids.join(",")}`),
     { signal: AbortSignal.timeout(8000) }
   );
   if (!esummaryRes.ok) return [];
@@ -183,8 +204,9 @@ async function fetchPubMedCitations(ids: string[]): Promise<Record<string, numbe
 type PubMedDetail = { abstract: string | null; judgement: ReturnType<typeof judgeEvidence> };
 
 async function fetchPubMedDetails(ids: string[]): Promise<Record<string, PubMedDetail>> {
+  await ncbiSlot();
   const res = await fetch(
-    `https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id=${ids.join(",")}`,
+    ncbiUrl(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pubmed&retmode=xml&rettype=abstract&id=${ids.join(",")}`),
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return {};
@@ -539,7 +561,9 @@ async function searchOpenAlex(query: string): Promise<PaperResult[]> {
   const res = await fetch(
     `https://api.openalex.org/works?search=${encodeURIComponent(
       query
-    )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids,cited_by_count`,
+    )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids,cited_by_count${
+      process.env.CONTACT_EMAIL ? `&mailto=${encodeURIComponent(process.env.CONTACT_EMAIL)}` : ""
+    }`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -707,7 +731,7 @@ async function toEnglishQuery(q: string): Promise<string | null> {
   return (await translateText(result, "ja", "en")) ?? (result !== q ? result : null);
 }
 
-export async function GET(request: Request) {
+async function searchPapers(request: Request) {
   const { searchParams } = new URL(request.url);
   const q = searchParams.get("q")?.trim();
 
@@ -810,4 +834,101 @@ export async function GET(request: Request) {
     failedSources,
     translatedQuery: isJa ? enTranslated : jaTranslated,
   });
+}
+
+// ---------------------------------------------------------------------------
+// 入口: 回数制限・同じ検索のまとめ・結果のキャッシュ
+//  - 論文検索は、1回で、外部へ10回以上の通信をする。ログインなしで使えるので、無制限だと、外部の上限（IPごと）に当たり、全員が検索できなくなる
+//  - 回数制限・メモリのキャッシュは、サーバーの1つの実行環境の中だけで有効（複数に分かれると、それぞれ数える。簡易）。
+//    共有のキャッシュは、Cache-Control（s-maxage）で、Vercelの配信網に任せる
+//  shortcut: 回数は実行環境ごとの簡易な数え方。厳密にするなら、DBかKVで数える
+// ---------------------------------------------------------------------------
+
+const RATE_PER_MIN = 30;
+const RATE_PER_HOUR = 300;
+const MAX_ACTIVE = 25;
+const CACHE_MS = 10 * 60 * 1000;
+const CACHE_MAX = 200;
+
+const hits = new Map<string, number[]>();
+const cache = new Map<string, { at: number; body: string }>();
+const inflight = new Map<string, Promise<{ ok: boolean; body: string; status: number }>>();
+let active = 0;
+
+function clientIp(request: Request) {
+  const fwd = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
+  return fwd || request.headers.get("x-real-ip") || "unknown";
+}
+
+function overLimit(ip: string) {
+  const now = Date.now();
+  const list = (hits.get(ip) ?? []).filter((t) => now - t < 3600_000);
+  const lastMin = list.filter((t) => now - t < 60_000).length;
+  list.push(now);
+  hits.set(ip, list);
+  if (hits.size > 5000) {
+    for (const [k, v] of hits) if (!v.some((t) => now - t < 3600_000)) hits.delete(k);
+  }
+  return lastMin >= RATE_PER_MIN || list.length > RATE_PER_HOUR;
+}
+
+function cacheKey(sp: URLSearchParams) {
+  const sources = (sp.get("sources") ?? "").split(",").map((v) => v.trim()).filter(Boolean).sort().join(",");
+  const levels = (sp.get("levels") ?? "").split(",").map((v) => v.trim()).filter(Boolean).sort().join(",");
+  return [(sp.get("q") ?? "").trim().toLowerCase(), sources, levels, sp.get("strict") === "1" ? "s" : ""].join("|");
+}
+
+function json(body: string, status: number, extra: Record<string, string> = {}) {
+  return new Response(body, { status, headers: { "Content-Type": "application/json", ...extra } });
+}
+
+const CDN_HEADERS = { "Cache-Control": "public, s-maxage=600, stale-while-revalidate=3600" };
+
+export async function GET(request: Request) {
+  const url = new URL(request.url);
+  if (!url.searchParams.get("q")?.trim()) return searchPapers(request); // 400（検索語なし）
+
+  const key = cacheKey(url.searchParams);
+  const now = Date.now();
+
+  // 同じ検索は、10分間、保存した結果を返す（外部への通信なし）
+  const hit = cache.get(key);
+  if (hit && now - hit.at < CACHE_MS) return json(hit.body, 200, CDN_HEADERS);
+
+  // 回数制限（保存した結果を返す場合は、数えない）
+  if (overLimit(clientIp(request))) {
+    return json(JSON.stringify({ error: "検索が続いたため、少し待ってから、もう一度お試しください", code: "rate_limited" }), 429, { "Retry-After": "60" });
+  }
+
+  // 同じ検索が、すでに処理中なら、その結果を待つ
+  let job = inflight.get(key);
+  if (!job) {
+    if (active >= MAX_ACTIVE) {
+      return json(JSON.stringify({ error: "検索が混み合っています。少し待ってから、もう一度お試しください", code: "busy" }), 503, { "Retry-After": "10" });
+    }
+    active++;
+    job = searchPapers(request)
+      .then(async (res) => ({ ok: res.ok, status: res.status, body: await res.text() }))
+      .finally(() => {
+        active--;
+        inflight.delete(key);
+      });
+    inflight.set(key, job);
+  }
+
+  const r = await job;
+  if (r.ok) {
+    // 結果が1件以上あるときだけ保存（外部の制限で、全部失敗した空の結果を、保存しない）
+    try {
+      const parsed = JSON.parse(r.body) as { results?: unknown[] };
+      if ((parsed.results?.length ?? 0) > 0) {
+        cache.set(key, { at: Date.now(), body: r.body });
+        if (cache.size > CACHE_MAX) cache.delete(cache.keys().next().value as string);
+        return json(r.body, 200, CDN_HEADERS);
+      }
+    } catch {
+      // 保存しない
+    }
+  }
+  return json(r.body, r.status);
 }

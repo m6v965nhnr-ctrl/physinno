@@ -21,9 +21,11 @@ export function useMyAccount(allowed: AccountType[], redirectTo = "/home") {
     let cancelled = false;
 
     (async () => {
+      // 画面の振り分け用なので、端末の保存済みのログイン情報を読む（毎回、認証サーバーへ問い合わせない）。データは、DBのRLSで守られている
       const {
-        data: { user },
-      } = await supabase.auth.getUser();
+        data: { session },
+      } = await supabase.auth.getSession();
+      const user = session?.user ?? null;
 
       if (cancelled) return;
 

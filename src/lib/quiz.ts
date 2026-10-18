@@ -149,8 +149,17 @@ export async function listQuizQuestions(params: {
   return (data ?? []) as QuizQuestion[];
 }
 
+// 通信の失敗は、1回だけ、少し待ってやり直す（教室の回線が不安定なときのエラーを減らす）。
+// サーバー側は、数秒以内の同じ送信を、二重に数えない（20261125_scale_free_improvements.sql）ので、やり直しても安全
+export async function retryOnce<T extends { error: unknown }>(fn: () => PromiseLike<T>): Promise<T> {
+  const r = await fn();
+  if (!r.error) return r;
+  await new Promise((res) => setTimeout(res, 800));
+  return fn();
+}
+
 export async function answerQuestion(questionId: string, choice: number[]): Promise<QuizReveal | null> {
-  const { data, error } = await supabase.rpc("quiz_answer", { p_question: questionId, p_choice: choice });
+  const { data, error } = await retryOnce(() => supabase.rpc("quiz_answer", { p_question: questionId, p_choice: choice }));
   if (error || !data) return null;
   return data as QuizReveal;
 }
@@ -221,12 +230,14 @@ export async function gradeExam(
   answers: Record<string, number[]>,
   seconds: number
 ): Promise<MockGrade | null> {
-  const { data, error } = await supabase.rpc("quiz_grade", {
-    p_exam: exam,
-    p_session: session,
-    p_answers: answers,
-    p_seconds: Math.max(0, Math.round(seconds)),
-  });
+  const { data, error } = await retryOnce(() =>
+    supabase.rpc("quiz_grade", {
+      p_exam: exam,
+      p_session: session,
+      p_answers: answers,
+      p_seconds: Math.max(0, Math.round(seconds)),
+    })
+  );
   if (error || !data) return null;
   return data as MockGrade;
 }

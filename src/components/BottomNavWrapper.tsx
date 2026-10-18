@@ -232,8 +232,8 @@ export default function BottomNavWrapper() {
       await refreshUnreadCounts(userId);
     }
 
-    supabase.auth.getUser().then(({ data: { user } }) => {
-      applyUser(user?.id ?? null);
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      applyUser(session?.user?.id ?? null);
     });
 
     const {

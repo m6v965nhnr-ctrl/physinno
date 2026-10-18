@@ -1,4 +1,5 @@
 import { supabase } from "@/lib/supabase";
+import { retryOnce } from "@/lib/quiz";
 import type { QuizQuestion, QuizReveal } from "@/lib/quiz";
 
 // 過去問ドリルの、先生用のクラスと課題。
@@ -382,11 +383,13 @@ export async function answerAssignmentQuestion(
   questionId: string,
   choice: number[]
 ): Promise<QuizReveal | null> {
-  const { data, error } = await supabase.rpc("quiz_assignment_answer", {
-    p_assignment: assignmentId,
-    p_question: questionId,
-    p_choice: choice,
-  });
+  const { data, error } = await retryOnce(() =>
+    supabase.rpc("quiz_assignment_answer", {
+      p_assignment: assignmentId,
+      p_question: questionId,
+      p_choice: choice,
+    })
+  );
   if (error || !data) return null;
   return data as QuizReveal;
 }
