@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import {
   MyAssignment,
   MyClass,
@@ -21,6 +22,7 @@ import { LoadingScreen } from "@/components/states";
 
 // 先生が作ったクラスに入って、配られた課題を解く画面
 export default function QuizClassesPage() {
+  useRequireQuizAccess();
   const { loading } = useMyAccount(["student", "pt"]);
 
   const [classes, setClasses] = useState<MyClass[] | null>(null);
@@ -68,6 +70,10 @@ export default function QuizClassesPage() {
 
     if (r === "throttled") {
       notify("コードの間違いが続いたため、しばらく参加できません。1時間ほどあけて、先生に確かめてからお試しください");
+      return;
+    }
+    if (r === "other_school") {
+      notify("このクラスは、別の学校のクラスです。学校コードで、同じ学校に所属しているか、確かめてください");
       return;
     }
     if (!r) {

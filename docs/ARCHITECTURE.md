@@ -223,3 +223,11 @@
 - 分析（`/analysis`）に「テストの結果／一問一答の進み具合」の切り替え。進み具合（`quiz_class_progress` → `ClassProgressView`）は、学生ごとの 解いた数／全問・正答率（解答回数に対する正解）・最後に解いた日・分野ごと。並べ替え: 名前・最近やっていない・進みが少ない・正答率が低い。
 - **学生の同意が前提**: `quiz_class_members.share_progress`（既定 false）。クラスに参加するときのチェック（既定オン）で決め、あとから「クラスの課題」の画面で、クラスごとに変えられる（`quiz_set_share_progress`・`quiz_my_class_sharing`）。共有していない学生は、先生には「共有していません」とだけ出て、数字は返らない（DBの関数が、そもそも返さない）。以前に参加した学生は、本人がオンにするまで、非共有のまま。見た記録は `view_progress`（監査）。
 - 結果の画面（`/assignment`）の「問題ごと」: 問題をタップすると、その場で、問題文・図・選択肢ごとの「選んだ人の割合（人数）」・正答・解説（`quiz_assignment_choice_stats`＋`quiz_assignment_preview`）。複数選ぶ問題は、合計が100%を超える。
+
+## 学校コードによる一問一答の利用制限（2026-10-18、20261124_school_licensing.sql）
+- 目的: 一問一答を、学校単位で導入・契約できるようにする。**設定（`app_settings.quiz_requires_school`）は、既定でオフ**＝いまの利用者の使い方は変わらない。運営が、管理画面「一問一答：学校の契約と学校コード」で、オンにする（オンにすると、学校に所属していない人は、一問一答のRPCが使えなくなる。運営は常に使える。ログインなしの `/kokushi` は、そのまま）。
+- テーブル（すべてRLS有効・クライアントに権限なし。関数だけで操作）: `licensed_schools`（学校名・8文字の学校コード・状態 active/suspended・契約の開始/終了・人数の上限・プラン名・メモ）／`school_members`（user_id が主キー＝1人1校。role = student / teacher）／`school_code_attempts`（コードの総当たり対策: 間違いは1時間に10回）。※ 既存の `schools`（試験情報・ランキング用に、学生が選ぶ学校名）とは別。
+- 権限の強制（DB）: `quiz_can_use()` ＝ 学生・PT・先生 かつ `quiz_school_gate_ok(uid)`（設定オフ、または、運営、または、契約中の学校の所属）。`quiz_is_teacher()` も同じ条件を足した。契約の「有効」は `school_is_active()`（status が active、かつ 開始日〜終了日（日本時間）の内）。**契約が終わる・停止すると、その学校の所属の人は、すぐに使えなくなる**。
+- 先生と学生の分離: 学校コードは、先生・学生で共通。所属の role は、先生のアカウント（または承認済みの先生）なら teacher、それ以外は student。**先生の機能そのもの（クラス・テスト・結果）は、これまでどおり「運営の承認＋自分のクラスだけ」**。学校コードを知っていても、他校の成績は見えない。クラスには、作った先生の学校が付く（`quiz_classes.school_id`）。学校の付いたクラスには、同じ学校の人だけが参加できる（`quiz_join_class` が `other_school` を返す）。
+- 画面: `/school`（学校コードを入れる・所属の確認・外れる）。一問一答の画面（勉強・問題・模擬・クラス）は、設定がオンで未所属なら `/school` へ（`useRequireQuizAccess`）。先生の画面は、承認済みでも未所属なら、学校コードの案内。運営: `AdminSchools`（学校の追加・編集・コード再発行・停止/再開・所属の人の一覧と取り外し・設定のオン/オフ）。操作は、すべて `quiz_audit_log` に記録（`school_join` `school_leave` `school_code_rotate` `school_active/suspended` `setting_school_required_on/off`）。
+- 将来の拡張: 契約の自動更新・請求は、まだ（`licensed_schools.plan` は名前だけ）。学校の管理者（学校ごとに、教員を管理する人）は、まだ。1人が複数校に所属する場合は、`school_members` の主キーを変える必要がある。

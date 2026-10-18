@@ -6,6 +6,7 @@ import { AccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { TeacherStatus, getTeacherStatus, requestTeacher } from "@/lib/quizClass";
+import { AccessState, getAccessState } from "@/lib/school";
 import { LoadingScreen } from "@/components/states";
 
 // 先生の画面（ホーム・テスト・分析・クラス・アカウント）の、共通の枠。
@@ -18,7 +19,11 @@ function Gate({ children }: { children: React.ReactNode }) {
   const [tried, setTried] = useState(false);
   const [busy, setBusy] = useState(false);
 
-  const load = useCallback(async () => setStatus(await getTeacherStatus()), []);
+  const [access, setAccess] = useState<AccessState | null>(null);
+  const load = useCallback(async () => {
+    setStatus(await getTeacherStatus());
+    setAccess(await getAccessState());
+  }, []);
   useEffect(() => {
     load();
   }, [load]);
@@ -41,7 +46,21 @@ function Gate({ children }: { children: React.ReactNode }) {
   }
 
   if (status === null) return <p className="py-10 text-center text-sm text-gray-400">読み込み中…</p>;
-  if (status === "approved") return <>{children}</>;
+  if (status === "approved") {
+    // 学校コードが必要な設定のとき、学校に所属していない先生は、先に学校コード
+    if (access?.required && !access.has_access) {
+      return (
+        <section className="rounded-2xl bg-white p-4 text-sm leading-6 text-gray-700 shadow-sm">
+          <p className="font-semibold">学校コードを入れてください</p>
+          <p className="mt-1 text-xs leading-5 text-gray-500">クラスとテストは、学校に所属した先生が使えます。学校のコードは、学校の担当の方（または運営）から伝えられます。</p>
+          <Link href="/school" className="mt-3 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+            学校コードを入れる
+          </Link>
+        </section>
+      );
+    }
+    return <>{children}</>;
+  }
 
   if (status === "suspended") {
     return (

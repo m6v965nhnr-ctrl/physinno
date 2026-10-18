@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import AdminReports from "@/components/AdminReports";
 import AdminTeacherRequests from "@/components/AdminTeacherRequests";
 import AdminTeacherSecurity from "@/components/AdminTeacherSecurity";
+import AdminSchools from "@/components/AdminSchools";
 import AdminSignupSources from "@/components/AdminSignupSources";
 import AdminFeedback from "@/components/AdminFeedback";
 import AdminClientErrors from "@/components/AdminClientErrors";
@@ -198,6 +199,7 @@ export default function AdminPage() {
         </div>
         <div id="teachers" className="scroll-mt-28">
           <AdminTeacherRequests />
+          <AdminSchools />
           <AdminTeacherSecurity />
         </div>
 

@@ -7,6 +7,7 @@ import ReportButton from "@/components/ReportButton";
 import { notify } from "@/lib/notify";
 import { scrollPageToTop } from "@/lib/scroll";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import {
   QuizMode,
   QuizQuestion,
@@ -111,6 +112,7 @@ function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[];
 
 // 一問一答の画面。選ぶとすぐに正誤と正答が出る
 export default function QuizPlayPage() {
+  useRequireQuizAccess();
   const { loading } = useMyAccount(["student", "pt"]);
 
   const [params, setParams] = useState<Params | null>(null);

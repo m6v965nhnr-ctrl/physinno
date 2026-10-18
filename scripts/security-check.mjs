@@ -89,7 +89,7 @@ for (const b of ["exam-files", "id-photos", "portfolio-files"]) {
 }
 
 // 7) 先生・クラス・テストまわり: 匿名は、表も、先生用・運営用の関数も、使えない
-for (const t of ["quiz_classes", "quiz_class_members", "quiz_assignments", "quiz_assignment_answers", "quiz_teachers", "quiz_teacher_requests", "quiz_audit_log", "quiz_join_attempts"]) {
+for (const t of ["quiz_classes", "quiz_class_members", "quiz_assignments", "quiz_assignment_answers", "quiz_teachers", "quiz_teacher_requests", "quiz_audit_log", "quiz_join_attempts", "licensed_schools", "school_members", "school_code_attempts", "app_settings"]) {
   const r = await req(`/rest/v1/${t}?select=*&limit=1`);
   const rows = Array.isArray(r.body) ? r.body.length : 0;
   check(`匿名は ${t} を読めない`, rows === 0, `status=${r.status} rows=${rows}`);
@@ -101,6 +101,19 @@ for (const [fn, body] of [
   ["quiz_class_progress", { p_class: ZERO }],
   ["quiz_assignment_choice_stats", { p_assignment: ZERO }],
   ["quiz_set_share_progress", { p_class: ZERO, p_share: true }],
+  ["school_join", { p_code: "AAAAAAAA" }],
+  ["school_leave", {}],
+  ["quiz_access_state", {}],
+  ["admin_list_schools", {}],
+  ["admin_save_school", { p_id: null, p_name: "x", p_valid_from: null, p_valid_until: null, p_seat_limit: null, p_plan: "x", p_note: "" }],
+  ["admin_rotate_school_code", { p_id: ZERO }],
+  ["admin_set_school_status", { p_id: ZERO, p_status: "suspended" }],
+  ["admin_list_school_members", { p_school: ZERO }],
+  ["admin_remove_school_member", { p_user: ZERO }],
+  ["admin_set_quiz_requires_school", { p_on: true }],
+  ["admin_quiz_settings", {}],
+  ["quiz_school_gate_ok", { p_uid: ZERO }],
+  ["school_is_active", { p_school: ZERO }],
   ["quiz_assignment_preview", { p_assignment: ZERO }],
   ["quiz_teacher_search_questions", {}],
   ["quiz_set_assignment_questions", { p_assignment: ZERO, p_ids: [] }],

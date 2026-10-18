@@ -346,11 +346,14 @@ export async function setShareProgress(classId: string, share: boolean): Promise
   return !error;
 }
 
-// 戻り値: 参加できたクラス ／ "throttled"（間違いが多すぎて、しばらく使えない）／ null（見つからない・使えない）
-export async function joinClass(code: string): Promise<{ id: string; name: string } | "throttled" | null> {
+// 戻り値: 参加できたクラス ／ "throttled"（間違いが多すぎて、しばらく使えない）／ "other_school"（別の学校のクラス）／ null（見つからない・使えない）
+export async function joinClass(code: string): Promise<{ id: string; name: string } | "throttled" | "other_school" | null> {
   const { data, error } = await supabase.rpc("quiz_join_class", { p_code: code });
   if (error) return /too many/i.test(error.message) ? "throttled" : null;
-  if (!data || (data as { error?: string }).error) return null;
+  const d = data as { error?: string } | null;
+  if (!d) return null;
+  if (d.error === "other_school") return "other_school";
+  if (d.error) return null;
   return data as { id: string; name: string };
 }
 

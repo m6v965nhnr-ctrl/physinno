@@ -22,6 +22,13 @@ const ACTION_LABEL: Record<string, string> = {
   teacher_approved: "先生として承認された",
   teacher_suspend: "先生を停止した",
   teacher_resume: "先生を再開した",
+  school_join: "学校に所属した",
+  school_leave: "学校から外れた",
+  school_code_rotate: "学校コードを再発行した",
+  school_active: "学校の契約を再開した",
+  school_suspended: "学校の契約を停止した",
+  setting_school_required_on: "学校コード必須の設定を、オンにした",
+  setting_school_required_off: "学校コード必須の設定を、オフにした",
 };
 
 // 運営用: 承認済みの先生の一覧（停止・再開）と、クラス・テスト・結果の閲覧の操作の記録

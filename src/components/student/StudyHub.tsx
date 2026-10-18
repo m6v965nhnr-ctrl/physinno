@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import { useRouter } from "next/navigation";
 import StreakBadge from "@/components/student/StreakBadge";
 import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
@@ -36,6 +37,8 @@ type Tab = "unit" | "exam" | "mock" | "pdf";
 // 勉強（一問一答）。進み具合・今日の10問・近道・科目／回／模擬試験／PDF・キーワード・大学内ランキング・クラスの課題を、1つの画面に。
 // 「出題の設定」（どの問題を・どの順で・何問）は、ここで選んで、下のどこから始めても使われる
 export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) {
+  // 学校コードが必要な設定のとき、所属していない人は、学校コードの画面へ
+  const access = useRequireQuizAccess();
   const router = useRouter();
   const [units, setUnits] = useState<QuizUnit[] | null>(null);
   const [exams, setExams] = useState<QuizExam[]>([]);
@@ -371,6 +374,16 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
       {isStudent && <QuizSchoolRanking />}
 
       {/* クラス */}
+      <Link href="/school" className="flex items-center justify-between rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
+        <span>
+          <span className="block text-sm font-semibold">🏫 {access?.school ? access.school.name : "学校コードを入れる"}</span>
+          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">
+            {access?.school ? (access.school.role === "teacher" ? "先生として所属しています" : "学生として所属しています") : "学校の先生から伝えられたコードで、学校のクラスに入れます"}
+          </span>
+        </span>
+        <span aria-hidden="true" className="text-gray-400">›</span>
+      </Link>
+
       <section className={`grid gap-2 ${isStudent ? "grid-cols-1" : "grid-cols-2"}`}>
         <Link href="/student/quiz/classes" className="rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
           <span className="block text-sm font-semibold">📋 クラスの課題</span>

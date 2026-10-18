@@ -5,6 +5,7 @@ import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { scrollPageToTop } from "@/lib/scroll";
 import { useMyAccount } from "@/lib/useMyAccount";
+import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import {
   MOCK_MINUTES,
   MockGrade,
@@ -68,6 +69,7 @@ function writeSaved(exam: number, session: Session, v: Saved | null) {
 
 // 模擬試験: 1回分の午前または午後(約100問)を、時間制限つきで通して解き、最後にまとめて採点する
 export default function MockExamPage() {
+  useRequireQuizAccess();
   const { loading } = useMyAccount(["student", "pt"]);
 
   const [exam, setExam] = useState<number | null>(null);

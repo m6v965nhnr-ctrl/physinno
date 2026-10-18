@@ -5,6 +5,7 @@ import Link from "next/link";
 import TeacherPage from "@/components/teacher/TeacherPage";
 import { supabase } from "@/lib/supabase";
 import { TeacherStatus, getTeacherStatus } from "@/lib/quizClass";
+import { AccessState, getAccessState } from "@/lib/school";
 
 const STATUS_LABEL: Record<TeacherStatus, string> = {
   approved: "承認済み（クラスとテストを作れます）",
@@ -18,6 +19,7 @@ const STATUS_LABEL: Record<TeacherStatus, string> = {
 function AccountBody({ accountType }: { accountType: string }) {
   const [info, setInfo] = useState<{ name: string; email: string } | null>(null);
   const [status, setStatus] = useState<TeacherStatus | null>(null);
+  const [access, setAccess] = useState<AccessState | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -27,6 +29,7 @@ function AccountBody({ accountType }: { accountType: string }) {
       setInfo({ name: data?.full_name ?? "", email: user.email ?? "" });
     })();
     getTeacherStatus().then(setStatus);
+    getAccessState().then(setAccess);
   }, []);
 
   return (
@@ -38,6 +41,13 @@ function AccountBody({ accountType }: { accountType: string }) {
         <p>{info?.email ?? "…"}</p>
         <p className="pt-1 text-xs text-gray-400">先生としての状態</p>
         <p>{status ? STATUS_LABEL[status] : "…"}</p>
+        <p className="pt-1 text-xs text-gray-400">所属している学校</p>
+        <p>
+          {access ? (access.school ? `${access.school.name}${access.school.active ? "" : "（いまは利用できません）"}` : "なし") : "…"}{" "}
+          <Link href="/school" className="ml-1 text-xs text-sky-700 underline">
+            学校コード
+          </Link>
+        </p>
       </section>
 
       {accountType !== "teacher" && (
