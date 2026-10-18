@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { listMyGroups } from "@/lib/groups";
@@ -52,7 +53,7 @@ type MyGroup = { id: string; name: string };
 function useMyGroups() {
   const [groups, setGroups] = useState<MyGroup[]>([]);
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       if (!user) return;
       const rows = await listMyGroups(user.id);
       setGroups(rows.map((g) => ({ id: g.id, name: g.name })));

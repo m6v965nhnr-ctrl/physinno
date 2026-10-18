@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import TeacherPage from "@/components/teacher/TeacherPage";
@@ -23,7 +24,7 @@ function AccountBody({ accountType }: { accountType: string }) {
 
   useEffect(() => {
     (async () => {
-      const { data: { user } } = await supabase.auth.getUser();
+      const { data: { user } } = await getLocalUser();
       if (!user) return;
       const { data } = await supabase.from("users").select("full_name").eq("id", user.id).maybeSingle();
       setInfo({ name: data?.full_name ?? "", email: user.email ?? "" });

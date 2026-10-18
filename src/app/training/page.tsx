@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { Suspense, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -53,7 +54,7 @@ function TrainingInner() {
 
   useEffect(() => {
     trainingCounts().then(setCounts);
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       if (user) setCanPost((await getMyAccountType(user.id)) === "pt");
     });
   }, []);

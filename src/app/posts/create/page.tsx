@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { REFERENCE_URL_ERROR, safeHttpUrl } from "@/lib/url";
 import PostAudienceFields, { Audience, DEFAULT_AUDIENCE, audiencePayload } from "@/components/PostAudienceFields";
 import { useEffect, useState } from "react";
@@ -115,7 +116,7 @@ export default function CreatePostPage() {
     try {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await getLocalUser();
 
       if (!user) {
         notify("ログインしてください");
@@ -178,7 +179,7 @@ export default function CreatePostPage() {
     try {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await getLocalUser();
 
       if (!user) {
         notify("ログインしてください");

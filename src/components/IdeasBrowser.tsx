@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -19,7 +20,7 @@ export default function IdeasBrowser() {
 
   useEffect(() => {
     ideaCounts().then(setCounts);
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       if (user) setIsPt((await getMyAccountType(user.id)) === "pt");
     });
   }, []);

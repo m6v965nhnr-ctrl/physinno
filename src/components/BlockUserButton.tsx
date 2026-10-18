@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
@@ -17,7 +18,7 @@ export default function BlockUserButton({ userId, className = "" }: { userId: st
     (async () => {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await getLocalUser();
       if (!alive || !user) return;
       setMeId(user.id);
       const { data } = await supabase.rpc("is_blocked_by_me", { p_user: userId });

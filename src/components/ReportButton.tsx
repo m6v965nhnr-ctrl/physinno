@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useId, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -47,7 +48,7 @@ export default function ReportButton({
   async function openDialog() {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       notify("通報するにはログインしてください");

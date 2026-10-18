@@ -1,6 +1,7 @@
 
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { profileIdFilter } from "@/lib/profileId";
 import { listPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
@@ -51,7 +52,7 @@ export default function PTProfile() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     setUser(user);
 

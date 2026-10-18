@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useParams, useRouter } from "next/navigation";
@@ -18,7 +19,7 @@ export default function ReviewPage() {
   async function submitReview() {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       notify("ログインしてください");

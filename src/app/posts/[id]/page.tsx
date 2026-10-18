@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { PostMediaFiles, PostMediaVisual } from "@/components/posts/PostMedia";
 import { postMediaUrls } from "@/lib/postMedia";
 import { useEffect, useState } from "react";
@@ -56,7 +57,7 @@ export default function PostDetailPage() {
 
     const {
       data: { user: userData },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     setUser(userData);
 

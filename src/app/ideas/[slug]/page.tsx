@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useParams } from "next/navigation";
@@ -50,7 +51,7 @@ export default function TopicPage() {
   }
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       if (user) setAccount(await getMyAccountType(user.id));
     });
   }, []);

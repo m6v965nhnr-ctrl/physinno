@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -35,7 +36,7 @@ export default function AchievementsPage() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       router.replace("/login");

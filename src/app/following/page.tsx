@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -22,7 +23,7 @@ export default function FollowingPage() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       setProfiles([]);

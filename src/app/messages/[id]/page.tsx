@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
@@ -51,7 +52,7 @@ export default function MessagePage() {
 
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await getLocalUser();
 
       if (!user || cancelled) {
         setLoading(false);

@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -40,7 +41,7 @@ function NewTrainingInner() {
   });
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       if (!user) {
         setAllowed(false);
         return;

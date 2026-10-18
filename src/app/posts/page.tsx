@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
@@ -55,7 +56,7 @@ export default function AcademicCommunityPage() {
     (async () => {
       const {
         data: { user },
-      } = await supabase.auth.getUser();
+      } = await getLocalUser();
 
       if (user) {
         const { data } = await supabase

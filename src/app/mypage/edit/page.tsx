@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { toHiragana } from "@/lib/format";
@@ -82,7 +83,7 @@ export default function EditProfilePage() {
   async function loadProfile() {
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       router.replace("/login");

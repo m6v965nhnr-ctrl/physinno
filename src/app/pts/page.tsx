@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
@@ -81,7 +82,7 @@ function PTSearchPageInner() {
   const [roleChecked, setRoleChecked] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getUser().then(async ({ data: { user } }) => {
+    getLocalUser().then(async ({ data: { user } }) => {
       setLoggedIn(!!user);
       if (user) {
         const accountType = await getMyAccountType(user.id);

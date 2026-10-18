@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -65,7 +66,7 @@ export default function NotificationsPage() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       setLoading(false);

@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import PaperCredits from "@/components/papers/PaperCredits";
 import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState, useMemo } from "react";
@@ -151,7 +152,7 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
   const searchBoxRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data: { user } }) => {
+    getLocalUser().then(({ data: { user } }) => {
       setUserId(user?.id ?? null);
       if (user) loadSaved(user.id);
     });

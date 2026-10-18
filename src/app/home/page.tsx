@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import HomeComposer from "@/components/HomeComposer";
 import { PostMediaFiles, PostMediaVisual } from "@/components/posts/PostMedia";
 import { mediaKind, postMediaUrls } from "@/lib/postMedia";
@@ -147,7 +148,7 @@ export default function HomePage() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (!user) {
       // ゲストは、先に「PTか、学生か」を選んでもらう

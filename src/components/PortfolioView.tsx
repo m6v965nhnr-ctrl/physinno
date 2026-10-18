@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import { listPosts } from "@/lib/posts";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -219,7 +220,7 @@ export default function PortfolioView({
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (user) {
       setMyUserId(user.id);

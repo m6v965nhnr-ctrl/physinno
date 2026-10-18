@@ -253,3 +253,7 @@
 - 理由: Realtime（Freeは同時接続200）は、購読者ごとに権限の確認があり、人数が増えると重くなるため。代わりに、チャットを開いている人数ぶんの、軽い問い合わせ（索引あり）が増える。
 - `getUser()`（40か所）は、そのまま。置き換えるときは、管理画面・アカウント削除は、`getUser()` のままにすること。
 - 論文の翻訳（MyMemory）は、同じ文を24時間、メモリに保存（`src/lib/server/mymemory.ts`）。
+
+## ログイン中のユーザーの取得（getLocalUser）
+- 画面の出し分け・自分のIDの取得は、`getLocalUser()`（`src/lib/authUser.ts`）で、端末のセッションから読む（Authサーバーへ問い合わせない）。データの保護は、DBの権限（RLS）が行うので、端末のセッションを書き換えても、他人のデータは見えない。
+- `supabase.auth.getUser()`（サーバーで本人確認）は、管理画面（`src/app/admin/page.tsx`）とアカウント削除（`src/lib/accountDeletion.ts`）だけに残す。新しい画面で、本人確認が重要な処理を作るときも、`getUser()` を使うこと。

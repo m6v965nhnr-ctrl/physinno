@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import ProfileLink from "@/components/ProfileLink";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -49,15 +50,7 @@ export default function MessagesPage() {
 
     const {
       data: { user },
-      error: userError,
-    } = await supabase.auth.getUser();
-
-
-    if (userError) {
-      setErrorMessage(userError.message);
-      setLoading(false);
-      return;
-    }
+    } = await getLocalUser();
 
     if (!user) {
       setErrorMessage("ログインしていません");

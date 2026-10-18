@@ -1,5 +1,6 @@
 "use client";
 
+import { getLocalUser } from "@/lib/authUser";
 import HospitalRecruitCard from "@/components/HospitalRecruitCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -137,7 +138,7 @@ export default function HospitalDetailPage() {
 
     const {
       data: { user },
-    } = await supabase.auth.getUser();
+    } = await getLocalUser();
 
     if (user) {
       setUserId(user.id);
