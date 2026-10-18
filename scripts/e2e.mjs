@@ -35,6 +35,7 @@ const PUBLIC_PAGES = [
   ["/schools", "合格状況"],
   ["/paper-search", "8サイト"],
   ["/paper-search/topics", "テーマ"],
+  ["/certified-pt", "認定理学療法士"],
   ["/paper-search/topics/knee-osteoarthritis", "変形性膝関節症"],
   ["/teachers", "先生"],
   ["/schools/%E9%A0%86%E5%A4%A9%E5%A0%82%E5%A4%A7%E5%AD%A6", "順天堂大学"],

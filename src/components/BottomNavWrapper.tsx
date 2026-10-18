@@ -8,7 +8,7 @@ import { withReturnTo } from "@/lib/returnTo";
 import { isAdminUser } from "@/lib/admin";
 import { touchLastSeen } from "@/lib/lastSeen";
 import { supabase } from "@/lib/supabase";
-import { AccountType, getMyAccountType, syncMyAccountType } from "@/lib/account";
+import { AccountType, getMyAccountType, isPublicPaperSitePath, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { useGuestRole } from "@/lib/guestRole";
 
@@ -265,7 +265,7 @@ export default function BottomNavWrapper() {
 
   // 下のメニューを出す画面かどうか（出す画面では、画面全体ではなく、本文だけをスクロールさせる。globals.css の data-shell）。
   // iPhoneで、一番上・一番下まで行ってさらに引っ張ったときに、下のメニューが本文といっしょに動いてしまうのを防ぐため
-  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname) && !pathname.startsWith("/paper-search");
+  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname) && !isPublicPaperSitePath(pathname);
   useEffect(() => {
     const root = document.documentElement;
     if (shellOn) root.setAttribute("data-shell", "");
@@ -284,7 +284,7 @@ export default function BottomNavWrapper() {
   }
 
   // トップ・ログイン・登録のページでは表示しない
-  if (NO_NAV_PATHS.includes(pathname) || pathname.startsWith("/paper-search")) {
+  if (NO_NAV_PATHS.includes(pathname) || isPublicPaperSitePath(pathname)) {
     return null;
   }
 

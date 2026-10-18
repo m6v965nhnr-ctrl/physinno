@@ -237,3 +237,8 @@
 - ページ: `/paper-search`（検索＋使い方＋8サイト＋FAQ＋JSON-LD）／`/paper-search/topics`（テーマ一覧）／`/paper-search/topics/[slug]`（14テーマ。`src/content/paperTopics.ts`。**検索語・関連語・探し方のコツだけ**。治療の効果などの医学的な主張は書かない）。結果は、`PaperSearch` の `initialQuery` で、その場で検索。
 - 公開: `isPublicPaperSitePath`（AuthGuard）・下のメニューなし・sitemap・robots。誘導は、フッター・末尾の「Re:lightを無料で使う」（`utm_source=paper-site`）。
 - 注意: 検索のAPIは、回数制限・キャッシュあり（`docs/OPERATIONS.md`）。テーマを増やすときは、`paperTopics.ts` に足す。`PAPER_TOPICS_UPDATED` を更新する。
+
+## 認定理学療法士ガイド（/certified-pt）
+- 登録なしで見られる公開ページ（`isPublicPaperSitePath` に含む。下のナビは出さない）。枠は `PaperSiteFrame` の `site` で差し替え。
+- 内容は日本理学療法士協会の公式ページのみが根拠。ページ内に確認日・出典を明記。制度が変わるので、年1回（8月の申請の前）見直す。根拠: `リサーチ/2026-10-18_認定理学療法士ガイドの根拠.md`（Git管理外）。
+- 数字（費用・日程・コマ数）を変えるときは、公式の該当ページで確かめてから。確認できなかったもの（合格率・後期研修費用など）は載せない方針。
