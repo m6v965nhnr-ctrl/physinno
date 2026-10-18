@@ -1,6 +1,6 @@
 import { supabasePublic } from "@/lib/supabasePublic";
 
-export const HOSPITAL_DATA_NOTE = "出典：厚生労働省 医療情報ネット オープンデータ（2024年12月1日時点、公共データ利用規約PDL1.0）を加工して作成";
+export const HOSPITAL_DATA_NOTE = "出典：厚生労働省 医療情報ネット オープンデータ（2024年12月1日時点・一部は2025年12月1日時点、公共データ利用規約PDL1.0）を加工して作成";
 
 // 都道府県ごとの病院数。1回の取得は1,000件までなので、ページを分けて数える
 export async function countHospitalsByPrefecture(): Promise<Record<string, number>> {
