@@ -108,12 +108,12 @@ export function MockKokushi() {
 
 export function MockHospital() {
   const items: [string, number][] = [
-    ["教育体制", 4.2],
-    ["残業の少なさ", 3.4],
-    ["給与", 3.1],
-    ["人間関係", 4.5],
-    ["有給の取りやすさ", 3.8],
-    ["学べる環境", 4.6],
+    ["職場環境", 8.2],
+    ["教育体制", 8.4],
+    ["給与", 6.2],
+    ["残業の少なさ", 6.8],
+    ["有休消化率", 7.6],
+    ["風通しの良さ", 9.0],
   ];
   return (
     <Phone label="病院を探す：約5,000病院と、PTの職場口コミ">
@@ -125,12 +125,12 @@ export function MockHospital() {
       <div className="mt-2 rounded-xl border border-gray-200 p-2">
         <p className="text-[10px] font-bold text-gray-900">○○リハビリテーション病院</p>
         <p className="text-[9px] text-gray-500">回復期・脳血管 ／ 病床 180</p>
-        <p className="mt-1.5 text-[9px] font-semibold text-gray-500">PTの口コミ（6項目）</p>
+        <p className="mt-1.5 text-[9px] font-semibold text-gray-500">PTの口コミ（6項目・10点満点・例）</p>
         {items.map(([label, v]) => (
           <div key={label} className="mt-1 flex items-center gap-1.5">
             <span className="w-16 shrink-0 text-[8px] text-gray-700">{label}</span>
             <span className="h-1.5 flex-1 rounded-full bg-gray-100">
-              <span className="block h-1.5 rounded-full bg-brand-500" style={{ width: `${(v / 5) * 100}%` }} />
+              <span className="block h-1.5 rounded-full bg-brand-500" style={{ width: `${(v / 10) * 100}%` }} />
             </span>
             <span className="w-5 text-right text-[8px] font-semibold text-gray-800">{v}</span>
           </div>

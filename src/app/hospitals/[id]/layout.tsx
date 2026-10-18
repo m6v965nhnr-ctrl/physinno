@@ -72,8 +72,11 @@ export default async function HospitalLayout({ params, children }: Props) {
         "@type": "BreadcrumbList",
         itemListElement: [
           { "@type": "ListItem", position: 1, name: "ホーム", item: SITE_URL },
-          { "@type": "ListItem", position: 2, name: "病院を探す", item: `${SITE_URL}/pts?mode=hospitals` },
-          { "@type": "ListItem", position: 3, name: hospital.name, item: `${SITE_URL}/hospitals/${id}` },
+          { "@type": "ListItem", position: 2, name: "病院を都道府県から探す", item: `${SITE_URL}/hospital-areas` },
+          ...(hospital.prefecture
+            ? [{ "@type": "ListItem", position: 3, name: `${hospital.prefecture}の病院一覧`, item: `${SITE_URL}/hospital-areas/${encodeURIComponent(hospital.prefecture)}` }]
+            : []),
+          { "@type": "ListItem", position: hospital.prefecture ? 4 : 3, name: hospital.name, item: `${SITE_URL}/hospitals/${id}` },
         ],
       },
     ],

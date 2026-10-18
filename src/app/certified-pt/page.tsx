@@ -91,8 +91,18 @@ export default function CertifiedPtGuide() {
       description: DESCRIPTION,
       inLanguage: "ja",
       mainEntityOfPage: `${SITE_URL}/certified-pt`,
+      datePublished: "2026-10-18",
+      dateModified: "2026-10-18",
       author: { "@type": "Organization", name: SITE_NAME },
       publisher: { "@type": "Organization", name: SITE_NAME },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
+        { "@type": "ListItem", position: 2, name: "認定理学療法士の取り方", item: `${SITE_URL}/certified-pt` },
+      ],
     },
     {
       "@context": "https://schema.org",

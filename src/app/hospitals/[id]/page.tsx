@@ -37,6 +37,7 @@ import {
 import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 import DiseaseRatioPieChart from "@/components/DiseaseRatioPieChart";
 import ReviewRadarChart from "@/components/ReviewRadarChart";
+import ReviewBars from "@/components/ReviewBars";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
@@ -381,8 +382,13 @@ export default function HospitalDetailPage() {
           </h1>
 
           <p className="mt-1 text-sm text-gray-500">
-            {[hospital.prefecture, hospital.city].filter(Boolean).join(" ") ||
-              "地域未設定"}
+            {hospital.prefecture ? (
+              <Link href={`/hospital-areas/${encodeURIComponent(hospital.prefecture)}`} className="underline underline-offset-2 hover:text-gray-800">
+                {hospital.prefecture}
+              </Link>
+            ) : null}
+            {hospital.prefecture && hospital.city ? " " : null}
+            {hospital.city ?? (hospital.prefecture ? null : "地域未設定")}
             {hospital.size && (
               <>
                 {" ・ "}
@@ -633,7 +639,8 @@ export default function HospitalDetailPage() {
           {reviews.length > 0 && (
             <div className="mt-4">
               <ReviewRadarChart items={axisAverages} />
-              <p className="mt-1 text-center text-xs text-gray-500">
+              <ReviewBars items={axisAverages} />
+              <p className="mt-3 text-center text-xs text-gray-500">
                 {reviews.length}件の口コミの平均（10点満点）
                 {averageRating !== null && (
                   <>
