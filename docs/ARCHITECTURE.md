@@ -257,3 +257,7 @@
 ## ログイン中のユーザーの取得（getLocalUser）
 - 画面の出し分け・自分のIDの取得は、`getLocalUser()`（`src/lib/authUser.ts`）で、端末のセッションから読む（Authサーバーへ問い合わせない）。データの保護は、DBの権限（RLS）が行うので、端末のセッションを書き換えても、他人のデータは見えない。
 - `supabase.auth.getUser()`（サーバーで本人確認）は、管理画面（`src/app/admin/page.tsx`）とアカウント削除（`src/lib/accountDeletion.ts`）だけに残す。新しい画面で、本人確認が重要な処理を作るときも、`getUser()` を使うこと。
+
+## AI回数の上限（take_ai_quota）
+- ユーザーごとの上限は `ai_usage`（日×ユーザー×機能）、全体の1日1,500回は `ai_usage_global`（日ごとの1行のカウンター）。全員の行を毎回合計しない。全体の上限に届いたときは、そのユーザーの分を1つ戻して断る。
+- `ai_usage_global` は、利用者から直接読み書きできない（SECURITY DEFINER の関数だけが更新）。マイグレーション: `20261126_ai_quota_global_counter.sql`。
