@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PaperSiteFrame, { type GuideSite } from "@/components/paper-search/PaperSiteFrame";
+import { CERT_FIELDS } from "@/content/certifiedFields";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 // 内容は、日本理学療法士協会の公式ページ（下の「出典」）を、2026-10-18に確認したもの。制度は変わるので、申請前に必ず公式で確かめる
@@ -28,13 +29,6 @@ const SITE: GuideSite = {
   blurb: "の、認定理学療法士の入口です。",
   links: [{ href: "/columns/certified-pt-renewal-2026", label: "更新の考え方" }],
 };
-
-// 分野ごとの取得者数: 日本理学療法士協会「各資格の取得状況」（2026年3月31日データ）
-const FIELDS: [string, number][] = [
-  ["脳卒中", 4286], ["神経筋障害", 275], ["脊髄障害", 156], ["発達障害", 444], ["運動器", 5113], ["切断", 44], ["スポーツ理学療法", 989],
-  ["徒手理学療法", 298], ["循環", 1372], ["呼吸", 1608], ["代謝", 504], ["地域理学療法", 1666], ["健康増進・参加", 204], ["介護予防", 659],
-  ["補装具", 222], ["物理療法", 117], ["褥瘡・創傷ケア", 18], ["疼痛管理", 26], ["臨床教育", 276], ["管理・運営", 584], ["学校教育", 151],
-];
 
 // 専門理学療法士の分野ごとの取得者数: 同上（2026年3月31日データ）
 const SPECIALIST_FIELDS: [string, number][] = [
@@ -222,13 +216,15 @@ export default function CertifiedPtGuide() {
 
       <section className="px-5 pb-8">
         <div className="mx-auto max-w-3xl">
-          <H2>認定の分野（21分野）</H2>
-          <p className="mt-2 text-sm leading-7 text-gray-700">分野ごとに申請し、試験は共通問題＋その分野の問題です。数字は、各分野の取得者数（2026年3月31日時点、協会の公表）です。人気や、取りやすさを示すものではありません。</p>
+          <div id="fields" className="scroll-mt-20"><H2>認定の分野（21分野）</H2></div>
+          <p className="mt-2 text-sm leading-7 text-gray-700">分野ごとに申請し、試験は共通問題＋その分野の問題です。分野の名前から、分野ごとのページへ進めます。数字は、各分野の取得者数（2026年3月31日時点、協会の公表）です。人気や、取りやすさを示すものではありません。</p>
           <ul className="mt-4 flex flex-wrap gap-2">
-            {FIELDS.map(([f, n]) => (
-              <li key={f} className="rounded-full border border-teal-200 bg-white px-3 py-1.5 text-xs font-medium text-teal-900">
-                {f}
-                <span className="ml-1.5 font-normal text-gray-500">{n.toLocaleString()}人</span>
+            {CERT_FIELDS.map((f) => (
+              <li key={f.slug}>
+                <Link href={`/certified-pt/${f.slug}`} className="block rounded-full border border-teal-200 bg-white px-3 py-1.5 text-xs font-medium text-teal-900 hover:border-teal-500">
+                  {f.name}
+                  <span className="ml-1.5 font-normal text-gray-500">{f.n.toLocaleString()}人</span>
+                </Link>
               </li>
             ))}
           </ul>

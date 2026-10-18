@@ -1,4 +1,5 @@
 import { PREFECTURES } from "@/lib/prefectures";
+import { CERT_FIELDS } from "@/content/certifiedFields";
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
@@ -28,6 +29,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/paper-search/topics`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
     ...PAPER_TOPICS.map((t) => ({ url: `${SITE_URL}/paper-search/topics/${t.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/certified-pt`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    ...CERT_FIELDS.map((f) => ({ url: `${SITE_URL}/certified-pt/${f.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/job-hunting`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/hospital-areas`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...PREFECTURES.map((p) => ({ url: `${SITE_URL}/hospital-areas/${encodeURIComponent(p)}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 })),
