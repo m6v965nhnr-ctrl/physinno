@@ -5,7 +5,7 @@ import { PAPER_TOPICS, PAPER_TOPICS_UPDATED } from "@/content/paperTopics";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "理学療法の論文を、テーマから探す｜検索語と関連語";
-const DESCRIPTION = "変形性膝関節症・腰痛・脳卒中・COPD・転倒予防など、理学療法でよく探されるテーマごとに、日本語・英語の検索語と、関連する言葉をまとめました。そのまま、9つの論文サイトを、まとめて検索できます。";
+const DESCRIPTION = "変形性膝関節症・腰痛・脳卒中・COPD・転倒予防など、理学療法でよく探されるテーマごとに、日本語・英語の検索語と、関連する言葉をまとめました。そのまま、8つの論文サイトを、まとめて検索できます。";
 
 export const metadata: Metadata = {
   title: TITLE,

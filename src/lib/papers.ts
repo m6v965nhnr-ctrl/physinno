@@ -59,7 +59,6 @@ export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
   { key: "pubmed", label: "PubMed" },
   { key: "jstage", label: "J-STAGE" },
   { key: "cinii", label: "CiNii Research" },
-  { key: "pedro", label: "PEDro" },
   { key: "semanticscholar", label: "Semantic Scholar" },
   { key: "europepmc", label: "Europe PMC" },
   { key: "openalex", label: "OpenAlex" },
@@ -72,6 +71,13 @@ export const PAPER_SOURCES: { key: PaperSource; label: string }[] = [
 // Physiopedia: Cloudflareのボット対策によりサーバーからの直接アクセスが
 // ブロックされる）ため、検索語を埋め込んだリンクを開く形にとどめる
 export const PAPER_LINK_SOURCES = [
+  {
+    key: "pedro",
+    label: "PEDro",
+    note: "理学療法のエビデンス・データベース（自動取得は規約で禁止のため、リンクで開きます）",
+    build: (q: string) =>
+      `https://search.pedro.org.au/search-results?calc_text=${encodeURIComponent(q)}&-find=Search`,
+  },
   {
     key: "physiopedia",
     label: "Physiopedia",

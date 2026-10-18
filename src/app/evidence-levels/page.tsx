@@ -136,7 +136,7 @@ export default function EvidenceLevelsPage() {
         <div className="mt-10 rounded-2xl bg-relight-gradient px-6 py-5 text-white">
           <p className="text-base font-semibold">この分類で、論文を絞り込んで探せます</p>
           <p className="mt-1 text-sm leading-6 text-white/95">
-            Re:lightの論文検索は、PubMed・J-STAGE・PEDroなど9つのサイトを横断し、エビデンスレベルI〜VIで絞り込めます（PT・学生のアカウント。無料）。
+            Re:lightの論文検索は、PubMed・J-STAGE・Europe PMCなど8つのサイトを横断し、エビデンスレベルI〜VIで絞り込めます（PT・学生のアカウント。無料）。
           </p>
           <Link
             href="/register?utm_source=site&utm_medium=evidence-levels"

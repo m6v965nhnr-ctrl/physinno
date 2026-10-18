@@ -1,5 +1,6 @@
 "use client";
 
+import PaperCredits from "@/components/papers/PaperCredits";
 import { EVIDENCE_LEVELS, EvidenceLevel } from "@/lib/evidence";
 import { useEffect, useRef, useState, useMemo } from "react";
 import { supabase } from "@/lib/supabase";
@@ -60,10 +61,10 @@ function saveRecentSearch(query: string) {
 }
 
 // PTがいつも論文を探すときに何サイトも回っている手間を減らすための横断検索。
-// PubMed・J-STAGE・CiNii Research・PEDro・Semantic Scholar・Europe PMC・
+// PubMed・J-STAGE・CiNii Research・Semantic Scholar・Europe PMC・
 // OpenAlex・ClinicalTrials.gov・DOAJを1つの結果一覧にまとめて表示する。
 // サイトはあくまで絞り込みのチェックボックス（すべてデフォルトon）。
-// Physiopedia・Cochrane Library・Google Scholar・医中誌Webは公開APIが
+// PEDro（自動取得の禁止）・Physiopedia・Cochrane Library・Google Scholar・医中誌Webは公開APIが
 // ない（Cloudflareのボット対策／規約違反のリスク／購読・ログイン必須）
 // ため、検索語入りのリンクを一発で開けるだけにとどめる。
 //
@@ -569,6 +570,10 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
             {s.label}
           </label>
         ))}
+      </div>
+
+      <div className="mt-2">
+        <PaperCredits />
       </div>
 
       {/* エビデンスレベルで絞り込む（Minds 2007 の分類） */}

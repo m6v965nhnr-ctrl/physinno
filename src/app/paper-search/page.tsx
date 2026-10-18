@@ -1,3 +1,4 @@
+import PaperCredits from "@/components/papers/PaperCredits";
 import type { Metadata } from "next";
 import Link from "next/link";
 import PaperSearch from "@/components/PaperSearch";
@@ -5,9 +6,9 @@ import PaperSiteFrame, { PAPER_SITE_REGISTER } from "@/components/paper-search/P
 import { PAPER_TOPICS, PAPER_TOPICS_UPDATED } from "@/content/paperTopics";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-const TITLE = "理学療法の論文検索｜日本語で、9サイトまとめて、無料・登録なし";
+const TITLE = "理学療法の論文検索｜日本語で、8サイトまとめて、無料・登録なし";
 const DESCRIPTION =
-  "理学療法士のための論文検索。日本語で入力すると、英語に自動で翻訳して、PubMed・J-STAGE・CiNiiなど9つの論文サイトを、まとめて検索します。登録不要・無料。新しい順・被引用数順の並べ替え、エビデンスレベルでの絞り込みもできます。";
+  "理学療法士のための論文検索。日本語で入力すると、英語に自動で翻訳して、PubMed・J-STAGE・CiNiiなど8つの論文サイトを、まとめて検索します。登録不要・無料。新しい順・被引用数順の並べ替え、エビデンスレベルでの絞り込みもできます。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -21,7 +22,6 @@ const SITES = [
   { name: "PubMed", note: "医学・生命科学の論文（米国国立医学図書館）", url: "https://pubmed.ncbi.nlm.nih.gov/" },
   { name: "J-STAGE", note: "日本の学会誌・論文（科学技術振興機構）", url: "https://www.jstage.jst.go.jp/" },
   { name: "CiNii Research", note: "日本の論文・書籍・研究データ（国立情報学研究所）", url: "https://cir.nii.ac.jp/" },
-  { name: "PEDro", note: "理学療法のエビデンス・データベース", url: "https://pedro.org.au/" },
   { name: "Semantic Scholar", note: "学術論文の検索（AI2）", url: "https://www.semanticscholar.org/" },
   { name: "Europe PMC", note: "生命科学の論文（欧州）", url: "https://europepmc.org/" },
   { name: "OpenAlex", note: "学術論文の、オープンなデータ", url: "https://openalex.org/" },
@@ -31,13 +31,13 @@ const SITES = [
 
 const STEPS = [
   { title: "日本語で、検索語を入れる", body: "「変形性膝関節症」「脳卒中 歩行」など、いつもの言葉で大丈夫です。英語でも検索できます。" },
-  { title: "英語に翻訳して、日英で同時に検索", body: "日本語を、英語に自動で翻訳し、日本語・英語の両方で、9つのサイトを検索します。" },
+  { title: "英語に翻訳して、日英で同時に検索", body: "日本語を、英語に自動で翻訳し、日本語・英語の両方で、8つのサイトを検索します。" },
   { title: "新しい順・被引用数順で見て、原文へ", body: "気になる論文は、掲載元のページへ移動します。エビデンスレベルでの絞り込みもできます。" },
 ];
 
 const FAQS = [
   { q: "登録や料金は、必要ですか？", a: "検索は、登録なしで、無料で使えます。論文の保存や、AIでの要約・質問は、無料登録後に、Re:lightで使えます。" },
-  { q: "どのサイトを、検索していますか？", a: "PubMed・J-STAGE・CiNii Research・PEDro・Semantic Scholar・Europe PMC・OpenAlex・ClinicalTrials.gov・DOAJ の9つです。医中誌Web（有料）とGoogle Scholarは、検索語を入れた外部リンクで開けます。" },
+  { q: "どのサイトを、検索していますか？", a: "PubMed・J-STAGE・CiNii Research・Semantic Scholar・Europe PMC・OpenAlex・ClinicalTrials.gov・DOAJ の8つです。PEDro・医中誌Web（有料）・Google Scholarは、検索語を入れた外部リンクで開けます。" },
   { q: "日本語で検索しても、英語の論文は、出ますか？", a: "はい。検索語を英語に自動で翻訳して、英語の論文も、あわせて探します。翻訳は、医学用語の用語集を先に使い、足りない部分は機械翻訳で補います。うまく翻訳されないときは、英語で入れ直してください。" },
   { q: "被引用数で、並べ替えられますか？", a: "はい。PubMed・Semantic Scholar・Europe PMC・OpenAlex の論文は、引用された数を取得できます。取得できないサイトの論文は、被引用数順では、後ろに並びます。" },
   { q: "エビデンスレベルは、どう決めていますか？", a: "出版タイプ・登録情報で確実に分かるものと、題名・要約の文面から推定するものがあります。推定は、確実ではありません。「確実に判定できたものだけ」に絞る設定もあります。論文は、必ず、原文で確かめてください。" },
@@ -73,7 +73,7 @@ export default function PaperSearchLanding() {
           <h1 className="mt-2 text-2xl font-bold leading-snug tracking-tight sm:text-4xl">
             理学療法の論文を、
             <br />
-            日本語で、9サイトまとめて。
+            日本語で、8サイトまとめて。
           </h1>
           <ul className="mt-4 flex flex-wrap gap-2" aria-label="特長">
             {["無料", "登録なし", "すぐ終わる"].map((t) => (
@@ -131,7 +131,7 @@ export default function PaperSearchLanding() {
 
       <section className="px-5 pb-10">
         <div className="mx-auto max-w-4xl">
-          <h2 className="text-xl font-bold">検索している、9つのサイト</h2>
+          <h2 className="text-xl font-bold">検索している、8つのサイト</h2>
           <ul className="mt-4 grid gap-2 sm:grid-cols-2">
             {SITES.map((s) => (
               <li key={s.name} className="rounded-xl border border-gray-200 bg-white p-3">
@@ -140,7 +140,8 @@ export default function PaperSearchLanding() {
               </li>
             ))}
           </ul>
-          <p className="mt-3 text-xs leading-6 text-gray-500">各サイトの検索結果から、題名・要旨などを取得して表示します。論文の本文は、掲載元のページで読みます。</p>
+          <p className="mt-3 text-xs leading-6 text-gray-500">各サイトが公開しているデータから、題名・要旨などを取得して表示します。論文の本文は、掲載元のページで読みます。</p>
+          <div className="mt-2"><PaperCredits /></div>
         </div>
       </section>
 

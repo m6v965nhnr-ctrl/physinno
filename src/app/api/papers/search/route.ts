@@ -1,4 +1,4 @@
-// 論文横断検索: PubMed・J-STAGE・CiNii Research・PEDroを一括検索し、
+// 論文横断検索: PubMed・J-STAGE・CiNii Researchなどを一括検索し、
 // 1つの結果一覧にまとめて返す（サイトは絞り込み条件のひとつという位置づけ）。
 // Google Scholarと医中誌Webは公開APIがない（前者はスクレイピング規約違反の
 // リスク、後者は購読・ログインが必須）ため、クライアント側で検索語入りの
@@ -340,59 +340,6 @@ async function searchCinii(query: string): Promise<PaperResult[]> {
     }));
 }
 
-// --- PEDro（公式APIはないが、robots.txtで全許可されている検索結果ページをそのまま読む） ---
-
-async function searchPedro(query: string): Promise<PaperResult[]> {
-  const res = await fetch(
-    `https://search.pedro.org.au/search-results?calc_text=${encodeURIComponent(query)}&-find=Search`,
-    {
-      signal: AbortSignal.timeout(8000),
-      headers: { "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)" },
-    }
-  );
-  if (!res.ok) return [];
-
-  const html = await res.text();
-  const rowRe =
-    /<a href="(https:\/\/search\.pedro\.org\.au\/search-results\/record-detail\/\d+)"[\s\S]*?class="left">([\s\S]*?)<\/a><\/td>\s*<td>([^<]*)<\/td>/g;
-
-  const results: PaperResult[] = [];
-  let m: RegExpExecArray | null;
-
-  while ((m = rowRe.exec(html)) !== null && results.length < 15) {
-    const url = m[1];
-    const title = decodeEntities(m[2]);
-    const method = decodeEntities(m[3]);
-    if (!title) continue;
-
-    const yearMatch = title.match(/\((\d{4})\)\s*$/);
-
-    results.push({
-      source: "pedro",
-      title,
-      authors: null,
-      journal: method || null,
-      year: yearMatch?.[1] ?? null,
-      url,
-      // PEDroは、ランダム化比較試験（準ランダム化を含む）・システマティックレビュー・ガイドラインだけを載せるデータベース
-      ...judged({
-        types: [
-          /systematic review/i.test(method)
-            ? "systematic review"
-            : /practice guideline/i.test(method)
-              ? "practice guideline"
-              : /clinical trial/i.test(method)
-                ? "randomized controlled trial"
-                : "",
-        ].filter(Boolean),
-        title,
-      }),
-    });
-  }
-
-  return results;
-}
-
 // --- Semantic Scholar（公式Graph API, 低頻度ならappキー不要）---
 // abstractに加えて、Semantic Scholar自身がモデルで生成した1文要約
 // （tldr）が返るソースがあるため、AIモードの要約表示に利用する
@@ -709,11 +656,10 @@ async function searchDoaj(query: string): Promise<PaperResult[]> {
     .filter((r) => r.url);
 }
 
-const SOURCE_SEARCHERS: Record<PaperSource, (q: string, levels?: EvidenceLevel[]) => Promise<PaperResult[]>> = {
+const SOURCE_SEARCHERS: Record<Exclude<PaperSource, "pedro">, (q: string, levels?: EvidenceLevel[]) => Promise<PaperResult[]>> = {
   pubmed: searchPubMed,
   jstage: searchJStage,
   cinii: searchCinii,
-  pedro: searchPedro,
   semanticscholar: searchSemanticScholar,
   europepmc: searchEuropePmc,
   openalex: searchOpenAlex,
@@ -750,7 +696,6 @@ async function searchPapers(request: Request) {
           "pubmed",
           "jstage",
           "cinii",
-          "pedro",
           "semanticscholar",
           "europepmc",
           "openalex",
@@ -782,7 +727,7 @@ async function searchPapers(request: Request) {
   const tasks: Promise<PaperResult[]>[] = [];
   const taskLabels: string[] = [];
 
-  (Object.keys(SOURCE_SEARCHERS) as PaperSource[]).forEach((key) => {
+  (Object.keys(SOURCE_SEARCHERS) as Exclude<PaperSource, "pedro">[]).forEach((key) => {
     if (!requestedSources.has(key)) return;
 
     const searcher = SOURCE_SEARCHERS[key];

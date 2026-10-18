@@ -18,7 +18,7 @@ const chip = (on: boolean) =>
 
 export function MockPaperSearch() {
   return (
-    <Phone label="論文検索：9サイトを一度に・エビデンスレベルで絞り込み">
+    <Phone label="論文検索：8サイトを一度に・エビデンスレベルで絞り込み">
       <p className="text-[11px] font-bold text-gray-900">論文を探す</p>
       <div className="mt-1.5 rounded-full border border-gray-300 px-3 py-1.5 text-[10px] text-gray-500">変形性膝関節症 運動療法</div>
       <div className="mt-2 flex flex-wrap gap-1">

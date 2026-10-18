@@ -15,7 +15,7 @@ const BUBBLES = ["あの論文、どこだっけ？", "認定PT、あと何を�
 
 const STATS = [
   { big: "完全無料", small: "登録も基本機能も" },
-  { big: "9サイト", small: "論文をまとめて検索" },
+  { big: "8サイト", small: "論文をまとめて検索" },
   { big: "1,200問", small: "国試の過去問（第56〜61回）" },
   { big: "約5,000", small: "全国の病院を探せる" },
 ];
@@ -27,7 +27,7 @@ const PAINS = [
   { icon: "🏥", text: "転職の前に、職場の給与・休日・雰囲気を知りたい" },
 ];
 
-const SITES = ["PubMed", "J-STAGE", "CiNii Research", "PEDro", "Semantic Scholar", "Europe PMC", "OpenAlex", "ClinicalTrials.gov", "DOAJ"];
+const SITES = ["PubMed", "J-STAGE", "CiNii Research", "Semantic Scholar", "Europe PMC", "OpenAlex", "ClinicalTrials.gov", "DOAJ"];
 const LEVELS = EVIDENCE_LEVELS.map((l) => `${l.key} ${l.short}`);
 
 const SMALL_FEATURES = [
@@ -263,7 +263,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           <div className="mt-8 space-y-6">
             {/* 論文 */}
             <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
-              <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">📚 論文を、9サイトまとめて探す</h3>
+              <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">📚 論文を、8サイトまとめて探す</h3>
               <p className="mt-2 text-sm leading-7 text-gray-700">
                 日本語で検索すれば、自動で英語にも変換して、海外の論文も一緒に探します。見つけた論文は、エビデンスレベルで絞り込め、要約の日本語訳も読めます。普通の文章で質問する「AIモード」では、見つかった論文だけをもとに、引用番号つきで答えます。
               </p>

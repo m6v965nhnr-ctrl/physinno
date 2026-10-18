@@ -27,7 +27,7 @@
 - SECURITY DEFINER 関数は内部で権限確認する（`get_admin_*` は admin_users、`ingest_seminars` はトークン）。
 
 ## 論文検索とAIモード
-- `/api/papers/search` が9サイトを並列に検索して結果を正規化（PubMedはefetchで要旨も取得）。`/api/papers/ai` が検索語の生成と回答生成を担当（`src/lib/server/gemini.ts`、キーはサーバー側のみ）。
+- `/api/papers/search` が8サイトを並列に検索して結果を正規化（PubMedはefetchで要旨も取得）。`/api/papers/ai` が検索語の生成と回答生成を担当（`src/lib/server/gemini.ts`、キーはサーバー側のみ）。
 - AIは「渡された論文だけ」を根拠に引用番号つきで回答する。質問文は Google に送信されるため、プライバシーポリシーに明記し画面でも注意喚起している。
 
 ## 学生アカウント
@@ -233,7 +233,7 @@
 - 将来の拡張: 契約の自動更新・請求は、まだ（`licensed_schools.plan` は名前だけ）。学校の管理者（学校ごとに、教員を管理する人）は、まだ。1人が複数校に所属する場合は、`school_members` の主キーを変える必要がある。
 
 ## 論文検索の入口サイト `/paper-search`（2026-10-18。無料の第一段階）
-- 目的: 「理学療法 論文検索」などで来る人が、登録なしで、その場で悩みを解決できる入口。既存の `PaperSearch`（9サイト・日英同時・被引用数順）を再利用。同じコードの中に、独立した見た目（`PaperSiteFrame`）で作った。独自ドメインは、あとから割り当てる（`リサーチ/2026-10-18_SEO・集客サイト展開の設計案.md`）。
-- ページ: `/paper-search`（検索＋使い方＋9サイト＋FAQ＋JSON-LD）／`/paper-search/topics`（テーマ一覧）／`/paper-search/topics/[slug]`（14テーマ。`src/content/paperTopics.ts`。**検索語・関連語・探し方のコツだけ**。治療の効果などの医学的な主張は書かない）。結果は、`PaperSearch` の `initialQuery` で、その場で検索。
+- 目的: 「理学療法 論文検索」などで来る人が、登録なしで、その場で悩みを解決できる入口。既存の `PaperSearch`（8サイト・日英同時・被引用数順）を再利用。同じコードの中に、独立した見た目（`PaperSiteFrame`）で作った。独自ドメインは、あとから割り当てる（`リサーチ/2026-10-18_SEO・集客サイト展開の設計案.md`）。
+- ページ: `/paper-search`（検索＋使い方＋8サイト＋FAQ＋JSON-LD）／`/paper-search/topics`（テーマ一覧）／`/paper-search/topics/[slug]`（14テーマ。`src/content/paperTopics.ts`。**検索語・関連語・探し方のコツだけ**。治療の効果などの医学的な主張は書かない）。結果は、`PaperSearch` の `initialQuery` で、その場で検索。
 - 公開: `isPublicPaperSitePath`（AuthGuard）・下のメニューなし・sitemap・robots。誘導は、フッター・末尾の「Re:lightを無料で使う」（`utm_source=paper-site`）。
 - 注意: 検索のAPIは、回数制限・キャッシュあり（`docs/OPERATIONS.md`）。テーマを増やすときは、`paperTopics.ts` に足す。`PAPER_TOPICS_UPDATED` を更新する。

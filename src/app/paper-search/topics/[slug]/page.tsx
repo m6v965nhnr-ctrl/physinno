@@ -13,8 +13,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const t = getTopic((await params).slug);
   if (!t) return {};
-  const title = `${t.ja}の論文の探し方｜日本語で、9サイトまとめて検索`;
-  const description = `${t.ja}の論文を探すための、日本語・英語の検索語（${t.en}）と、関連する言葉。登録なし・無料で、PubMed・J-STAGEなど9つの論文サイトを、まとめて検索できます。`;
+  const title = `${t.ja}の論文の探し方｜日本語で、8サイトまとめて検索`;
+  const description = `${t.ja}の論文を探すための、日本語・英語の検索語（${t.en}）と、関連する言葉。登録なし・無料で、PubMed・J-STAGEなど8つの論文サイトを、まとめて検索できます。`;
   return {
     title,
     description,

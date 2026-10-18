@@ -279,7 +279,7 @@ export default function PrivacyPage() {
                       論文データベース
                       <br />
                       <span className="font-normal text-gray-500">
-                        （PubMed、Europe PMC、OpenAlex、Semantic Scholar、J-STAGE、CiNii Research、DOAJ、ClinicalTrials.gov、PEDro）
+                        （PubMed、Europe PMC、OpenAlex、Semantic Scholar、J-STAGE、CiNii Research、DOAJ、ClinicalTrials.gov）
                       </span>
                     </td>
                     <td className="px-3 py-2">

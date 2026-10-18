@@ -61,7 +61,7 @@ export default function PtEvidenceLevelGuide() {
       </ol>
 
       <div className="column-note">
-        Re:lightの論文検索は、PubMed・J-STAGE・PEDroなど9つのサイトを一度に検索でき、エビデンスレベルI〜VIで絞り込めます（PT・学生のアカウントで、無料）。出版タイプで確実に判定できたものと、題名・要約から推定したものを、見分けて表示します。
+        Re:lightの論文検索は、PubMed・J-STAGE・Europe PMCなど8つのサイトを一度に検索でき、エビデンスレベルI〜VIで絞り込めます（PT・学生のアカウントで、無料）。出版タイプで確実に判定できたものと、題名・要約から推定したものを、見分けて表示します。
       </div>
     </div>
   );

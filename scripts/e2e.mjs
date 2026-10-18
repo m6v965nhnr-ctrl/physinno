@@ -33,7 +33,7 @@ const PUBLIC_PAGES = [
   ["/columns", "コラム"],
   ["/kokushi", "国家試験"],
   ["/schools", "合格状況"],
-  ["/paper-search", "9サイト"],
+  ["/paper-search", "8サイト"],
   ["/paper-search/topics", "テーマ"],
   ["/paper-search/topics/knee-osteoarthritis", "変形性膝関節症"],
   ["/teachers", "先生"],

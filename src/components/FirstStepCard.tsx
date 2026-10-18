@@ -28,7 +28,7 @@ export default function FirstStepCard({ userId }: { userId: string }) {
         {
           key: "search",
           title: "論文を1本、探してみましょう",
-          hint: "日本語でも英語でも、9つのサイトを同時に検索できます。エビデンスレベルでの絞り込みも。",
+          hint: "日本語でも英語でも、8つのサイトを同時に検索できます。エビデンスレベルでの絞り込みも。",
           href: "/pts?mode=papers",
           cta: "論文を探す",
           done: hasSearchedPapers(),
