@@ -36,6 +36,12 @@ const FIELDS: [string, number][] = [
   ["補装具", 222], ["物理療法", 117], ["褥瘡・創傷ケア", 18], ["疼痛管理", 26], ["臨床教育", 276], ["管理・運営", 584], ["学校教育", 151],
 ];
 
+// 専門理学療法士の分野ごとの取得者数: 同上（2026年3月31日データ）
+const SPECIALIST_FIELDS: [string, number][] = [
+  ["基礎理学療法", 384], ["神経理学療法", 416], ["小児理学療法", 289], ["運動器理学療法", 534], ["スポーツ理学療法", 415], ["心血管理学療法", 288], ["呼吸理学療法", 299],
+  ["糖尿病理学療法", 247], ["地域理学療法", 240], ["予防理学療法", 246], ["支援工学理学療法", 219], ["物理療法", 32], ["理学療法教育", 107],
+];
+
 const REQUIREMENTS = [
   { n: "①", title: "指定研修カリキュラム（eラーニング）", body: "全分野共通の12コマ（1コマ90分、計18時間）。受講費12,000円（税別）。4月中旬〜3月下旬の開催。有効期限は5年間で、複数の分野を申請するときも、1回の受講で足ります。" },
   { n: "②", title: "臨床認定カリキュラム（教育機関）", body: "分野ごとの必須科目15コマ＋選択科目5コマ以上。申し込み先は教育機関で、受講費も教育機関ごとに違います。申請する前の年度までに、受講を終えている必要があります。" },
@@ -192,6 +198,24 @@ export default function CertifiedPtGuide() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="px-5 pb-8">
+        <div className="mx-auto max-w-3xl">
+          <H2>専門理学療法士（参考）</H2>
+          <p className="mt-2 text-sm leading-7 text-gray-700">
+            専門理学療法士は、認定よりも高い専門性を示す、別の資格です。協会の公式ページでは、新規申請の要件として、指定研修カリキュラム、士会・ブロック主催の学術大会への参加、連合会員団体の学術大会での発表、査読付きの原著論文が挙げられ、口頭試問があります。こちらも、登録理学療法士が前提で、5年ごとの更新です。細かい要件・日程・費用は、このページでは扱いません。公式の最新の案内で、確かめてください。
+          </p>
+          <ul className="mt-4 flex flex-wrap gap-2">
+            {SPECIALIST_FIELDS.map(([f, n]) => (
+              <li key={f} className="rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-800">
+                {f}
+                <span className="ml-1.5 font-normal text-gray-500">{n.toLocaleString()}人</span>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-2 text-xs leading-6 text-gray-500">分野ごとの取得者数は、2026年3月31日時点（協会の公表）です。</p>
         </div>
       </section>
 
