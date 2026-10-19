@@ -25,6 +25,7 @@ import {
 } from "@/lib/quiz";
 import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizClass";
 import { shareContent, shareUrl } from "@/lib/share";
+import CalcMemo from "@/components/student/CalcMemo";
 import { LoadingScreen } from "@/components/states";
 
 type Params = {
@@ -124,6 +125,7 @@ export default function QuizPlayPage() {
   const [reveal, setReveal] = useState<QuizReveal | null>(null);
   const [busy, setBusy] = useState(false);
   const [results, setResults] = useState<Result[]>([]);
+  const [calcOpen, setCalcOpen] = useState(false);
   const [bookmarks, setBookmarks] = useState<Record<string, boolean>>({});
   // 結果の画面から、間違えた問題を開き直しているとき
   const [fromResults, setFromResults] = useState(false);
@@ -496,15 +498,26 @@ export default function QuizPlayPage() {
             {questionLabel(q)}
             {unitName ? ` ・ ${unitName}` : ""}
           </p>
-          <button
-            onClick={handleBookmark}
-            aria-pressed={bookmarks[q.id]}
-            className={`rounded-full border px-3 py-1 text-xs ${
-              bookmarks[q.id] ? "border-amber-400 bg-amber-50 text-amber-700" : "border-gray-300 text-gray-500"
-            }`}
-          >
-            {bookmarks[q.id] ? "★ ブックマーク済み" : "☆ ブックマーク"}
-          </button>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleBookmark}
+              aria-pressed={bookmarks[q.id]}
+              className={`rounded-full border px-3 py-1 text-xs ${
+                bookmarks[q.id] ? "border-amber-400 bg-amber-50 text-amber-700" : "border-gray-300 text-gray-500"
+              }`}
+            >
+              {bookmarks[q.id] ? "★ ブックマーク済み" : "☆ ブックマーク"}
+            </button>
+            <button
+              onClick={() => setCalcOpen((v) => !v)}
+              aria-pressed={calcOpen}
+              className={`rounded-full border px-3 py-1 text-xs ${
+                calcOpen ? "border-emerald-500 bg-emerald-50 text-emerald-800" : "border-gray-300 text-gray-500"
+              }`}
+            >
+              🧮 電卓メモ
+            </button>
+          </div>
         </div>
 
         <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
@@ -533,6 +546,8 @@ export default function QuizPlayPage() {
 
           {needText && <p className="text-xs font-semibold text-amber-700">{needText}</p>}
         </section>
+
+        {calcOpen && <CalcMemo key={q.id} />}
 
         {q.choices_in_image ? (
           <div className="grid grid-cols-5 gap-2" role="group" aria-label="選択肢">
