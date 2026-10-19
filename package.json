@@ -9,6 +9,8 @@
     "lint": "eslint",
     "smoke": "node scripts/smoke.mjs",
     "check": "tsc --noEmit && next build",
+    "verify": "node scripts/verify.mjs",
+    "deploy:check": "node scripts/deploy-check.mjs",
     "e2e": "node scripts/e2e.mjs",
     "security": "node scripts/security-check.mjs"
   },

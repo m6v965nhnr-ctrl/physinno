@@ -43,12 +43,13 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 - PT専用は `PT_ONLY_PATH_PREFIXES`。学生もPTの公開投稿は読める。
 
 ## 4. 変更後の確認（この順で）
+0. まとめて: **`npm run verify`**（型・ビルド・e2eを、結果だけ数行で出す。失敗したときだけ、エラーの行が出る）。以下は、個別に確かめたいとき。
 1. `npx tsc --noEmit`（型エラー 0）
 2. `npm run build`（Vercel と同じビルド。通らなければ push しない）
 3. `npx eslint --quiet`（既知の 2 件は `PaperSearch.tsx` の `react-hooks/immutability`。**増やさない**）
 4. 画面を変えたときは、`preview_start`（.claude/launch.json）で実際に開いて確認。ログインが要る画面は、ゲストで見える範囲＋DBテストで確認し、見られなかった範囲を報告で正直に書く。
 5. 画面の自動テスト: `npm run dev` を起動して `npm run e2e`（公開ページ13画面が、真っ白・エラー画面・コンソールエラーなしで開く。Chrome を使う）。ログイン後の画面も見るときは、テスト用アカウントを環境変数 `E2E_EMAIL` / `E2E_PASSWORD` で渡す（コードにもチャットにも書かない。本物のユーザーのパスワードは使わない）。
-6. デプロイ後: `node scripts/smoke.mjs` と `node scripts/e2e.mjs https://relight-1wet.vercel.app`。
+6. デプロイ後: **`npm run deploy:check`**（本番が今のコミットになるまで待ち、主要7ページが200か確認。追加のパスは `-- /path`）。詳しくは `node scripts/smoke.mjs` と `node scripts/e2e.mjs https://relight-1wet.vercel.app`。
 
 ## 5. 公開（毎回、確認を待たずに行う）
 - 変更ごとに commit → `main` に push → Vercel のデプロイが READY になるまで確認（Vercel MCP の `list_deployments`。プロジェクト `prj_PGCaWITBK4kxS7ar1xVzbP8mFiS7`）。
@@ -57,3 +58,16 @@ description: Re:light（physinno）のコードを変更するとき（画面・
 
 ## 6. 報告の書き方
 - やったこと・確認できたこと・**確認できていないこと**を分けて書く。やさしい日本語で、結論から。
+
+## 7. 公開の入口ページ（検索から来る人向け）
+- 公開パスは `src/lib/account.ts` の `PUBLIC_PAPER_SITE_PATH` に足す（/paper-search・/certified-pt・/hospital-areas・/job-hunting）。足したら、`sitemap.ts`・`robots.ts`・`scripts/e2e.mjs`・共通フッター（`PaperSiteFrame.tsx`）・HPのフッター・`public/llms.txt` も揃える。
+- 構造化データ（JSON-LD）は、`ldJson()`（`src/lib/jsonLd.ts`）で出す。配列のまま `JSON.stringify` しない（アプリ内ブラウザでエラーになる）。
+- アクセス集計（Vercel Web Analytics）は、`src/lib/analyticsFilter.ts` の許可パスだけ。個人に結びつく画面を足さない。仕組みを変えたら、プライバシーポリシーとHPの記載も直す。
+- 記事ページには、回数制限を付けない（検索流入が消える）。制限は、検索などの操作だけ（`src/lib/freeUsage.ts`）。
+- 数字・制度・規約は、公式で確かめ、ページに確認日・出典を書く。確認できないものは載せない。
+
+## 8. 外部サービス・環境の落とし穴
+- Vercel MCP: `teamId` を付けると権限エラーになる呼び出しが多い。付けずに呼ぶ（`list_deployments`・`get_project`・`filter_project_envs` など）。ランタイムログは権限で読めないことがある。Web Analyticsの有効化・プロジェクト削除は、ユーザーのダッシュボード操作。
+- Supabase MCP: `apply_migration`・本番DBの書き込みは、依頼の範囲を明確にしてから。削除系のツールは無い（プロジェクト削除はユーザー）。
+- 大きなデータの取り込みは、`pg_net`（CLAUDE.md の「作業の効率」）。DBの `http` 拡張は入っていない。
+- ブラウザ操作: `read_page` が空のときは、`javascript_tool` で、要素を探す。開発サーバーの表示がおかしいときは、`preview_stop` → `preview_start` で、再起動する（古いホットリロードの状態が、偽のエラーを出す）。
