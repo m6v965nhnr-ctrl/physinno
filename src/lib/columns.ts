@@ -13,6 +13,15 @@ export type ColumnMeta = {
 
 export const COLUMNS: ColumnMeta[] = [
   {
+    slug: "muscles",
+    title: "筋の起始・停止・支配神経・作用の一覧（国試・臨床でよく出る筋）",
+    description:
+      "国家試験・臨床でよく出る筋について、起始・停止・支配神経・作用をまとめた一覧です。部位・名前・神経で絞り込めます。",
+    category: "学生・国試",
+    publishedAt: "2026-10-20",
+    updatedAt: "2026-10-20",
+  },
+  {
     slug: "pt-kokushi-pass-rate",
     title: "理学療法士国家試験の合格率と合格基準【第61回・2026年最新】過去5年の推移",
     description:

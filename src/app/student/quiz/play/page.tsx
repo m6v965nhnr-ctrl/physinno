@@ -25,6 +25,7 @@ import {
 } from "@/lib/quiz";
 import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizClass";
 import { shareContent, shareUrl } from "@/lib/share";
+import MuscleLookup from "@/components/student/MuscleLookup";
 import CalcMemo from "@/components/student/CalcMemo";
 import { LoadingScreen } from "@/components/states";
 
@@ -103,6 +104,7 @@ function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[];
           <p className="text-xs font-semibold text-gray-700">解説</p>
           <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
           {reveal.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-400">AIが作成した解説です。誤りを含むことがあります。</p>}
+          <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
         </div>
       ) : (
         <p className="text-xs text-gray-500">この問題の解説は、まだありません。</p>
@@ -646,6 +648,8 @@ export default function QuizPlayPage() {
                   この問題の解説は、まだありません。正答は厚生労働省が公開しているものです。
                 </p>
               )}
+
+              <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 
               {reveal.ref_url && (
                 <p className="mt-3 text-xs leading-5 text-gray-500">
