@@ -1,5 +1,5 @@
 // どのリンク（Instagramの投稿・広告・友達の紹介など）から来た人が登録したかを、運営が集計するための記録。
-// 外部の解析ツール・広告ピクセルは使わない。リンクの ?utm_source= などを、この端末（localStorage）に最初の1回だけ覚えておき、
+// 広告ピクセル・行動を追跡する解析ツールは使わない（ページ閲覧数の集計だけ、Vercel Web Analytics。SiteAnalytics.tsx）。リンクの ?utm_source= などを、この端末（localStorage）に最初の1回だけ覚えておき、
 // 登録のときに、その人のアカウント情報（auth.users の user_metadata）へ、いっしょに保存する。
 
 const KEY = "relight_attribution";
