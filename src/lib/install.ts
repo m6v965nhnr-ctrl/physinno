@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { notify } from "@/lib/notify";
 
 // ホーム画面に追加できる状態か。
 //   installed: すでにアプリとして開いている / ios: 共有メニューから追加（手順を案内）/ android: ボタンで追加 / none: できない・不明
@@ -26,6 +27,14 @@ export function isStandaloneApp(): boolean {
     window.matchMedia("(display-mode: standalone)").matches ||
     (navigator as Navigator & { standalone?: boolean }).standalone === true
   );
+}
+
+// 印刷（PDF保存）。ホーム画面のアプリやSNSの中のブラウザでは、印刷の画面が開かないことがあるため、先に案内を出す
+export function printPage() {
+  if (isStandaloneApp() || isInAppBrowser()) {
+    notify("この画面では印刷が開けないことがあります。Safari・Chromeでこのページを開いて、もう一度押してください", "info");
+  }
+  window.print();
 }
 
 export function useInstall() {

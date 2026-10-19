@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { PrintQuestion, imageUrl, listPrintQuestions } from "@/lib/quiz";
+import { printPage } from "@/lib/install";
 import { LoadingScreen } from "@/components/states";
 
 const SESSION_LABEL = { am: "午前", pm: "午後" } as const;
@@ -58,7 +59,7 @@ export default function QuizPrintPage() {
               />
               解説を入れる（AI作成）
             </label>
-            <button onClick={() => window.print()} className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
+            <button onClick={printPage} className="rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
               印刷する／PDFで保存する
             </button>
             <p className="text-xs leading-5 text-gray-500">

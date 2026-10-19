@@ -32,6 +32,7 @@ import type { CareerGoal } from "@/lib/portfolio";
 import type { PtProfile } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import { notify } from "@/lib/notify";
+import { printPage } from "@/lib/install";
 import { LoadingScreen } from "@/components/states";
 import { MacroSection, PortfolioBlock, PrintEntry, SummaryTile } from "@/components/portfolio/ViewParts";
 
@@ -333,7 +334,7 @@ export default function PortfolioView({
 
           <div className="flex flex-col items-end gap-1">
             <button
-              onClick={() => window.print()}
+              onClick={printPage}
               className="rounded-full bg-relight-gradient px-5 py-2 text-sm font-medium text-white"
             >
               PDFとして保存
