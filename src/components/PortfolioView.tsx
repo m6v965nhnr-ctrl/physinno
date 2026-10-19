@@ -32,7 +32,7 @@ import type { CareerGoal } from "@/lib/portfolio";
 import type { PtProfile } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import { notify } from "@/lib/notify";
-import { printPage } from "@/lib/install";
+import { isInAppBrowser, isStandaloneApp, printPage } from "@/lib/install";
 import { LoadingScreen } from "@/components/states";
 import { MacroSection, PortfolioBlock, PrintEntry, SummaryTile } from "@/components/portfolio/ViewParts";
 
@@ -246,6 +246,26 @@ export default function PortfolioView({
     }
   }
 
+  // ホーム画面のアプリ・SNSの中のブラウザでは「印刷」が開かないため、PDFを直接作る
+  const [savingPdf, setSavingPdf] = useState(false);
+  const [noPrint, setNoPrint] = useState(false);
+  useEffect(() => setNoPrint(isStandaloneApp() || isInAppBrowser()), []);
+
+  async function onSavePdf() {
+    if (!noPrint) return printPage();
+    const root = document.getElementById("portfolio-print-root");
+    if (!root) return;
+    setSavingPdf(true);
+    try {
+      const { savePdf } = await import("@/lib/savePdf");
+      await savePdf(root, `ポートフォリオ_${new Date().toISOString().slice(0, 10)}.pdf`);
+    } catch {
+      notify("PDFを作れませんでした。Safari・Chromeで開いて、もう一度お試しください", "error");
+    } finally {
+      setSavingPdf(false);
+    }
+  }
+
   useEffect(() => {
     if (id) {
       load();
@@ -334,24 +354,36 @@ export default function PortfolioView({
 
           <div className="flex flex-col items-end gap-1">
             <button
-              onClick={printPage}
-              className="rounded-full bg-relight-gradient px-5 py-2 text-sm font-medium text-white"
+              onClick={onSavePdf}
+              disabled={savingPdf}
+              className="rounded-full bg-relight-gradient px-5 py-2 text-sm font-medium text-white disabled:opacity-60"
             >
-              PDFとして保存
+              {savingPdf ? "PDFを作っています…" : "PDFとして保存"}
             </button>
-            <p className="max-w-[220px] text-right text-[11px] leading-snug text-gray-400">
-              保存ダイアログの「詳細設定」で
-              <br />
-              「ヘッダーとフッター」のチェックを外すと
-              <br />
-              URLや日付が入らずきれいに保存されます
-            </p>
+            {noPrint ? (
+              <p className="max-w-[220px] text-right text-[11px] leading-snug text-gray-400">
+                押すと、PDFを作って、共有の画面から
+                <br />
+                「ファイルに保存」などで保存できます
+                <br />
+                （文字は画像になります）
+              </p>
+            ) : (
+              <p className="max-w-[220px] text-right text-[11px] leading-snug text-gray-400">
+                保存ダイアログの「詳細設定」で
+                <br />
+                「ヘッダーとフッター」のチェックを外すと
+                <br />
+                URLや日付が入らずきれいに保存されます
+              </p>
+            )}
           </div>
         </div>
       </header>
       )}
 
       <div
+        id="portfolio-print-root"
         className={`mx-auto print:max-w-none print:px-0 print:py-0 ${
           embedded ? "max-w-4xl px-0 py-2" : "max-w-4xl px-6 py-10"
         }`}
