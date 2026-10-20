@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import Link from "next/link";
 import { findAnatomy } from "@/lib/muscleMatch";
+import AnatomyFigure from "@/components/AnatomyFigure";
 
 // 問題・解説に出てくる筋・骨を、1タップで確かめる（筋: 起始・停止・支配神経・作用／骨: 特徴・連結・付着する筋）
 export default function MuscleLookup({ text }: { text: string }) {
@@ -57,6 +58,7 @@ export default function MuscleLookup({ text }: { text: string }) {
               <dd className="text-sm leading-6 text-gray-900">{v}</dd>
             </div>
           ))}
+          <AnatomyFigure id={(muscle ?? bone)!.id} name={(muscle ?? bone)!.name} />
           <p className="text-[11px] leading-4 text-gray-400">
             編集部がまとめた要約です。髄節などは教科書で確認してください。
             <Link href={`/columns/${muscle ? "muscles" : "bones"}/${encodeURIComponent((muscle ?? bone)!.name)}`} target="_blank" rel="noopener" className="ml-1 text-blue-600 underline">

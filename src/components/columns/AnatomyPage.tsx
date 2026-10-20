@@ -1,4 +1,5 @@
 import Link from "next/link";
+import AnatomyFigure from "@/components/AnatomyFigure";
 import { ldJson } from "@/lib/jsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -74,6 +75,7 @@ export default function AnatomyPage(p: Props) {
             </div>
           ))}
         </dl>
+        <AnatomyFigure id={p.id} name={p.name} />
 
         <section className="mt-8">
           <h2 className="text-base font-bold text-gray-900">覚え方・ポイント</h2>
