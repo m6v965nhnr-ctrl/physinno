@@ -2,16 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
-import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, H2, LpFooter, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
+import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import { MockKokushi } from "@/components/lp/Mocks";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "学生の方へ｜国試の過去問・実習・就活をひとつに";
-const DESCRIPTION = "理学療法士をめざす学生のための無料アプリ。国試の過去問1,200問、筋・骨の確認、先生のクラスのテスト、実習・就活の管理まで。";
+const TITLE = "理学療法士国家試験の過去問アプリ｜学生向け・無料・解説つき";
+const DESCRIPTION = "理学療法士をめざす学生のための無料アプリ。国家試験の過去問（第56〜61回）を一問一答で解説つきに、間違えた問題の復習と模擬試験、筋・骨の起始停止の確認、先生のクラスのテストと振り返り、実習・就活の管理まで。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
+  keywords: ["理学療法士 国家試験", "過去問", "一問一答", "解説", "模擬試験", "筋 起始停止", "実習", "就職活動", "理学療法学生"],
   alternates: { canonical: "/for-students" },
   openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-students" },
 };
@@ -41,6 +42,7 @@ const registerHref = "/register?type=student";
 export default function ForStudentsPage() {
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
+      <PageJsonLd path="/for-students" name="理学療法士国家試験の過去問アプリ（学生向け）" description={DESCRIPTION} faqs={FAQS} />
       <LpHeader registerHref={registerHref} />
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
@@ -83,6 +85,16 @@ export default function ForStudentsPage() {
         </div>
       </section>
 
+      <GuideLinks
+        title="登録しなくても読める、学生向けのページ"
+        items={[
+          { href: "/kokushi", label: "国家試験の過去問", body: "第56〜61回の問題と正答を、解説つきで解けます。" },
+          { href: "/columns/muscles", label: "筋の起始・停止・支配神経・作用の一覧", body: "213の筋を、部位ごとに。図つき。" },
+          { href: "/columns/bones", label: "骨の一覧", body: "骨の特徴・関節・付着する筋を、図つきで。" },
+          { href: "/schools", label: "養成校の国試合格状況", body: "学校ごとの合格状況を、調べられます。" },
+          { href: "/job-hunting", label: "就活ガイド", body: "病院選びと、応募までの流れ。" },
+        ]}
+      />
       <SafetySection registerHref={registerHref} />
 
       <section className="bg-white px-6 py-16">
@@ -103,7 +115,7 @@ export default function ForStudentsPage() {
 
       <FaqSection faqs={FAQS} />
       <FinalCta registerHref={registerHref} title="国試まで、毎日1問から。" />
-      <LpFooter />
+      <LpFooter audience="student" />
       <LpStickyCta registerHref={registerHref} />
     </main>
   );

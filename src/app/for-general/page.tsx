@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
-import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, H2, LpFooter, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
+import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "一般の方へ｜理学療法士・病院を、地域から探す";
+const TITLE = "理学療法士・リハビリの病院を地域から探す｜一般の方へ";
 const DESCRIPTION = "地域や専門分野から理学療法士を探せます。全国約5,000の病院も、登録なしで探せる、無料のWebアプリです。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
+  keywords: ["理学療法士 探す", "リハビリ 病院 探す", "理学療法士 地域", "専門分野", "リハビリ 病院 口コミ"],
   alternates: { canonical: "/for-general" },
   openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-general" },
 };
@@ -31,6 +32,7 @@ const registerHref = "/register?type=general";
 export default function ForGeneralPage() {
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
+      <PageJsonLd path="/for-general" name="理学療法士・病院を地域から探す（一般の方向け）" description={DESCRIPTION} faqs={FAQS} />
       <LpHeader registerHref={registerHref} />
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
@@ -67,10 +69,17 @@ export default function ForGeneralPage() {
         </div>
       </section>
 
+      <GuideLinks
+        title="登録しなくても使えるページ"
+        items={[
+          { href: "/hospital-areas", label: "病院を都道府県から探す", body: "全国の病院を、地域ごとの一覧から。" },
+          { href: "/pts?mode=hospitals", label: "病院を探す（絞り込み）", body: "地域・診療科などで、病院を絞り込めます。" },
+        ]}
+      />
       <SafetySection registerHref={registerHref} />
       <FaqSection faqs={FAQS} />
       <FinalCta registerHref={registerHref} title="あなたに合う、理学療法士を探す。" />
-      <LpFooter />
+      <LpFooter audience="general" />
       <LpStickyCta registerHref={registerHref} />
     </main>
   );

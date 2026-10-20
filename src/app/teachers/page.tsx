@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
 import LpHeader from "@/components/lp/LpHeader";
+import { LpFooter, PageJsonLd } from "@/components/lp/LpParts";
 
 const TITLE = "大学・専門学校の先生へ｜国試の一問一答を、クラスで使う";
 const DESCRIPTION =
@@ -16,10 +17,12 @@ export const metadata: Metadata = {
 };
 
 const FEATURES = [
-  { icon: "📝", title: "国試の過去問から、テストをつくる", body: "第56〜61回・約1,200問から、単元・回・キーワードで問題を選び、下書きをつくります（難易度での絞り込みは、今後実装予定です）。問題の確認（正答・解説つき）・追加・外す・並べ替えをしてから、学生に配れます。複製して、次のテストにも使えます。" },
-  { icon: "👥", title: "クラスは、参加コードだけ", body: "クラスを作ると、6文字の参加コードが出ます。学生がコードを入れるだけで参加できます。学生は、いつでも退出できます。" },
-  { icon: "📊", title: "クラスの状況が、ひと目で", body: "学生ごとの提出状況と正答率（フォローが必要そうな順）、単元ごとの正答率、正答率の低い問題。学生ごとの状況は、CSVで保存できます。" },
-  { icon: "🔎", title: "課題ごとの結果", body: "提出した人数、平均正答率、学生ごとの結果、問題ごとの正答率を、課題ごとに見られます。授業で取り上げる問題の目安になります。" },
+  { icon: "📝", title: "国試の過去問から、テストをつくる", body: "第56〜61回・約1,200問から、単元をチェックで選び、キーワードで問題を探して足せます。下書きで問題を確かめてから、クラスに配ります。" },
+  { icon: "👥", title: "クラスは、参加コードだけ", body: "クラスを作ると、6文字の参加コードが出ます。学生がコードを入れるだけで参加できます。クラスのチャットで、学生にメッセージも送れます。" },
+  { icon: "📊", title: "テストごとに、結果が見られる", body: "テストごとに、学生ごと・問題ごと・分野ごとの結果を、名前順や点数・正答率の高い順・低い順で並べ替えて見られます。学生の名前をタップすると、テストごとの得点の推移が、棒グラフで見られます。" },
+  { icon: "📄", title: "PDFで保存して、ほかの先生にも共有", body: "単元ごと・テストごと・学生ごとの結果や、得点の推移を、PDFで保存できます。" },
+  { icon: "🙋", title: "学生からの質問に、回答できる", body: "学生は、匿名でも先生に質問できます。回答は、クラスのチャットに流れて、クラスのみんなが読めます。" },
+  { icon: "📈", title: "学生は、テストを振り返れる", body: "学生は、平均点・中央値・クラスでの順位・偏差値で、自分のテストを振り返れます。" },
 ];
 
 const STEPS = [
@@ -31,7 +34,7 @@ const STEPS = [
 export default function TeachersPage() {
   return (
     <>
-    <div className="lp"><LpHeader registerHref="/register?type=teacher" /></div>
+    <div className="lp"><PageJsonLd path="/teachers" name="理学療法士養成校の教員向け｜国試の一問一答をクラスで" description={DESCRIPTION} /><LpHeader registerHref="/register?type=teacher" /></div>
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">
@@ -113,6 +116,7 @@ export default function TeachersPage() {
         </section>
       </div>
     </main>
+    <div className="lp"><LpFooter audience="teacher" /></div>
     </>
   );
 }

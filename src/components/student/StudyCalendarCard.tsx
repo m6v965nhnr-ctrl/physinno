@@ -64,7 +64,7 @@ export default function StudyCalendarCard({ preview = false }: { preview?: boole
 
   return (
     <section className="flex gap-2 rounded-2xl border border-[var(--relight-line)] bg-white px-3 py-2.5 shadow-sm" aria-label="今日の学習">
-      <div className="flex w-[32%] shrink-0 flex-col justify-center">
+      <div className="flex w-[32%] shrink-0 flex-col items-center justify-center self-center text-center">
         <p className="text-xs font-semibold text-gray-600">今日の学習</p>
         <p className="mt-1.5">
           <span className="text-3xl font-extrabold leading-none tracking-tight">{loaded ? todaySolved : "-"}</span>

@@ -577,16 +577,3 @@ html[data-shell] #main-content {
 
 /* ホームの四角の細い枠線の色（「勉強」ボタンの、青緑のグラデーションの真ん中の色） */
 :root { --relight-line: #45cfc3; }
-
-/* iPhoneの画面の上端（時刻の部分）が、下の内容とにじんで見えないよう、白で塞ぐ */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: env(safe-area-inset-top);
-  background: #fff;
-  z-index: 100000;
-  pointer-events: none;
-}

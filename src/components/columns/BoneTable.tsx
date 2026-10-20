@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import AnatomyFigure from "@/components/AnatomyFigure";
 import { BONES, BONE_REGIONS, type BoneRegion } from "@/content/muscles/bones";
 
 // 骨の一覧。部位で絞り込み・名前や筋で検索できる
@@ -65,6 +66,7 @@ export default function BoneTable() {
                 </div>
               ))}
             </dl>
+            <AnatomyFigure id={x.id} name={x.name} />
           </li>
         ))}
       </ul>

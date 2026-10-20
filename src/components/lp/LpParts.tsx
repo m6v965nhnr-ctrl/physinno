@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ldJson } from "@/lib/jsonLd";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import { PIXEL_ENABLED } from "@/lib/metaPixel";
 
 const SAFETY = [
@@ -132,24 +134,77 @@ export function FinalCta({ registerHref, title = "学びと経験を、ひとつ
   );
 }
 
-export function LpFooter() {
+export type Audience = "all" | "pt" | "student" | "teacher" | "general";
+
+// 見る人に合わない案内は、出さない
+const HIDE: Record<Audience, string[]> = {
+  all: [],
+  pt: ["/kokushi", "/schools", "/teachers", "/job-hunting"],
+  student: ["/teachers", "/certified-pt", "/hospital-areas"],
+  teacher: ["/certified-pt", "/hospital-areas", "/paper-search", "/job-hunting"],
+  general: ["/kokushi", "/schools", "/teachers", "/certified-pt", "/paper-search", "/job-hunting", "/evidence-levels"],
+};
+
+export function LpFooter({ audience = "all" }: { audience?: Audience }) {
+  const hide = HIDE[audience];
   return (
       <footer className="bg-white px-6 py-8 pb-24 text-center text-xs text-gray-600 md:pb-8">
         <div className="flex flex-wrap items-center justify-center gap-4">
-          <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>
-          <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>
-          <Link href="/teachers" className="hover:text-gray-900">大学・専門学校の先生へ</Link>
-          <Link href="/hospital-areas" className="hover:text-gray-900">病院を都道府県から探す</Link>
-          <Link href="/paper-search" className="hover:text-gray-900">論文検索</Link>
-          <Link href="/certified-pt" className="hover:text-gray-900">認定理学療法士ガイド</Link>
-          <Link href="/job-hunting" className="hover:text-gray-900">就活ガイド</Link>
-          <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>
-          <Link href="/columns" className="hover:text-gray-900">コラム</Link>
-          <Link href="/feedback" className="hover:text-gray-900">意見箱</Link>
-          <Link href="/terms" className="hover:text-gray-900">利用規約</Link>
-          <Link href="/privacy" className="hover:text-gray-900">プライバシーポリシー</Link>
+          {!hide.includes("/kokushi") && <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>}
+          {!hide.includes("/schools") && <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>}
+          {!hide.includes("/teachers") && <Link href="/teachers" className="hover:text-gray-900">大学・専門学校の先生へ</Link>}
+          {!hide.includes("/hospital-areas") && <Link href="/hospital-areas" className="hover:text-gray-900">病院を都道府県から探す</Link>}
+          {!hide.includes("/paper-search") && <Link href="/paper-search" className="hover:text-gray-900">論文検索</Link>}
+          {!hide.includes("/certified-pt") && <Link href="/certified-pt" className="hover:text-gray-900">認定理学療法士ガイド</Link>}
+          {!hide.includes("/job-hunting") && <Link href="/job-hunting" className="hover:text-gray-900">就活ガイド</Link>}
+          {!hide.includes("/evidence-levels") && <Link href="/evidence-levels" className="hover:text-gray-900">エビデンスレベル早見表</Link>}
+          {!hide.includes("/columns") && <Link href="/columns" className="hover:text-gray-900">コラム</Link>}
+          {!hide.includes("/feedback") && <Link href="/feedback" className="hover:text-gray-900">意見箱</Link>}
+          {!hide.includes("/terms") && <Link href="/terms" className="hover:text-gray-900">利用規約</Link>}
+          {!hide.includes("/privacy") && <Link href="/privacy" className="hover:text-gray-900">プライバシーポリシー</Link>}
         </div>
         <p className="mt-3">© {new Date().getFullYear()} Re:light</p>
       </footer>
+  );
+}
+
+// 検索エンジン向けの構造化データ（このページの概要・パンくず・よくある質問）
+export function PageJsonLd({ path, name, description, faqs }: { path: string; name: string; description: string; faqs?: { q: string; a: string }[] }) {
+  const data = [
+    { "@context": "https://schema.org", "@type": "WebPage", name, description, url: `${SITE_URL}${path}`, inLanguage: "ja", isPartOf: { "@type": "WebSite", name: SITE_NAME, url: SITE_URL } },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: SITE_NAME, item: SITE_URL },
+        { "@type": "ListItem", position: 2, name, item: `${SITE_URL}${path}` },
+      ],
+    },
+    ...(faqs && faqs.length
+      ? [{ "@context": "https://schema.org", "@type": "FAQPage", mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })) }]
+      : []),
+  ];
+  return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(data) }} />;
+}
+
+// 関連するページへの案内（ページどうしのつながりを、はっきりさせる）
+export function GuideLinks({ title, items }: { title: string; items: { href: string; label: string; body: string }[] }) {
+  return (
+    <section className="bg-white px-6 py-14">
+      <div className="mx-auto max-w-5xl">
+        <p className={SECTION_LABEL}>GUIDES</p>
+        <h2 className={H2}>{title}</h2>
+        <ul className="mt-6 grid gap-3 md:grid-cols-2">
+          {items.map((g) => (
+            <li key={g.href}>
+              <Link href={g.href} className="block rounded-2xl border border-[var(--lp-g200)] bg-[var(--lp-g50)] p-4 transition hover:bg-[var(--lp-g100)]">
+                <span className="text-base font-bold text-[var(--lp-g900)]">{g.label} →</span>
+                <span className="mt-1 block text-sm leading-6 text-gray-700">{g.body}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }

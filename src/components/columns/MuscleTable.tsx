@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import AnatomyFigure from "@/components/AnatomyFigure";
 import { MUSCLES, REGIONS, type MuscleRegion } from "@/content/muscles/data";
 
 // 筋の一覧。部位で絞り込み・名前や神経で検索できる
@@ -65,6 +66,7 @@ export default function MuscleTable() {
                 </div>
               ))}
             </dl>
+            <AnatomyFigure id={m.id} name={m.name} />
           </li>
         ))}
       </ul>

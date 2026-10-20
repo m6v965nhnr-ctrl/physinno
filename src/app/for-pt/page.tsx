@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
-import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, H2, LpFooter, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
+import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import { MockHospital, MockIdeas, MockPaperSearch, MockPost } from "@/components/lp/Mocks";
 import { EVIDENCE_LEVELS } from "@/lib/evidence";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "理学療法士の方へ｜論文・資格・研修・職場選びをひとつに";
-const DESCRIPTION = "論文を8サイトまとめて検索、認定・専門PTの進捗、研修・学会の情報、病院の口コミまで。理学療法士のための、無料のWebアプリです。";
+const TITLE = "理学療法士向けアプリ｜論文検索・認定PTの進捗・研修情報・病院の口コミ";
+const DESCRIPTION = "理学療法士のための無料アプリ。論文を8サイトまとめて検索（日本語でOK）、認定・専門理学療法士の更新の進捗、研修・学会の情報、病院の口コミと転職の下調べまで。症例・学会発表は、投稿するだけで実績に。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
+  keywords: ["理学療法士", "論文検索", "認定理学療法士", "専門理学療法士", "研修", "学会", "病院 口コミ", "転職", "エビデンスレベル", "症例報告"],
   alternates: { canonical: "/for-pt" },
   openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-pt" },
 };
@@ -37,8 +38,8 @@ const STEPS = [
   { title: "まずは、読む・探す", body: "気になる論文や研修を探すところから。慣れたら、経験も共有しましょう。" },
 ];
 const FAQS = [
-  { q: "料金はかかりますか？", a: "理学療法士・学生・一般の方ともに、登録と基本機能は無料です。" },
-  { q: "登録しなくても、中を見られますか？", a: "はい。「中を見てみる」から、理学療法士か学生かを選ぶと、ログインなしで、ホーム・論文検索・臨床アイデア・病院情報・国試の過去問などを見て触れます。投稿・コメント・保存・メッセージ・AIへの相談は、無料登録後に使えます。" },
+  { q: "料金はかかりますか？", a: "理学療法士の方は、登録も基本機能も無料です。" },
+  { q: "登録しなくても、中を見られますか？", a: "はい。「ログインなしで、中を見てみる」から理学療法士を選ぶと、ログインなしで、ホーム・論文検索・臨床アイデア・病院情報などの画面を見て触れます。" },
   { q: "口コミは、本当に匿名で投稿できますか？", a: "はい。口コミの投稿は理学療法士アカウントのみで、匿名も選べます。投稿者の情報は、ほかの人には返しません。ただし、権利侵害など法令上必要な場合は、規約に基づき、投稿者の情報を開示することがあります。" },
   { q: "セキュリティは、大丈夫ですか？", a: "データの保管にはSupabase（保存先は東京）、配信にはVercelを使い、どちらもSOC 2 Type 2・ISO 27001に関する認証・準拠を公表している事業者です（各社の発表）。そのうえで、通信の暗号化、本人以外が読めないデータベースの制限、非公開の保管庫、匿名の投稿でも投稿者を返さない仕組み、AI機能の利用回数の上限などを入れ、テストで定期的に点検しています。ただし、どんなサービスでも、絶対に安全とは言い切れません。患者さんが特定される情報は、投稿しないでください。不審な点に気づいたときは、意見箱か「運営へのメッセージ」から、お知らせください。" },
   { q: "研修・学会情報は、どこから集めていますか？", a: "日本理学療法士協会や各都道府県の理学療法士会などが公開している情報をもとに、毎日自動で更新しています。" },
@@ -53,6 +54,7 @@ const registerHref = "/register?type=pt";
 export default function ForPtPage() {
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
+      <PageJsonLd path="/for-pt" name="理学療法士向けアプリ" description={DESCRIPTION} faqs={FAQS} />
       <LpHeader registerHref={registerHref} />
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
@@ -184,6 +186,15 @@ export default function ForPtPage() {
         </div>
       </section>
 
+      <GuideLinks
+        title="調べものに、すぐ使えるガイド"
+        items={[
+          { href: "/paper-search", label: "論文検索ガイド", body: "8つの論文サイトの使い分けと、テーマ別の探し方。" },
+          { href: "/certified-pt", label: "認定理学療法士ガイド", body: "分野ごとの認定の条件と、更新に必要なことの整理。" },
+          { href: "/evidence-levels", label: "エビデンスレベル早見表", body: "論文のレベルを、すぐ確かめられる一覧。" },
+          { href: "/hospital-areas", label: "病院を都道府県から探す", body: "全国の病院を、地域から。口コミも参考に。" },
+        ]}
+      />
       <SafetySection registerHref={registerHref} />
 
       <section className="bg-white px-6 py-16">
@@ -204,7 +215,7 @@ export default function ForPtPage() {
 
       <FaqSection faqs={FAQS} />
       <FinalCta registerHref={registerHref} title="理学療法士の学びと経験を、ひとつに。" />
-      <LpFooter />
+      <LpFooter audience="pt" />
       <LpStickyCta registerHref={registerHref} />
     </main>
   );
