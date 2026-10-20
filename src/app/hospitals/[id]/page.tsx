@@ -3,6 +3,7 @@
 import { getLocalUser } from "@/lib/authUser";
 import HospitalRecruitCard from "@/components/HospitalRecruitCard";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
@@ -638,6 +639,24 @@ export default function HospitalDetailPage() {
 
           {reviews.length > 0 && (
             <div className="mt-4">
+              {averageRating !== null && (
+                <div className="mb-2 flex items-end justify-center gap-3 rounded-2xl bg-gray-50 py-3">
+                  <div className="text-center">
+                    <p className="text-[11px] font-semibold text-gray-500">総合評価</p>
+                    <p className="text-4xl font-extrabold leading-none tracking-tight text-gray-900">
+                      {averageRating.toFixed(1)}
+                      <span className="ml-1 text-sm font-semibold text-gray-500">/ 10</span>
+                    </p>
+                  </div>
+                  <div className="pb-0.5 text-left">
+                    <p aria-hidden="true" className="text-lg leading-none text-amber-400">
+                      {"★".repeat(Math.round(averageRating / 2))}
+                      <span className="text-gray-300">{"★".repeat(5 - Math.round(averageRating / 2))}</span>
+                    </p>
+                    <p className="mt-1 text-[11px] text-gray-500">{reviews.length}件の口コミ</p>
+                  </div>
+                </div>
+              )}
               <ReviewRadarChart items={axisAverages} />
               <ReviewBars items={axisAverages} />
               <p className="mt-3 text-center text-xs text-gray-500">
@@ -663,7 +682,7 @@ export default function HospitalDetailPage() {
             </dl>
           )}
 
-          {isPt && reviewModalOpen && (
+          {isPt && reviewModalOpen && typeof document !== "undefined" && createPortal(
             <div
               className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center"
               onClick={() => setReviewModalOpen(false)}
@@ -672,7 +691,7 @@ export default function HospitalDetailPage() {
               aria-label="口コミを投稿する"
             >
               <div
-                className="max-h-[90vh] w-full max-w-lg space-y-4 overflow-y-auto rounded-t-3xl bg-white p-5 pb-8 sm:rounded-3xl"
+                className="max-h-[85dvh] w-full max-w-lg space-y-4 overflow-y-auto overscroll-contain rounded-t-3xl bg-white p-5 pb-[calc(2rem+env(safe-area-inset-bottom))] sm:rounded-3xl"
                 onClick={(e) => e.stopPropagation()}
               >
               <div className="flex items-center justify-between">
@@ -799,7 +818,7 @@ export default function HospitalDetailPage() {
               </button>
               </div>
             </div>
-          )}
+          , document.body)}
 
           <div className="mt-4 space-y-3">
             {reviews.length === 0 && (

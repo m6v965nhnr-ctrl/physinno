@@ -120,7 +120,7 @@ export default function ReportButton({
             aria-labelledby={titleId}
             onSubmit={handleSubmit}
             onClick={(e) => e.stopPropagation()}
-            className="max-h-[90vh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-white p-5 sm:rounded-3xl"
+            className="max-h-[85dvh] w-full max-w-md overflow-y-auto rounded-t-3xl bg-white p-5 sm:rounded-3xl"
           >
             <div className="flex items-start justify-between">
               <h2 id={titleId} className="text-base font-semibold text-gray-900">
