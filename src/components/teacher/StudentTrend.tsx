@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
 import { ClassScores } from "@/lib/quizClass";
 import PdfButton from "@/components/teacher/PdfButton";
 
@@ -28,9 +29,10 @@ export default function StudentTrend({ scores, name, onClose }: { scores: ClassS
     });
   }
 
-  return (
+  // 画面の動き（page-in）の中だと、fixed がずれて下のメニューの後ろに入るので、body の直下に出す
+  return createPortal(
     <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの得点の推移`}>
-      <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-4 sm:rounded-2xl">
+      <div className="max-h-[80vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:rounded-2xl">
         <div className="flex items-center justify-between gap-2" data-html2canvas-ignore="true">
           <p className="text-sm font-semibold">{name}さんの得点の推移</p>
           <div className="flex gap-2">
@@ -66,15 +68,17 @@ export default function StudentTrend({ scores, name, onClose }: { scores: ClassS
           )}
         </div>
 
-        <fieldset className="mt-3" data-html2canvas-ignore="true">
-          <legend className="text-xs font-semibold text-gray-700">グラフに出すテスト</legend>
+        <details className="mt-3 rounded-xl border border-gray-200" data-html2canvas-ignore="true">
+          <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-semibold text-gray-800">
+            グラフに出すテスト（{picked.size}/{scores.tests.length}件） <span className="text-gray-400">▾</span>
+          </summary>
           {scores.tests.length === 0 ? (
-            <p className="mt-1 text-xs text-gray-400">公開したテストがありません。</p>
+            <p className="px-3 pb-3 text-xs text-gray-400">公開したテストがありません。</p>
           ) : (
-            <ul className="mt-1 space-y-1">
+            <ul className="space-y-1 border-t border-gray-100 px-3 py-2">
               {scores.tests.map((t) => (
                 <li key={t.id}>
-                  <label className="flex items-center gap-2 text-sm">
+                  <label className="flex items-center gap-2 py-1 text-sm">
                     <input type="checkbox" checked={picked.has(t.id)} onChange={() => toggle(t.id)} />
                     <span className="min-w-0 truncate">{date(t.created_at)} {t.title}</span>
                   </label>
@@ -82,8 +86,9 @@ export default function StudentTrend({ scores, name, onClose }: { scores: ClassS
               ))}
             </ul>
           )}
-        </fieldset>
+        </details>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

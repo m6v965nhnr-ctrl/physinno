@@ -163,7 +163,7 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
           )
         )}
         <Link href="/student/quiz/review" className={tile}>
-          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト振り返り</span>
+          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト<br />振り返り</span>
         </Link>
         <Link href="/student/quiz/ask" className={tile}>
           <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">🙋 </span>先生に質問</span>
