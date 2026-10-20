@@ -345,7 +345,7 @@ export default function GroupDetailPage() {
               <div ref={bottomRef} />
             </div>
 
-            <div className="sticky bottom-16 mt-4 flex gap-2 rounded-full border border-gray-200 bg-white p-1.5">
+            <div className="sticky bottom-20 mt-4 flex gap-2 rounded-full border border-gray-200 bg-white p-1.5">
               <input aria-label="メッセージを入力…"
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
