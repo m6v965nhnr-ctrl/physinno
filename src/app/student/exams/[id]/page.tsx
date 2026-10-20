@@ -182,7 +182,7 @@ export default function ExamSubjectPage() {
       <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-white px-6">
         <p className="text-sm text-gray-500">この科目は見つかりませんでした（同じ学校の人だけが見られます）</p>
         <Link href="/student/exams" className="rounded-full bg-black px-5 py-2 text-sm text-white">
-          試験情報へ戻る
+          先輩からの勉強方法へ戻る
         </Link>
       </main>
     );

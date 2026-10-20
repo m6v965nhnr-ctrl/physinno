@@ -81,6 +81,7 @@ export default function MockExamPage() {
   const [saved, setSaved] = useState<Saved | null>(null);
   const [startedAt, setStartedAt] = useState(0);
   const [now, setNow] = useState(0);
+  const [paused, setPaused] = useState(false);
   const [answers, setAnswers] = useState<Record<string, number[]>>({});
   const [flags, setFlags] = useState<string[]>([]);
   const [idx, setIdx] = useState(0);
@@ -150,9 +151,16 @@ export default function MockExamPage() {
 
   useEffect(() => {
     if (phase !== "running") return;
-    const t = setInterval(() => setNow(Date.now()), 1000);
+    let last = Date.now();
+    const t = setInterval(() => {
+      const n = Date.now();
+      // 一時停止中は、開始時刻を進めて、残り時間を止める
+      if (paused) setStartedAt((s) => s + (n - last));
+      last = n;
+      setNow(n);
+    }, 1000);
     return () => clearInterval(t);
-  }, [phase]);
+  }, [phase, paused]);
 
   const remaining = LIMIT_MS - (now - startedAt);
 
@@ -328,6 +336,14 @@ export default function MockExamPage() {
             {fmt(remaining)}
           </p>
           <button
+            type="button"
+            onClick={() => setPaused((p) => !p)}
+            aria-label={paused ? "再開" : "一時停止"}
+            className="shrink-0 rounded-full border border-gray-300 px-3 py-1.5 text-sm"
+          >
+            {paused ? "▶" : "⏸"}
+          </button>
+          <button
             onClick={handleSubmit}
             className="shrink-0 rounded-full bg-black px-4 py-2 text-xs font-medium text-white"
           >
@@ -336,7 +352,15 @@ export default function MockExamPage() {
         </div>
       </header>
 
-      <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
+      {paused && (
+        <div className="mx-auto max-w-2xl px-6 py-10 text-center">
+          <p className="text-sm font-semibold text-gray-700">一時停止中です（時計は止まっています）</p>
+          <button type="button" onClick={() => setPaused(false)} className="mt-3 rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white">
+            ▶ 再開する
+          </button>
+        </div>
+      )}
+      <div className={`mx-auto max-w-2xl space-y-4 px-6 py-5 ${paused ? "hidden" : ""}`}>
         <div className="flex items-center justify-between">
           <p className="text-sm font-semibold">問{q.no}</p>
           <div className="flex gap-2">

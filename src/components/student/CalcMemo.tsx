@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { calc } from "@/lib/calc";
 import { notify } from "@/lib/notify";
 
@@ -49,8 +49,14 @@ export default function CalcMemo() {
 
   function toMemo() {
     if (isErr || !expr) return;
-    setMemo((m) => (m ? `${m.replace(/\n$/, "")}\n${expr}` : expr));
+    setMemo((m) => (m.trim() ? `${m.trimEnd()} ${expr}` : expr));
   }
+
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const clearTimer = () => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = null;
+  };
 
   async function copy() {
     if (isErr || !expr) return;
@@ -81,15 +87,21 @@ export default function CalcMemo() {
             メモへ
           </button>
           <output
-            className={`block min-h-[2rem] min-w-0 flex-1 break-all rounded-lg bg-gray-900 px-3 py-1 text-right text-base tabular-nums ${
+            onPointerDown={() => {
+              clearTimer();
+              timer.current = setTimeout(copy, 500);
+            }}
+            onPointerUp={clearTimer}
+            onPointerLeave={clearTimer}
+            onPointerCancel={clearTimer}
+            onContextMenu={(e) => e.preventDefault()}
+            title="長押しでコピー"
+            className={`select-none block min-h-[2rem] min-w-0 flex-1 break-all rounded-lg bg-gray-900 px-3 py-1 text-right text-base tabular-nums ${
               isErr ? "text-sm text-amber-300" : "text-white"
             }`}
           >
             {shown}
           </output>
-          <button type="button" onClick={copy} className="shrink-0 rounded-lg bg-gray-200 px-2 text-xs font-semibold text-gray-700 active:scale-95">
-            コピー
-          </button>
         </div>
         <div className="mt-1.5 grid grid-cols-4 gap-1">
           {KEYS.flat().map((k) => (

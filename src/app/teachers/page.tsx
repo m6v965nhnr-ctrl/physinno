@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { SITE_NAME } from "@/lib/site";
+import LpHeader from "@/components/lp/LpHeader";
 
 const TITLE = "大学・専門学校の先生へ｜国試の一問一答を、クラスで使う";
 const DESCRIPTION =
@@ -22,13 +23,15 @@ const FEATURES = [
 ];
 
 const STEPS = [
-  { title: "先生のアカウントを、無料でつくる", body: "お名前・所属・メールアドレスだけで、1分。PTのプロフィールなどは、いりません。" },
+  { title: "先生のアカウントを、無料でつくる", body: "お名前・学校名・学部名・学科名・アイコン画像・メールアドレスだけで、1分。PTのプロフィールなどは、いりません。" },
   { title: "運営が確認して、承認", body: "登録した所属をもとに、運営が先生であることを確認します。承認されると、クラスと課題を作れるようになります。" },
   { title: "クラスをつくり、コードを伝える", body: "学生は「クラスの課題」にコードを入れて参加。課題を配れば、結果が集まります。" },
 ];
 
 export default function TeachersPage() {
   return (
+    <>
+    <div className="lp"><LpHeader registerHref="/register?type=teacher" /></div>
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">
@@ -110,5 +113,6 @@ export default function TeachersPage() {
         </section>
       </div>
     </main>
+    </>
   );
 }

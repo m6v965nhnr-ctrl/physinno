@@ -235,7 +235,7 @@ export default function StudentSettingsPage() {
                 ))}
               </datalist>
               <span className="mt-1 block text-xs font-normal leading-5 text-gray-400">
-                正式名称で入力してください。同じ学校を登録した人だけが、その学校の試験情報を見て、書き込めます（学校は自己申告です）。
+                正式名称で入力してください。同じ学校を登録した人だけが、その学校の先輩からの勉強方法を見て、書き込めます（学校は自己申告です）。
                 候補に出た学校は、選ぶと同じ学校としてまとまります。
               </span>
             </label>

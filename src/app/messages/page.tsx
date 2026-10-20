@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import { listMyGroups } from "@/lib/groups";
+import { ClassRoom, listClassRooms } from "@/lib/quizClass";
 
 type GroupRow = {
   id: string;
@@ -40,6 +41,8 @@ export default function MessagesPage() {
   const [lastAtByConversation, setLastAtByConversation] = useState<Record<string, string>>({});
   // 作った・参加したグループ（メッセージ一覧にグループ名で表示して、そこからチャットできる）
   const [groups, setGroups] = useState<GroupRow[]>([]);
+  // 先生のクラス（クラス全員のチャット）
+  const [rooms, setRooms] = useState<ClassRoom[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -59,6 +62,8 @@ export default function MessagesPage() {
     }
 
     setUser(user);
+
+    listClassRooms().then(setRooms);
 
     // 参加しているグループと、それぞれの最新メッセージ
     const myGroups = await listMyGroups(user.id);
@@ -253,7 +258,7 @@ export default function MessagesPage() {
       </header>
 
       <div className="mx-auto max-w-2xl px-4 py-4">
-        {conversations.length === 0 && groups.length === 0 ? (
+        {conversations.length === 0 && groups.length === 0 && rooms.length === 0 ? (
           <div className="flex min-h-[50vh] items-center justify-center">
             <p className="text-sm text-gray-400">
               まだメッセージはありません
@@ -262,6 +267,24 @@ export default function MessagesPage() {
         ) : (
           <div className="overflow-hidden rounded-2xl border border-gray-100 bg-white">
             {[
+              ...rooms.map((r) => ({
+                key: `r-${r.id}`,
+                at: r.last_at ?? "",
+                node: (
+                  <Link
+                    key={`r-${r.id}`}
+                    href={`/student/quiz/classes/chat?id=${r.id}`}
+                    className="flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0"
+                  >
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-emerald-500 text-xl text-white">🎓</div>
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-semibold text-gray-900">{r.name}<span className="ml-1 text-[10px] font-normal text-gray-400">クラス</span></p>
+                      <p className="mt-1 truncate text-xs text-gray-400">{r.last_text ?? "クラスのチャットを開く"}</p>
+                    </div>
+                    <span className="text-gray-300">→</span>
+                  </Link>
+                ),
+              })),
               ...groups.map((g) => ({
                 key: `g-${g.id}`,
                 at: g.lastAt ?? "",

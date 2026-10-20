@@ -92,7 +92,7 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
     router.push(href(q.toString(), false));
   }
 
-  const tile = "rounded-2xl bg-white p-3 text-center shadow-sm transition active:scale-[0.98]";
+  const tile = "flex min-h-[2.75rem] flex-col items-center justify-center rounded-xl bg-white px-1 py-1.5 text-center shadow-sm transition active:scale-[0.98]";
 
   return (
     <div className="space-y-4">
@@ -144,38 +144,29 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         <p className="mt-1 pl-6 text-[10px] leading-4 text-gray-400">関係する問題も集めます。人名のつく病名・評価法は、英語でも。</p>
       </section>
 
-      {/* 近道 */}
-      <section className="grid grid-cols-3 gap-2" aria-label="近道">
-        {counts && counts.wrong > 0 ? (
-          <Link href={fixed("wrong", 0)} className={tile}>
-            <span aria-hidden="true" className="text-xl">🔁</span>
-            <span className="mt-1 block text-[11px] font-bold text-gray-900">復習</span>
-            <span className="block text-[11px] font-semibold text-red-500">{counts.wrong}問</span>
-          </Link>
-        ) : (
-          <div className={`${tile} opacity-50`}>
-            <span aria-hidden="true" className="text-xl">🔁</span>
-            <span className="mt-1 block text-[11px] font-bold text-gray-900">復習</span>
-            <span className="block text-[11px] text-gray-400">まだなし</span>
-          </div>
+      {/* 近道（縦を狭く） */}
+      <section className="grid grid-cols-4 gap-1.5" aria-label="近道">
+        {[
+          { icon: "🔁", label: "復習", n: counts?.wrong ?? 0, href: fixed("wrong", 0), color: "text-red-500" },
+          { icon: "🔖", label: "保存", n: counts?.bookmarked ?? 0, href: fixed("bookmarked", 0), color: "text-gray-600" },
+        ].map((t) =>
+          t.n > 0 ? (
+            <Link key={t.label} href={t.href} className={tile}>
+              <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">{t.icon} </span>{t.label}</span>
+              <span className={`block text-[10px] font-semibold ${t.color}`}>{t.n}問</span>
+            </Link>
+          ) : (
+            <div key={t.label} className={`${tile} opacity-50`}>
+              <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">{t.icon} </span>{t.label}</span>
+              <span className="block text-[10px] text-gray-400">まだなし</span>
+            </div>
+          )
         )}
-        {counts && counts.bookmarked > 0 ? (
-          <Link href={fixed("bookmarked", 0)} className={tile}>
-            <span aria-hidden="true" className="text-xl">🔖</span>
-            <span className="mt-1 block text-[11px] font-bold text-gray-900">保存</span>
-            <span className="block text-[11px] font-semibold text-gray-600">{counts.bookmarked}問</span>
-          </Link>
-        ) : (
-          <div className={`${tile} opacity-50`}>
-            <span aria-hidden="true" className="text-xl">🔖</span>
-            <span className="mt-1 block text-[11px] font-bold text-gray-900">保存</span>
-            <span className="block text-[11px] text-gray-400">まだなし</span>
-          </div>
-        )}
-        <Link href={href("", todayUnanswered)} className={tile}>
-          <span aria-hidden="true" className="text-xl">🎲</span>
-          <span className="mt-1 block text-[11px] font-bold text-gray-900">全範囲</span>
-          <span className="block text-[11px] font-semibold text-gray-600">{total.toLocaleString()}問</span>
+        <Link href="/student/quiz/review" className={tile}>
+          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト振り返り</span>
+        </Link>
+        <Link href="/student/quiz/ask" className={tile}>
+          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">🙋 </span>先生に質問</span>
         </Link>
       </section>
 

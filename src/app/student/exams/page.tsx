@@ -87,9 +87,9 @@ export default function ExamsPage() {
           <Link href="/student" className="text-sm text-gray-400">
             ← 学生ホーム
           </Link>
-          <h1 className="mt-2 text-xl font-semibold tracking-tight">試験情報（学校の科目ごと）</h1>
+          <h1 className="mt-2 text-xl font-semibold tracking-tight">先輩からの勉強方法（科目ごと）</h1>
           <p className="mt-1 text-xs leading-5 text-gray-500">
-            どんなテストだったか、出題の傾向や勉強法を、同じ学校の学生・卒業生で共有します。投稿者は表示されません。
+            科目ごとの、どんなテストだったか・出題の傾向・勉強法を、同じ学校の先輩（学生・卒業生）から共有します。投稿者は表示されません。
           </p>
         </div>
       </header>
@@ -99,7 +99,7 @@ export default function ExamsPage() {
           <div className="rounded-2xl bg-white p-6 text-center shadow-sm">
             <p className="text-sm font-semibold text-gray-900">先に、学校を登録してください</p>
             <p className="mt-2 text-xs leading-5 text-gray-500">
-              試験情報は、同じ学校を登録した人どうしで共有します。設定で、養成校名を入力してください。
+              先輩からの勉強方法は、同じ学校を登録した人どうしで共有します。設定で、養成校名を入力してください。
             </p>
             <Link
               href="/student/settings"
@@ -111,7 +111,7 @@ export default function ExamsPage() {
         ) : (
           <>
             <p className="text-sm text-gray-700">
-              <span className="font-semibold">{school.name}</span> の試験情報
+              <span className="font-semibold">{school.name}</span> の勉強方法
             </p>
 
             <fieldset className="mt-3">

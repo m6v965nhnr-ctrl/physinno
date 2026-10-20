@@ -9,7 +9,7 @@ import { trackRegistration } from "@/lib/metaPixel";
 import { graduationYearOptions } from "@/lib/student";
 import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
 
-type AccountType = "pt" | "general" | "student";
+type AccountType = "pt" | "general" | "student" | "teacher";
 
 // 先生（大学・専門学校）は、種類を選ばせず、専用の入力欄だけにする（/register?type=teacher）。PTのプロフィールは作らない
 
@@ -29,6 +29,11 @@ const ACCOUNT_TYPE_OPTIONS: {
     description: "実習・就活・国試をサポート",
   },
   {
+    value: "teacher",
+    label: "教員（養成校の先生）",
+    description: "クラス・テストをつくって、学生の状況を見る",
+  },
+  {
     value: "general",
     label: "一般",
     description: "PTを探す・レビューを書く",
@@ -42,9 +47,11 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
-  const [isTeacher, setIsTeacher] = useState(false);
+  const isTeacher = accountType === "teacher";
   const [school, setSchool] = useState("");
-  const [teacherNote, setTeacherNote] = useState("");
+  const [faculty, setFaculty] = useState("");
+  const [department, setDepartment] = useState("");
+  const [icon, setIcon] = useState<File | null>(null);
   const [agreed, setAgreed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -57,9 +64,7 @@ export default function RegisterPage() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
     const type = params.get("type");
-    if (type === "teacher") {
-      setIsTeacher(true);
-    } else if (type === "pt" || type === "general" || type === "student") {
+    if (type === "pt" || type === "general" || type === "student" || type === "teacher") {
       setAccountType(type);
     }
 
@@ -76,13 +81,18 @@ export default function RegisterPage() {
     setError("");
 
     if (!isTeacher && !accountType) {
-      setError("アカウントの種類（PT／学生／一般）を選んでください");
+      setError("アカウントの種類（PT／学生／教員／一般）を選んでください");
       return;
     }
 
-    if (isTeacher && !school.trim()) {
-      setError("所属（学校名）を入力してください");
+    if (isTeacher && (!school.trim() || !faculty.trim() || !department.trim())) {
+      setError("学校名・学部名・学科名を入力してください");
       document.getElementById("field-school")?.focus();
+      return;
+    }
+
+    if (isTeacher && (!icon || !icon.type.startsWith("image/") || icon.size > 5 * 1024 * 1024)) {
+      setError("アイコンの画像を1枚選んでください（5MBまで）");
       return;
     }
 
@@ -119,8 +129,7 @@ export default function RegisterPage() {
         data: {
           account_type: isTeacher ? "teacher" : accountType,
           // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
-          school: isTeacher ? school.trim().slice(0, 100) : undefined,
-          teacher_note: isTeacher ? teacherNote.trim().slice(0, 500) : undefined,
+          school: isTeacher ? `${school.trim()} ${faculty.trim()} ${department.trim()}`.slice(0, 100) : undefined,
           full_name: fullName.trim().slice(0, 50),
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
@@ -145,6 +154,20 @@ export default function RegisterPage() {
     }
 
     trackRegistration();
+
+    // 先生の学校・学部・学科・アイコン（ログインできた場合は、ここで保存。できなかったときは、アカウントの画面で入れられる）
+    if (isTeacher && icon && data.session) {
+      const path = `${data.user.id}/${Date.now()}.${icon.name.split(".").pop() || "jpg"}`;
+      const up = await supabase.storage.from("profile-images").upload(path, icon, { upsert: true, contentType: icon.type });
+      const iconUrl = up.error ? null : supabase.storage.from("profile-images").getPublicUrl(path).data.publicUrl;
+      await supabase.from("teacher_profiles").insert({
+        user_id: data.user.id,
+        school_name: school.trim().slice(0, 100),
+        faculty: faculty.trim().slice(0, 100),
+        department: department.trim().slice(0, 100),
+        icon_url: iconUrl,
+      });
+    }
 
     // 一般の方は検索から始める。PTは、他のPTに見つけてもらえるよう
     // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。
@@ -176,12 +199,12 @@ export default function RegisterPage() {
         </h1>
 
         <p className="mt-3 text-sm text-gray-500">
-          {isTeacher ? "大学・専門学校の先生向けです。クラスとテストをつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
+          {isTeacher ? "養成校の教員向けです。クラスとテストをつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
         </p>
 
         <div className="mt-10 space-y-5">
 
-          {!isTeacher && (
+          {(
           <div>
             <p className="mb-2 block text-sm font-medium">
               アカウントの種類 <span className="text-xs font-normal text-red-500">（必須）</span>
@@ -190,7 +213,7 @@ export default function RegisterPage() {
             <div
               role="radiogroup"
               aria-label="アカウントの種類"
-              className="grid grid-cols-1 gap-3 sm:grid-cols-3"
+              className="grid grid-cols-1 gap-3 sm:grid-cols-2"
             >
               {ACCOUNT_TYPE_OPTIONS.map((option) => {
                 const selected = accountType === option.value;
@@ -281,36 +304,34 @@ export default function RegisterPage() {
 
           {isTeacher && (
             <>
-              <div>
-                <label className="mb-2 block text-sm font-medium" htmlFor="field-school">
-                  所属（学校名・学科） <span className="text-xs font-normal text-red-500">（必須）</span>
-                </label>
-                <input
-                  id="field-school"
-                  type="text"
-                  maxLength={100}
-                  value={school}
-                  onChange={(e) => setSchool(e.target.value)}
-                  placeholder="例：○○大学 保健医療学部 理学療法学科"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
-                />
-              </div>
+              {[
+                ["field-school", "学校名", school, setSchool, "例：○○大学"],
+                ["field-faculty", "学部名", faculty, setFaculty, "例：保健医療学部"],
+                ["field-department", "学科名", department, setDepartment, "例：理学療法学科"],
+              ].map(([id, label, v, set, ph]) => (
+                <div key={id as string}>
+                  <label className="mb-2 block text-sm font-medium" htmlFor={id as string}>
+                    {label as string} <span className="text-xs font-normal text-red-500">（必須）</span>
+                  </label>
+                  <input
+                    id={id as string}
+                    type="text"
+                    maxLength={100}
+                    value={v as string}
+                    onChange={(e) => (set as (x: string) => void)(e.target.value)}
+                    placeholder={ph as string}
+                    className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+                  />
+                </div>
+              ))}
 
               <div>
-                <label className="mb-2 block text-sm font-medium" htmlFor="field-note">
-                  担当科目など <span className="text-xs font-normal text-gray-400">（任意）</span>
+                <label className="mb-2 block text-sm font-medium" htmlFor="field-icon">
+                  アイコン（画像1枚） <span className="text-xs font-normal text-red-500">（必須）</span>
                 </label>
-                <input
-                  id="field-note"
-                  type="text"
-                  maxLength={200}
-                  value={teacherNote}
-                  onChange={(e) => setTeacherNote(e.target.value)}
-                  placeholder="例：運動学、国家試験対策"
-                  className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
-                />
+                <input id="field-icon" type="file" accept="image/*" onChange={(e) => setIcon(e.target.files?.[0] ?? null)} className="block w-full text-sm" />
                 <p className="mt-2 text-xs leading-5 text-gray-400">
-                  所属と担当は、運営が先生であることを確認するために使います。確認が済むと、クラスと課題を作れるようになります。
+                  学校・学部・学科は、運営が先生であることを確認するために使います。確認が済むと、クラスと課題を作れるようになります。
                 </p>
               </div>
             </>
@@ -381,7 +402,7 @@ export default function RegisterPage() {
 
           {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
           {(() => {
-            const missing = [!isTeacher && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && !school.trim() && "所属", !agreed && "利用規約への同意"].filter(Boolean);
+            const missing = [!isTeacher && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
             return missing.length > 0 ? (
               <p className="text-center text-xs text-red-600" role="status">
                 未入力：{missing.join("・")}
@@ -391,7 +412,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || (!isTeacher && !accountType) || !fullName.trim() || (isTeacher && !school.trim())}
+            disabled={loading || !agreed || (!isTeacher && !accountType) || !fullName.trim() || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}

@@ -40,11 +40,11 @@ const GUEST_MENUS_UNSET: Menu[] = [
 // 先生（クラス・テスト・分析）の画面のメニュー
 const TEACHER_BASE = "/student/quiz/teacher";
 const TEACHER_MENUS: Menu[] = [
-  { href: TEACHER_BASE, icon: "⌂", label: "ホーム" },
+  { href: `${TEACHER_BASE}/account`, icon: "○", label: "アカウント" },
   { href: `${TEACHER_BASE}/tests`, icon: "📝", label: "テスト" },
   { href: `${TEACHER_BASE}/analysis`, icon: "📊", label: "分析" },
   { href: `${TEACHER_BASE}/classes`, icon: "👥", label: "クラス" },
-  { href: `${TEACHER_BASE}/account`, icon: "○", label: "アカウント" },
+  { href: TEACHER_BASE, icon: "⌂", label: "ホーム" },
 ];
 
 // 先生のメニューの、いまの場所。テストの作成・課題の結果は「テスト」、クラスの状況は「分析」に含める
@@ -56,7 +56,7 @@ function teacherActive(href: string, pathname: string) {
 }
 
 // ゲスト用のメニューを出さないページ（トップ・認証まわり）
-const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest", "/teachers"];
+const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest", "/teachers", "/for-pt", "/for-students", "/for-general"];
 
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ
 const GENERAL_MENUS: Menu[] = [

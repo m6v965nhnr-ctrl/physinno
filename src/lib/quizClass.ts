@@ -229,13 +229,14 @@ export async function searchQuestions(params: {
   exam: number | null;
   difficulty: Difficulty;
   keyword: string;
+  limit?: number;
 }): Promise<QuestionHit[]> {
   const { data } = await supabase.rpc("quiz_teacher_search_questions", {
     p_unit: params.unit,
     p_exam: params.exam,
     p_difficulty: params.difficulty,
     p_keyword: params.keyword || null,
-    p_limit: 30,
+    p_limit: params.limit ?? 30,
   });
   return (data ?? []) as QuestionHit[];
 }
@@ -398,4 +399,87 @@ export function dueText(due: string | null) {
   if (!due) return "期限なし";
   const d = new Date(due);
   return `${d.getMonth() + 1}月${d.getDate()}日 まで`;
+}
+
+// ---- クラスのチャット・先生への質問 ----
+
+export type ClassMessage = {
+  id: string;
+  kind: "chat" | "question" | "answer";
+  body: string;
+  created_at: string;
+  reply_to: string | null;
+  anonymous: boolean;
+  mine: boolean;
+  from_teacher: boolean;
+  author: string | null; // 匿名の質問は、書いた本人以外には null
+};
+
+export type ClassRoom = { id: string; name: string; last_at: string | null; last_text: string | null };
+
+export async function listClassMessages(classId: string): Promise<ClassMessage[] | null> {
+  const { data, error } = await supabase.rpc("quiz_class_messages_list", { p_class: classId });
+  if (error || !data) return null;
+  return data as ClassMessage[];
+}
+
+export async function postClassMessage(
+  classId: string,
+  kind: ClassMessage["kind"],
+  body: string,
+  opts: { anonymous?: boolean; replyTo?: string } = {}
+): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_class_post", {
+    p_class: classId,
+    p_kind: kind,
+    p_body: body,
+    p_anonymous: !!opts.anonymous,
+    p_reply_to: opts.replyTo ?? null,
+  });
+  return !error;
+}
+
+export async function deleteClassMessage(id: string): Promise<boolean> {
+  const { error } = await supabase.rpc("quiz_class_message_delete", { p_id: id });
+  return !error;
+}
+
+export async function listClassRooms(): Promise<ClassRoom[]> {
+  const { data } = await supabase.rpc("quiz_class_rooms");
+  return (data ?? []) as ClassRoom[];
+}
+
+// ---- 先生: クラスの得点（推移・テスト別） ----
+
+export type ClassScores = {
+  class_name: string;
+  tests: { id: string; title: string; created_at: string; due_at: string | null; n: number }[];
+  students: { name: string; scores: Record<string, { a: number; c: number }> }[];
+};
+
+export async function getClassScores(classId: string): Promise<ClassScores | null> {
+  const { data, error } = await supabase.rpc("quiz_class_scores", { p_class: classId });
+  if (error || !data) return null;
+  return data as ClassScores;
+}
+
+// ---- 学生: テストの振り返り ----
+
+export type TestReview = {
+  id: string;
+  title: string;
+  class_name: string;
+  created_at: string;
+  n: number;
+  my_correct: number;
+  participants: number;
+  mean: number;
+  median: number;
+  rank: number;
+  deviation: number | null;
+};
+
+export async function listMyReviews(): Promise<TestReview[]> {
+  const { data } = await supabase.rpc("quiz_my_reviews");
+  return (data ?? []) as TestReview[];
 }

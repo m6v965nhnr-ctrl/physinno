@@ -89,7 +89,7 @@ for (const b of ["exam-files", "id-photos", "portfolio-files"]) {
 }
 
 // 7) 先生・クラス・テストまわり: 匿名は、表も、先生用・運営用の関数も、使えない
-for (const t of ["quiz_classes", "quiz_class_members", "quiz_assignments", "quiz_assignment_answers", "quiz_teachers", "quiz_teacher_requests", "quiz_audit_log", "quiz_join_attempts", "licensed_schools", "school_members", "school_code_attempts", "app_settings"]) {
+for (const t of ["quiz_classes", "quiz_class_members", "quiz_assignments", "quiz_assignment_answers", "quiz_teachers", "quiz_teacher_requests", "quiz_class_messages", "teacher_profiles", "quiz_audit_log", "quiz_join_attempts", "licensed_schools", "school_members", "school_code_attempts", "app_settings"]) {
   const r = await req(`/rest/v1/${t}?select=*&limit=1`);
   const rows = Array.isArray(r.body) ? r.body.length : 0;
   check(`匿名は ${t} を読めない`, rows === 0, `status=${r.status} rows=${rows}`);
@@ -99,6 +99,13 @@ for (const [fn, body] of [
   ["quiz_assignment_results", { p_assignment: ZERO }],
   ["quiz_assignment_matrix", { p_assignment: ZERO }],
   ["quiz_class_progress", { p_class: ZERO }],
+  ["quiz_class_messages_list", { p_class: ZERO }],
+  ["quiz_class_post", { p_class: ZERO, p_kind: "chat", p_body: "x", p_anonymous: false, p_reply_to: null }],
+  ["quiz_class_message_delete", { p_id: ZERO }],
+  ["quiz_class_rooms", {}],
+  ["quiz_class_role", { p_class: ZERO }],
+  ["quiz_class_scores", { p_class: ZERO }],
+  ["quiz_my_reviews", {}],
   ["quiz_assignment_choice_stats", { p_assignment: ZERO }],
   ["quiz_set_share_progress", { p_class: ZERO, p_share: true }],
   ["school_join", { p_code: "AAAAAAAA" }],

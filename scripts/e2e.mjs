@@ -42,6 +42,9 @@ const PUBLIC_PAGES = [
   ["/hospital-areas/%E6%9D%B1%E4%BA%AC%E9%83%BD", "東京都の病院一覧"],
   ["/paper-search/topics/knee-osteoarthritis", "変形性膝関節症"],
   ["/teachers", "先生"],
+  ["/for-pt", "理学療法士"],
+  ["/for-students", "学生"],
+  ["/for-general", "一般"],
   ["/schools/%E9%A0%86%E5%A4%A9%E5%A0%82%E5%A4%A7%E5%AD%A6", "順天堂大学"],
   ["/feedback", ""],
   ["/terms", "利用規約"],
@@ -91,13 +94,13 @@ try {
   }
   // 1.5) トップページは、リンクのUTMに合わせて、最初の画面の主役（PT／学生）が変わる（lpEntrance.ts の対応表）
   const LP_CASES = [
-    ["/", "type=pt"],
-    ["/?utm_source=tiktok&utm_campaign=profile", "type=pt"],
-    ["/?utm_source=tiktok&utm_campaign=feature-papers", "type=pt"],
-    ["/?utm_source=ig&utm_campaign=quiz-watt", "type=student"],
-    ["/?utm_source=x&utm_campaign=profile", "type=pt"],
-    ["/?utm_source=ig&utm_campaign=memo-berg", "type=pt"],
-    ["/?utm_source=ig&utm_campaign=profile", "type=pt"],
+    ["/", "/for-pt"],
+    ["/?utm_source=tiktok&utm_campaign=profile", "/for-pt"],
+    ["/?utm_source=tiktok&utm_campaign=feature-papers", "/for-pt"],
+    ["/?utm_source=ig&utm_campaign=quiz-watt", "/for-students"],
+    ["/?utm_source=x&utm_campaign=profile", "/for-pt"],
+    ["/?utm_source=ig&utm_campaign=memo-berg", "/for-pt"],
+    ["/?utm_source=ig&utm_campaign=profile", "/for-pt"],
   ];
   for (const [path, want] of LP_CASES) {
     const page = await guest.newPage();

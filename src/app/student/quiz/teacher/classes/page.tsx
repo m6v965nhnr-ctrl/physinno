@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import ClassChat from "@/components/ClassChat";
+import ClassQuestions from "@/components/teacher/ClassQuestions";
 import TeacherPage from "@/components/teacher/TeacherPage";
 import { useTeacherData } from "@/components/teacher/useTeacherData";
 import { askConfirm } from "@/lib/confirm";
@@ -9,6 +11,7 @@ import { notify } from "@/lib/notify";
 import { TeacherClass, archiveClass, createClass } from "@/lib/quizClass";
 
 function ClassCard({ cls, onChanged }: { cls: TeacherClass; onChanged: () => void }) {
+  const [openQ, setOpenQ] = useState(0);
   async function copy(text: string, ok: string, fallbackLabel: string) {
     try {
       await navigator.clipboard.writeText(text);
@@ -49,12 +52,32 @@ function ClassCard({ cls, onChanged }: { cls: TeacherClass; onChanged: () => voi
 
       <div className="grid grid-cols-2 gap-2">
         <Link href={`/student/quiz/teacher/tests?new=1&class=${cls.id}`} className="rounded-xl bg-black px-3 py-2.5 text-center text-sm font-medium text-white">
-          このクラスにテストを作る
+          このクラスに
+          <br />
+          テストを作る
         </Link>
         <Link href={`/student/quiz/teacher/analysis?class=${cls.id}`} className="rounded-xl border border-gray-300 px-3 py-2.5 text-center text-sm font-medium text-gray-800">
           クラスの分析を見る
         </Link>
       </div>
+
+      <details className="rounded-xl border border-gray-200">
+        <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-gray-800">
+          質問 {openQ > 0 && <span className="ml-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-600">未回答 {openQ}</span>} <span className="text-gray-400">▾</span>
+        </summary>
+        <div className="border-t border-gray-100 p-3">
+          <ClassQuestions classId={cls.id} onCount={setOpenQ} />
+        </div>
+      </details>
+
+      <details className="rounded-xl border border-gray-200">
+        <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-gray-800">
+          メッセージ（クラスのチャット） <span className="text-gray-400">▾</span>
+        </summary>
+        <div className="border-t border-gray-100 p-3">
+          <ClassChat classId={cls.id} height="h-[50vh]" />
+        </div>
+      </details>
 
       <button onClick={handleArchive} className="text-xs text-gray-400 underline">
         このクラスを閉じる

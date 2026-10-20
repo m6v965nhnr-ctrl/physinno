@@ -21,6 +21,7 @@ function AccountBody({ accountType }: { accountType: string }) {
   const [info, setInfo] = useState<{ name: string; email: string } | null>(null);
   const [status, setStatus] = useState<TeacherStatus | null>(null);
   const [access, setAccess] = useState<AccessState | null>(null);
+  const [prof, setProf] = useState<{ school_name: string; faculty: string; department: string; icon_url: string | null } | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -28,6 +29,8 @@ function AccountBody({ accountType }: { accountType: string }) {
       if (!user) return;
       const { data } = await supabase.from("users").select("full_name").eq("id", user.id).maybeSingle();
       setInfo({ name: data?.full_name ?? "", email: user.email ?? "" });
+      const { data: tp } = await supabase.from("teacher_profiles").select("school_name, faculty, department, icon_url").eq("user_id", user.id).maybeSingle();
+      setProf(tp);
     })();
     getTeacherStatus().then(setStatus);
     getAccessState().then(setAccess);
@@ -36,10 +39,20 @@ function AccountBody({ accountType }: { accountType: string }) {
   return (
     <>
       <section className="space-y-2 rounded-2xl bg-white p-4 text-sm shadow-sm">
+        {prof?.icon_url && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={prof.icon_url} alt="アイコン" width={64} height={64} className="h-16 w-16 rounded-full object-cover" />
+        )}
         <p className="text-xs text-gray-400">お名前（学生に、先生の名前として表示されます）</p>
         <p className="font-semibold">{info ? info.name || "（未設定）" : "…"}</p>
         <p className="pt-1 text-xs text-gray-400">メールアドレス</p>
         <p>{info?.email ?? "…"}</p>
+        {prof && (
+          <>
+            <p className="pt-1 text-xs text-gray-400">学校・学部・学科</p>
+            <p>{[prof.school_name, prof.faculty, prof.department].filter(Boolean).join(" ") || "（未設定）"}</p>
+          </>
+        )}
         <p className="pt-1 text-xs text-gray-400">先生としての状態</p>
         <p>{status ? STATUS_LABEL[status] : "…"}</p>
         <p className="pt-1 text-xs text-gray-400">所属している学校</p>

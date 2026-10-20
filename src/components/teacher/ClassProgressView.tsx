@@ -4,20 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import { QuizUnit, listQuizUnits, percent } from "@/lib/quiz";
 import { ClassProgress, getClassProgress } from "@/lib/quizClass";
 
-type Sort = "name" | "idle" | "less" | "low";
-
-const SORTS: { key: Sort; label: string }[] = [
-  { key: "name", label: "名前順" },
-  { key: "idle", label: "最近やっていない順" },
-  { key: "less", label: "進みが少ない順" },
-  { key: "low", label: "正答率が低い順" },
-];
-
 // 先生用: クラスの学生の、一問一答（学生が自分で解いたもの）の進み具合。学生が「先生に見せる」をオンにしている人だけ
 export default function ClassProgressView({ classId }: { classId: string }) {
   const [data, setData] = useState<ClassProgress | null | undefined>(undefined);
   const [units, setUnits] = useState<QuizUnit[]>([]);
-  const [sort, setSort] = useState<Sort>("name");
   const [now] = useState(() => Date.now());
 
   useEffect(() => {
@@ -30,12 +20,8 @@ export default function ClassProgressView({ classId }: { classId: string }) {
 
   const rows = useMemo(() => {
     const list = [...(data?.students ?? [])];
-    const rate = (s: (typeof list)[number]) => (s.attempts ? (s.correct ?? 0) / s.attempts : -1);
-    if (sort === "idle") list.sort((a, b) => (a.last_at ?? "").localeCompare(b.last_at ?? ""));
-    else if (sort === "less") list.sort((a, b) => (a.answered ?? -1) - (b.answered ?? -1));
-    else if (sort === "low") list.sort((a, b) => rate(a) - rate(b));
-    return list;
-  }, [data, sort]);
+    return list.sort((a, b) => a.name.localeCompare(b.name, "ja"));
+  }, [data]);
 
   if (data === undefined) return <p className="py-10 text-center text-sm text-gray-400">読み込み中…</p>;
   if (data === null) return <p className="rounded-2xl bg-white p-6 text-center text-sm text-gray-600 shadow-sm">進み具合を表示できません。</p>;
@@ -52,21 +38,6 @@ export default function ClassProgressView({ classId }: { classId: string }) {
         </p>
       </div>
 
-      {data.students.length > 0 && (
-        <div role="group" aria-label="並べ替え" className="flex flex-wrap gap-1.5">
-          {SORTS.map((s) => (
-            <button
-              key={s.key}
-              type="button"
-              aria-pressed={sort === s.key}
-              onClick={() => setSort(s.key)}
-              className={`rounded-full px-3 py-1.5 text-[11px] font-semibold ${sort === s.key ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`}
-            >
-              {s.label}
-            </button>
-          ))}
-        </div>
-      )}
 
       {rows.length === 0 ? (
         <p className="text-xs text-gray-500">クラスに学生がいません。</p>
