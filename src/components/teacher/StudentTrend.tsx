@@ -29,7 +29,7 @@ export default function StudentTrend({ scores, name, onClose }: { scores: ClassS
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの得点の推移`}>
+    <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの得点の推移`}>
       <div className="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-4 sm:rounded-2xl">
         <div className="flex items-center justify-between gap-2" data-html2canvas-ignore="true">
           <p className="text-sm font-semibold">{name}さんの得点の推移</p>

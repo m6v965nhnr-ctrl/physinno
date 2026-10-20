@@ -71,7 +71,7 @@ export default function ClassProgressView({ classId }: { classId: string }) {
                 </p>
                 {s.units && s.units.length > 0 && (
                   <details className="group mt-1">
-                    <summary className="cursor-pointer list-none text-[11px] text-sky-700">分野ごとを見る ▾</summary>
+                    <summary className="cursor-pointer list-none text-[11px] text-sky-700">単元ごとを見る ▾</summary>
                     <ul className="mt-1.5 space-y-1.5">
                       {[...s.units]
                         .sort((a, b) => a.correct / a.attempts - b.correct / b.attempts)

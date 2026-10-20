@@ -12,8 +12,8 @@ type View = "student" | "question" | "unit" | "matrix";
 const VIEWS: { key: View; label: string }[] = [
   { key: "student", label: "学生ごと" },
   { key: "question", label: "問題ごと" },
-  { key: "unit", label: "分野ごと" },
-  { key: "matrix", label: "学生×分野" },
+  { key: "unit", label: "単元ごと" },
+  { key: "matrix", label: "学生×単元" },
 ];
 
 // 正答率の見せ方。色だけに頼らず、記号と文字も付ける
@@ -21,7 +21,7 @@ function rateClass(rate: number) {
   return rate < 50 ? "text-red-600" : "text-gray-800";
 }
 
-// 先生用: 課題の結果。学生ごと・問題ごと・分野ごと・学生×分野を、切り替えて見る
+// 先生用: 課題の結果。学生ごと・問題ごと・単元ごと・学生×単元を、切り替えて見る
 export default function QuizAssignmentResultsPage() {
   const { loading } = useMyAccount(["pt", "teacher"], "/study");
   const [id, setId] = useState("");
@@ -51,12 +51,12 @@ export default function QuizAssignmentResultsPage() {
     listQuizUnits().then(setUnits);
   }, [loading]);
 
-  const unitName = (u: string | null) => (u ? (units.find((x) => x.id === u)?.name ?? u) : "（分野なし）");
+  const unitName = (u: string | null) => (u ? (units.find((x) => x.id === u)?.name ?? u) : "（単元なし）");
 
-  // 問題 → 分野
+  // 問題 → 単元
   const unitOf = useMemo(() => new Map((matrix?.questions ?? []).map((q) => [q.id, q.unit ?? ""])), [matrix]);
 
-  // 分野ごと: 解答の件数と正解の件数
+  // 単元ごと: 解答の件数と正解の件数
   const unitStats = useMemo(() => {
     const m = new Map<string, { answered: number; correct: number; questions: number }>();
     (matrix?.questions ?? []).forEach((q) => {
@@ -200,11 +200,11 @@ export default function QuizAssignmentResultsPage() {
               </label>
             </div>
             <label className="mt-2 flex items-center gap-2 text-[11px] text-gray-500">
-              分野
+              単元
               <select
                 value={unitFilter}
                 onChange={(e) => setUnitFilter(e.target.value)}
-                aria-label="分野で絞り込む"
+                aria-label="単元で絞り込む"
                 className="min-w-0 flex-1 rounded-xl border border-gray-300 bg-white px-2 py-1.5 text-xs text-gray-900"
               >
                 <option value="">すべて</option>
@@ -216,7 +216,7 @@ export default function QuizAssignmentResultsPage() {
               </select>
             </label>
             {questions.length === 0 ? (
-              <p className="mt-3 text-xs text-gray-500">この分野の問題は、ありません。</p>
+              <p className="mt-3 text-xs text-gray-500">この単元の問題は、ありません。</p>
             ) : (
               <ul className="mt-2 divide-y divide-gray-100">
                 {questions.map((q) => {
@@ -305,8 +305,8 @@ export default function QuizAssignmentResultsPage() {
 
         {view === "unit" && (
           <section className="rounded-2xl bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold">分野ごとの正答率</p>
-            <p className="mt-1 text-[11px] text-gray-400">正答率の低い順。授業で補う分野の目安です。</p>
+            <p className="text-sm font-semibold">単元ごとの正答率</p>
+            <p className="mt-1 text-[11px] text-gray-400">正答率の低い順。授業で補う単元の目安です。</p>
             {!matrix ? (
               <p className="mt-2 text-xs text-gray-500">読み込み中…</p>
             ) : (
@@ -334,7 +334,7 @@ export default function QuizAssignmentResultsPage() {
                         }}
                         className="mt-1 text-[11px] text-sky-700"
                       >
-                        この分野の問題を見る ›
+                        この単元の問題を見る ›
                       </button>
                     </li>
                   );
@@ -346,7 +346,7 @@ export default function QuizAssignmentResultsPage() {
 
         {view === "matrix" && (
           <section className="rounded-2xl bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold">学生 × 分野</p>
+            <p className="text-sm font-semibold">学生 × 単元</p>
             <p className="mt-1 text-[11px] text-gray-400">▼ は、正答率50%未満（要復習）。数字は、正答率（正解/解答）です。</p>
             {!matrix ? (
               <p className="mt-2 text-xs text-gray-500">読み込み中…</p>

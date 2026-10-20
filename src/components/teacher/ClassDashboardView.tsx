@@ -22,7 +22,7 @@ function Chips<T extends string>({ value, onChange, options, label }: { value: T
   return (
     <div role="group" aria-label={label} className="flex flex-wrap gap-1.5" data-html2canvas-ignore="true">
       {options.map(([k, text]) => (
-        <button key={k} type="button" aria-pressed={value === k} onClick={() => onChange(k)} className={`rounded-full px-3 py-1 text-[11px] font-semibold ${value === k ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`}>
+        <button key={k} type="button" aria-pressed={value === k} onClick={() => onChange(k)} className={`whitespace-nowrap rounded-full px-3 py-1 text-[11px] font-semibold ${value === k ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`}>
           {text}
         </button>
       ))}
@@ -39,7 +39,7 @@ const Q_SORTS: [QSort, string][] = [["order", "テスト順"], ["high", "正答�
 type RateSort = "high" | "low";
 const RATE_SORTS: [RateSort, string][] = [["high", "高い順"], ["low", "低い順"]];
 
-// ひとつのテストの結果: 学生ごと・問題ごと・分野ごと（開いたときに読み込む）
+// ひとつのテストの結果: 学生ごと・問題ごと・単元ごと（開いたときに読み込む）
 function TestDetail({ id, title, classLabel, units, onPick }: { id: string; title: string; classLabel: string; units: QuizUnit[]; onPick: (name: string) => void }) {
   const [res, setRes] = useState<AssignmentResults | null | undefined>(undefined);
   const [matrix, setMatrix] = useState<AssignmentMatrix | null>(null);
@@ -87,7 +87,7 @@ function TestDetail({ id, title, classLabel, units, onPick }: { id: string; titl
     return l.sort((a, b) => (us === "low" ? a.rate - b.rate : b.rate - a.rate));
   }, [matrix, us]);
 
-  const unitName = (u: string) => (u ? (units.find((x) => x.id === u)?.name ?? u) : "（分野なし）");
+  const unitName = (u: string) => (u ? (units.find((x) => x.id === u)?.name ?? u) : "（単元なし）");
 
   if (res === undefined) return <p className="py-3 text-xs text-gray-400">読み込み中…</p>;
   if (res === null) return <p className="py-3 text-xs text-gray-500">結果を表示できません。</p>;
@@ -95,25 +95,25 @@ function TestDetail({ id, title, classLabel, units, onPick }: { id: string; titl
   const pdfId = `test-pdf-${id}`;
   return (
     <div className="space-y-2">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <div role="group" aria-label="見かた" className="flex gap-1.5">
-          {([["student", "学生ごと"], ["question", "問題ごと"], ["unit", "分野ごと"]] as const).map(([k, l]) => (
-            <button key={k} type="button" aria-pressed={view === k} onClick={() => setView(k)} className={`rounded-full px-3 py-1.5 text-xs font-semibold ${view === k ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`}>
+          {([["student", "学生ごと"], ["question", "問題ごと"], ["unit", "単元ごと"]] as const).map(([k, l]) => (
+            <button key={k} type="button" aria-pressed={view === k} onClick={() => setView(k)} className={`whitespace-nowrap rounded-full px-3 py-1.5 text-xs font-semibold ${view === k ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`}>
               {l}
             </button>
           ))}
         </div>
-        <PdfButton targetId={pdfId} filename={`${title}_${view === "student" ? "学生ごと" : view === "question" ? "問題ごと" : "分野ごと"}`} />
+        <PdfButton targetId={pdfId} filename={`${title}_${view === "student" ? "学生ごと" : view === "question" ? "問題ごと" : "単元ごと"}`} />
       </div>
 
       {view === "student" && <Chips label="学生の並べ替え" value={ss} onChange={setSs} options={STUDENT_SORTS} />}
       {view === "question" && <Chips label="問題の並べ替え" value={qs} onChange={setQs} options={Q_SORTS} />}
-      {view === "unit" && <Chips label="分野の並べ替え" value={us} onChange={setUs} options={RATE_SORTS} />}
+      {view === "unit" && <Chips label="単元の並べ替え" value={us} onChange={setUs} options={RATE_SORTS} />}
 
       <div id={pdfId} className="bg-white">
         <p className="pb-1 text-sm font-semibold">
           {title}（{classLabel}）
-          <span className="ml-2 text-[11px] font-normal text-gray-500">{view === "student" ? "学生ごと" : view === "question" ? "問題ごと" : "分野ごと"}</span>
+          <span className="ml-2 text-[11px] font-normal text-gray-500">{view === "student" ? "学生ごと" : view === "question" ? "問題ごと" : "単元ごと"}</span>
         </p>
 
         {view === "student" && (

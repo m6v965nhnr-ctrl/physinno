@@ -7,7 +7,7 @@ import ClassDashboardView from "@/components/teacher/ClassDashboardView";
 import ClassProgressView from "@/components/teacher/ClassProgressView";
 import { useTeacherData } from "@/components/teacher/useTeacherData";
 
-// 先生用: 分析（クラスの状況。学生ごと・分野ごと・正答率の低い問題・テストごと）
+// 先生用: 分析（クラスの状況。学生ごと・単元ごと・正答率の低い問題・テストごと）
 function AnalysisBody() {
   const { classes } = useTeacherData(false);
   const [classId, setClassId] = useState("");
@@ -70,7 +70,7 @@ function AnalysisBody() {
 
 export default function TeacherAnalysisPage() {
   return (
-    <TeacherPage title="分析" description="配ったテストの結果と、学生が見せてよいとした一問一答の進み具合を、学生ごと・分野ごとに見て、授業や復習に生かせます。">
+    <TeacherPage title="分析" description="配ったテストの結果と、学生が見せてよいとした一問一答の進み具合を、学生ごと・単元ごとに見て、授業や復習に生かせます。">
       <AnalysisBody />
     </TeacherPage>
   );

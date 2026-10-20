@@ -19,7 +19,7 @@ function HomeBody() {
           <li>「クラス」で、クラスを作ります（6文字の参加コードが出ます）。</li>
           <li>参加コード（または参加用のURL）を、学生に伝えます。</li>
           <li>「テスト」で、国試の過去問からテストを作って、配ります。</li>
-          <li>「分析」で、学生ごと・分野ごとの状況を見ます。</li>
+          <li>「分析」で、学生ごと・単元ごとの状況を見ます。</li>
         </ol>
         <Link href="/student/quiz/teacher/classes" className="inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white">
           クラスを作る
