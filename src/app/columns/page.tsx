@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { COLUMNS } from "@/lib/columns";
+import ColumnList from "@/components/columns/ColumnList";
 import { SITE_NAME } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -25,26 +26,7 @@ export default function ColumnsPage() {
           理学療法士のキャリア・臨床・働き方に役立つ読み物です。
         </p>
 
-        <div className="mt-8 space-y-4">
-          {COLUMNS.map((c) => (
-            <Link
-              key={c.slug}
-              href={`/columns/${c.slug}`}
-              className="block rounded-2xl border border-gray-100 bg-white p-5 transition hover:border-gray-200"
-            >
-              <span className="inline-block rounded-full bg-cyan-50 px-3 py-1 text-xs font-semibold text-relight-blue">
-                {c.category}
-              </span>
-              <p className="mt-3 text-base font-semibold text-gray-900">
-                {c.title}
-              </p>
-              <p className="mt-2 text-sm leading-6 text-gray-500">
-                {c.description}
-              </p>
-              <p className="mt-3 text-xs text-gray-400">{c.publishedAt}</p>
-            </Link>
-          ))}
-        </div>
+        <ColumnList columns={COLUMNS} />
       </div>
     </main>
   );

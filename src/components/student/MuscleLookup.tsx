@@ -59,7 +59,7 @@ export default function MuscleLookup({ text }: { text: string }) {
           ))}
           <p className="text-[11px] leading-4 text-gray-400">
             編集部がまとめた要約です。髄節などは教科書で確認してください。
-            <Link href={`/columns/${muscle ? "muscles" : "bones"}/${encodeURIComponent((muscle ?? bone)!.name)}`} className="ml-1 text-blue-600 underline">
+            <Link href={`/columns/${muscle ? "muscles" : "bones"}/${encodeURIComponent((muscle ?? bone)!.name)}`} target="_blank" rel="noopener" className="ml-1 text-blue-600 underline">
               {(muscle ?? bone)!.name}のページを見る
             </Link>
           </p>

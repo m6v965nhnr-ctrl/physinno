@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import Link from "next/link";
+import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import StudyCalendarCard from "@/components/student/StudyCalendarCard";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
@@ -116,7 +117,7 @@ export default function StudentHomeView({
 
         {/* カウントダウン */}
         <section className="grid grid-cols-2 gap-3">
-          <div className="rounded-2xl bg-white px-3.5 py-2.5 shadow-sm">
+          <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
             <p className="text-xs text-gray-500">国家試験まで</p>
             <p className="text-2xl font-bold leading-tight tracking-tight">
               {countdown.examDays >= 0 ? countdown.examDays : 0}
@@ -128,7 +129,7 @@ export default function StudentHomeView({
             </p>
           </div>
 
-          <div className="rounded-2xl bg-white px-3.5 py-2.5 shadow-sm">
+          <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
             <p className="text-xs text-gray-500">卒業まで</p>
             <p className="text-2xl font-bold leading-tight tracking-tight">
               {countdown.graduationDays >= 0 ? countdown.graduationDays : 0}
@@ -141,20 +142,14 @@ export default function StudentHomeView({
         {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
         <AddToHomeButton />
 
-        {/* 一問一答は、マイページとは別の「勉強」（下のメニュー）に独立 */}
-        <Link href="/study" className="flex items-center justify-between rounded-2xl bg-relight-gradient p-4 shadow-sm transition active:scale-[0.99]">
-          <span>
-            <span className="block text-base font-extrabold">🎯 勉強（一問一答）</span>
-            <span className="block text-xs font-semibold">国試の過去問を、1問ずつ。復習・模擬試験・ランキング</span>
-          </span>
-          <span aria-hidden="true" className="text-xl font-bold">→</span>
-        </Link>
-
         {/* 今日の学習（解いた問題の数・連続日数）と、やった日に色がつくカレンダー */}
         <StudyCalendarCard preview={preview} />
 
+        {/* 学校のランキング */}
+        {!preview && <QuizSchoolRanking />}
+
         {/* 直近の予定 */}
-        <section className="rounded-2xl bg-white p-4 shadow-sm">
+        <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
           <div className="flex items-center justify-between">
             <p className="text-sm font-semibold">直近の予定</p>
             <Link href="/student/tracker" className="text-xs text-gray-400">
@@ -199,7 +194,7 @@ export default function StudentHomeView({
             <Link
               key={l.href}
               href={l.href}
-              className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm transition hover:bg-gray-50"
+              className="flex items-start gap-3 rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm transition hover:bg-gray-50"
             >
               <span className="text-2xl" aria-hidden="true">
                 {l.icon}

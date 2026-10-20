@@ -438,7 +438,7 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* 通知・投稿検索・グループ・PT検索（常にヘッダーの下に固定表示） */}
+        {/* 通知・投稿検索・コミュニティ・コラム（常にヘッダーの下に固定表示） */}
         {/* ゲスト（ログインなし）のときも、本物と同じボタンを出す。ただし見るだけで、押せない */}
         <div inert={guest} className="flex gap-1.5 bg-white px-5 pt-4">
           <Link
@@ -467,15 +467,15 @@ export default function HomePage() {
             className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">👥</span>
-            グループ
+            コミュニティ
           </Link>
 
           <Link
-            href="/home/pt-search"
+            href="/columns"
             className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
-            <span aria-hidden="true">🧑‍⚕️</span>
-            PT検索
+            <span aria-hidden="true">📖</span>
+            コラム
           </Link>
         </div>
 

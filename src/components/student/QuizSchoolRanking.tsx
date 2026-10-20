@@ -25,7 +25,7 @@ export default function QuizSchoolRanking() {
 
   if (data === undefined) {
     return (
-      <section className="rounded-2xl bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
         <p className="text-sm text-gray-400">ランキングを読み込み中…</p>
       </section>
     );
@@ -34,7 +34,7 @@ export default function QuizSchoolRanking() {
 
   if (!data.school) {
     return (
-      <section className="rounded-2xl bg-white p-4 shadow-sm">
+      <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
         <p className="text-sm font-semibold">🏆 学校内ランキング</p>
         <p className="mt-1 text-xs leading-5 text-gray-500">
           学校を登録すると、同じ学校の学生どうしで、正解数のランキングが見られます。
@@ -65,7 +65,7 @@ export default function QuizSchoolRanking() {
   }
 
   return (
-    <section className="rounded-2xl bg-white p-4 shadow-sm">
+    <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-2">
         <div>
           <p className="text-sm font-semibold">🏆 {data.school}のランキング</p>

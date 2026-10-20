@@ -5,7 +5,6 @@ import Link from "next/link";
 import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import { useRouter } from "next/navigation";
 import StreakBadge from "@/components/student/StreakBadge";
-import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import { OFFICIAL_EXAMS, officialPage, officialPdfs } from "@/lib/quizPdf";
 import {
   MOCK_MINUTES,
@@ -371,7 +370,6 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
       </section>
 
       {/* 同じ学校の学生どうしのランキング（学生のみ） */}
-      {isStudent && <QuizSchoolRanking />}
 
       {/* クラス */}
       <Link href="/school" className="flex items-center justify-between rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">

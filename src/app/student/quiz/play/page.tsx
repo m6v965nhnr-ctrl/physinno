@@ -504,20 +504,22 @@ export default function QuizPlayPage() {
             <button
               onClick={handleBookmark}
               aria-pressed={bookmarks[q.id]}
+              aria-label="ブックマーク"
               className={`rounded-full border px-3 py-1 text-xs ${
                 bookmarks[q.id] ? "border-amber-400 bg-amber-50 text-amber-700" : "border-gray-300 text-gray-500"
               }`}
             >
-              {bookmarks[q.id] ? "★ ブックマーク済み" : "☆ ブックマーク"}
+              {bookmarks[q.id] ? "★" : "☆"}
             </button>
             <button
               onClick={() => setCalcOpen((v) => !v)}
               aria-pressed={calcOpen}
+              aria-label="電卓メモ"
               className={`rounded-full border px-3 py-1 text-xs ${
                 calcOpen ? "border-emerald-500 bg-emerald-50 text-emerald-800" : "border-gray-300 text-gray-500"
               }`}
             >
-              🧮 電卓メモ
+              🧮
             </button>
           </div>
         </div>

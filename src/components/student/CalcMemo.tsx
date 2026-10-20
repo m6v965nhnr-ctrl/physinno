@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { calc } from "@/lib/calc";
+import { notify } from "@/lib/notify";
 
 const KEYS = [
   ["C", "(", ")", "⌫"],
@@ -44,6 +45,23 @@ export default function CalcMemo() {
     setExpr(String(v));
   }
 
+  const isErr = result !== null && result.startsWith("式");
+
+  function toMemo() {
+    if (isErr || !expr) return;
+    setMemo((m) => (m ? `${m.replace(/\n$/, "")}\n${expr}` : expr));
+  }
+
+  async function copy() {
+    if (isErr || !expr) return;
+    try {
+      await navigator.clipboard.writeText(expr);
+      notify("コピーしました");
+    } catch {
+      notify("コピーできませんでした");
+    }
+  }
+
   const shown = result !== null && result.startsWith("式") ? result : expr || "0";
 
   return (
@@ -58,13 +76,21 @@ export default function CalcMemo() {
       />
 
       <div>
-        <output
-          className={`block min-h-[2rem] break-all rounded-lg bg-gray-900 px-3 py-1 text-right text-base tabular-nums ${
-            result?.startsWith("式") ? "text-sm text-amber-300" : "text-white"
-          }`}
-        >
-          {shown}
-        </output>
+        <div className="flex items-stretch gap-1">
+          <button type="button" onClick={toMemo} className="shrink-0 rounded-lg bg-gray-200 px-2 text-xs font-semibold text-gray-700 active:scale-95">
+            メモへ
+          </button>
+          <output
+            className={`block min-h-[2rem] min-w-0 flex-1 break-all rounded-lg bg-gray-900 px-3 py-1 text-right text-base tabular-nums ${
+              isErr ? "text-sm text-amber-300" : "text-white"
+            }`}
+          >
+            {shown}
+          </output>
+          <button type="button" onClick={copy} className="shrink-0 rounded-lg bg-gray-200 px-2 text-xs font-semibold text-gray-700 active:scale-95">
+            コピー
+          </button>
+        </div>
         <div className="mt-1.5 grid grid-cols-4 gap-1">
           {KEYS.flat().map((k) => (
             <button
