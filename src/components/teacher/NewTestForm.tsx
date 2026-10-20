@@ -213,14 +213,29 @@ export default function NewTestForm({
         </label>
       </div>
 
-      <label className="block text-[11px] text-gray-500">
-        「ランダム」の単元（選ばないときは、すべて）に、割り振って入れる問題数
-        <select value={n} onChange={(e) => setN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
-          {COUNT_OPTIONS.map((c) => (
-            <option key={c} value={c}>{c === 0 ? "0問（下のキーワードで選んだ問題だけ）" : `${c}問`}</option>
-          ))}
-        </select>
-      </label>
+      <div className="space-y-2 rounded-xl border border-gray-200 p-3">
+        <p className="text-[11px] font-semibold text-gray-700">問題数</p>
+        {randomActive && (
+          <label className="block text-[11px] text-gray-500">
+            {picked.size === 0 ? "単元を選んでいないので、すべての単元から" : "「ランダム」の単元から"}入れる問題数を指定
+            <select value={n} onChange={(e) => setN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
+              {COUNT_OPTIONS.map((c) => (
+                <option key={c} value={c}>{c}問</option>
+              ))}
+            </select>
+          </label>
+        )}
+        <p className="text-xs leading-6 text-gray-700">
+          {[
+            ...fixedUnits.map(([u, c]) => `${units.find((x) => x.id === u)?.name ?? u} ${c}`),
+            randomActive ? `ランダム ${Math.min(n, randomPool)}` : null,
+            manual.size > 0 ? `キーワードで足した問題 ${manual.size}` : null,
+          ]
+            .filter(Boolean)
+            .join(" ＋ ") || "（まだ、問題が選ばれていません）"}
+          <span className="block text-sm font-bold">合計 {total}問</span>
+        </p>
+      </div>
 
       <div className="space-y-2 rounded-xl bg-gray-50 p-2">
         <p className="text-[11px] font-semibold text-gray-700">キーワードで問題を探して、足す</p>
@@ -261,7 +276,7 @@ export default function NewTestForm({
         {manual.size > 0 && <p className="text-[11px] text-emerald-700">キーワードで足した問題: {manual.size}問</p>}
       </div>
 
-      <p className="text-[11px] leading-5 text-gray-500">このテストの問題数: {total}問（下書きにしてから、問題を入れ替えたり足したりできます）。難易度での絞り込みは、今後実装予定です。</p>
+      <p className="text-[11px] leading-5 text-gray-500">下書きにしてから、問題を入れ替えたり足したりできます。難易度での絞り込みは、今後実装予定です。</p>
 
       {tried && reasons.length > 0 && (
         <p className="text-xs leading-5 text-red-600" role="status">作れない理由：{reasons.join(" ／ ")}</p>
