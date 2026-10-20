@@ -13,6 +13,15 @@ export type ColumnMeta = {
 
 export const COLUMNS: ColumnMeta[] = [
   {
+    slug: "bones",
+    title: "骨の特徴・関節・付着する筋の一覧（国試・臨床でよく出る骨）",
+    description:
+      "国家試験・臨床でよく出る骨について、特徴・連結する関節・付着する主な筋・臨床のポイントをまとめた一覧です。部位・名前で絞り込めます。",
+    category: "学生・国試",
+    publishedAt: "2026-10-20",
+    updatedAt: "2026-10-20",
+  },
+  {
     slug: "muscles",
     title: "筋の起始・停止・支配神経・作用の一覧（国試・臨床でよく出る筋）",
     description:
