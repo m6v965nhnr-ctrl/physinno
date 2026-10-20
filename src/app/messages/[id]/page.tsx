@@ -368,7 +368,7 @@ export default function MessagePage() {
         )}
       </div>
 
-      <div className="above-nav fixed bottom-20 left-0 right-0 z-30 border-t border-gray-100 bg-white/95 backdrop-blur">
+      <div className="above-nav fixed bottom-24 left-0 right-0 z-30 border-t border-gray-100 bg-white/95 backdrop-blur">
         <div className="mx-auto flex max-w-2xl items-center gap-2 px-4 py-3">
           <input aria-label="メッセージを入力…"
             type="text"

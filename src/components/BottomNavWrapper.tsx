@@ -345,17 +345,17 @@ export default function BottomNavWrapper() {
     <nav
       aria-label="メインメニュー"
       hidden={typing}
-      className="sticky bottom-0 z-[9999] mt-auto w-full shrink-0 bg-white px-2 pt-1 print:hidden"
+      className="pointer-events-none fixed inset-x-0 bottom-0 z-[9999] px-3 print:hidden"
       style={{ paddingBottom: "max(0.5rem, calc(env(safe-area-inset-bottom) - 0.4rem))" }}
     >
       <div
-        className="relative mx-auto grid max-w-xl items-center rounded-full border border-gray-200 bg-white px-1 py-1.5 shadow-[0_6px_20px_rgba(0,0,0,0.10)]"
+        className="pointer-events-auto relative mx-auto grid max-w-xl items-center rounded-full border border-white/70 bg-white/65 px-1 py-1 shadow-[0_8px_24px_rgba(0,0,0,0.14)] backdrop-blur-xl backdrop-saturate-150"
         style={{ gridTemplateColumns: `repeat(${menus.length}, minmax(0, 1fr))` }}
       >
         {/* いまの場所を示す背景（メニューを切り替えると、なめらかに横へ動く） */}
         <span
           aria-hidden="true"
-          className="pointer-events-none absolute bottom-1.5 left-1 top-1.5 rounded-full bg-gray-100 transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
+          className="pointer-events-none absolute bottom-1 left-1 top-1 rounded-full bg-black/[0.07] transition-[transform,opacity] duration-300 ease-[cubic-bezier(0.32,0.72,0,1)] motion-reduce:transition-none"
           style={{
             width: `calc((100% - 0.5rem) / ${menus.length})`,
             transform: `translateX(${Math.max(activeIndex, 0) * 100}%)`,
@@ -400,7 +400,7 @@ export default function BottomNavWrapper() {
                 key={menu.href}
                 aria-disabled="true"
                 title="無料登録すると使えます"
-                className={`relative z-10 flex cursor-not-allowed select-none justify-center rounded-full px-2 py-1.5 ${
+                className={`relative z-10 flex cursor-not-allowed select-none justify-center rounded-full px-2 py-1 ${
                   active ? "font-semibold text-black" : "text-gray-400"
                 }`}
               >
@@ -419,7 +419,7 @@ export default function BottomNavWrapper() {
                   ? `${menu.label}（未読${badgeCount}件）`
                   : undefined
               }
-              className={`relative z-10 flex justify-center rounded-full px-2 py-1.5 transition-colors active:opacity-70 ${
+              className={`relative z-10 flex justify-center rounded-full px-2 py-1 transition-colors active:opacity-70 ${
                 active ? "font-semibold text-black" : "text-gray-400"
               }`}
             >

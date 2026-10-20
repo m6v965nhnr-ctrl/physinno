@@ -443,7 +443,7 @@ export default function HomePage() {
         <div inert={guest} className="flex gap-1.5 bg-white px-5 pt-4">
           <Link
             href="/notifications"
-            className="relative inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="relative inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔔</span>
             通知
@@ -456,7 +456,7 @@ export default function HomePage() {
 
           <Link
             href="/posts"
-            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">🔍</span>
             投稿検索
@@ -464,7 +464,7 @@ export default function HomePage() {
 
           <Link
             href="/groups"
-            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">👥</span>
             コミニティ
@@ -472,7 +472,7 @@ export default function HomePage() {
 
           <Link
             href="/columns"
-            className="inline-flex flex-1 items-center justify-center gap-1 rounded-xl border border-gray-200 bg-white py-2.5 text-xs font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">📖</span>
             コラム

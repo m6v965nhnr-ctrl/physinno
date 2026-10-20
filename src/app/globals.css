@@ -558,6 +558,8 @@ html[data-shell] body {
   min-height: 0;
 }
 html[data-shell] #main-content {
+  /* 下のメニューは、本文の上に浮かせている。いちばん下まで行ったとき、メニューに隠れないように */
+  padding-bottom: calc(3.25rem + env(safe-area-inset-bottom));
   min-height: 0;
   overflow-x: hidden;
   overflow-y: auto;
