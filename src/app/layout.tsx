@@ -42,10 +42,11 @@ export const metadata: Metadata = {
     : undefined,
 };
 
-// viewport-fit=cover にしない（iOSで、画面の上端の時刻の下に内容が入り込んで、ぼやけて見えるのを避ける）。画面は、上端・下端の安全な範囲の中に収まる
+// ノッチ付き端末で下部ナビが隠れないよう viewport-fit=cover にし、safe-area を各所で考慮する
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  viewportFit: "cover",
   themeColor: "#ffffff",
 };
 
