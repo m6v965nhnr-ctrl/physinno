@@ -155,7 +155,7 @@ export type ReviewAxis = (typeof REVIEW_AXES)[number];
 export const REVIEW_AXIS_LABEL: Record<ReviewAxis, string> = {
   work_environment: "職場環境",
   education_system: "教育体制（新人教育）",
-  salary: "給与",
+  salary: "給与満足度",
   overtime: "残業の少なさ",
   paid_leave: "有休消化率",
   openness: "風通しの良さ",
