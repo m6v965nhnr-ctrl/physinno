@@ -63,7 +63,7 @@ export function isPublicPostPath(pathname: string) {
 }
 
 // SEO向けのコラム記事（一覧・個別ページとも誰でも読める）
-const PUBLIC_COLUMN_PATH = /^\/columns(\/[^/]+)?$/;
+const PUBLIC_COLUMN_PATH = /^\/columns(\/(muscles|bones)\/[^/]+|\/[^/]+)?$/;
 
 export function isPublicColumnPath(pathname: string) {
   return PUBLIC_COLUMN_PATH.test(pathname);

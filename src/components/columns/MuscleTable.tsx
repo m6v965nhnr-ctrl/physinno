@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { MUSCLES, REGIONS, type MuscleRegion } from "@/content/muscles/data";
 
 // 筋の一覧。部位で絞り込み・名前や神経で検索できる
@@ -44,7 +45,9 @@ export default function MuscleTable() {
         {list.map((m) => (
           <li key={m.id} id={m.id} className="scroll-mt-4 rounded-2xl border border-gray-100 bg-white p-4">
             <div className="flex items-baseline justify-between gap-2">
-              <h2 className="text-base font-semibold text-gray-900">{m.name}</h2>
+              <h2 className="text-base font-semibold text-gray-900">
+                <Link href={`/columns/muscles/${encodeURIComponent(m.name)}`} className="hover:underline">{m.name}</Link>
+              </h2>
               <span className="shrink-0 text-[11px] text-gray-400">{m.region}</span>
             </div>
             <dl className="mt-2 space-y-1.5 text-sm leading-6 text-gray-800">

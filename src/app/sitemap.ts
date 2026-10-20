@@ -4,6 +4,10 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
+import { MUSCLES } from "@/content/muscles/data";
+import { BONES } from "@/content/muscles/bones";
+import { MUSCLE_COLUMNS } from "@/content/muscles/columnsMuscles";
+import { BONE_COLUMNS } from "@/content/muscles/columnsBones";
 import { PT_UNIVERSITIES } from "@/content/schools/pt-universities";
 import { PAPER_TOPICS } from "@/content/paperTopics";
 import { QUESTIONS_PER_SESSION, SESSIONS, getPublicExams, questionPath } from "@/lib/kokushi";
@@ -43,6 +47,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     changeFrequency: "monthly",
     priority: 0.6,
   }));
+
+  const anatomyEntries: MetadataRoute.Sitemap = [
+    ...MUSCLES.filter((m) => MUSCLE_COLUMNS[m.name]).map((m) => ({ url: `${SITE_URL}/columns/muscles/${encodeURIComponent(m.name)}`, lastModified: new Date("2026-10-20"), changeFrequency: "monthly" as const, priority: 0.5 })),
+    ...BONES.filter((b) => BONE_COLUMNS[b.name]).map((b) => ({ url: `${SITE_URL}/columns/bones/${encodeURIComponent(b.name)}`, lastModified: new Date("2026-10-20"), changeFrequency: "monthly" as const, priority: 0.5 })),
+  ];
 
   const { data: pts } = await supabasePublic
     .from("pt_profiles")
@@ -104,5 +113,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticEntries, ...columnEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
+  return [...staticEntries, ...columnEntries, ...anatomyEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
 }

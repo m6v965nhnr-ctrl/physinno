@@ -23,3 +23,14 @@ assert.equal(new Set(BONES.map((b) => b.name)).size, BONES.length);
 for (const m of MUSCLES) for (const k of ["origin", "insertion", "nerve", "action"] as const) assert.ok(m[k], `${m.name}.${k}`);
 for (const x of BONES) for (const k of ["features", "joints", "muscles", "notes"] as const) assert.ok(x[k], `${x.name}.${k}`);
 console.log("anatomy OK", MUSCLES.length, BONES.length);
+
+// 個別ページの本文が、全部そろっているか
+import { MUSCLE_COLUMNS } from "../src/content/muscles/columnsMuscles.ts";
+import { BONE_COLUMNS } from "../src/content/muscles/columnsBones.ts";
+for (const m of MUSCLES) assert.ok(MUSCLE_COLUMNS[m.name], `本文がない筋: ${m.name}`);
+for (const b of BONES) assert.ok(BONE_COLUMNS[b.name], `本文がない骨: ${b.name}`);
+for (const k of Object.keys(MUSCLE_COLUMNS)) assert.ok(MUSCLES.some((m) => m.name === k), `筋の一覧にない本文: ${k}`);
+for (const [k, c] of [...Object.entries(MUSCLE_COLUMNS), ...Object.entries(BONE_COLUMNS)]) {
+  assert.ok(c.en && c.lead.length >= 30 && c.points.length >= 2 && c.clinical && c.exam, `本文が足りない: ${k}`);
+}
+console.log("columns OK");
