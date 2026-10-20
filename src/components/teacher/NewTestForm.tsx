@@ -32,7 +32,8 @@ export default function NewTestForm({
 }) {
   const [classId, setClassId] = useState(defaultClassId ?? classes[0]?.id ?? "");
   const [title, setTitle] = useState("");
-  const [picked, setPicked] = useState<Set<string>>(new Set());
+  // 選んだ単元 → 入れる問題数（"random" は、下の「ランダムに入れる問題数」から割り振る）
+  const [picked, setPicked] = useState<Map<string, number | "random">>(new Map());
   const [exam, setExam] = useState("");
   const [n, setN] = useState(10);
   const [due, setDue] = useState("");
@@ -50,14 +51,18 @@ export default function NewTestForm({
     return [...m.entries()];
   }, [units]);
 
-  const availableAll = useMemo(() => (picked.size === 0 ? units : units.filter((u) => picked.has(u.id))).reduce((a, u) => a + u.total, 0), [units, picked]);
-  const total = manual.size + Math.min(n, Math.max(0, availableAll - manual.size));
+  const fixedUnits = useMemo(() => [...picked.entries()].filter((e): e is [string, number] => e[1] !== "random"), [picked]);
+  const randomUnits = useMemo(() => [...picked.entries()].filter((e) => e[1] === "random").map((e) => e[0]), [picked]);
+  // ランダムの枠を使うのは、「ランダム」の単元があるとき、または単元を選んでいないとき
+  const randomActive = randomUnits.length > 0 || picked.size === 0;
+  const randomPool = useMemo(() => (picked.size === 0 ? units : units.filter((u) => randomUnits.includes(u.id))).reduce((a, u) => a + u.total, 0), [units, picked, randomUnits]);
+  const total = manual.size + fixedUnits.reduce((a, [, c]) => a + c, 0) + (randomActive ? Math.min(n, randomPool) : 0);
 
   function toggle(id: string) {
     setPicked((p) => {
-      const x = new Set(p);
+      const x = new Map(p);
       if (x.has(id)) x.delete(id);
-      else x.add(id);
+      else x.set(id, "random");
       return x;
     });
   }
@@ -65,7 +70,7 @@ export default function NewTestForm({
   async function handleSearch() {
     if (!keyword.trim() || searching) return;
     setSearching(true);
-    const targets = picked.size ? [...picked] : [""];
+    const targets = picked.size ? [...picked.keys()] : [""];
     const lists = await Promise.all(targets.map((u) => searchQuestions({ unit: u || null, exam: exam ? Number(exam) : null, difficulty: "any", keyword: keyword.trim(), limit: 30 })));
     const seen = new Set<string>();
     setHits(lists.flat().filter((h) => (seen.has(h.id) ? false : (seen.add(h.id), true))));
@@ -90,27 +95,33 @@ export default function NewTestForm({
     setBusy(true);
     const base = { classId, title: title.trim(), difficulty: "any" as const, due: due ? `${due}T23:59:59+09:00` : null };
     let id: string | null;
-    if (picked.size <= 1 && manual.size === 0) {
-      id = await createAssignment({ ...base, unit: [...picked][0] ?? null, exam: exam ? Number(exam) : null, n });
+    if (fixedUnits.length === 0 && picked.size <= 1 && manual.size === 0) {
+      id = await createAssignment({ ...base, unit: [...picked.keys()][0] ?? null, exam: exam ? Number(exam) : null, n });
     } else {
-      // 複数の単元・キーワードで足した問題があるときは、集めた問題から選んで、下書きの問題を入れ替える
-      // shortcut: 単元ごとに探せるのは新しい回から100問まで。足りないときは、下書きの画面で足す
-      const targets = picked.size ? [...picked] : [""];
-      const lists = await Promise.all(targets.map((u) => searchQuestions({ unit: u || null, exam: exam ? Number(exam) : null, difficulty: "any", keyword: "", limit: 100 })));
+      // 単元ごとの問題数・複数の単元・キーワードで足した問題があるときは、集めた問題から選んで、下書きの問題を入れ替える
+      // shortcut: 単元ごとに選べるのは、新しい回から100問の中から。足りないときは、下書きの画面で足す
+      const fetchUnit = (u: string) => searchQuestions({ unit: u || null, exam: exam ? Number(exam) : null, difficulty: "any", keyword: "", limit: 100 });
       const taken = new Set(manual.keys());
-      const fill: string[] = [];
-      const queues = lists.map((l) => shuffle(l.filter((h) => !taken.has(h.id))));
-      while (fill.length < n && queues.some((q) => q.length)) {
-        for (const q of queues) {
-          const h = q.pop();
-          if (h && fill.length < n && !taken.has(h.id)) {
-            taken.add(h.id);
-            fill.push(h.id);
+      const ids = [...manual.keys()];
+      for (const [u, count] of fixedUnits) {
+        const pool = shuffle((await fetchUnit(u)).filter((h) => !taken.has(h.id))).slice(0, count);
+        pool.forEach((h) => (taken.add(h.id), ids.push(h.id)));
+      }
+      if (randomActive && n > 0) {
+        const queues = (await Promise.all((picked.size ? randomUnits : [""]).map(fetchUnit))).map((l) => shuffle(l.filter((h) => !taken.has(h.id))));
+        let added = 0;
+        while (added < n && queues.some((q) => q.length)) {
+          for (const q of queues) {
+            const h = q.pop();
+            if (h && added < n && !taken.has(h.id)) {
+              taken.add(h.id);
+              ids.push(h.id);
+              added++;
+            }
           }
         }
       }
-      const ids = [...manual.keys(), ...fill];
-      id = ids.length ? await createAssignment({ ...base, unit: picked.size === 1 ? [...picked][0] : null, exam: null, n: 1 }) : null;
+      id = ids.length ? await createAssignment({ ...base, unit: picked.size === 1 ? [...picked.keys()][0] : null, exam: null, n: 1 }) : null;
       if (id && !(await setAssignmentQuestions(id, ids))) id = null;
     }
     setBusy(false);
@@ -146,9 +157,9 @@ export default function NewTestForm({
 
       <fieldset>
         <div className="flex items-center justify-between gap-2">
-          <legend className="text-[11px] font-semibold text-gray-700">単元（チェックで選びます。選ばないと「すべて」）</legend>
+          <legend className="text-[11px] font-semibold text-gray-700">単元（チェックで選びます。選ぶと、右に問題数が出ます。選ばないと「すべて」）</legend>
           {picked.size > 0 && (
-            <button type="button" onClick={() => setPicked(new Set())} className="text-[11px] text-sky-700 underline">選択をすべて外す</button>
+            <button type="button" onClick={() => setPicked(new Map())} className="text-[11px] text-sky-700 underline">選択をすべて外す</button>
           )}
         </div>
         <div className="mt-1 max-h-60 space-y-2 overflow-y-auto rounded-xl border border-gray-200 p-2">
@@ -158,11 +169,26 @@ export default function NewTestForm({
               <ul className="mt-0.5 grid grid-cols-1 gap-x-3 sm:grid-cols-2">
                 {list.map((u) => (
                   <li key={u.id}>
-                    <label className="flex items-center gap-2 py-0.5 text-xs">
-                      <input type="checkbox" checked={picked.has(u.id)} onChange={() => toggle(u.id)} />
-                      <span className="min-w-0 truncate">{u.name}</span>
-                      <span className="shrink-0 text-[10px] text-gray-400">{u.total}問</span>
-                    </label>
+                    <div className="flex items-center gap-2 py-0.5 text-xs">
+                      <label className="flex min-w-0 flex-1 items-center gap-2">
+                        <input type="checkbox" checked={picked.has(u.id)} onChange={() => toggle(u.id)} />
+                        <span className="min-w-0 truncate">{u.name}</span>
+                        <span className="shrink-0 text-[10px] text-gray-400">{u.total}問</span>
+                      </label>
+                      {picked.has(u.id) && (
+                        <select
+                          value={String(picked.get(u.id))}
+                          onChange={(e) => setPicked((p) => new Map(p).set(u.id, e.target.value === "random" ? "random" : Number(e.target.value)))}
+                          aria-label={`${u.name}から入れる問題数`}
+                          className="shrink-0 rounded-lg border border-gray-300 bg-white px-1 py-0.5 text-xs"
+                        >
+                          <option value="random">ランダム</option>
+                          {Array.from({ length: Math.min(u.total, 50) }, (_, k) => k + 1).map((c) => (
+                            <option key={c} value={c}>{c}問</option>
+                          ))}
+                        </select>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ul>
@@ -188,7 +214,7 @@ export default function NewTestForm({
       </div>
 
       <label className="block text-[11px] text-gray-500">
-        選んだ単元から、ランダムに入れる問題数
+        「ランダム」の単元（選ばないときは、すべて）に、割り振って入れる問題数
         <select value={n} onChange={(e) => setN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
           {COUNT_OPTIONS.map((c) => (
             <option key={c} value={c}>{c === 0 ? "0問（下のキーワードで選んだ問題だけ）" : `${c}問`}</option>
