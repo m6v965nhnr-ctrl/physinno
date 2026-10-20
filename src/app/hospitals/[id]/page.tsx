@@ -491,135 +491,6 @@ export default function HospitalDetailPage() {
         )}
 
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
-            {(canEditRatios || isPt) && !editingRatios && (
-              <button
-                onClick={openRatioEditor}
-                className="text-xs text-gray-400 hover:text-gray-700"
-              >
-                編集する
-              </button>
-            )}
-          </div>
-
-          {editingRatios ? (
-            <div className="mt-4 space-y-2">
-              <p className="text-xs text-gray-400">
-                各疾患カテゴリのおおよその割合（%）を入力してください
-              </p>
-              {DISEASE_CATEGORIES.map((category) => (
-                <div key={category} className="flex items-center gap-3">
-                  <span className="w-20 shrink-0 text-sm text-gray-700">
-                    {category}
-                  </span>
-                  <input
-                    type="number"
-                    aria-label={`${category}の割合（%）`}
-                    min={0}
-                    max={100}
-                    value={ratioInputs[category] ?? "0"}
-                    onChange={(e) =>
-                      setRatioInputs((prev) => ({
-                        ...prev,
-                        [category]: e.target.value,
-                      }))
-                    }
-                    className="w-20 rounded-lg border px-2 py-1 text-sm"
-                  />
-                  <span className="text-xs text-gray-400">%</span>
-                </div>
-              ))}
-
-              <div className="flex gap-2 pt-2">
-                <button
-                  onClick={() => setEditingRatios(false)}
-                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
-                >
-                  キャンセル
-                </button>
-                <button
-                  onClick={handleSaveRatios}
-                  disabled={savingRatios}
-                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
-                >
-                  {savingRatios ? "保存中…" : "保存する"}
-                </button>
-              </div>
-            </div>
-          ) : diseaseRatios.some((r) => r.percentage > 0) ? (
-            <div className="mt-4">
-              <DiseaseRatioPieChart
-                data={diseaseRatios
-                  .filter((r) => r.percentage > 0)
-                  .map((r) => ({ category: r.category, percentage: r.percentage }))}
-              />
-            </div>
-          ) : (
-            <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
-            </p>
-          )}
-        </section>
-
-        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
-            {(canEditRatios || isPt) && !editingRecruitment && (
-              <button
-                onClick={openRecruitmentEditor}
-                className="text-xs text-gray-400 hover:text-gray-700"
-              >
-                編集する
-              </button>
-            )}
-          </div>
-
-          <HospitalRecruitCard hospitalId={id} canEdit={canEditRatios || isPt} ensureCanEdit={ensureCanEdit} />
-
-          {editingRecruitment ? (
-            <div className="mt-4 space-y-2">
-              <p className="text-xs text-gray-400">
-                募集職種・待遇・連絡先など、在籍PTが把握している採用情報を入力してください
-              </p>
-              <textarea aria-label="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
-                value={recruitmentInput}
-                onChange={(e) => setRecruitmentInput(e.target.value)}
-                rows={5}
-                placeholder="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
-                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-gray-400"
-              />
-
-              <div className="flex gap-2 pt-2">
-                <button
-                  onClick={() => setEditingRecruitment(false)}
-                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
-                >
-                  キャンセル
-                </button>
-                <button
-                  onClick={handleSaveRecruitment}
-                  disabled={savingRecruitment}
-                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
-                >
-                  {savingRecruitment ? "保存中…" : "保存する"}
-                </button>
-              </div>
-            </div>
-          ) : hospital.recruitment_info ? (
-            <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-gray-700">
-              {hospital.recruitment_info}
-            </p>
-          ) : (
-            <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
-            </p>
-          )}
-        </section>
-
-        <InternshipReviews hospitalId={hospital.id} accountType={accountType} loggedIn={!!userId} />
-
-        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-sm font-semibold text-gray-500">職場環境の口コミ</h2>
 
@@ -883,6 +754,136 @@ export default function HospitalDetailPage() {
             ))}
           </div>
         </section>
+
+        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
+            {(canEditRatios || isPt) && !editingRatios && (
+              <button
+                onClick={openRatioEditor}
+                className="text-xs text-gray-400 hover:text-gray-700"
+              >
+                編集する
+              </button>
+            )}
+          </div>
+
+          {editingRatios ? (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs text-gray-400">
+                各疾患カテゴリのおおよその割合（%）を入力してください
+              </p>
+              {DISEASE_CATEGORIES.map((category) => (
+                <div key={category} className="flex items-center gap-3">
+                  <span className="w-20 shrink-0 text-sm text-gray-700">
+                    {category}
+                  </span>
+                  <input
+                    type="number"
+                    aria-label={`${category}の割合（%）`}
+                    min={0}
+                    max={100}
+                    value={ratioInputs[category] ?? "0"}
+                    onChange={(e) =>
+                      setRatioInputs((prev) => ({
+                        ...prev,
+                        [category]: e.target.value,
+                      }))
+                    }
+                    className="w-20 rounded-lg border px-2 py-1 text-sm"
+                  />
+                  <span className="text-xs text-gray-400">%</span>
+                </div>
+              ))}
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  onClick={() => setEditingRatios(false)}
+                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
+                >
+                  キャンセル
+                </button>
+                <button
+                  onClick={handleSaveRatios}
+                  disabled={savingRatios}
+                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
+                >
+                  {savingRatios ? "保存中…" : "保存する"}
+                </button>
+              </div>
+            </div>
+          ) : diseaseRatios.some((r) => r.percentage > 0) ? (
+            <div className="mt-4">
+              <DiseaseRatioPieChart
+                data={diseaseRatios
+                  .filter((r) => r.percentage > 0)
+                  .map((r) => ({ category: r.category, percentage: r.percentage }))}
+              />
+            </div>
+          ) : (
+            <p className="mt-3 text-sm text-gray-400">
+              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
+            </p>
+          )}
+        </section>
+
+        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
+            {(canEditRatios || isPt) && !editingRecruitment && (
+              <button
+                onClick={openRecruitmentEditor}
+                className="text-xs text-gray-400 hover:text-gray-700"
+              >
+                編集する
+              </button>
+            )}
+          </div>
+
+          <HospitalRecruitCard hospitalId={id} canEdit={canEditRatios || isPt} ensureCanEdit={ensureCanEdit} />
+
+          {editingRecruitment ? (
+            <div className="mt-4 space-y-2">
+              <p className="text-xs text-gray-400">
+                募集職種・待遇・連絡先など、在籍PTが把握している採用情報を入力してください
+              </p>
+              <textarea aria-label="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
+                value={recruitmentInput}
+                onChange={(e) => setRecruitmentInput(e.target.value)}
+                rows={5}
+                placeholder="例：理学療法士 若干名募集中。詳細は病院HPまたは採用担当まで。"
+                className="w-full rounded-xl border border-gray-200 px-4 py-2.5 text-sm outline-none focus:border-gray-400"
+              />
+
+              <div className="flex gap-2 pt-2">
+                <button
+                  onClick={() => setEditingRecruitment(false)}
+                  className="flex-1 rounded-full border py-2 text-sm text-gray-600"
+                >
+                  キャンセル
+                </button>
+                <button
+                  onClick={handleSaveRecruitment}
+                  disabled={savingRecruitment}
+                  className="flex-1 rounded-full bg-black py-2 text-sm text-white disabled:opacity-50"
+                >
+                  {savingRecruitment ? "保存中…" : "保存する"}
+                </button>
+              </div>
+            </div>
+          ) : hospital.recruitment_info ? (
+            <p className="mt-3 whitespace-pre-wrap text-sm leading-6 text-gray-700">
+              {hospital.recruitment_info}
+            </p>
+          ) : (
+            <p className="mt-3 text-sm text-gray-400">
+              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
+            </p>
+          )}
+        </section>
+
+        <InternshipReviews hospitalId={hospital.id} accountType={accountType} loggedIn={!!userId} />
+
           </>
         )}
       </div>
