@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/teachers" },
-  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/teachers" },
+  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/teachers", images: ["/opengraph-image"] },
   twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
 };
 

@@ -6,14 +6,14 @@ import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFoo
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "理学療法士・リハビリの病院を地域から探す｜一般の方へ";
-const DESCRIPTION = "地域や専門分野から理学療法士を探せます。全国約5,000の病院も、登録なしで探せる、無料のWebアプリです。";
+const DESCRIPTION = "リハビリを受けたい方へ。地域や専門分野から理学療法士を探せます。全国約5,000の病院も、地域や診療科から、登録なしで探せる、無料のWebアプリです。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   keywords: ["理学療法士 探す", "リハビリ 病院 探す", "理学療法士 地域", "専門分野", "リハビリ 病院 口コミ"],
   alternates: { canonical: "/for-general" },
-  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-general" },
+  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-general", images: ["/opengraph-image"] },
 };
 
 const FEATURES = [

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: ["理学療法士 国家試験", "過去問", "一問一答", "解説", "模擬試験", "筋 起始停止", "実習", "就職活動", "理学療法学生"],
   alternates: { canonical: "/for-students" },
-  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-students" },
+  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-students", images: ["/opengraph-image"] },
 };
 
 const STUDENT_FEATURES = [

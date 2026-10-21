@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   keywords: ["理学療法士", "論文検索", "認定理学療法士", "専門理学療法士", "研修", "学会", "病院 口コミ", "転職", "エビデンスレベル", "症例報告"],
   alternates: { canonical: "/for-pt" },
-  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-pt" },
+  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/for-pt", images: ["/opengraph-image"] },
 };
 
 const PAINS = [
