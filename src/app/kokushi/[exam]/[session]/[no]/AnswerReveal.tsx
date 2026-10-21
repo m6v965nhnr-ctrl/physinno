@@ -178,7 +178,7 @@ export default function AnswerReveal({ examNo, session, no, choices, choicesInIm
                       ? `登録なしで読める解説は、あと${explanation.freeLeft}問です。`
                       : "登録なしで読める解説は、これで最後です。"}
                     <Link href="/register?type=student" className="ml-1 font-semibold underline">
-                      無料登録で約1,500問の解説が読めます
+                      無料登録で約1,650問の解説が読めます
                     </Link>
                   </p>
                 )}
@@ -189,7 +189,7 @@ export default function AnswerReveal({ examNo, session, no, choices, choicesInIm
               <div className="rounded-2xl bg-relight-gradient px-5 py-4 text-white">
                 <p className="text-base font-semibold">続きの解説は、無料登録で読めます</p>
                 <p className="mt-1 text-sm leading-6 text-white/95">
-                  登録なしで読める解説は{FREE_EXPLANATIONS}問までです。登録は無料・1分で、約1,500問の解説、間違えた問題の復習、模擬試験が使えます。
+                  登録なしで読める解説は{FREE_EXPLANATIONS}問までです。登録は無料・1分で、約1,650問の解説、間違えた問題の復習、模擬試験が使えます。
                 </p>
                 <Link
                   href="/register?type=student"

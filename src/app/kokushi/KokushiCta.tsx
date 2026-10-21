@@ -5,10 +5,10 @@ export default function KokushiCta({ compact = false }: { compact?: boolean }) {
   return (
     <div className="rounded-2xl bg-relight-gradient px-6 py-5 text-white">
       <p className="text-base font-semibold">
-        {compact ? "解説・苦手分析は無料登録で" : "約1,500問を、解説つきで解き続けよう"}
+        {compact ? "解説・苦手分析は無料登録で" : "約1,650問を、解説つきで解き続けよう"}
       </p>
       <p className="mt-1 text-sm leading-6 text-white/95">
-        無料登録すると、約1,500問の解説（登録なしでも3問まで）、間違えた問題だけの復習、科目ごとの正答率、時間を計る模擬試験、国試までのカウントダウンが使えます。
+        無料登録すると、約1,650問の解説（登録なしでも3問まで）、間違えた問題だけの復習、科目ごとの正答率、時間を計る模擬試験、国試までのカウントダウンが使えます。
       </p>
       <Link
         href="/register?type=student"
