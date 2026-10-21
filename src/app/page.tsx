@@ -106,6 +106,19 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         </div>
       </section>
 
+      <section className="bg-white px-6 py-12">
+        <div className="mx-auto max-w-3xl">
+          <h2 className="text-xl font-bold text-[var(--lp-g900)]">Re:light（リライト）とは</h2>
+          <p className="mt-3 text-sm leading-7 text-gray-700">
+            Re:lightは、理学療法士と、理学療法士をめざす学生のための、無料のWebアプリです。論文を8つのサイトからまとめて検索し、認定・専門理学療法士の更新の進捗や、研修・学会の情報、病院の口コミを、ひとつの場所で調べられます。
+            学生は、国家試験の過去問（第56〜61回）を、解説つきで解けます。教員は、クラスにテストを配って、学生ごと・単元ごとの結果を見られます。
+          </p>
+          <p className="mt-3 text-sm leading-7 text-gray-700">
+            登録は、メールアドレスだけで1分です。上の4つの入口から、あなたに合うページを選んでください。
+          </p>
+        </div>
+      </section>
+
       <SafetySection registerHref={registerHref} />
       <LpFooter />
       <LpStickyCta registerHref={registerHref} />
