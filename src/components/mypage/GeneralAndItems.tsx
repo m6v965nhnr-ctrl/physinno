@@ -58,9 +58,9 @@ export function GeneralMyPage({
   onLogout: () => void;
 }) {
   return (
-    <main className="relative min-h-screen bg-[#fafafa] px-5 py-12 pb-28">
+    <main className="relative min-h-screen bg-[#fafafa] px-5 py-6 pb-28">
       <MyPageMenu onLogout={onLogout} />
-      <div className="mx-auto max-w-2xl space-y-5">
+      <div className="mx-auto max-w-2xl space-y-3">
 
         {/* プロフィール */}
         <section className="rounded-3xl border border-gray-100 bg-white px-6 py-8 text-center shadow-[0_2px_12px_rgba(0,0,0,0.03)]">

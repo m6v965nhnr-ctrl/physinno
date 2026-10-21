@@ -122,18 +122,18 @@ export default function TeacherPage({
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
-      <header className="border-b border-gray-100 bg-white px-6 py-5">
+      <header className="border-b border-gray-100 bg-white px-6 py-2.5">
         <div className="mx-auto max-w-2xl">
           {accountType !== "teacher" && (
             <Link href="/study" className="text-sm text-gray-400">
               ← 勉強にもどる
             </Link>
           )}
-          <h1 className="mt-1 text-xl font-semibold tracking-tight">{title}</h1>
+          <h1 className="text-xl font-semibold leading-tight tracking-tight">{title}</h1>
           {description && <p className="mt-1 text-xs leading-5 text-gray-500">{description}</p>}
         </div>
       </header>
-      <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">{gated ? <Gate>{body}</Gate> : body}</div>
+      <div className="mx-auto max-w-2xl space-y-3 px-6 py-4">{gated ? <Gate>{body}</Gate> : body}</div>
     </main>
   );
 }
