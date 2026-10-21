@@ -7,7 +7,7 @@ import { MockKokushi } from "@/components/lp/Mocks";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "理学療法士国家試験の過去問アプリ｜学生向け・無料・解説つき";
-const DESCRIPTION = "理学療法士をめざす学生のための無料アプリ。国家試験の過去問（第55〜61回）を一問一答で解説つきに、間違えた問題の復習と模擬試験、筋・骨の起始停止の確認、先生のクラスのテストと振り返り、実習・就活の管理まで。";
+const DESCRIPTION = "理学療法士をめざす学生のための無料アプリ。国家試験の過去問（第54〜61回）を一問一答で解説つきに、間違えた問題の復習と模擬試験、筋・骨の起始停止の確認、先生のクラスのテストと振り返り、実習・就活の管理まで。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 };
 
 const STUDENT_FEATURES = [
-  { icon: "📝", title: "国試の過去問ドリル", body: "第55〜61回の約1,370問。解説、間違えた問題の復習、時間を計る模擬試験（一時停止もできます）、科目ごとの正答率。" },
+  { icon: "📝", title: "国試の過去問ドリル", body: "第54〜61回の約1,500問。解説、間違えた問題の復習、時間を計る模擬試験（一時停止もできます）、科目ごとの正答率。" },
   { icon: "🦴", title: "解説から、筋・骨をすぐ確かめる", body: "解説に出てきた筋と骨の、起始・停止・支配神経・作用を、1タップで確認できます。" },
   { icon: "🎓", title: "先生のクラスで、テストと振り返り", body: "先生が配ったテストを解くと、平均点・中央値・順位・偏差値で振り返れます。先生への質問は、匿名でも送れます。" },
   { icon: "🗂", title: "実習・就活の管理", body: "実習先、病院見学、応募、提出物の期限を、ひとつに。" },
@@ -88,7 +88,7 @@ export default function ForStudentsPage() {
       <GuideLinks
         title="登録しなくても読める、学生向けのページ"
         items={[
-          { href: "/kokushi", label: "国家試験の過去問", body: "第55〜61回の問題と正答を、解説つきで解けます。" },
+          { href: "/kokushi", label: "国家試験の過去問", body: "第54〜61回の問題と正答を、解説つきで解けます。" },
           { href: "/columns/muscles", label: "筋の起始・停止・支配神経・作用の一覧", body: "213の筋を、部位ごとに。図つき。" },
           { href: "/columns/bones", label: "骨の一覧", body: "骨の特徴・関節・付着する筋を、図つきで。" },
           { href: "/schools", label: "養成校の国試合格状況", body: "学校ごとの合格状況を、調べられます。" },
