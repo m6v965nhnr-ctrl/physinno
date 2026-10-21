@@ -150,6 +150,9 @@ export function LpFooter({ audience = "all" }: { audience?: Audience }) {
   return (
       <footer className="bg-white px-6 py-8 pb-24 text-center text-xs text-gray-600 md:pb-8">
         <div className="flex flex-wrap items-center justify-center gap-4">
+          <Link href="/for-pt" className="hover:text-gray-900">理学療法士の方へ</Link>
+          <Link href="/for-students" className="hover:text-gray-900">学生の方へ</Link>
+          <Link href="/for-general" className="hover:text-gray-900">一般の方へ</Link>
           {!hide.includes("/kokushi") && <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>}
           {!hide.includes("/schools") && <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>}
           {!hide.includes("/teachers") && <Link href="/teachers" className="hover:text-gray-900">大学・専門学校の先生へ</Link>}
