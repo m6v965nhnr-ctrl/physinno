@@ -3,7 +3,7 @@
 // 基本軸・移動軸・測定肢位・MMTの肢位: 同じ測定法を載せた教科書で確認（確認日 2026-10-21）。文章は、このアプリで書き直したもの。
 
 // 図の指定: 体の向き（side=横から, front=正面から）、動く部分、動く向き（+ / -）
-export type Fig = { view: "side" | "front"; part: "arm" | "forearm" | "leg" | "shank" | "foot" | "head" | "trunk"; sign: 1 | -1 };
+export type Fig = { view: "side" | "front" | "top" | "hand"; part: string; sign: 1 | -1 };
 export type Motion = { name: string; deg: number; base: string; move: string; pos: string; fig?: Fig };
 export type Joint = { key: string; label: string; words: RegExp; motions: Motion[] };
 
@@ -16,8 +16,8 @@ export const JOINTS: Joint[] = [
   {
     key: "girdle", label: "肩甲帯", words: /肩甲帯|肩甲骨|挙上|引き下げ/,
     motions: [
-      ...pair({ base: "両側の肩峰を結ぶ線", move: "頭頂と肩峰を結ぶ線", pos: "" }, ["屈曲", 20], ["伸展", 20]),
-      ...pair({ base: "両側の肩峰を結ぶ線", move: "肩峰と胸骨上縁を結ぶ線", pos: "背面から測定する" }, ["挙上", 20], ["引き下げ", 10]),
+      ...pair({ base: "両側の肩峰を結ぶ線", move: "頭頂と肩峰を結ぶ線", pos: "" }, ["屈曲", 20, { view: "top", part: "girdleFwd", sign: 1 }], ["伸展", 20, { view: "top", part: "girdleFwd", sign: -1 }]),
+      ...pair({ base: "両側の肩峰を結ぶ線", move: "肩峰と胸骨上縁を結ぶ線", pos: "背面から測定する" }, ["挙上", 20, { view: "front", part: "girdleUp", sign: 1 }], ["引き下げ", 10, { view: "front", part: "girdleUp", sign: -1 }]),
     ],
   },
   {
@@ -26,23 +26,23 @@ export const JOINTS: Joint[] = [
       ...pair({ base: "肩峰を通る床への垂直線（立位または座位）", move: "上腕骨", pos: "前腕は中間位。体幹を固定し、脊柱が前後に曲がらないようにする" },
         ["屈曲", 180, { view: "side", part: "arm", sign: 1 }], ["伸展", 50, { view: "side", part: "arm", sign: -1 }]),
       { name: "外転", deg: 180, base: "肩峰を通る床への垂直線（立位または座位）", move: "上腕骨", pos: "体幹が側屈しないようにする。90°以上では前腕を回外する", fig: { view: "front", part: "arm", sign: 1 } },
-      { name: "内転", deg: 0, base: "肩峰を通る床への垂直線（立位または座位）", move: "上腕骨", pos: "体幹が側屈しないようにする" },
-      ...pair({ base: "肘を通る前額面への垂直線", move: "尺骨", pos: "上腕を体幹につけ、肘を前方に90°曲げる。前腕は中間位" }, ["外旋", 60], ["内旋", 80]),
-      ...pair({ base: "肩峰を通る矢状面への垂直線", move: "上腕骨", pos: "肩関節を90°外転した肢位" }, ["水平屈曲", 135], ["水平伸展", 30]),
+      { name: "内転", deg: 0, base: "肩峰を通る床への垂直線（立位または座位）", move: "上腕骨", pos: "体幹が側屈しないようにする", fig: { view: "front", part: "arm", sign: 1 } },
+      ...pair({ base: "肘を通る前額面への垂直線", move: "尺骨", pos: "上腕を体幹につけ、肘を前方に90°曲げる。前腕は中間位" }, ["外旋", 60, { view: "top", part: "shRot", sign: -1 }], ["内旋", 80, { view: "top", part: "shRot", sign: 1 }]),
+      ...pair({ base: "肩峰を通る矢状面への垂直線", move: "上腕骨", pos: "肩関節を90°外転した肢位" }, ["水平屈曲", 135, { view: "top", part: "hFlex", sign: 1 }], ["水平伸展", 30, { view: "top", part: "hFlex", sign: -1 }]),
     ],
   },
   {
     key: "elbow", label: "肘・前腕", words: /肘|前腕|回内|回外/,
     motions: [
       ...pair({ base: "上腕骨", move: "橈骨", pos: "前腕は回外位" }, ["肘 屈曲", 145, { view: "side", part: "forearm", sign: 1 }], ["肘 伸展", 5, { view: "side", part: "forearm", sign: -1 }]),
-      ...pair({ base: "上腕骨", move: "手指を伸ばした手掌面", pos: "肩が回らないよう、肘を90°曲げる" }, ["前腕 回内", 90], ["前腕 回外", 90]),
+      ...pair({ base: "上腕骨", move: "手指を伸ばした手掌面", pos: "肩が回らないよう、肘を90°曲げる" }, ["前腕 回内", 90, { view: "hand", part: "pron", sign: 1 }], ["前腕 回外", 90, { view: "hand", part: "pron", sign: -1 }]),
     ],
   },
   {
     key: "wrist", label: "手", words: /手関節|手首|橈屈|尺屈|掌屈|手/,
     motions: [
-      ...pair({ base: "橈骨", move: "第2中手骨", pos: "前腕は中間位" }, ["背屈（伸展）", 70], ["掌屈（屈曲）", 90]),
-      ...pair({ base: "前腕の中央線", move: "第3中手骨", pos: "前腕を回内位にする" }, ["橈屈", 25], ["尺屈", 55]),
+      ...pair({ base: "橈骨", move: "第2中手骨", pos: "前腕は中間位" }, ["背屈（伸展）", 70, { view: "hand", part: "wristFlex", sign: 1 }], ["掌屈（屈曲）", 90, { view: "hand", part: "wristFlex", sign: -1 }]),
+      ...pair({ base: "前腕の中央線", move: "第3中手骨", pos: "前腕を回内位にする" }, ["橈屈", 25, { view: "hand", part: "wristDev", sign: 1 }], ["尺屈", 55, { view: "hand", part: "wristDev", sign: -1 }]),
     ],
   },
   {
@@ -52,14 +52,14 @@ export const JOINTS: Joint[] = [
         ["屈曲", 125, { view: "side", part: "leg", sign: 1 }], ["伸展", 15, { view: "side", part: "leg", sign: -1 }]),
       ...pair({ base: "両側の上前腸骨棘を結ぶ線への垂直線", move: "大腿中央線（上前腸骨棘から膝蓋骨中心を結ぶ線）", pos: "背臥位で骨盤を固定。下肢は外旋しない。内転は反対側の下肢を持ち上げて行う" },
         ["外転", 45, { view: "front", part: "leg", sign: 1 }], ["内転", 20, { view: "front", part: "leg", sign: -1 }]),
-      ...pair({ base: "膝蓋骨より下ろした垂直線", move: "下腿中央線（膝蓋骨中心から足関節内外果の中央を結ぶ線）", pos: "背臥位で、股関節と膝関節を90°曲げる。骨盤の代償を少なくする" }, ["外旋", 45], ["内旋", 45]),
+      ...pair({ base: "膝蓋骨より下ろした垂直線", move: "下腿中央線（膝蓋骨中心から足関節内外果の中央を結ぶ線）", pos: "背臥位で、股関節と膝関節を90°曲げる。骨盤の代償を少なくする" }, ["外旋", 45, { view: "front", part: "hipRot", sign: -1 }], ["内旋", 45, { view: "front", part: "hipRot", sign: 1 }]),
     ],
   },
   {
     key: "knee", label: "膝", words: /膝/,
     motions: [
       { name: "屈曲", deg: 130, base: "大腿骨", move: "腓骨（腓骨頭と外果を結ぶ線）", pos: "屈曲は股関節を曲げた肢位で行う", fig: { view: "side", part: "shank", sign: -1 } },
-      { name: "伸展", deg: 0, base: "大腿骨", move: "腓骨（腓骨頭と外果を結ぶ線）", pos: "" },
+      { name: "伸展", deg: 0, base: "大腿骨", move: "腓骨（腓骨頭と外果を結ぶ線）", pos: "", fig: { view: "side", part: "shank", sign: -1 } },
     ],
   },
   {
@@ -67,8 +67,8 @@ export const JOINTS: Joint[] = [
     motions: [
       ...pair({ base: "矢状面で腓骨の長軸への垂直線", move: "足底面", pos: "膝関節を曲げた肢位で行う" },
         ["背屈", 20, { view: "side", part: "foot", sign: 1 }], ["底屈", 45, { view: "side", part: "foot", sign: -1 }]),
-      ...pair({ base: "前額面で下腿軸への垂直線", move: "足底面", pos: "膝を曲げ、足関節は0度で行う" }, ["内がえし", 30], ["外がえし", 20]),
-      ...pair({ base: "第2中足骨の長軸", move: "同左", pos: "膝を曲げ、足関節は0度で行う" }, ["外転", 10], ["内転", 20]),
+      ...pair({ base: "前額面で下腿軸への垂直線", move: "足底面", pos: "膝を曲げ、足関節は0度で行う" }, ["内がえし", 30, { view: "front", part: "sole", sign: -1 }], ["外がえし", 20, { view: "front", part: "sole", sign: 1 }]),
+      ...pair({ base: "第2中足骨の長軸", move: "同左", pos: "膝を曲げ、足関節は0度で行う" }, ["外転", 10, { view: "top", part: "footAb", sign: -1 }], ["内転", 20, { view: "top", part: "footAb", sign: 1 }]),
     ],
   },
   {
@@ -76,7 +76,7 @@ export const JOINTS: Joint[] = [
     motions: [
       ...pair({ base: "肩峰を通る床への垂直線", move: "外耳孔と頭頂を結ぶ線", pos: "頭部・体幹の側面で、腰かけ座位で行う" },
         ["屈曲", 60, { view: "side", part: "head", sign: -1 }], ["伸展", 50, { view: "side", part: "head", sign: 1 }]),
-      { name: "回旋（左右）", deg: 60, base: "両側の肩峰を結ぶ線への垂直線", move: "鼻梁と後頭結節を結ぶ線", pos: "腰かけ座位で行う" },
+      { name: "回旋（左右）", deg: 60, base: "両側の肩峰を結ぶ線への垂直線", move: "鼻梁と後頭結節を結ぶ線", pos: "腰かけ座位で行う", fig: { view: "top", part: "neckRot", sign: 1 } },
       { name: "側屈（左右）", deg: 50, base: "第7頸椎棘突起と第1仙椎の棘突起を結ぶ線", move: "頭頂と第7頸椎棘突起を結ぶ線", pos: "体幹の背面で行う。腰かけ座位", fig: { view: "front", part: "head", sign: -1 } },
     ],
   },
@@ -85,7 +85,7 @@ export const JOINTS: Joint[] = [
     motions: [
       ...pair({ base: "仙骨後面", move: "第1胸椎棘突起と第5腰椎棘突起を結ぶ線", pos: "体幹の側面から。立位・腰かけ座位・側臥位。股関節の運動が入らないようにする" },
         ["屈曲", 45, { view: "side", part: "trunk", sign: -1 }], ["伸展", 30, { view: "side", part: "trunk", sign: 1 }]),
-      { name: "回旋（左右）", deg: 40, base: "両側の後上腸骨棘を結ぶ線", move: "両側の肩峰を結ぶ線", pos: "座位で骨盤を固定して行う" },
+      { name: "回旋（左右）", deg: 40, base: "両側の後上腸骨棘を結ぶ線", move: "両側の肩峰を結ぶ線", pos: "座位で骨盤を固定して行う", fig: { view: "top", part: "trunkRot", sign: 1 } },
       { name: "側屈（左右）", deg: 50, base: "ヤコビー線の中点にたてた垂直線", move: "第1胸椎棘突起と第5腰椎棘突起を結ぶ線", pos: "体幹の背面で行う。腰かけ座位または立位", fig: { view: "front", part: "trunk", sign: -1 } },
     ],
   },

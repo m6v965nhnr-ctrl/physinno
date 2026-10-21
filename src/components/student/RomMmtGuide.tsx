@@ -40,7 +40,7 @@ function Body({ f, deg, name }: { f: Fig; deg: number; name: string }) {
     <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={SKIN} strokeWidth={w} strokeLinecap="round" />
   );
   return (
-    <svg viewBox="0 0 100 124" role="img" aria-label={`${name} 参考可動域 ${deg}度`} className="h-28 w-auto shrink-0">
+    <svg viewBox={f.part === "foot" ? "8 70 84 54" : "0 0 100 124"} role="img" aria-label={`${name} 参考可動域 ${deg}度`} className={f.part === "foot" ? "h-24 w-auto shrink-0" : "h-28 w-auto shrink-0"}>
       {show("head") && <circle cx="50" cy="13" r="8" fill={SKIN} />}
       {show("trunk") && L(50, 26, 50, 68, 13)}
       {side ? (
@@ -64,6 +64,116 @@ function Body({ f, deg, name }: { f: Fig; deg: number; name: string }) {
       <line x1={p.cx} y1={p.cy} x2={p.cx + mx} y2={p.cy + my} stroke={MOVE} strokeWidth={f.part === "trunk" ? 11 : 6} strokeLinecap="round" />
       {p.head && <circle cx={p.cx + hx} cy={p.cy + hy} r="8" fill={MOVE} />}
       <circle cx={p.cx} cy={p.cy} r="2.5" fill="#111827" />
+      <text x={f.part === "foot" ? 70 : 50} y={f.part === "foot" ? 68 : 123} fontSize="9" fontWeight="700" fill="#111827" textAnchor="middle">{deg}°</text>
+    </svg>
+  );
+}
+
+
+const arcD = (cx: number, cy: number, r: number, a0: number, a1: number) => {
+  const [x0, y0] = dir(a0, r);
+  const [x1, y1] = dir(a1, r);
+  return `M ${cx + x0} ${cy + y0} A ${r} ${r} 0 0 ${a1 > a0 ? 0 : 1} ${cx + x1} ${cy + y1}`;
+};
+
+// 上から見た図・手の図・足の裏の図など（人の体の一部を、模式的に描く）
+function Special({ f, deg, name }: { f: Fig; deg: number; name: string }) {
+  const ln = (x1: number, y1: number, x2: number, y2: number, w: number, c = SKIN) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={w} strokeLinecap="round" />;
+  const dash = (cx: number, cy: number, a: number, l: number) => { const [x, y] = dir(a, l); return <line x1={cx} y1={cy} x2={cx + x} y2={cy + y} stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="3 2" />; };
+  const pt = (cx: number, cy: number, a: number, l: number) => { const [x, y] = dir(a, l); return [cx + x, cy + y]; };
+  const arc = (cx: number, cy: number, r: number, a0: number, a1: number) => deg > 0 && <path d={arcD(cx, cy, r, a0, a1)} fill="none" stroke="#f59e0b" strokeWidth="2" />;
+  const dot = (cx: number, cy: number) => <circle cx={cx} cy={cy} r="2.5" fill="#111827" />;
+  // 上から見た体（顔が上）
+  const topBody = (cx: number, head = true) => (
+    <>
+      <ellipse cx={cx} cy="68" rx="26" ry="9" fill={SKIN} />
+      {head && <><circle cx={cx} cy="68" r="10" fill="#dbb88f" /><path d={`M ${cx - 4} 59 L ${cx} 52 L ${cx + 4} 59 z`} fill="#dbb88f" /></>}
+    </>
+  );
+  let body: React.ReactNode = null;
+  switch (f.part) {
+    case "girdleFwd": {
+      const a = 90 + f.sign * deg;
+      const [x, y] = pt(50, 68, a, 26);
+      body = <>{topBody(50)}{dash(50, 68, 90, 32)}{arc(50, 68, 16, 90, a)}{ln(50, 68, x, y, 8, MOVE)}{dot(50, 68)}</>;
+      break;
+    }
+    case "shRot": {
+      const a = 180 + f.sign * deg;
+      const [x, y] = pt(60, 68, a, 32);
+      body = <>{topBody(36)}{dash(60, 68, 180, 36)}{arc(60, 68, 16, 180, a)}{ln(60, 68, x, y, 6, MOVE)}<circle cx={x} cy={y} r="4" fill={MOVE} />{dot(60, 68)}</>;
+      break;
+    }
+    case "hFlex": {
+      const a = 90 + f.sign * deg;
+      const [x, y] = pt(60, 68, a, 34);
+      body = <>{topBody(36)}{dash(60, 68, 90, 36)}{arc(60, 68, 16, 90, a)}{ln(60, 68, x, y, 6, MOVE)}{dot(60, 68)}</>;
+      break;
+    }
+    case "neckRot": {
+      const a = 180 - f.sign * deg;
+      const [nx, ny] = pt(50, 68, a, 11);
+      const [mx, my] = pt(50, 68, a, 40);
+      body = <>{topBody(50, false)}{dash(50, 68, 180, 40)}{arc(50, 68, 18, 180, a)}{ln(50, 68, mx, my, 2.5, MOVE)}<circle cx="50" cy="68" r="10" fill="#cfeee8" stroke={MOVE} />
+        <circle cx={nx} cy={ny} r="3.5" fill={MOVE} />{dot(50, 68)}</>;
+      break;
+    }
+    case "trunkRot": {
+      const a = 90 - f.sign * deg;
+      const [x, y] = pt(50, 68, a, 32);
+      const [x2, y2] = pt(50, 68, a + 180, 32);
+      body = <><ellipse cx="50" cy="68" rx="22" ry="8" fill={SKIN} />{dash(50, 68, 90, 38)}{dash(50, 68, 270, 38)}{arc(50, 68, 32, 90, a)}{ln(x2, y2, x, y, 8, MOVE)}<circle cx="50" cy="68" r="8" fill="#dbb88f" />{dot(50, 68)}</>;
+      break;
+    }
+    case "footAb": {
+      const a = 180 + f.sign * deg;
+      const [x, y] = pt(60, 104, a, 36);
+      body = <>{ln(60, 104, 60, 122, 8)}{ln(36, 104, 36, 70, 8)}{ln(36, 104, 36, 122, 8)}{dash(60, 104, 180, 40)}{arc(60, 104, 20, 180, a)}{ln(60, 104, x, y, 8, MOVE)}{dot(60, 104)}</>;
+      break;
+    }
+    case "girdleUp": {
+      const a = 90 + f.sign * deg;
+      const [x, y] = pt(57, 32, a, 18);
+      body = <>{ln(50, 26, 50, 68, 13)}<circle cx="50" cy="13" r="8" fill={SKIN} />{ln(45, 68, 45, 114, 7)}{ln(55, 68, 55, 114, 7)}{ln(43, 32, 38, 66, 5)}{dash(57, 32, 90, 30)}{arc(57, 32, 14, 90, a)}{ln(57, 32, x, y, 7, MOVE)}{dot(57, 32)}</>;
+      break;
+    }
+    case "hipRot": {
+      const a = f.sign * deg;
+      const [x, y] = pt(55, 92, a, 22);
+      body = <>{ln(50, 26, 50, 68, 13)}<circle cx="50" cy="13" r="8" fill={SKIN} />{ln(45, 68, 45, 114, 7)}{ln(55, 68, 55, 92, 8)}{ln(43, 32, 38, 66, 5)}{ln(57, 32, 62, 66, 5)}{dash(55, 92, 0, 30)}{arc(55, 92, 14, 0, a)}{ln(55, 92, x, y, 6, MOVE)}{dot(55, 92)}</>;
+      break;
+    }
+    case "sole": {
+      const a = 90 + f.sign * deg;
+      const [x, y] = pt(62, 108, a, 16);
+      const [x2, y2] = pt(62, 108, a + 180, 16);
+      body = <>{ln(36, 66, 36, 112, 6, "#f3e4d2")}{ln(62, 66, 62, 108, 8)}{dash(62, 108, 90, 20)}{dash(62, 108, 270, 20)}{ln(x2, y2, x, y, 7, MOVE)}{dot(62, 108)}</>;
+      break;
+    }
+    case "pron": {
+      const a = 180 - f.sign * deg;
+      const [x, y] = pt(50, 62, a, 17);
+      const [x2, y2] = pt(50, 62, a + 180, 17);
+      const [tx, ty] = pt(50, 62, a, 24);
+      body = <><circle cx="50" cy="62" r="13" fill={SKIN} />{dash(50, 62, 180, 40)}{arc(50, 62, 30, 180, a)}{ln(x2, y2, x, y, 8, MOVE)}<circle cx={tx} cy={ty} r="4.5" fill={MOVE} />{dot(50, 62)}</>;
+      break;
+    }
+    case "wristFlex":
+    case "wristDev": {
+      const a = 90 + f.sign * deg;
+      const [x, y] = pt(46, 62, a, 34);
+      const [t1x, t1y] = pt(46, 62, a, 10);
+      const [n1x, n1y] = pt(0, 0, a + 90, 5);
+      const [t2x, t2y] = pt(46, 62, a, 20);
+      const [n2x, n2y] = pt(0, 0, a + 90, 11);
+      body = <>{ln(6, 62, 46, 62, 11)}{dash(46, 62, 90, 46)}{arc(46, 62, 20, 90, a)}{ln(46, 62, x, y, 10, MOVE)}{[-18, 0, 18].map((d) => { const [fx, fy] = pt(x, y, a + d, 9); return <line key={d} x1={x} y1={y} x2={fx} y2={fy} stroke={MOVE} strokeWidth="3" strokeLinecap="round" />; })}
+        {f.part === "wristDev" && ln(t1x + n1x, t1y + n1y, t2x + n2x, t2y + n2y, 4, MOVE)}{dot(46, 62)}</>;
+      break;
+    }
+  }
+  return (
+    <svg viewBox="0 0 100 124" role="img" aria-label={`${name} 参考可動域 ${deg}度`} className="h-28 w-auto shrink-0">
+      {body}
       <text x="50" y="123" fontSize="9" fontWeight="700" fill="#111827" textAnchor="middle">{deg}°</text>
     </svg>
   );
@@ -130,6 +240,7 @@ function GravityFigure() {
   );
 }
 
+const SPECIAL = new Set(["girdleFwd", "shRot", "hFlex", "neckRot", "trunkRot", "footAb", "girdleUp", "hipRot", "sole", "pron", "wristFlex", "wristDev"]);
 const WORDS = /関節可動域|可動域|ROM|角度計|MMT|徒手筋力|筋力テスト|筋力検査/;
 const MMT_PARTS = ["股", "膝", "足", "肩", "肩甲骨", "肘", "前腕", "体幹", "頸部", "骨盤", "手指"];
 const MMT_OF: Record<string, string> = { girdle: "肩甲骨", shoulder: "肩", elbow: "肘", wrist: "手指", hip: "股", knee: "膝", ankle: "足", neck: "頸部", trunk: "体幹" };
@@ -137,7 +248,7 @@ const MMT_OF: Record<string, string> = { girdle: "肩甲骨", shoulder: "肩", e
 function MotionCard({ m }: { m: Motion }) {
   return (
     <li className="flex items-center gap-2 rounded-xl bg-gray-50 p-2">
-      {m.fig ? <Body f={m.fig} deg={m.deg} name={m.name} /> : <AngleOnly deg={m.deg} name={m.name} />}
+      {m.fig ? (SPECIAL.has(m.fig.part) ? <Special f={m.fig} deg={m.deg} name={m.name} /> : <Body f={m.fig} deg={m.deg} name={m.name} />) : <AngleOnly deg={m.deg} name={m.name} />}
       <div className="min-w-0 text-[11px] leading-4 text-gray-700">
         <p className="text-xs font-semibold text-gray-900">{m.name}　<span className="text-emerald-700">{m.deg}°</span></p>
         <p><span className="font-semibold text-gray-500">基本軸</span>　{m.base}</p>
