@@ -580,7 +580,11 @@ html[data-shell] #main-content {
 /* ホームの四角の細い枠線の色（「勉強」ボタンの、青緑のグラデーションの真ん中の色） */
 :root { --relight-line: #45cfc3; }
 
-/* iPhoneの画面の上端（時刻の部分）に、下の内容が入り込まないよう、白で塞ぐ */
+/* iPhoneの画面の上端（時刻の部分）に、下の内容が入り込まないよう、白で塞ぐ。本文は、その帯の下から始める */
+body {
+  padding-top: env(safe-area-inset-top);
+}
+/* iPhoneの画面の上端の白い帯（上の余白と同じ高さ） */
 body::before {
   content: "";
   position: fixed;
