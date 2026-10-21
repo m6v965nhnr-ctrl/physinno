@@ -221,7 +221,7 @@ export default function MessagesPage() {
     return (
       <main className="min-h-screen bg-[#fafafa] pb-24">
         <header className="border-b border-gray-100 bg-white">
-          <div className="mx-auto max-w-2xl px-5 py-5">
+          <div className="mx-auto max-w-2xl px-5 py-2.5">
             <h1 className="text-lg font-semibold text-gray-900">
               メッセージ
             </h1>
@@ -246,7 +246,7 @@ export default function MessagesPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] pb-24">
       <header className="sticky top-0 z-40 border-b border-gray-100 bg-white/95 backdrop-blur">
-        <div className="mx-auto max-w-2xl px-5 py-5">
+        <div className="mx-auto max-w-2xl px-5 py-2.5">
           <h1 className="text-lg font-semibold text-gray-900">
             メッセージ
           </h1>

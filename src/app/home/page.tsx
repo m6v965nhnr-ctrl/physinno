@@ -430,7 +430,7 @@ export default function HomePage() {
     <main className="min-h-screen bg-gray-50 pb-24">
       <div className="max-w-xl mx-auto">
         {/* ヘッダー */}
-        <header className="sticky top-0 z-10 bg-white border-b px-5 py-4">
+        <header className="sticky top-0 z-10 bg-white border-b px-5 py-2">
           <div className="flex items-center justify-between">
             <h1 className="text-xl font-semibold">Re:light</h1>
 
