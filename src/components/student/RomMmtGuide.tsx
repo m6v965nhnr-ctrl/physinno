@@ -189,62 +189,91 @@ function Special({ f, deg, name }: { f: Fig; deg: number; name: string }) {
   );
 }
 
-// MMT: 検査の姿勢の図（人の形。緑＝動かす部分、橙＝動く向き、赤＝検査者が加える抵抗）
-type Spec = { pose: "sit" | "prone"; pivot: [number, number]; len: number; a0: number; a1: number; fixed?: [number, number, number, number][]; tail?: [number, number]; omit: string[] };
+// MMT: 検査の姿勢の図（人の形。緑＝動かす部分、橙＝動く向き、赤＝検査者が加える抵抗）。
+// 姿勢と動く向きは、教科書の検査の肢位を参考に、このアプリで描き直した模式図です
+type Pose = "sit" | "sitF" | "prone" | "supine" | "side" | "stand";
+type Move = { pivot: [number, number]; len: number; a0: number; a1: number; w?: number; tail?: [number, number]; noRes?: boolean };
+type Spec = { pose: Pose; moves: Move[]; fixed?: [number, number, number, number][]; omit?: string[]; up?: [number, number, number, number] };
 const MMT_SPEC: Record<string, Spec> = {
-  "股-屈曲": { pose: "sit", pivot: [28, 49], len: 30, a0: 90, a1: 118, tail: [20, 0], omit: ["thigh", "shank"] },
-  "膝-伸展": { pose: "sit", pivot: [58, 49], len: 21, a0: 0, a1: 75, omit: ["shank"] },
-  "肩-屈曲": { pose: "sit", pivot: [28, 27], len: 26, a0: 0, a1: 90, omit: [] },
-  "肘-屈曲": { pose: "sit", pivot: [28, 38], len: 16, a0: 0, a1: 100, fixed: [[28, 27, 28, 38]], omit: [] },
-  "股-伸展": { pose: "prone", pivot: [62, 40], len: 40, a0: 90, a1: 108, omit: ["legs"] },
-  "膝-屈曲": { pose: "prone", pivot: [84, 40], len: 20, a0: 90, a1: 150, fixed: [[62, 40, 84, 40]], omit: ["legs"] },
+  "股-屈曲": { pose: "sit", omit: ["thigh", "shank"], moves: [{ pivot: [28, 49], len: 30, a0: 90, a1: 118, tail: [20, 0] }] },
+  "股-屈曲・外転・外旋": { pose: "sit", omit: ["thigh", "shank"], moves: [{ pivot: [28, 49], len: 30, a0: 90, a1: 118, tail: [20, 0] }] },
+  "股-伸展": { pose: "prone", omit: ["legs"], moves: [{ pivot: [62, 40], len: 40, a0: 90, a1: 108 }] },
+  "股-外転": { pose: "side", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [62, 40], len: 44, a0: 90, a1: 128 }] },
+  "股-内転": { pose: "side", omit: ["legs"], fixed: [[62, 40, 95, 17]], moves: [{ pivot: [62, 40], len: 44, a0: 90, a1: 108 }] },
+  "股-外旋": { pose: "sitF", omit: ["legR"], moves: [{ pivot: [66, 52], len: 17, a0: 0, a1: -38 }] },
+  "膝-伸展": { pose: "sit", omit: ["shank"], moves: [{ pivot: [58, 49], len: 21, a0: 0, a1: 75 }] },
+  "膝-屈曲": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 84, 40]], moves: [{ pivot: [84, 40], len: 20, a0: 90, a1: 150 }] },
+  "足-底屈": { pose: "stand", omit: [], moves: [], up: [64, 70, 64, 55] },
+  "足-背屈と内がえし": { pose: "supine", omit: ["legs"], fixed: [[62, 40, 98, 40]], moves: [{ pivot: [98, 40], len: 12, a0: 180, a1: 208 }] },
+  "肩-屈曲": { pose: "sit", moves: [{ pivot: [28, 27], len: 26, a0: 0, a1: 90 }] },
+  "肩-外転": { pose: "sitF", moves: [{ pivot: [67, 24], len: 26, a0: 0, a1: 90 }] },
+  "肩-水平外転": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [30, 40], len: 26, a0: 180, a1: 150 }] },
+  "肩-伸展": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [24, 40], len: 26, a0: 90, a1: 118 }] },
+  "肩-内旋／外旋": { pose: "sitF", moves: [{ pivot: [67, 38], len: 16, a0: 0, a1: 55 }] },
+  "肩-水平内転": { pose: "supine", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [30, 40], len: 26, a0: 180, a1: 120 }] },
+  "肩甲骨-挙上": { pose: "sitF", moves: [{ pivot: [67, 22], len: 12, a0: 90, a1: 118 }] },
+  "肩甲骨-外転・上方回旋": { pose: "sit", moves: [{ pivot: [28, 27], len: 26, a0: 90, a1: 150 }] },
+  "肩甲骨-内転・下方回旋": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [30, 40], len: 18, a0: 180, a1: 160 }] },
+  "肘-屈曲": { pose: "sit", fixed: [[28, 27, 28, 38]], moves: [{ pivot: [28, 38], len: 16, a0: 0, a1: 100 }] },
+  "肘-伸展": { pose: "sit", fixed: [[28, 27, 28, 38]], moves: [{ pivot: [28, 38], len: 16, a0: 100, a1: 40 }] },
+  "前腕-回外／回内": { pose: "sitF", fixed: [[67, 24, 67, 38]], moves: [{ pivot: [67, 38], len: 14, a0: 0, a1: 40 }] },
+  "体幹-屈曲": { pose: "supine", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [62, 40], len: 30, a0: 270, a1: 235 }] },
+  "体幹-伸展": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [62, 40], len: 30, a0: 270, a1: 300 }] },
+  "頸部-伸展": { pose: "prone", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [22, 40], len: 10, a0: 270, a1: 295 }] },
+  "頸部-屈曲": { pose: "supine", omit: ["legs"], fixed: [[62, 40, 108, 40]], moves: [{ pivot: [22, 40], len: 10, a0: 270, a1: 245 }] },
+  "骨盤-挙上": { pose: "supine", omit: ["legs"], moves: [{ pivot: [62, 40], len: 44, a0: 90, a1: 78 }] },
+  "手指-内転／外転": { pose: "sitF", fixed: [[67, 24, 67, 40]], moves: [{ pivot: [67, 40], len: 12, a0: 0, a1: 35 }] },
 };
-function poseOf(t: string): "sit" | "supine" | "prone" | "side" {
-  return /腹臥位/.test(t) ? "prone" : /側臥位/.test(t) ? "side" : /背臥位/.test(t) ? "supine" : "sit";
+function poseOf(t: string, key: string): Pose {
+  const sp = MMT_SPEC[key];
+  if (sp) return sp.pose;
+  return /腹臥位/.test(t) ? "prone" : /側臥位/.test(t) ? "side" : /背臥位/.test(t) ? "supine" : /立位/.test(t) ? "stand" : "sit";
 }
-const POSE_LABEL = { sit: "座位", supine: "背臥位", prone: "腹臥位", side: "側臥位" } as const;
+const POSE_LABEL: Record<Pose, string> = { sit: "座位（横から）", sitF: "座位（正面から）", supine: "背臥位", prone: "腹臥位", side: "側臥位", stand: "立位" };
 
 function MmtFigure({ row }: { row: [string, string, string, string, string] }) {
-  const pose = poseOf(row[3]);
-  const spec = MMT_SPEC[`${row[0]}-${row[1]}`];
-  const ln = (x1: number, y1: number, x2: number, y2: number, w: number, c = SKIN) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={w} strokeLinecap="round" />;
+  const key = `${row[0]}-${row[1]}`;
+  const spec = MMT_SPEC[key];
+  const pose = poseOf(row[3], key);
   const omit = spec?.omit ?? [];
-  const lying = pose !== "sit";
-  let moving: React.ReactNode = null;
-  if (spec) {
-    const [px, py] = spec.pivot;
-    const e = dir(spec.a1, spec.len);
-    const g = dir(spec.a0, spec.len);
-    const sgn = spec.a1 >= spec.a0 ? 1 : -1;
-    const [tx, ty] = dir(spec.a1 + 90 * sgn, 13);
+  const ln = (x1: number, y1: number, x2: number, y2: number, w: number, c = SKIN) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={w} strokeLinecap="round" />;
+  const lying = pose === "supine" || pose === "prone" || pose === "side";
+  const moves = (spec?.moves ?? []).map((m, i) => {
+    const [px, py] = m.pivot;
+    const e = dir(m.a1, m.len);
+    const g = dir(m.a0, m.len);
+    const sgn = m.a1 >= m.a0 ? 1 : -1;
+    const [tx, ty] = dir(m.a1 + 90 * sgn, 13);
     const ex = px + e[0], ey = py + e[1];
-    const [ax0, ay0] = dir(spec.a0, 11);
-    const [ax1, ay1] = dir(spec.a1, 11);
-    moving = (
-      <>
-        {ln(px, py, px + g[0], py + g[1], 7, "#e3cdb6")}
-        {ln(px, py, ex, ey, 7, MOVE)}
-        {spec.tail && ln(ex, ey, ex + dir(spec.tail[1], spec.tail[0])[0], ey + dir(spec.tail[1], spec.tail[0])[1], 6, MOVE)}
+    const [ax0, ay0] = dir(m.a0, 11);
+    const [ax1, ay1] = dir(m.a1, 11);
+    const tl = m.tail ? dir(m.tail[1], m.tail[0]) : null;
+    return (
+      <g key={i}>
+        {ln(px, py, px + g[0], py + g[1], m.w ?? 7, "#e3cdb6")}
+        {ln(px, py, ex, ey, m.w ?? 7, MOVE)}
+        {tl && ln(ex, ey, ex + tl[0], ey + tl[1], 6, MOVE)}
         <path d={`M ${px + ax0} ${py + ay0} A 11 11 0 0 ${sgn > 0 ? 0 : 1} ${px + ax1} ${py + ay1}`} fill="none" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#romarr)" />
-        <line x1={ex + tx} y1={ey + ty} x2={ex + tx * 0.15} y2={ey + ty * 0.15} stroke="#ef4444" strokeWidth="2.5" markerEnd="url(#romred)" />
-        <text x={Math.min(ex + tx + 2, 100)} y={Math.max(ey + ty - 2, 8)} fontSize="7" fill="#ef4444" fontWeight="700">抵抗</text>
-      </>
+        <line x1={Math.min(Math.max(ex + tx, 4), 116)} y1={Math.min(Math.max(ey + ty, 4), 60)} x2={ex + tx * 0.15} y2={ey + ty * 0.15} stroke="#ef4444" strokeWidth="2.5" markerEnd="url(#romred)" />
+        <text x={Math.min(Math.max(ex + tx + 2, 2), 100)} y={Math.min(Math.max(ey + ty - 2, 8), 62)} fontSize="7" fill="#ef4444" fontWeight="700">抵抗</text>
+      </g>
     );
-  }
+  });
   return (
     <svg viewBox="0 0 120 72" role="img" aria-label={`${row[0]}の${row[1]} 検査の姿勢（${POSE_LABEL[pose]}）`} className="h-24 w-36 shrink-0">
       {DEFS}
       <defs>
         <marker id="romred" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ef4444" /></marker>
       </defs>
-      {lying ? (
+      {lying && (
         <>
           <rect x="6" y="46" width="108" height="4" rx="2" fill="#d1d5db" />
           <circle cx="13" cy="37" r="7" fill={SKIN} />
           {ln(22, 40, 62, 40, 10)}
           {!omit.includes("legs") && ln(62, 40, 108, 40, 8)}
         </>
-      ) : (
+      )}
+      {pose === "sit" && (
         <>
           <rect x="14" y="52" width="48" height="4" rx="2" fill="#d1d5db" />
           <circle cx="28" cy="11" r="7" fill={SKIN} />
@@ -254,9 +283,28 @@ function MmtFigure({ row }: { row: [string, string, string, string, string] }) {
           {!omit.includes("shank") && ln(58, 49, 58, 69, 6)}
         </>
       )}
-      {(spec?.fixed ?? []).map((f, i) => <g key={i}>{ln(f[0], f[1], f[2], f[3], 6)}</g>)}
-      {moving}
-      <text x="60" y="70" fontSize="7.5" fontWeight="700" fill="#6b7280" textAnchor="middle">{POSE_LABEL[pose]}</text>
+      {pose === "sitF" && (
+        <>
+          <rect x="40" y="52" width="40" height="4" rx="2" fill="#d1d5db" />
+          <circle cx="60" cy="11" r="7" fill={SKIN} />
+          {ln(60, 19, 60, 49, 13)}
+          {ln(54, 50, 54, 69, 6)}
+          {!omit.includes("legR") && ln(66, 50, 66, 69, 6)}
+          {ln(53, 24, 53, 46, 5)}
+        </>
+      )}
+      {pose === "stand" && (
+        <>
+          <circle cx="60" cy="9" r="7" fill={SKIN} />
+          {ln(60, 17, 60, 45, 10)}
+          {ln(56, 45, 56, 70, 6)}
+          {ln(64, 45, 64, 70, 6)}
+        </>
+      )}
+      {(spec?.fixed ?? []).map((f, i) => <g key={i}>{ln(f[0], f[1], f[2], f[3], 7)}</g>)}
+      {moves}
+      {spec?.up && <line x1={spec.up[0]} y1={spec.up[1]} x2={spec.up[2]} y2={spec.up[3]} stroke={MOVE} strokeWidth="3" markerEnd="url(#romarr)" />}
+      <text x="60" y="71" fontSize="7" fontWeight="700" fill="#6b7280" textAnchor="middle">{POSE_LABEL[pose]}</text>
     </svg>
   );
 }
