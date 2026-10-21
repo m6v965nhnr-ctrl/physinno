@@ -326,6 +326,11 @@ export default function BottomNavWrapper() {
       return false;
     }
 
+    // 学生のマイページは /student に移るので、そこでも「マイページ」を選んだ状態にする（移ったあとで、選択が外れないように）
+    if (base === "/mypage" && accountType === "student") {
+      return pathname === "/mypage" || (pathname.startsWith("/student") && !pathname.startsWith("/student/quiz"));
+    }
+
     // 勉強は、過去問を解く画面（/student/quiz/...）も含む
     if (base === "/study") return pathname.startsWith("/study") || pathname.startsWith("/student/quiz");
 

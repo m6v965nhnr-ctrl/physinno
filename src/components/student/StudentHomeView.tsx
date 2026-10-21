@@ -59,11 +59,11 @@ export default function StudentHomeView({
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
-      <header className="border-b border-gray-100 bg-white px-6 py-5">
+      <header className="border-b border-gray-100 bg-white px-6 py-2.5">
         <div className="mx-auto flex max-w-2xl items-start justify-between gap-3">
           <div className="min-w-0">
             <p className="text-xs font-medium text-emerald-600">学生</p>
-            <h1 className="mt-1 text-xl font-semibold tracking-tight">
+            <h1 className="text-xl font-semibold leading-tight tracking-tight">
               {name ? `${name}さんの学生ホーム` : "学生ホーム"}
             </h1>
           </div>
@@ -79,7 +79,7 @@ export default function StudentHomeView({
 
       {banner && <div className="mx-auto max-w-2xl px-6 pt-5">{banner}</div>}
 
-      <div inert={preview} className="mx-auto max-w-2xl space-y-5 px-6 py-6">
+      <div inert={preview} className="mx-auto max-w-2xl space-y-3 px-6 py-4">
         {!name && (
           <Link
             href="/student/settings?welcome=1"
