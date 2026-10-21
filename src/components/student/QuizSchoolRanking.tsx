@@ -85,7 +85,8 @@ export default function QuizSchoolRanking() {
             {podium.map((r, i) => (
               <li
                 key={`p${i}`}
-                className={`flex items-center gap-3 rounded-xl px-3 py-2.5 ${
+                style={{ width: `${[94, 90, 86][r.rank - 1] ?? 86}%` }}
+                className={`mx-auto flex items-center gap-3 rounded-xl px-3 py-2.5 ${
                   r.is_me ? "bg-amber-100 ring-1 ring-amber-300" : "bg-amber-50"
                 }`}
               >
