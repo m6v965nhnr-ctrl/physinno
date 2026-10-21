@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { GRADES, JOINTS, MMT_ROWS, type Fig, type Motion } from "./romData";
+import { GRADES, JOINTS, MMT_RESIST, MMT_ROWS, type Fig, type Motion } from "./romData";
 
 // 解説の下に出す、ROM（関節可動域）とMMT（徒手筋力テスト）の図。問題に関係がありそうなときだけ出す。
 // 図は、このアプリで描いた模式図（教科書の絵ではありません）。データの出どころは romData.ts
@@ -394,6 +394,9 @@ export default function RomMmtGuide({ text, always = false }: { text: string; al
   const [sel, setSel] = useState<string | null>(null);
   const [mmtSel, setMmtSel] = useState<string | null>(null);
   if (!always && !WORDS.test(text)) return null;
+  const isMmt = /MMT|徒手筋力|筋力テスト|筋力検査/.test(text);
+  const isRom = /関節可動域|可動域|ROM|角度計/.test(text);
+  const mmtFirst = isMmt && !isRom;
   const cur = JOINTS.find((j) => j.key === (sel ?? hit?.key ?? "shoulder")) ?? JOINTS[1];
   const part = mmtSel ?? MMT_OF[cur.key] ?? "肩";
   const chip = (on: boolean) => `whitespace-nowrap rounded-full px-3 py-1 text-[11px] font-semibold ${on ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`;
@@ -404,6 +407,57 @@ export default function RomMmtGuide({ text, always = false }: { text: string; al
         📐 ROM・MMTを図で確かめる <span className="text-gray-400">▾</span>
       </summary>
       <div className="space-y-5 border-t border-gray-100 p-3">
+        {mmtFirst ? <>
+        <section>
+          <p className="text-xs font-semibold text-gray-700">MMT：主な検査の肢位（部位を選ぶ）</p>
+          <div role="group" aria-label="MMTの部位を選ぶ" className="mt-2 flex flex-wrap gap-1.5">
+            {MMT_PARTS.map((p) => (
+              <button key={p} type="button" aria-pressed={part === p} onClick={() => setMmtSel(p)} className={chip(part === p)}>{p}</button>
+            ))}
+          </div>
+          <ul className="mt-2 space-y-1.5">
+            {MMT_ROWS.filter((r) => r[0] === part).map((r) => (
+              <li key={r[0] + r[1]} className="flex items-center gap-2 rounded-xl bg-gray-50 p-2 text-[11px] leading-4 text-gray-700">
+                <MmtFigure row={r} />
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-gray-900">{r[1]}　<span className="font-normal text-gray-500">{r[2]}</span></p>
+                  <p><span className="font-semibold text-gray-500">段階3・4・5</span>　{r[3]}</p>
+                  {MMT_RESIST[r[0] + "-" + r[1]] && <p><span className="font-semibold text-red-500">抵抗（段階4・5）</span>　{MMT_RESIST[r[0] + "-" + r[1]]}</p>}
+                  <p><span className="font-semibold text-gray-500">段階2</span>　{r[4]}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs font-semibold text-gray-700">MMT：筋力の段階（0〜5）</p>
+          <div className="mt-2"><GravityFigure /></div>
+          <ol className="mt-2 space-y-1">
+            {GRADES.map((g) => (
+              <li key={g.g} className="flex items-center gap-2 rounded-lg bg-gray-50 px-2 py-1.5">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-emerald-500 text-sm font-bold text-white">{g.g}</span>
+                <span className="min-w-0 text-[11px] leading-4 text-gray-700"><span className="font-semibold">{g.name}</span>　{g.body}</span>
+              </li>
+            ))}
+          </ol>
+
+          <p className="mt-2 text-[10px] leading-4 text-gray-400">一般的な基準（Daniels &amp; Worthingham、Kendallなど）と、MMTを載せた教科書の要約です（確認日 2026-10-21）。抵抗の部位は、教科書の図と、MMTを解説した複数のサイトに共通する一般的な位置（動かす部分の遠位に、動きと逆向きに加える）です。部位ごとの細かい位置は、教科書で確かめてください。学校・教科書により、書き方に差があります。+ / − の細かい段階は、省いています。</p>
+        </section>
+        <section>
+          <p className="text-xs font-semibold text-gray-700">ROM：関節可動域の測定</p>
+          <div role="group" aria-label="関節を選ぶ" className="mt-2 flex flex-wrap gap-1.5">
+            {JOINTS.map((j) => (
+              <button key={j.key} type="button" aria-pressed={cur.key === j.key} onClick={() => { setSel(j.key); setMmtSel(null); }} className={chip(cur.key === j.key)}>
+                {j.label}
+              </button>
+            ))}
+          </div>
+          <ul className="mt-2 space-y-2">{cur.motions.map((m) => <MotionCard key={m.name} m={m} />)}</ul>
+          <p className="mt-2 text-[10px] leading-4 text-gray-400">
+            灰の点線＝基本軸（0°）、緑＝動かす側、橙＝動く角度。模式図で、実際の測定の姿勢そのものではありません（図のない運動は、角度だけです）。参考可動域は、日本整形外科学会・日本リハビリテーション医学会・日本足の外科学会「関節可動域表示ならびに測定法」（2022年4月改訂）。基本軸・移動軸・肢位は、同じ測定法を載せた教科書で確かめました（確認日 2026-10-21）。公式の資料：
+            <a href="https://www.jarm.or.jp/member/document/kadou/shusei.pdf" target="_blank" rel="noopener" className="underline">日本リハビリテーション医学会</a>
+          </p>
+        </section>
+
+        </> : <>
         <section>
           <p className="text-xs font-semibold text-gray-700">ROM：関節可動域の測定</p>
           <div role="group" aria-label="関節を選ぶ" className="mt-2 flex flex-wrap gap-1.5">
@@ -434,6 +488,7 @@ export default function RomMmtGuide({ text, always = false }: { text: string; al
                 <div className="min-w-0">
                   <p className="text-xs font-semibold text-gray-900">{r[1]}　<span className="font-normal text-gray-500">{r[2]}</span></p>
                   <p><span className="font-semibold text-gray-500">段階3・4・5</span>　{r[3]}</p>
+                  {MMT_RESIST[r[0] + "-" + r[1]] && <p><span className="font-semibold text-red-500">抵抗（段階4・5）</span>　{MMT_RESIST[r[0] + "-" + r[1]]}</p>}
                   <p><span className="font-semibold text-gray-500">段階2</span>　{r[4]}</p>
                 </div>
               </li>
@@ -452,6 +507,7 @@ export default function RomMmtGuide({ text, always = false }: { text: string; al
 
           <p className="mt-2 text-[10px] leading-4 text-gray-400">一般的な基準（Daniels &amp; Worthingham、Kendallなど）と、MMTを載せた教科書の要約です（確認日 2026-10-21）。学校・教科書により、書き方に差があります。+ / − の細かい段階は、省いています。</p>
         </section>
+        </>}
       </div>
     </details>
   );
