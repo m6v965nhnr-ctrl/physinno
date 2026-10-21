@@ -85,7 +85,7 @@ export default function SchoolsIndexPage() {
         })}
 
         <div className="mt-10 rounded-2xl bg-relight-gradient px-6 py-5 text-white">
-          <p className="text-base font-semibold">国試の過去問、約2,000問を無料で</p>
+          <p className="text-base font-semibold">国試の過去問、約2,200問を無料で</p>
           <p className="mt-1 text-sm leading-6 text-white/95">登録なしで、1問ずつ。答えるとすぐ解説。</p>
           <Link href="/kokushi" className="mt-4 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-gray-900">
             過去問を解いてみる

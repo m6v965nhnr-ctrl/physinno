@@ -19,6 +19,7 @@ export const OFFICIAL_EXAMS: OfficialExam[] = [
   { exam_no: 53, date: "2018年2月25日", code: "tp180511" },
   { exam_no: 52, date: "2017年2月26日", code: "tp170425" },
   { exam_no: 51, date: "2016年2月28日", code: "tp160411-06", old: true },
+  { exam_no: 50, date: "2015年2月22日", code: "tp150511-06", old: true },
 ];
 
 const BASE = "https://www.mhlw.go.jp/seisakunitsuite/bunya/kenkou_iryou/iryou/topics";
