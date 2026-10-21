@@ -596,3 +596,13 @@ body::before {
   z-index: 100000;
   pointer-events: none;
 }
+
+/* ホーム画面に追加したアプリでは、iPhoneが状態バーの下を少しぼかす。その分（約5mm）、本文を下げて、白い帯を伸ばす */
+@media (display-mode: standalone) {
+  body {
+    padding-top: calc(env(safe-area-inset-top) + 1.2rem);
+  }
+  body::before {
+    height: calc(env(safe-area-inset-top) + 1.2rem);
+  }
+}
