@@ -4,6 +4,7 @@ export type OfficialExam = {
   exam_no: number;
   date: string;
   code: string;
+  old?: boolean;
 };
 
 export const OFFICIAL_EXAMS: OfficialExam[] = [
@@ -17,12 +18,22 @@ export const OFFICIAL_EXAMS: OfficialExam[] = [
   { exam_no: 54, date: "2019年2月24日", code: "tp190415" },
   { exam_no: 53, date: "2018年2月25日", code: "tp180511" },
   { exam_no: 52, date: "2017年2月26日", code: "tp170425" },
+  { exam_no: 51, date: "2016年2月28日", code: "tp160411-06", old: true },
 ];
 
 const BASE = "https://www.mhlw.go.jp/seisakunitsuite/bunya/kenkou_iryou/iryou/topics";
 
 export function officialPdfs(e: OfficialExam) {
   const f = (name: string) => `${BASE}/dl/${e.code}-${name}.pdf`;
+  if (e.old) {
+    return [
+      { label: "午前 問題", href: f("1am_01") },
+      { label: "午前 問題（別冊・図）", href: f("1am_02") },
+      { label: "午後 問題", href: f("1pm_01") },
+      { label: "午後 問題（別冊・図）", href: f("1pm_02") },
+      { label: "正答", href: f("1seitou") },
+    ];
+  }
   return [
     { label: "午前 問題", href: f("08a_01") },
     { label: "午前 問題（別冊・図）", href: f("08a_02") },
@@ -33,5 +44,5 @@ export function officialPdfs(e: OfficialExam) {
 }
 
 export function officialPage(e: OfficialExam) {
-  return `${BASE}/${e.code}-08_09.html`;
+  return e.old ? `${BASE}/${e.code}.html` : `${BASE}/${e.code}-08_09.html`;
 }
