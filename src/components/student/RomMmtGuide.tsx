@@ -8,6 +8,13 @@ import { GRADES, JOINTS, MMT_ROWS, type Fig, type Motion } from "./romData";
 
 const dir = (a: number, l: number) => [Math.sin((a * Math.PI) / 180) * l, Math.cos((a * Math.PI) / 180) * l];
 const SKIN = "#ecc9a3";
+const DEFS = (
+  <defs>
+    <marker id="romarr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#f59e0b" />
+    </marker>
+  </defs>
+);
 const MOVE = "#0f9d8a";
 
 type P = { cx: number; cy: number; a0: number; len: number; omit: string[]; head?: boolean };
@@ -41,7 +48,7 @@ function Body({ f, deg, name }: { f: Fig; deg: number; name: string }) {
   );
   return (
     <svg viewBox={f.part === "foot" ? "8 70 84 54" : "0 0 100 124"} role="img" aria-label={`${name} 参考可動域 ${deg}度`} className={f.part === "foot" ? "h-24 w-auto shrink-0" : "h-28 w-auto shrink-0"}>
-      {show("head") && <circle cx="50" cy="13" r="8" fill={SKIN} />}
+      {DEFS}{show("head") && <circle cx="50" cy="13" r="8" fill={SKIN} />}{show("head") && side && <path d="M57 11 L62 14 L57 16 z" fill={SKIN} />}
       {show("trunk") && L(50, 26, 50, 68, 13)}
       {side ? (
         <>
@@ -60,8 +67,11 @@ function Body({ f, deg, name }: { f: Fig; deg: number; name: string }) {
       )}
       {side && p.omit.includes("leg") ? null : null}
       <line x1={p.cx} y1={p.cy} x2={p.cx + bx} y2={p.cy + by} stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="3 2" />
-      {deg > 0 && <path d={`M ${p.cx + sx} ${p.cy + sy} A ${r} ${r} 0 0 ${sweep} ${p.cx + ex} ${p.cy + ey}`} fill="none" stroke="#f59e0b" strokeWidth="2" />}
+      {deg > 0 && <path d={`M ${p.cx + sx} ${p.cy + sy} A ${r} ${r} 0 0 ${sweep} ${p.cx + ex} ${p.cy + ey}`} fill="none" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#romarr)" />}
+      {deg > 0 && <line x1={p.cx} y1={p.cy} x2={p.cx + bx * (p.len / (p.len + 12))} y2={p.cy + by * (p.len / (p.len + 12))} stroke={SKIN} strokeWidth={f.part === "trunk" ? 11 : 6} strokeLinecap="round" opacity="0.55" />}
       <line x1={p.cx} y1={p.cy} x2={p.cx + mx} y2={p.cy + my} stroke={MOVE} strokeWidth={f.part === "trunk" ? 11 : 6} strokeLinecap="round" />
+      {(f.part === "arm" || f.part === "forearm") && <circle cx={p.cx + mx} cy={p.cy + my} r="4.5" fill={MOVE} />}
+      {(f.part === "leg" || f.part === "shank") && <line x1={p.cx + mx} y1={p.cy + my} x2={p.cx + mx + dir(a + 90, 9)[0]} y2={p.cy + my + dir(a + 90, 9)[1]} stroke={MOVE} strokeWidth="5" strokeLinecap="round" />}
       {p.head && <circle cx={p.cx + hx} cy={p.cy + hy} r="8" fill={MOVE} />}
       <circle cx={p.cx} cy={p.cy} r="2.5" fill="#111827" />
       <text x={f.part === "foot" ? 70 : 50} y={f.part === "foot" ? 68 : 123} fontSize="9" fontWeight="700" fill="#111827" textAnchor="middle">{deg}°</text>
@@ -81,7 +91,7 @@ function Special({ f, deg, name }: { f: Fig; deg: number; name: string }) {
   const ln = (x1: number, y1: number, x2: number, y2: number, w: number, c = SKIN) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={w} strokeLinecap="round" />;
   const dash = (cx: number, cy: number, a: number, l: number) => { const [x, y] = dir(a, l); return <line x1={cx} y1={cy} x2={cx + x} y2={cy + y} stroke="#9ca3af" strokeWidth="1.5" strokeDasharray="3 2" />; };
   const pt = (cx: number, cy: number, a: number, l: number) => { const [x, y] = dir(a, l); return [cx + x, cy + y]; };
-  const arc = (cx: number, cy: number, r: number, a0: number, a1: number) => deg > 0 && <path d={arcD(cx, cy, r, a0, a1)} fill="none" stroke="#f59e0b" strokeWidth="2" />;
+  const arc = (cx: number, cy: number, r: number, a0: number, a1: number) => deg > 0 && <path d={arcD(cx, cy, r, a0, a1)} fill="none" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#romarr)" />;
   const dot = (cx: number, cy: number) => <circle cx={cx} cy={cy} r="2.5" fill="#111827" />;
   // 上から見た体（顔が上）
   const topBody = (cx: number, head = true) => (
@@ -173,7 +183,7 @@ function Special({ f, deg, name }: { f: Fig; deg: number; name: string }) {
   }
   return (
     <svg viewBox="0 0 100 124" role="img" aria-label={`${name} 参考可動域 ${deg}度`} className="h-28 w-auto shrink-0">
-      {body}
+      {DEFS}{body}
       <text x="50" y="123" fontSize="9" fontWeight="700" fill="#111827" textAnchor="middle">{deg}°</text>
     </svg>
   );
