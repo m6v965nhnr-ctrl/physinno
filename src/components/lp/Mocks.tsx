@@ -76,7 +76,7 @@ export function MockIdeas() {
 
 export function MockKokushi() {
   return (
-    <Phone label="国試の過去問：全1,200問・正答つき・解説・模擬試験">
+    <Phone label="国試の過去問：約1,370問・正答つき・解説・模擬試験">
       <p className="text-[9px] text-gray-500">第61回 午前 15 ・ 運動学</p>
       <p className="mt-1 text-[10px] font-semibold leading-snug text-gray-900">
         歩行周期の立脚中期に、最も活動する筋はどれか。
