@@ -10,8 +10,8 @@ const dir = (a: number, l: number) => [Math.sin((a * Math.PI) / 180) * l, Math.c
 const SKIN = "#ecc9a3";
 const DEFS = (
   <defs>
-    <marker id="romarr" markerWidth="6" markerHeight="6" refX="4" refY="3" orient="auto">
-      <path d="M0,0 L6,3 L0,6 z" fill="#f59e0b" />
+    <marker id="romarr" markerUnits="userSpaceOnUse" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#f59e0b" />
     </marker>
   </defs>
 );
@@ -189,6 +189,78 @@ function Special({ f, deg, name }: { f: Fig; deg: number; name: string }) {
   );
 }
 
+// MMT: 検査の姿勢の図（人の形。緑＝動かす部分、橙＝動く向き、赤＝検査者が加える抵抗）
+type Spec = { pose: "sit" | "prone"; pivot: [number, number]; len: number; a0: number; a1: number; fixed?: [number, number, number, number][]; tail?: [number, number]; omit: string[] };
+const MMT_SPEC: Record<string, Spec> = {
+  "股-屈曲": { pose: "sit", pivot: [28, 49], len: 30, a0: 90, a1: 118, tail: [20, 0], omit: ["thigh", "shank"] },
+  "膝-伸展": { pose: "sit", pivot: [58, 49], len: 21, a0: 0, a1: 75, omit: ["shank"] },
+  "肩-屈曲": { pose: "sit", pivot: [28, 27], len: 26, a0: 0, a1: 90, omit: [] },
+  "肘-屈曲": { pose: "sit", pivot: [28, 38], len: 16, a0: 0, a1: 100, fixed: [[28, 27, 28, 38]], omit: [] },
+  "股-伸展": { pose: "prone", pivot: [62, 40], len: 40, a0: 90, a1: 108, omit: ["legs"] },
+  "膝-屈曲": { pose: "prone", pivot: [84, 40], len: 20, a0: 90, a1: 150, fixed: [[62, 40, 84, 40]], omit: ["legs"] },
+};
+function poseOf(t: string): "sit" | "supine" | "prone" | "side" {
+  return /腹臥位/.test(t) ? "prone" : /側臥位/.test(t) ? "side" : /背臥位/.test(t) ? "supine" : "sit";
+}
+const POSE_LABEL = { sit: "座位", supine: "背臥位", prone: "腹臥位", side: "側臥位" } as const;
+
+function MmtFigure({ row }: { row: [string, string, string, string, string] }) {
+  const pose = poseOf(row[3]);
+  const spec = MMT_SPEC[`${row[0]}-${row[1]}`];
+  const ln = (x1: number, y1: number, x2: number, y2: number, w: number, c = SKIN) => <line x1={x1} y1={y1} x2={x2} y2={y2} stroke={c} strokeWidth={w} strokeLinecap="round" />;
+  const omit = spec?.omit ?? [];
+  const lying = pose !== "sit";
+  let moving: React.ReactNode = null;
+  if (spec) {
+    const [px, py] = spec.pivot;
+    const e = dir(spec.a1, spec.len);
+    const g = dir(spec.a0, spec.len);
+    const sgn = spec.a1 >= spec.a0 ? 1 : -1;
+    const [tx, ty] = dir(spec.a1 + 90 * sgn, 13);
+    const ex = px + e[0], ey = py + e[1];
+    const [ax0, ay0] = dir(spec.a0, 11);
+    const [ax1, ay1] = dir(spec.a1, 11);
+    moving = (
+      <>
+        {ln(px, py, px + g[0], py + g[1], 7, "#e3cdb6")}
+        {ln(px, py, ex, ey, 7, MOVE)}
+        {spec.tail && ln(ex, ey, ex + dir(spec.tail[1], spec.tail[0])[0], ey + dir(spec.tail[1], spec.tail[0])[1], 6, MOVE)}
+        <path d={`M ${px + ax0} ${py + ay0} A 11 11 0 0 ${sgn > 0 ? 0 : 1} ${px + ax1} ${py + ay1}`} fill="none" stroke="#f59e0b" strokeWidth="2" markerEnd="url(#romarr)" />
+        <line x1={ex + tx} y1={ey + ty} x2={ex + tx * 0.15} y2={ey + ty * 0.15} stroke="#ef4444" strokeWidth="2.5" markerEnd="url(#romred)" />
+        <text x={Math.min(ex + tx + 2, 100)} y={Math.max(ey + ty - 2, 8)} fontSize="7" fill="#ef4444" fontWeight="700">抵抗</text>
+      </>
+    );
+  }
+  return (
+    <svg viewBox="0 0 120 72" role="img" aria-label={`${row[0]}の${row[1]} 検査の姿勢（${POSE_LABEL[pose]}）`} className="h-24 w-36 shrink-0">
+      {DEFS}
+      <defs>
+        <marker id="romred" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#ef4444" /></marker>
+      </defs>
+      {lying ? (
+        <>
+          <rect x="6" y="46" width="108" height="4" rx="2" fill="#d1d5db" />
+          <circle cx="13" cy="37" r="7" fill={SKIN} />
+          {ln(22, 40, 62, 40, 10)}
+          {!omit.includes("legs") && ln(62, 40, 108, 40, 8)}
+        </>
+      ) : (
+        <>
+          <rect x="14" y="52" width="48" height="4" rx="2" fill="#d1d5db" />
+          <circle cx="28" cy="11" r="7" fill={SKIN} />
+          <path d="M34 9 L39 12 L34 14 z" fill={SKIN} />
+          {ln(28, 19, 28, 49, 10)}
+          {!omit.includes("thigh") && ln(28, 49, 58, 49, 8)}
+          {!omit.includes("shank") && ln(58, 49, 58, 69, 6)}
+        </>
+      )}
+      {(spec?.fixed ?? []).map((f, i) => <g key={i}>{ln(f[0], f[1], f[2], f[3], 6)}</g>)}
+      {moving}
+      <text x="60" y="70" fontSize="7.5" fontWeight="700" fill="#6b7280" textAnchor="middle">{POSE_LABEL[pose]}</text>
+    </svg>
+  );
+}
+
 function AngleOnly({ deg, name }: { deg: number; name: string }) {
   const cx = 50, cy = 56, r = 38, ar = 18;
   const rad = (deg * Math.PI) / 180;
@@ -269,17 +341,17 @@ function MotionCard({ m }: { m: Motion }) {
   );
 }
 
-export default function RomMmtGuide({ text }: { text: string }) {
+export default function RomMmtGuide({ text, always = false }: { text: string; always?: boolean }) {
   const hit = JOINTS.find((j) => j.words.test(text));
   const [sel, setSel] = useState<string | null>(null);
   const [mmtSel, setMmtSel] = useState<string | null>(null);
-  if (!WORDS.test(text)) return null;
+  if (!always && !WORDS.test(text)) return null;
   const cur = JOINTS.find((j) => j.key === (sel ?? hit?.key ?? "shoulder")) ?? JOINTS[1];
   const part = mmtSel ?? MMT_OF[cur.key] ?? "肩";
   const chip = (on: boolean) => `whitespace-nowrap rounded-full px-3 py-1 text-[11px] font-semibold ${on ? "bg-black text-white" : "border border-gray-200 text-gray-700"}`;
 
   return (
-    <details className="mt-3 rounded-xl border border-gray-200 bg-white">
+    <details open={always || undefined} className="mt-3 rounded-xl border border-gray-200 bg-white">
       <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-semibold text-gray-800">
         📐 ROM・MMTを図で確かめる <span className="text-gray-400">▾</span>
       </summary>
@@ -301,7 +373,25 @@ export default function RomMmtGuide({ text }: { text: string }) {
         </section>
 
         <section>
-          <p className="text-xs font-semibold text-gray-700">MMT：筋力の段階（0〜5）</p>
+          <p className="text-xs font-semibold text-gray-700">MMT：主な検査の肢位（部位を選ぶ）</p>
+          <div role="group" aria-label="MMTの部位を選ぶ" className="mt-2 flex flex-wrap gap-1.5">
+            {MMT_PARTS.map((p) => (
+              <button key={p} type="button" aria-pressed={part === p} onClick={() => setMmtSel(p)} className={chip(part === p)}>{p}</button>
+            ))}
+          </div>
+          <ul className="mt-2 space-y-1.5">
+            {MMT_ROWS.filter((r) => r[0] === part).map((r) => (
+              <li key={r[0] + r[1]} className="flex items-center gap-2 rounded-xl bg-gray-50 p-2 text-[11px] leading-4 text-gray-700">
+                <MmtFigure row={r} />
+                <div className="min-w-0">
+                  <p className="text-xs font-semibold text-gray-900">{r[1]}　<span className="font-normal text-gray-500">{r[2]}</span></p>
+                  <p><span className="font-semibold text-gray-500">段階3・4・5</span>　{r[3]}</p>
+                  <p><span className="font-semibold text-gray-500">段階2</span>　{r[4]}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-xs font-semibold text-gray-700">MMT：筋力の段階（0〜5）</p>
           <div className="mt-2"><GravityFigure /></div>
           <ol className="mt-2 space-y-1">
             {GRADES.map((g) => (
@@ -312,21 +402,6 @@ export default function RomMmtGuide({ text }: { text: string }) {
             ))}
           </ol>
 
-          <p className="mt-3 text-xs font-semibold text-gray-700">主な検査の肢位（部位を選ぶ）</p>
-          <div role="group" aria-label="MMTの部位を選ぶ" className="mt-2 flex flex-wrap gap-1.5">
-            {MMT_PARTS.map((p) => (
-              <button key={p} type="button" aria-pressed={part === p} onClick={() => setMmtSel(p)} className={chip(part === p)}>{p}</button>
-            ))}
-          </div>
-          <ul className="mt-2 space-y-1.5">
-            {MMT_ROWS.filter((r) => r[0] === part).map((r) => (
-              <li key={r[0] + r[1]} className="rounded-xl bg-gray-50 p-2 text-[11px] leading-4 text-gray-700">
-                <p className="text-xs font-semibold text-gray-900">{r[1]}　<span className="font-normal text-gray-500">{r[2]}</span></p>
-                <p><span className="font-semibold text-gray-500">段階3・4・5</span>　{r[3]}</p>
-                <p><span className="font-semibold text-gray-500">段階2</span>　{r[4]}</p>
-              </li>
-            ))}
-          </ul>
           <p className="mt-2 text-[10px] leading-4 text-gray-400">一般的な基準（Daniels &amp; Worthingham、Kendallなど）と、MMTを載せた教科書の要約です（確認日 2026-10-21）。学校・教科書により、書き方に差があります。+ / − の細かい段階は、省いています。</p>
         </section>
       </div>

@@ -23,6 +23,10 @@ export default function ColumnList({ columns }: { columns: ColumnMeta[] }) {
           🦴 骨の一覧
           <span className="mt-1 block text-xs font-normal text-gray-500">特徴・関節・付着する筋（64）</span>
         </Link>
+        <Link href="/columns/rom-mmt" className="col-span-2 rounded-2xl border border-[var(--relight-line)] bg-white p-4 text-sm font-semibold text-gray-900">
+          📐 ROMとMMTの図つき早見表
+          <span className="mt-1 block text-xs font-normal text-gray-500">参考可動域・基本軸・移動軸・検査の肢位</span>
+        </Link>
       </div>
 
       <input
