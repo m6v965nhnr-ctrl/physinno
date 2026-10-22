@@ -12,14 +12,14 @@ import { pickLpEntrance } from "@/lib/lpEntrance";
 const STATS = [
   { big: "完全無料", small: "登録も基本機能も" },
   { big: "8サイト", small: "論文をまとめて検索" },
-  { big: "約2,400問", small: "国試の過去問（第49〜61回）" },
+  { big: "約2,500問", small: "国試の過去問（第49〜61回）" },
   { big: "約5,000", small: "全国の病院を探せる" },
 ];
 
 
 const DOORS = [
   { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "調べる・記録する・つながる", body: "論文検索・資格の進捗・研修情報・病院の口コミ" },
-  { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,400問・筋と骨の確認・先生のクラスのテスト" },
+  { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,500問・筋と骨の確認・先生のクラスのテスト" },
   { key: "teacher", href: "/teachers", who: "教員の方へ", title: "国試の一問一答を、クラスで", body: "テストを配って、学生ごと・単元ごとの状況を見る" },
   { key: "general", href: "/for-general", who: "一般の方へ", title: "理学療法士・病院を探す", body: "地域や専門分野から探せます" },
 ];
