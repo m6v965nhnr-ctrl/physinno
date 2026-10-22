@@ -10,6 +10,9 @@ import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import { markPaperSaved, markPaperSearched } from "@/lib/firstSteps";
 import { PRIMARY_BUTTON_CLASS } from "@/lib/ui";
+import AdvancedSearch from "@/components/papers/AdvancedSearch";
+import { advParams, emptyAdv, type AdvOptions } from "@/lib/paperSearch/client";
+import { parseQuery } from "@/lib/paperSearch/query";
 import {
   PAPER_LINK_SOURCES,
   PAPER_SOURCES,
@@ -146,6 +149,11 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
   // 出版タイプなどで確実に判定できた論文だけにする（文面からの推定を除く）
   const [strictLevels, setStrictLevels] = useState(false);
 
+  // 詳細検索（検索式・フィルター・並び替え）
+  const [adv, setAdv] = useState<AdvOptions>(emptyAdv());
+  const [siteReports, setSiteReports] = useState<Record<string, import("@/lib/papers").SiteReport> | undefined>();
+  const [pubmedTotal, setPubmedTotal] = useState<number | null>(null);
+
   const [enabledSources, setEnabledSources] = useState<Set<PaperSource>>(
     new Set(PAPER_SOURCES.map((s) => s.key))
   );
@@ -195,7 +203,7 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
   }
 
   async function handleSearch(overrideQuery?: string) {
-    const q = (overrideQuery ?? query).trim();
+    const q = (overrideQuery ?? query).trim() || (adv.expert ? adv.pq.trim() : "");
     if (!q || enabledSources.size === 0) return;
 
     // 登録なしは、24時間に5回まで（登録すると、制限なし）
@@ -224,9 +232,18 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
       return;
     }
 
-    const { results: newResults, error, translatedQuery: newTranslatedQuery } =
-      await searchPapers(q, [...enabledSources], [...levels], strictLevels);
+    if (adv.expert && adv.pq.trim() && parseQuery(adv.pq).issues.some((i) => i.level === "error")) {
+      setSearching(false);
+      notify("検索式に誤りがあります。詳細検索の画面で、赤字の指摘を確認してください");
+      return;
+    }
 
+    const { results: newResults, error, translatedQuery: newTranslatedQuery, sites, pubmedTotal: total } =
+      await searchPapers(q, [...enabledSources], [...levels], strictLevels, advParams({ ...adv, page: 1 }));
+    if (adv.page !== 1) setAdv({ ...adv, page: 1 });
+
+    setSiteReports(sites);
+    setPubmedTotal(total ?? null);
     setSearching(false);
     setQuery(q);
     setResults(newResults);
@@ -239,6 +256,21 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
 
   // AIモード1ターン分: 質問の意図 → 検索クエリ → 論文検索 → 論文を根拠にした回答。
   // AI側が使えない場合（キー未設定・未ログイン・失敗）は、従来どおり検索結果だけを返す
+  // 次のページ（PubMed・Europe PMC・OpenAlexが対応。ほかのサイトは1ページ目のまま）
+  async function handleMore() {
+    const next = adv.page + 1;
+    setSearching(true);
+    const r = await searchPapers(query || adv.pq, [...enabledSources], [...levels], strictLevels, advParams({ ...adv, page: next }));
+    setSearching(false);
+    if (r.error) return notify(r.error);
+    const seen = new Set(results.map((x) => x.url));
+    const add = r.results.filter((x) => !seen.has(x.url));
+    if (add.length === 0) return notify("これ以上の結果はありません");
+    setResults([...results, ...add]);
+    setAdv({ ...adv, page: next });
+    if (autoTranslate) handleTranslateTitles(add);
+  }
+
   async function handleAiTurn(q: string) {
     const history = aiTurns.map((t) => ({ question: t.query, answer: t.answer }));
 
@@ -568,7 +600,7 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
 
       <button
         onClick={() => handleSearch()}
-        disabled={searching || !query.trim()}
+        disabled={searching || (!query.trim() && !(adv.expert && adv.pq.trim()))}
         className={`mt-2 ${PRIMARY_BUTTON_CLASS}`}
       >
         {searching
@@ -579,6 +611,10 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
               : "✨ AIで探す"
             : "🔍 検索"}
       </button>
+
+      {mode === "normal" && (
+        <AdvancedSearch adv={adv} setAdv={setAdv} query={query} onSearch={() => handleSearch()} sites={siteReports} pubmedTotal={pubmedTotal} />
+      )}
 
       {guestUsage && (
         <div
@@ -769,6 +805,11 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
                   onToggleSave={() => handleToggleSave(r)}
                 />
               ))}
+              {!searching && results.length > 0 && (
+                <button type="button" onClick={handleMore} className="w-full rounded-full border border-gray-300 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                  さらに表示する（PubMed・Europe PMC・OpenAlexの次の結果）
+                </button>
+              )}
             </div>
           )}
         </>

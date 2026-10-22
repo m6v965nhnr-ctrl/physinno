@@ -107,27 +107,44 @@ export const PAPER_LINK_SOURCES = [
   },
 ] as const;
 
+export type SiteReport = { sent: string; applied: string[]; unsupported: string[]; note?: string };
+export type SearchIssue = { level: "error" | "warn"; message: string };
+
 export async function searchPapers(
   query: string,
   sources: PaperSource[],
   levels: EvidenceLevel[] = [],
-  strict = false
-): Promise<{ results: PaperResult[]; error: string | null; translatedQuery: string | null }> {
+  strict = false,
+  adv: Record<string, string> = {}
+): Promise<{
+  results: PaperResult[];
+  error: string | null;
+  translatedQuery: string | null;
+  sites?: Record<string, SiteReport>;
+  pubmedTotal?: number | null;
+  issues?: SearchIssue[];
+  failedSources?: string[];
+}> {
   try {
     const params = new URLSearchParams({ q: query, sources: sources.join(",") });
     if (levels.length > 0) params.set("levels", levels.join(","));
     if (strict) params.set("strict", "1");
+    for (const [k, v] of Object.entries(adv)) params.set(k, v);
     const res = await fetch(`/api/papers/search?${params.toString()}`);
     const data = await res.json();
 
     if (!res.ok) {
-      return { results: [], error: data.error || "検索に失敗しました", translatedQuery: null };
+      return { results: [], error: data.error || "検索に失敗しました", translatedQuery: null, issues: data.issues };
     }
 
     return {
       results: data.results ?? [],
       error: null,
       translatedQuery: data.translatedQuery ?? null,
+      sites: data.sites,
+      pubmedTotal: data.pubmedTotal ?? null,
+      issues: data.issues,
+      failedSources: data.failedSources,
     };
   } catch {
     return { results: [], error: "検索に失敗しました", translatedQuery: null };
