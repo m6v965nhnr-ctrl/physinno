@@ -383,11 +383,11 @@ export default function RegisterPage() {
               className="mt-0.5 h-4 w-4 shrink-0 rounded border-gray-300"
             />
             <span>
-              <Link href="/terms" target="_blank" className="underline">
+              <Link href="/terms" target="_blank" rel="noopener" className="underline">
                 利用規約
               </Link>
               と
-              <Link href="/privacy" target="_blank" className="underline">
+              <Link href="/privacy" target="_blank" rel="noopener" className="underline">
                 プライバシーポリシー
               </Link>
               に同意します

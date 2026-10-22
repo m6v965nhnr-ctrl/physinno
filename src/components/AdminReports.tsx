@@ -128,7 +128,7 @@ export default function AdminReports() {
                   {r.link_path && (
                     <Link
                       href={r.link_path}
-                      target="_blank"
+                      target="_blank" rel="noopener noreferrer"
                       className="rounded-full border border-gray-200 px-3 py-1.5 text-xs text-gray-700"
                     >
                       対象を開く
