@@ -17,6 +17,7 @@ function run(label, cmd, args) {
   process.exit(1);
 }
 
+run("ガイドの検証・集約", "node", ["scripts/build-guides.mjs"]);
 run("型チェック (tsc)", "npx", ["tsc", "--noEmit"]);
 run("ビルド (next build)", "npx", ["next", "build"]);
 

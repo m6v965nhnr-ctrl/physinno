@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getColumnMeta } from "@/lib/columns";
+import { getColumnMeta, getGuide } from "@/lib/columns";
+import GuideBody from "@/components/GuideBody";
 import { COLUMN_BODIES } from "@/content/columns";
 import { SITE_NAME } from "@/lib/site";
 
@@ -10,8 +11,9 @@ export default async function ColumnDetailPage({ params }: Props) {
   const { slug } = await params;
   const meta = getColumnMeta(slug);
   const Body = COLUMN_BODIES[slug];
+  const guide = getGuide(slug);
 
-  if (!meta || !Body) {
+  if (!meta || (!Body && !guide)) {
     notFound();
   }
 
@@ -41,7 +43,7 @@ export default async function ColumnDetailPage({ params }: Props) {
           </div>
 
           <div className="mt-8">
-            <Body />
+            {Body ? <Body /> : <GuideBody guide={guide!} />}
           </div>
         </div>
 

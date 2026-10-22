@@ -11,6 +11,8 @@ export type ColumnMeta = {
   updatedAt: string; // YYYY-MM-DD
 };
 
+import { GUIDES } from "@/content/guides/generated";
+
 export const COLUMNS: ColumnMeta[] = [
   {
     slug: "bones",
@@ -237,7 +239,12 @@ export const COLUMNS: ColumnMeta[] = [
     publishedAt: "2026-10-13",
     updatedAt: "2026-10-13",
   },
+  ...GUIDES.map(({ slug, title, description, category, publishedAt, updatedAt }) => ({ slug, title, description, category, publishedAt, updatedAt })),
 ];
+
+export function getGuide(slug: string) {
+  return GUIDES.find((g) => g.slug === slug);
+}
 
 export function getColumnMeta(slug: string): ColumnMeta | undefined {
   return COLUMNS.find((c) => c.slug === slug);
