@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "理学療法士国家試験 過去問（第50回〜第61回）無料・正答つき｜Re:light";
+export const alt = "理学療法士国家試験 過去問（第49回〜第61回）無料・正答つき｜Re:light";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const TEXT = "理学療法士国家試験過去問第50回〜第61回無料・正答つき登録なしで1問ずつ解けますRe:light";
+const TEXT = "理学療法士国家試験過去問第49回〜第61回無料・正答つき登録なしで1問ずつ解けますRe:light";
 
 async function loadJapaneseFont(text: string) {
   try {
@@ -53,7 +53,7 @@ export default async function KokushiOpengraphImage() {
 
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div style={{ display: "flex", fontSize: 76, fontWeight: 700, lineHeight: 1.25 }}>理学療法士国家試験 過去問</div>
-          <div style={{ display: "flex", marginTop: 16, fontSize: 40, fontWeight: 700 }}>第50回〜第61回・登録なしで1問ずつ</div>
+          <div style={{ display: "flex", marginTop: 16, fontSize: 40, fontWeight: 700 }}>第49回〜第61回・登録なしで1問ずつ</div>
         </div>
 
         <div style={{ display: "flex", fontSize: 28, fontWeight: 700 }}>Re:light</div>
