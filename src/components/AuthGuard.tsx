@@ -17,6 +17,8 @@ import {
   isPublicPaperSitePath,
   isPublicGuestPath,
   isPublicPtPath,
+  peekAccountType,
+  clearAccountTypeCache,
 } from "@/lib/account";
 import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
@@ -122,8 +124,10 @@ export default function AuthGuard({
       }
 
       // PT向けページでは種類の確認が終わるまで中身を出さない
+      // （種類をすでに確認している人は、待たずに進む）
       if (isPtOnlyPath(pathname)) {
-        setChecking(true);
+        const { data: { session: s1 } } = await supabase.auth.getSession();
+        if (!(s1?.user && peekAccountType(s1.user.id))) setChecking(true);
       }
 
       // getUser()は毎回サーバーに検証リクエストを送るため、トークンの
@@ -203,6 +207,7 @@ export default function AuthGuard({
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_OUT" || event === "SIGNED_IN") clearAccountTypeCache();
       if (event === "SIGNED_OUT") {
         // ログアウトした直後は、Face IDのログインを、自動で始めない
         try {

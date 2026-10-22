@@ -78,9 +78,23 @@ export function isPublicHospitalPath(pathname: string) {
 }
 
 // ログイン中ユーザーのアカウント種類を取得（未設定なら null）
+// 画面を移動するたびに問い合わせないよう、このタブの中では、確認できた種類を覚えておく
+// （種類が変わるのは、設定の画面・卒業の切り替えのときだけ。そのときは clearAccountTypeCache を呼ぶ）
+let typeCache: { userId: string; type: AccountType } | null = null;
+
+export function clearAccountTypeCache() {
+  typeCache = null;
+}
+
+export function peekAccountType(userId: string): AccountType | null {
+  return typeCache?.userId === userId ? typeCache.type : null;
+}
+
 export async function getMyAccountType(
   userId: string
 ): Promise<AccountType | null> {
+  if (typeCache?.userId === userId) return typeCache.type;
+
   const { data } = await supabase
     .from("users")
     .select("account_type")
@@ -89,7 +103,11 @@ export async function getMyAccountType(
 
   const type = data?.account_type;
 
-  return isAccountType(type) ? type : null;
+  if (isAccountType(type)) {
+    typeCache = { userId, type };
+    return type;
+  }
+  return null;
 }
 
 // 通信の失敗と、「本当に未設定」を区別して返す（失敗のときに、設定済みの人を未設定扱いにしないため）
@@ -115,6 +133,7 @@ export async function syncMyAccountType(): Promise<AccountType | null> {
   const { data, error } = await supabase.rpc("sync_my_account_type");
   if (error) return null;
 
+  clearAccountTypeCache();
   return isAccountType(data) ? data : null;
 }
 
@@ -123,6 +142,7 @@ export async function setMyAccountType(type: "pt" | "general") {
   const { error } = await supabase.rpc("set_my_account_type", {
     p_type: type,
   });
+  clearAccountTypeCache();
 
   return error ? error.message : null;
 }
