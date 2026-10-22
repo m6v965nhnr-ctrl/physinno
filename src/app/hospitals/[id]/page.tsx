@@ -508,6 +508,20 @@ export default function HospitalDetailPage() {
             )}
           </div>
 
+          {dataReady && reviews.length === 0 && (
+            <div className="mt-4 rounded-2xl border border-dashed border-gray-300 p-3">
+              <p className="text-center text-xs font-semibold text-gray-700">
+                参考表示（実際の評価ではありません）
+              </p>
+              <ReviewRadarChart
+                items={REVIEW_AXES.map((axis) => ({ label: REVIEW_AXIS_LABEL[axis], value: 5 }))}
+              />
+              <p className="mt-1 text-center text-[11px] leading-5 text-gray-500">
+                まだ口コミがないため、仮に10点満点の5点で描いた形です。口コミが集まると、実際の平均に切り替わります。
+              </p>
+            </div>
+          )}
+
           {reviews.length > 0 && (
             <div className="mt-4">
               {averageRating !== null && (
@@ -662,6 +676,20 @@ export default function HospitalDetailPage() {
                   ))}
                 </div>
               </div>
+
+              <details className="rounded-2xl bg-gray-50 px-4 py-2.5 text-xs text-gray-600">
+                <summary className="cursor-pointer font-medium text-gray-700">書き方の例を見る（運営のサンプル）</summary>
+                <p className="mt-2 leading-5">
+                  <span className="font-semibold">これは運営が用意した書き方の例で、実際の病院の評価ではありません。</span>
+                  点数や件数、平均には入りません。
+                </p>
+                <p className="mt-2 rounded-xl bg-white px-3 py-2 leading-5 text-gray-700">
+                  「新人の指導係が決まっていて、最初の3か月は先輩と一緒に担当しました。勉強会は月1回で、症例相談もしやすい雰囲気です。残業は少なめで、休みも取りやすいと感じました。」
+                </p>
+                <p className="mt-2 leading-5">
+                  よかった点・気になった点を、1〜2文だけでも大丈夫です。自由記述は任意で、点数だけの投稿もできます。個人名や患者さんの情報は書かないでください。
+                </p>
+              </details>
 
               <textarea aria-label="職場環境・雰囲気・教育体制など（任意）"
                 value={comment}
