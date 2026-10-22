@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Screens from "@/components/lp/Screens";
 import { SITE_NAME } from "@/lib/site";
 import LpHeader from "@/components/lp/LpHeader";
 import { LpFooter, PageJsonLd } from "@/components/lp/LpParts";
@@ -72,6 +73,20 @@ export default function TeachersPage() {
               </li>
             ))}
           </ul>
+        </section>
+
+        <section className="mt-10" aria-labelledby="t-screens">
+          <h2 id="t-screens" className="text-lg font-bold text-gray-900">実際の画面です</h2>
+          <p className="mt-2 text-sm leading-7 text-gray-700">結果は、学生ごと・問題ごと・分野ごとに見られます。学生の得点の推移も、グラフで確認できます。</p>
+          <Screens
+            items={[
+              { name: "teacher-students-list", w: 600, h: 891, alt: "テストの結果を、学生ごとに一覧で見る画面", caption: "学生ごとの点数と、未提出" },
+              { name: "teacher-fields", w: 600, h: 845, alt: "テストの結果を、分野ごとの正答率で見る画面", caption: "分野ごとの正答率（苦手の発見に）" },
+              { name: "teacher-trend", w: 600, h: 523, alt: "ひとりの学生の、得点の推移を示す棒グラフ", caption: "学生の得点の推移" },
+              { name: "teacher-class", w: 600, h: 1050, alt: "クラスの画面。クラスにテストを作る、分析を見る、質問、チャット", caption: "クラスの画面（参加コードで学生が参加）" },
+            ]}
+            note="画面は、デモ用のクラスと、仮の名前の学生です。実際の学生の情報ではありません。"
+          />
         </section>
 
         <section className="mt-10" aria-labelledby="t-steps">

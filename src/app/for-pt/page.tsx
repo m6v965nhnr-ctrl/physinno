@@ -4,6 +4,7 @@ import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
 import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import { MockHospital, MockIdeas, MockPaperSearch, MockPost } from "@/components/lp/Mocks";
+import Screens from "@/components/lp/Screens";
 import { EVIDENCE_LEVELS } from "@/lib/evidence";
 import { SITE_NAME } from "@/lib/site";
 
@@ -180,6 +181,15 @@ export default function ForPtPage() {
             <div className="snap-center"><MockPost /></div>
             <div className="snap-center"><MockIdeas /></div>
           </div>
+          <Screens
+            items={[
+              { name: "paper-search", w: 600, h: 1043, alt: "論文を探す画面。PubMedやJ-STAGEなどをまとめて検索できる", caption: "論文を、複数のサイトからまとめて検索" },
+              { name: "seminars", w: 600, h: 959, alt: "研修・学会情報の検索画面。開催日が近い順に表示される", caption: "研修・学会情報を、開催日が近い順に" },
+              { name: "qualification", w: 600, h: 1030, alt: "資格の目標の画面。認定理学療法士の条件と進み具合", caption: "資格の取得・更新の、条件と進み具合" },
+              { name: "hospital-review-form", w: 600, h: 1040, alt: "病院の職場環境の口コミを投稿する画面。給与や残業などを10点満点で答える", caption: "職場環境の口コミは、匿名でも投稿できます" },
+            ]}
+            note="画面は開発中のものです。表示は、今後変わることがあります。"
+          />
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link href="/guest" className={BTN_SECONDARY}>👀 アプリの中を見てみる</Link>
           </div>

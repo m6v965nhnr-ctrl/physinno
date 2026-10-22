@@ -4,6 +4,7 @@ import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
 import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import { MockKokushi } from "@/components/lp/Mocks";
+import Screens from "@/components/lp/Screens";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "理学療法士国家試験の過去問アプリ｜学生向け・無料・解説つき";
@@ -82,6 +83,24 @@ export default function ForStudentsPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-16">
+        <div className="mx-auto max-w-5xl">
+          <p className={SECTION_LABEL}>SCREENS</p>
+          <h2 className={H2}>実際の画面です</h2>
+          <p className="mt-2 text-sm leading-7 text-gray-600">一問一答は、答えたあとに解説が出ます。出てきた筋は、その場で起始・停止・神経・作用を確かめられます。</p>
+          <Screens
+            items={[
+              { name: "drill-question-multi", w: 600, h: 1063, alt: "一問一答の画面。筋と作用の組合せを2つ選ぶ問題", caption: "「2つ選べ」の問題も、そのまま解けます" },
+              { name: "drill-explain-muscles", w: 600, h: 902, alt: "答え合わせの画面。正答と解説、出てきた筋のボタン", caption: "答え合わせ。正答と解説、出てきた筋" },
+              { name: "drill-explain-anatomy", w: 600, h: 712, alt: "筋のボタンを押すと、起始・停止・支配神経・作用が出る画面", caption: "筋を押すと、起始・停止・神経・作用" },
+              { name: "drill-home", w: 600, h: 878, alt: "勉強の画面。解いた数と正答率、科目ごとの進み具合", caption: "解いた数と正答率、科目ごとの進み" },
+              { name: "mock-exam-intro", w: 600, h: 1030, alt: "模擬試験の画面。第61回午前を、本番と同じ時間で解く", caption: "模擬試験は、本番と同じ時間で" },
+            ]}
+            note="画面は開発中のものです。表示は、今後変わることがあります。"
+          />
         </div>
       </section>
 
