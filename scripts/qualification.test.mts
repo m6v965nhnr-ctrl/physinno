@@ -1,6 +1,6 @@
 import { evaluateRequirements, requirementsFor, fieldsFor, targetName } from "../src/lib/qualificationCatalog.ts";
 import assert from "node:assert/strict";
-const ach = (cat: string, pts: number, on: string) => ({ id: cat+on, user_id: "u", category: cat, title: null, conference_name: null, memo: null, achieved_on: on, is_public: true, created_at: on, points: pts }) as any;
+const ach = (cat: string, pts: number, on: string) => ({ id: cat+on, user_id: "u", category: cat, title: null, conference_name: null, memo: null, achieved_on: on, is_public: true, created_at: on, points: pts }) as never;
 const base = { field: "脳卒中", cycle_start: "2026-04-01", renewal_years: 5, checklist: {} as Record<string, boolean> };
 // 認定 更新: 60点 → ポイント項目は未達、あと40点
 let ev = evaluateRequirements({ ...base, kind: "certified", mode: "renew" }, [ach("training", 40, "2026-05-01"), ach("conference", 20, "2026-06-01")]);
