@@ -82,9 +82,11 @@ export function translateMedicalJapanese(text: string): {
 
   for (const [ja, en] of RAW_GLOSSARY) {
     if (result.includes(ja)) {
-      result = result.split(ja).join(en);
+      result = result.split(ja).join(` ${en} `);
     }
   }
+
+  result = result.replace(/\s+/g, " ").trim();
 
   return { result, fullyTranslated: !containsJapaneseChar(result) };
 }

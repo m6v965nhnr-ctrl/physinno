@@ -19,6 +19,9 @@ import {
   pubmedLevelFilter,
 } from "@/lib/evidence";
 
+import { parseQuery, toPubMed, withFilters, isSortKey, type PaperFilters, type SortKey, type QNode, type QIssue } from "@/lib/paperSearch/query";
+import { planFor, type SitePlan, type SiteReport } from "@/lib/paperSearch/sites";
+
 export const dynamic = "force-dynamic";
 export const maxDuration = 25;
 
@@ -113,19 +116,28 @@ function ncbiUrl(url: string) {
   return `${url}${url.includes("?") ? "&" : "?"}${extra.join("&")}`;
 }
 
-async function pubmedEsearch(term: string, retmax: number): Promise<string[]> {
-  await ncbiSlot();
-  const res = await fetch(
-    ncbiUrl(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}&term=${encodeURIComponent(term)}`),
-    { signal: AbortSignal.timeout(8000) }
-  );
-  if (!res.ok) return [];
-
-  const data = (await res.json()) as { esearchresult?: { idlist?: string[] } };
-  return data.esearchresult?.idlist ?? [];
+// サイトごとの追加パラメータ（年・並び替えなど）。値は必ずエンコードする
+function extra(plan?: SitePlan): string {
+  return plan ? Object.entries(plan.params).map(([k, v]) => `&${k}=${encodeURIComponent(v)}`).join("") : "";
 }
 
-async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promise<PaperResult[]> {
+type PubmedAdv = { term?: string; filters: PaperFilters; sort: SortKey; start: number; out: { count?: number; term?: string } };
+
+async function pubmedEsearch(term: string, retmax: number, adv?: Pick<PubmedAdv, "sort" | "start">): Promise<{ ids: string[]; count: number }> {
+  await ncbiSlot();
+  const sort = adv && adv.sort !== "relevance" ? `&sort=${adv.sort}` : "";
+  const start = adv && adv.start > 0 ? `&retstart=${adv.start}` : "";
+  const res = await fetch(
+    ncbiUrl(`https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&retmax=${retmax}${sort}${start}&term=${encodeURIComponent(term)}`),
+    { signal: AbortSignal.timeout(8000) }
+  );
+  if (!res.ok) return { ids: [], count: 0 };
+
+  const data = (await res.json()) as { esearchresult?: { idlist?: string[]; count?: string } };
+  return { ids: data.esearchresult?.idlist ?? [], count: Number(data.esearchresult?.count ?? 0) };
+}
+
+async function searchPubMed(query: string, levels: EvidenceLevel[] = [], adv?: PubmedAdv): Promise<PaperResult[]> {
   const base = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils";
 
   // エビデンスレベルの指定があるときは、出版タイプ・MeSHで、PubMed側で絞り込む。
@@ -133,14 +145,22 @@ async function searchPubMed(query: string, levels: EvidenceLevel[] = []): Promis
   // どのレベルの論文も出るようにする
   let ids: string[] = [];
 
+  // 詳細検索: 検索式（または検索語）に、フィルターを AND で足す。送った式は adv.out.term に残す
+  const baseTerm = adv ? withFilters(adv.term ?? query, adv.filters) : query;
+  if (adv) adv.out.term = baseTerm;
+
   if (levels.length <= 1) {
     const filter = pubmedLevelFilter(levels);
-    ids = await pubmedEsearch(filter ? `(${query}) AND ${filter}` : query, 15);
+    const full = filter ? `(${baseTerm}) AND ${filter}` : baseTerm;
+    if (adv) adv.out.term = full;
+    const r = await pubmedEsearch(full, 15, adv);
+    ids = r.ids;
+    if (adv) adv.out.count = r.count;
   } else {
     const per = Math.max(4, Math.ceil(15 / levels.length));
     for (const [i, level] of levels.entries()) {
       if (i > 0) await new Promise((r) => setTimeout(r, 400));
-      ids.push(...(await pubmedEsearch(`(${query}) AND ${pubmedLevelFilter([level])}`, per).catch(() => [])));
+      ids.push(...(await pubmedEsearch(`(${baseTerm}) AND ${pubmedLevelFilter([level])}`, per, adv).then((r) => r.ids).catch(() => [])));
     }
     ids = [...new Set(ids)];
   }
@@ -263,9 +283,9 @@ function firstText(xml: string, tag: string): string | null {
   return text || null;
 }
 
-async function searchJStage(query: string): Promise<PaperResult[]> {
+async function searchJStage(query: string, _l?: EvidenceLevel[], plan?: SitePlan): Promise<PaperResult[]> {
   const res = await fetch(
-    `https://api.jstage.jst.go.jp/searchapi/do?service=3&text=${encodeURIComponent(query)}&count=15`,
+    `https://api.jstage.jst.go.jp/searchapi/do?service=3&text=${encodeURIComponent(query)}&count=15${extra(plan)}`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -316,9 +336,9 @@ type CiniiItem = {
   "prism:publicationDate"?: string;
 };
 
-async function searchCinii(query: string): Promise<PaperResult[]> {
+async function searchCinii(query: string, _l?: EvidenceLevel[], plan?: SitePlan): Promise<PaperResult[]> {
   const res = await fetch(
-    `https://cir.nii.ac.jp/opensearch/articles?q=${encodeURIComponent(query)}&count=15&format=json`,
+    `https://cir.nii.ac.jp/opensearch/articles?q=${encodeURIComponent(query)}&count=15&format=json${extra(plan)}`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -357,10 +377,10 @@ type SemanticScholarItem = {
   citationCount?: number | null;
 };
 
-async function searchSemanticScholar(query: string): Promise<PaperResult[]> {
+async function searchSemanticScholar(query: string, _l?: EvidenceLevel[], plan?: SitePlan): Promise<PaperResult[]> {
   const url = `https://api.semanticscholar.org/graph/v1/paper/search?query=${encodeURIComponent(
     query
-  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds,publicationTypes,citationCount`;
+  )}&limit=15&fields=title,abstract,tldr,authors,venue,year,url,externalIds,publicationTypes,citationCount${extra(plan)}`;
 
   const headers: Record<string, string> = {
     "User-Agent": "Mozilla/5.0 (compatible; RelightBot/1.0)",
@@ -426,7 +446,8 @@ type EuropePmcItem = {
 async function searchEuropePmc(
   query: string,
   levels: EvidenceLevel[] = [],
-  pageSize = 15
+  pageSize = 15,
+  plan?: SitePlan
 ): Promise<PaperResult[]> {
   if (levels.length > 1) {
     const per = Math.max(4, Math.ceil(15 / levels.length));
@@ -440,7 +461,7 @@ async function searchEuropePmc(
   const res = await fetch(
     `https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=${encodeURIComponent(
       term
-    )}&format=json&pageSize=${pageSize}&resultType=core`,
+    )}&format=json&pageSize=${pageSize}&resultType=core${extra(plan)}`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -504,13 +525,13 @@ function reconstructAbstract(
   return words.join(" ").trim() || null;
 }
 
-async function searchOpenAlex(query: string): Promise<PaperResult[]> {
+async function searchOpenAlex(query: string, _l?: EvidenceLevel[], plan?: SitePlan): Promise<PaperResult[]> {
   const res = await fetch(
     `https://api.openalex.org/works?search=${encodeURIComponent(
       query
     )}&per-page=15&select=title,abstract_inverted_index,authorships,primary_location,publication_year,doi,ids,cited_by_count${
       process.env.CONTACT_EMAIL ? `&mailto=${encodeURIComponent(process.env.CONTACT_EMAIL)}` : ""
-    }`,
+    }${extra(plan)}`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -574,11 +595,11 @@ function ctGovDesignTypes(d: NonNullable<CtGovStudy["protocolSection"]>["designM
   return [];
 }
 
-async function searchClinicalTrials(query: string): Promise<PaperResult[]> {
+async function searchClinicalTrials(query: string, _l?: EvidenceLevel[], plan?: SitePlan): Promise<PaperResult[]> {
   const res = await fetch(
     `https://clinicaltrials.gov/api/v2/studies?query.term=${encodeURIComponent(
       query
-    )}&pageSize=15&format=json`,
+    )}&pageSize=15&format=json${extra(plan)}`,
     { signal: AbortSignal.timeout(8000) }
   );
   if (!res.ok) return [];
@@ -623,7 +644,7 @@ type DoajItem = {
   };
 };
 
-async function searchDoaj(query: string): Promise<PaperResult[]> {
+async function searchDoaj(query: string, _l?: EvidenceLevel[], _plan?: SitePlan): Promise<PaperResult[]> {
   const res = await fetch(
     `https://doaj.org/api/search/articles/${encodeURIComponent(query)}?pageSize=15`,
     { signal: AbortSignal.timeout(8000) }
@@ -656,12 +677,11 @@ async function searchDoaj(query: string): Promise<PaperResult[]> {
     .filter((r) => r.url);
 }
 
-const SOURCE_SEARCHERS: Record<Exclude<PaperSource, "pedro">, (q: string, levels?: EvidenceLevel[]) => Promise<PaperResult[]>> = {
-  pubmed: searchPubMed,
+const SOURCE_SEARCHERS: Record<Exclude<PaperSource, "pedro" | "pubmed">, (q: string, levels?: EvidenceLevel[], plan?: SitePlan) => Promise<PaperResult[]>> = {
   jstage: searchJStage,
   cinii: searchCinii,
   semanticscholar: searchSemanticScholar,
-  europepmc: searchEuropePmc,
+  europepmc: (q, l, plan) => searchEuropePmc(q, l, 15, plan),
   openalex: searchOpenAlex,
   clinicaltrials: searchClinicalTrials,
   doaj: searchDoaj,
@@ -679,7 +699,8 @@ async function toEnglishQuery(q: string): Promise<string | null> {
 
 async function searchPapers(request: Request) {
   const { searchParams } = new URL(request.url);
-  const q = searchParams.get("q")?.trim();
+  const pqRaw = searchParams.get("pq")?.trim() ?? "";
+  const q = searchParams.get("q")?.trim() || pqRaw;
 
   if (!q) {
     return Response.json(
@@ -713,28 +734,66 @@ async function searchPapers(request: Request) {
   // strict=1: 出版タイプ・登録情報で確実に判定できたものだけに絞る（文面からの推定は除く）
   const strict = searchParams.get("strict") === "1";
 
-  const isJa = containsJapanese(q);
+  // 詳細検索の条件（検索式 pq・フィルター・並び替え・ページ）
+  const csv = (k: string) => (searchParams.get(k) ?? "").split(",").map((v) => v.trim()).filter(Boolean);
+  const num = (k: string) => { const v = Number(searchParams.get(k)); return Number.isFinite(v) && v > 0 ? Math.floor(v) : undefined; };
+  const filters: PaperFilters = {
+    from: num("from"), to: num("to"), types: csv("types"), lang: csv("lang"),
+    ft: searchParams.get("ft") === "free" || searchParams.get("ft") === "pmc" ? (searchParams.get("ft") as "free" | "pmc") : "",
+    humans: searchParams.get("humans") === "1",
+    journal: searchParams.get("journal")?.slice(0, 100) || undefined,
+    author: searchParams.get("author")?.slice(0, 100) || undefined,
+    cq: searchParams.get("cq") || undefined,
+  };
+  const sortRaw = searchParams.get("sort");
+  const sort: SortKey = isSortKey(sortRaw) ? sortRaw : "relevance";
+  const page = Math.min(num("page") ?? 1, 20);
+
+  let ast: QNode | null = null;
+  let issues: QIssue[] = [];
+  if (pqRaw) {
+    const parsed = parseQuery(pqRaw);
+    ast = parsed.node;
+    issues = parsed.issues;
+    if (issues.some((i) => i.level === "error") || !ast) {
+      return Response.json({ error: "検索式に誤りがあります", issues }, { status: 400 });
+    }
+  }
+
+  const isJa = !ast && containsJapanese(q);
   const [enTranslated, jaTranslated] = await Promise.all([
     isJa ? toEnglishQuery(q) : Promise.resolve(null),
     isJa ? Promise.resolve(null) : translateText(q, "en", "ja"),
   ]);
 
-  const enQuery = isJa ? enTranslated ?? q : q;
-  const jaQuery = isJa ? q : jaTranslated ?? q;
+  const enQuery = ast ? toPubMed(ast) : isJa ? enTranslated ?? q : q;
+  const jaQuery = ast ? enQuery : isJa ? q : jaTranslated ?? q;
   // 日本語検索サイト（J-STAGE・CiNii）は日英どちらの表記の論文もヒットしうるので両方で検索する
   const bilingualQueries = [...new Set([jaQuery, enQuery])];
 
   const tasks: Promise<PaperResult[]>[] = [];
   const taskLabels: string[] = [];
 
-  (Object.keys(SOURCE_SEARCHERS) as Exclude<PaperSource, "pedro">[]).forEach((key) => {
+  const siteReports: Record<string, SiteReport> = {};
+  const pubmedOut: PubmedAdv["out"] = {};
+  const advanced = !!ast || page > 1 || sort !== "relevance" || Object.values(filters).some((v) => (Array.isArray(v) ? v.length > 0 : !!v));
+
+  if (requestedSources.has("pubmed")) {
+    const adv: PubmedAdv = { term: ast ? toPubMed(ast) : undefined, filters, sort, start: (page - 1) * 15, out: pubmedOut };
+    tasks.push(searchPubMed(enQuery, levels, advanced ? adv : undefined));
+    taskLabels.push("pubmed");
+  }
+
+  (Object.keys(SOURCE_SEARCHERS) as (keyof typeof SOURCE_SEARCHERS)[]).forEach((key) => {
     if (!requestedSources.has(key)) return;
 
     const searcher = SOURCE_SEARCHERS[key];
     const queries = key === "jstage" || key === "cinii" ? bilingualQueries : [enQuery];
+    const plans = queries.map((query) => planFor(key, ast, query, filters, sort));
+    siteReports[key] = plans[0].report;
 
     tasks.push(
-      Promise.all(queries.map((query) => searcher(query, levels))).then((lists) => dedupe(lists.flat()))
+      Promise.all(plans.map((plan) => searcher(plan.query, levels, plan))).then((lists) => dedupe(lists.flat()))
     );
     taskLabels.push(key);
   });
@@ -774,10 +833,28 @@ async function searchPapers(request: Request) {
     return by - ay;
   });
 
+  if (requestedSources.has("pubmed")) {
+    const applied: string[] = [];
+    if (filters.from || filters.to) applied.push("発表年");
+    if (filters.types?.length) applied.push("論文タイプ");
+    if (filters.ft) applied.push("全文");
+    if (filters.lang?.length) applied.push("言語");
+    if (filters.humans) applied.push("ヒトを対象");
+    if (filters.journal) applied.push("雑誌名");
+    if (filters.author) applied.push("著者");
+    if (filters.cq) applied.push("臨床疑問");
+    if (sort !== "relevance") applied.push("並び替え");
+    siteReports.pubmed = { sent: (pubmedOut.term ?? enQuery).slice(0, 1500), applied, unsupported: [] };
+  }
+
   return Response.json({
     results: merged,
     failedSources,
     translatedQuery: isJa ? enTranslated : jaTranslated,
+    sites: siteReports,
+    pubmedTotal: pubmedOut.count ?? null,
+    page,
+    issues,
   });
 }
 
@@ -820,7 +897,8 @@ function overLimit(ip: string) {
 function cacheKey(sp: URLSearchParams) {
   const sources = (sp.get("sources") ?? "").split(",").map((v) => v.trim()).filter(Boolean).sort().join(",");
   const levels = (sp.get("levels") ?? "").split(",").map((v) => v.trim()).filter(Boolean).sort().join(",");
-  return [(sp.get("q") ?? "").trim().toLowerCase(), sources, levels, sp.get("strict") === "1" ? "s" : ""].join("|");
+  const adv = ["pq", "from", "to", "types", "ft", "lang", "humans", "journal", "author", "cq", "sort", "page"].map((k) => (sp.get(k) ?? "").trim()).join("~");
+  return [(sp.get("q") ?? "").trim().toLowerCase(), sources, levels, sp.get("strict") === "1" ? "s" : "", adv].join("|");
 }
 
 function json(body: string, status: number, extra: Record<string, string> = {}) {
@@ -831,7 +909,7 @@ const CDN_HEADERS = { "Cache-Control": "public, s-maxage=600, stale-while-revali
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
-  if (!url.searchParams.get("q")?.trim()) return searchPapers(request); // 400（検索語なし）
+  if (!url.searchParams.get("q")?.trim() && !url.searchParams.get("pq")?.trim()) return searchPapers(request); // 400（検索語なし）
 
   const key = cacheKey(url.searchParams);
   const now = Date.now();
