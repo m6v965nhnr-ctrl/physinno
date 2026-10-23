@@ -41,7 +41,7 @@ export default function robots(): MetadataRoute.Robots {
         "/profile",
         "/messages",
         "/following",
-        "/admin",
+        "/admin", "/org", "/scouts",
         "/student",
         "/groups",
         "/notifications",

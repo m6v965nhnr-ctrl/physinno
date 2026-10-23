@@ -28,6 +28,7 @@ export type PtProfile = {
   languages: string | null;
   language: string | null;
   strengths: string | null;
+  accept_scouts?: boolean;
   why_pt?: string | null;
   qualification_story?: string | null;
   qualification_use?: string | null;

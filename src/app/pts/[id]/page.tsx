@@ -22,6 +22,7 @@ import { notify } from "@/lib/notify";
 import { ptName } from "@/lib/format";
 import PortfolioView from "@/components/PortfolioView";
 import BlockUserButton from "@/components/BlockUserButton";
+import ProfileSocial from "@/components/ProfileSocial";
 
 type CaseReport = {
   id: string;
@@ -539,6 +540,8 @@ export default function PTProfile() {
 
           </div>
         </section>
+
+        {pt.user_id && !pt.is_student && <ProfileSocial ptUserId={pt.user_id} loggedIn={!!user} isSelf={user?.id === pt.user_id} />}
 
         {/* ポートフォリオ（公開設定した学歴・職歴・資格・実績などをプロフィールの下にそのまま表示） */}
         <section className="mt-8">

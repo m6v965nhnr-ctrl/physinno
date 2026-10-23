@@ -12,7 +12,10 @@ export type ReportTargetType =
   | "exam_note"
   | "quiz_question"
   | "clinical_idea"
-  | "training_method";
+  | "training_method"
+  | "profile_comment"
+  | "job_posting"
+  | "scout";
 
 export type ReportReason =
   | "privacy"
@@ -48,6 +51,9 @@ export const REPORT_TARGET_LABEL: Record<ReportTargetType, string> = {
   quiz_question: "問題",
   clinical_idea: "臨床アイデア",
   training_method: "訓練",
+  profile_comment: "応援コメント",
+  job_posting: "求人",
+  scout: "スカウト",
 };
 
 // 戻り値: エラーメッセージ(成功なら null)

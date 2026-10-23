@@ -39,6 +39,7 @@ export default function EditProfilePage() {
   const [contact, setContact] = useState("");
   const [biography, setBiography] = useState("");
   const [strengths, setStrengths] = useState("");
+  const [acceptScouts, setAcceptScouts] = useState(false);
   const [whyPt, setWhyPt] = useState("");
   const [qualStory, setQualStory] = useState("");
   const [qualUse, setQualUse] = useState("");
@@ -159,6 +160,7 @@ export default function EditProfilePage() {
       setLanguage(data.languages || "");
       setBiography(data.biography || "");
       setStrengths(data.strengths || "");
+      setAcceptScouts(!!data.accept_scouts);
       setWhyPt(data.why_pt || "");
       setQualStory(data.qualification_story || "");
       setQualUse(data.qualification_use || "");
@@ -478,6 +480,7 @@ export default function EditProfilePage() {
       languages: language,
       biography,
       strengths,
+      accept_scouts: acceptScouts,
       why_pt: whyPt.trim().slice(0, 1000) || null,
       qualification_story: qualStory.trim().slice(0, 1000) || null,
       qualification_use: qualUse.trim().slice(0, 1000) || null,
@@ -1026,6 +1029,14 @@ export default function EditProfilePage() {
               rows={3}
               className="w-full border rounded-xl px-4 py-3 resize-none"
             />
+          </div>
+
+          {/* スカウトの受付（既定はオフ） */}
+          <div className="rounded-2xl border border-gray-200 bg-white p-4">
+            <label className="flex items-start gap-3 text-sm">
+              <input type="checkbox" checked={acceptScouts} onChange={(e) => setAcceptScouts(e.target.checked)} className="mt-1" />
+              <span><b>スカウトを受け付ける</b><span className="mt-1 block text-xs leading-5 text-gray-500">運営が承認した組織（病院・施設・企業など）から、メッセージが届きます。届くのは、公開しているプロフィールを見た組織からのメッセージだけで、住所・電話・メールアドレスは、渡りません。いつでもオフにでき、届いたスカウトは辞退できます。</span></span>
+            </label>
           </div>
 
           {/* 理学療法士になった理由・資格を取った経緯・資格の活かし方（プロフィールに公開） */}

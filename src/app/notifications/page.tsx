@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
 import EmailNotificationToggle from "@/components/EmailNotificationToggle";
 
-type NotificationType = "like" | "comment" | "follow" | "endorsement" | "answer";
+type NotificationType = "like" | "comment" | "follow" | "endorsement" | "answer" | "scout" | "scout_reply" | "profile_like" | "profile_comment";
 
 type NotificationRow = {
   id: string;
@@ -45,6 +45,10 @@ const TYPE_LABEL: Record<NotificationType, string> = {
   follow: "さんがあなたをフォローしました",
   endorsement: "さんがあなたのスキルを推薦しました",
   answer: "さんがあなたの質問に回答しました",
+  scout: "からスカウトのメッセージが届きました",
+  scout_reply: "さんがスカウトに返信しました",
+  profile_like: "さんがあなたのプロフィールにいいねしました",
+  profile_comment: "さんがあなたのプロフィールに応援コメントしました",
 };
 
 const GROUP_TYPE_LABEL: Record<string, string> = {
@@ -269,6 +273,22 @@ export default function NotificationsPage() {
             if (n.type === "answer" && n.question_id) {
               return (
                 <Link key={n.id} href={`/student/questions/${n.question_id}`}>
+                  {body}
+                </Link>
+              );
+            }
+
+            if (n.type === "scout" || n.type === "scout_reply") {
+              return (
+                <Link key={n.id} href="/scouts">
+                  {body}
+                </Link>
+              );
+            }
+
+            if (n.type === "profile_like" || n.type === "profile_comment") {
+              return (
+                <Link key={n.id} href="/mypage">
                   {body}
                 </Link>
               );
