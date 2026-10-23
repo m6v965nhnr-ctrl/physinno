@@ -78,7 +78,7 @@ export default function NewOrgPostPage() {
     if (error) {
       await removeOrgMedia(up.media);
       setBusy(false);
-      return notify("投稿できませんでした。内容を確かめて、もう一度お試しください");
+      return notify(String((error as { message?: string }).message).includes("too_many") ? "1日に投稿できる数の上限（10件）に達しています。あした、お試しください" : "投稿できませんでした。内容を確かめて、もう一度お試しください");
     }
     notify("投稿しました");
     router.push("/org");

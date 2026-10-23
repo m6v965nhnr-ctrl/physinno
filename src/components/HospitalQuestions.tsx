@@ -11,6 +11,7 @@ export type HospitalAnswer = { id: string; body: string; author_name: string | n
 export type HospitalQuestion = { id: string; body: string; author_name: string | null; created_at: string; is_mine: boolean; answers: HospitalAnswer[] };
 
 const AREA = "w-full rounded-2xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-gray-900";
+const tooMany = (e: unknown) => typeof e === "object" && e !== null && String((e as { message?: string }).message).includes("too_many");
 const day = (s: string) => new Date(s).toLocaleDateString("ja-JP");
 
 // 職場ページの「質問」タブ。その職場について知りたいことを聞き、働いている人が答える。
@@ -39,7 +40,7 @@ export default function HospitalQuestions({ hospitalId, hospitalName, accountTyp
     const uid = await userId();
     const { error } = uid ? await supabase.from("hospital_questions").insert({ hospital_id: hospitalId, user_id: uid, body: text, is_anonymous: anon }) : { error: true };
     setBusy(false);
-    if (error) return notify("投稿できませんでした。内容を確かめて、もう一度お試しください");
+    if (error) return notify(tooMany(error) ? "短い間に、投稿が多すぎます。24時間あけて、お試しください" : "投稿できませんでした。内容を確かめて、もう一度お試しください");
     notify("質問を投稿しました");
     setBody("");
     onChanged();
@@ -53,7 +54,7 @@ export default function HospitalQuestions({ hospitalId, hospitalName, accountTyp
     const uid = await userId();
     const { error } = uid ? await supabase.from("hospital_answers").insert({ question_id: questionId, user_id: uid, body: text, is_anonymous: aAnon, is_worker: aWorker }) : { error: true };
     setBusy(false);
-    if (error) return notify("投稿できませんでした。内容を確かめて、もう一度お試しください");
+    if (error) return notify(tooMany(error) ? "短い間に、投稿が多すぎます。しばらくたって、お試しください" : "投稿できませんでした。内容を確かめて、もう一度お試しください");
     notify("答えを投稿しました");
     setABody(""); setAnswerFor(null);
     onChanged();
