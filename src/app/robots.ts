@@ -13,6 +13,8 @@ export default function robots(): MetadataRoute.Robots {
         "/pts",
         "/pts/*",
         "/hospitals/*",
+        "/jobs",
+        "/jobs/*",
         "/columns",
         "/columns/*",
         "/kokushi",

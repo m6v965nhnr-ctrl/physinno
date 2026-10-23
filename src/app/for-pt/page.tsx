@@ -3,6 +3,7 @@ import Link from "next/link";
 import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
 import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFooter, PageJsonLd, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
+import { GUIDES } from "@/content/guides/generated";
 import { MockHospital, MockIdeas, MockPaperSearch, MockPost } from "@/components/lp/Mocks";
 import Screens from "@/components/lp/Screens";
 import { EVIDENCE_LEVELS } from "@/lib/evidence";
@@ -31,6 +32,8 @@ const SMALL_FEATURES = [
   { icon: "🏅", title: "資格の進捗が、ひと目で", body: "登録・認定・専門理学療法士の条件を一覧にして、「あと何をすればいいか」が分かります。更新の点数の目安も。" },
   { icon: "🗂", title: "実績が、自然にたまる", body: "症例・学会発表・研修を投稿するだけで、経歴と実績がポートフォリオに整い、PDFで保存・共有できます。" },
   { icon: "🗓", title: "研修・学会を、逃さない", body: "協会や各士会などが公開している研修・学会の情報を、毎日自動で集約。気になるものは保存できます。" },
+  { icon: "💼", title: "求人を探す・スカウトを受ける", body: "病院・介護・訪問・企業まで、運営が確認した組織の求人を、条件で探せます。プロフィールで受け付けをオンにすると、組織からスカウトが届きます（いつでも辞退できます）。" },
+  { icon: "📖", title: "評価・疾患・制度を、出典つきで", body: "TUGやBBSなどの評価の方法・基準値、疾患別の理学療法、リハビリの制度まで。出典と確認日つきで、まとめています。" },
   { icon: "👥", title: "本音で、相談できる", body: "病院や専門分野ごとの、公開範囲を限った場をつくれます。一人職場や新人の相談相手づくりにも。" },
 ];
 const STEPS = [
@@ -39,6 +42,9 @@ const STEPS = [
   { title: "まずは、読む・探す", body: "気になる論文や研修を探すところから。慣れたら、経験も共有しましょう。" },
 ];
 const FAQS = [
+  { q: "病院以外の職場も、探せますか？", a: "はい。勤務先は、病院・介護施設・訪問・小児・スポーツ・教育・企業・行政・産業・独立など、11の分類で登録・検索できます。口コミも、施設ごとに書けます。" },
+  { q: "スカウトは、勝手に届きますか？", a: "いいえ。プロフィールの編集で「スカウトを受け付ける」をオンにした方にだけ、運営が承認した組織から届きます。住所・電話・メールアドレスは渡りません。いつでもオフにでき、届いたスカウトは辞退できます。" },
+  { q: "求人は、誰でも載せられますか？", a: "組織として登録し、運営の確認を受けた組織だけが、求人を公開できます。内容は、掲載した組織の責任で、応募の前に、直接の確認をおすすめします。" },
   { q: "料金はかかりますか？", a: "理学療法士の方は、登録も基本機能も無料です。" },
   { q: "登録しなくても、中を見られますか？", a: "はい。「ログインなしで、中を見てみる」から理学療法士を選ぶと、ログインなしで、ホーム・論文検索・臨床アイデア・病院情報などの画面を見て触れます。" },
   { q: "口コミは、本当に匿名で投稿できますか？", a: "はい。口コミの投稿は理学療法士アカウントのみで、匿名も選べます。投稿者の情報は、ほかの人には返しません。ただし、権利侵害など法令上必要な場合は、規約に基づき、投稿者の情報を開示することがあります。" },
@@ -199,6 +205,8 @@ export default function ForPtPage() {
       <GuideLinks
         title="調べものに、すぐ使えるガイド"
         items={[
+          { href: "/jobs", label: "理学療法士の求人", body: "病院・介護・訪問・企業まで、都道府県や雇用形態で探せます。" },
+          { href: "/columns", label: "評価・疾患・制度のガイド", body: `${GUIDES.length}本。TUG・BBSなどの基準値を、出典と確認日つきで。` },
           { href: "/paper-search", label: "論文検索ガイド", body: "8つの論文サイトの使い分けと、テーマ別の探し方。" },
           { href: "/certified-pt", label: "認定理学療法士ガイド", body: "分野ごとの認定の条件と、更新に必要なことの整理。" },
           { href: "/evidence-levels", label: "エビデンスレベル早見表", body: "論文のレベルを、すぐ確かめられる一覧。" },

@@ -71,7 +71,8 @@ export function isPublicColumnPath(pathname: string) {
 
 // 病院ページもログインなしで見られるようにする（患者さんが病院を探す導線のため）。
 // フォロー・口コミの投稿はページ内でログインを促す。
-const PUBLIC_HOSPITAL_PATH = /^\/hospitals(\/[^/]+)?$/;
+// 病院ページと、求人（検索エンジンに載せるため）は、ログインなしで見られる
+const PUBLIC_HOSPITAL_PATH = /^\/(hospitals|jobs)(\/[^/]+)?$/;
 
 export function isPublicHospitalPath(pathname: string) {
   return PUBLIC_HOSPITAL_PATH.test(pathname);

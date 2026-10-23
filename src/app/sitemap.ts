@@ -37,6 +37,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...PAPER_TOPICS.map((t) => ({ url: `${SITE_URL}/paper-search/topics/${t.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
     { url: `${SITE_URL}/certified-pt`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     ...CERT_FIELDS.map((f) => ({ url: `${SITE_URL}/certified-pt/${f.slug}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 })),
+    { url: `${SITE_URL}/jobs`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${SITE_URL}/job-hunting`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
     { url: `${SITE_URL}/hospital-areas`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     ...PREFECTURES.map((p) => ({ url: `${SITE_URL}/hospital-areas/${encodeURIComponent(p)}`, lastModified: now, changeFrequency: "monthly" as const, priority: 0.6 })),
@@ -118,5 +119,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
 
-  return [...staticEntries, ...columnEntries, ...anatomyEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
+  // 公開中の求人（運営が承認した組織のものだけが、公開の権限で読める）
+  const { data: jobRows } = await supabasePublic.from("job_postings").select("id, updated_at").eq("status", "open").limit(1000);
+  const jobEntries: MetadataRoute.Sitemap = (jobRows ?? []).map((j: { id: string; updated_at: string }) => ({
+    url: `${SITE_URL}/jobs/${j.id}`,
+    lastModified: new Date(j.updated_at),
+    changeFrequency: "weekly" as const,
+    priority: 0.6,
+  }));
+
+  return [...jobEntries, ...staticEntries, ...columnEntries, ...anatomyEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
 }
