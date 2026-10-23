@@ -208,6 +208,28 @@ export async function getIncomeByAge(hospitalId: string): Promise<IncomeByAge[]>
   return ((data ?? []) as { age_band: number; n: number | string; avg_income: number }[]).map((r) => ({ ...r, n: Number(r.n) }));
 }
 
+// 口コミの分類（理学療法士が職場を選ぶときに気になる項目）。「その他・全体」は、分類なしの従来のコメント用
+export const REVIEW_TOPICS: { key: string; hint: string }[] = [
+  { key: "教育・研修", hint: "新人教育、プリセプター、勉強会、学会参加の支援" },
+  { key: "症例・患者層", hint: "疾患の種類、急性期・回復期・生活期、症例の数" },
+  { key: "業務量・単位数", hint: "1日の単位数、ノルマ、書類・記録の量" },
+  { key: "残業・休暇", hint: "残業の多さ、有給の取りやすさ、休日" },
+  { key: "給与・待遇", hint: "給与・賞与・手当、昇給、福利厚生" },
+  { key: "人間関係・雰囲気", hint: "リハ科内の雰囲気、他職種との連携、相談しやすさ" },
+  { key: "女性の働きやすさ", hint: "産休・育休、時短、復職、ライフイベントとの両立" },
+  { key: "設備・リハ環境", hint: "リハ室の広さ、機器、物理療法・歩行訓練の設備" },
+  { key: "キャリア・成長", hint: "認定・専門、研究、役職、他部署への異動" },
+  { key: "入職理由とギャップ", hint: "入職した理由と、入ってからの違い。辞めたいと思った理由" },
+];
+export const REVIEW_TOPIC_OTHER = "その他・全体";
+
+export type ReviewTopic = { id: string; review_id: string; category: string; body: string; created_at: string; is_mine: boolean };
+
+export async function listReviewTopics(hospitalId: string): Promise<ReviewTopic[]> {
+  const { data } = await supabase.rpc("get_hospital_review_topics", { p_hospital: hospitalId });
+  return (data ?? []) as ReviewTopic[];
+}
+
 export type ReviewExtra = {
   women_friendly: number | null;
   employment_type: string | null;
@@ -447,6 +469,7 @@ export async function upsertHospitalReview({
   comment,
   isAnonymous,
   extra = EMPTY_REVIEW_EXTRA,
+  topics = {},
 }: {
   hospitalId: string;
   userId: string;
@@ -455,8 +478,9 @@ export async function upsertHospitalReview({
   comment?: string;
   isAnonymous: boolean;
   extra?: ReviewExtra;
+  topics?: Record<string, string>; // 分類 → コメント（空は保存しない）
 }): Promise<string | null> {
-  const { error } = await supabase.from("hospital_reviews").upsert(
+  const { data, error } = await supabase.from("hospital_reviews").upsert(
     {
       hospital_id: hospitalId,
       user_id: userId,
@@ -467,9 +491,22 @@ export async function upsertHospitalReview({
       ...extra,
     },
     { onConflict: "hospital_id,user_id" }
-  );
+  ).select("id").single();
 
-  return error ? error.message : null;
+  if (error || !data) return error ? error.message : "保存できませんでした";
+
+  // 分類ごとのコメントは、いったん消して入れ直す（書き換え・消去に対応）
+  const del = await supabase.from("hospital_review_topics").delete().eq("review_id", data.id);
+  if (del.error) return del.error.message;
+  const rows = Object.entries(topics)
+    .map(([category, body]) => ({ category, body: body.trim() }))
+    .filter((t) => t.body && REVIEW_TOPICS.some((x) => x.key === t.category))
+    .map((t) => ({ review_id: data.id, hospital_id: hospitalId, user_id: userId, ...t }));
+  if (rows.length) {
+    const ins = await supabase.from("hospital_review_topics").insert(rows);
+    if (ins.error) return ins.error.message.includes("check") ? "分類ごとのコメントは、5文字以上で書いてください" : ins.error.message;
+  }
+  return null;
 }
 
 export async function listDiseaseRatios(hospitalId: string): Promise<DiseaseRatio[]> {

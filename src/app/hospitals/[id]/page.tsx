@@ -16,6 +16,10 @@ import {
   HospitalReview,
   EMPLOYMENT_TYPES,
   AGE_BANDS,
+  REVIEW_TOPICS,
+  REVIEW_TOPIC_OTHER,
+  listReviewTopics,
+  type ReviewTopic,
   getIncomeByAge,
   type IncomeByAge,
   EMPTY_REVIEW_EXTRA,
@@ -55,6 +59,12 @@ import { useHospitalInitial } from "./HospitalInitial";
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
 // 登録し、他のPTがフォロー・職場環境の口コミを書ける場）。
+function TabIcon({ name }: { name: "top" | "recruit" }) {
+  const p = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
+  if (name === "top") return <svg {...p}><rect x="5" y="3" width="14" height="18" rx="1.5" /><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1" /><path d="M11 21v-3h2v3" /></svg>;
+  return <svg {...p}><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M9 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /><path d="M3 13h18" /></svg>;
+}
+
 export default function HospitalDetailPage() {
   const params = useParams();
   const id = params.id as string;
@@ -75,6 +85,9 @@ export default function HospitalDetailPage() {
   const [tab, setTab] = useState<"top" | "reviews" | "questions" | "recruit">("top");
   const [questions, setQuestions] = useState<HospitalQuestion[]>([]);
   const [incomeByAge, setIncomeByAge] = useState<IncomeByAge[]>([]);
+  const [topics, setTopics] = useState<ReviewTopic[]>([]);
+  const [topicInputs, setTopicInputs] = useState<Record<string, string>>({});
+  const [topicCat, setTopicCat] = useState<string | null>(null);
   const [reviews, setReviews] = useState<HospitalReview[]>([]);
   const [scores, setScores] = useState<Record<ReviewAxis, number>>({
     work_environment: 5,
@@ -139,6 +152,10 @@ export default function HospitalDetailPage() {
     }
     setHospital(h);
     getIncomeByAge(id).then(setIncomeByAge);
+    listReviewTopics(id).then((t) => {
+      setTopics(t);
+      setTopicInputs(Object.fromEntries(t.filter((x) => x.is_mine).map((x) => [x.category, x.body])));
+    });
 
     const [ptList, count, reviewList, ratios] = await Promise.all([
       listPtsByHospital(id),
@@ -256,6 +273,7 @@ export default function HospitalDetailPage() {
       comment,
       isAnonymous,
       extra: { ...extra, ...parsed },
+      topics: topicInputs,
     });
     setSubmitting(false);
 
@@ -266,6 +284,7 @@ export default function HospitalDetailPage() {
 
     notify("口コミを投稿しました");
     getIncomeByAge(id).then(setIncomeByAge);
+    listReviewTopics(id).then(setTopics);
     setReviewModalOpen(false);
     setReviews(await listHospitalReviews(id));
   }
@@ -488,12 +507,15 @@ export default function HospitalDetailPage() {
         </div>
 
         {dataReady && (
-          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex rounded-2xl border border-gray-100 bg-white px-1">
+          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
             {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
-              <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className="relative flex-1 px-1 pb-3 pt-3 text-center">
-                <span className={`block text-sm ${tab === key ? "font-bold text-gray-900" : "font-medium text-gray-500"}`}>{label}</span>
-                <span className={`block h-4 text-[11px] leading-4 ${tab === key ? "text-gray-700" : "text-gray-400"}`}>{n !== null ? n : ""}</span>
-                {tab === key && <span className="absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-relight-gradient" />}
+              <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
+                {n !== null ? (
+                  <span className={`flex h-6 min-w-9 items-center justify-center rounded-md border px-1.5 text-[11px] ${tab === key ? "border-gray-400" : "border-white/80"}`}>{n}</span>
+                ) : (
+                  <TabIcon name={key} />
+                )}
+                <span>{label}</span>
               </button>
             ))}
           </div>
@@ -740,10 +762,30 @@ export default function HospitalDetailPage() {
                 </p>
               </details>
 
-              <textarea aria-label="職場環境・雰囲気・教育体制など（任意）"
+              <details className="rounded-2xl border border-gray-200 px-4 py-2.5" open={Object.values(topicInputs).some(Boolean)}>
+                <summary className="cursor-pointer text-sm font-semibold text-gray-800">項目ごとに書く（書きたい項目だけ・任意）</summary>
+                <div className="mt-3 space-y-3">
+                  {REVIEW_TOPICS.map((t) => (
+                    <label key={t.key} className="block">
+                      <span className="text-xs font-semibold text-gray-700">{t.key}</span>
+                      <span className="ml-2 text-[11px] text-gray-400">{t.hint}</span>
+                      <textarea
+                        aria-label={t.key}
+                        rows={2}
+                        maxLength={1000}
+                        value={topicInputs[t.key] ?? ""}
+                        onChange={(e) => setTopicInputs((p) => ({ ...p, [t.key]: e.target.value }))}
+                        className="mt-1 w-full rounded-xl border border-gray-200 bg-white px-3 py-2 text-sm outline-none focus:border-gray-400"
+                      />
+                    </label>
+                  ))}
+                </div>
+              </details>
+
+              <textarea aria-label="全体の感想（任意）"
                 value={comment}
                 onChange={(e) => setComment(e.target.value)}
-                placeholder="職場環境・雰囲気・教育体制など（任意）"
+                placeholder="全体の感想（任意）"
                 rows={3}
                 className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-gray-400"
               />
@@ -772,7 +814,39 @@ export default function HospitalDetailPage() {
             <button type="button" onClick={() => setTab("reviews")} className="mt-3 w-full rounded-full border border-gray-300 bg-white py-2 text-sm font-medium text-gray-700">口コミを読む（{reviews.length}件）</button>
           )}
 
-          <div className={`mt-4 space-y-3 ${tab === "reviews" ? "" : "hidden"}`}>
+          {tab === "reviews" && (() => {
+            const legacy = reviews.filter((r) => r.comment).map((r) => ({ id: r.id, body: r.comment as string, created_at: r.created_at }));
+            const count = (k: string) => (k === REVIEW_TOPIC_OTHER ? legacy.length : topics.filter((x) => x.category === k).length);
+            const items = topicCat === null ? [] : topicCat === REVIEW_TOPIC_OTHER ? legacy : topics.filter((x) => x.category === topicCat);
+            return (
+              <div className="mt-4">
+                <p className="rounded-xl bg-gray-100 py-2 text-center text-sm font-bold text-gray-800">職場口コミ（{reviews.length}件）</p>
+                <p className="mt-3 text-[11px] text-gray-500">知りたい項目を選ぶと、その項目の口コミだけを読めます</p>
+                <div className="mt-2 grid grid-cols-2 gap-2">
+                  {[...REVIEW_TOPICS.map((t) => t.key), REVIEW_TOPIC_OTHER].map((k) => (
+                    <button key={k} type="button" onClick={() => setTopicCat(topicCat === k ? null : k)} aria-pressed={topicCat === k} className={`rounded-lg border px-2 py-3 text-center text-sm font-semibold ${topicCat === k ? "border-transparent bg-relight-gradient text-white" : "border-gray-200 bg-white text-gray-800"}`}>
+                      {k}
+                      <span className={`block text-xs font-normal ${topicCat === k ? "text-white/90" : "text-gray-500"}`}>（{count(k)}件）</span>
+                    </button>
+                  ))}
+                </div>
+                {topicCat !== null && (
+                  <div className="mt-3 space-y-2">
+                    {items.length === 0 && <p className="text-sm text-gray-400">この項目の口コミは、まだありません</p>}
+                    {items.map((x) => (
+                      <div key={x.id} className="rounded-2xl border border-gray-100 p-4">
+                        <p className="text-[11px] text-gray-400">{topicCat}　{new Date(x.created_at).toLocaleDateString("ja-JP")}</p>
+                        <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-700">{x.body}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
+                <p className="mt-5 text-xs font-semibold text-gray-500">投稿ごとに読む</p>
+              </div>
+            );
+          })()}
+
+          <div className={`mt-2 space-y-3 ${tab === "reviews" ? "" : "hidden"}`}>
             {reviews.length === 0 && (
               <p className="text-sm text-gray-400">まだ口コミはありません</p>
             )}
