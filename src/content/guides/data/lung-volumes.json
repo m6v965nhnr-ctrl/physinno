@@ -1,0 +1,83 @@
+{
+ "slug": "lung-volumes",
+ "title": "肺気量分画と呼吸機能検査の用語：VC・FVC・RV・TLC・FEV1・%FEV1の意味",
+ "description": "呼吸機能検査でよく使う略語（VC、FVC、RV、FRC、TLC、FEV1、%FEV1、FEV1/FVC）の意味と、COPDなどの閉塞性換気障害でみられる変化（過膨張・残気量増加）を、日本呼吸器学会のCOPDガイドラインの略語表と記載にもとづいて整理します。",
+ "category": "体の構造・概念・用語",
+ "publishedAt": "2026-10-23",
+ "updatedAt": "2026-10-23",
+ "checkedOn": "2026-10-23",
+ "sources": [
+  {
+   "name": "COPD（慢性閉塞性肺疾患）診断と治療のためのガイドライン 第6版｜日本呼吸器学会",
+   "url": "https://www.jrs.or.jp/publication/file/COPD6_20220726.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "table",
+   "head": [
+    "略語",
+    "英語",
+    "意味"
+   ],
+   "rows": [
+    [
+     "VC",
+     "vital capacity",
+     "肺活量"
+    ],
+    [
+     "FVC",
+     "forced vital capacity",
+     "努力肺活量"
+    ],
+    [
+     "RV",
+     "residual volume",
+     "残気量"
+    ],
+    [
+     "FRC",
+     "functional residual capacity",
+     "機能的残気量"
+    ],
+    [
+     "TLC",
+     "total lung capacity",
+     "全肺気量"
+    ],
+    [
+     "FEV1",
+     "forced expiratory volume in 1 second",
+     "1秒量"
+    ],
+    [
+     "%FEV1",
+     "—",
+     "対標準1秒量（標準値に対する1秒量の割合）"
+    ],
+    [
+     "FEV1/FVC",
+     "—",
+     "1秒率（FEV1をFVCで割った値）"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "閉塞性換気障害での目安"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "COPDの診断では、気管支拡張薬投与後のFEV1/FVCが70％未満であることが必須条件",
+    "病期は%FEV1で分類する（Ⅰ期：80％以上、Ⅱ期：50％以上80％未満、Ⅲ期：30％以上50％未満、Ⅳ期：30％未満）",
+    "COPDでは、肺の過膨張、残気量の増加、閉塞性換気障害がみられる"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "拘束性換気障害や、各指標の標準値の求め方などの詳しい内容は、呼吸機能検査のガイドラインで確認してください。確認日：2026年10月23日。"
+  }
+ ]
+}
