@@ -16,7 +16,7 @@ export default function OrgPostsFeed() {
       <h2 className="mb-2 text-sm font-semibold text-gray-700">施設からの投稿</h2>
       <div className="space-y-3">
         {posts.map((p) => (
-          <OrgPostCard key={p.id} post={p} />
+          <OrgPostCard key={p.id} post={p} reportable />
         ))}
       </div>
     </section>

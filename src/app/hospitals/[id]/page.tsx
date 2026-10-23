@@ -841,6 +841,9 @@ export default function HospitalDetailPage() {
                       <div key={x.id} className="rounded-2xl border border-gray-100 p-4">
                         <p className="text-[11px] text-gray-400">{topicCat}　{new Date(x.created_at).toLocaleDateString("ja-JP")}</p>
                         <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-700">{x.body}</p>
+                        {userId && topicCat !== REVIEW_TOPIC_OTHER && !(x as ReviewTopic).is_mine && (
+                          <div className="mt-2 text-right"><ReportButton targetType="hospital_review_topic" targetId={x.id} /></div>
+                        )}
                       </div>
                     ))}
                   </div>
@@ -924,7 +927,7 @@ export default function HospitalDetailPage() {
             ) : (
               <div className="mt-4 space-y-3">
                 {orgPosts.map((p) => (
-                  <OrgPostCard key={p.id} post={p} showOrg={false} />
+                  <OrgPostCard key={p.id} post={p} showOrg={false} reportable={!!userId} />
                 ))}
               </div>
             )}

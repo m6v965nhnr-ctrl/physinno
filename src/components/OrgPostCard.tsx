@@ -1,10 +1,11 @@
 import Link from "next/link";
+import ReportButton from "@/components/ReportButton";
 import { ORG_POST_KIND_LABEL, mediaUrl, type OrgPost } from "@/lib/orgPosts";
 
 const day = (s: string) => new Date(s).toLocaleDateString("ja-JP");
 
 // 施設の投稿1件。写真は拡大せずに並べ、動画は再生ボタンつき（読み込みは、再生するときだけ）
-export default function OrgPostCard({ post, showOrg = true }: { post: OrgPost; showOrg?: boolean }) {
+export default function OrgPostCard({ post, showOrg = true, reportable = false }: { post: OrgPost; showOrg?: boolean; reportable?: boolean }) {
   return (
     <article className="rounded-2xl border border-gray-100 bg-white p-4">
       <div className="flex items-center gap-2">
@@ -27,6 +28,9 @@ export default function OrgPostCard({ post, showOrg = true }: { post: OrgPost; s
       )}
       {post.job_id && (
         <Link href={`/jobs/${post.job_id}`} className="mt-3 block rounded-full border border-gray-300 py-2 text-center text-xs font-semibold text-gray-800">この求人を見る</Link>
+      )}
+      {reportable && (
+        <div className="mt-2 text-right"><ReportButton targetType="org_post" targetId={post.id} /></div>
       )}
     </article>
   );

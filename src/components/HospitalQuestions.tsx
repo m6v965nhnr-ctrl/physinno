@@ -5,6 +5,7 @@ import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
 import { supabase } from "@/lib/supabase";
 import type { AccountType } from "@/lib/account";
+import ReportButton from "@/components/ReportButton";
 
 export type HospitalAnswer = { id: string; body: string; author_name: string | null; is_worker: boolean; created_at: string; is_mine: boolean };
 export type HospitalQuestion = { id: string; body: string; author_name: string | null; created_at: string; is_mine: boolean; answers: HospitalAnswer[] };
@@ -99,14 +100,14 @@ export default function HospitalQuestions({ hospitalId, hospitalName, accountTyp
                             {a.is_worker && <span className="ml-2 rounded-full bg-white px-2 py-0.5 text-[10px] font-semibold text-gray-700">この職場で働いている（本人の申告）</span>}
                           </p>
                           <p className="mt-1 whitespace-pre-wrap text-sm text-gray-800">A. {a.body}</p>
-                          {a.is_mine && <button type="button" onClick={() => remove("hospital_answers", a.id)} className="mt-1 text-[11px] text-gray-400 underline">削除</button>}
+                          {a.is_mine ? <button type="button" onClick={() => remove("hospital_answers", a.id)} className="mt-1 text-[11px] text-gray-400 underline">削除</button> : <div className="mt-1"><ReportButton targetType="hospital_answer" targetId={a.id} /></div>}
                         </li>
                       ))}
                     </ul>
                   )}
                   <div className="mt-2 flex gap-4 text-xs">
                     <button type="button" onClick={() => setAnswerFor(answerFor === q.id ? null : q.id)} className="font-semibold text-gray-700 underline">{answerFor === q.id ? "閉じる" : "答える"}</button>
-                    {q.is_mine && <button type="button" onClick={() => remove("hospital_questions", q.id)} className="text-gray-400 underline">質問を削除</button>}
+                    {q.is_mine ? <button type="button" onClick={() => remove("hospital_questions", q.id)} className="text-gray-400 underline">質問を削除</button> : <ReportButton targetType="hospital_question" targetId={q.id} />}
                   </div>
                   {answerFor === q.id && (
                     <div className="mt-2 space-y-2">

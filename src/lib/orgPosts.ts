@@ -61,3 +61,9 @@ export async function uploadOrgMedia(orgId: string, files: File[]): Promise<{ me
 export async function removeOrgMedia(media: OrgMedia[]) {
   if (media.length) await supabase.storage.from("org-media").remove(media.map((m) => m.path));
 }
+
+// 運営が通報から投稿を消すとき、写真・動画のファイル本体も消す（投稿を消す前に呼ぶ）
+export async function adminRemoveOrgPostMedia(postId: string): Promise<void> {
+  const { data } = await supabase.rpc("admin_org_post_media", { p_post: postId });
+  if (Array.isArray(data) && data.length) await removeOrgMedia(data as OrgMedia[]);
+}

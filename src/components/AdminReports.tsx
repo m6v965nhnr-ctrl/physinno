@@ -11,6 +11,7 @@ import {
 } from "@/lib/reports";
 import { notify } from "@/lib/notify";
 import { adminRemoveExamNoteFile } from "@/lib/exams";
+import { adminRemoveOrgPostMedia } from "@/lib/orgPosts";
 import { askConfirm } from "@/lib/confirm";
 
 type Filter = "open" | "resolved" | "dismissed";
@@ -53,6 +54,10 @@ export default function AdminReports() {
     // 試験メモの添付ファイル(過去問など)は、メモを消す前に、ファイル本体も削除する
     if (action === "delete" && report.target_type === "exam_note") {
       await adminRemoveExamNoteFile(report.target_id);
+    }
+
+    if (action === "delete" && report.target_type === "org_post") {
+      await adminRemoveOrgPostMedia(report.target_id);
     }
 
     const error = await resolveAdminReport(report.id, action, note);

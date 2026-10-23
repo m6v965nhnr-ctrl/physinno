@@ -15,7 +15,11 @@ export type ReportTargetType =
   | "training_method"
   | "profile_comment"
   | "job_posting"
-  | "scout";
+  | "scout"
+  | "org_post"
+  | "hospital_question"
+  | "hospital_answer"
+  | "hospital_review_topic";
 
 export type ReportReason =
   | "privacy"
@@ -54,6 +58,10 @@ export const REPORT_TARGET_LABEL: Record<ReportTargetType, string> = {
   profile_comment: "応援コメント",
   job_posting: "求人",
   scout: "スカウト",
+  org_post: "施設の投稿",
+  hospital_question: "職場への質問",
+  hospital_answer: "職場への回答",
+  hospital_review_topic: "口コミ（項目ごとのコメント）",
 };
 
 // 戻り値: エラーメッセージ(成功なら null)
