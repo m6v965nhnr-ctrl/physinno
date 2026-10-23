@@ -132,7 +132,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "als-pt",
@@ -275,7 +276,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本資料に記載されている数値や負荷強度は文献・ガイドラインに基づく目安です。病型や進行速度、全身状態には個人差が大きいため、最新の公式ガイドラインや主治医の診断・指示、多職種チームの検討内容を必ず確認した上で臨床に適用してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "asia-impairment-scale",
@@ -442,7 +444,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※本ページで解説している分類基準や数値は資料に基づく一般的な目安です。実際の臨床評価や診断にあたっては、米国脊髄損傷協会（ASIA）の国際基準（ISNCSCI）等、最新の公式ガイドラインや評価用紙を必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "barthel-index",
@@ -570,7 +573,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説に記載した評価基準や数値は一般的な概要および資料に基づく目安です。実際の臨床や加算算定等においては、厚生労働省の最新の公式資料や所属施設の規定を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "berg-balance-scale",
@@ -783,7 +787,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "カットオフ値は、診断のための絶対的な基準ではなく、目安です。対象者の状態や、他の評価とあわせて判断してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "borg-scale",
@@ -960,7 +965,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※本ページに記載されたボルグスケールの基準値や運動強度は一般的な目安です。実際の臨床現場では患者の病態やバイタルサインを総合的に評価し、最新のガイドラインや所属施設の公式プロトコルに沿って運用してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "brunnstrom-recovery-stage",
@@ -1112,7 +1118,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説に掲載している段階および判定条件は資料に基づく一般的な目安です。文献や評価用紙のバージョンにより肢位・達成条件（1つ以上可能で次へ進むか等）の表記に相違があるため、実際の臨床評価や書類作成時には必ず最新の公式ガイドラインおよびご所属の施設の評価要綱をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "cancer-rehabilitation",
@@ -1238,7 +1245,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載した分類や数値基準は関連資料に基づく一般的な目安です。がん種、進行度、治療内容、骨転移や血球減少などの合併症リスクにより個別の適応・運動負荷量は大きく異なります。実践に際しては主治医や多職種チームと連携し、最新の診療ガイドラインおよび公式資料を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "cardiac-rehab-mi",
@@ -1374,7 +1382,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載された数値や基準値は学会ガイドラインおよび標準プログラムに示された一般的な指標・目安です。患者ごとの合併症、心機能、投薬内容（β遮断薬等）により許容範囲は異なります。実施に際しては必ず担当医師の指示および最新の公式資料・所属施設の規定を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "cerebral-palsy-pt",
@@ -1510,7 +1519,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "chair-stand-test",
@@ -1649,7 +1659,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載されている基準値やカットオフ値は資料に基づく一般的な目安です。対象者の疾患や身体状況、痛みの有無（発生時は中止）に十分注意して安全を確保するとともに、臨床での評価にあたっては最新の公式ガイドラインや所属施設の測定マニュアルを参照してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "chiiki-houkatsu-ward",
@@ -1794,7 +1805,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "出典は厚生労働省の改定資料と令和8年度の医科点数表です。施設基準の細かな条件（実績要件・経過措置など）は、最新の告示・通知で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "ckd-exercise",
@@ -1928,7 +1940,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載された運動処方基準、評価指標、カットオフ値は資料に記載された研究・指針に基づく目安です。臨床での導入に際しては、対象患者の病態や心血管リスクを主治医とともに慎重に確認し、日本腎臓リハビリテーション学会等の最新ガイドラインや診療報酬の最新通知を参照してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "copd-pulmonary-rehab",
@@ -2034,7 +2047,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "安静時中等度低酸素血症（PaO2＞55Torr、SpO2＞88％）の患者へのLTOT/HOTの扱いなど、詳しくはガイドライン本文を確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "day-care-rehabilitation",
@@ -2170,7 +2184,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "基本サービス費の具体的な単位数は、時間・要介護度・規模の組み合わせごとに異なるため、最新の単位数表で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "dementia-pt",
@@ -2249,7 +2264,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "diabetes-exercise",
@@ -2348,7 +2364,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "disability-support-law",
@@ -2443,7 +2460,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "条文には、令和9年4月1日などの施行日が設けられた改正が含まれています。サービスの内容・基準・自己負担などの詳細は、政省令・告示・厚生労働省の資料で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "duchenne-muscular-dystrophy-pt",
@@ -2576,7 +2594,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載した数値やカットオフ値、介入基準は参照資料に基づく目安です。病態の進行度や全身状態には個人差があるため、実際の臨床介入では主治医の指示および最新の診療ガイドラインを必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "dynamic-gait-index",
@@ -2717,7 +2736,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "記載しているカットオフ値や基準値はあくまで転倒リスク評価の目安です。実際の臨床では患者個別の状態や評価環境を考慮し、最新の公式資料や専門的臨床判断と併せて確認・評価を行ってください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "fall-prevention",
@@ -2785,7 +2805,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "frailty-pt",
@@ -2917,7 +2938,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載している数値および診断基準は各種資料に基づく目安です。判定や臨床判断にあたっては、日本サルコペニア・フレイル学会や国立長寿医療研究センターなどが発行する最新の公式ガイドラインおよび原典をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "frozen-shoulder-pt",
@@ -3022,7 +3044,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "fugl-meyer-assessment",
@@ -3159,7 +3182,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載した数値や判定基準は文献に基づく目安です。実際の評価や臨床判断にあたっては、対象患者の病期を考慮し、最新の公式マニュアルや学会ガイドライン等を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "functional-independence-measure",
@@ -3304,7 +3328,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページの記載内容は各種資料・文献に基づく目安であり、実際の採点や制度上の算定にあたっては、必ず最新の公式資料や厚生労働省の告示・通知等をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "functional-reach-test",
@@ -3469,7 +3494,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※本ページに記載されている数値およびカットオフ値は、各種研究資料やガイドラインに基づく目安・参考値です。実際の臨床評価や判断にあたっては、対象者の個別性（身長、疾患、測定条件）を考慮し、最新の公式資料や原著論文をあわせてご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "gmfcs",
@@ -3596,7 +3622,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説に記載の分類基準やカットオフ値は評価の目安です。実際の臨床や研究で評価を行う際は、必ず公式の原典マニュアルや最新の医学資料を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "grip-strength",
@@ -3766,7 +3793,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載している数値や診断基準は資料に基づく目安です。実際の臨床評価や研究においては、必ず最新の公式ガイドラインや論文等の一次資料をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "heart-failure-rehab",
@@ -3912,7 +3940,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載した数値や基準値は、関連ガイドラインおよび標準プログラムに示された一般的な指標・目安です。患者個々の病態、心機能、投薬内容（特にβ遮断薬や強心薬の有無）、合併症によって許容基準は異なります。実際の臨床介入にあたっては、必ず担当医師の指示・院内プロトコルを確認し、日本循環器学会等の最新公式資料を参照してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "hip-fracture-rehab",
@@ -4065,7 +4094,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載された数値やプロトコルは文献資料に基づく一般的な目安です。実際の臨床においては、患者の全身状態や術中固定性、主治医の指示および最新の公式ガイドライン・プロトコルを必ず確認のうえ実施してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "hoehn-yahr-updrs",
@@ -4240,7 +4270,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "注意: 本ページに記載された分類やカットオフ値は臨床的評価の目安です。実際の評価や診断・研究での運用にあたっては、必ず学会等の最新の公式資料やガイドラインをご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "home-visit-rehabilitation",
@@ -4390,7 +4421,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "医療保険のリハビリからの切り替えルールは「医療保険と介護保険のリハビリの切り替え」のページを参照してください。単位数は改定で変わります。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "hospital-function-types",
@@ -4553,7 +4585,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "制度は見直しが続いています。最新の内容は、厚生労働省の病床機能報告・地域医療構想のページで確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "hugh-jones-mmrc",
@@ -4703,7 +4736,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "注意：これらの分類やグレードは日常生活上の目安です。実際の障害認定や診療報酬算定にあたっては、最新の公式資料や制度告示の要領を必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "icf-model",
@@ -4838,7 +4872,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "評価点基準は暫定案です。臨床でICFを使うときは、所属の施設や教科書の基準を優先してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "icu-acquired-weakness",
@@ -4990,7 +5025,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載している各種数値や開始・中止基準は、各学会の診療ガイドライン案およびエキスパートコンセンサスに基づく目安です。実際の臨床現場では患者個々の病態や全身状態、各施設のプロトコル、主治医の指示を最優先とし、必ず最新の公式ガイドラインや資料を確認したうえで判断してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "integrated-community-care",
@@ -5075,7 +5111,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "人口の見通しなどの数字は、厚生労働省のページの記載です。更新されることがあります。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "j-chs-frailty",
@@ -5203,7 +5240,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページの数値や基準値は資料に基づく目安です。実際の臨床や評価の際は、最新の公式資料やガイドラインで詳細を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "jcs-gcs",
@@ -5382,7 +5420,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "JCSとGCSは、観察の仕方や施設の運用に差が出ることがあります。同じ人が、同じ方法で、経過を記録することが大切です。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "kaifukuki-rehab-ward",
@@ -5634,7 +5673,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "点数や基準は改定ごとに変わります。この記事は、厚生労働省「令和8年度診療報酬改定 4.包括期・慢性期入院医療」の内容にもとづきます。実際の算定は、最新の告示・通知と所属施設の届出内容で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "knee-osteoarthritis",
@@ -5808,7 +5848,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "long-term-care-insurance",
@@ -5941,7 +5982,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "制度は改正されます（令和8年（2026年）にも介護保険法の改正が公表されています）。最新の内容は、厚生労働省の介護保険制度のページで確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "lumbar-disc-herniation",
@@ -6019,7 +6061,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "　この内容は、日本理学療法士協会「理学療法診療ガイドライン 第1版（2011年）」のQ&A（ダイジェスト版）にもとづきます。その後の研究で、推奨が更新されている可能性があります。最新のガイドラインや所属施設の方針も確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "lumbar-spinal-stenosis",
@@ -6158,7 +6201,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説に記載した数値、基準値、およびガイドラインの内容は資料に基づく目安や研究データであり、実際の臨床や評価に際しては患者個々の状態を優先し、最新の公式診療ガイドラインや専門文献で最新情報をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "lung-volumes",
@@ -6241,7 +6285,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "拘束性換気障害や、各指標の標準値の求め方などの詳しい内容は、呼吸機能検査のガイドラインで確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "medical-fee-revision-2026",
@@ -6346,7 +6391,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "改定の内容は、告示・通知・疑義解釈で細かく決まります。実際の算定は、最新の資料と所属施設の届出で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "medical-vs-care-insurance",
@@ -6441,7 +6487,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "通知の本文のうち、リハビリテーションに関する部分（9・10）を確認して要約しています。実際の算定は、最新の通知と所属施設のルールで確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "mini-bestest",
@@ -6576,7 +6623,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※掲載しているカットオフ値や評価基準は各研究資料に基づく参考目安です。実際の臨床評価や意思決定にあたっては、対象者の状態や最新の公式資料・ガイドラインを併せてご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "mmse-hds-r",
@@ -6734,7 +6782,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※本ページの数値・カットオフ値はスクリーニングの目安であり、確定診断を行うものではありません。臨床での判定や実施にあたっては、対象者の状態や症状の経過を総合的に考慮し、最新の公式資料や所属施設の規定・ガイドラインで詳細を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "modified-ashworth-scale",
@@ -6878,7 +6927,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページで紹介している数値や基準は臨床的な目安です。実際の評価や治療適応の判断に際しては、必ず最新の公式資料やガイドライン、各施設の実施マニュアルをご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "modified-rankin-scale",
@@ -7012,7 +7062,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説は臨床および学習時の一般的な目安です。実際の判定にあたっては、各所属施設や学術団体の最新の公式マニュアル・判定基準書を確認の上、慎重に行ってください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "multiple-sclerosis-pt",
@@ -7158,7 +7209,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本資料に記載されている数値基準や介入強度は各研究および評価指標に基づく一般的な目安です。多発性硬化症は日内変動や再発・寛解の個体差が大きいため、過熱（ウートフ徴候）や過度の疲労蓄積を避け、最新の公式ガイドラインや主治医の指示を確認した上で患者個々の状態に応じたプログラムを作成してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "nihss",
@@ -7368,7 +7420,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページの記載内容は一般的な目安および文献に基づく要約です。実際の臨床評価や採点にあたっては、NINDSの公式ガイドラインや所属施設の認定基準・プロトコルを必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "nyha-classification",
@@ -7450,7 +7503,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "数値は、ガイドライン（2025年改訂版）の記載です。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "oswestry-disability-index",
@@ -7619,7 +7673,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載した数値や基準値は資料に基づく目安です。臨床判定にあたっては、患者個々の背景を考慮し、必ず最新の公式資料や所属施設のプロトコルをご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "oxygen-therapy",
@@ -7676,7 +7731,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "酸素療法の指示（流量・目標のSpO2・使用時間）は、医師の指示にしたがってください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "pain-nrs-vas",
@@ -7820,7 +7876,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "注意：ペインスケールの数値は患者個人の主観的体験に基づく目安であり、他者間で直接比較することはできません。実際の評価や臨床運用にあたっては、所属施設の規定および最新の公式医学ガイドライン・資料を確認の上、総合的に判断してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "parkinson-disease-pt",
@@ -7983,7 +8040,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載している各種スコアの基準値やカットオフ値は、引用文献・研究報告に基づく目安であり、確定的な診断基準ではありません。実際の臨床評価および理学療法の立案にあたっては、患者個々の服薬状況や症状変動を十分に考慮し、日本神経学会や日本理学療法士協会等の最新の公式ガイドラインや原著資料をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "pressure-ulcer",
@@ -8113,7 +8171,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載されているカットオフ値や評価項目、介入指針は提供資料に基づく一般的な目安です。実際の臨床現場では対象者個々の病態や所属組織の運用基準を優先し、日本褥瘡学会等の最新公式ガイドラインおよび公的資料を必ずご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "pt-law-and-scope",
@@ -8242,7 +8301,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "条文は改正されることがあります。最新の内容は、出典のe-Gov法令検索で確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "rehab-calculation-limit",
@@ -8337,7 +8397,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "対象患者の具体的な疾患や状態は、別表（告示）で定められています。臨床では、所属施設の算定ルールと最新の告示・通知を確認してください。確認日：2026年10月23日。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "rehab-fee-structure",
@@ -8480,7 +8541,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "確認日：2026年10月23日。令和8年度診療報酬改定の医科点数表（厚生労働省）から、本文と表を確認しました。"
    }
-  ]
+  ],
+  "verification": "primary"
  },
  {
   "slug": "sarcopenia",
@@ -8643,7 +8705,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載した数値や基準は診療ガイドライン等の資料に基づく目安です。個々の患者の診断・介入計画立案にあたっては対象者の全身状態や合併症に配慮し、最新の公式診療ガイドラインや学会基準（AWGS 2025などの改訂情報を含む）を必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "six-minute-walk-test",
@@ -8799,7 +8862,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載されている数値・基準値・カットオフ値は文献資料に基づく目安・例示です。実際の臨床評価にあたっては、対象患者の疾患・病期および所属施設の最新の公式ガイドラインやプロトコルを必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "spinal-cord-injury-pt",
@@ -8971,7 +9035,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本資料に記載されている到達目標や数値基準は典型例に基づく一般的な目安です。実際の理学療法計画の策定やゴール設定にあたっては、個々の全身状態、合併症、最新のガイドラインおよび公式の治療プロトコールを参照し、多職種連携のもとで必ず確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "sppb",
@@ -9110,7 +9175,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "記載されている点数やカットオフ値は資料に基づく一般的な目安です。実際の臨床評価や判定を行う際は、患者の病態や安全面に配慮し、必ず最新の公式ガイドラインや所属施設の基準を参照・確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "stroke-impairment-assessment-set",
@@ -9258,7 +9324,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載した評価基準やカットオフ値は一般的な目安および文献に基づく指標です。実際の臨床評価や診断にあたっては、患者の個別の病態に配慮し、必ず最新の公式評価マニュアルやガイドラインをご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "stroke-rehab",
@@ -9434,7 +9501,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載された基準値やカットオフ値は臨床判断の参考目安であり、患者個々の全身状態や病態、所属施設のプロトコル・最新の公式資料に基づき医師と確認のうえ判断してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "ten-meter-walk-test",
@@ -9622,7 +9690,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに掲載された歩行速度の基準値、カットオフ値、MDC/MCIDは、対象疾患、病期、測定プロトコルや集計方法により異なる場合があります。臨床での解釈時はあくまで指標・目安として活用し、所属施設の標準プロトコルや最新の公式論文・ガイドラインで詳細を確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "timed-up-and-go",
@@ -9770,7 +9839,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本解説に記載された数値・カットオフ値およびMDCは、研究の対象集団や測定条件（快適速度か最大速度か、補助具や椅子の仕様等）によって異なります。臨床判断の際は数値のみで安全性を決めつけず、患者個別の状態観察や最新の公式資料・原著論文を確認した上で総合的に評価してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "tinetti-pomA",
@@ -9918,7 +9988,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "※本ページに記載しているカットオフ値や評価基準は各種資料・研究に基づく目安です。実際の臨床評価や診断にあたっては、評価対象者の病態に合わせた判断を行い、最新の公式評価用紙および最新資料をご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "total-hip-arthroplasty-rehab",
@@ -10091,7 +10162,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載された数値、筋力トルク値、可動域、評価カットオフ値等は各種文献・研究報告に基づく目安であり、特定のプロトコールや患者背景によって異なります。実際の臨床・評価においては、所属施設で採用しているインプラント情報、手術指示書、および最新の公式医学資料・ガイドラインを必ずご確認ください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "total-knee-arthroplasty-rehab",
@@ -10240,7 +10312,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本ページに記載されている数値・カットオフ値・経過期間は文献・研究に基づく目安であり、患者個別の状態や術式、インプラント種別、所属施設のクリニカルパスにより異なります。臨床での実用時には最新の公式文献や診療ガイドラインを併せて確認してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "traumatic-brain-injury-pt",
@@ -10394,7 +10467,8 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "本稿で示したバイタルサイン基準値、重症度区分、診断基準は参照文献およびガイドラインに基づく目安です。実際の臨床現場では患者個々の病態や合併症、所属施設のプロトコルに基づき、必ず最新の公式ガイドラインや医師の指示を確認の上で介入してください。"
    }
-  ]
+  ],
+  "verification": "summary"
  },
  {
   "slug": "vital-signs-criteria",
@@ -10520,6 +10594,7 @@ export const GUIDES: Guide[] = [
     "t": "note",
     "x": "確認日：2026年10月23日。日本リハビリテーション医学会のサイトに公開されているガイドライン（案）の「IV．リハビリテーションの中止基準」を確認しました。"
    }
-  ]
+  ],
+  "verification": "primary"
  }
 ];

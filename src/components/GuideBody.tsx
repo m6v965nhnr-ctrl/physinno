@@ -4,6 +4,16 @@ export default function GuideBody({ guide }: { guide: Guide }) {
   const toc = guide.blocks.flatMap((b, i) => (b.t === "h2" ? [{ id: `s${i}`, text: b.x }] : []));
   return (
     <div className="space-y-4 text-sm leading-7 text-gray-700">
+      {guide.verification === "summary" ? (
+        <p role="note" className="rounded-xl border border-amber-300 bg-amber-50 p-3 text-xs leading-5 text-amber-900">
+          <span className="font-semibold">一次資料との照合は、まだ終わっていません。</span>
+          この記事は、公開されている資料（学会・施設・解説サイトなど）の要約です。数値や基準は、公式の検査用紙・ガイドライン・原著論文で確認してから、臨床に使ってください。照合は、順番に進めています。
+        </p>
+      ) : guide.verification === "primary" ? (
+        <p className="rounded-xl bg-emerald-50 p-3 text-xs leading-5 text-emerald-900">
+          本文の数値・基準は、下の出典（法令・公的機関・学会のガイドラインなどの一次資料）と照合しています（{guide.checkedOn}）。
+        </p>
+      ) : null}
       {toc.length >= 3 && (
         <nav aria-label="このページの目次" className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-xs leading-6">
           <p className="text-sm font-semibold text-gray-800">目次</p>
