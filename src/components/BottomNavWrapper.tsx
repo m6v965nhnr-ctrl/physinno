@@ -215,11 +215,6 @@ export default function BottomNavWrapper() {
       const admin = await isAdminUser(userId);
       if (!mounted) return;
       setIsAdmin(admin);
-      if (admin) {
-        setLoggedIn(true);
-        setChecked(true);
-        return;
-      }
 
       let type = await getMyAccountType(userId);
 
@@ -280,7 +275,8 @@ export default function BottomNavWrapper() {
 
   // 下のメニューを出す画面かどうか（出す画面では、画面全体ではなく、本文だけをスクロールさせる。globals.css の data-shell）。
   // iPhoneで、一番上・一番下まで行ってさらに引っ張ったときに、下のメニューが本文といっしょに動いてしまうのを防ぐため
-  const shellOn = checked && !isAdmin && !NO_NAV_PATHS.includes(pathname) && !isPublicPaperSitePath(pathname);
+  const hideForAdmin = isAdmin && pathname.startsWith("/admin");
+  const shellOn = checked && !hideForAdmin && !NO_NAV_PATHS.includes(pathname) && !isPublicPaperSitePath(pathname);
   useEffect(() => {
     const root = document.documentElement;
     if (shellOn) root.setAttribute("data-shell", "");
@@ -293,8 +289,8 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // 運営のアカウントには、メニューを出さない
-  if (isAdmin) {
+  // 運営のアカウントでも、運営の画面（/admin）以外では、ふつうのメニューを出す
+  if (hideForAdmin) {
     return null;
   }
 
