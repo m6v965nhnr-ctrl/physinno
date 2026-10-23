@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { notify } from "@/lib/notify";
 import { ORG_STATUS_LABEL, Org } from "@/lib/recruit";
 
-type Row = Org & { owner_name: string | null; created_at: string };
+type Row = Org & { owner_name: string | null; created_at: string; hospital_name?: string | null };
 
 // 運営用: 組織（求人・スカウトを使う施設・企業）の確認と承認。承認されるまで、求人の公開・スカウトはできない
 export default function AdminOrganizations() {
@@ -37,6 +37,7 @@ export default function AdminOrganizations() {
               <p className="text-sm font-semibold">{r.name}　<span className="font-normal text-gray-500">{ORG_STATUS_LABEL[r.status].split("（")[0]}</span></p>
               <p className="mt-0.5 text-gray-600">{r.facility_category}{r.facility_type ? `・${r.facility_type}` : ""}　{r.prefecture ?? ""}　登録者：{r.owner_name ?? "（名前なし）"}</p>
               {r.website && <a href={r.website} target="_blank" rel="noopener noreferrer" className="break-all underline">{r.website}</a>}
+              <p className="mt-1 text-gray-700">職場ページとのひもづけ：{r.hospital_id ? <a href={`/hospitals/${r.hospital_id}`} target="_blank" rel="noopener noreferrer" className="underline">{r.hospital_name ?? "（名前なし）"}</a> : "なし"}　<span className="text-gray-500">（承認すると、この組織の投稿が、そのページの「投稿」タブに出ます。組織名と見くらべてください）</span></p>
               {r.description && <p className="mt-1 whitespace-pre-wrap text-gray-700">{r.description}</p>}
               <input aria-label="本人に伝えるメモ（任意）" placeholder="本人に伝えるメモ（任意）" value={note[r.id] ?? ""} maxLength={500} onChange={(e) => setNote({ ...note, [r.id]: e.target.value })} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-1.5" />
               <div className="mt-2 flex flex-wrap gap-2">
