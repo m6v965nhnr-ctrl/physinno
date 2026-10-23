@@ -1,0 +1,126 @@
+{
+ "slug": "cancer-rehabilitation",
+ "title": "がんのリハビリテーションの目的と時期（4病期分類・運動基準値）の整理",
+ "description": "がんのリハビリテーションの定義と目的、予防的・回復的・維持的・緩和的の各介入時期の特徴を解説。理学療法士や学生向けに、ガイドラインに基づく運動処方や負荷基準、開始時期の科学的根拠をわかりやすく整理しました。",
+ "category": "疾患別の理学療法",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "Brief Fatigue Inventory - STOP, THAT and One Hundred Other Sleep Scales",
+   "url": "https://www.med.upenn.edu/cbti/assets/user-content/documents/Brief%20Fatigue%20Inventory.pdf"
+  },
+  {
+   "name": "Cancer rehabilitation in clinical practice: a qualitative study exploring contact nurses' ",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11866813/"
+  },
+  {
+   "name": "Comprehensive Cancer Rehabilitation Guidebook",
+   "url": "https://www.va.gov/files/2023-07/ComprehensiveCancer-MarketingBooklet_508.pdf"
+  },
+  {
+   "name": "ECOG Performance Status Scale - ECOG-ACRIN Cancer Research Group",
+   "url": "https://ecog-acrin.org/resources/ecog-performance-status/"
+  },
+  {
+   "name": "Evaluation of Exercise Tolerance in Cancer Patients With Cardiovascular Complications ― A ",
+   "url": "https://www.jstage.jst.go.jp/article/circrep/advpub/0/advpub_CR-25-0331/_html/-char/ja"
+  },
+  {
+   "name": "Exercise for People Living with Cancer",
+   "url": "https://www.cancer.org.au/assets/pdf/cancer-information/exercise-for-people-living-with-cancer"
+  },
+  {
+   "name": "JRM JRM JRM - MJS Publishing",
+   "url": "https://medicaljournalssweden.se/jrm/article/download/44170/51869/171287"
+  },
+  {
+   "name": "KNGF Guideline on Oncology",
+   "url": "https://www.kennisplatformfysiotherapie.nl/app/uploads/sites/2/2024/10/kngf-guideline-on-oncology.pdf"
+  },
+  {
+   "name": "https://ns2.fmbe.tohoku.ac.jp/doc/EPUB/cancer-rehabilitation__principles_and-practice.pdf",
+   "url": "https://ns2.fmbe.tohoku.ac.jp/doc/EPUB/cancer-rehabilitation__principles_and-practice.pdf"
+  },
+  {
+   "name": "がんのリハビリテーションガイドライン",
+   "url": "https://www.jarm.or.jp/wp-content/uploads/file/member/member_publication_isbn9784307750356.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "がんのリハビリテーションは、がんとその治療による制限を受けた中で、患者が最大限の身体的、社会的、心理的、職業的活動を実現し、生活機能と生活の質（QOL）の改善を目指す医療ケアです。診断時から治療前、治療中、治療後、緩和ケア・終末期に至るまで、切れ目なく提供されます。"
+  },
+  {
+   "t": "h2",
+   "x": "がんのリハビリテーションが掲げる主な目的"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "がんや治療に伴う身体機能の低下・廃用症候群の予防と早期回復",
+    "日常生活動作（ADL）の自立度維持および活動範囲の拡大",
+    "治療に伴う倦怠感（Cancer-Related Fatigue）、疼痛、リンパ浮腫などの症状・有害反応の軽減",
+    "全身状態（PS）の維持・改善による化学療法や放射線治療の完遂率向上",
+    "心理的苦痛（不安・抑うつ）の緩和や自尊心の回復、全般的なQOL向上"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "がんリハビリテーションの時期・介入分類"
+  },
+  {
+   "t": "p",
+   "x": "がんのリハビリテーションは患者の病期や治療経過に応じて、主に4つの介入時期（予防的、回復的、維持的、緩和的）に分類されます。海外ガイドライン等の運動・身体活動モデル（PACCフレームワーク等）でも、診断前予防から治療準備、治療中、治療終了後、緩和期へと連続的な支援が位置づけられています。"
+  },
+  {
+   "t": "table",
+   "head": [
+    "分類・時期",
+    "主な目的",
+    "理学療法の介入内容・着眼点"
+   ],
+   "rows": [
+    [
+     "予防的（治療前・術前 / Prehabilitation）",
+     "術後合併症（肺炎等）の予防、入院期間の短縮、機能低下の予防",
+     "身体機能・運動耐容能のベースライン測定、呼吸練習指導、身体活動維持の教育"
+    ],
+    [
+     "回復的（治療後・術後 / Restorative）",
+     "低下した運動耐容能や筋力の回復、ADL向上、社会・復職支援",
+     "早期離床・歩行訓練、関節可動域訓練、漸増抵抗運動、リンパ浮腫に対する複合的ケア"
+    ],
+    [
+     "維持的（治療中 / Supportive）",
+     "治療に伴う筋力・体力低下の抑制、副作用（倦怠感等）の軽減",
+     "有酸素運動、低〜中等度レジスタンス運動、活動量維持のセルフマネジメント支援"
+    ],
+    [
+     "緩和的（進行期・終末期 / Palliative）",
+     "苦痛症状の緩和、自律性と尊厳の維持、QOLの維持・低下の遅延",
+     "呼吸困難や疼痛に対するポジショニング、動作指導、軽度の運動・移乗練習、環境調整"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "資料にみられる主な基準値・推奨運動負荷"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "がん予防と患者・生存者の運動基準（ACSM／KNGFガイドライン）：がん予防には中等度強度の有酸素運動を週150〜300分、または高強度を週75〜150分が推奨される。一方、がん患者・生存者の基本推奨としては、有酸素運動を週3回・各30分（計90分）に加え、筋力トレーニングを週2日以上・各20分行うことが推奨されている。",
+    "乳がん術後の肩関節可動域訓練開始時期：術後0〜3日開始と比べ、術後5〜7日以降の積極的開始はドレナージ排液量やしょう液腫（seroma）の発生を有意に抑制し、長期的可動域には差がないとされる。",
+    "化学療法・放射線療法中の運動処方例：最大心拍数の60〜80％（または予備心拍数の40〜59％：中等度、60〜89％：高強度）での有酸素運動（週2〜3回、1回15〜45分程度漸増）、1RMの60〜70％でのレジスタンス運動（8〜12回、2セット）などが報告されている。",
+    "全身状態の適応目安（化学療法時）：一般にPerformance Status（PS）が2以下（日中の50％以上を起居して過ごせる状態）が適応の目安とされる。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本ページに記載した分類や数値基準は関連資料に基づく一般的な目安です。がん種、進行度、治療内容、骨転移や血球減少などの合併症リスクにより個別の適応・運動負荷量は大きく異なります。実践に際しては主治医や多職種チームと連携し、最新の診療ガイドラインおよび公式資料を確認してください。"
+  }
+ ]
+}

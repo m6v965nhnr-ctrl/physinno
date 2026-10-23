@@ -1,0 +1,146 @@
+{
+ "slug": "multiple-sclerosis-pt",
+ "title": "多発性硬化症（MS）の病態評価と理学療法の進め方・運動基準",
+ "description": "多発性硬化症（MS）の病態特性、EDSS等の障害度評価、急性期・寛解期における理学療法の介入指針や有酸素運動・二重課題トレーニングの具体的基準を理学療法士・学生向けに解説します。",
+ "category": "疾患別の理学療法",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "A narrative review of clinical practice guidelines for the application of physical therapy",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12676939/"
+  },
+  {
+   "name": "Clinical Outcome Assessments (COA) Qualification Program DDT COA #000106: Actibelt in Mult",
+   "url": "https://www.fda.gov/media/124845/download"
+  },
+  {
+   "name": "Effects of dual-task training on balance, gait, dual-task performance, cognitive function,",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/40737966/"
+  },
+  {
+   "name": "Evaluation of patient-perceived fatigue in multiple sclerosis utilizing the Finnish MS reg",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11920993/"
+  },
+  {
+   "name": "Expanded Disability Status Scale (EDSS)",
+   "url": "https://www.criteria.blood.gov.au/NeurologicalScales/GeneratePDF?section=5"
+  },
+  {
+   "name": "Rehabilitation in multiple sclerosis",
+   "url": "https://dbc.wroc.pl/Content/39093/PDF/709.pdf"
+  },
+  {
+   "name": "The Effectiveness of Physiotherapy Interventions for Mobility in Severe Multiple Sclerosis",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9293575/"
+  },
+  {
+   "name": "Validity and reliability of the shuttle walk test in people with multiple sclerosis - Derg",
+   "url": "https://dergipark.org.tr/tr/download/article-file/4569245"
+  },
+  {
+   "name": "https://air.unimi.it/retrieve/handle/2434/979708/2231029/Caselli%202023_Rasch%20analysis%2",
+   "url": "https://air.unimi.it/retrieve/handle/2434/979708/2231029/Caselli%202023_Rasch%20analysis%20BBS%20MS%20.pdf"
+  },
+  {
+   "name": "physical therapy - Functional Pathways",
+   "url": "https://functionalpathways.com/intranet-files/Standardized_Test_Reference_Card_Template.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "多発性硬化症（MS）は中枢神経系における自己免疫性の慢性炎症性脱髄疾患であり、運動麻痺、感覚障害、協調運動障害、痙縮、疲労、自律神経障害など多彩な症状を呈します。理学療法では病期や障害度（EDSS）を的確に把握し、急性期の不動合併症予防から寛解期の機能再建、体温上昇（ウートフ徴候）に配慮した運動療法まで、科学的根拠に基づいた介入が求められます。"
+  },
+  {
+   "t": "h2",
+   "x": "多発性硬化症の主要な病態と臨床的特徴"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "中枢神経の脱髄病変: 自己免疫機序（T細胞やマクロファージ、炎症性サイトカイン）により血液脳関門が破壊され、ミエリン鞘や希突起膠細胞が損傷、軸索障害や神経脱落へと進展します。",
+    "好発要因: 20〜40歳の若年・女性に好発し、高緯度地域での発症率増加やビタミンD低値との関連が示唆されています。",
+    "運動障害と痙縮: 患者の40〜60%に痙縮が認められ、特に下肢に強く現れます。歩行障害、運動失調、筋力低下を伴います。",
+    "随伴症状: 著しい慢性疲労、協調運動障害、約78%に及ぶ神経因性膀胱（失禁や尿閉）、呼吸機能低下、認知機能障害などが生活の自立度を制限します。",
+    "ウートフ徴候（Uhthoff's symptom）: 体温上昇や過熱によって神経伝導性が一時的に悪化し、症状が増悪するため、運動強度や環境設定に特別な配慮が必要です。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "理学療法評価と主要な基準値"
+  },
+  {
+   "t": "table",
+   "head": [
+    "評価指標",
+    "評価対象・目的",
+    "判定基準・カットオフ値の目安"
+   ],
+   "rows": [
+    [
+     "EDSS（総合障害度評価）",
+     "総合的な機能障害・自立度の判定（0〜10点尺度）",
+     "0〜5.5: 自立歩行可能（軽度〜中等度制限）／6.0: 片側杖等で約100m歩行／6.5: 両側支持で約20m歩行／7.0: 車椅子主体（約5m以上歩行困難）／8.0〜8.5: ベッド・車椅子主体の生活／9.0〜9.5: 完全臥床／10.0: 死"
+    ],
+    [
+     "Berg Balance Scale（BBS）",
+     "静的・動的バランス評価（最高56点）",
+     "41〜56点: 転倒リスク低／21〜40点: 転倒リスク中等度／0〜20点: 転倒リスク高（補助具必要度目安: 47〜49.6点で屋外杖、44〜46.5点で屋内および屋外での杖、26.7〜39.6点で歩行器常時使用 ※理学療法評価シート記載の一般基準値）"
+    ],
+    [
+     "Timed Up and Go（TUG）",
+     "機能的移動能力・動的バランス評価",
+     "10秒未満: 転倒リスク低（移動自立）／20秒未満: 中等度リスク（基本移乗自立）／20〜29秒: 高リスク（能力差大）／30秒以上: 極めて高いリスク（移乗・歩行に要介助 ※理学療法評価シート記載の一般基準値）"
+    ],
+    [
+     "運動耐容能・歩行テスト（6MWT / SWT / 10MWT）",
+     "歩行持久力、最大運動容量、歩行速度の評価",
+     "シャトル歩行テスト（SWT）は軽度障害（EDSS≦3）において信頼性・妥当性が確認されており、最小可検変化量（MDC）は133.62m。また実環境での歩行速度変化における臨床的意義の閾値として0.1m/sが提案されています。"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "病期・病態に応じた理学療法介入の原則"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "急性期（再発時）: 不動（akinesia）による二次的障害の防止が最優先となります。頻繁な体位変換による褥瘡予防、他動運動による関節拘縮予防、無気肺や感染を防ぐ呼吸理学療法を実施します。",
+    "機能障害別アプローチ: 固有受容性神経筋促通法（PNF）を用いた3次元的・対角らせん運動パターンの再建や、ボバース概念に基づく異常姿勢反射パターンの抑制・筋緊張正常化を図ります。",
+    "協調運動・バランス訓練: フレンケル体操（足跡に合わせた3段階の歩行訓練、起立・着座動作の分割練習）や、バイオフィードバック機能付き重心動揺計、乗馬療法（ヒッポセラピー）が姿勢安定性向上に有用です。",
+    "歩行再教育: 歩行分析に基づく部分免荷トレッドミル歩行や、ロボット支援歩行装具（LOKOMAT等）を活用した歩行持久力・パターンの改善を行います。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "運動療法の推奨基準と二重課題トレーニング"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "有酸素運動の実施基準: EDSS 7未満の患者を対象に、頻度は週2〜3回、強度はVO2maxの50〜70%（最大心拍数の60〜80%に相当）、運動時間は初期40分以内を目安として漸増させます。",
+    "レジスタンストレーニング: 筋力低下および筋萎縮の改善を目的とし、筋群ごとに24〜48時間の休息間隔を設けて交互に実施します。",
+    "二重課題トレーニング（Dual-Task Training）: 運動-運動課題や運動-認知課題を組み合わせた訓練（週2回・8週間等）により、バランス能力（BBS）、歩行速度（10MWT）、疲労（FSS）、認知機能（BICAMS）を有意に改善させることが示されています。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "物理療法・水治療法とリスク管理"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "物理療法と痙縮管理: 運動療法前の局所冷却（アイスパック、氷冷マッサージ）は感覚受容器の興奮を鎮静化させ、伸張反射の過剰反応を緩和します。温熱はウートフ徴候を誘発するため避け、電気刺激（FES、TENS、Hufschmidt法）や反復経頭蓋磁気刺激（rTMS）を併用します。",
+    "水治療法（水中運動）: 浮力や水圧を利用して免荷下での関節可動域訓練や筋力維持を図ります。ウートフ徴候を防止するため水温は34〜36℃の不感温〜微温に保ち、高温浴は避けます。",
+    "骨盤底筋群・呼吸筋トレーニング: 神経因性膀胱に対してはケーゲル体操と腹横筋・臀筋群の協調収縮訓練、バイオフィードバックや神経筋電気刺激（NMES）を併用します。また吸気筋の筋力低下や嚥下障害に伴う誤嚥を防ぐ呼吸筋訓練を初期から取り入れます。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本資料に記載されている数値基準や介入強度は各研究および評価指標に基づく一般的な目安です。多発性硬化症は日内変動や再発・寛解の個体差が大きいため、過熱（ウートフ徴候）や過度の疲労蓄積を避け、最新の公式ガイドラインや主治医の指示を確認した上で患者個々の状態に応じたプログラムを作成してください。"
+  }
+ ]
+}

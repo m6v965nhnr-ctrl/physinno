@@ -1,0 +1,128 @@
+{
+ "slug": "j-chs-frailty",
+ "title": "フレイル評価（J-CHS基準・Fried基準）の判定基準・カットオフ値・測定方法",
+ "description": "理学療法士や学生向けに、フレイル評価の代表的な指標であるJ-CHS基準（改定版含む）とFried基準の概要、判定方法、各項目のカットオフ値、臨床における測定上の留意点を解説します。",
+ "category": "評価・検査",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "Fried Frailty Phenotype Criteria - FPnotebook",
+   "url": "https://mobile.fpnotebook.com/Geri/Exam/FrdFrltyPhntypCrtr.htm"
+  },
+  {
+   "name": "Physical Frailty Phenotype Scoring: ≥3/5 criteria met indicates frailty",
+   "url": "https://frailtyscience.org/wp-content/uploads/2020/12/Frailty-Assessment-Definition-Sheets-combined-2.pdf"
+  },
+  {
+   "name": "フレイルとは：概念や評価法について - ヘルスプロモーション研究センター",
+   "url": "https://healthprom.jadecom.or.jp/wp/wp-content/uploads/2018/08/cmed3204_312-320.pdf"
+  },
+  {
+   "name": "フレイルの判定とカットオフ値（改定J-CHS基準） - やまねこのリハビリ・介護手帖",
+   "url": "https://yamaneko-family.com/reha/frailty"
+  },
+  {
+   "name": "フレイルの実態調査から 見えた影響因子の検討",
+   "url": "https://enjinkai.com/cms/wp-content/uploads/2022/02/%E3%83%95%E3%83%AC%E3%82%A4%E3%83%AB%E8%85%8E%E6%A0%84%E9%A4%8A.pdf"
+  },
+  {
+   "name": "フレイルの診断 | 健康長寿ネット",
+   "url": "https://www.tyojyu.or.jp/net/byouki/frailty/shindan.html"
+  },
+  {
+   "name": "今からできる健康づくりと フレイル予防",
+   "url": "https://www.city.tomi.nagano.jp/file/135272.pdf"
+  },
+  {
+   "name": "日整会誌 (J. Jpn. Orthop. Assoc.) 93:205-206 2019 - 第91回日本整形外科学会学術総会 パネルディスカッション",
+   "url": "https://sloc.or.jp/member/wp-content/uploads/2019/05/%E5%8E%9F%E7%94%B0%E3%80%80%E6%95%A6.pdf"
+  },
+  {
+   "name": "第4章 栄養 4.フレイルと栄養",
+   "url": "https://www.tyojyu.or.jp/kankoubutsu/gyoseki/shokuji-eiyo-kokucare/h31-4-2-4.html"
+  },
+  {
+   "name": "高齢透析患者のフレイル予防 - 一認知症の早期発見も含めて一",
+   "url": "http://www.akitajinfuzen.jp/archive/file/seminar/no21/seminar21-luncheon.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "フレイル評価は、高齢者の身体機能低下や要介護化のリスクを早期に把握するために重要です。臨床や理学療法研究では、Friedらの評価基準（CHS基準）およびそれを日本人向けに修正した日本版CHS基準（J-CHS基準、改定J-CHS基準）が広く用いられています。"
+  },
+  {
+   "t": "h2",
+   "x": "フレイルの定義と評価モデルの概要"
+  },
+  {
+   "t": "p",
+   "x": "フレイルは適切な介入により健全な状態に戻りうる可逆性をもつ状態です。評価モデルには、身体的徴候の集積を評価する表現型モデル（Fried基準・J-CHS基準）や、障害や疾患の累積を評価する障害蓄積モデル（Frailty Index）などがあります。理学療法評価では主に表現型モデルが活用されます。"
+  },
+  {
+   "t": "h2",
+   "x": "判定基準（フレイル・プレフレイル・健常）"
+  },
+  {
+   "t": "p",
+   "x": "評価は5つの項目（体重減少、筋力低下、疲労感、歩行速度低下、身体活動量低下）で構成され、該当する項目数によって判定します。3項目以上該当でフレイル、1〜2項目該当でプレフレイル（前段階）、0項目該当で健常（ロバスト）と区分されます。"
+  },
+  {
+   "t": "h2",
+   "x": "評価項目とカットオフ値の比較"
+  },
+  {
+   "t": "table",
+   "head": [
+    "評価項目",
+    "J-CHS基準（日本版 / 改定版）",
+    "Fried基準（原著 / 海外基準）"
+   ],
+   "rows": [
+    [
+     "体重減少",
+     "6か月で2kg以上（または2〜3kg以上）の意図しない減少",
+     "過去1年で10lb（約4.5kg）または5%以上の意図しない減少（またはBMI<18.5）"
+    ],
+    [
+     "筋力低下（握力）",
+     "男性<26kg（2020年改定版では男性<28kg）、女性<18kg",
+     "BMI別の基準値（男性<=29〜32kg、女性<=17〜21kg）"
+    ],
+    [
+     "疲労感",
+     "ここ2週間、わけもなく疲れた感じがする（問診）",
+     "CES-D抑うつ尺度の質問で疲労を自覚（週の大部分で疲労感あり）"
+    ],
+    [
+     "歩行速度低下",
+     "通常歩行速度 <1.0m/秒",
+     "15フィート（約4.5m）歩行時間（身長別）または4m歩行で<=0.65〜0.76m/秒"
+    ],
+    [
+     "身体活動低下",
+     "軽い運動・体操や定期的なスポーツのいずれも「週1回もしていない」",
+     "運動による週あたり消費エネルギー量低下（男性<383kcal、女性<270kcal等）"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "理学療法評価における測定上の留意点"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "握力測定や歩行速度の測定にあたっては、握力計や歩行路（助走路・測定区間の設定）などの環境整備が必要です。",
+    "測定不可能な項目がある場合、問診項目のみで確定判定を行わず参考評価として扱います。",
+    "疾患や病変に伴う二次的な変化との鑑別が必要なため、医師の診断や医学的評価とあわせて活用します。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本ページの数値や基準値は資料に基づく目安です。実際の臨床や評価の際は、最新の公式資料やガイドラインで詳細を確認してください。"
+  }
+ ]
+}

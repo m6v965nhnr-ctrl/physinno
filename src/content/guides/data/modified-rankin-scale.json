@@ -1,0 +1,134 @@
+{
+ "slug": "modified-rankin-scale",
+ "title": "modified Rankin Scale（mRS）の評価方法・判定基準・段階の違い",
+ "description": "脳卒中や神経疾患における障害度評価指標であるmodified Rankin Scale（mRS）の0〜6の判定基準、2・3・4の区別方法、歩行補助具や見守りの扱いなどの評価手順を解説します。",
+ "category": "評価・検査",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "Modified Rankin Scale (mRS): Scoring & Interpretation | WeGuide",
+   "url": "https://www.weguide.health/instruments/modified-rankin-scale-mrs"
+  },
+  {
+   "name": "Modified Rankin Scale - Physiopedia",
+   "url": "https://www.physio-pedia.com/Modified_Rankin_Scale"
+  },
+  {
+   "name": "Modified Rankin Scale - Wikipedia",
+   "url": "https://en.wikipedia.org/wiki/Modified_Rankin_Scale"
+  },
+  {
+   "name": "Modified Rankin Scale for Neurologic Disability Calculator - MDCalc",
+   "url": "https://www.mdcalc.com/calc/1890/modified-rankin-scale-neurologic-disability"
+  },
+  {
+   "name": "Modified Rankin Scale: Guide for Stroke Assessment and Outcome - ResRef",
+   "url": "https://resref.com/modified-rankin-scale-guide/"
+  },
+  {
+   "name": "Robin Conwit and Sidney Starkman Jeffrey L. Saver, Bogdan Filip, Scott Hamilton, Anna Yane",
+   "url": "http://s489637516.websitehome.co.uk/ECST2/downloads/RFA%20background.pdf"
+  },
+  {
+   "name": "https://pubmed.ncbi.nlm.nih.gov/12215594/",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/12215594/"
+  },
+  {
+   "name": "https://pubmed.ncbi.nlm.nih.gov/30341155/",
+   "url": "https://pubmed.ncbi.nlm.nih.gov/30341155/"
+  },
+  {
+   "name": "mRS (modified Rankin Scale) | 計算 | 脳卒中や神経疾患患者の機能的指標 | HOKUTO",
+   "url": "https://hokuto.app/calculator/5RV7NrVFrZ4k92l8SCaL"
+  },
+  {
+   "name": "mRSの評価方法｜2・3・4の違いと記録用紙PDF - rehabilikun",
+   "url": "https://rehabilikunblog.com/%E3%80%90modified-rankin-scale%EF%BC%9Amrs%E3%80%91%E8%84%B3%E5%8D%92%E4%B8%AD%E8%A9%95%E4%BE%A1/"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "modified Rankin Scale（mRS）は、脳卒中や神経疾患における患者の全体的な障害度や日常生活での自立度を0から6までの7段階で評価する世界的な指標です。理学療法士や臨床現場において、転帰やリハビリ効果を客観的に把握・共有するために広く用いられています。"
+  },
+  {
+   "t": "h2",
+   "x": "mRSのスコア（0〜6）と判定基準"
+  },
+  {
+   "t": "table",
+   "head": [
+    "スコア",
+    "障害度",
+    "判定基準と状態の目安"
+   ],
+   "rows": [
+    [
+     "0",
+     "まったく症候がない",
+     "自覚症状および他覚的症状がともに存在しない状態。"
+    ],
+    [
+     "1",
+     "症候はあっても明らかな障害なし",
+     "症状はあるが、発症前に通常行っていた仕事や日常の活動に制限がない状態。"
+    ],
+    [
+     "2",
+     "軽度の障害",
+     "発症前の活動をすべて行えるわけではないが、他者の援助なしに自分の身の回りや生活管理ができる状態。"
+    ],
+    [
+     "3",
+     "中等度の障害",
+     "家事や買い物、金銭管理などの生活管理に何らかの援助を要するが、歩行は介助なしで行える状態。"
+    ],
+    [
+     "4",
+     "中等度から重度の障害",
+     "通常歩行や食事、トイレ、日常的な整容などの基本的な身の回り動作に人的援助が必要な状態。"
+    ],
+    [
+     "5",
+     "重度の障害",
+     "寝たきりや失禁状態であり、常時持続的な介護と見守りを必要とする状態。"
+    ],
+    [
+     "6",
+     "死亡",
+     "死亡。"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "迷いやすいグレード（2・3・4）の区別方法"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "2と3の境界：発症前の仕事や趣味などの活動制限があっても生活管理が自立していれば2、買い物・金銭管理・食事準備などの生活管理に援助が必要になれば3と判断します。",
+    "3と4の境界：歩行および基本的な身の回り動作（食事・トイレ・洗顔等）が他者の援助なしで可能なら3、歩行または基本動作のいずれかに人的援助が不可欠であれば4と判断します。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "臨床評価における重要なポイントと定義"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "介助（援助）の範囲：身体的な手助けだけでなく、言葉による指示や事故防止のための監視・見守りも介助に含まれます。ただし、単なる念のための家族の付き添いは不可欠な介助とみなされません。",
+    "歩行補助具の扱い：杖や歩行器、下肢装具を使用している場合でも、他者の人的援助なしで移動できれば介助なしの歩行として判定されます。",
+    "入浴介助の位置づけ：一部の構造化面接の定義では日常的整容に入浴を含めないため、入浴のみの介助をもって直ちに4と判定せず、他の基本動作も含めて総合的に判断します。",
+    "評価の標準化：評価者間のブレを軽減するため、問診票や構造化面接（RFAやmRS-9Qなど）を活用して判断根拠を明確にすることが推奨されます。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本解説は臨床および学習時の一般的な目安です。実際の判定にあたっては、各所属施設や学術団体の最新の公式マニュアル・判定基準書を確認の上、慎重に行ってください。"
+  }
+ ]
+}

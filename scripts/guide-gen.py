@@ -11,6 +11,17 @@ def sh(args, timeout=900):
     r = subprocess.run(args, capture_output=True, text=True, timeout=timeout)
     return r.stdout + r.stderr
 
+import time
+def nq(nb, text, timeout=400):
+    # 回数制限（usage limit）のときは、待って再試行する
+    for i in range(6):
+        raw = sh(["nlm", "notebook", "query", nb, text], timeout)
+        if "usage limit" in raw or "temporarily rejected" in raw:
+            time.sleep(150 * (i + 1)); continue
+        time.sleep(8)
+        return raw
+    return raw
+
 def log(m):
     open(LOG, "a").write(m + "\n")
 
@@ -29,9 +40,11 @@ def run(slug, cat, theme, dom):
     m = re.search(r'"id":\s*"([0-9a-f-]{36})",\s*"title":\s*"%s"' % re.escape(t), out)
     if not m: return "no-notebook"
     nb = m.group(1)
+    ans = ""; raw = ""
     try:
         srcs = {s["id"]: s for s in json.loads(sh(["nlm", "source", "list", nb, "--json"]))}
-        res = json.loads(sh(["nlm", "notebook", "query", nb, PROMPT.format(theme=theme)], 400))
+        raw = nq(nb, PROMPT.format(theme=theme))
+        res = json.loads(raw)
         ans = res.get("answer", "")
         used = [srcs[i] for i in res.get("sources_used", []) if i in srcs] or list(srcs.values())[:10]
         j = ans[ans.find("{"): ans.rfind("}") + 1]
@@ -51,11 +64,11 @@ def run(slug, cat, theme, dom):
         if not reasons:
             VQ = "次のページ原稿の、数値・基準値・固有名詞・用語のうち、資料に根拠がない、または資料と食い違うものだけを箇条書きにしてください。問題がなければ「問題なし」とだけ答えてください。\n"
             def check(bl):
-                v = json.loads(sh(["nlm", "notebook", "query", nb, VQ + json.dumps(bl, ensure_ascii=False)], 400)).get("answer", "")
+                v = json.loads(nq(nb, VQ + json.dumps(bl, ensure_ascii=False))).get("answer", "")
                 return v.strip().startswith("問題なし") and len(v.strip()) < 40, v.strip()
             ok, v = check(blocks)
             if not ok:
-                r2 = json.loads(sh(["nlm", "notebook", "query", nb, "次の指摘をふまえ、資料に根拠のある内容だけに直して、blocks配列のJSONだけを出力してください（説明・引用番号は不要）。\n指摘:\n" + v + "\n原稿:\n" + json.dumps(blocks, ensure_ascii=False)], 400)).get("answer", "")
+                r2 = json.loads(nq(nb, "次の指摘をふまえ、資料に根拠のある内容だけに直して、blocks配列のJSONだけを出力してください（説明・引用番号は不要）。\n指摘:\n" + v + "\n原稿:\n" + json.dumps(blocks, ensure_ascii=False))).get("answer", "")
                 try:
                     j2 = re.sub(r"\s?\[\d+(?:\s*[-,、]\s*\d+)*\]", "", r2[r2.find("["): r2.rfind("]") + 1])
                     b2 = [b for b in json.loads(j2) if b.get("t") in ("h2", "h3", "p", "ul", "table", "note")]
@@ -70,6 +83,7 @@ def run(slug, cat, theme, dom):
         json.dump(guide, open(f"{dest}/{slug}.json", "w"), ensure_ascii=False, indent=1)
         return "draft: " + " / ".join(reasons) if reasons else "ok"
     except Exception as e:
+        import traceback; log("TRACE " + slug + " raw=" + raw[:300].replace("\n"," "))
         return f"error: {type(e).__name__} {str(e)[:120]}"
     finally:
         sh(["nlm", "notebook", "delete", nb, "--confirm"])

@@ -1,0 +1,154 @@
+{
+ "slug": "traumatic-brain-injury-pt",
+ "title": "外傷性脳損傷（TBI）・高次脳機能障害の診断基準・理学療法評価と介入基準値",
+ "description": "外傷性脳損傷（TBI）に伴う高次脳機能障害の診断基準、重症度分類、急性期理学療法における開始・中止基準値や主要評価法を理学療法士・学生向けにまとめた解説です。",
+ "category": "疾患別の理学療法",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "A comprehensive review of rehabilitation approaches for traumatic brain injury: efficacy a",
+   "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2025.1608645/pdf"
+  },
+  {
+   "name": "Detecting malingered neurocognitive dysfunction: Comparative analysis of freestanding and ",
+   "url": "https://orbi.umons.ac.be/bitstream/20.500.12907/50268/1/2024%20SISTIAGA%20-%20Applied%20Neuropsychology%20%20Adults%20Simulation.pdf"
+  },
+  {
+   "name": "Functional recovery of patients with moderate and severe traumatic brain injury after exte",
+   "url": "https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2026.1932368/pdf"
+  },
+  {
+   "name": "NIH Toolbox Cognition Tests Following Traumatic Brain Injury: Frequency of Low Scores",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5745050/"
+  },
+  {
+   "name": "Neuropsychological Assessment in Patients with Traumatic Brain Injury: A Comprehensive Rev",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10376996/"
+  },
+  {
+   "name": "Recommendations for the Use of Common Outcome Measures in Traumatic Brain Injury Research ",
+   "url": "https://medicine.utah.edu/libraries/pdf.js/web/viewer.html?file=https://medicine.utah.edu/sites/g/files/zrelqx416/files/media/documents/2025/wilde1.pdf"
+  },
+  {
+   "name": "Rehabilitation Manual 19",
+   "url": "https://www.rehab.go.jp/english/pdf/E19.pdf"
+  },
+  {
+   "name": "Rehabilitation of executive functioning following paediatric traumatic brain injury: A Goa",
+   "url": "https://humanities.uct.ac.za/sites/default/files/content_migration/humanities_uct_ac_za/1233/files/Claire.Corbett.pdf"
+  },
+  {
+   "name": "https://dialnet.unirioja.es/descarga/articulo/9862480.pdf",
+   "url": "https://dialnet.unirioja.es/descarga/articulo/9862480.pdf"
+  },
+  {
+   "name": "第1章 高次脳機能障害診断基準ガイドライン",
+   "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "外傷性脳損傷（TBI）では、運動機能障害だけでなく記憶障害、注意障害、遂行機能障害、社会的行動障害といった多彩な高次脳機能障害を合併します。理学療法士は運動機能のみにとらわれず、意識水準や認知機能の障害像を的確に把握し、多職種連携のもとで急性期から生活期を見据えたアプローチを実施することが不可欠です。"
+  },
+  {
+   "t": "h2",
+   "x": "外傷性脳損傷（TBI）の重症度分類と評価基準"
+  },
+  {
+   "t": "table",
+   "head": [
+    "重症度区分",
+    "Glasgow Coma Scale（GCS）基準",
+    "病態・画像の補足所見"
+   ],
+   "rows": [
+    [
+     "軽度（Mild）",
+     "GCS 13〜15点（資料によりGCS 13点以上）",
+     "CT等の画像で急性期外傷病変（皮質挫傷やクモ膜下出血等）を認める場合は「複雑性軽度（Complicated mild）」と分類される"
+    ],
+    [
+     "中等度（Moderate）",
+     "GCS 9〜12点",
+     "受傷後24時間以内の最低値などにより判定"
+    ],
+    [
+     "重度（Severe）",
+     "GCS 3〜8点（GCS 8点以下）",
+     "24時間以上持続する昏睡や、遷延性意識障害（無反応覚醒症候群・最小意識状態）への移行リスクを伴う"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "行政的高次脳機能障害の診断基準概要"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "主要症状：事故や疾病による脳の器質的病変が確認され、記憶障害、注意障害、遂行機能障害、社会的行動障害などの認知障害により日常生活や社会生活に制約が生じていること。",
+    "検査所見：CT、MRI、脳波などで認知障害の原因となる器質的病変が確認できること（画像で明瞭に確認できない場合でも慎重な評価により診断されることがある）。",
+    "除外項目：身体障害として認定可能な症状のみで主要な認知障害を欠く場合、受傷前から存在する症状、先天性疾患、周産期脳損傷、発達障害、進行性疾患によるものは除外される。",
+    "診断の時期：急性期症状を脱した後に、神経心理学的検査所見なども参考にして行われる。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "急性期理学療法・早期リハビリテーションの開始および中止基準値"
+  },
+  {
+   "t": "table",
+   "head": [
+    "評価項目",
+    "開始基準値（血行動態安定の指標）",
+    "中止・不耐容基準（直ちに訓練を停止）"
+   ],
+   "rows": [
+    [
+     "心拍数（HR）",
+     "60〜130回/分（訓練中+20回/分までの上昇は許容）",
+     "60回/分未満、または130回/分超過"
+    ],
+    [
+     "平均動脈圧（MAP）",
+     "60〜100 mmHg（訓練中+20 mmHgまでの上昇は許容）",
+     "60 mmHg未満、または120 mmHg超過"
+    ],
+    [
+     "呼吸数（RR）",
+     "5〜40回/分",
+     "40回/分超過（呼吸不耐徴候）"
+    ],
+    [
+     "経皮的酸素飽和度（SpO2）",
+     "88%超",
+     "88%未満への低下"
+    ],
+    [
+     "体温および呼吸器条件",
+     "体温38℃以下、人工呼吸器管理時はFiO2 60%未満かつPEEP 10 cmH2O以下",
+     "発汗などの不耐症状、GCSの2点以上の悪化、散瞳、新たな局所神経症状の出現"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "理学療法介入の要点と臨床評価尺度"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "運動・理学療法プログラム：良肢位保持、褥瘡予防プログラム、四肢の他動・自動介助関節可動域訓練、呼吸理学療法を基本とし、離床の進捗に応じて歩行訓練や課題指向型アプローチ、CI療法、ロボット支援歩行訓練（Lokomat等）を段階的に導入する。",
+    "二重課題（デュアルタスク）訓練：運動課題に計算や注意課題を組み合わせる手法やVR技術を活用し、身体機能と認知機能の双方を刺激して神経可塑性と回復を促す。",
+    "主要アウトカム評価：意識障害の鑑別にはCRS-R（意識の有無の鑑別にカットオフ値8点が推奨）、日常生活自立度の評価にはFIMやBarthel Index（BI）、全般的予後判定にはGOS/GOS-E等を用いて経時的な回復過程を追跡する。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本稿で示したバイタルサイン基準値、重症度区分、診断基準は参照文献およびガイドラインに基づく目安です。実際の臨床現場では患者個々の病態や合併症、所属施設のプロトコルに基づき、必ず最新の公式ガイドラインや医師の指示を確認の上で介入してください。"
+  }
+ ]
+}

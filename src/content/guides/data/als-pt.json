@@ -1,0 +1,143 @@
+{
+ "slug": "als-pt",
+ "title": "筋萎縮性側索硬化症（ALS）の病態と理学療法評価・運動負荷の基準値",
+ "description": "ALSの病態特性を踏まえた理学療法の基本原則、過用性筋力低下を防ぐ運動負荷基準、ALSFRS-Rや呼吸筋力等の評価指標を整理した理学療法士・学生向け解説。",
+ "category": "疾患別の理学療法",
+ "publishedAt": "2026-10-22",
+ "updatedAt": "2026-10-22",
+ "checkedOn": "2026-10-22",
+ "sources": [
+  {
+   "name": "ALS Guidance for Physical Therapists - Your ALS Guide",
+   "url": "https://www.youralsguide.com/uploads/8/3/2/3/83230194/als_guidance_for_physical_therapists.pdf"
+  },
+  {
+   "name": "ALSFRS-R | 計算 | 筋萎縮性側索硬化症の機能評価スケール改訂版 - HOKUTO",
+   "url": "https://hokuto.app/calculator/fnQdtbE13BJreuWB1OEP"
+  },
+  {
+   "name": "Exercise for Patients with Neuromuscular Diseases",
+   "url": "https://accesson.kr/jig/assets/pdf/57609/journal-7-2-38.pdf"
+  },
+  {
+   "name": "Monitoring respiratory muscle strength assists in early diagnosis of respiratory dysfuncti",
+   "url": "https://www.scielo.br/j/anp/a/mCzGFQcrXrfMwvvH6VVqS7y/?format=pdf&lang=en"
+  },
+  {
+   "name": "Physical Therapy and Amyotrophic Lateral Sclerosis (ALS) Fact Sheet",
+   "url": "https://www.neuropt.org/docs/default-source/degenerative-diseases-sig/ddsig-fact-sheets/ddsig-fact-sheet-updates-2022/pt-and-als-2022.pdf?sfvrsn=cf025d43_2"
+  },
+  {
+   "name": "https://neurology-jp.org/guidelinem/pdf/als_08.pdf",
+   "url": "https://neurology-jp.org/guidelinem/pdf/als_08.pdf"
+  },
+  {
+   "name": "https://neurology-jp.org/guidelinem/pdf/als_2023.pdf?20231212",
+   "url": "https://neurology-jp.org/guidelinem/pdf/als_2023.pdf?20231212"
+  },
+  {
+   "name": "どいずれも高額な専用機器を必要とする点で制約が大きい。 形態測定と簡易体力測定の結果か - ら,四肢筋量を推定する方法についても報告されているので紹介する。 男性では 「SMI =",
+   "url": "https://mhlw-grants.niph.go.jp/system/files/2015/153031/201508020A/201508020A0024.pdf"
+  },
+  {
+   "name": "嚥下障害診療ガイドライン2024年版",
+   "url": "https://www.jibika.or.jp/uploads/files/enge_guideline_2024.pdf"
+  },
+  {
+   "name": "神経難病理学療法ガイドライン - 一般社団法人 日本理学療法学会連合",
+   "url": "https://www.jspt.or.jp/guideline/2nd/neurology/"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "筋萎縮性側索硬化症（ALS）は運動ニューロンの変性により全身の骨格筋が進行性に麻痺する神経変性疾患です。筋力増大を目指す従来型トレーニングは適応外であり、理学療法では残存機能や柔軟性の維持、過用性筋力低下や過度な疲労の回避、呼吸機能のモニタリング、安全な移動手段の確保が中心となります。"
+  },
+  {
+   "t": "h2",
+   "x": "病態と理学療法の基本目標"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "運動ニューロン変性に伴い脱力、筋萎縮、線維束性収縮、痙縮、構音・嚥下障害、呼吸不全などが進行性に生じます。",
+    "リハビリテーションの主目的は筋肥大ではなく、現在の筋力・柔軟性・活動性の維持と二次的合併症（関節拘縮や廃用症候群）の予防です。",
+    "消費エネルギーが摂取エネルギーを上回る体重減少を防ぐため、過剰な負荷や不要なエネルギー消費を避ける指導が重要です。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "運動療法の原則と負荷設定基準"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "有酸素運動強度はVO2maxの40〜60%（一部報告では40〜70%）、自覚的運動強度（RPE）13以下、最大心拍数の70%未満に抑えます。",
+    "筋力トレーニングは強度が保たれている筋群を中心に1RMの50%以下、10〜15回、週2〜3回程度で実施し、高強度の遠心性収縮は避けます。",
+    "運動後30〜60分以内に疲労から回復することを目安とし、筋痛が24時間以上残存する場合は運動を一時休止します。",
+    "潜在的な筋損傷や呼吸機能低下を早期察知するため、血清クレアチンキナーゼ（CK）や努力性肺活量（FVC）の定期的確認が推奨されます。"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "主な評価指標と臨床的基準値"
+  },
+  {
+   "t": "table",
+   "head": [
+    "評価項目",
+    "評価内容の概要",
+    "基準値・カットオフ値"
+   ],
+   "rows": [
+    [
+     "ALSFRS-R",
+     "言語、嚥下、書字、歩行、呼吸など12項目（各0〜4点、計48点）で評価するADL機能尺度",
+     "41点以上：9か月生存確率90%超、15点以下：9か月生存確率25%以下（治療進歩前の報告値）"
+    ],
+    [
+     "努力性肺活量（FVC）",
+     "スパイロメトリーによる換気機能障害の評価",
+     "予測値の75%以下（呼吸機能低下の目安）"
+    ],
+    [
+     "最大吸気圧（PImax）",
+     "吸気筋力の定量的指標",
+     "男性56.1 cmH2O、女性53.4 cmH2O（筋力低下カットオフ）"
+    ],
+    [
+     "最大呼気圧（PEmax）",
+     "呼気筋力・喀出機能の定量的指標",
+     "男性70.6 cmH2O、女性57.2 cmH2O（筋力低下カットオフ）"
+    ],
+    [
+     "鼻腔吸気圧（SNIP）",
+     "短時間の鼻吸気による横隔膜筋力指標",
+     "男性61.1 cmH2O、女性57.2 cmH2O（筋力低下カットオフ）"
+    ],
+    [
+     "最大舌圧（MTP）",
+     "バルーン式等による口腔期嚥下・舌機能の定量的評価",
+     "低舌圧診断基準：30 kPa未満、ALS球症状関連報告：21.0 kPa、誤嚥検診報告：18.8 kPa"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "呼吸理学療法と多職種連携のポイント"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "ALSでは肺活量（FVC）低下に先行して吸気圧・呼気圧などの呼吸筋力低下が進行するため、早期からの呼吸筋力モニタリングが有用です。",
+    "吸気筋訓練を行う場合は最大吸気圧の30〜60%の負荷で1日15〜20分程度とし、SpO2が90%未満へ低下する場合や著しい疲労時は中止します。",
+    "排痰障害や低換気に対しては、非侵襲的陽圧換気（NIV/NPPV）や咳補助装置（MI-E）、進行期における気管切開下人工呼吸管理（TPPV）との併用を検討します。",
+    "頸部下垂や歩行障害に対しては、頭頸部装具や下肢装具、車椅子などの福祉用具を病型・進行度に応じて早期から選定・適合させます。"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "本資料に記載されている数値や負荷強度は文献・ガイドラインに基づく目安です。病型や進行速度、全身状態には個人差が大きいため、最新の公式ガイドラインや主治医の診断・指示、多職種チームの検討内容を必ず確認した上で臨床に適用してください。"
+  }
+ ]
+}
