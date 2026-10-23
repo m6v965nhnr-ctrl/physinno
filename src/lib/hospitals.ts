@@ -186,7 +186,27 @@ export type HospitalReview = {
   annual_income: number | null; // 万円
   monthly_overtime_hours: number | null;
   annual_holidays: number | null;
+  age_band: number | null; // 自分の口コミだけ入る（編集用）
 };
+
+// 年収の推移用の年齢の層（5歳ごと）。値は、その層の上限
+export const AGE_BANDS: { value: number; label: string }[] = [
+  { value: 25, label: "25歳以下" },
+  { value: 30, label: "30歳以下" },
+  { value: 35, label: "35歳以下" },
+  { value: 40, label: "40歳以下" },
+  { value: 45, label: "45歳以下" },
+  { value: 50, label: "50歳以下" },
+  { value: 55, label: "51歳以上" },
+];
+
+export type IncomeByAge = { age_band: number; n: number; avg_income: number };
+
+// 3件以上そろった層だけ、サーバーが返す
+export async function getIncomeByAge(hospitalId: string): Promise<IncomeByAge[]> {
+  const { data } = await supabase.rpc("get_hospital_income_by_age", { p_hospital: hospitalId });
+  return ((data ?? []) as { age_band: number; n: number | string; avg_income: number }[]).map((r) => ({ ...r, n: Number(r.n) }));
+}
 
 export type ReviewExtra = {
   women_friendly: number | null;
@@ -194,6 +214,7 @@ export type ReviewExtra = {
   annual_income: number | null;
   monthly_overtime_hours: number | null;
   annual_holidays: number | null;
+  age_band: number | null;
 };
 
 export const EMPTY_REVIEW_EXTRA: ReviewExtra = {
@@ -202,6 +223,7 @@ export const EMPTY_REVIEW_EXTRA: ReviewExtra = {
   annual_income: null,
   monthly_overtime_hours: null,
   annual_holidays: null,
+  age_band: null,
 };
 
 export type RecruitFilters = {

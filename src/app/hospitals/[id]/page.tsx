@@ -15,6 +15,9 @@ import {
   Hospital,
   HospitalReview,
   EMPLOYMENT_TYPES,
+  AGE_BANDS,
+  getIncomeByAge,
+  type IncomeByAge,
   EMPTY_REVIEW_EXTRA,
   REVIEW_AXES,
   ReviewExtra,
@@ -39,6 +42,7 @@ import { DISEASE_CATEGORIES } from "@/lib/diseaseCategories";
 import DiseaseRatioPieChart from "@/components/DiseaseRatioPieChart";
 import ReviewRadarChart from "@/components/ReviewRadarChart";
 import HospitalQuestions, { type HospitalQuestion } from "@/components/HospitalQuestions";
+import IncomeByAgeChart from "@/components/IncomeByAgeChart";
 import ReviewBars from "@/components/ReviewBars";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
@@ -51,6 +55,14 @@ import { useHospitalInitial } from "./HospitalInitial";
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
 // 登録し、他のPTがフォロー・職場環境の口コミを書ける場）。
+function TabIcon({ name }: { name: "top" | "reviews" | "questions" | "recruit" }) {
+  const p = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
+  if (name === "top") return <svg {...p}><path d="M4 11 12 4l8 7" /><path d="M6 10v9h12v-9" /><path d="M10 19v-5h4v5" /></svg>;
+  if (name === "reviews") return <svg {...p}><path d="M4 5h16v11H9l-5 4z" /><path d="m12 8 1 2 2.2.3-1.6 1.5.4 2.2-2-1.1-2 1.1.4-2.2L8.8 10.3 11 10z" /></svg>;
+  if (name === "questions") return <svg {...p}><path d="M4 5h16v11H9l-5 4z" /><path d="M10 9.5a2 2 0 1 1 2.6 1.9c-.4.2-.6.5-.6 1" /><path d="M12 14.2v.1" /></svg>;
+  return <svg {...p}><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M9 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /><path d="M3 13h18" /></svg>;
+}
+
 export default function HospitalDetailPage() {
   const params = useParams();
   const id = params.id as string;
@@ -70,6 +82,7 @@ export default function HospitalDetailPage() {
 
   const [tab, setTab] = useState<"top" | "reviews" | "questions" | "recruit">("top");
   const [questions, setQuestions] = useState<HospitalQuestion[]>([]);
+  const [incomeByAge, setIncomeByAge] = useState<IncomeByAge[]>([]);
   const [reviews, setReviews] = useState<HospitalReview[]>([]);
   const [scores, setScores] = useState<Record<ReviewAxis, number>>({
     work_environment: 5,
@@ -133,6 +146,7 @@ export default function HospitalDetailPage() {
       return;
     }
     setHospital(h);
+    getIncomeByAge(id).then(setIncomeByAge);
 
     const [ptList, count, reviewList, ratios] = await Promise.all([
       listPtsByHospital(id),
@@ -176,6 +190,7 @@ export default function HospitalDetailPage() {
           annual_income: mine.annual_income ?? null,
           monthly_overtime_hours: mine.monthly_overtime_hours ?? null,
           annual_holidays: mine.annual_holidays ?? null,
+          age_band: mine.age_band ?? null,
         });
         setExtraText({
           annual_income: mine.annual_income != null ? String(mine.annual_income) : "",
@@ -258,6 +273,7 @@ export default function HospitalDetailPage() {
     }
 
     notify("口コミを投稿しました");
+    getIncomeByAge(id).then(setIncomeByAge);
     setReviewModalOpen(false);
     setReviews(await listHospitalReviews(id));
   }
@@ -480,13 +496,19 @@ export default function HospitalDetailPage() {
         </div>
 
         {dataReady && (
-          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
-            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
-              <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex-1 px-1 py-3 ${tab === key ? "bg-white text-gray-900" : ""}`}>
-                {n !== null && <span className="block text-[11px] opacity-80">{n}</span>}{label}
-              </button>
-            ))}
-          </div>
+          <>
+            <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
+              {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
+                <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
+                  <TabIcon name={key} />
+                  <span>{label}{n !== null && <span className="ml-1 text-[10px] font-normal opacity-70">{n}</span>}</span>
+                </button>
+              ))}
+            </div>
+            <p className="mt-2 text-center text-[11px] leading-5 text-gray-500">
+              {{ top: "総合評価・年収の推移・疾患比率など、この職場の全体像", reviews: "ここで働いた人の評価と、働き方のリアルな声", questions: "知りたいことを、働いている人に質問できる", recruit: "募集中の条件（年収・休日・雇用形態）" }[tab]}
+            </p>
+          </>
         )}
 
         {!dataReady && <p className="mt-6 text-center text-sm text-gray-500">口コミ・疾患比率を読み込み中…</p>}
@@ -669,6 +691,19 @@ export default function HospitalDetailPage() {
                   ))}
                 </select>
                 <select
+                  aria-label="年齢"
+                  value={extra.age_band ?? ""}
+                  onChange={(e) => setExtra((p) => ({ ...p, age_band: e.target.value ? Number(e.target.value) : null }))}
+                  className="w-full rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm"
+                >
+                  <option value="">年齢：答えない（年収の推移のグラフに使います）</option>
+                  {AGE_BANDS.map((b) => (
+                    <option key={b.value} value={b.value}>
+                      年齢：{b.label}
+                    </option>
+                  ))}
+                </select>
+                <select
                   aria-label="雇用形態"
                   value={extra.employment_type ?? ""}
                   onChange={(e) => setExtra((p) => ({ ...p, employment_type: e.target.value || null }))}
@@ -815,7 +850,7 @@ export default function HospitalDetailPage() {
         )}
 
         {tab === "questions" && dataReady && (
-          <HospitalQuestions hospitalId={hospital.id} hospitalName={hospital.name} accountType={accountType} questions={questions} onChanged={loadQuestions} />
+          <HospitalQuestions hospitalId={hospital.id} hospitalName={hospital.name} accountType={accountType} loggedIn={!!userId} questions={questions} onChanged={loadQuestions} />
         )}
 
 
@@ -892,6 +927,8 @@ export default function HospitalDetailPage() {
           )}
         </section>
         )}
+
+        {tab === "top" && <IncomeByAgeChart data={incomeByAge} />}
 
         {tab === "recruit" && (
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
