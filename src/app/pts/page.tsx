@@ -11,8 +11,9 @@ import PaperSearch from "@/components/PaperSearch";
 import HospitalSearch from "@/components/HospitalSearch";
 import IdeasBrowser from "@/components/IdeasBrowser";
 import PtSearchPanel from "@/components/PtSearchPanel";
+import { myOrganization } from "@/lib/recruit";
 
-type SearchMode = "papers" | "ideas" | "hospitals" | "pts";
+type SearchMode = "papers" | "ideas" | "hospitals" | "pts" | "other";
 
 // PT: 論文 / 臨床アイデア / 病院（PTを探すは、ホームの「PT検索」へ）。それ以外（一般・未ログイン）: 病院 / PT
 const PT_MODES: [SearchMode, string][] = [
@@ -26,6 +27,11 @@ const GUEST_MODES: [SearchMode, string][] = [
   ["ideas", "臨床アイデア"],
   ["hospitals", "職場口コミ"],
   ["pts", "PT"],
+];
+// 施設（組織）のアカウント：PTを探すがメイン。論文検索・臨床アイデア・Eventsは「その他」にまとめる
+const ORG_MODES: [SearchMode, string][] = [
+  ["pts", "PTを探す"],
+  ["other", "その他"],
 ];
 const OTHER_MODES: [SearchMode, string][] = [
   ["hospitals", "病院を探す"],
@@ -68,6 +74,8 @@ function PTSearchPageInner() {
 
   // PTアカウントのみ「Events（研修・学会情報）」タブと「論文を探す」を表示
   const [isPt, setIsPt] = useState(false);
+  const [isOrg, setIsOrg] = useState(false);
+  const [otherSub, setOtherSub] = useState<"papers" | "ideas" | "events">("papers");
   const [tab, setTab] = useState<"search" | "news">(
     () => (searchParams.get("tab") as "search" | "news") || "search"
   );
@@ -88,12 +96,13 @@ function PTSearchPageInner() {
         const accountType = await getMyAccountType(user.id);
         // 種類がまだ入っていない古いアカウントは、下のメニューと同じく、PTとして扱う
         setIsPt(accountType === null || isPtLike(accountType));
+        if (accountType === "general") setIsOrg(!!(await myOrganization().catch(() => null)));
       }
       setRoleChecked(true);
     });
   }, []);
 
-  const modes = isPt ? PT_MODES : !loggedIn ? GUEST_MODES : OTHER_MODES;
+  const modes = isOrg ? ORG_MODES : isPt ? PT_MODES : !loggedIn ? GUEST_MODES : OTHER_MODES;
   if (!roleChecked) return <main className="min-h-screen bg-white px-6 py-8 pb-24" />;
   // URLやタブの指定がないとき・選べないモードのときは、いちばん左のタブ
   const mode: SearchMode =
@@ -156,6 +165,15 @@ function PTSearchPageInner() {
 
         {isPt && tab === "news" ? (
           <SeminarNews />
+        ) : mode === "other" ? (
+          <>
+            <div role="tablist" aria-label="その他の検索" className="mb-5 grid grid-cols-3 rounded-full bg-gray-100 p-1 text-sm font-medium">
+              {([["papers", "論文検索"], ["ideas", "臨床アイデア"], ["events", "Events"]] as const).map(([key, label]) => (
+                <button key={key} role="tab" aria-selected={otherSub === key} onClick={() => setOtherSub(key)} className={`rounded-full py-2 transition ${otherSub === key ? "bg-white text-gray-900 shadow-sm" : "text-gray-500"}`}>{label}</button>
+              ))}
+            </div>
+            {otherSub === "papers" ? <PaperSearch /> : otherSub === "ideas" ? <IdeasBrowser /> : <SeminarNews />}
+          </>
         ) : mode === "papers" ? (
           <>
             <h1 className="text-3xl font-semibold mb-3">論文を探す</h1>

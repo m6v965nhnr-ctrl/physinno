@@ -12,6 +12,7 @@ export type Org = {
   logo_url: string | null;
   status: "pending" | "approved" | "rejected" | "suspended";
   review_note?: string | null;
+  hospital_id?: string | null; // ひもづけた職場ページ（hospitals）
 };
 
 export const ORG_STATUS_LABEL: Record<Org["status"], string> = {

@@ -23,6 +23,7 @@ import { markLiked } from "@/lib/firstSteps";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
 import GuestBanner from "@/components/GuestBanner";
 import HomeQuestionsStrip from "@/components/HomeQuestionsStrip";
+import OrgPostsFeed from "@/components/OrgPostsFeed";
 import { getGuestRole } from "@/lib/guestRole";
 import {
   FeedComment,
@@ -491,6 +492,7 @@ export default function HomePage() {
         {!guest && <InstallHint />}
         {!guest && <HomeAudienceCard userId={userId} />}
         {!guest && <HomeQuestionsStrip userId={userId} />}
+        {!guest && <OrgPostsFeed />}
 
         {/* 投稿一覧 */}
         <div id="feed" className="space-y-4 py-4">

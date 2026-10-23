@@ -6,6 +6,7 @@ import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import StudyCalendarCard from "@/components/student/StudyCalendarCard";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
+import OrgPostsFeed from "@/components/OrgPostsFeed";
 import {
   StudentItem,
   StudentProfile,
@@ -186,6 +187,7 @@ export default function StudentHomeView({
         </section>
 
         {/* PTの最新の投稿 */}
+        <OrgPostsFeed />
         <StudentHomePosts />
 
         {/* 各機能 */}

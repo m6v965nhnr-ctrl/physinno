@@ -11,6 +11,9 @@ import { FACILITY_CATEGORIES, typesOf } from "@/lib/facilityTypes";
 import { PREFECTURES } from "@/lib/prefectures";
 import { INPUT_CLASS, PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 import { LoadingScreen } from "@/components/states";
+import OrgPostCard from "@/components/OrgPostCard";
+import { OrgPost, removeOrgMedia } from "@/lib/orgPosts";
+import { searchHospitals } from "@/lib/hospitals";
 
 const AREA = "w-full rounded-2xl border border-gray-300 bg-white px-4 py-2.5 text-sm outline-none focus:border-gray-900";
 
@@ -19,6 +22,10 @@ export default function OrgPage() {
   const { loading, userId } = useMyAccount(["pt", "general", "teacher"], "/pts");
   const [org, setOrg] = useState<Org | null | undefined>(undefined);
   const [jobs, setJobs] = useState<Job[]>([]);
+  const [posts, setPosts] = useState<OrgPost[]>([]);
+  const [linked, setLinked] = useState<{ id: string; name: string } | null>(null);
+  const [hq, setHq] = useState("");
+  const [hresults, setHresults] = useState<{ id: string; name: string; prefecture: string | null; city: string | null }[]>([]);
   const [f, setF] = useState({ name: "", facility_category: "病院・医療機関", facility_type: "", prefecture: "", city: "", website: "", description: "" });
   const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -30,6 +37,12 @@ export default function OrgPage() {
       setF({ name: o.name, facility_category: o.facility_category, facility_type: o.facility_type ?? "", prefecture: o.prefecture ?? "", city: o.city ?? "", website: o.website ?? "", description: o.description ?? "" });
       const { data } = await supabase.from("job_postings").select("*").eq("organization_id", o.id).order("updated_at", { ascending: false });
       setJobs((data ?? []) as Job[]);
+      const { data: ps } = await supabase.from("org_posts").select("id, kind, body, media, job_id, created_at, organization_id").eq("organization_id", o.id).order("created_at", { ascending: false }).limit(20);
+      setPosts(((ps ?? []) as { organization_id: string }[]).map((p) => ({ ...p, org_id: o.id, org_name: o.name, org_category: o.facility_category, org_logo: o.logo_url, hospital_id: o.hospital_id ?? null })) as unknown as OrgPost[]);
+      if (o.hospital_id) {
+        const { data: h } = await supabase.from("hospitals").select("id, name").eq("id", o.hospital_id).maybeSingle();
+        setLinked(h ?? null);
+      } else setLinked(null);
     }
   }, []);
   useEffect(() => {
@@ -66,6 +79,31 @@ export default function OrgPage() {
     load();
   }
 
+  async function searchH() {
+    if (hq.trim().length < 2) return notify("2文字以上で、施設の名前を入れてください");
+    const list = await searchHospitals({ keyword: hq.trim() });
+    setHresults(list.slice(0, 8).map((h) => ({ id: h.id, name: h.name, prefecture: h.prefecture, city: h.city })));
+    if (list.length === 0) notify("見つかりませんでした");
+  }
+
+  async function linkHospital(hospitalId: string | null) {
+    if (!org) return;
+    if (org.status === "approved" && !(await askConfirm("ひもづけを変更すると、運営の確認がもう一度必要になり、確認が済むまで投稿が公開されません。よろしいですか？"))) return;
+    const { error } = await supabase.from("organizations").update({ hospital_id: hospitalId }).eq("id", org.id);
+    if (error) return notify("変更できませんでした");
+    setHresults([]); setHq("");
+    notify("変更しました");
+    load();
+  }
+
+  async function removePost(p: OrgPost) {
+    if (!(await askConfirm("この投稿を削除します。元に戻せません。よろしいですか？"))) return;
+    const { error } = await supabase.from("org_posts").delete().eq("id", p.id);
+    if (error) return notify("削除できませんでした");
+    await removeOrgMedia(p.media);
+    load();
+  }
+
   const form = (
     <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
       <input aria-label="組織名" placeholder="組織名（病院・施設・会社の名前）" value={f.name} maxLength={100} onChange={(e) => setF({ ...f, name: e.target.value })} className={INPUT_CLASS} />
@@ -86,7 +124,7 @@ export default function OrgPage() {
     <main className="min-h-screen bg-[#fafafa] px-5 py-8 pb-28">
       <div className="mx-auto max-w-2xl space-y-4">
         <Link href="/jobs" className="text-sm text-gray-400">← 求人一覧</Link>
-        <h1 className="text-2xl font-semibold">組織・求人の管理</h1>
+        <h1 className="text-2xl font-semibold">{org ? "ホーム" : "組織・求人の管理"}</h1>
         {!org ? (
           <>
             <p className="text-xs leading-5 text-gray-500">病院・クリニック・介護施設・訪問看護・医療系企業など、理学療法士を採用する組織の方は、ここで登録します。理学療法士へのスカウトも、できます。</p>
@@ -102,9 +140,39 @@ export default function OrgPage() {
             </section>
             {editing && form}
             <div className="flex gap-2">
+              <Link href="/org/posts/new" className="flex-1 rounded-full bg-relight-gradient py-2.5 text-center text-sm font-semibold text-white">＋ 投稿する</Link>
               <Link href="/org/jobs/new" className="flex-1 rounded-full bg-black py-2.5 text-center text-sm font-semibold text-white">＋ 求人をつくる</Link>
               <Link href="/scouts" className="flex-1 rounded-full border border-gray-300 bg-white py-2.5 text-center text-sm font-semibold">スカウト</Link>
             </div>
+            <section className="rounded-2xl bg-white p-4 shadow-sm">
+              <h2 className="text-sm font-semibold">職場ページ（職場口コミ）とのひもづけ</h2>
+              <p className="mt-1 text-[11px] leading-5 text-gray-500">ひもづけると、投稿が、その職場の口コミページの「投稿」タブに表示されます。ひもづけは、運営が確認します。</p>
+              {linked ? (
+                <p className="mt-2 text-sm">ひもづけ中：<Link href={`/hospitals/${linked.id}`} className="underline">{linked.name}</Link>　<button type="button" onClick={() => linkHospital(null)} className="text-xs text-gray-500 underline">はずす</button></p>
+              ) : <p className="mt-2 text-xs text-gray-500">まだ、ひもづけていません</p>}
+              <div className="mt-2 flex gap-2">
+                <input aria-label="職場ページを探す" placeholder="施設の名前で探す" value={hq} onChange={(e) => setHq(e.target.value)} className={INPUT_CLASS} />
+                <button type="button" onClick={searchH} className="shrink-0 rounded-full border border-gray-300 px-4 text-sm">探す</button>
+              </div>
+              {hresults.length > 0 && (
+                <ul className="mt-2 space-y-1">
+                  {hresults.map((h) => (
+                    <li key={h.id}><button type="button" onClick={() => linkHospital(h.id)} className="w-full rounded-xl border border-gray-200 px-3 py-2 text-left text-xs">{h.name}<span className="ml-2 text-gray-400">{h.prefecture}{h.city}</span></button></li>
+                  ))}
+                </ul>
+              )}
+            </section>
+            <h2 className="text-sm font-semibold">自分の組織の投稿</h2>
+            {posts.length === 0 ? <p className="text-sm text-gray-500">まだ投稿はありません</p> : (
+              <div className="space-y-3">
+                {posts.map((p) => (
+                  <div key={p.id}>
+                    <OrgPostCard post={p} showOrg={false} />
+                    <button type="button" onClick={() => removePost(p)} className="mt-1 text-xs text-red-700 underline">この投稿を削除</button>
+                  </div>
+                ))}
+              </div>
+            )}
             <h2 className="text-sm font-semibold">自分の組織の求人</h2>
             {jobs.length === 0 ? <p className="text-sm text-gray-500">まだ求人はありません</p> : (
               <ul className="space-y-2">

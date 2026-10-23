@@ -47,6 +47,8 @@ import DiseaseRatioPieChart from "@/components/DiseaseRatioPieChart";
 import ReviewRadarChart from "@/components/ReviewRadarChart";
 import HospitalQuestions, { type HospitalQuestion } from "@/components/HospitalQuestions";
 import IncomeByAgeChart from "@/components/IncomeByAgeChart";
+import OrgPostCard from "@/components/OrgPostCard";
+import { listOrgPosts, type OrgPost } from "@/lib/orgPosts";
 import ReviewBars from "@/components/ReviewBars";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
@@ -59,7 +61,7 @@ import { useHospitalInitial } from "./HospitalInitial";
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
 // 登録し、他のPTがフォロー・職場環境の口コミを書ける場）。
-function TabIcon({ name }: { name: "top" | "recruit" }) {
+function TabIcon({ name }: { name: string }) {
   const p = { width: 24, height: 24, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
   if (name === "top") return <svg {...p}><rect x="5" y="3" width="14" height="18" rx="1.5" /><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1" /><path d="M11 21v-3h2v3" /></svg>;
   return <svg {...p}><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M9 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /><path d="M3 13h18" /></svg>;
@@ -82,7 +84,8 @@ export default function HospitalDetailPage() {
   const [following, setFollowing] = useState(false);
   const [followBusy, setFollowBusy] = useState(false);
 
-  const [tab, setTab] = useState<"top" | "reviews" | "questions" | "recruit">("top");
+  const [tab, setTab] = useState<"top" | "reviews" | "posts" | "questions" | "recruit">("top");
+  const [orgPosts, setOrgPosts] = useState<OrgPost[]>([]);
   const [questions, setQuestions] = useState<HospitalQuestion[]>([]);
   const [incomeByAge, setIncomeByAge] = useState<IncomeByAge[]>([]);
   const [topics, setTopics] = useState<ReviewTopic[]>([]);
@@ -152,6 +155,7 @@ export default function HospitalDetailPage() {
     }
     setHospital(h);
     getIncomeByAge(id).then(setIncomeByAge);
+    listOrgPosts({ hospitalId: id, limit: 20 }).then(setOrgPosts);
     listReviewTopics(id).then((t) => {
       setTopics(t);
       setTopicInputs(Object.fromEntries(t.filter((x) => x.is_mine).map((x) => [x.category, x.body])));
@@ -508,7 +512,7 @@ export default function HospitalDetailPage() {
 
         {dataReady && (
           <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
-            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
+            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["posts", "投稿", orgPosts.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
               <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
                 {n !== null ? (
                   <span className={`flex h-6 min-w-9 items-center justify-center rounded-md border px-1.5 text-[11px] ${tab === key ? "border-gray-400" : "border-white/80"}`}>{n}</span>
@@ -909,6 +913,22 @@ export default function HospitalDetailPage() {
             ))}
           </div>
         </section>
+        )}
+
+        {tab === "posts" && dataReady && (
+          <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+            <h2 className="text-sm font-semibold text-gray-500">施設からの投稿（{orgPosts.length}）</h2>
+            <p className="mt-2 text-xs leading-5 text-gray-500">この職場の運営者（運営が確認した施設アカウント）が投稿した、お知らせ・採用情報・写真や動画です。</p>
+            {orgPosts.length === 0 ? (
+              <p className="mt-4 text-sm text-gray-400">まだ投稿はありません</p>
+            ) : (
+              <div className="mt-4 space-y-3">
+                {orgPosts.map((p) => (
+                  <OrgPostCard key={p.id} post={p} showOrg={false} />
+                ))}
+              </div>
+            )}
+          </section>
         )}
 
         {tab === "questions" && dataReady && (

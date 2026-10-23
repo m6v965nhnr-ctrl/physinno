@@ -11,6 +11,7 @@ import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType, isPublicPaperSitePath, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { useGuestRole } from "@/lib/guestRole";
+import { myOrganization } from "@/lib/recruit";
 
 type Menu = {
   href: string;
@@ -66,11 +67,21 @@ const GENERAL_MENUS: Menu[] = [
   { href: "/mypage", icon: "○", label: "マイページ" },
 ];
 
+// 施設（組織）のアカウント：ホーム（自分の施設・求人・投稿）・PT検索・投稿・スカウトのメッセージ・マイページ
+const ORG_MENUS: Menu[] = [
+  { href: "/org", icon: "⌂", label: "ホーム" },
+  { href: "/pts", icon: "⌕", label: "検索" },
+  { href: "/org/posts/new", icon: "+", label: "投稿" },
+  { href: "/scouts", icon: "💬", label: "メッセージ" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
+];
+
 export default function BottomNavWrapper() {
   const pathname = usePathname();
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [accountType, setAccountType] = useState<AccountType | null>(null);
+  const [isOrg, setIsOrg] = useState(false);
   const [checked, setChecked] = useState(false);
   // 運営のアカウントには、下のメニュー（ホーム・検索など）を出さない
   const [isAdmin, setIsAdmin] = useState(false);
@@ -223,9 +234,13 @@ export default function BottomNavWrapper() {
         }
       }
 
+      // 施設（組織）を登録している一般アカウントには、施設用のメニューを出す
+      const org = type === "general" ? await myOrganization().catch(() => null) : null;
+
       if (!mounted) return;
 
       setLoggedIn(true);
+      setIsOrg(!!org);
       setAccountType(type);
       setChecked(true);
 
@@ -301,7 +316,9 @@ export default function BottomNavWrapper() {
     : !loggedIn
       ? GUEST_MENUS_UNSET
       : accountType === "general"
-        ? GENERAL_MENUS
+        ? isOrg
+          ? ORG_MENUS
+          : GENERAL_MENUS
         : accountType === "student"
           ? PT_MENUS.map((m) => (m.href === "/posts/create" ? { href: "/study", icon: "🎯", label: "勉強" } : m))
           : PT_MENUS;
@@ -315,6 +332,10 @@ export default function BottomNavWrapper() {
 
   function isActive(href: string) {
     if (teacherMode) return teacherActive(href, pathname);
+    if (isOrg && accountType === "general") {
+      if (href === "/org") return pathname === "/org" || pathname.startsWith("/org/jobs");
+      if (href === "/org/posts/new") return pathname.startsWith("/org/posts");
+    }
     const [base, query] = href.split("?");
     const search = typeof window !== "undefined" ? window.location.search : "";
 
