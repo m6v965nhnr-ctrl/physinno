@@ -5,7 +5,7 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const HEADLINE = "理学療法士の臨床を、ひとりにしない。";
-const SUB = "症例共有・論文検索・病院の口コミ・学生の実習と就活";
+const SUB = "症例共有・論文検索・職場の口コミ・学生の実習と就活";
 
 // 日本語を表示するため、使う文字だけの Noto Sans JP をGoogle Fontsから取得する
 async function loadJapaneseFont(text: string) {

@@ -243,7 +243,7 @@ export default function JobHuntingGuide() {
 
       <section className="bg-[var(--lp-g900,#134e5a)] px-5 py-12 text-white">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-xl font-bold text-white">就活の記録と病院の口コミを、ひとつのアプリで</h2>
+          <h2 className="text-xl font-bold text-white">就活の記録と職場の口コミを、ひとつのアプリで</h2>
           <p className="mx-auto mt-2 max-w-xl text-sm leading-7 text-white/85">
             学生は、国試の過去問・実習の管理・実習先の口コミも、無料で使えます。
           </p>

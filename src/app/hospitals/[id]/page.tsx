@@ -67,6 +67,7 @@ export default function HospitalDetailPage() {
   const [following, setFollowing] = useState(false);
   const [followBusy, setFollowBusy] = useState(false);
 
+  const [tab, setTab] = useState<"top" | "reviews" | "salary" | "recruit">("top");
   const [reviews, setReviews] = useState<HospitalReview[]>([]);
   const [scores, setScores] = useState<Record<ReviewAxis, number>>({
     work_environment: 5,
@@ -361,6 +362,19 @@ export default function HospitalDetailPage() {
     .filter((x) => x.s)
     .map((x) => ({ label: x.label, value: x.fmt(x.s!.avg), n: x.s!.n }));
 
+  // 年収タブ（3件以上そろったときだけ。少人数で個人が特定されないように）
+  const incomes = reviews.filter((r) => typeof r.annual_income === "number") as (HospitalReview & { annual_income: number })[];
+  const salaryStats = incomes.length >= 3
+    ? (() => {
+        const v = incomes.map((r) => r.annual_income);
+        const edges = [0, 300, 400, 500, 600, 800, Infinity];
+        const buckets = edges.slice(0, -1).map((lo, k) => ({ label: edges[k + 1] === Infinity ? `${lo}万円〜` : `${lo}〜${edges[k + 1]}万円`, n: v.filter((x) => x >= lo && x < edges[k + 1]).length })).filter((b) => b.n > 0);
+        const types = [...new Set(incomes.map((r) => r.employment_type).filter(Boolean))] as string[];
+        const byType = types.map((t) => { const x = incomes.filter((r) => r.employment_type === t).map((r) => r.annual_income); return { type: t, n: x.length, avg: Math.round(x.reduce((a, b) => a + b, 0) / x.length) }; }).filter((t) => t.n >= 3);
+        return { n: v.length, avg: v.reduce((a, b) => a + b, 0) / v.length, min: Math.min(...v), max: Math.max(...v), buckets, byType };
+      })()
+    : null;
+
   // 項目ごとの平均点（レーダーチャート用）
   const axisAverages = REVIEW_AXES.map((axis) => ({
     label: REVIEW_AXIS_LABEL[axis],
@@ -470,11 +484,21 @@ export default function HospitalDetailPage() {
           )}
         </div>
 
+        {dataReady && (
+          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
+            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["salary", "年収", incomes.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
+              <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex-1 px-1 py-3 ${tab === key ? "bg-white text-gray-900" : ""}`}>
+                {n !== null && <span className="block text-[11px] opacity-80">{n}</span>}{label}
+              </button>
+            ))}
+          </div>
+        )}
+
         {!dataReady && <p className="mt-6 text-center text-sm text-gray-500">口コミ・疾患比率を読み込み中…</p>}
 
         {dataReady && (
           <>
-        {pts.length > 0 && (
+        {tab === "top" && pts.length > 0 && (
           <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
             <h2 className="text-sm font-semibold text-gray-500">在籍PT</h2>
             <div className="mt-3 space-y-2">
@@ -496,9 +520,10 @@ export default function HospitalDetailPage() {
           </section>
         )}
 
+        {(tab === "top" || tab === "reviews") && (
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between gap-3">
-            <h2 className="text-sm font-semibold text-gray-500">職場環境の口コミ</h2>
+            <h2 className="text-sm font-semibold text-gray-500">{tab === "top" ? "職場の総合評価" : "職場口コミ"}</h2>
 
             {isPt ? (
               <button
@@ -514,7 +539,7 @@ export default function HospitalDetailPage() {
             )}
           </div>
 
-          {dataReady && reviews.length === 0 && (
+          {tab === "top" && dataReady && reviews.length === 0 && (
             <div className="mt-4 rounded-2xl border border-dashed border-gray-300 p-3">
               <p className="text-center text-xs font-semibold text-gray-700">
                 参考表示（実際の評価ではありません）
@@ -528,7 +553,7 @@ export default function HospitalDetailPage() {
             </div>
           )}
 
-          {reviews.length > 0 && (
+          {tab === "top" && reviews.length > 0 && (
             <div className="mt-4">
               {averageRating !== null && (
                 <div className="mb-2 flex items-end justify-center gap-3 rounded-2xl bg-gray-50 py-3">
@@ -561,7 +586,7 @@ export default function HospitalDetailPage() {
             </div>
           )}
 
-          {reviewStats.length > 0 && (
+          {tab === "top" && reviewStats.length > 0 && (
             <dl className="mt-3 grid grid-cols-2 gap-2 text-center">
               {reviewStats.map((st) => (
                 <div key={st.label} className="rounded-2xl bg-gray-50 px-3 py-2">
@@ -725,7 +750,11 @@ export default function HospitalDetailPage() {
             </div>
           , document.body)}
 
-          <div className="mt-4 space-y-3">
+          {tab !== "reviews" && reviews.length > 0 && (
+            <button type="button" onClick={() => setTab("reviews")} className="mt-3 w-full rounded-full border border-gray-300 bg-white py-2 text-sm font-medium text-gray-700">口コミを読む（{reviews.length}件）</button>
+          )}
+
+          <div className={`mt-4 space-y-3 ${tab === "reviews" ? "" : "hidden"}`}>
             {reviews.length === 0 && (
               <p className="text-sm text-gray-400">まだ口コミはありません</p>
             )}
@@ -788,7 +817,41 @@ export default function HospitalDetailPage() {
             ))}
           </div>
         </section>
+        )}
 
+        {tab === "salary" && (
+          <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+            <h2 className="text-sm font-semibold text-gray-500">年収（口コミからの集計）</h2>
+            {salaryStats ? (
+              <>
+                <p className="mt-3 text-sm text-gray-600">回答者の平均年収</p>
+                <p className="text-4xl font-extrabold tracking-tight text-gray-900">{Math.round(salaryStats.avg)}<span className="ml-1 text-base font-semibold text-gray-500">万円</span></p>
+                <p className="mt-1 text-xs text-gray-500">年収の範囲 {salaryStats.min}万円〜{salaryStats.max}万円　回答 {salaryStats.n}件</p>
+                <div className="mt-4 space-y-1.5" aria-label="年収の分布">
+                  {salaryStats.buckets.map((b) => (
+                    <div key={b.label} className="flex items-center gap-2 text-xs text-gray-600">
+                      <span className="w-24 shrink-0">{b.label}</span>
+                      <span className="h-3 flex-1 overflow-hidden rounded-full bg-gray-100"><span className="block h-full rounded-full bg-relight-gradient" style={{ width: `${(b.n / salaryStats.n) * 100}%` }} /></span>
+                      <span className="w-8 shrink-0 text-right">{b.n}</span>
+                    </div>
+                  ))}
+                </div>
+                {salaryStats.byType.length > 0 && (
+                  <dl className="mt-4 grid grid-cols-2 gap-2 text-center">
+                    {salaryStats.byType.map((t) => (
+                      <div key={t.type} className="rounded-2xl bg-gray-50 px-3 py-2"><dt className="text-[11px] text-gray-500">{t.type}</dt><dd className="text-sm font-semibold text-gray-900">{t.avg}万円</dd><dd className="text-[10px] text-gray-400">{t.n}件</dd></div>
+                    ))}
+                  </dl>
+                )}
+              </>
+            ) : (
+              <p className="mt-3 text-sm leading-6 text-gray-500">年収は、3件以上の回答がそろうと表示されます（少ない件数だと、回答した人が特定されるおそれがあるため）。現在は {reviews.filter((r) => typeof r.annual_income === "number").length} 件です。</p>
+            )}
+            <p className="mt-3 text-[11px] leading-5 text-gray-400">口コミの投稿者が、任意で答えた金額の集計です。実際の給与を保証するものではありません。求人の条件は、募集元に確認してください。</p>
+          </section>
+        )}
+
+        {tab === "top" && (
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
@@ -860,7 +923,9 @@ export default function HospitalDetailPage() {
             </p>
           )}
         </section>
+        )}
 
+        {tab === "recruit" && (
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
@@ -915,8 +980,11 @@ export default function HospitalDetailPage() {
             </p>
           )}
         </section>
+        )}
 
-        <InternshipReviews hospitalId={hospital.id} accountType={accountType} loggedIn={!!userId} />
+        {tab === "reviews" && (
+          <InternshipReviews hospitalId={hospital.id} accountType={accountType} loggedIn={!!userId} />
+        )}
 
           </>
         )}

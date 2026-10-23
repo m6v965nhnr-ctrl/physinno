@@ -18,7 +18,7 @@ const STATS = [
 
 
 const DOORS = [
-  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "調べる・記録する・つながる", body: "論文検索・資格の進捗・研修情報・病院の口コミ" },
+  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "調べる・記録する・つながる", body: "論文検索・資格の進捗・研修情報・職場の口コミ" },
   { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,500問・筋と骨の確認・先生のクラスのテスト" },
   { key: "teacher", href: "/teachers", who: "教員の方へ", title: "国試の一問一答を、クラスで", body: "テストを配って、学生ごと・単元ごとの状況を見る" },
   { key: "general", href: "/for-general", who: "一般の方へ", title: "理学療法士・病院を探す", body: "地域や専門分野から探せます" },
@@ -110,7 +110,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-bold text-[var(--lp-g900)]">Re:light（リライト）とは</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            Re:lightは、理学療法士と、理学療法士をめざす学生のための、無料のWebアプリです。論文を8つのサイトからまとめて検索し、認定・専門理学療法士の更新の進捗や、研修・学会の情報、病院の口コミを、ひとつの場所で調べられます。
+            Re:lightは、理学療法士と、理学療法士をめざす学生のための、無料のWebアプリです。論文を8つのサイトからまとめて検索し、認定・専門理学療法士の更新の進捗や、研修・学会の情報、職場の口コミを、ひとつの場所で調べられます。
             学生は、国家試験の過去問（第49〜61回）を、解説つきで解けます。教員は、クラスにテストを配って、学生ごと・単元ごとの結果を見られます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">

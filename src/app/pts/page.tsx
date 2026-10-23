@@ -18,13 +18,13 @@ type SearchMode = "papers" | "ideas" | "hospitals" | "pts";
 const PT_MODES: [SearchMode, string][] = [
   ["papers", "論文を探す"],
   ["ideas", "臨床アイデア"],
-  ["hospitals", "病院口コミ"],
+  ["hospitals", "職場口コミ"],
 ];
 // ログインしていない訪問者（ゲスト閲覧）: 論文 / 臨床アイデア / 病院 / PT。見て触れる（保存・投稿・AIなどは登録後）
 const GUEST_MODES: [SearchMode, string][] = [
   ["papers", "論文"],
   ["ideas", "臨床アイデア"],
-  ["hospitals", "病院口コミ"],
+  ["hospitals", "職場口コミ"],
   ["pts", "PT"],
 ];
 const OTHER_MODES: [SearchMode, string][] = [
@@ -169,7 +169,7 @@ function PTSearchPageInner() {
         ) : mode === "hospitals" ? (
           <>
             {/* PTは、病院の職場口コミを見る場所として使う */}
-            <h1 className="text-3xl font-semibold mb-1">{isPt || !loggedIn ? "病院口コミ" : "病院を探す"}</h1>
+            <h1 className="text-3xl font-semibold mb-1">{isPt || !loggedIn ? "職場口コミ" : "病院を探す"}</h1>
             {loggedIn && (
               <div className="mb-3 flex flex-wrap gap-2 text-xs">
                 <Link href="/jobs" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">求人を探す</Link>

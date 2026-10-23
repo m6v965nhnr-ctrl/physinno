@@ -9,8 +9,8 @@ import Screens from "@/components/lp/Screens";
 import { EVIDENCE_LEVELS } from "@/lib/evidence";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "理学療法士向けアプリ｜論文検索・認定PTの進捗・研修情報・病院の口コミ";
-const DESCRIPTION = "理学療法士のための無料アプリ。論文を8サイトまとめて検索（日本語でOK）、認定・専門理学療法士の更新の進捗、研修・学会の情報、病院の口コミと転職の下調べまで。症例・学会発表は、投稿するだけで実績に。";
+const TITLE = "理学療法士向けアプリ｜論文検索・認定PTの進捗・研修情報・職場の口コミ";
+const DESCRIPTION = "理学療法士のための無料アプリ。論文を8サイトまとめて検索（日本語でOK）、認定・専門理学療法士の更新の進捗、研修・学会の情報、職場の口コミと転職の下調べまで。症例・学会発表は、投稿するだけで実績に。";
 
 export const metadata: Metadata = {
   title: TITLE,

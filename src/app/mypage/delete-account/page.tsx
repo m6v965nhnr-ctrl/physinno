@@ -62,7 +62,7 @@ export default function DeleteAccountPage() {
           <ul className="mt-2 list-disc space-y-1 pl-5">
             <li>プロフィール・非公開の情報（連絡先・誕生日・免許番号など）・アイコンなどの画像</li>
             <li>コメント・いいね・フォロー・メッセージ・通知</li>
-            <li>ポートフォリオ・学習の記録・保存した論文や研修・病院の口コミ・実習先の口コミ</li>
+            <li>ポートフォリオ・学習の記録・保存した論文や研修・職場の口コミ・実習先の口コミ</li>
             <li>あなたのメールアドレスと、ログイン情報</li>
           </ul>
           <p className="mt-3 text-xs leading-5 text-gray-600">
