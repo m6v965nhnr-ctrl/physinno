@@ -55,14 +55,6 @@ import { useHospitalInitial } from "./HospitalInitial";
 // 病院は「アカウント」ではなく、PTが作成・フォロー・口コミできる施設ページ。
 // 病院側が自分で運営することは想定していない（PTが自分の勤務先として
 // 登録し、他のPTがフォロー・職場環境の口コミを書ける場）。
-function TabIcon({ name }: { name: "top" | "reviews" | "questions" | "recruit" }) {
-  const p = { width: 20, height: 20, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": true } as const;
-  if (name === "top") return <svg {...p}><path d="M4 11 12 4l8 7" /><path d="M6 10v9h12v-9" /><path d="M10 19v-5h4v5" /></svg>;
-  if (name === "reviews") return <svg {...p}><path d="M4 5h16v11H9l-5 4z" /><path d="m12 8 1 2 2.2.3-1.6 1.5.4 2.2-2-1.1-2 1.1.4-2.2L8.8 10.3 11 10z" /></svg>;
-  if (name === "questions") return <svg {...p}><path d="M4 5h16v11H9l-5 4z" /><path d="M10 9.5a2 2 0 1 1 2.6 1.9c-.4.2-.6.5-.6 1" /><path d="M12 14.2v.1" /></svg>;
-  return <svg {...p}><rect x="3" y="8" width="18" height="12" rx="2" /><path d="M9 8V6a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2" /><path d="M3 13h18" /></svg>;
-}
-
 export default function HospitalDetailPage() {
   const params = useParams();
   const id = params.id as string;
@@ -496,19 +488,15 @@ export default function HospitalDetailPage() {
         </div>
 
         {dataReady && (
-          <>
-            <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
-              {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
-                <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
-                  <TabIcon name={key} />
-                  <span>{label}{n !== null && <span className="ml-1 text-[10px] font-normal opacity-70">{n}</span>}</span>
-                </button>
-              ))}
-            </div>
-            <p className="mt-2 text-center text-[11px] leading-5 text-gray-500">
-              {{ top: "総合評価・年収の推移・疾患比率など、この職場の全体像", reviews: "ここで働いた人の評価と、働き方のリアルな声", questions: "知りたいことを、働いている人に質問できる", recruit: "募集中の条件（年収・休日・雇用形態）" }[tab]}
-            </p>
-          </>
+          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex rounded-2xl border border-gray-100 bg-white px-1">
+            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
+              <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className="relative flex-1 px-1 pb-3 pt-3 text-center">
+                <span className={`block text-sm ${tab === key ? "font-bold text-gray-900" : "font-medium text-gray-500"}`}>{label}</span>
+                <span className={`block h-4 text-[11px] leading-4 ${tab === key ? "text-gray-700" : "text-gray-400"}`}>{n !== null ? n : ""}</span>
+                {tab === key && <span className="absolute inset-x-3 bottom-0 h-[3px] rounded-full bg-relight-gradient" />}
+              </button>
+            ))}
+          </div>
         )}
 
         {!dataReady && <p className="mt-6 text-center text-sm text-gray-500">口コミ・疾患比率を読み込み中…</p>}
