@@ -1,6 +1,6 @@
 import { ldJson } from "@/lib/jsonLd";
 import type { Metadata } from "next";
-import { getColumnMeta } from "@/lib/columns";
+import { getColumnMeta, getGuide } from "@/lib/columns";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -42,6 +42,7 @@ export default async function ColumnLayout({
 }) {
   const { slug } = await params;
   const meta = getColumnMeta(slug);
+  const guide = getGuide(slug);
 
   const jsonLd = meta
     ? {
@@ -56,6 +57,8 @@ export default async function ColumnLayout({
             author: { "@type": "Organization", name: `${SITE_NAME}編集部` },
             publisher: { "@type": "Organization", name: SITE_NAME },
             url: `${SITE_URL}/columns/${slug}`,
+            // 出典のあるガイドは、出典のURLを、構造化データにも入れる（根拠が分かる記事として伝える）
+            ...(guide ? { citation: guide.sources.map((s) => s.url), articleSection: guide.category } : {}),
           },
           {
             "@type": "BreadcrumbList",

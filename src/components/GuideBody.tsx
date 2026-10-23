@@ -1,10 +1,21 @@
 import type { Guide } from "@/content/guides/types";
 
 export default function GuideBody({ guide }: { guide: Guide }) {
+  const toc = guide.blocks.flatMap((b, i) => (b.t === "h2" ? [{ id: `s${i}`, text: b.x }] : []));
   return (
     <div className="space-y-4 text-sm leading-7 text-gray-700">
+      {toc.length >= 3 && (
+        <nav aria-label="このページの目次" className="rounded-xl border border-gray-200 bg-gray-50 p-4 text-xs leading-6">
+          <p className="text-sm font-semibold text-gray-800">目次</p>
+          <ol className="mt-1 list-decimal space-y-0.5 pl-5">
+            {toc.map((t) => (
+              <li key={t.id}><a href={`#${t.id}`} className="underline decoration-gray-300 underline-offset-2">{t.text}</a></li>
+            ))}
+          </ol>
+        </nav>
+      )}
       {guide.blocks.map((b, i) => {
-        if (b.t === "h2") return <h2 key={i} className="pt-4 text-lg font-bold text-gray-900">{b.x}</h2>;
+        if (b.t === "h2") return <h2 key={i} id={`s${i}`} className="scroll-mt-6 pt-4 text-lg font-bold text-gray-900">{b.x}</h2>;
         if (b.t === "h3") return <h3 key={i} className="pt-2 text-base font-semibold text-gray-900">{b.x}</h3>;
         if (b.t === "p") return <p key={i}>{b.x}</p>;
         if (b.t === "note") return <p key={i} className="rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-900">{b.x}</p>;

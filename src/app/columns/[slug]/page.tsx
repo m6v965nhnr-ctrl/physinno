@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getColumnMeta, getGuide } from "@/lib/columns";
+import { COLUMNS, getColumnMeta, getGuide } from "@/lib/columns";
 import GuideBody from "@/components/GuideBody";
 import { COLUMN_BODIES } from "@/content/columns";
 import { SITE_NAME } from "@/lib/site";
@@ -16,6 +16,9 @@ export default async function ColumnDetailPage({ params }: Props) {
   if (!meta || (!Body && !guide)) {
     notFound();
   }
+
+  // 同じ分野の、ほかのガイド（内部リンク。読みつづけてもらうため）
+  const related = COLUMNS.filter((c) => c.category === meta.category && c.slug !== slug).slice(0, 6);
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
@@ -46,6 +49,20 @@ export default async function ColumnDetailPage({ params }: Props) {
             {Body ? <Body /> : <GuideBody guide={guide!} />}
           </div>
         </div>
+
+        {related.length > 0 && (
+          <section className="mt-8" aria-label="同じ分野のガイド">
+            <h2 className="text-sm font-semibold text-gray-700">同じ分野のガイド（{meta.category}）</h2>
+            <ul className="mt-3 space-y-2">
+              {related.map((c) => (
+                <li key={c.slug}>
+                  <Link href={`/columns/${c.slug}`} className="block rounded-2xl border border-gray-100 bg-white px-4 py-3 text-sm font-medium text-gray-900 transition hover:border-gray-300">{c.title}</Link>
+                </li>
+              ))}
+            </ul>
+            <Link href="/columns" className="mt-3 inline-block text-xs text-gray-500 underline">すべてのコラム・ガイドを見る</Link>
+          </section>
+        )}
 
         <div className="mt-8 flex items-center justify-between rounded-2xl bg-relight-gradient px-6 py-5 text-white">
           <div>
