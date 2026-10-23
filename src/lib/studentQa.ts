@@ -85,8 +85,10 @@ export async function askQuestion(input: {
   title: string;
   body: string;
   isAnonymous: boolean;
+  hospitalId?: string;
 }): Promise<string | null> {
   const { error } = await supabase.from("student_questions").insert({
+    ...(input.hospitalId ? { hospital_id: input.hospitalId } : {}),
     category: input.category,
     title: input.title.trim(),
     body: input.body.trim(),
