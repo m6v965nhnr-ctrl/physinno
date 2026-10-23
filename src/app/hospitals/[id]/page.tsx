@@ -219,6 +219,12 @@ export default function HospitalDetailPage() {
     setDataReady(true);
   }
 
+  // 通知などから「?tab=questions」で開いたときは、そのタブを最初に出す
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("tab");
+    if (t === "reviews" || t === "posts" || t === "questions" || t === "recruit") setTab(t);
+  }, []);
+
   useEffect(() => {
     if (id) load();
     // eslint-disable-next-line react-hooks/exhaustive-deps

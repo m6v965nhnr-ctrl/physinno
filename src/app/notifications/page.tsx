@@ -9,7 +9,7 @@ import { supabase } from "@/lib/supabase";
 import { ptName } from "@/lib/format";
 import EmailNotificationToggle from "@/components/EmailNotificationToggle";
 
-type NotificationType = "like" | "comment" | "follow" | "endorsement" | "answer" | "scout" | "scout_reply" | "profile_like" | "profile_comment";
+type NotificationType = "like" | "comment" | "follow" | "endorsement" | "answer" | "scout" | "scout_reply" | "profile_like" | "profile_comment" | "hospital_answer";
 
 type NotificationRow = {
   id: string;
@@ -18,6 +18,7 @@ type NotificationRow = {
   post_id: string | null;
   group_id: string | null;
   question_id?: string | null;
+  hospital_id?: string | null;
   is_read: boolean;
   created_at: string;
 };
@@ -49,6 +50,7 @@ const TYPE_LABEL: Record<NotificationType, string> = {
   scout_reply: "さんがスカウトに返信しました",
   profile_like: "さんがあなたのプロフィールにいいねしました",
   profile_comment: "さんがあなたのプロフィールに応援コメントしました",
+  hospital_answer: "があなたの職場への質問に回答しました",
 };
 
 const GROUP_TYPE_LABEL: Record<string, string> = {
@@ -79,7 +81,7 @@ export default function NotificationsPage() {
 
     const { data } = await supabase
       .from("notifications")
-      .select("id, actor_id, type, post_id, group_id, question_id, is_read, created_at")
+      .select("id, actor_id, type, post_id, group_id, question_id, hospital_id, is_read, created_at")
       .eq("user_id", user.id)
       .order("created_at", { ascending: false })
       .limit(50);
@@ -265,6 +267,14 @@ export default function NotificationsPage() {
             if (isGraduated) {
               return (
                 <Link key={n.id} href="/mypage/edit?welcome=1">
+                  {body}
+                </Link>
+              );
+            }
+
+            if (n.type === "hospital_answer" && n.hospital_id) {
+              return (
+                <Link key={n.id} href={`/hospitals/${n.hospital_id}?tab=questions`}>
                   {body}
                 </Link>
               );
