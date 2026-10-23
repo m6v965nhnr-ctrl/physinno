@@ -27,6 +27,7 @@ import {
 } from "@/lib/hospitals";
 import { internshipReviewCounts } from "@/lib/internship";
 import { PREFECTURES } from "@/lib/prefectures";
+import { FACILITY_CATEGORIES, typesOf } from "@/lib/facilityTypes";
 import { notify } from "@/lib/notify";
 import { INPUT_CLASS, PRIMARY_BUTTON_CLASS, chipClass } from "@/lib/ui";
 
@@ -46,6 +47,7 @@ export default function HospitalSearch() {
   const [size, setSize] = useState<WorkplaceSize | "">(
     () => (searchParams.get("size") as WorkplaceSize | "") || ""
   );
+  const [category, setCategory] = useState(() => searchParams.get("cat") || "");
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -72,6 +74,8 @@ export default function HospitalSearch() {
   const [newWebsite, setNewWebsite] = useState("");
   const [newPrefecture, setNewPrefecture] = useState("");
   const [newSize, setNewSize] = useState<WorkplaceSize | "">("");
+  const [newCategory, setNewCategory] = useState("病院・医療機関");
+  const [newType, setNewType] = useState("");
   const [adding, setAdding] = useState(false);
 
   const didMountPrefectureEffect = useRef(false);
@@ -131,6 +135,7 @@ export default function HospitalSearch() {
       prefecture: prefecture || undefined,
       city: city || undefined,
       size: size || undefined,
+      category: category || undefined,
       bedType: bedType || undefined,
       bedCount: bedCount || undefined,
       recruit: {
@@ -155,6 +160,7 @@ export default function HospitalSearch() {
       ["prefecture", prefecture],
       ["city", city],
       ["size", size],
+      ["cat", category],
       ["beds", bedType],
       ["bc", bedCount],
       ["ann", annual],
@@ -175,7 +181,7 @@ export default function HospitalSearch() {
 
   async function handleAddHospital() {
     if (!newName.trim()) {
-      notify("病院名を入力してください");
+      notify("名前を入力してください");
       return;
     }
 
@@ -195,6 +201,8 @@ export default function HospitalSearch() {
       website: newWebsite.trim(),
       prefecture: newPrefecture.trim(),
       size: newSize || undefined,
+      facilityCategory: newCategory,
+      facilityType: newType || undefined,
       createdBy: user.id,
     });
 
@@ -252,6 +260,13 @@ export default function HospitalSearch() {
                 {p}
               </option>
             ))}
+          </select>
+          <select aria-label="勤務先の大分類" value={newCategory} onChange={(e) => { setNewCategory(e.target.value); setNewType(""); }} className={INPUT_CLASS}>
+            {FACILITY_CATEGORIES.map((c) => <option key={c.category} value={c.category}>{c.category}</option>)}
+          </select>
+          <select aria-label="勤務先の種類（任意）" value={newType} onChange={(e) => setNewType(e.target.value)} className={INPUT_CLASS}>
+            <option value="">種類：未選択</option>
+            {typesOf(newCategory).map((t) => <option key={t} value={t}>{t}</option>)}
           </select>
           <select
             aria-label="規模"
@@ -319,6 +334,11 @@ export default function HospitalSearch() {
               {c}
             </option>
           ))}
+        </select>
+
+        <select aria-label="勤務先の種類で絞り込む" value={category} onChange={(e) => setCategory(e.target.value)} className={INPUT_CLASS}>
+          <option value="">勤務先の種類：すべて</option>
+          {FACILITY_CATEGORIES.map((c) => <option key={c.category} value={c.category}>{c.category}</option>)}
         </select>
 
         {/* 規模・病床・年収・雇用形態・休日・アクセス・こだわりを、1つにまとめる */}

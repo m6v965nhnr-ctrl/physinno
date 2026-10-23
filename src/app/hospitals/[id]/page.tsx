@@ -397,6 +397,12 @@ export default function HospitalDetailPage() {
               </>
             )}
           </p>
+          {hospital.facility_category && (
+            <p className="mt-1 text-xs text-gray-500">
+              {hospital.facility_category}
+              {hospital.facility_type ? ` ・ ${hospital.facility_type}` : ""}
+            </p>
+          )}
 
           {(hospital.address || hospital.phone || hospital.email) && (
             <p className="mt-1 text-xs text-gray-400">

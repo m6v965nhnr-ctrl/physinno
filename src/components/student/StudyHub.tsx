@@ -363,9 +363,9 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
       {/* 同じ学校の学生どうしのランキング（学生のみ） */}
 
       {/* クラス */}
-      <Link href="/school" className="flex items-center justify-between rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
+      <Link href="/student/codes" className="flex items-center justify-between rounded-2xl bg-white p-3 shadow-sm transition active:bg-gray-50">
         <span>
-          <span className="block text-sm font-semibold">🏫 {access?.school ? access.school.name : "学校コードを入れる"}</span>
+          <span className="block text-sm font-semibold">🏫 {access?.school ? access.school.name : "コードを登録（学校・クラス）"}</span>
           <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">
             {access?.school ? (access.school.role === "teacher" ? "先生として所属しています" : "学生として所属しています") : "学校の先生から伝えられたコードで、学校のクラスに入れます"}
           </span>

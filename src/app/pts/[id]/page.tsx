@@ -523,6 +523,10 @@ export default function PTProfile() {
                   title="自己紹介"
                   value={pt.biography}
                 />
+
+                <ProfileItem title="理学療法士になった理由" value={pt.why_pt ?? null} />
+                <ProfileItem title="資格を取った経緯" value={pt.qualification_story ?? null} />
+                <ProfileItem title="資格の活かし方" value={pt.qualification_use ?? null} />
               </>
             )}
 

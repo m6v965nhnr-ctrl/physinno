@@ -39,6 +39,9 @@ export default function EditProfilePage() {
   const [contact, setContact] = useState("");
   const [biography, setBiography] = useState("");
   const [strengths, setStrengths] = useState("");
+  const [whyPt, setWhyPt] = useState("");
+  const [qualStory, setQualStory] = useState("");
+  const [qualUse, setQualUse] = useState("");
   const [interests, setInterests] = useState("");
 
   // プロフィール画像
@@ -156,6 +159,9 @@ export default function EditProfilePage() {
       setLanguage(data.languages || "");
       setBiography(data.biography || "");
       setStrengths(data.strengths || "");
+      setWhyPt(data.why_pt || "");
+      setQualStory(data.qualification_story || "");
+      setQualUse(data.qualification_use || "");
       setInterests(data.interests || "");
       setOnboardedAt(data.onboarded_at || null);
 
@@ -472,6 +478,9 @@ export default function EditProfilePage() {
       languages: language,
       biography,
       strengths,
+      why_pt: whyPt.trim().slice(0, 1000) || null,
+      qualification_story: qualStory.trim().slice(0, 1000) || null,
+      qualification_use: qualUse.trim().slice(0, 1000) || null,
       interests,
       profile_image: imageUrl || null,
       cover_image: coverUrl || null,
@@ -1018,6 +1027,20 @@ export default function EditProfilePage() {
               className="w-full border rounded-xl px-4 py-3 resize-none"
             />
           </div>
+
+          {/* 理学療法士になった理由・資格を取った経緯・資格の活かし方（プロフィールに公開） */}
+          {[
+            { id: "field-why-pt", label: "理学療法士になった理由", v: whyPt, set: setWhyPt, ph: "例：スポーツで大きなけがをして、リハビリに支えられた経験から、目指しました。" },
+            { id: "field-qual-story", label: "その資格を取った経緯", v: qualStory, set: setQualStory, ph: "例：養成校で学び、実習を重ねて、国家試験に合格しました。" },
+            { id: "field-qual-use", label: "資格をどう活かしているか", v: qualUse, set: setQualUse, ph: "例：回復期の病棟で、歩行の再獲得を支えています。" },
+          ].map((f) => (
+            <div key={f.id}>
+              <label className="block font-semibold mb-2" htmlFor={f.id}>
+                {f.label} <span className="text-xs font-normal text-gray-500">（任意・プロフィールに表示されます）</span>
+              </label>
+              <textarea id={f.id} value={f.v} onChange={(e) => f.set(e.target.value)} placeholder={f.ph} rows={3} maxLength={1000} className="w-full border rounded-xl px-4 py-3 resize-none" />
+            </div>
+          ))}
 
           {/* 興味のある分野 */}
           <div>

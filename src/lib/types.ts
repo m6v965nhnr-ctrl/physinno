@@ -28,6 +28,9 @@ export type PtProfile = {
   languages: string | null;
   language: string | null;
   strengths: string | null;
+  why_pt?: string | null;
+  qualification_story?: string | null;
+  qualification_use?: string | null;
   interests: string | null;
   rating: number | null;
   review_count: number | null;

@@ -1,5 +1,6 @@
 import { supabase } from "@/lib/supabase";
 import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
+import { DEFAULT_FACILITY_CATEGORY, isValidFacility } from "@/lib/facilityTypes";
 import type { PtProfile } from "@/lib/types";
 
 export type WorkplaceSize = "small" | "medium" | "large";
@@ -12,6 +13,8 @@ export const WORKPLACE_SIZE_LABEL: Record<WorkplaceSize, string> = {
 
 export type Hospital = {
   id: string;
+  facility_category?: string | null;
+  facility_type?: string | null;
   name: string;
   prefecture: string | null;
   city: string | null;
@@ -222,6 +225,7 @@ export async function searchHospitals({
   bedType,
   bedCount,
   recruit = {},
+  category,
 }: {
   keyword?: string;
   prefecture?: string;
@@ -230,6 +234,7 @@ export async function searchHospitals({
   bedType?: BedType;
   bedCount?: string;
   recruit?: RecruitFilters;
+  category?: string;
 }): Promise<Hospital[]> {
   // 給与・休日・アクセスで絞るときは、その情報がある病院だけ（!inner）。絞らないときは、あれば付ける
   const inner = hasRecruitFilters(recruit) ? "!inner" : "";
@@ -241,6 +246,7 @@ export async function searchHospitals({
   if (prefecture) query = query.ilike("prefecture", `%${prefecture}%`);
   if (city) query = query.ilike("city", `%${city}%`);
   if (size) query = query.eq("size", size);
+  if (category && isValidFacility(category, null)) query = query.eq("facility_category", category);
   if (bedType === "general") query = query.gt("beds_general", 0);
   if (bedType === "long_term") query = query.gt("beds_long_term", 0);
   if (bedType === "psychiatric") query = query.gt("beds_psychiatric", 0);
@@ -304,8 +310,12 @@ export async function createHospital({
   website,
   size,
   createdBy,
+  facilityCategory,
+  facilityType,
 }: {
   name: string;
+  facilityCategory?: string;
+  facilityType?: string;
   prefecture?: string;
   city?: string;
   address?: string;
@@ -315,9 +325,13 @@ export async function createHospital({
   size?: WorkplaceSize;
   createdBy: string;
 }): Promise<{ hospital: Hospital | null; error: string | null }> {
+  const cat = facilityCategory && isValidFacility(facilityCategory, facilityType) ? facilityCategory : DEFAULT_FACILITY_CATEGORY;
+  const typ = facilityType && isValidFacility(cat, facilityType) ? facilityType : null;
   const { data, error } = await supabase
     .from("hospitals")
     .insert({
+      facility_category: cat,
+      facility_type: typ,
       name: name.trim(),
       prefecture: prefecture?.trim() || null,
       city: city?.trim() || null,
