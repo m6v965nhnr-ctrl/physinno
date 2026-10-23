@@ -1,0 +1,516 @@
+{
+ "slug": "pt-abbreviations",
+ "title": "呼吸・循環・リハでよく出る略語集（学会ガイドラインの略語一覧にもとづく）",
+ "description": "呼吸リハ・心臓リハの現場やガイドラインで頻出する略語（FEV1、FVC、SpO2、6MWT、METs、HFrEF、LVEFなど）の英語表記と日本語訳を、日本呼吸器学会のCOPDガイドライン第6版と、日本循環器学会／日本心不全学会の心不全診療ガイドライン2025年改訂版の「略語一覧」にもとづいて整理します。",
+ "category": "体の構造・概念・用語",
+ "publishedAt": "2026-10-24",
+ "updatedAt": "2026-10-24",
+ "checkedOn": "2026-10-24",
+ "sources": [
+  {
+   "name": "COPD（慢性閉塞性肺疾患）診断と治療のためのガイドライン 第6版（略語一覧）｜日本呼吸器学会",
+   "url": "https://www.jrs.or.jp/publication/file/COPD6_20220726.pdf"
+  },
+  {
+   "name": "2025年改訂版 心不全診療ガイドライン（略語一覧）｜日本循環器学会/日本心不全学会",
+   "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2025/03/JCS2025_Kato.pdf"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "略語は、論文・ガイドライン・カルテで毎日のように出てきます。ここでは、呼吸リハと心臓リハで特によく使われる略語を、2つの学会ガイドラインの「略語一覧」に載っている英語表記と日本語訳のまま、整理します。日本語訳は、ガイドラインの表記に従っています（学会や施設で表記が異なる場合があります）。"
+  },
+  {
+   "t": "h2",
+   "x": "呼吸機能・呼吸リハ（COPDガイドライン第6版の略語一覧）"
+  },
+  {
+   "t": "table",
+   "head": [
+    "略語",
+    "英語",
+    "日本語"
+   ],
+   "rows": [
+    [
+     "FVC",
+     "forced vital capacity",
+     "努力肺活量"
+    ],
+    [
+     "FEV1",
+     "forced expiratory volume in one second",
+     "1秒量"
+    ],
+    [
+     "FEV1/FVC",
+     "（英語の記載なし）",
+     "1秒率"
+    ],
+    [
+     "%FEV1",
+     "percent predicted forced expiratory volume in one second",
+     "対標準1秒量"
+    ],
+    [
+     "VC",
+     "vital capacity",
+     "肺活量"
+    ],
+    [
+     "TLC",
+     "total lung capacity",
+     "全肺気量"
+    ],
+    [
+     "FRC",
+     "functional residual capacity",
+     "機能的残気量"
+    ],
+    [
+     "RV",
+     "residual volume",
+     "残気量"
+    ],
+    [
+     "IC",
+     "inspiratory capacity",
+     "最大吸気量"
+    ],
+    [
+     "IRV",
+     "inspiratory reserve volume",
+     "吸気予備量"
+    ],
+    [
+     "VT",
+     "tidal volume",
+     "1回換気量"
+    ],
+    [
+     "VE",
+     "minute ventilation",
+     "分時換気量"
+    ],
+    [
+     "fR",
+     "frequency of respiration",
+     "呼吸数"
+    ],
+    [
+     "DLCO",
+     "diffusing capacity of the lung for carbon monoxide",
+     "肺拡散能力"
+    ],
+    [
+     "VA/Q",
+     "ventilation-perfusion ratio",
+     "換気血流比"
+    ],
+    [
+     "PaO2",
+     "partial pressure of arterial oxygen",
+     "動脈血酸素分圧"
+    ],
+    [
+     "PaCO2",
+     "partial pressure of arterial carbon dioxide",
+     "動脈血二酸化炭素分圧"
+    ],
+    [
+     "SpO2",
+     "percutaneous oxygen saturation",
+     "経皮的動脈血酸素飽和度"
+    ],
+    [
+     "FiO2",
+     "fraction of inspiratory oxygen",
+     "吸入気酸素濃度"
+    ],
+    [
+     "MIP / PImax",
+     "maximal inspiratory pressure / maximum inspiratory pressure",
+     "最大吸気圧 / 最大吸気筋力"
+    ],
+    [
+     "MEP / PEmax",
+     "maximal expiratory pressure / maximum expiratory pressure",
+     "最大呼気圧 / 最大呼気筋力"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "運動負荷・評価（COPDガイドライン第6版の略語一覧）"
+  },
+  {
+   "t": "table",
+   "head": [
+    "略語",
+    "英語",
+    "日本語"
+   ],
+   "rows": [
+    [
+     "6MWT",
+     "6-minute walk test",
+     "6分間歩行試験"
+    ],
+    [
+     "6MWD",
+     "6-minute walk distance",
+     "6分間歩行距離"
+    ],
+    [
+     "ISWT",
+     "incremental shuttle walk test",
+     "漸増負荷シャトル歩行試験"
+    ],
+    [
+     "SWT",
+     "shuttle walking test",
+     "シャトルウォーキング試験"
+    ],
+    [
+     "CPET",
+     "cardiopulmonary exercise testing",
+     "心肺運動負荷試験"
+    ],
+    [
+     "AT",
+     "anaerobic threshold",
+     "無酸素性代謝閾値"
+    ],
+    [
+     "VO2",
+     "oxygen consumption",
+     "酸素摂取量"
+    ],
+    [
+     "VO2max",
+     "maximum oxygen consumption",
+     "最大酸素摂取量"
+    ],
+    [
+     "VO2peak",
+     "peak oxygen consumption",
+     "最高酸素摂取量"
+    ],
+    [
+     "METs",
+     "metabolic equivalents",
+     "代謝当量"
+    ],
+    [
+     "ADL",
+     "activities of daily living",
+     "日常生活動作"
+    ],
+    [
+     "FIM",
+     "functional independence measure",
+     "機能的自立度評価法"
+    ],
+    [
+     "BI",
+     "Barthel index",
+     "（ガイドラインの一覧では日本語訳の記載なし）"
+    ],
+    [
+     "mMRC",
+     "modified British Medical Research Council",
+     "（ガイドラインの一覧では日本語訳の記載なし）"
+    ],
+    [
+     "NRS",
+     "numerical rating scale",
+     "数値評価尺度"
+    ],
+    [
+     "QOL",
+     "quality of life",
+     "生活の質"
+    ],
+    [
+     "HRQOL",
+     "health-related quality of life",
+     "健康関連QOL"
+    ],
+    [
+     "MCID",
+     "minimum clinically important difference",
+     "臨床的に重要な変化の最小値"
+    ],
+    [
+     "PAL",
+     "physical activity level",
+     "身体活動レベル"
+    ],
+    [
+     "NMES",
+     "neuro-muscular electrical stimulation",
+     "神経筋電気刺激"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "酸素療法・換気補助（COPDガイドライン第6版の略語一覧）"
+  },
+  {
+   "t": "table",
+   "head": [
+    "略語",
+    "英語",
+    "日本語"
+   ],
+   "rows": [
+    [
+     "HOT",
+     "home oxygen therapy",
+     "在宅酸素療法"
+    ],
+    [
+     "LTOT",
+     "long-term oxygen therapy",
+     "長期酸素療法"
+    ],
+    [
+     "HFNC",
+     "high flow nasal cannula",
+     "高流量鼻カニュラ"
+    ],
+    [
+     "CPAP",
+     "continuous positive airway pressure",
+     "持続陽圧呼吸療法"
+    ],
+    [
+     "NIV",
+     "non-invasive ventilation",
+     "非侵襲的換気療法"
+    ],
+    [
+     "NPPV",
+     "noninvasive intermittent positive pressure ventilation",
+     "非侵襲的陽圧換気療法"
+    ],
+    [
+     "TPPV",
+     "tracheostomy positive pressure ventilation",
+     "気管切開下陽圧換気療法"
+    ],
+    [
+     "IPPV",
+     "invasive positive pressure ventilation",
+     "侵襲的陽圧換気療法"
+    ],
+    [
+     "HMV",
+     "home mechanical ventilation",
+     "在宅人工呼吸療法"
+    ],
+    [
+     "PEEP",
+     "positive end expiratory pressure",
+     "呼気終末期陽圧"
+    ],
+    [
+     "VAP",
+     "ventilator-associated pneumonia",
+     "人工呼吸器関連肺炎"
+    ],
+    [
+     "ICU",
+     "intensive care unit",
+     "集中治療室"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "循環器・心臓リハ（心不全診療ガイドライン2025年改訂版の略語一覧）"
+  },
+  {
+   "t": "table",
+   "head": [
+    "略語",
+    "英語",
+    "日本語"
+   ],
+   "rows": [
+    [
+     "HFrEF",
+     "heart failure with reduced ejection fraction",
+     "左室駆出率の低下した心不全"
+    ],
+    [
+     "HFmrEF",
+     "heart failure with mildly-reduced ejection fraction",
+     "左室駆出率の軽度低下した心不全"
+    ],
+    [
+     "HFpEF",
+     "heart failure with preserved ejection fraction",
+     "左室駆出率の保たれた心不全"
+    ],
+    [
+     "HFimpEF",
+     "heart failure with improved ejection fraction",
+     "左室駆出率の改善した心不全"
+    ],
+    [
+     "LVEF",
+     "left ventricular ejection fraction",
+     "左室駆出分画（率）"
+    ],
+    [
+     "EF",
+     "ejection fraction",
+     "駆出分画（率）"
+    ],
+    [
+     "CHF",
+     "chronic heart failure",
+     "慢性心不全"
+    ],
+    [
+     "ADHF",
+     "acute decompensated heart failure",
+     "急性非代償性心不全"
+    ],
+    [
+     "NYHA",
+     "New York Heart Association",
+     "（ガイドラインの一覧では日本語訳の記載なし）"
+    ],
+    [
+     "BNP",
+     "brain natriuretic peptide",
+     "脳性ナトリウム利尿ペプチド"
+    ],
+    [
+     "CPX",
+     "cardiopulmonary exercise test",
+     "心肺運動負荷試験"
+    ],
+    [
+     "6MWD",
+     "six-minute walk distance",
+     "6分間歩行距離"
+    ],
+    [
+     "METs",
+     "metabolic equivalents",
+     "メッツ"
+    ],
+    [
+     "HR",
+     "heart rate",
+     "心拍数"
+    ],
+    [
+     "MAP",
+     "mean arterial (blood) pressure",
+     "平均血圧"
+    ],
+    [
+     "ACS",
+     "acute coronary syndrome",
+     "急性冠症候群"
+    ],
+    [
+     "CAD",
+     "coronary artery disease",
+     "冠動脈疾患"
+    ],
+    [
+     "CAG",
+     "coronary angiography (arteriography)",
+     "冠動脈造影"
+    ],
+    [
+     "CABG",
+     "coronary artery bypass grafting",
+     "冠動脈バイパス"
+    ],
+    [
+     "AF",
+     "atrial fibrillation",
+     "心房細動"
+    ],
+    [
+     "VT",
+     "ventricular tachycardia",
+     "心室頻拍"
+    ],
+    [
+     "LBBB",
+     "left bundle branch block",
+     "左脚ブロック"
+    ],
+    [
+     "CKD",
+     "chronic kidney disease",
+     "慢性腎臓病"
+    ],
+    [
+     "LOS",
+     "low output syndrome",
+     "低心拍出症候群"
+    ],
+    [
+     "LVAD",
+     "left ventricular assist device",
+     "左心補助人工心臓"
+    ],
+    [
+     "IABP",
+     "intra-aortic balloon pumping",
+     "大動脈内バルーンパンピング"
+    ],
+    [
+     "MCS",
+     "mechanical circulatory support",
+     "機械的補助循環"
+    ],
+    [
+     "ECMO",
+     "extracorporeal membrane oxygenation",
+     "体外膜型人工肺による酸素化"
+    ],
+    [
+     "AS",
+     "aortic stenosis",
+     "大動脈弁狭窄症"
+    ],
+    [
+     "AR",
+     "aortic regurgitation",
+     "大動脈弁閉鎖不全症"
+    ],
+    [
+     "MR",
+     "mitral regurgitation",
+     "僧帽弁閉鎖不全症"
+    ],
+    [
+     "TR",
+     "tricuspid regurgitation",
+     "三尖弁閉鎖不全症"
+    ],
+    [
+     "ASV",
+     "adaptive servo-ventilation",
+     "適応補助換気"
+    ]
+   ]
+  },
+  {
+   "t": "note",
+   "x": "日本語訳の表記は、資料によって異なることがあります（たとえば、METsは、COPDガイドラインでは「代謝当量」、心不全診療ガイドラインでは「メッツ」）。略語は、その資料の「略語一覧」で確かめてください。確認日：2026年10月24日。"
+  }
+ ],
+ "verification": "primary"
+}
