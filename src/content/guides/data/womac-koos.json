@@ -1,0 +1,126 @@
+{
+ "slug": "womac-koos",
+ "title": "変形性膝関節症の評価尺度：KOOS・WOMAC・JKOMの構成と点数のつけ方",
+ "description": "KOOS（5つの下位尺度・42項目・0〜100点）、WOMAC（24項目・3つの下位尺度）、日本の生活様式を加味したJKOMの特徴と使い分けを、理学療法診療ガイドラインと、公開されている妥当性の研究論文にもとづいて整理します。",
+ "category": "評価・検査",
+ "publishedAt": "2026-10-24",
+ "updatedAt": "2026-10-24",
+ "checkedOn": "2026-10-24",
+ "sources": [
+  {
+   "name": "理学療法診療ガイドライン 第1版 ダイジェスト版（2011年版）｜日本理学療法士協会",
+   "url": "https://www.japanpt.or.jp/upload/branch/jsptdm/obj/files/%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E8%A8%BA%E7%99%82%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%80%80%E7%AC%AC1%E7%89%88%E3%80%80%E3%83%80%E3%82%A4%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E7%89%88.pdf"
+  },
+  {
+   "name": "Construct validity and reliability of the Finnish version of the Knee Injury and Osteoarthritis Outcome Score｜BMC Musculoskeletal Disorders（PMC5964707）",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5964707/"
+  },
+  {
+   "name": "The Dutch version of the knee injury and osteoarthritis outcome score: A validation study｜Health and Quality of Life Outcomes（PMC2289810）",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2289810/"
+  },
+  {
+   "name": "The simplified Chinese version of the KOOS in individuals with knee osteoarthritis｜（PMC10374501）",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10374501/"
+  },
+  {
+   "name": "Cross-Cultural Adaptation and Validation of the Kazakh Version of the WOMAC（PMC13116157）",
+   "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13116157/"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "変形性膝関節症（膝OA）の患者さんの症状や生活の困りごとを、患者さん自身の回答で測る尺度として、KOOS、WOMAC、JKOMがあります。日本理学療法士協会の理学療法診療ガイドラインでは、膝OAの疾患特異的な評価尺度として、最も頻用されているのはWOMAC、包括的な尺度ではSF-36、日本の生活様式を加味した生活関連QOLの指標としてJKOMも本邦では多く使われている、と記載されています。"
+  },
+  {
+   "t": "h2",
+   "x": "KOOS（Knee injury and Osteoarthritis Outcome Score）"
+  },
+  {
+   "t": "table",
+   "head": [
+    "下位尺度",
+    "項目数"
+   ],
+   "rows": [
+    [
+     "痛み（Pain）",
+     "9"
+    ],
+    [
+     "症状（Symptoms）",
+     "7"
+    ],
+    [
+     "日常生活動作（ADL）",
+     "17"
+    ],
+    [
+     "スポーツ・レクリエーション（Sport/Rec）",
+     "5"
+    ],
+    [
+     "膝に関連したQOL",
+     "4"
+    ]
+   ]
+  },
+  {
+   "t": "ul",
+   "items": [
+    "全部で42項目。各項目は、0（問題なし）〜4（極度の問題）の5段階で回答する",
+    "各下位尺度の素点を合計し、0〜100点に換算する。100点が「問題なし」、0点が「極度の問題」を表し、高いほど問題が少ない",
+    "5つの下位尺度は、別々に点数を出し、プロフィールとして示す。総合点は、妥当性が検証されておらず、推奨されない（KOOSの方針として、論文に記載）",
+    "回答にかかる時間は、約10分（オランダ語版の研究の記載）",
+    "研究によって、測定誤差を超える最小の変化（MDC）や、臨床的に意味のある最小の変化（MIC）の数値は異なる。数値は、一次資料で確認できていないため、載せていません"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "WOMAC（Western Ontario and McMaster Universities Osteoarthritis Index）"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "股関節・膝関節の変形性関節症のために作られた、自己記入式の尺度",
+    "24項目が、痛み・こわばり・身体機能の3つの下位尺度に分かれている",
+    "得点が高いほど、重症度が高い（点数の向きが、KOOSとは逆）",
+    "WOMACは、国ごとに、信頼性・妥当性が検証されている"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "WOMACは、使用に許諾が必要な尺度です。実際に使うときは、所属施設の規定と、正規の質問票を使ってください。ここでは、質問票の文言は載せていません。"
+  },
+  {
+   "t": "h2",
+   "x": "JKOM（日本版・変形性膝関節症患者機能評価尺度）"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "日本の生活様式を加味した、生活関連QOLの指標",
+    "理学療法診療ガイドラインに、JKOMは、5m歩行速度、ファンクショナルリーチ、痛みの程度、GDS（抑うつの尺度）と相関し、そのほかに、膝の屈曲可動域、膝伸展筋力との関連も報告されている、と記載されている"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "使い分けのめやす"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "膝OAの症状や機能を、痛み・症状・ADL・運動・QOLに分けて、プロフィールとして追いたいとき：KOOS",
+    "疾患特異的な評価として、報告が多く、他の研究と比べやすいとき：WOMAC",
+    "日本の生活場面（和式の動作を含む）を加味した評価をしたいとき：JKOM",
+    "どの尺度も、患者さんの回答にもとづく指標です。パフォーマンステスト（Timed Up and Go、昇段テスト、6分間歩行テストなど。ガイドラインに、膝OAでよく使われると記載）と組み合わせて評価する"
+   ]
+  },
+  {
+   "t": "note",
+   "x": "確認日：2026年10月24日。理学療法診療ガイドラインの記述と、KOOSの妥当性の研究論文3本、WOMACの研究論文2本の本文を照合しました。"
+  }
+ ],
+ "verification": "primary"
+}

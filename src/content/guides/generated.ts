@@ -9294,6 +9294,115 @@ export const GUIDES: Guide[] = [
   "verification": "summary"
  },
  {
+  "slug": "spasticity-rigidity",
+  "title": "痙縮と固縮の違い：定義（Lance）・速度依存性・評価尺度（Ashworth）の限界",
+  "description": "痙縮（spasticity）の古典的な定義（Lance 1980）、痙縮が単独の症状ではなく複数の運動徴候の集まりであるという近年の指摘、パーキンソン病の固縮（rigidity）の特徴（鉛管様・歯車様）と、速度依存性についての最近の知見を、公開されている論文にもとづいて整理します。",
+  "category": "体の構造・概念・用語",
+  "publishedAt": "2026-10-24",
+  "updatedAt": "2026-10-24",
+  "checkedOn": "2026-10-24",
+  "sources": [
+   {
+    "name": "Is Spasticity a Syndrome? A Historical Perspective on Spasticity Definitions and Descriptions｜（PMC13657386）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13657386/"
+   },
+   {
+    "name": "Speed Matters: Challenging the Notion of Velocity-Independent Rigidity Using Technological Devices in People with Parkinson's Disease: A Systematic Review｜Neurology International（PMC12655128）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12655128/"
+   }
+  ],
+  "blocks": [
+   {
+    "t": "p",
+    "x": "痙縮と固縮は、どちらも筋緊張（筋トーヌス）が高い状態ですが、起こる病気と性質が異なります。以下は、公開されている2つの論文（痙縮の定義の歴史に関する論文と、パーキンソン病の固縮のシステマティックレビュー）の記載にもとづきます。"
+   },
+   {
+    "t": "h2",
+    "x": "痙縮（spasticity）"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "最も広く受け入れられ、よく引用される定義は、Lance（1980年）による「腱の伸張反射の過興奮の結果として生じる、速度依存性の緊張性伸張反射（筋緊張）の亢進と、腱反射の亢進を特徴とする運動障害」",
+     "この定義は、狭い意味（sensu stricto）の痙縮を指している",
+     "Pandyanらは、痙縮を、上位運動ニューロンの病変によって生じる、筋の間欠的または持続的な不随意の活動を示す、感覚運動制御の障害と定義した。痙縮は、伸張反射の過興奮だけに限られない、と指摘されている"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "「痙縮」という言葉の使い方への指摘"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "臨床では、「痙縮」が、中枢神経系の病変によって生じる、複数の運動徴候の集まり（狭義の痙縮、痙性ジストニア、痙性の共収縮、スパズムなど）を指して、広く使われている。そのため、個々の障害を特定するときに、あいまいさが生じる",
+     "論文は、これらをまとめる言葉として、「spasticity syndrome（痙縮症候群）」を提案している",
+     "筋の短縮（拘縮）が、反射の過興奮ではなく、筋緊張の亢進を強めうる、という見方もある"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "評価尺度（Ashworth・Tardieu）の限界"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "Ashworth Scale（AS）は、安静位での他動運動に対する抵抗を評価するために作られた尺度で、Lanceが痙縮を定義するより前に作られた。痙縮の評価に広く使われているが、本来は、抵抗を測るもの",
+     "AS・修正Ashworth Scale（MAS）は、痙縮の「速度依存性」を測らず、トルクの変化を生む機序についても、頼れる情報を与えない、と指摘されている",
+     "TardieuおよびModified Tardieu Scaleは、妥当性・信頼性の根拠が乏しい、と指摘されている",
+     "より正確な評価と治療のために、機器による定量的な評価の活用が提案されている"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "固縮（rigidity）"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "古典的には、速度に依存しない、筋緊張の亢進と定義される（速度依存性の痙縮とは対照的）",
+     "鉛管様（lead-pipe）または歯車様（cogwheel）のパターンを示し、振戦を伴うこともある。パーキンソン病の中核症状の1つで、最大89％に認められる",
+     "基底核のドーパミンの著しい低下が、無動と固縮の発生に関連している",
+     "最近のシステマティックレビューは、固縮は、古典的には速度非依存性とされるが、実験的な証拠からは、特に中等度から高い角速度で、部分的に速度依存性を示す、より複雑な性質があることを示唆している"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "整理"
+   },
+   {
+    "t": "table",
+    "head": [
+     "",
+     "痙縮（古典的定義）",
+     "固縮（古典的定義）"
+    ],
+    "rows": [
+     [
+      "筋緊張の亢進",
+      "速度依存性（速く動かすほど抵抗が強い）",
+      "速度非依存性"
+     ],
+     [
+      "代表的な病態",
+      "上位運動ニューロンの病変（脳卒中、脊髄損傷など）",
+      "パーキンソン病"
+     ],
+     [
+      "特徴的なパターン",
+      "腱反射の亢進を伴う",
+      "鉛管様・歯車様"
+     ]
+    ]
+   },
+   {
+    "t": "note",
+    "x": "これらの記述は、論文が引用している定義と、レビューの結論です。評価は、病態と目的に合わせて、複数の方法を組み合わせてください。確認日：2026年10月24日。"
+   }
+  ],
+  "verification": "primary"
+ },
+ {
   "slug": "spinal-cord-injury-pt",
   "title": "脊髄損傷の損傷高位別理学療法評価と到達目標・リハビリの進め方",
   "description": "脊髄損傷の理学療法における損傷高位（NLI）別の残存機能、AIS・Zancolli分類などの評価基準、完全・不全損傷ごとの獲得目標や基本動作練習の進め方を解説。目標設定や合併症予防の要点を整理したPT・学生向けガイド。",
@@ -10671,6 +10780,132 @@ export const GUIDES: Guide[] = [
    {
     "t": "note",
     "x": "確認日：2026年10月23日。日本リハビリテーション医学会のサイトに公開されているガイドライン（案）の「IV．リハビリテーションの中止基準」を確認しました。"
+   }
+  ],
+  "verification": "primary"
+ },
+ {
+  "slug": "womac-koos",
+  "title": "変形性膝関節症の評価尺度：KOOS・WOMAC・JKOMの構成と点数のつけ方",
+  "description": "KOOS（5つの下位尺度・42項目・0〜100点）、WOMAC（24項目・3つの下位尺度）、日本の生活様式を加味したJKOMの特徴と使い分けを、理学療法診療ガイドラインと、公開されている妥当性の研究論文にもとづいて整理します。",
+  "category": "評価・検査",
+  "publishedAt": "2026-10-24",
+  "updatedAt": "2026-10-24",
+  "checkedOn": "2026-10-24",
+  "sources": [
+   {
+    "name": "理学療法診療ガイドライン 第1版 ダイジェスト版（2011年版）｜日本理学療法士協会",
+    "url": "https://www.japanpt.or.jp/upload/branch/jsptdm/obj/files/%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E8%A8%BA%E7%99%82%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%80%80%E7%AC%AC1%E7%89%88%E3%80%80%E3%83%80%E3%82%A4%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E7%89%88.pdf"
+   },
+   {
+    "name": "Construct validity and reliability of the Finnish version of the Knee Injury and Osteoarthritis Outcome Score｜BMC Musculoskeletal Disorders（PMC5964707）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5964707/"
+   },
+   {
+    "name": "The Dutch version of the knee injury and osteoarthritis outcome score: A validation study｜Health and Quality of Life Outcomes（PMC2289810）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2289810/"
+   },
+   {
+    "name": "The simplified Chinese version of the KOOS in individuals with knee osteoarthritis｜（PMC10374501）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10374501/"
+   },
+   {
+    "name": "Cross-Cultural Adaptation and Validation of the Kazakh Version of the WOMAC（PMC13116157）",
+    "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13116157/"
+   }
+  ],
+  "blocks": [
+   {
+    "t": "p",
+    "x": "変形性膝関節症（膝OA）の患者さんの症状や生活の困りごとを、患者さん自身の回答で測る尺度として、KOOS、WOMAC、JKOMがあります。日本理学療法士協会の理学療法診療ガイドラインでは、膝OAの疾患特異的な評価尺度として、最も頻用されているのはWOMAC、包括的な尺度ではSF-36、日本の生活様式を加味した生活関連QOLの指標としてJKOMも本邦では多く使われている、と記載されています。"
+   },
+   {
+    "t": "h2",
+    "x": "KOOS（Knee injury and Osteoarthritis Outcome Score）"
+   },
+   {
+    "t": "table",
+    "head": [
+     "下位尺度",
+     "項目数"
+    ],
+    "rows": [
+     [
+      "痛み（Pain）",
+      "9"
+     ],
+     [
+      "症状（Symptoms）",
+      "7"
+     ],
+     [
+      "日常生活動作（ADL）",
+      "17"
+     ],
+     [
+      "スポーツ・レクリエーション（Sport/Rec）",
+      "5"
+     ],
+     [
+      "膝に関連したQOL",
+      "4"
+     ]
+    ]
+   },
+   {
+    "t": "ul",
+    "items": [
+     "全部で42項目。各項目は、0（問題なし）〜4（極度の問題）の5段階で回答する",
+     "各下位尺度の素点を合計し、0〜100点に換算する。100点が「問題なし」、0点が「極度の問題」を表し、高いほど問題が少ない",
+     "5つの下位尺度は、別々に点数を出し、プロフィールとして示す。総合点は、妥当性が検証されておらず、推奨されない（KOOSの方針として、論文に記載）",
+     "回答にかかる時間は、約10分（オランダ語版の研究の記載）",
+     "研究によって、測定誤差を超える最小の変化（MDC）や、臨床的に意味のある最小の変化（MIC）の数値は異なる。数値は、一次資料で確認できていないため、載せていません"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "WOMAC（Western Ontario and McMaster Universities Osteoarthritis Index）"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "股関節・膝関節の変形性関節症のために作られた、自己記入式の尺度",
+     "24項目が、痛み・こわばり・身体機能の3つの下位尺度に分かれている",
+     "得点が高いほど、重症度が高い（点数の向きが、KOOSとは逆）",
+     "WOMACは、国ごとに、信頼性・妥当性が検証されている"
+    ]
+   },
+   {
+    "t": "note",
+    "x": "WOMACは、使用に許諾が必要な尺度です。実際に使うときは、所属施設の規定と、正規の質問票を使ってください。ここでは、質問票の文言は載せていません。"
+   },
+   {
+    "t": "h2",
+    "x": "JKOM（日本版・変形性膝関節症患者機能評価尺度）"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "日本の生活様式を加味した、生活関連QOLの指標",
+     "理学療法診療ガイドラインに、JKOMは、5m歩行速度、ファンクショナルリーチ、痛みの程度、GDS（抑うつの尺度）と相関し、そのほかに、膝の屈曲可動域、膝伸展筋力との関連も報告されている、と記載されている"
+    ]
+   },
+   {
+    "t": "h2",
+    "x": "使い分けのめやす"
+   },
+   {
+    "t": "ul",
+    "items": [
+     "膝OAの症状や機能を、痛み・症状・ADL・運動・QOLに分けて、プロフィールとして追いたいとき：KOOS",
+     "疾患特異的な評価として、報告が多く、他の研究と比べやすいとき：WOMAC",
+     "日本の生活場面（和式の動作を含む）を加味した評価をしたいとき：JKOM",
+     "どの尺度も、患者さんの回答にもとづく指標です。パフォーマンステスト（Timed Up and Go、昇段テスト、6分間歩行テストなど。ガイドラインに、膝OAでよく使われると記載）と組み合わせて評価する"
+    ]
+   },
+   {
+    "t": "note",
+    "x": "確認日：2026年10月24日。理学療法診療ガイドラインの記述と、KOOSの妥当性の研究論文3本、WOMACの研究論文2本の本文を照合しました。"
    }
   ],
   "verification": "primary"
