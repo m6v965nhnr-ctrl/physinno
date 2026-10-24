@@ -146,7 +146,7 @@ export default function ForPtPage() {
               <div className="md:flex-1">
                 <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">🏥 職場選びに、リアルな情報を</h3>
                 <p className="mt-2 text-sm leading-7 text-gray-700">
-                  全国約5,000の病院を、地域から探せます。年収・雇用形態・休日・アクセスでの絞り込みと、現役PTによる口コミ（残業・教育体制・女性の働きやすさなど）を、匿名で投稿・閲覧できます。
+                  全国の病院・施設 約14.6万件（病院・クリニック・老健・訪問看護・デイサービスなど）を、地域から探せます。年収・雇用形態・休日・アクセスでの絞り込みと、現役PTによる口コミ（残業・教育体制・女性の働きやすさなど）を、匿名で投稿・閲覧できます。
                 </p>
                 <Link href="/pts?mode=hospitals" className="mt-4 inline-block text-sm font-bold text-[var(--lp-g700)] underline underline-offset-4">
                   病院を探してみる（登録不要）→

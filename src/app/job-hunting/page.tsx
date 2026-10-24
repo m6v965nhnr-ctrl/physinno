@@ -116,7 +116,7 @@ export default function JobHuntingGuide() {
             ひと目で管理。
           </p>
           <p className="mt-4 text-base font-bold leading-7 text-gray-900 sm:text-lg">
-            気になる → 見学予約 → 見学済み → 応募 → 面接 → 内定。病院ごとの状況を、一覧で記録できます。約5,000の病院と、PTの職場の口コミ（6項目）も、同じアプリで見られます。
+            気になる → 見学予約 → 見学済み → 応募 → 面接 → 内定。病院ごとの状況を、一覧で記録できます。約14.6万の病院・施設と、PTの職場の口コミ（6項目）も、同じアプリで見られます。
           </p>
           <ul className="mt-4 space-y-1.5 text-sm font-semibold text-gray-900">
             <li>✓ 病院ページから、「見学したい」をワンタップで記録</li>

@@ -8,7 +8,7 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 export const revalidate = 86400;
 
 const TITLE = "全国の病院を、都道府県から探す｜理学療法士・学生向け";
-const DESCRIPTION = "全国の病院（約5,000件）を、都道府県ごとに一覧できます。病床数・所在地を確認して、各病院のページで、理学療法士の職場環境の口コミ・採用情報を見られます。実習先や就職先を探す学生にも。";
+const DESCRIPTION = "全国の病院（約5,300件）を、都道府県ごとに一覧できます。病床数・所在地を確認して、各病院のページで、理学療法士の職場環境の口コミ・採用情報を見られます。実習先や就職先を探す学生にも。";
 
 export const metadata: Metadata = {
   title: TITLE,

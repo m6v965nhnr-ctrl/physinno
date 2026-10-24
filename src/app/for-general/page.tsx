@@ -6,7 +6,7 @@ import { BTN_PRIMARY, BTN_SECONDARY, FaqSection, FinalCta, GuideLinks, H2, LpFoo
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "理学療法士・リハビリの病院を地域から探す｜一般の方へ";
-const DESCRIPTION = "リハビリを受けたい方へ。地域や専門分野から理学療法士を探せます。全国約5,000の病院も、地域や診療科から、登録なしで探せる、無料のWebアプリです。";
+const DESCRIPTION = "リハビリを受けたい方へ。地域や専門分野から理学療法士を探せます。全国の病院・施設 約14.6万件も、地域や種類から、登録なしで探せる、無料のWebアプリです。";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 const FEATURES = [
   { icon: "🔎", title: "理学療法士を、探せる", body: "一般アカウントで無料登録すると、地域や専門分野から、理学療法士を探せます。" },
-  { icon: "🏥", title: "病院を、地域から探せる", body: "全国約5,000の病院を、地域から探せます（登録なしで見られます）。診療科や、現役PTの口コミも参考になります。" },
+  { icon: "🏥", title: "病院・施設を、地域から探せる", body: "全国の病院・施設 約14.6万件を、地域から探せます（登録なしで見られます）。診療科や、現役PTの口コミも参考になります。" },
   { icon: "✍️", title: "レビューを書ける", body: "一般アカウントで、理学療法士のレビューを書けます。" },
 ];
 const FAQS = [
