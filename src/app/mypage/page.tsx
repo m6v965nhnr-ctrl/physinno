@@ -25,6 +25,7 @@ import QualificationTargets from "@/components/QualificationTargets";
 import { DEFAULT_PT_NAME, ptName } from "@/lib/format";
 import { askConfirm } from "@/lib/confirm";
 import { GeneralMyPage, MyReview, ProfileItem } from "@/components/mypage/GeneralAndItems";
+import { appealProgress, getWorkPrefs } from "@/lib/ptAppeal";
 
 export default function MyPage() {
   const router = useRouter();
@@ -46,7 +47,21 @@ export default function MyPage() {
   const [targets, setTargets] = useState<QualificationTarget[]>([]);
   const [profileExpanded, setProfileExpanded] = useState(false);
   const [userId, setUserId] = useState("");
+  // 「採用担当に伝える」で書けた項目の数（5つ中）
+  const [appealDone, setAppealDone] = useState<number | null>(null);
 
+
+  useEffect(() => {
+    if (accountType !== "pt" || !userId || !profile) return;
+    let off = false;
+    getWorkPrefs(userId).then((prefs) => {
+      if (!off) setAppealDone(appealProgress(profile, prefs).filter(Boolean).length);
+    });
+    return () => {
+      off = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accountType, userId, profile?.one_liner, profile?.why_pt, profile?.learning_now, profile?.values_tags]);
 
   useEffect(() => {
     loadMyPage();
@@ -427,6 +442,22 @@ export default function MyPage() {
           </div>
           <span className="text-lg">›</span>
         </Link>
+
+        {/* 採用担当に伝える（PTのみ） */}
+        {accountType === "pt" && (
+          <Link
+            href="/mypage/appeal"
+            className="mt-3 flex items-center justify-between gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-5 py-4"
+          >
+            <div className="min-w-0">
+              <p className="text-sm font-semibold text-emerald-900">採用担当に伝える</p>
+              <p className="mt-0.5 text-xs leading-5 text-emerald-800">
+                人柄ややる気を、短く伝えましょう。{appealDone !== null ? `いま、5つのうち${appealDone}つ。` : ""}
+              </p>
+            </div>
+            <span className="shrink-0 text-lg text-emerald-800">›</span>
+          </Link>
+        )}
 
         {/* =========================
             実績・資格更新（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる）

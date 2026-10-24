@@ -23,6 +23,8 @@ import { ptName } from "@/lib/format";
 import PortfolioView from "@/components/PortfolioView";
 import BlockUserButton from "@/components/BlockUserButton";
 import ProfileSocial from "@/components/ProfileSocial";
+import { AppealSummary, WorkPrefsCard, hasAppeal } from "@/components/AppealSummary";
+import { getWorkPrefs, type WorkPrefs } from "@/lib/ptAppeal";
 
 type CaseReport = {
   id: string;
@@ -47,6 +49,8 @@ export default function PTProfile() {
   const [followingCount, setFollowingCount] = useState(0);
   const [followerCount, setFollowerCount] = useState(0);
   const [profileExpanded, setProfileExpanded] = useState(false);
+  // 働き方の希望は、本人と、承認された組織にだけ読める（読めないときは null）
+  const [workPrefs, setWorkPrefs] = useState<WorkPrefs | null>(null);
 
   async function getPT() {
     setErrorMessage("");
@@ -81,6 +85,8 @@ export default function PTProfile() {
     }
 
     setPt(ptData);
+
+    setWorkPrefs(user && ptData.user_id && !ptData.is_student ? await getWorkPrefs(ptData.user_id) : null);
 
     // レビュー取得
     // 投稿者のID（user_id）を返さない関数から読む（匿名のレビューの投稿者を、API経由でも分からなくするため）
@@ -474,6 +480,19 @@ export default function PTProfile() {
           </div>
         )}
 
+        {/* 採用担当向けのまとめ（書いてあるときだけ） */}
+        {!pt.is_student && hasAppeal(pt) && (
+          <div className="mt-5">
+            <AppealSummary pt={pt} />
+          </div>
+        )}
+
+        {workPrefs && (
+          <div className="mt-5">
+            <WorkPrefsCard prefs={workPrefs} self={user?.id === pt.user_id} active={!!pt.accept_scouts} />
+          </div>
+        )}
+
         {/* プロフィール */}
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
 
@@ -525,7 +544,6 @@ export default function PTProfile() {
                   value={pt.biography}
                 />
 
-                <ProfileItem title="理学療法士になった理由" value={pt.why_pt ?? null} />
                 <ProfileItem title="資格を取った経緯" value={pt.qualification_story ?? null} />
                 <ProfileItem title="資格の活かし方" value={pt.qualification_use ?? null} />
               </>

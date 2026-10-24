@@ -4,6 +4,7 @@ import { getLocalUser } from "@/lib/authUser";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { toHiragana } from "@/lib/format";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import AccountTypeCard from "@/components/AccountTypeCard";
 import { AccountType, getMyAccountType } from "@/lib/account";
@@ -1038,6 +1039,20 @@ export default function EditProfilePage() {
               <span><b>スカウトを受け付ける</b><span className="mt-1 block text-xs leading-5 text-gray-500">運営が承認した組織（病院・施設・企業など）から、メッセージが届きます。届くのは、公開しているプロフィールを見た組織からのメッセージだけで、住所・電話・メールアドレスは、渡りません。いつでもオフにでき、届いたスカウトは辞退できます。</span></span>
             </label>
           </div>
+
+          {/* 採用担当向けの項目は、専用ページへ */}
+          {accountType === "pt" && (
+            <Link
+              href="/mypage/appeal"
+              className="flex items-center justify-between gap-3 rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-900"
+            >
+              <span>
+                <b>採用担当に伝える</b>
+                <span className="mt-0.5 block text-xs text-emerald-800">ひとこと・大切にしていること・働き方の希望は、専用ページで書けます</span>
+              </span>
+              <span aria-hidden="true">›</span>
+            </Link>
+          )}
 
           {/* 理学療法士になった理由・資格を取った経緯・資格の活かし方（プロフィールに公開） */}
           {[

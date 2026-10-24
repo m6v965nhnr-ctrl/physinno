@@ -32,6 +32,7 @@ export const PT_ONLY_PATH_PREFIXES = [
   "/groups",
   "/profile/edit",
   "/mypage/edit",
+  "/mypage/appeal",
   "/mypage/achievements",
   "/student",
   "/study",

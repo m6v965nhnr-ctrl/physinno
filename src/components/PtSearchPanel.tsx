@@ -173,6 +173,19 @@ export default function PtSearchPanel({ loggedIn = true, showTitle = true }: { l
                         <p className="text-gray-500">{pt.specialty}</p>
                       </div>
                     </div>
+
+                    {pt.one_liner?.trim() && (
+                      <p className="mt-4 line-clamp-2 text-sm leading-6 text-gray-800">{pt.one_liner.trim()}</p>
+                    )}
+                    {(pt.values_tags?.length ?? 0) > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-1.5">
+                        {pt.values_tags!.map((t) => (
+                          <span key={t} className="rounded-full bg-emerald-50 px-2.5 py-1 text-xs font-medium text-emerald-800">
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    )}
                   </div>
                 </Link>
               ))}

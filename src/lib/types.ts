@@ -32,6 +32,9 @@ export type PtProfile = {
   why_pt?: string | null;
   qualification_story?: string | null;
   qualification_use?: string | null;
+  one_liner?: string | null;
+  values_tags?: string[] | null;
+  learning_now?: string | null;
   interests: string | null;
   rating: number | null;
   review_count: number | null;
