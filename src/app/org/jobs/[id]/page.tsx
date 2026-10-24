@@ -19,7 +19,7 @@ const EMPTY: F = { title: "", employment_type: "", prefecture: "", city: "", sal
 export default function JobFormPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
-  const { loading } = useMyAccount(["pt", "general", "teacher"], "/pts");
+  const { loading } = useMyAccount(["pt", "general", "teacher", "org"], "/pts");
   const [org, setOrg] = useState<Org | null | undefined>(undefined);
   const [f, setF] = useState<F>(EMPTY);
   const [busy, setBusy] = useState(false);

@@ -92,7 +92,7 @@ export default function MyPage() {
     }
 
     // 一般の方は自分のレビューとフォロー数だけ読み込む
-    if (type === "general") {
+    if (type === "general" || type === "org") {
       await loadMyReviews();
 
       const { data: followingData } = await supabase
@@ -276,7 +276,7 @@ export default function MyPage() {
     );
   }
 
-  if (accountType === "general") {
+  if (accountType === "general" || accountType === "org") {
     return (
       <GeneralMyPage
         name={email.split("@")[0] || "ユーザー"}

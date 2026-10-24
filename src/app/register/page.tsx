@@ -71,7 +71,6 @@ export default function RegisterPage() {
     }
     if (type === "org") {
       setIsOrg(true);
-      setAccountType("general");
     }
 
     // ゲストとして見ていた画面（?next=）を覚えておき、プロフィールの入力が終わったら、そこへ戻す
@@ -86,7 +85,7 @@ export default function RegisterPage() {
   async function handleRegister() {
     setError("");
 
-    if (!isTeacher && !accountType) {
+    if (!isTeacher && !isOrg && !accountType) {
       setError("アカウントの種類（PT／学生／教員／一般）を選んでください");
       return;
     }
@@ -133,7 +132,7 @@ export default function RegisterPage() {
       options: {
         // DBトリガー on_auth_user_created が users.account_type / referred_by に保存します
         data: {
-          account_type: isTeacher ? "teacher" : accountType,
+          account_type: isTeacher ? "teacher" : isOrg ? "org" : accountType,
           // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
           school: isTeacher ? `${school.trim()} ${faculty.trim()} ${department.trim()}`.slice(0, 100) : undefined,
           full_name: fullName.trim().slice(0, 50),
@@ -416,7 +415,7 @@ export default function RegisterPage() {
 
           {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
           {(() => {
-            const missing = [!isTeacher && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
+            const missing = [!isTeacher && !isOrg && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
             return missing.length > 0 ? (
               <p className="text-center text-xs text-red-600" role="status">
                 未入力：{missing.join("・")}
@@ -426,7 +425,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || (!isTeacher && !accountType) || !fullName.trim() || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
+            disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || !fullName.trim() || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}

@@ -57,7 +57,7 @@ function teacherActive(href: string, pathname: string) {
 }
 
 // ゲスト用のメニューを出さないページ（トップ・認証まわり）
-const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest", "/teachers", "/for-pt", "/for-students", "/for-general"];
+const NO_NAV_PATHS = ["/", "/start", "/setup", "/login", "/register", "/forgot-password", "/reset-password", "/guest", "/teachers", "/for-pt", "/for-students", "/for-general", "/for-org"];
 
 // 一般の方：PTを探す・メッセージ・通知・マイページのみ
 const GENERAL_MENUS: Menu[] = [
@@ -311,6 +311,8 @@ export default function BottomNavWrapper() {
     ? PT_MENUS
     : !loggedIn
       ? GUEST_MENUS_UNSET
+      : accountType === "org"
+        ? ORG_MENUS
       : accountType === "general"
         ? isOrg
           ? ORG_MENUS
@@ -328,7 +330,7 @@ export default function BottomNavWrapper() {
 
   function isActive(href: string) {
     if (teacherMode) return teacherActive(href, pathname);
-    if (isOrg && accountType === "general") {
+    if (accountType === "org" || (isOrg && accountType === "general")) {
       if (href === "/org") return pathname === "/org" || pathname.startsWith("/org/jobs");
       if (href === "/org/posts/new") return pathname.startsWith("/org/posts");
     }

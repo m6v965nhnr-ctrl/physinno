@@ -22,6 +22,7 @@ const DOORS = [
   { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,500問・筋と骨の確認・先生のクラスのテスト" },
   { key: "teacher", href: "/teachers", who: "教員の方へ", title: "国試の一問一答を、クラスで", body: "テストを配って、学生ごと・単元ごとの状況を見る" },
   { key: "general", href: "/for-general", who: "一般の方へ", title: "理学療法士・病院を探す", body: "地域や専門分野から探せます" },
+  { key: "org", href: "/for-org", who: "病院・施設・法人の方へ", title: "採用・求人・スカウト", body: "求人の掲載・職場の発信・PTへのスカウト" },
 ];
 
 const jsonLd = {
@@ -46,7 +47,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
   const entrance = pickLpEntrance(one(q.utm_source), one(q.utm_campaign));
   const registerHref = `/register?type=${entrance.register}`;
   // どのリンクから来たかで、並びの先頭（理学療法士／学生）を変える
-  const doors = entrance.tab === "student" ? [DOORS[1], DOORS[0], DOORS[2], DOORS[3]] : DOORS;
+  const doors = entrance.tab === "student" ? [DOORS[1], DOORS[0], DOORS[2], DOORS[3], DOORS[4]] : DOORS;
 
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
@@ -92,11 +93,6 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             登録は、メールアドレスだけ・1分
           </p>
 
-          <p className="mt-2 text-xs leading-6 text-gray-500">
-            病院・施設・企業の採用担当の方は
-            <Link href="/register?type=org" className="ml-1 font-bold text-[var(--lp-g700)] underline underline-offset-4">採用担当として登録</Link>
-            （求人の掲載・PTへのスカウト）
-          </p>
         </div>
 
         <div className="relative mx-auto max-w-5xl px-6 pb-8">
@@ -120,7 +116,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             学生は、国家試験の過去問（第49〜61回）を、解説つきで解けます。教員は、クラスにテストを配って、学生ごと・単元ごとの結果を見られます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            登録は、メールアドレスだけで1分です。上の4つの入口から、あなたに合うページを選んでください。
+            登録は、メールアドレスだけで1分です。上の入口から、あなたに合うページを選んでください。病院・施設・法人の採用担当の方も、組織を登録して、求人の掲載やスカウトができます。
           </p>
         </div>
       </section>

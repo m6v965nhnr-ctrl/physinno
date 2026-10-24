@@ -19,7 +19,7 @@ const AREA = "w-full rounded-2xl border border-gray-300 bg-white px-4 py-2.5 tex
 
 // 組織（病院・施設・企業など）の登録と、求人の管理。承認されるまで、求人の公開・スカウトはできない
 export default function OrgPage() {
-  const { loading, userId } = useMyAccount(["pt", "general", "teacher"], "/pts");
+  const { loading, userId } = useMyAccount(["pt", "general", "teacher", "org"], "/pts");
   const [org, setOrg] = useState<Org | null | undefined>(undefined);
   const [jobs, setJobs] = useState<Job[]>([]);
   const [posts, setPosts] = useState<OrgPost[]>([]);

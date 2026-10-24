@@ -134,7 +134,7 @@ export function FinalCta({ registerHref, title = "学びと経験を、ひとつ
   );
 }
 
-export type Audience = "all" | "pt" | "student" | "teacher" | "general";
+export type Audience = "all" | "pt" | "student" | "teacher" | "general" | "org";
 
 // 見る人に合わない案内は、出さない
 const HIDE: Record<Audience, string[]> = {
@@ -143,6 +143,7 @@ const HIDE: Record<Audience, string[]> = {
   student: ["/teachers", "/certified-pt", "/hospital-areas"],
   teacher: ["/certified-pt", "/hospital-areas", "/paper-search", "/job-hunting"],
   general: ["/kokushi", "/schools", "/teachers", "/certified-pt", "/paper-search", "/job-hunting", "/evidence-levels"],
+  org: ["/kokushi", "/schools", "/teachers", "/certified-pt", "/paper-search", "/job-hunting", "/evidence-levels", "/for-org"],
 };
 
 export function LpFooter({ audience = "all" }: { audience?: Audience }) {
@@ -156,7 +157,7 @@ export function LpFooter({ audience = "all" }: { audience?: Audience }) {
           {!hide.includes("/kokushi") && <Link href="/kokushi" className="hover:text-gray-900">国試過去問</Link>}
           {!hide.includes("/schools") && <Link href="/schools" className="hover:text-gray-900">養成校の国試合格状況</Link>}
           {!hide.includes("/teachers") && <Link href="/teachers" className="hover:text-gray-900">大学・専門学校の先生へ</Link>}
-          <Link href="/register?type=org" className="hover:text-gray-900">病院・施設の採用担当の方へ</Link>
+          {!hide.includes("/for-org") && <Link href="/for-org" className="hover:text-gray-900">病院・施設・法人の方へ</Link>}
           {!hide.includes("/hospital-areas") && <Link href="/hospital-areas" className="hover:text-gray-900">病院を都道府県から探す</Link>}
           {!hide.includes("/paper-search") && <Link href="/paper-search" className="hover:text-gray-900">論文検索</Link>}
           {!hide.includes("/certified-pt") && <Link href="/certified-pt" className="hover:text-gray-900">認定理学療法士ガイド</Link>}

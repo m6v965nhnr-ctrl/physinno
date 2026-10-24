@@ -12,7 +12,7 @@ import { LoadingScreen } from "@/components/states";
 
 export default function ScoutThreadPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
-  const { loading, userId } = useMyAccount(["pt", "general", "teacher"], "/pts");
+  const { loading, userId } = useMyAccount(["pt", "general", "teacher", "org"], "/pts");
   const [row, setRow] = useState<ScoutRow | null | undefined>(undefined);
   const [msgs, setMsgs] = useState<ScoutMessage[]>([]);
   const [body, setBody] = useState("");

@@ -15,7 +15,7 @@ const AREA = "w-full rounded-2xl border border-gray-300 bg-white px-4 py-2.5 tex
 
 // 施設の投稿をつくる。お知らせ・採用情報、写真・動画（あわせて4つまで）。投稿は、職場ページの「投稿」タブと、PT・学生のホームに流れる
 export default function NewOrgPostPage() {
-  const { loading, userId } = useMyAccount(["pt", "general", "teacher"], "/pts");
+  const { loading, userId } = useMyAccount(["pt", "general", "teacher", "org"], "/pts");
   const router = useRouter();
   const [org, setOrg] = useState<Org | null | undefined>(undefined);
   const [jobs, setJobs] = useState<Job[]>([]);

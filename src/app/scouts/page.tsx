@@ -9,7 +9,7 @@ import { EmptyState, ErrorState, LoadingScreen } from "@/components/states";
 
 // スカウトの一覧。PTは届いたスカウト、組織は送ったスカウト（同じ画面）
 export default function ScoutsPage() {
-  const { loading } = useMyAccount(["pt", "general", "teacher"], "/pts");
+  const { loading } = useMyAccount(["pt", "general", "teacher", "org"], "/pts");
   const [rows, setRows] = useState<ScoutRow[] | null>(null);
   const [error, setError] = useState(false);
 

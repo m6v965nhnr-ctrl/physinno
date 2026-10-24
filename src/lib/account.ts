@@ -1,16 +1,17 @@
 import { supabase } from "@/lib/supabase";
 
-export type AccountType = "pt" | "general" | "student" | "teacher";
+export type AccountType = "pt" | "general" | "student" | "teacher" | "org";
 
 export const ACCOUNT_TYPE_LABEL: Record<AccountType, string> = {
   pt: "PT",
   general: "一般",
   student: "学生",
   teacher: "先生",
+  org: "病院・施設・法人",
 };
 
 function isAccountType(v: unknown): v is AccountType {
-  return v === "pt" || v === "general" || v === "student" || v === "teacher";
+  return v === "pt" || v === "general" || v === "student" || v === "teacher" || v === "org";
 }
 
 // 先生のアカウント（大学・専門学校の先生）が使える画面。それ以外のPT向けの画面は、先生の画面へ戻す
@@ -185,5 +186,6 @@ export function landingPathFor(accountType: AccountType | null | undefined): str
   // 種類が未設定の人は、先に設定の画面へ
   if (!accountType) return "/setup";
   if (accountType === "teacher") return TEACHER_HOME;
+  if (accountType === "org") return "/org";
   return accountType === "student" ? "/mypage" : "/pts";
 }
