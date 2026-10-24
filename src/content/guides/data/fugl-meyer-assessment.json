@@ -1,113 +1,81 @@
 {
  "slug": "fugl-meyer-assessment",
  "title": "Fugl-Meyer Assessment（FMA）の構成・点数・採点基準と重症度分類まとめ",
- "description": "Fugl-Meyer Assessment（FMA）の構成や各項目の点数配分、採点方法、重症度分類、MDC・MCIDなどの基準値を理学療法士・学生向けにわかりやすく要約・解説します。",
+ "description": "Fugl-Meyer Assessment（FMA）の構成（上肢運動66点・下肢運動34点、感覚24点、他動関節可動域44点、関節痛44点）と、3段階（0・1・2）の採点方法を、日本語版の翻訳と文化的適応を報告した論文（J Rehabil Med 2025）にもとづいて整理します。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "Cutoff score of the lower extremity motor subscale of Fugl- Meyer Assessment in chronic st",
-   "url": "https://ira.lib.polyu.edu.hk/bitstream/10397/97299/1/Kwong_Cutoff_Score_Lower-Extremity.pdf"
-  },
-  {
-   "name": "FMA 概要解説 ｜ 作業療法 評価 身体障害 ｜ Medical*Online Video（プレビュー） - YouTube",
-   "url": "https://www.youtube.com/watch?v=zgicyyxgH8s"
-  },
-  {
-   "name": "FMA（Fugl-Meyer Assessment）評価用紙と点数のつけ方｜上肢・下肢の項目とMCID",
-   "url": "https://brain-lab.net/evidence/for-therapist/outcome-measures/fugl-meyer-assessment/"
-  },
-  {
-   "name": "FUGL-MEYER ASSESSMENT UPPER EXTREMITY (FMA-UE) Assessment of sensorimotor function",
-   "url": "https://www.gu.se/sites/default/files/2024-01/FM-UE%20eng%20240117%20MANUAL.pdf"
-  },
-  {
-   "name": "JRM JRM JRM - MJS Publishing",
-   "url": "https://medicaljournalssweden.se/jrm/article/download/43350/50934/162368"
-  },
-  {
-   "name": "https://www.scribd.com/document/1010968023/Fugl-Meyer-Assessment-Japanese-2024-06-09",
-   "url": "https://www.scribd.com/document/1010968023/Fugl-Meyer-Assessment-Japanese-2024-06-09"
-  },
-  {
-   "name": "下肢Fugl-MeyerのMDC, MCID｜Super Human | 理学療法士／保健学博士 Ph.D. - note",
-   "url": "https://note.com/super_human/n/n701a77e0a9cf"
-  },
-  {
-   "name": "作業療法ガイドライン 脳卒中",
-   "url": "https://www.jaot.or.jp/files/page/gakujutsu/guideline/guideline_stroke-1.pdf"
-  },
-  {
-   "name": "医学界新聞プラス ［第1回］神経学的評価 『脳卒中の機能回復",
-   "url": "https://www.igaku-shoin.co.jp/paperplus/archive/y2023/fas_01"
-  },
-  {
-   "name": "急性脳卒中患者のFugl-Meyer Assessment下肢運動スケールの最小重要変化量を算出",
-   "url": "https://academia.carenet.com/share/news/73d6cd87-5ab0-4dcd-88b3-02643e270b3e"
+   "name": "Cross-cultural adaptation and validation of the Japanese translation of the Fugl-Meyer Assessment for upper and lower extremity sensorimotor function after stroke｜J Rehabil Med 2025（PMC12340990）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12340990/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Fugl-Meyer Assessment（FMA）は、脳卒中後の運動機能や感覚、関節可動域などを包括的に評価する世界標準の評価指標です。脳卒中の回復段階（ブルンストロームステージ）に基づいて設計されており、共同運動から分離運動への回復過程を客観的に評価できます。"
+   "x": "Fugl-Meyer Assessment（FMA）は、1975年にFugl-Meyerらが、Brunnstromの回復段階にもとづいて作った、片麻痺の脳卒中患者の、運動機能・感覚・他動関節可動域・関節痛を評価する包括的な尺度です。以下は、日本語版の翻訳と検証を報告した論文（2025年）の記載にもとづきます。"
   },
   {
    "t": "h2",
-   "x": "FMAの全体構成と満点"
-  },
-  {
-   "t": "p",
-   "x": "FMAは総合計226点満点で構成されています。運動機能評価（100点満点）を中心とし、感覚、関節可動域、関節痛などの非運動領域も含めて多面的に身体機能を捉えます。"
+   "x": "構成と点数（論文の記載）"
   },
   {
    "t": "table",
    "head": [
-    "評価領域",
+    "領域",
     "満点",
-    "内訳・評価項目"
+    "内訳"
    ],
    "rows": [
     [
-     "上肢運動機能（FMA-UE）",
+     "上肢の運動機能",
      "66点",
-     "肩・肘・前腕（36点）、手関節（10点）、手指（14点）、協調性・速度（6点）"
+     "上肢（0〜36点）、手関節（0〜10点）、手（0〜14点）、協調性・速度（0〜6点）"
     ],
     [
-     "下肢運動機能（FMA-LE）",
+     "下肢の運動機能",
      "34点",
-     "反射活動、屈筋・伸筋共同運動、分離運動、協調性・速度（6点）など"
+     "下肢（0〜28点）、協調性・速度（0〜6点）"
     ],
     [
-     "感覚（Sensation）",
+     "感覚（H）",
      "24点",
-     "表在感覚（触覚）および深部感覚（位置覚）"
+     "―"
     ],
     [
-     "関節可動域（ROM）",
+     "他動関節可動域（I）",
      "44点",
-     "各関節の他動的可動域"
+     "―"
     ],
     [
-     "関節痛（Pain）",
+     "関節痛（J）",
      "44点",
-     "他動運動時の疼痛"
+     "―"
     ]
    ]
   },
   {
+   "t": "p",
+   "x": "感覚、他動関節可動域、関節痛は、上肢と下肢の両方で評価する、と論文は述べています。"
+  },
+  {
    "t": "h2",
-   "x": "採点基準と実施方法"
+   "x": "採点"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "各項目は、3段階（0＝できない、1＝部分的にできる、2＝完全にできる）で採点する。ただし、反射の項目は、0または2だけで評価する",
+    "信頼性・妥当性は、運動領域では優れており、運動以外の領域では許容できる、とされている（論文の記載）",
+    "運動領域は、脳卒中の回復を調べる試験の、推奨されるコアメジャーとされている"
+   ]
   },
   {
    "t": "note",
-   "x": "重症度の区分（得点のめやす）や、意味のある変化の大きさ（MDC・MCID）は、研究によって大きく異なり、一次資料で確認できていないため、このページには載せていません。原著や最新の論文で確認してください。"
-  },
-  {
-   "t": "p",
-   "x": "採点は原則として「0：遂行不可」「1：部分的に遂行可能」「2：完全に遂行可能」の3段階（3件法）で行われます（腱反射項目などは0または2で評価）。試行は1〜3回行い、最良の試行結果を採点に採用します。"
+   "x": "総合点（合計）の算出方法（バランス項目を含めるかどうか）、重症度の区分、意味のある変化の大きさ（MDC・MCID）は、今回、確認できなかったので、ここには載せていません。評価の際は、原著・公式の評価用紙で、各項目の採点基準を確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }

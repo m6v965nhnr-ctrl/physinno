@@ -1,95 +1,55 @@
 {
  "slug": "mini-bestest",
  "title": "Mini-BESTestの構成・採点方法・カットオフ値完全ガイド【PT・学生向け】",
- "description": "理学療法士や学生向けにMini-BESTestの構成（4セクション14項目）、採点基準（28点満点）、疾患別カットオフ値（脳卒中・パーキンソン病・高齢者）やMDCをわかりやすく解説したページです。",
+ "description": "Mini-BESTestの構成（14項目・4つの領域）と、カットオフ値が対象によって異なること（地域在住高齢者の年齢別、前庭障害など）を、公開されている論文の記載にもとづいて整理します。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "BESTestとMini-BESTestの違い｜評価項目・採点・使い分け - 神経リハノート",
-   "url": "https://blog-physicaltherapy.com/post-299/"
+   "name": "Diagnostic accuracy of the Mini-BESTest in screening for fall risk among individuals with vestibular disorders｜（PMC13345228）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13345228/"
   },
   {
-   "name": "Mini-BESTest- of DYNAMIC BALANCE: Balance Evaluation –Systems Test: Copyright 2009; Revise",
-   "url": "http://www.bestest.us/index.php/download_file/view/25/135/"
-  },
-  {
-   "name": "Mini-BESTestを用い,明確化した問題点へ治療を 行ったことで歩行が自立した脳卒中症例 - 倉敷紀念病院",
-   "url": "http://www.seiwakai-net.or.jp/rehabilitation/overview/data/data2/2021/pdf/00/data2-2021-00-03.pdf"
-  },
-  {
-   "name": "Mini-BESTest（ミニベステスト）評価シート - Stroke Lab",
-   "url": "https://www.stroke-lab.com/wp-content/uploads/2026/07/dc081d9799a677663d6b086b272a4fb2.pdf"
-  },
-  {
-   "name": "mini-BESTestの有用性 - リハビリのエビデンス まとめ",
-   "url": "https://rehabilitation-e.com/2025/06/02/mini-bestest%E3%81%AE%E6%9C%89%E7%94%A8%E6%80%A7/"
-  },
-  {
-   "name": "【2026年版】Mini-BESTest完全ガイド｜14項目の採点・カットオフ値・BBS徹底比較 - Stroke Lab",
-   "url": "https://www.stroke-lab.com/speciality/5474"
-  },
-  {
-   "name": "パーキンソン病患者におけるMini-BESTestの反応性と臨床的に意義のある最小変化量（MCID）",
-   "url": "https://www.jspt.or.jp/eibun/2020/20200601_3_002_002_002_002.html"
-  },
-  {
-   "name": "パーキンソン病患者の動的バランス能力評価 〜 Mini-BESTestとBBS の比較〜 - 愛知県理学療法学会",
-   "url": "http://aichi-npopt.jp/dl/info_paper_back/30_01_03.pdf"
-  },
-  {
-   "name": "日本語版Mini-Balance Evaluation Systems Test（Mini-BESTest）の妥当性の検討",
-   "url": "https://cir.nii.ac.jp/crid/1390001205275909888"
-  },
-  {
-   "name": "脳卒中者におけるBBSとMini-BESTestのカットオフ値｜Super Human | 理学療法士 - note",
-   "url": "https://note.com/super_human/n/nf7aa1125969c"
+   "name": "Cutoff Point of Mini-BESTest Scores for Elderly Estimated by Center of Pressure Measurements｜（PMC9784881）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9784881/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Mini-BESTest（ミニベステスト）は、動的バランス能力を短時間で包括的に評価する臨床ツールです。全14項目・28点満点で構成され、理学療法士や学生が臨床現場で姿勢制御障害や転倒リスクを把握するために広く用いられています。"
-  },
-  {
-   "t": "h2",
-   "x": "Mini-BESTestの概要と特徴"
-  },
-  {
-   "t": "p",
-   "x": "Mini-BESTestは、36項目・108点満点の原版BESTestから動的バランスに関する14項目を抽出した短縮版です。実施時間が約10〜15分と短く、Berg Balance Scale（BBS）では評価が難しい反応的姿勢制御や動的歩行を評価でき、天井効果が少ないことが特徴です。"
-  },
-  {
-   "t": "h2",
-   "x": "4つの構成セクションと評価項目"
+   "x": "Mini-Balance Evaluation Systems Test（Mini-BESTest）は、バランス評価のBESTestを短縮した評価で、論文によると、14項目からなり、次の4つの領域を評価します。"
   },
   {
    "t": "ul",
    "items": [
-    "予測的姿勢調整（セクション1：6点満点）: 座位から立位、つま先立ち、片脚立位",
-    "反応的姿勢制御（セクション2：6点満点）: 前方・後方・側方への補償ステッピング修正",
-    "感覚の方向づけ（セクション3：6点満点）: 開眼硬床立位、閉眼フォーム立位、閉眼斜面台立位",
-    "動的歩行（セクション4：10点満点）: 歩行速度変化、頭部回旋歩行、ピボットターン、障害物またぎ、二重課題TUG"
+    "予測的姿勢調節（anticipatory postural adjustments）",
+    "反応的姿勢制御（reactive postural control）",
+    "感覚の統合（sensory orientation）",
+    "歩行中の動的バランス（dynamic gait）"
    ]
   },
   {
-   "t": "h2",
-   "x": "採点方法と判定ルール"
+   "t": "p",
+   "x": "BESTestは、バランスに関わるすべてのシステムを評価するが、長さと複雑さのため、日常の臨床での使用に限界があり、Mini-BESTestがその短縮版として作られた、と論文は説明しています。完了に約15分かかり、パーキンソン病の患者を見分ける能力は、BESTestより高いとの報告が引用されています。"
   },
   {
    "t": "h2",
-   "x": "カットオフ値について"
+   "x": "カットオフ値（論文の記載）"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "地域在住の高齢者で、転倒者を見分けるカットオフは、年齢帯によって異なる（Magnaniらの報告の引用）：60〜69歳で25点、70〜79歳で23点、80〜89歳で22点、90歳以上で17点",
+    "前庭障害のある人の転倒リスクのスクリーニングでは、最適なカットオフは23点以下（感度92.3％、特異度44.8％、AUC 0.69で、判別能力は低〜中等度）と報告されている。この研究は、前庭障害の集団で、確立したカットオフがまだなかったことを背景にしている",
+    "カットオフ値は、対象・目的によって異なるので、1つの値を、すべての人に当てはめない"
+   ]
   },
   {
    "t": "note",
-   "x": "カットオフ値（転倒リスクの目安の点数）や、意味のある変化の大きさ（MDC・MCID）は、対象の疾患や研究によって大きく異なります。一次資料で確認できた値だけを載せる方針のため、このページには載せていません。原著や最新の論文で確認してください。"
-  },
-  {
-   "t": "p",
-   "x": "各項目は0点（重度障害）、1点（中等度障害）、2点（正常）の3段階で評価し、合計28点満点となります。片脚立位や側方ステッピングなどの左右差がある項目は低い方のスコアを採用します。また、補助具の使用による減点や、身体介助を要する場合の0点判定など明確なルールが定められています。"
+   "x": "各項目の内容、採点（0〜2点・満点28点）、脳卒中などのカットオフ値は、今回、一次資料で確認できなかったので、ここには載せていません。評価の際は、BESTestの公式の評価用紙で、各項目の手順を確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }

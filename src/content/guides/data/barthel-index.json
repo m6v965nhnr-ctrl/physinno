@@ -1,129 +1,81 @@
 {
  "slug": "barthel-index",
  "title": "Barthel Index（BI）の評価方法・10項目の点数・FIMとの違い",
- "description": "Barthel Index（BI）の10項目や採点基準、FIMとの違い（できるADLとしているADL等）を解説。理学療法士や学生向けに、評価項目、採点段階、臨床での使い分けや注意点を分かりやすくまとめています。",
+ "description": "Barthel Index（BI）の構成（10項目・合計100点）、項目ごとの段階の数、元の1965年版と修正版（Shah）の違い、FIMとの違いの考え方、介護報酬（ADL維持等加算）でBIが使われることを、公開論文と厚生労働省の資料にもとづいて整理します。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
- "updatedAt": "2026-10-22",
- "checkedOn": "2026-10-22",
+ "updatedAt": "2026-10-24",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "ADL評価尺度の種類と使い分け｜BI・FIM・IADL比較 - rehabilikun",
-   "url": "https://rehabilikunblog.com/adl_hyouka_matome/"
+   "name": "Measurement of Function in Older Adults Transitioning from Hospital to Home: An Integrative Review｜（PMC6473790）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6473790/"
   },
   {
-   "name": "FIMとは｜特徴や点数、BI（バーセルインデックス）との違いを解説 - ディアケア",
-   "url": "https://www.almediaweb.jp/expert/feature/2610/index02.html"
+   "name": "Validation of the Barthel Index in Chinese nursing home residents: an item response theory analysis｜（PMC11091391）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11091391/"
   },
   {
-   "name": "Ⅳ. 主な項目に関する評価方法 - 本手引きの作成趣旨",
-   "url": "https://www.care-news.jp/media/works/items/17743/download"
+   "name": "Reliability and validity of the Greek adaptation of the Modified Barthel Index in neurorehabilitation patients｜（PMC10938040）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10938040/"
   },
   {
-   "name": "バーセルインデックスとは？10項目の評価基準とFIMとの違いを解説 - ウェルミージョブ",
-   "url": "https://www.kaigojob.com/magazine/job-qualification/article1434"
-  },
-  {
-   "name": "バーセルインデックス：BI（Barthel Index）とFIMの違いを看護師向けに解説 - しごとレトリバー",
-   "url": "https://shigoto-retriever.com/guide/blog/barthel-index%E2%80%90fim/"
-  },
-  {
-   "name": "バーセル指数 - Wikipedia",
-   "url": "https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%BB%E3%83%AB%E6%8C%87%E6%95%B0"
-  },
-  {
-   "name": "介護者が使用可能なADL評価尺度の開発に関する研 究",
-   "url": "https://omu.repo.nii.ac.jp/record/11813/files/k1996.pdf"
-  },
-  {
-   "name": "作業療法ガイドライン 脳卒中",
-   "url": "https://www.jaot.or.jp/files/page/gakujutsu/guideline/guideline_stroke-1.pdf"
-  },
-  {
-   "name": "自立支援・重度化防止の推進 - 厚生労働省",
-   "url": "https://www.mhlw.go.jp/content/12300000/000698871.pdf"
-  },
-  {
-   "name": "階段昇降、 更衣、排便コントロ - ール、排尿コントロールの10項目から構成される ADLの評価指標である。 高齢者を対象とした Barthel Index の",
-   "url": "https://www.mhlw.go.jp/content/12300000/001239044.pdf"
+   "name": "介護保険最新情報 Vol.965（令和3年4月9日）｜厚生労働省",
+   "url": "https://www.mhlw.go.jp/content/000767887.pdf"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Barthel Index（BI）は、食事、移乗、整容、トイレ動作、入浴、歩行、階段昇降、更衣、排便コントロール、排尿コントロールの10項目で基本日常生活動作（ADL）を評価する指標です。合計100点満点で評価し、短時間で全体像を把握できます。"
+   "x": "Barthel Index（BI）は、1965年にMahoneyとBarthelが、神経筋・筋骨格系の疾患のリハビリテーション患者の、セルフケア能力を点数にする、シンプルな自立の指標として開発しました。以下は、BIを解説した公開論文と、厚生労働省の資料の記載にもとづきます。"
   },
   {
    "t": "h2",
-   "x": "BIの評価項目と採点基準の概要"
-  },
-  {
-   "t": "p",
-   "x": "BIは各項目を0点、5点、10点、15点の5点刻み（2〜4段階）で採点します。訓練場面などで発揮できる最大限の能力である「できるADL」を評価対象としており、観察や聞き取りを中心に約5〜10分で簡便に評価可能です。"
-  },
-  {
-   "t": "h2",
-   "x": "Barthel Index（BI）とFIMの違い"
-  },
-  {
-   "t": "table",
-   "head": [
-    "比較項目",
-    "Barthel Index（BI）",
-    "FIM（機能的自立度評価法）"
-   ],
-   "rows": [
-    [
-     "評価の視点",
-     "できるADL（能力）",
-     "しているADL（実態・介助量）"
-    ],
-    [
-     "評価項目数",
-     "10項目（運動項目のみ）",
-     "18項目（運動13項目＋認知5項目）"
-    ],
-    [
-     "採点段階と満点",
-     "2〜4段階評価（0〜100点）",
-     "7段階評価（18〜126点）"
-    ],
-    [
-     "所要時間",
-     "約5〜10分",
-     "約15〜30分"
-    ],
-    [
-     "主な活用場面",
-     "急性期・一般病棟、介護報酬（ADL維持等加算・LIFE）",
-     "回復期リハビリテーション病棟、詳細な経時変化共有"
-    ]
-   ]
-  },
-  {
-   "t": "h2",
-   "x": "臨床現場での使い分け"
+   "x": "10項目"
   },
   {
    "t": "ul",
    "items": [
-    "短時間で基本ADLの全体像を把握・スクリーニングしたい場合はBIを選択します。",
-    "介助量の変化や認知機能を含めた詳細な経時変化をチームで共有・追跡したい場合はFIMを選択します。",
-    "通所介護のADL維持等加算や科学的介護情報システム（LIFE）など行政・報酬関連のデータ提出ではBIが指定されています。"
+    "食事（feeding）",
+    "車椅子とベッドの間の移乗",
+    "整容（personal toilet・grooming）",
+    "トイレの使用（getting on and off toilet）",
+    "入浴",
+    "平地の歩行（walking on level surface）",
+    "階段の昇降",
+    "更衣",
+    "排便のコントロール",
+    "排尿のコントロール"
    ]
   },
   {
    "t": "h2",
-   "x": "BI評価における注意点と限界"
+   "x": "採点（論文の記載）"
   },
   {
-   "t": "p",
-   "x": "BIは「できるADL」を評価するため、実際の生活場面で「しているADL」と乖離することがあります。また、見守りや声掛けが必要な場合は自立ではなく一部介助等として扱う点や、細かな動作の質や認知機能・IADL（手段的日常生活動作）は判定しにくいため必要に応じて他評価を併用する点に注意します。"
+   "t": "ul",
+   "items": [
+    "合計は0〜100点で、点数が高いほど、機能的な自立の程度が高い",
+    "元の版の採点：入浴や整容のような基本的なセルフケア項目では、0（依存）または1（自立）、歩行や移乗のようなより複雑な項目では、0（依存）、1（大きな介助）、2（小さな介助）、3（自立）",
+    "10項目のうち、2項目が二段階（0点か、それ以外）、6項目が三段階、2項目が四段階の反応の選択肢をもつ、と整理している論文がある（中国の介護施設での検証）",
+    "Shahらが1989年に、5段階の採点に修正した版（修正BI）を作り、感度を高めた",
+    "点数の区分は、資料によって異なるため、このページには載せていません"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "制度での位置づけ"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "介護報酬のADL維持等加算では、ADLの評価は、一定の研修を受けた者が、Barthel Index（BI）を用いて行う、と厚生労働省の資料（介護保険最新情報 Vol.965）に記載されている"
+   ]
   },
   {
    "t": "note",
-   "x": "本解説に記載した評価基準や数値は一般的な概要および資料に基づく目安です。実際の臨床や加算算定等においては、厚生労働省の最新の公式資料や所属施設の規定を確認してください。"
+   "x": "各項目の点数の付け方（10点・5点・0点など）の詳細と、FIMとの比較は、今回、一次資料で確認できなかったので、ここには載せていません。評価の際は、BIの評価マニュアルと、所属先の基準を確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }
