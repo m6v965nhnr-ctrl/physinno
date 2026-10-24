@@ -270,6 +270,7 @@ export async function searchHospitals({
   bedCount,
   recruit = {},
   category,
+  facilityType,
 }: {
   keyword?: string;
   prefecture?: string;
@@ -279,6 +280,7 @@ export async function searchHospitals({
   bedCount?: string;
   recruit?: RecruitFilters;
   category?: string;
+  facilityType?: string;
 }): Promise<Hospital[]> {
   // 給与・休日・アクセスで絞るときは、その情報がある病院だけ（!inner）。絞らないときは、あれば付ける
   const inner = hasRecruitFilters(recruit) ? "!inner" : "";
@@ -291,6 +293,7 @@ export async function searchHospitals({
   if (city) query = query.ilike("city", `%${city}%`);
   if (size) query = query.eq("size", size);
   if (category && isValidFacility(category, null)) query = query.eq("facility_category", category);
+  if (category && facilityType && isValidFacility(category, facilityType)) query = query.eq("facility_type", facilityType);
   if (bedType === "general") query = query.gt("beds_general", 0);
   if (bedType === "long_term") query = query.gt("beds_long_term", 0);
   if (bedType === "psychiatric") query = query.gt("beds_psychiatric", 0);
@@ -320,18 +323,9 @@ export async function searchHospitals({
 export async function listCitiesByPrefecture(
   prefecture: string
 ): Promise<string[]> {
-  const { data } = await supabase
-    .from("hospitals")
-    .select("city")
-    .ilike("prefecture", `%${prefecture}%`)
-    .not("city", "is", null);
-
-  const cities = new Set<string>();
-  (data ?? []).forEach((row) => {
-    if (row.city) cities.add(row.city);
-  });
-
-  return Array.from(cities).sort((a, b) => a.localeCompare(b, "ja"));
+  // 施設が増えて1,000行の読み込みでは取りこぼすため、DB側で distinct（hospital_cities 関数）
+  const { data } = await supabase.rpc("hospital_cities", { p_prefecture: prefecture });
+  return ((data ?? []) as string[]).sort((a, b) => a.localeCompare(b, "ja"));
 }
 
 export async function getHospital(id: string): Promise<Hospital | null> {

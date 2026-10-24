@@ -48,6 +48,7 @@ export default function HospitalSearch() {
     () => (searchParams.get("size") as WorkplaceSize | "") || ""
   );
   const [category, setCategory] = useState(() => searchParams.get("cat") || "");
+  const [ftype, setFtype] = useState(() => searchParams.get("typ") || "");
   const [searching, setSearching] = useState(false);
   const [searched, setSearched] = useState(false);
   const [hospitals, setHospitals] = useState<Hospital[]>([]);
@@ -136,6 +137,7 @@ export default function HospitalSearch() {
       city: city || undefined,
       size: size || undefined,
       category: category || undefined,
+      facilityType: ftype || undefined,
       bedType: bedType || undefined,
       bedCount: bedCount || undefined,
       recruit: {
@@ -161,6 +163,7 @@ export default function HospitalSearch() {
       ["city", city],
       ["size", size],
       ["cat", category],
+      ["typ", ftype],
       ["beds", bedType],
       ["bc", bedCount],
       ["ann", annual],
@@ -336,10 +339,17 @@ export default function HospitalSearch() {
           ))}
         </select>
 
-        <select aria-label="勤務先の種類で絞り込む" value={category} onChange={(e) => setCategory(e.target.value)} className={INPUT_CLASS}>
+        <select aria-label="勤務先の種類で絞り込む" value={category} onChange={(e) => { setCategory(e.target.value); setFtype(""); }} className={INPUT_CLASS}>
           <option value="">勤務先の種類：すべて</option>
           {FACILITY_CATEGORIES.map((c) => <option key={c.category} value={c.category}>{c.category}</option>)}
         </select>
+
+        {category && typesOf(category).length > 0 && (
+          <select aria-label="施設の種類（細かい分類）で絞り込む" value={ftype} onChange={(e) => setFtype(e.target.value)} className={INPUT_CLASS}>
+            <option value="">細かい種類：すべて（老健・デイサービスなど）</option>
+            {typesOf(category).map((t) => <option key={t} value={t}>{t}</option>)}
+          </select>
+        )}
 
         {/* 規模・病床・年収・雇用形態・休日・アクセス・こだわりを、1つにまとめる */}
         <button
