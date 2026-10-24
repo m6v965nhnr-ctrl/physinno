@@ -1,119 +1,55 @@
 {
  "slug": "traumatic-brain-injury-pt",
  "title": "外傷性脳損傷（TBI）・高次脳機能障害の診断基準・理学療法評価と介入基準値",
- "description": "外傷性脳損傷（TBI）に伴う高次脳機能障害の診断基準、重症度分類、急性期理学療法における開始・中止基準値や主要評価法を理学療法士・学生向けにまとめた解説です。",
+ "description": "外傷性脳損傷（TBI）の定義と、急性期の管理の基本（GCSによる気道確保の判断、低酸素・低血圧の回避、CT）を公開総説にもとづき、高次脳機能障害の定義を厚生労働省の資料にもとづいて整理します。理学療法の具体的な評価・介入の内容は、一次資料で確認できていないため載せていません。",
  "category": "疾患別の理学療法",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "A comprehensive review of rehabilitation approaches for traumatic brain injury: efficacy a",
-   "url": "https://www.frontiersin.org/journals/neurology/articles/10.3389/fneur.2025.1608645/pdf"
+   "name": "Updated Review of the Management of and Guidelines for Traumatic Brain Injury｜（PMC12525523）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12525523/"
   },
   {
-   "name": "Detecting malingered neurocognitive dysfunction: Comparative analysis of freestanding and ",
-   "url": "https://orbi.umons.ac.be/bitstream/20.500.12907/50268/1/2024%20SISTIAGA%20-%20Applied%20Neuropsychology%20%20Adults%20Simulation.pdf"
-  },
-  {
-   "name": "Functional recovery of patients with moderate and severe traumatic brain injury after exte",
-   "url": "https://www.frontiersin.org/journals/human-neuroscience/articles/10.3389/fnhum.2026.1932368/pdf"
-  },
-  {
-   "name": "NIH Toolbox Cognition Tests Following Traumatic Brain Injury: Frequency of Low Scores",
-   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5745050/"
-  },
-  {
-   "name": "Neuropsychological Assessment in Patients with Traumatic Brain Injury: A Comprehensive Rev",
-   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10376996/"
-  },
-  {
-   "name": "Recommendations for the Use of Common Outcome Measures in Traumatic Brain Injury Research ",
-   "url": "https://medicine.utah.edu/libraries/pdf.js/web/viewer.html?file=https://medicine.utah.edu/sites/g/files/zrelqx416/files/media/documents/2025/wilde1.pdf"
-  },
-  {
-   "name": "Rehabilitation Manual 19",
-   "url": "https://www.rehab.go.jp/english/pdf/E19.pdf"
-  },
-  {
-   "name": "Rehabilitation of executive functioning following paediatric traumatic brain injury: A Goa",
-   "url": "https://humanities.uct.ac.za/sites/default/files/content_migration/humanities_uct_ac_za/1233/files/Claire.Corbett.pdf"
-  },
-  {
-   "name": "https://dialnet.unirioja.es/descarga/articulo/9862480.pdf",
-   "url": "https://dialnet.unirioja.es/descarga/articulo/9862480.pdf"
-  },
-  {
-   "name": "第1章 高次脳機能障害診断基準ガイドライン",
-   "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+   "name": "高次脳機能障害支援モデル事業 中間報告書について｜厚生労働省（平成15年）",
+   "url": "https://www.mhlw.go.jp/houdou/2003/04/h0410-1.html"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "外傷性脳損傷（TBI）では、運動機能障害だけでなく記憶障害、注意障害、遂行機能障害、社会的行動障害といった多彩な高次脳機能障害を合併します。理学療法士は運動機能のみにとらわれず、意識水準や認知機能の障害像を的確に把握し、多職種連携のもとで急性期から生活期を見据えたアプローチを実施することが不可欠です。"
+   "x": "以下は、TBIの管理についての公開総説と、厚生労働省の「高次脳機能障害支援モデル事業」の資料の記載にもとづきます。日本の「頭部外傷治療・管理のガイドライン 第4版」は、全文を取得できず、確認できていません。"
   },
   {
    "t": "h2",
-   "x": "外傷性脳損傷（TBI）の重症度分類と評価基準"
-  },
-  {
-   "t": "table",
-   "head": [
-    "重症度区分",
-    "Glasgow Coma Scale（GCS）基準",
-    "病態・画像の補足所見"
-   ],
-   "rows": [
-    [
-     "軽度（Mild）",
-     "GCS 13〜15点（資料によりGCS 13点以上）",
-     "CT等の画像で急性期外傷病変（皮質挫傷やクモ膜下出血等）を認める場合は「複雑性軽度（Complicated mild）」と分類される"
-    ],
-    [
-     "中等度（Moderate）",
-     "GCS 9〜12点",
-     "受傷後24時間以内の最低値などにより判定"
-    ],
-    [
-     "重度（Severe）",
-     "GCS 3〜8点（GCS 8点以下）",
-     "24時間以上持続する昏睡や、遷延性意識障害（無反応覚醒症候群・最小意識状態）への移行リスクを伴う"
-    ]
-   ]
-  },
-  {
-   "t": "h2",
-   "x": "行政的高次脳機能障害の診断基準概要"
+   "x": "外傷性脳損傷の定義と急性期の管理（総説）"
   },
   {
    "t": "ul",
    "items": [
-    "主要症状：事故や疾病による脳の器質的病変が確認され、記憶障害、注意障害、遂行機能障害、社会的行動障害などの認知障害により日常生活や社会生活に制約が生じていること。",
-    "検査所見：CT、MRI、脳波などで認知障害の原因となる器質的病変が確認できること（画像で明瞭に確認できない場合でも慎重な評価により診断されることがある）。",
-    "除外項目：身体障害として認定可能な症状のみで主要な認知障害を欠く場合、受傷前から存在する症状、先天性疾患、周産期脳損傷、発達障害、進行性疾患によるものは除外される。",
-    "診断の時期：急性期症状を脱した後に、神経心理学的検査所見なども参考にして行われる。"
+    "外傷性脳損傷（TBI）は、外力による、脳機能の変化、または脳の病変の証拠として定義される。軽い脳震盪から、長期の介入とリハビリテーションを要する重度の損傷まで、幅がある",
+    "気道の確保は、Glasgow Coma Scale（GCS）が8未満、または顔面の外傷が大きい場合に重要とされる",
+    "低酸素は、二次的な脳損傷の主要な要因で、酸素飽和度を90％より高く保つ。低血圧（収縮期血圧90 mmHg未満）は、脳虚血を悪化させる",
+    "病院到着後は、気道・呼吸・循環の評価に続き、神経学的な診察でGCSと瞳孔反応を調べる。非造影CTが、神経画像検査の基本で、血腫・脳挫傷・頭蓋骨骨折を調べ、治療の判断に役立つ"
    ]
   },
   {
    "t": "h2",
-   "x": "理学療法介入の要点と臨床評価尺度"
+   "x": "高次脳機能障害（厚生労働省の資料）"
   },
   {
    "t": "ul",
    "items": [
-    "運動・理学療法プログラム：良肢位保持、褥瘡予防プログラム、四肢の他動・自動介助関節可動域訓練、呼吸理学療法を基本とし、離床の進捗に応じて歩行訓練や課題指向型アプローチ、CI療法、ロボット支援歩行訓練（Lokomat等）を段階的に導入する。",
-    "二重課題（デュアルタスク）訓練：運動課題に計算や注意課題を組み合わせる手法やVR技術を活用し、身体機能と認知機能の双方を刺激して神経可塑性と回復を促す。"
+    "「高次脳機能障害」は、一般に、外傷性脳損傷、脳血管障害等により脳に損傷を受け、その後遺症等として生じた、記憶障害、注意障害、社会的行動障害などの認知障害等を指す",
+    "具体的には、「会話がうまくかみ合わない」「段取りをつけて物事を行うことができない」等の症状があげられる",
+    "日常生活に大きな支障をもたらす場合があるが、一見してその症状を認識することが困難であることなどから、十分な理解が得られていない（資料の記載）"
    ]
   },
   {
    "t": "note",
-   "x": "急性期の理学療法・早期離床を始める条件と中止基準（心拍数・血圧・SpO2・意識レベルなどの数値）は、一次資料で確認できていないため、このページには載せていません。担当医師の指示と、所属施設のプロトコルにしたがってください。"
-  },
-  {
-   "t": "note",
-   "x": "本稿で示したバイタルサイン基準値、重症度区分、診断基準は参照文献およびガイドラインに基づく目安です。実際の臨床現場では患者個々の病態や合併症、所属施設のプロトコルに基づき、必ず最新の公式ガイドラインや医師の指示を確認の上で介入してください。"
+   "x": "重症度の分類（GCS 13〜15・9〜12・3〜8）、行政上の診断基準の詳細、急性期の離床・中止基準、理学療法の評価と介入の内容は、今回、一次資料で確認できなかったので、ここには載せていません。日本脳神経外科学会などのガイドライン、主治医の指示、施設のプロトコルを確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }
