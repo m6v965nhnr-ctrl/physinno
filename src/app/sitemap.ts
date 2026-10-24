@@ -80,6 +80,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const { data } = await supabasePublic
       .from("hospitals")
       .select("id, created_at")
+      // 介護施設などを取り込んで件数が多いため、サイトマップは病院だけ（5万URLの上限と重さを避ける）
+      .eq("facility_category", "病院・医療機関")
       .order("created_at", { ascending: false })
       .order("id")
       .range(from, from + 999);
