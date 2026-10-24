@@ -6,8 +6,8 @@ export const HOSPITAL_DATA_NOTE = "出典：厚生労働省 医療情報ネッ�
 export async function countHospitalsByPrefecture(): Promise<Record<string, number>> {
   const counts: Record<string, number> = {};
   for (let from = 0; from < 10000; from += 1000) {
-    // このページは「リハビリテーション科のある病院」の一覧なので、介護施設などは数えない
-    const { data } = await supabasePublic.from("hospitals").select("prefecture").eq("facility_category", "病院・医療機関").order("id").range(from, from + 999);
+    // このページは「リハビリテーション科のある病院」の一覧なので、介護施設・クリニック（facility_typeあり）は数えない
+    const { data } = await supabasePublic.from("hospitals").select("prefecture").eq("facility_category", "病院・医療機関").is("facility_type", null).order("id").range(from, from + 999);
     if (!data || data.length === 0) break;
     for (const r of data) if (r.prefecture) counts[r.prefecture] = (counts[r.prefecture] ?? 0) + 1;
     if (data.length < 1000) break;
@@ -22,6 +22,7 @@ export async function listHospitalsInPrefecture(pref: string): Promise<AreaHospi
     .from("hospitals")
     .select("id, name, city, beds_total")
     .eq("facility_category", "病院・医療機関")
+    .is("facility_type", null)
     .eq("prefecture", pref)
     .order("city")
     .order("name")
