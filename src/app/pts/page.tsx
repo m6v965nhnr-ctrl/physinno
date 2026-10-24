@@ -96,7 +96,8 @@ function PTSearchPageInner() {
         const accountType = await getMyAccountType(user.id);
         // 種類がまだ入っていない古いアカウントは、下のメニューと同じく、PTとして扱う
         setIsPt(accountType === null || isPtLike(accountType));
-        if (accountType === "general") setIsOrg(!!(await myOrganization().catch(() => null)));
+        if (accountType === "org") setIsOrg(true);
+        else if (accountType === "general") setIsOrg(!!(await myOrganization().catch(() => null)));
       }
       setRoleChecked(true);
     });

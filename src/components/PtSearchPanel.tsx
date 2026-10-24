@@ -27,13 +27,8 @@ export default function PtSearchPanel({ loggedIn = true, showTitle = true }: { l
     const prefQuery = sanitize(prefecture);
     const specialtyQuery = sanitize(specialty);
 
-    // 条件が1つもないときは一覧を出さない（検索してヒットした人だけを表示する）
-    if (!nameQuery && !prefQuery && !specialtyQuery) {
-      setPts([]);
-      setSearched(false);
-      return;
-    }
-
+    // 条件が空のときは、登録しているPTを全員出す
+    // shortcut: いまは全員。PTが増えたら accept_scouts がオンの人だけに絞る
     setSearching(true);
 
     let query = supabase
@@ -135,7 +130,7 @@ export default function PtSearchPanel({ loggedIn = true, showTitle = true }: { l
 
             {!searched && (
               <p className="text-sm text-gray-400">
-                名前・地域・専門分野のどれかを入れて検索すると、当てはまる理学療法士が表示されます。
+                条件を入れずに検索すると、登録している理学療法士が表示されます。名前・地域・専門分野でも絞り込めます。
               </p>
             )}
 

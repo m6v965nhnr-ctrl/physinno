@@ -67,13 +67,13 @@ const GENERAL_MENUS: Menu[] = [
   { href: "/mypage", icon: "○", label: "マイページ" },
 ];
 
-// 施設（組織）のアカウント：ホーム（自分の施設・求人・投稿）・PT検索・投稿・スカウトのメッセージ・マイページ
+// 施設（組織）のアカウント：マイページ・PT検索・投稿・スカウトのメッセージ・ホーム（自分の施設・求人・投稿）
 const ORG_MENUS: Menu[] = [
-  { href: "/org", icon: "⌂", label: "ホーム" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
   { href: "/pts", icon: "⌕", label: "検索" },
   { href: "/org/posts/new", icon: "+", label: "投稿" },
   { href: "/scouts", icon: "💬", label: "メッセージ" },
-  { href: "/mypage", icon: "○", label: "マイページ" },
+  { href: "/org", icon: "⌂", label: "ホーム" },
 ];
 
 export default function BottomNavWrapper() {

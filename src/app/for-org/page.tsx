@@ -46,7 +46,7 @@ export default function ForOrgPage() {
           <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">求人の掲載も、スカウトも、無料です。</p>
           <div className="mt-6 flex flex-col gap-3 sm:flex-row">
             <Link href={registerHref} className={BTN_PRIMARY}>採用担当として無料ではじめる</Link>
-            <Link href="/pts" className={BTN_SECONDARY}>登録せずに、PT検索を見てみる</Link>
+            <Link href="/home/pt-search" className={BTN_SECONDARY}>登録せずに、PT検索を見てみる</Link>
           </div>
         </div>
       </section>

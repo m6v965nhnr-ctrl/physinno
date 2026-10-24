@@ -25,6 +25,8 @@ import QualificationTargets from "@/components/QualificationTargets";
 import { DEFAULT_PT_NAME, ptName } from "@/lib/format";
 import { askConfirm } from "@/lib/confirm";
 import { GeneralMyPage, MyReview, ProfileItem } from "@/components/mypage/GeneralAndItems";
+import OrgMyPage from "@/components/mypage/OrgMyPage";
+import { Org, myOrganization } from "@/lib/recruit";
 import { appealProgress, getWorkPrefs } from "@/lib/ptAppeal";
 
 export default function MyPage() {
@@ -49,6 +51,8 @@ export default function MyPage() {
   const [userId, setUserId] = useState("");
   // 「採用担当に伝える」で書けた項目の数（5つ中）
   const [appealDone, setAppealDone] = useState<number | null>(null);
+  // 採用（組織）のアカウント、または組織を登録した一般アカウントの組織
+  const [org, setOrg] = useState<Org | null>(null);
 
 
   useEffect(() => {
@@ -93,6 +97,7 @@ export default function MyPage() {
 
     // 一般の方は自分のレビューとフォロー数だけ読み込む
     if (type === "general" || type === "org") {
+      setOrg(await myOrganization().catch(() => null));
       await loadMyReviews();
 
       const { data: followingData } = await supabase
@@ -276,7 +281,12 @@ export default function MyPage() {
     );
   }
 
-  if (accountType === "general" || accountType === "org") {
+  // 採用（org）のアカウントと、組織を登録している一般アカウントは、採用向けのマイページ
+  if (accountType === "org" || (accountType === "general" && org)) {
+    return <OrgMyPage org={org} onLogout={handleLogout} />;
+  }
+
+  if (accountType === "general") {
     return (
       <GeneralMyPage
         name={email.split("@")[0] || "ユーザー"}
