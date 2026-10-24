@@ -91,6 +91,12 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <br />
             登録は、メールアドレスだけ・1分
           </p>
+
+          <p className="mt-2 text-xs leading-6 text-gray-500">
+            病院・施設・企業の採用担当の方は
+            <Link href="/register?type=org" className="ml-1 font-bold text-[var(--lp-g700)] underline underline-offset-4">採用担当として登録</Link>
+            （求人の掲載・PTへのスカウト）
+          </p>
         </div>
 
         <div className="relative mx-auto max-w-5xl px-6 pb-8">

@@ -61,7 +61,9 @@ export default function JobsPage() {
             ))}
           </ul>
         )}
-        <p className="text-center text-xs text-gray-500">採用の担当の方は <Link href="/org" className="underline">組織の登録・求人の管理</Link> へ</p>
+        <p className="text-center text-xs text-gray-500">
+          採用の担当の方は <Link href="/org" className="underline">組織の登録・求人の管理</Link> へ（アカウントがない方は <Link href="/register?type=org" className="underline">採用担当として登録</Link>）
+        </p>
       </div>
     </main>
   );

@@ -12,6 +12,7 @@ import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
 type AccountType = "pt" | "general" | "student" | "teacher";
 
 // 先生（大学・専門学校）は、種類を選ばせず、専用の入力欄だけにする（/register?type=teacher）。PTのプロフィールは作らない
+// 採用担当（病院・施設・企業）は、一般として登録し、登録後に /org で組織をつくる（/register?type=org）
 
 const ACCOUNT_TYPE_OPTIONS: {
   value: AccountType;
@@ -47,6 +48,7 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
+  const [isOrg, setIsOrg] = useState(false);
   const isTeacher = accountType === "teacher";
   const [school, setSchool] = useState("");
   const [faculty, setFaculty] = useState("");
@@ -66,6 +68,10 @@ export default function RegisterPage() {
     const type = params.get("type");
     if (type === "pt" || type === "general" || type === "student" || type === "teacher") {
       setAccountType(type);
+    }
+    if (type === "org") {
+      setIsOrg(true);
+      setAccountType("general");
     }
 
     // ゲストとして見ていた画面（?next=）を覚えておき、プロフィールの入力が終わったら、そこへ戻す
@@ -175,6 +181,8 @@ export default function RegisterPage() {
     router.push(
       isTeacher
         ? "/student/quiz/teacher"
+        : isOrg
+        ? "/org"
         : accountType === "general"
         ? (takeReturnTo() ?? "/pts")
         : accountType === "student"
@@ -195,16 +203,20 @@ export default function RegisterPage() {
         </Link>
 
         <h1 className="mt-10 text-3xl font-semibold tracking-tight">
-          {isTeacher ? "先生の新規登録" : "新規登録"}
+          {isTeacher ? "先生の新規登録" : isOrg ? "採用担当の新規登録" : "新規登録"}
         </h1>
 
         <p className="mt-3 text-sm text-gray-500">
-          {isTeacher ? "養成校の教員向けです。クラスとテストをつくって、学生の状況を見られます。" : "Re:lightをはじめましょう"}
+          {isTeacher
+            ? "養成校の教員向けです。クラスとテストをつくって、学生の状況を見られます。"
+            : isOrg
+            ? "病院・施設・企業の採用担当向けです。登録後に組織の情報を入れると、運営の確認のあと、求人の掲載やPTへのスカウトができます。"
+            : "Re:lightをはじめましょう"}
         </p>
 
         <div className="mt-10 space-y-5">
 
-          {(
+          {!isOrg && (
           <div>
             <p className="mb-2 block text-sm font-medium">
               アカウントの種類 <span className="text-xs font-normal text-red-500">（必須）</span>
@@ -298,6 +310,8 @@ export default function RegisterPage() {
             <p className="mt-2 text-xs leading-5 text-gray-400">
               {isTeacher
                 ? "クラスに参加した学生に、先生の名前として表示されます。"
+                : isOrg
+                ? "担当者の名前です。組織名は、登録のあとに入れます。"
                 : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
             </p>
           </div>
