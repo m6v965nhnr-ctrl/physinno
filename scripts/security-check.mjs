@@ -38,7 +38,7 @@ function check(name, ok, detail = "") {
 }
 
 // 1) 匿名で、1行も読めてはいけない表（RLSで0行、または権限エラー）
-for (const t of ["users", "pt_private", "admin_users", "operator_messages", "messages", "conversations", "notifications", "hospital_reviews", "user_blocks"]) {
+for (const t of ["users", "pt_private", "admin_users", "operator_messages", "messages", "conversations", "notifications", "hospital_reviews", "user_blocks", "pt_work_prefs"]) {
   const r = await req(`/rest/v1/${t}?select=*&limit=1`);
   const rows = Array.isArray(r.body) ? r.body.length : 0;
   check(`匿名は ${t} を読めない`, rows === 0, `status=${r.status} rows=${rows}`);
