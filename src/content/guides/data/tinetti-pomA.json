@@ -1,120 +1,38 @@
 {
  "slug": "tinetti-pomA",
  "title": "Tinetti評価（POMA）の構成・点数配分・カットオフ値と評価方法",
- "description": "Tinettiバランス・歩行評価（POMA）の項目構成（28点満点：バランス16点・歩行12点）や転倒リスクのカットオフ値、採点方法を理学療法士・学生向けに解説。資料ごとの基準値の違いも併記しています。",
+ "description": "Tinetti Performance-Oriented Mobility Assessment（POMA、Tinetti Test）の位置づけ（バランスと歩行の評価、3段階0〜2、合計0〜28）と、項目数・カットオフ値が資料によって異なる点を、公開論文の記載にもとづいて整理します。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "Determination of cut-off values of tinetti performance oriented mobility assessment and fa",
-   "url": "https://annalsmedres.org/index.php/aomr/article/view/4037/6292"
+   "name": "Responsiveness of the Mini-BESTest, Dynamic Gait Index, Berg balance scale, and POMA in Parkinson’s disease｜Scientific Reports 2025（PMC12217553）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217553/"
   },
   {
-   "name": "TINETTI ASSESSMENT TOOL: BALANCE AND GAIT - Briggs Healthcare",
-   "url": "https://www.briggshealthcare.com/assets/itemdownloads/3424P.pdf"
-  },
-  {
-   "name": "TINETTI BALANCE & GAIT ASSESSMENT . . . . . . . . . . . . . . . . . . . . . . . . . . . . ",
-   "url": "https://ptclinic.com/websites/991/files/TinettiBalanceAndGaitAssessment.pdf"
-  },
-  {
-   "name": "TINETTI GAIT AND BALANCE ASSESSMENT TOOL - UCLA Health",
-   "url": "https://www.uclahealth.org/sites/default/files/documents/2a/tinetti-gait-and-balance.pdf"
-  },
-  {
-   "name": "Tinetti Performance Oriented Mobility Assessment (POMA)*",
-   "url": "https://www.leadingagemn.org/assets/docs/Tinetti-Balance-Gait--POMA.pdf"
-  },
-  {
-   "name": "Tinetti Performance-Oriented Mobility Assessment (POMA) - WeGuide",
-   "url": "https://www.weguide.health/instruments/tinetti-performance-oriented-mobility-assessment-poma"
-  },
-  {
-   "name": "Tinetti-Test - Wikipedia",
-   "url": "https://de.wikipedia.org/wiki/Tinetti-Test"
-  },
-  {
-   "name": "https://live.kibu.ac.ke/reference/z9YAgn5FE108/Tinetti_Performance_Oriented_Mobility_Asses",
-   "url": "https://live.kibu.ac.ke/reference/z9YAgn5FE108/Tinetti_Performance_Oriented_Mobility_Assessment"
-  },
-  {
-   "name": "https://www.balticsportscience.com/cgi/viewcontent.cgi?article=1629&context=journal",
-   "url": "https://www.balticsportscience.com/cgi/viewcontent.cgi?article=1629&context=journal"
-  },
-  {
-   "name": "バランス機能評価のまとめ -各疾患別での推奨-｜yanagi｜AI｜pythonデータ分析 - note",
-   "url": "https://note.com/yanagi_pt_cr/n/n3be7ab4061ad"
+   "name": "The Tinetti Balance Test Is an Effective Predictor of Functional Decline in Non-Hospitalized Post-COVID-19 Individuals｜J Clin Med 2024（PMC11547088）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11547088/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Tinetti Performance Oriented Mobility Assessment（POMA）は、高齢者のバランス能力と歩行機能を評価し、転倒リスクを把握するための臨床評価尺度です。"
+   "x": "Performance-Oriented Mobility Assessment（POMA、Tinetti Test）は、バランスと歩行を、観察で評価するパフォーマンステストです。以下は、これを使った公開論文の記載にもとづきます。"
   },
   {
-   "t": "h2",
-   "x": "POMAの構成と配点"
-  },
-  {
-   "t": "p",
-   "x": "検査はバランス評価と歩行評価の2セクションに分かれ、合計28点満点で評価されます。各項目は主に0点（障害・全介助）から2点（自立・正常）の3段階の順序尺度で採点され、所要時間は約10〜15分（資料によっては5〜10分）です。"
-  },
-  {
-   "t": "table",
-   "head": [
-    "評価セクション",
-    "項目数",
-    "最高得点",
-    "主な評価項目内容"
-   ],
-   "rows": [
-    [
-     "バランス評価（Balance）",
-     "9項目",
-     "16点",
-     "座位バランス、立ち上がり、立位保持、胸骨押し試験（Push test）、閉眼立位、360度回転、着座など"
-    ],
-    [
-     "歩行評価（Gait）",
-     "7〜8項目",
-     "12点",
-     "歩行開始の躊躇、ステップの長さ・高さ、左右対称性、連続性、歩行路の偏り、体幹の揺れ、両足間隔（歩幅）"
-    ],
-    [
-     "総合得点（Total）",
-     "16〜17項目",
-     "28点",
-     "バランス得点（16点）＋ 歩行得点（12点）"
-    ]
+   "t": "ul",
+   "items": [
+    "バランスと歩行を、3段階の順序尺度（0〜2）で評価し、合計は0〜28点。0は、高度の障害、2は自立を示す",
+    "日常生活を代表するいくつかの課題からなり、バランスを評価する部分と、歩行を評価する部分に分かれる",
+    "項目数の記載は、論文によって異なる。ある論文は、元は14課題（バランス8、歩行6）で、0〜28点、と記載している。他の版では項目数が異なる"
    ]
   },
   {
-   "t": "h2",
-   "x": "転倒リスクの判定基準（カットオフ値）"
-  },
-  {
-   "t": "p",
-   "x": "総合得点（28点満点）に基づき転倒リスクを分類します。資料や対象者によって分類・カットオフ値に以下のような違いがあります。"
-  },
-  {
-   "t": "table",
-   "head": [
-    "分類・資料",
-    "高リスク（High Risk）",
-    "中等度リスク（Moderate Risk）",
-    "低リスク（Low Risk）"
-   ],
-   "rows": [
-    [
-     "一般的な基準（開発者・臨床ガイド）",
-     "18点以下 または 19点未満",
-     "19〜23点 または 19〜24点",
-     "24点以上 または 25〜28点"
-    ]
-   ]
+   "t": "note",
+   "x": "転倒リスクのカットオフ値（19点以下、24点以上など）は、資料によって区分が異なり、今回、一次資料で確認できなかったので、ここには載せていません。各項目の採点は、公式の評価用紙で確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }

@@ -1,156 +1,34 @@
 {
  "slug": "oswestry-disability-index",
  "title": "ODI（Oswestry Disability Index）の評価方法・基準値・使い分け",
- "description": "理学療法士・学生向けに、腰痛障害評価指標（ODI）の概要、計算方法、障害度分類、国民標準値、およびRDQ・PSFSとの使い分けを解説。",
+ "description": "Oswestry Disability Index（ODI）の構成（10項目・各6段階）と、扱う生活領域（痛みの強さ、身の回り、持ち上げ、歩行、座位、立位、睡眠、性生活、社会生活、移動）を、公開論文の記載にもとづいて整理します。点数の区分は一次資料で確認できていないため載せていません。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "OSWESTRY LOW BACK PAIN DISABILITY QUESTIONNAIRE",
-   "url": "https://northwestpainguidance.org/wp-content/uploads/2016/05/Oswestry-Low-Back-Pain-Disability-Questionnaire.pdf"
-  },
-  {
-   "name": "RDQ・ODIの違いと選び方｜PSFSとの使い分け - rehabilikun",
-   "url": "https://rehabilikunblog.com/low-back-pain-prom/"
-  },
-  {
-   "name": "『腰痛研究のエビデンス・評価と臨床的展望』Ｏｓｗｅｓｔｒｙ Ｄｉｓａｂｉｌｉｔｙ Ｉｎｄｅｘ―日本語版について",
-   "url": "https://cir.nii.ac.jp/crid/1390282679417001856"
-  },
-  {
-   "name": "オスウェストリー障害指数｜PDF & オンライン計算機 - Physiotutors",
-   "url": "https://www.physiotutors.com/ja/questionnaires/oswestry-disability-index-odi-olbpdq/"
-  },
-  {
-   "name": "修正A - 慶應義塾大学医学部整形外科学教室",
-   "url": "http://www.keio-ortho.jp/wp-content/uploads/2019/06/20110142.pdf"
-  },
-  {
-   "name": "全国住民調査に基づく日本語版オズウェストリー障害指数（ODI version 2.1a）の妥当性評価と国民標準値の推定 | 研究成果情報 - 福島県立医科大学",
-   "url": "https://www.fmu.ac.jp/research/results/seika/2026/20260604_1.html"
-  },
-  {
-   "name": "医学部医学科の栗田教授らが、日本人における腰痛評価指標「ODI」の国民標準値を初めて報告しました | ニュース - 東海大学",
-   "url": "https://www.u-tokai.ac.jp/ud-medicine/news/18176/"
-  },
-  {
-   "name": "理学療法診療ガイドライン 第1版“ダイジェスト版”",
-   "url": "https://www.japanpt.or.jp/upload/branch/jsptdm/obj/files/%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E8%A8%BA%E7%99%82%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%80%80%E7%AC%AC1%E7%89%88%E3%80%80%E3%83%80%E3%82%A4%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E7%89%88.pdf"
-  },
-  {
-   "name": "職場における腰痛の効果的な治療法等 に関する研究 - 厚生労働省",
-   "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/hojokin/dl/27_14020301-01.pdf"
-  },
-  {
-   "name": "認知機能療法： 慢性腰部の痛みと障害の効果的な緩和 - Physiotutors",
-   "url": "https://www.physiotutors.com/ja/research/cognitive-functional-therapy-effective-relief-for-pain-and-disability-in-chronic-low-back-pain/"
+   "name": "Psychometric evaluation of the Oswestry Disability Index in patients with chronic low back pain: factor and Mokken analyses｜Health Qual Life Outcomes 2017（PMC5627480）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627480/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Oswestry Disability Index（ODI）は、腰痛症や腰椎疾患患者における疼痛の程度と生活障害度を客観的に評価する代表的な患者報告アウトカム（PROM）です。理学療法診療ガイドライン等でも有用性が示されており、日常生活動作（ADL）への影響を経時的に追跡・評価するために広く使用されています。"
-  },
-  {
-   "t": "h2",
-   "x": "ODIの項目構成とスコア計算方法"
-  },
-  {
-   "t": "p",
-   "x": "ODIは、痛みの強さ、セルフケア、持上げ動作、歩行、座位、立位、睡眠、性生活、社会生活、旅行・移動の10セクションで構成されます。各セクションを0点（制限なし）から5点（最大制限）の6段階で評価し、未回答項目がある場合は全可能得点（分母）を調整して百分率（％）で算出します。"
+   "x": "Oswestry Disability Index（ODI）は、腰（または脚）の問題が、日常生活をこなす能力に、どの程度影響しているかを調べる質問票です。以下は、ODIを検証した公開論文（慢性腰痛の患者225人）の記載にもとづきます。"
   },
   {
    "t": "ul",
    "items": [
-    "全10項目回答時： (獲得合計点 / 50) × 100 ＝ ODI（％）",
-    "1項目未回答時： (獲得合計点 / 45) × 100 ＝ ODI（％）",
-    "得点方向：パーセンテージが高いほど機能障害が重いことを示す（改善時は低下）"
+    "10項目で構成される",
+    "10項目は、痛みと日常機能を扱う：痛みの強さ、身の回りの清潔・整容、持ち上げ、歩行、座位、立位、睡眠、性的活動、社会活動、移動（旅行）",
+    "各項目は、6段階の尺度で評価する"
    ]
-  },
-  {
-   "t": "h2",
-   "x": "ODIの障害度分類と判定基準"
-  },
-  {
-   "t": "p",
-   "x": "ODIのスコア判定には、百分率（％）による5段階の障害度分類と、得点計算機などで用いられる50点満点の点数区分が存在します。評価資料やツールにより表記基準が異なるため併記します。"
-  },
-  {
-   "t": "table",
-   "head": [
-    "障害度の区分",
-    "ODI（％）"
-   ],
-   "rows": [
-    [
-     "最小限の障害（minimal disability）",
-     "0〜20％"
-    ],
-    [
-     "中等度の障害（moderate disability）",
-     "21〜40％"
-    ],
-    [
-     "重度の障害（severe disability）",
-     "41〜60％"
-    ],
-    [
-     "生活に支障をきたす障害（crippled）",
-     "61〜80％"
-    ],
-    [
-     "寝たきり、または症状の過大な表現",
-     "81〜100％"
-    ]
-   ]
-  },
-  {
-   "t": "h2",
-   "x": "腰痛評価尺度（ODI・RDQ・PSFS）の使い分け"
-  },
-  {
-   "t": "table",
-   "head": [
-    "評価尺度",
-    "評価形式・項目数",
-    "結果の表示形式",
-    "得点方向",
-    "選択のポイント・特徴"
-   ],
-   "rows": [
-    [
-     "ODI",
-     "10セクション（6段階選択）",
-     "割合（％）",
-     "高得点＝障害大",
-     "固定項目で腰痛特異的な障害度を標準化して評価"
-    ],
-    [
-     "RDQ",
-     "24項目（はい/いいえ）",
-     "合計点（0〜24点）",
-     "高得点＝障害大",
-     "該当項目の有無で簡便に身体機能障害を測定"
-    ],
-    [
-     "PSFS",
-     "患者個人の重要活動1〜3項目",
-     "各0〜10点評価",
-     "高得点＝良好",
-     "患者固有の困り動作や目標動作を経時的に追跡"
-    ]
-   ]
-  },
-  {
-   "t": "p",
-   "x": "臨床における理学療法評価では、標準化された機能を追う場合はODIまたはRDQを選択し、患者固有の困り動作を追う場合はPSFSを組み合わせます。再評価時には途中で尺度や言語版を変更せず、同一条件で比較することが重要です。"
   },
   {
    "t": "note",
-   "x": "本ページに記載した数値や基準値は資料に基づく目安です。臨床判定にあたっては、患者個々の背景を考慮し、必ず最新の公式資料や所属施設のプロトコルをご確認ください。"
+   "x": "総得点のパーセント表示への換算、点数の区分（軽度・中等度など）、最小の臨床的に重要な差（MCID）は、研究によって値が異なり、今回、一次資料で確認できなかったので、ここには載せていません。質問票は、公式の版（日本語版を含む）で確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }

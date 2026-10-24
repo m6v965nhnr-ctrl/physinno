@@ -1,127 +1,38 @@
 {
  "slug": "dynamic-gait-index",
  "title": "Dynamic Gait Index（DGI）の評価項目・カットオフ値・使い方",
- "description": "Dynamic Gait Index（DGI）の評価項目、採点基準、対象疾患別のカットオフ値を解説。24点満点の動的歩行評価で、高齢者や脳卒中、パーキンソン病等の転倒リスク判断に用いる基準値をまとめています。",
+ "description": "Dynamic Gait Index（DGI）の位置づけ（歩行中のバランスの活動レベルの評価）と、多発性硬化症・パーキンソン病・脳卒中・前庭障害などで信頼性・妥当性が報告されていることを、公開論文の記載にもとづいて整理します。項目と点数は、一次資料で確認できていないため載せていません。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
  "updatedAt": "2026-10-24",
- "checkedOn": "2026-10-22",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "Dynamic Gait Index",
-   "url": "https://eoa.umontreal.ca/wp-content/uploads/sites/32/doc_DPC_augers_problemesEquilibre_16_04_29-30_DynamicGaitIndex.pdf"
+   "name": "Is the Dynamic Gait Index a useful outcome to measure balance and ambulation in patients with cerebellar ataxia?｜（PMC8449807）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8449807/"
   },
   {
-   "name": "Dynamic Gait Index (DGI) - Fysiobasen",
-   "url": "https://www.fysiobasen.no/en/innlegg/dynamic-gait-index-dgi"
-  },
-  {
-   "name": "Dynamic Gait Index (DGI): Reference Guide - Novi AMS",
-   "url": "https://assets.noviams.com/novi-file-uploads/aaop/pdfs-and-documents/How-To-Videos/DGI.pdf"
-  },
-  {
-   "name": "Dynamic Gait Index - Carolina Therapy Services",
-   "url": "https://www.carolinatherapy.net/wp-content/uploads/DGI-Dynamic-Gait-Index.pdf"
-  },
-  {
-   "name": "Dynamic Gait Index - Free PDF Download - Pabau",
-   "url": "https://pabau.com/templates/dynamic-gait-index/"
-  },
-  {
-   "name": "Dynamic Gait Index in Hemiplegic Cerebral Palsy - ClinicalTrials.gov",
-   "url": "https://cdn.clinicaltrials.gov/large-docs/39/NCT03662139/SAP_001.pdf"
-  },
-  {
-   "name": "Dynamic Gait Index: A Comprehensive Guide - Solo-Step",
-   "url": "https://solostep.com/dynamic-gait-index-a-comprehensive-guide/"
-  },
-  {
-   "name": "Dynamic Gait Index（DGI） - Study channel",
-   "url": "https://www.study-channel.com/2015/07/dynamic-gait-index.html"
-  },
-  {
-   "name": "https://academic.oup.com/ptj/article/93/11/1493/2735325",
-   "url": "https://academic.oup.com/ptj/article/93/11/1493/2735325"
-  },
-  {
-   "name": "https://pubmed.ncbi.nlm.nih.gov/15598995/",
-   "url": "https://pubmed.ncbi.nlm.nih.gov/15598995/"
+   "name": "Responsiveness of the Mini-BESTest, DGI, BBS, and POMA in Parkinson’s disease｜Scientific Reports 2025（PMC12217553）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217553/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Dynamic Gait Index（DGI）は、歩行中の外部環境の変化や動的な課題に対するバランス適応能力を評価し、転倒リスクを判定するための動的歩行評価指標です。"
-  },
-  {
-   "t": "h2",
-   "x": "DGIの目的と適用対象"
-  },
-  {
-   "t": "p",
-   "x": "DGIは静的バランスではなく、歩行速度の変化や頭部旋回などの動的課題に対する適応能力を測定します。適用対象は一人で歩行可能な高齢者、脳卒中、パーキンソン病、多発性硬化症、前庭機能障害、脳損傷の患者などです（介助が必要な重度歩行障害者は対象外となります）。"
-  },
-  {
-   "t": "h2",
-   "x": "8つの評価項目と採点基準"
+   "x": "Dynamic Gait Index（DGI）は、歩行中のバランスを評価する、活動レベルの尺度です。以下は、公開論文の記載にもとづきます。"
   },
   {
    "t": "ul",
    "items": [
-    "平地歩行：約6.1m（20フィート）の平地を通常速度で歩行する",
-    "歩行速度の変更：通常速度から指示に応じて速く・ゆっくりと歩行速度を変える",
-    "頭部水平回転歩行：歩行中に指示に合わせて頭部を左右に向ける",
-    "頭部垂直回転歩行：歩行中に指示に合わせて頭部を上下に向ける",
-    "歩行と軸足回転：歩行中に素早く180度向きを変えて停止する",
-    "障害物を越える歩行：歩行路上に置かれた障害物（靴箱など）をまたぎ越える",
-    "障害物を避ける歩行：配置された2つの障害物（コーンなど）の周囲を曲がりながら歩く",
-    "階段昇降：手すりの使用や足の運び方を観察しながら階段を昇り降りする"
+    "DGIは、非運動失調の患者群（多発性硬化症、パーキンソン病、脳卒中、前庭障害など）で、バランスと歩行について、強い心理測定学的特性を示している。これらの群で、評価者間信頼性、基準関連妥当性、再テスト信頼性が優れていると報告されている",
+    "小脳性運動失調の人（成人20人）で、DGIの信頼性と妥当性を調べた研究がある",
+    "パーキンソン病の研究（130人）で、Mini-BESTest、DGI、BBS、POMAの、反応性（最小の重要な差・最小可検変化）が調べられている"
    ]
-  },
-  {
-   "t": "p",
-   "x": "各項目は0点（重度障害）から3点（障害なし・正常）の4段階で評価され、8項目の合計で最高24点満点となります。"
-  },
-  {
-   "t": "h2",
-   "x": "カットオフ値と判定基準"
-  },
-  {
-   "t": "table",
-   "head": [
-    "対象・区分",
-    "基準値・スコア",
-    "臨床的意味・転倒リスク"
-   ],
-   "rows": [
-    [
-     "高齢者（一般）",
-     "19点以下",
-     "転倒リスク増加のカットオフ値（感度59%、特異度64%等の報告あり）"
-    ],
-    [
-     "自立歩行可能（Safe ambulator）",
-     "22点超",
-     "安全に歩行可能で転倒リスクが低い状態を示す"
-    ]
-   ]
-  },
-  {
-   "t": "h2",
-   "x": "実施環境と必要物品"
-  },
-  {
-   "t": "p",
-   "x": "評価に必要な物品は、約6.1m（20フィート）の直線歩行路、靴箱1個、同じ大きさの障害物（コーン）2個、手すり付き階段です。所要時間は約10〜15分程度です。"
-  },
-  {
-   "t": "h2",
-   "x": "臨床評価時の留意点"
   },
   {
    "t": "note",
-   "x": "記載しているカットオフ値や基準値はあくまで転倒リスク評価の目安です。実際の臨床では患者個別の状態や評価環境を考慮し、最新の公式資料や専門的臨床判断と併せて確認・評価を行ってください。"
+   "x": "DGIの8項目、採点（0〜3点、満点24点）、転倒リスクのカットオフ値は、今回、一次資料で確認できなかったので、ここには載せていません。公式の評価用紙で確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }

@@ -2213,129 +2213,40 @@ export const GUIDES: Guide[] = [
  {
   "slug": "dynamic-gait-index",
   "title": "Dynamic Gait Index（DGI）の評価項目・カットオフ値・使い方",
-  "description": "Dynamic Gait Index（DGI）の評価項目、採点基準、対象疾患別のカットオフ値を解説。24点満点の動的歩行評価で、高齢者や脳卒中、パーキンソン病等の転倒リスク判断に用いる基準値をまとめています。",
+  "description": "Dynamic Gait Index（DGI）の位置づけ（歩行中のバランスの活動レベルの評価）と、多発性硬化症・パーキンソン病・脳卒中・前庭障害などで信頼性・妥当性が報告されていることを、公開論文の記載にもとづいて整理します。項目と点数は、一次資料で確認できていないため載せていません。",
   "category": "評価・検査",
   "publishedAt": "2026-10-22",
   "updatedAt": "2026-10-24",
-  "checkedOn": "2026-10-22",
+  "checkedOn": "2026-10-24",
   "sources": [
    {
-    "name": "Dynamic Gait Index",
-    "url": "https://eoa.umontreal.ca/wp-content/uploads/sites/32/doc_DPC_augers_problemesEquilibre_16_04_29-30_DynamicGaitIndex.pdf"
+    "name": "Is the Dynamic Gait Index a useful outcome to measure balance and ambulation in patients with cerebellar ataxia?｜（PMC8449807）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8449807/"
    },
    {
-    "name": "Dynamic Gait Index (DGI) - Fysiobasen",
-    "url": "https://www.fysiobasen.no/en/innlegg/dynamic-gait-index-dgi"
-   },
-   {
-    "name": "Dynamic Gait Index (DGI): Reference Guide - Novi AMS",
-    "url": "https://assets.noviams.com/novi-file-uploads/aaop/pdfs-and-documents/How-To-Videos/DGI.pdf"
-   },
-   {
-    "name": "Dynamic Gait Index - Carolina Therapy Services",
-    "url": "https://www.carolinatherapy.net/wp-content/uploads/DGI-Dynamic-Gait-Index.pdf"
-   },
-   {
-    "name": "Dynamic Gait Index - Free PDF Download - Pabau",
-    "url": "https://pabau.com/templates/dynamic-gait-index/"
-   },
-   {
-    "name": "Dynamic Gait Index in Hemiplegic Cerebral Palsy - ClinicalTrials.gov",
-    "url": "https://cdn.clinicaltrials.gov/large-docs/39/NCT03662139/SAP_001.pdf"
-   },
-   {
-    "name": "Dynamic Gait Index: A Comprehensive Guide - Solo-Step",
-    "url": "https://solostep.com/dynamic-gait-index-a-comprehensive-guide/"
-   },
-   {
-    "name": "Dynamic Gait Index（DGI） - Study channel",
-    "url": "https://www.study-channel.com/2015/07/dynamic-gait-index.html"
-   },
-   {
-    "name": "https://academic.oup.com/ptj/article/93/11/1493/2735325",
-    "url": "https://academic.oup.com/ptj/article/93/11/1493/2735325"
-   },
-   {
-    "name": "https://pubmed.ncbi.nlm.nih.gov/15598995/",
-    "url": "https://pubmed.ncbi.nlm.nih.gov/15598995/"
+    "name": "Responsiveness of the Mini-BESTest, DGI, BBS, and POMA in Parkinson’s disease｜Scientific Reports 2025（PMC12217553）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217553/"
    }
   ],
   "blocks": [
    {
     "t": "p",
-    "x": "Dynamic Gait Index（DGI）は、歩行中の外部環境の変化や動的な課題に対するバランス適応能力を評価し、転倒リスクを判定するための動的歩行評価指標です。"
-   },
-   {
-    "t": "h2",
-    "x": "DGIの目的と適用対象"
-   },
-   {
-    "t": "p",
-    "x": "DGIは静的バランスではなく、歩行速度の変化や頭部旋回などの動的課題に対する適応能力を測定します。適用対象は一人で歩行可能な高齢者、脳卒中、パーキンソン病、多発性硬化症、前庭機能障害、脳損傷の患者などです（介助が必要な重度歩行障害者は対象外となります）。"
-   },
-   {
-    "t": "h2",
-    "x": "8つの評価項目と採点基準"
+    "x": "Dynamic Gait Index（DGI）は、歩行中のバランスを評価する、活動レベルの尺度です。以下は、公開論文の記載にもとづきます。"
    },
    {
     "t": "ul",
     "items": [
-     "平地歩行：約6.1m（20フィート）の平地を通常速度で歩行する",
-     "歩行速度の変更：通常速度から指示に応じて速く・ゆっくりと歩行速度を変える",
-     "頭部水平回転歩行：歩行中に指示に合わせて頭部を左右に向ける",
-     "頭部垂直回転歩行：歩行中に指示に合わせて頭部を上下に向ける",
-     "歩行と軸足回転：歩行中に素早く180度向きを変えて停止する",
-     "障害物を越える歩行：歩行路上に置かれた障害物（靴箱など）をまたぎ越える",
-     "障害物を避ける歩行：配置された2つの障害物（コーンなど）の周囲を曲がりながら歩く",
-     "階段昇降：手すりの使用や足の運び方を観察しながら階段を昇り降りする"
+     "DGIは、非運動失調の患者群（多発性硬化症、パーキンソン病、脳卒中、前庭障害など）で、バランスと歩行について、強い心理測定学的特性を示している。これらの群で、評価者間信頼性、基準関連妥当性、再テスト信頼性が優れていると報告されている",
+     "小脳性運動失調の人（成人20人）で、DGIの信頼性と妥当性を調べた研究がある",
+     "パーキンソン病の研究（130人）で、Mini-BESTest、DGI、BBS、POMAの、反応性（最小の重要な差・最小可検変化）が調べられている"
     ]
-   },
-   {
-    "t": "p",
-    "x": "各項目は0点（重度障害）から3点（障害なし・正常）の4段階で評価され、8項目の合計で最高24点満点となります。"
-   },
-   {
-    "t": "h2",
-    "x": "カットオフ値と判定基準"
-   },
-   {
-    "t": "table",
-    "head": [
-     "対象・区分",
-     "基準値・スコア",
-     "臨床的意味・転倒リスク"
-    ],
-    "rows": [
-     [
-      "高齢者（一般）",
-      "19点以下",
-      "転倒リスク増加のカットオフ値（感度59%、特異度64%等の報告あり）"
-     ],
-     [
-      "自立歩行可能（Safe ambulator）",
-      "22点超",
-      "安全に歩行可能で転倒リスクが低い状態を示す"
-     ]
-    ]
-   },
-   {
-    "t": "h2",
-    "x": "実施環境と必要物品"
-   },
-   {
-    "t": "p",
-    "x": "評価に必要な物品は、約6.1m（20フィート）の直線歩行路、靴箱1個、同じ大きさの障害物（コーン）2個、手すり付き階段です。所要時間は約10〜15分程度です。"
-   },
-   {
-    "t": "h2",
-    "x": "臨床評価時の留意点"
    },
    {
     "t": "note",
-    "x": "記載しているカットオフ値や基準値はあくまで転倒リスク評価の目安です。実際の臨床では患者個別の状態や評価環境を考慮し、最新の公式資料や専門的臨床判断と併せて確認・評価を行ってください。"
+    "x": "DGIの8項目、採点（0〜3点、満点24点）、転倒リスクのカットオフ値は、今回、一次資料で確認できなかったので、ここには載せていません。公式の評価用紙で確認してください。確認日：2026年10月24日。"
    }
   ],
-  "verification": "summary"
+  "verification": "primary"
  },
  {
   "slug": "evidence-based-practice",
@@ -2665,135 +2576,59 @@ export const GUIDES: Guide[] = [
  {
   "slug": "frailty-pt",
   "title": "フレイルの診断基準値・評価方法と理学療法予防ガイド",
-  "description": "フレイルの概念、身体・精神・社会の3側面、改訂J-CHS等に基づく評価基準値、フレイルティサイクル、運動や多面的介入による理学療法・予防アプローチを整理した専門職・学生向け解説。",
+  "description": "フレイルの定義（予備能と抵抗力の低下した生物学的症候群、Friedの5つの要素で3つ以上）、改定J-CHS基準での判定、基本チェックリスト（KCL）の位置づけを、公開論文の記載にもとづいて整理します。理学療法の介入の具体的な内容は、一次資料で確認できていないため載せていません。",
   "category": "疾患別の理学療法",
   "publishedAt": "2026-10-22",
-  "updatedAt": "2026-10-22",
-  "checkedOn": "2026-10-22",
+  "updatedAt": "2026-10-24",
+  "checkedOn": "2026-10-24",
   "sources": [
    {
-    "name": "2. サルコペニアとフレイル",
-    "url": "http://www.zaitakuiryo-yuumizaidan.com/textbook/pdf/2-1_2.pdf"
+    "name": "Factors Associated with Frailty Transitions Using the Kihon Checklist: A 6-Year Longitudinal Study｜2025（PMC12581826）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12581826/"
    },
    {
-    "name": "3.フレイルとサルコペニア: サルコペニア診断の変遷と AWGS 2019",
-    "url": "https://www.tyojyu.or.jp/kankoubutsu/gyoseki/pdf/R2-2-3.pdf"
+    "name": "Domains of the Kihon Checklist Associated with Prefrailty among Community-Dwelling Older Adults｜2023（PMC10326401）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10326401/"
    },
    {
-    "name": "https://www.care21.co.jp/fureiru-prevention/",
-    "url": "https://www.care21.co.jp/fureiru-prevention/"
-   },
-   {
-    "name": "https://www.jpn-geriat-soc.or.jp/info/topics/pdf/20140513_01_01.pdf",
-    "url": "https://www.jpn-geriat-soc.or.jp/info/topics/pdf/20140513_01_01.pdf"
-   },
-   {
-    "name": "サルコペニア 診療ガイドライン",
-    "url": "https://minds.jcqhc.or.jp/common/summary/pdf/c00426.pdf"
-   },
-   {
-    "name": "フレイルとは | 健康長寿ネット",
-    "url": "https://www.tyojyu.or.jp/net/byouki/frailty/about.html"
-   },
-   {
-    "name": "フレイルとは？意味と予防法を理学療法士がわかりやすく解説",
-    "url": "https://www.keepup.co.jp/20251124/"
-   },
-   {
-    "name": "フレイルの診断 | 健康長寿ネット",
-    "url": "https://www.tyojyu.or.jp/net/byouki/frailty/shindan.html"
-   },
-   {
-    "name": "フレイル理学療法ガイドライン - 一般社団法人 日本理学療法学会連合",
-    "url": "https://www.jspt.or.jp/guideline/2nd/frailty/"
-   },
-   {
-    "name": "標準的な運動プログラム（健康増進施設） - 厚生労働省",
-    "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/kenkou/undou/index_00003.html"
+    "name": "Short-term changes in frailty status and associated factors over 3 months（PMC13546778）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13546778/"
    }
   ],
   "blocks": [
    {
     "t": "p",
-    "x": "フレイルとは、加齢に伴い心身の予備能が低下してストレスへの脆弱性が亢進した状態であり、健常と要介護の中間に位置します。不可逆的な老衰ではなく、適切な介入によって健常な状態へと改善し得る可逆性を持つことが最大の特徴です。生活機能全般を包括的に捉えるため、身体的要素だけでなく、精神・心理的要素や社会的要素を含めた多面的な理解が求められます。"
+    "x": "以下は、フレイルを扱った公開論文の記載にもとづきます。"
    },
    {
     "t": "h2",
-    "x": "フレイルの3つの側面"
+    "x": "定義"
    },
    {
     "t": "ul",
     "items": [
-     "身体的フレイル：筋力低下、歩行速度低下、疲労感、体重減少などの運動・身体機能の衰え",
-     "精神・心理的フレイル：認知機能障害、抑うつ気分、意欲低下などのこころの健康障害",
-     "社会的フレイル：閉じこもりや独居、社会的孤立、経済的困窮など他者や社会との関係性の減退"
+     "フレイルは、ストレスへの予備能と抵抗力が低下した生物学的症候群で、複数の生理学的システムにわたる累積的な低下の結果として生じる、と一般に定義される",
+     "Friedらの基準では、次の5つの要素のうち、少なくとも3つがあることで操作的に定義される：意図しない体重減少、自己申告の疲労感（exhaustion）、筋力低下（握力など）、歩行速度の低下、身体活動の低下",
+     "フレイルは、身体的な面だけでなく、心理的・社会的な要因も含む、とされている"
     ]
    },
    {
     "t": "h2",
-    "x": "フレイル診断基準の項目とカットオフ値"
-   },
-   {
-    "t": "table",
-    "head": [
-     "評価項目",
-     "J-CHS基準（改訂版など資料記載値）",
-     "判定基準・補足"
-    ],
-    "rows": [
-     [
-      "体重減少",
-      "6か月で2kg以上の意図しない体重減少（Fried基準では意図しない年間4.5kgまたは5%以上）",
-      "身体的変化の早期確認"
-     ],
-     [
-      "筋力低下",
-      "握力：男性26kg未満または28kg未満、女性18kg未満（資料により男性26kg未満と28kg未満の記載あり）",
-      "上肢筋力・全身筋力の指標"
-     ],
-     [
-      "疲労感",
-      "ここ2週間わけもなく疲れたような感じがする（Fried基準では何をするのも面倒だと週3〜4日以上）",
-      "主観的疲労・活力低下"
-     ],
-     [
-      "歩行速度低下",
-      "通常歩行速度 1.0m/秒未満",
-      "運動機能・身体能力の低下"
-     ],
-     [
-      "身体活動量低下",
-      "軽い運動・体操や定期的な運動・スポーツのいずれも週に1回もしていない",
-      "日常活動性・生活行動の減退"
-     ]
-    ]
-   },
-   {
-    "t": "h2",
-    "x": "判定区分とフレイルティサイクル"
-   },
-   {
-    "t": "p",
-    "x": "評価基準5項目のうち、3項目以上該当でフレイル、1〜2項目該当でプレフレイル、該当なしで健常（ロバスト）と判定されます。評価項目同士は互いに悪影響を及ぼし合い、低栄養やサルコペニアを中核として筋力・身体機能の低下、活動量低下、エネルギー消費量低下が連鎖する負の循環（フレイルティサイクル）を形成して重症化していきます。"
-   },
-   {
-    "t": "h2",
-    "x": "理学療法における予防介入の要点"
+    "x": "日本で使われる評価"
    },
    {
     "t": "ul",
     "items": [
-     "運動療法：レジスタンストレーニングと有酸素運動の組み合わせを中心とし、歩行やバランス練習を取り入れた多要素（マルチコンポーネント）プログラムの展開",
-     "複合介入：運動療法単独に留まらず、十分なタンパク質摂取を中心とした栄養指導・管理との併用介入を推進",
-     "社会参加と継続性：地域包括支援センターや地域サロン、集団体操などを活用し、人とつながりながら安全かつ無理なく続けられる生活習慣の定着支援"
+     "改定J-CHS基準：Friedらの基準を日本人向けに修正した基準で、日本で広く使われている。5項目のうち3つ以上でフレイル、1〜2つでプレフレイル、0でロバスト（5項目の基準は、「フレイル（J-CHS）」のページを参照）",
+     "基本チェックリスト（KCL）：質問票のみで、歩行速度のような身体測定を含まず、心理・社会的な面を含む。郵送などで多数の住民に使える簡便な調査票として使われる"
     ]
    },
    {
     "t": "note",
-    "x": "本ページに掲載している数値および診断基準は各種資料に基づく目安です。判定や臨床判断にあたっては、日本サルコペニア・フレイル学会や国立長寿医療研究センターなどが発行する最新の公式ガイドラインおよび原典をご確認ください。"
+    "x": "フレイルの3つの側面（身体・精神心理・社会）の詳細、フレイルサイクル、理学療法での予防介入（運動・栄養・社会参加）の具体的な内容は、今回、一次資料で確認できなかったので、ここには載せていません。日本サルコペニア・フレイル学会や、国立長寿医療研究センターの公式資料を確認してください。確認日：2026年10月24日。"
    }
   ],
-  "verification": "summary"
+  "verification": "primary"
  },
  {
   "slug": "frozen-shoulder-pt",
@@ -7227,158 +7062,36 @@ export const GUIDES: Guide[] = [
  {
   "slug": "oswestry-disability-index",
   "title": "ODI（Oswestry Disability Index）の評価方法・基準値・使い分け",
-  "description": "理学療法士・学生向けに、腰痛障害評価指標（ODI）の概要、計算方法、障害度分類、国民標準値、およびRDQ・PSFSとの使い分けを解説。",
+  "description": "Oswestry Disability Index（ODI）の構成（10項目・各6段階）と、扱う生活領域（痛みの強さ、身の回り、持ち上げ、歩行、座位、立位、睡眠、性生活、社会生活、移動）を、公開論文の記載にもとづいて整理します。点数の区分は一次資料で確認できていないため載せていません。",
   "category": "評価・検査",
   "publishedAt": "2026-10-22",
   "updatedAt": "2026-10-24",
-  "checkedOn": "2026-10-22",
+  "checkedOn": "2026-10-24",
   "sources": [
    {
-    "name": "OSWESTRY LOW BACK PAIN DISABILITY QUESTIONNAIRE",
-    "url": "https://northwestpainguidance.org/wp-content/uploads/2016/05/Oswestry-Low-Back-Pain-Disability-Questionnaire.pdf"
-   },
-   {
-    "name": "RDQ・ODIの違いと選び方｜PSFSとの使い分け - rehabilikun",
-    "url": "https://rehabilikunblog.com/low-back-pain-prom/"
-   },
-   {
-    "name": "『腰痛研究のエビデンス・評価と臨床的展望』Ｏｓｗｅｓｔｒｙ Ｄｉｓａｂｉｌｉｔｙ Ｉｎｄｅｘ―日本語版について",
-    "url": "https://cir.nii.ac.jp/crid/1390282679417001856"
-   },
-   {
-    "name": "オスウェストリー障害指数｜PDF & オンライン計算機 - Physiotutors",
-    "url": "https://www.physiotutors.com/ja/questionnaires/oswestry-disability-index-odi-olbpdq/"
-   },
-   {
-    "name": "修正A - 慶應義塾大学医学部整形外科学教室",
-    "url": "http://www.keio-ortho.jp/wp-content/uploads/2019/06/20110142.pdf"
-   },
-   {
-    "name": "全国住民調査に基づく日本語版オズウェストリー障害指数（ODI version 2.1a）の妥当性評価と国民標準値の推定 | 研究成果情報 - 福島県立医科大学",
-    "url": "https://www.fmu.ac.jp/research/results/seika/2026/20260604_1.html"
-   },
-   {
-    "name": "医学部医学科の栗田教授らが、日本人における腰痛評価指標「ODI」の国民標準値を初めて報告しました | ニュース - 東海大学",
-    "url": "https://www.u-tokai.ac.jp/ud-medicine/news/18176/"
-   },
-   {
-    "name": "理学療法診療ガイドライン 第1版“ダイジェスト版”",
-    "url": "https://www.japanpt.or.jp/upload/branch/jsptdm/obj/files/%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E8%A8%BA%E7%99%82%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%80%80%E7%AC%AC1%E7%89%88%E3%80%80%E3%83%80%E3%82%A4%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E7%89%88.pdf"
-   },
-   {
-    "name": "職場における腰痛の効果的な治療法等 に関する研究 - 厚生労働省",
-    "url": "https://www.mhlw.go.jp/seisakunitsuite/bunya/koyou_roudou/roudoukijun/rousai/hojokin/dl/27_14020301-01.pdf"
-   },
-   {
-    "name": "認知機能療法： 慢性腰部の痛みと障害の効果的な緩和 - Physiotutors",
-    "url": "https://www.physiotutors.com/ja/research/cognitive-functional-therapy-effective-relief-for-pain-and-disability-in-chronic-low-back-pain/"
+    "name": "Psychometric evaluation of the Oswestry Disability Index in patients with chronic low back pain: factor and Mokken analyses｜Health Qual Life Outcomes 2017（PMC5627480）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5627480/"
    }
   ],
   "blocks": [
    {
     "t": "p",
-    "x": "Oswestry Disability Index（ODI）は、腰痛症や腰椎疾患患者における疼痛の程度と生活障害度を客観的に評価する代表的な患者報告アウトカム（PROM）です。理学療法診療ガイドライン等でも有用性が示されており、日常生活動作（ADL）への影響を経時的に追跡・評価するために広く使用されています。"
-   },
-   {
-    "t": "h2",
-    "x": "ODIの項目構成とスコア計算方法"
-   },
-   {
-    "t": "p",
-    "x": "ODIは、痛みの強さ、セルフケア、持上げ動作、歩行、座位、立位、睡眠、性生活、社会生活、旅行・移動の10セクションで構成されます。各セクションを0点（制限なし）から5点（最大制限）の6段階で評価し、未回答項目がある場合は全可能得点（分母）を調整して百分率（％）で算出します。"
+    "x": "Oswestry Disability Index（ODI）は、腰（または脚）の問題が、日常生活をこなす能力に、どの程度影響しているかを調べる質問票です。以下は、ODIを検証した公開論文（慢性腰痛の患者225人）の記載にもとづきます。"
    },
    {
     "t": "ul",
     "items": [
-     "全10項目回答時： (獲得合計点 / 50) × 100 ＝ ODI（％）",
-     "1項目未回答時： (獲得合計点 / 45) × 100 ＝ ODI（％）",
-     "得点方向：パーセンテージが高いほど機能障害が重いことを示す（改善時は低下）"
+     "10項目で構成される",
+     "10項目は、痛みと日常機能を扱う：痛みの強さ、身の回りの清潔・整容、持ち上げ、歩行、座位、立位、睡眠、性的活動、社会活動、移動（旅行）",
+     "各項目は、6段階の尺度で評価する"
     ]
-   },
-   {
-    "t": "h2",
-    "x": "ODIの障害度分類と判定基準"
-   },
-   {
-    "t": "p",
-    "x": "ODIのスコア判定には、百分率（％）による5段階の障害度分類と、得点計算機などで用いられる50点満点の点数区分が存在します。評価資料やツールにより表記基準が異なるため併記します。"
-   },
-   {
-    "t": "table",
-    "head": [
-     "障害度の区分",
-     "ODI（％）"
-    ],
-    "rows": [
-     [
-      "最小限の障害（minimal disability）",
-      "0〜20％"
-     ],
-     [
-      "中等度の障害（moderate disability）",
-      "21〜40％"
-     ],
-     [
-      "重度の障害（severe disability）",
-      "41〜60％"
-     ],
-     [
-      "生活に支障をきたす障害（crippled）",
-      "61〜80％"
-     ],
-     [
-      "寝たきり、または症状の過大な表現",
-      "81〜100％"
-     ]
-    ]
-   },
-   {
-    "t": "h2",
-    "x": "腰痛評価尺度（ODI・RDQ・PSFS）の使い分け"
-   },
-   {
-    "t": "table",
-    "head": [
-     "評価尺度",
-     "評価形式・項目数",
-     "結果の表示形式",
-     "得点方向",
-     "選択のポイント・特徴"
-    ],
-    "rows": [
-     [
-      "ODI",
-      "10セクション（6段階選択）",
-      "割合（％）",
-      "高得点＝障害大",
-      "固定項目で腰痛特異的な障害度を標準化して評価"
-     ],
-     [
-      "RDQ",
-      "24項目（はい/いいえ）",
-      "合計点（0〜24点）",
-      "高得点＝障害大",
-      "該当項目の有無で簡便に身体機能障害を測定"
-     ],
-     [
-      "PSFS",
-      "患者個人の重要活動1〜3項目",
-      "各0〜10点評価",
-      "高得点＝良好",
-      "患者固有の困り動作や目標動作を経時的に追跡"
-     ]
-    ]
-   },
-   {
-    "t": "p",
-    "x": "臨床における理学療法評価では、標準化された機能を追う場合はODIまたはRDQを選択し、患者固有の困り動作を追う場合はPSFSを組み合わせます。再評価時には途中で尺度や言語版を変更せず、同一条件で比較することが重要です。"
    },
    {
     "t": "note",
-    "x": "本ページに記載した数値や基準値は資料に基づく目安です。臨床判定にあたっては、患者個々の背景を考慮し、必ず最新の公式資料や所属施設のプロトコルをご確認ください。"
+    "x": "総得点のパーセント表示への換算、点数の区分（軽度・中等度など）、最小の臨床的に重要な差（MCID）は、研究によって値が異なり、今回、一次資料で確認できなかったので、ここには載せていません。質問票は、公式の版（日本語版を含む）で確認してください。確認日：2026年10月24日。"
    }
   ],
-  "verification": "summary"
+  "verification": "primary"
  },
  {
   "slug": "oxygen-therapy",
@@ -9848,122 +9561,40 @@ export const GUIDES: Guide[] = [
  {
   "slug": "tinetti-pomA",
   "title": "Tinetti評価（POMA）の構成・点数配分・カットオフ値と評価方法",
-  "description": "Tinettiバランス・歩行評価（POMA）の項目構成（28点満点：バランス16点・歩行12点）や転倒リスクのカットオフ値、採点方法を理学療法士・学生向けに解説。資料ごとの基準値の違いも併記しています。",
+  "description": "Tinetti Performance-Oriented Mobility Assessment（POMA、Tinetti Test）の位置づけ（バランスと歩行の評価、3段階0〜2、合計0〜28）と、項目数・カットオフ値が資料によって異なる点を、公開論文の記載にもとづいて整理します。",
   "category": "評価・検査",
   "publishedAt": "2026-10-22",
   "updatedAt": "2026-10-24",
-  "checkedOn": "2026-10-22",
+  "checkedOn": "2026-10-24",
   "sources": [
    {
-    "name": "Determination of cut-off values of tinetti performance oriented mobility assessment and fa",
-    "url": "https://annalsmedres.org/index.php/aomr/article/view/4037/6292"
+    "name": "Responsiveness of the Mini-BESTest, Dynamic Gait Index, Berg balance scale, and POMA in Parkinson’s disease｜Scientific Reports 2025（PMC12217553）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12217553/"
    },
    {
-    "name": "TINETTI ASSESSMENT TOOL: BALANCE AND GAIT - Briggs Healthcare",
-    "url": "https://www.briggshealthcare.com/assets/itemdownloads/3424P.pdf"
-   },
-   {
-    "name": "TINETTI BALANCE & GAIT ASSESSMENT . . . . . . . . . . . . . . . . . . . . . . . . . . . . ",
-    "url": "https://ptclinic.com/websites/991/files/TinettiBalanceAndGaitAssessment.pdf"
-   },
-   {
-    "name": "TINETTI GAIT AND BALANCE ASSESSMENT TOOL - UCLA Health",
-    "url": "https://www.uclahealth.org/sites/default/files/documents/2a/tinetti-gait-and-balance.pdf"
-   },
-   {
-    "name": "Tinetti Performance Oriented Mobility Assessment (POMA)*",
-    "url": "https://www.leadingagemn.org/assets/docs/Tinetti-Balance-Gait--POMA.pdf"
-   },
-   {
-    "name": "Tinetti Performance-Oriented Mobility Assessment (POMA) - WeGuide",
-    "url": "https://www.weguide.health/instruments/tinetti-performance-oriented-mobility-assessment-poma"
-   },
-   {
-    "name": "Tinetti-Test - Wikipedia",
-    "url": "https://de.wikipedia.org/wiki/Tinetti-Test"
-   },
-   {
-    "name": "https://live.kibu.ac.ke/reference/z9YAgn5FE108/Tinetti_Performance_Oriented_Mobility_Asses",
-    "url": "https://live.kibu.ac.ke/reference/z9YAgn5FE108/Tinetti_Performance_Oriented_Mobility_Assessment"
-   },
-   {
-    "name": "https://www.balticsportscience.com/cgi/viewcontent.cgi?article=1629&context=journal",
-    "url": "https://www.balticsportscience.com/cgi/viewcontent.cgi?article=1629&context=journal"
-   },
-   {
-    "name": "バランス機能評価のまとめ -各疾患別での推奨-｜yanagi｜AI｜pythonデータ分析 - note",
-    "url": "https://note.com/yanagi_pt_cr/n/n3be7ab4061ad"
+    "name": "The Tinetti Balance Test Is an Effective Predictor of Functional Decline in Non-Hospitalized Post-COVID-19 Individuals｜J Clin Med 2024（PMC11547088）",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11547088/"
    }
   ],
   "blocks": [
    {
     "t": "p",
-    "x": "Tinetti Performance Oriented Mobility Assessment（POMA）は、高齢者のバランス能力と歩行機能を評価し、転倒リスクを把握するための臨床評価尺度です。"
+    "x": "Performance-Oriented Mobility Assessment（POMA、Tinetti Test）は、バランスと歩行を、観察で評価するパフォーマンステストです。以下は、これを使った公開論文の記載にもとづきます。"
    },
    {
-    "t": "h2",
-    "x": "POMAの構成と配点"
-   },
-   {
-    "t": "p",
-    "x": "検査はバランス評価と歩行評価の2セクションに分かれ、合計28点満点で評価されます。各項目は主に0点（障害・全介助）から2点（自立・正常）の3段階の順序尺度で採点され、所要時間は約10〜15分（資料によっては5〜10分）です。"
-   },
-   {
-    "t": "table",
-    "head": [
-     "評価セクション",
-     "項目数",
-     "最高得点",
-     "主な評価項目内容"
-    ],
-    "rows": [
-     [
-      "バランス評価（Balance）",
-      "9項目",
-      "16点",
-      "座位バランス、立ち上がり、立位保持、胸骨押し試験（Push test）、閉眼立位、360度回転、着座など"
-     ],
-     [
-      "歩行評価（Gait）",
-      "7〜8項目",
-      "12点",
-      "歩行開始の躊躇、ステップの長さ・高さ、左右対称性、連続性、歩行路の偏り、体幹の揺れ、両足間隔（歩幅）"
-     ],
-     [
-      "総合得点（Total）",
-      "16〜17項目",
-      "28点",
-      "バランス得点（16点）＋ 歩行得点（12点）"
-     ]
+    "t": "ul",
+    "items": [
+     "バランスと歩行を、3段階の順序尺度（0〜2）で評価し、合計は0〜28点。0は、高度の障害、2は自立を示す",
+     "日常生活を代表するいくつかの課題からなり、バランスを評価する部分と、歩行を評価する部分に分かれる",
+     "項目数の記載は、論文によって異なる。ある論文は、元は14課題（バランス8、歩行6）で、0〜28点、と記載している。他の版では項目数が異なる"
     ]
    },
    {
-    "t": "h2",
-    "x": "転倒リスクの判定基準（カットオフ値）"
-   },
-   {
-    "t": "p",
-    "x": "総合得点（28点満点）に基づき転倒リスクを分類します。資料や対象者によって分類・カットオフ値に以下のような違いがあります。"
-   },
-   {
-    "t": "table",
-    "head": [
-     "分類・資料",
-     "高リスク（High Risk）",
-     "中等度リスク（Moderate Risk）",
-     "低リスク（Low Risk）"
-    ],
-    "rows": [
-     [
-      "一般的な基準（開発者・臨床ガイド）",
-      "18点以下 または 19点未満",
-      "19〜23点 または 19〜24点",
-      "24点以上 または 25〜28点"
-     ]
-    ]
+    "t": "note",
+    "x": "転倒リスクのカットオフ値（19点以下、24点以上など）は、資料によって区分が異なり、今回、一次資料で確認できなかったので、ここには載せていません。各項目の採点は、公式の評価用紙で確認してください。確認日：2026年10月24日。"
    }
   ],
-  "verification": "summary"
+  "verification": "primary"
  },
  {
   "slug": "total-hip-arthroplasty-rehab",
@@ -10047,107 +9678,55 @@ export const GUIDES: Guide[] = [
  {
   "slug": "total-knee-arthroplasty-rehab",
   "title": "人工膝関節全置換術（TKA）後理学療法の経過・評価基準値・運動療法",
-  "description": "人工膝関節全置換術（TKA）後における筋力・可動域・歩行速度の回復経過や、評価指標のカットオフ値、エビデンスに基づく理学療法アプローチを解説。",
+  "description": "人工膝関節全置換術（TKA）の理学療法について、日本理学療法士協会の理学療法診療ガイドライン（第1版・ダイジェスト版）の変形性膝関節症の章の記載にもとづき、術前理学療法、CPMの使用、術後の集中的機能的運動療法、多職種のリハビリテーション介入を整理します。",
   "category": "疾患別の理学療法",
   "publishedAt": "2026-10-22",
   "updatedAt": "2026-10-24",
-  "checkedOn": "2026-10-22",
+  "checkedOn": "2026-10-24",
   "sources": [
    {
-    "name": "2025041-090832-233.pdf - 日本地域理学療法学会",
-    "url": "https://www.jsccpt.jp/media/2025041-090832-233.pdf"
-   },
-   {
-    "name": "EBPTワークシート第18回「片側人工膝関節全置換術後患者に対するファンクショナルトレーニングとバランストレーニングの併用効果」 - 日本理学療法学会連合",
-    "url": "https://www.jspt.or.jp/ebpt/worksheet/18/"
-   },
-   {
-    "name": "O-0071 - 日本理学療法士協会",
-    "url": "https://www.japanpt.or.jp/conference/jpta50/abstracts/pdf/0071_O-0071.pdf"
-   },
-   {
-    "name": "https://hospital.luke.ac.jp/guide/32_orthopedics/pdf/tka-rehabilitation_protocol.pdf",
-    "url": "https://hospital.luke.ac.jp/guide/32_orthopedics/pdf/tka-rehabilitation_protocol.pdf"
-   },
-   {
-    "name": "https://researchmap.jp/onishikuni/published_papers/33128925/attachment_file.pdf",
-    "url": "https://researchmap.jp/onishikuni/published_papers/33128925/attachment_file.pdf"
-   },
-   {
-    "name": "【保存版】TKA術後筋力の回復エビデンスと臨床Tips｜1ヶ月・3ヶ月・角度別の落とし穴を全解説",
-    "url": "https://yamanopt.com/total-knee-arthroplasty-tka-knee-extension-muscle-before-after/"
-   },
-   {
-    "name": "人工膝関節全置換術後の歩行速度に影響を与える術前の機能的因子とそのカットオフ値",
-    "url": "https://cir.nii.ac.jp/crid/1390001205576358528"
-   },
-   {
-    "name": "人工膝関節置換術のリハビリガイドライン - Physiotutors",
-    "url": "https://www.physiotutors.com/ja/total-knee-replacement-rehab-guidelines/"
-   },
-   {
-    "name": "人工膝関節置換術後早期の関節可動域練習方法を検討する - J-Stage",
-    "url": "https://www.jstage.jst.go.jp/article/cjpt/2014/0/2014_0590/_article/-char/ja/"
-   },
-   {
-    "name": "術前の歩行速度別にみた人工膝関節全置換術後 3 か月の膝関節機能と歩行",
-    "url": "http://aichi-npopt.jp/dl/info_paper_back/34_2_5.pdf"
+    "name": "理学療法診療ガイドライン 第1版 ダイジェスト版（変形性膝関節症理学療法診療ガイドラインQ&A）｜日本理学療法士協会",
+    "url": "https://www.japanpt.or.jp/upload/branch/jsptdm/obj/files/%E7%90%86%E5%AD%A6%E7%99%82%E6%B3%95%E8%A8%BA%E7%99%82%E3%82%AC%E3%82%A4%E3%83%89%E3%83%A9%E3%82%A4%E3%83%B3%E3%80%80%E7%AC%AC1%E7%89%88%E3%80%80%E3%83%80%E3%82%A4%E3%82%B8%E3%82%A7%E3%82%B9%E3%83%88%E7%89%88.pdf"
    }
   ],
   "blocks": [
    {
     "t": "p",
-    "x": "人工膝関節全置換術（TKA）は変形性膝関節症等に対する著明な除痛と機能改善を目的とした手術であり、術後早期からの理学療法が重要です。術後の関節可動域（ROM）、大腿四頭筋やハムストリングスの筋力、動的バランス、歩行速度の回復を目指し、段階的かつ根拠に基づいた介入が行われます。"
+    "x": "以下は、日本理学療法士協会の「理学療法診療ガイドライン 第1版 ダイジェスト版」の、変形性膝関節症の章（観血的治療後の理学療法介入）の記載にもとづきます。このガイドラインは、2010年ごろまでの文献を元にしているため、その後の研究は反映されていません。"
    },
    {
     "t": "h2",
-    "x": "TKA術後の筋力回復経過と関節原性筋抑制（AMI）"
-   },
-   {
-    "t": "p",
-    "x": "大腿四頭筋最大筋力は術後1ヶ月で術前より約50〜60%低下します。この時期の著しい筋低下には、疼痛や炎症だけでなく神経性に筋収縮が抑制される関節原性筋抑制（AMI）が大きく関与します。回復経過としては、術後3ヶ月時点でも術前レベル未満にとどまるのが一般的であり、術後6ヶ月で術前と同等以上に達し、術後12ヶ月以降で有意な向上を示します。"
+    "x": "術前理学療法"
    },
    {
     "t": "ul",
     "items": [
-     "術後早期のAMI対策として、パテラセッティングなどの軽負荷・高頻度な筋収縮練習や端座位・離床による病棟ADLの促進を行う。",
-     "膝関節屈曲90°での膝伸展筋力は低下しやすく回復も遅れるため、立ち上がりや階段昇降に不可欠な屈曲60°以上の深い角度での等尺性・機能的トレーニングを実施する。",
-     "車いす座位での自動関節可動域練習（active CKC）は、仰臥位での他動運動（passive OKC）と比較して、大腿直筋や内側広筋の筋性防御収縮を抑え、半腱様筋の活動を促進する。"
+     "TKAの術前理学療法は、術後の膝関節機能とQOLを改善させる",
+     "術前理学療法の内容：術前の身体機能の向上を目的とするストレッチング、ステップ動作、筋力トレーニング、関節可動域運動、自転車エルゴメータなどの持久力運動のほか、術後に実施する松葉杖歩行練習（階段を含む）、車いす移乗動作練習、関節可動域運動などの練習と、オリエンテーションが推奨される"
     ]
    },
    {
     "t": "h2",
-    "x": "歩行機能・バランス能力と術前因子のカットオフ値"
-   },
-   {
-    "t": "p",
-    "x": "TKA術後の歩行自立や歩行速度には、術前の身体機能が影響するとされています。歩行自立の判定は、理学療法士の判断、患者さんの自信、客観的な指標を合わせて、安全に行います。点数や秒数のカットオフ値は、研究によって異なり、一次資料で確認できていないため、載せていません。"
+    "x": "術後"
    },
    {
     "t": "ul",
     "items": [
-     "通常理学療法にファンクショナルトレーニングとバランストレーニング（サイドステップ、タンデムウォーク、バランスマット上スクワット等）を併用することで、移動能力やバランス能力（FRT、TUG、片脚立位、WOMAC）が有意に改善する。",
-     "運動制限因子となる疼痛に対しては、アイシング（氷冷却）や鎮痛剤の使用タイミング（投与1時間後等）を調整して運動療法を行う。"
+     "CPM（持続的他動運動）：可動域練習にCPMを使用する場合は、術後14〜17日目までの使用が推奨される。長期の使用は推奨されず、17日以降は、自動運動による可動域練習が推奨される。1日の実施時間は、今後さらなる研究が必要",
+     "集中的機能的運動療法：WOMAC、SF-36、6分間歩行距離、疼痛スケールを有意に改善させる。内容は、5〜10分のウォームアップとストレッチング、15分間の筋力トレーニング、15〜20分間の応用歩行や立位での筋力トレーニング・バランス練習、5〜20分間の歩行練習や自転車運動、最後に10分間のクールダウン。実施期間は、TKA術後2〜4か月間が推奨される",
+     "多職種によるリハビリテーション介入：職種として、PT、OT、ソーシャルワーカー、看護師、心理カウンセラー、栄養士、義肢装具士、レクリエーション療法士などが挙げられている。介入内容として、外来患者のリハビリテーション環境の設定や在宅調整、入院患者のケアの設定、疼痛管理、栄養指導、装具調整などが推奨される"
     ]
    },
    {
-    "t": "h2",
-    "x": "最新診療ガイドラインに基づく理学療法の推奨"
-   },
-   {
     "t": "p",
-    "x": "ガイドラインでは、疼痛管理のための氷冷却（アイシング）、バランスや左右対称性運動を含む運動制御トレーニング、大腿四頭筋力改善のための神経筋電気刺激（NMES）、術後7日目からの過度な腫脹・疼痛を避けた高強度筋力トレーニング、および術後24時間以内の早期介入が推奨されています。"
+    "x": "まとめ（ガイドライン）：術前理学療法は、術後の膝関節機能とQOLを改善させ、術後の集中的機能的運動療法は、WOMAC、SF-36、6分間歩行距離、疼痛スケールを有意に改善させることが示唆されている。ただし、TKA後の理学療法の有効性は、欧米の研究がほとんどで、日本でも、その有効性を示す臨床研究を行う必要がある、と述べている。"
    },
    {
     "t": "note",
-    "x": "術後のリハビリの進め方（荷重・可動域・運動の開始時期）は、術式・インプラント・施設のクリニカルパス、主治医の指示によって異なります。必ず、それらにしたがってください。"
-   },
-   {
-    "t": "note",
-    "x": "本ページに記載されている数値・カットオフ値・経過期間は文献・研究に基づく目安であり、患者個別の状態や術式、インプラント種別、所属施設のクリニカルパスにより異なります。臨床での実用時には最新の公式文献や診療ガイドラインを併せて確認してください。"
+    "x": "術後の荷重・可動域・運動の開始時期は、術式、インプラント、施設のクリニカルパス、主治医の指示によって異なります。筋力の回復の経過、歩行自立のカットオフ値、最新のガイドラインの推奨は、今回、一次資料で確認できなかったので、ここには載せていません。確認日：2026年10月24日。"
    }
   ],
-  "verification": "summary"
+  "verification": "primary"
  },
  {
   "slug": "traumatic-brain-injury-pt",
