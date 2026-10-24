@@ -1,176 +1,100 @@
 {
  "slug": "hoehn-yahr-updrs",
  "title": "Hoehn & Yahr重症度分類とMDS-UPDRSの概要・評価方法・基準値",
- "description": "パーキンソン病の臨床評価に用いられるHoehn & Yahr重症度分類とMDS-UPDRSの概要、評価構成、各パートのカットオフ値や活用法を理学療法士・学生向けにわかりやすく解説します。",
+ "description": "Hoehn & Yahr（H&Y）重症度分類の各段階（0〜5、1.5・2.5を含む）の定義と、MDS-UPDRSのPart I〜IVの構成、Part Iの重症度のカットオフ値を、公開されている論文にもとづいて整理します。",
  "category": "評価・検査",
  "publishedAt": "2026-10-22",
- "updatedAt": "2026-10-22",
- "checkedOn": "2026-10-22",
+ "updatedAt": "2026-10-24",
+ "checkedOn": "2026-10-24",
  "sources": [
   {
-   "name": "2. Multi-domain scales",
-   "url": "https://www.sralab.org/sites/default/files/2017-07/9781907673870-c2.pdf"
+   "name": "Modified Hoehn and Yahr Scale の段階の記載（PMC10585115・Hoehn & Yahr 1967、Goetz 2004 を引用）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10585115/"
   },
   {
-   "name": "CDS-PD: A Novel Clinical Decision Support Platform for Parkinson's Disease - medRxiv",
-   "url": "https://www.medrxiv.org/content/10.1101/2025.07.24.25331875v1.full.pdf"
+   "name": "Hoehn and Yahr Stage and Non-Motor Symptom Burden in Parkinson’s Disease: A Cross-Sectional Study in Peru（PMC13413560・MDS-UPDRS Part I のカットオフ値）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13413560/"
   },
   {
-   "name": "Classification of advanced stages of Parkinson's disease: translation into stratified trea",
-   "url": "https://d-nb.info/1129920488/34"
-  },
-  {
-   "name": "Differences in MDS‐UPDRS Scores Based on Hoehn and Yahr Stage and Disease Duration",
-   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6174385/"
-  },
-  {
-   "name": "Hoehn and Yahr Scale (H&Y): Parkinson's Disease Staging | WeGuide",
-   "url": "https://www.weguide.health/instruments/hoehn-and-yahr-scale"
-  },
-  {
-   "name": "Hoehn and Yahr Scale - Physiopedia",
-   "url": "https://www.physio-pedia.com/Hoehn_and_Yahr_Scale"
-  },
-  {
-   "name": "Movement Disorder Society Task Force Report on the Hoehn and Yahr Staging Scale: Status an",
-   "url": "https://physionet.org/files/inipdmsa/1.0/References/Goetz-CG_Movement-Disorder-Society-Task-Force-report-on-the-Hoehn-and-Yahr-staging-scale-status-and-recommendations.pdf"
-  },
-  {
-   "name": "PD Rating Scales Booklet - D-mine® Care",
-   "url": "https://www.d-minecare.com/wp-content/uploads/2022/07/PD_Scales_Booklet_V02.pdf"
-  },
-  {
-   "name": "Validation study of the hoehn and yahr scale included in the MDS‐UPDRS - Ovid",
-   "url": "https://www.ovid.com/journals/mdis/pdf/10.1002/mds.27242~validation-study-of-the-hoehn-and-yahr-scale-included-in-the"
-  },
-  {
-   "name": "time point zero. This initial cutting line",
-   "url": "https://mhlw-grants.niph.go.jp/system/files/2014/147111/201446001A/201446001A0006.pdf"
+   "name": "Hoehn and Yahr stages 1〜4 の定義の記載（PMC12354120）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12354120/"
   }
  ],
  "blocks": [
   {
    "t": "p",
-   "x": "Hoehn & Yahr（H&Y）重症度分類とMDS-UPDRS（運動障害学会改訂版パーキンソン病統一スケール）は、パーキンソン病の病態把握や障害評価において世界的に広く用いられている評価尺度です。理学療法評価では両尺度の特徴や補完関係を理解することが重要です。"
+   "x": "Hoehn & Yahr（H&Y）分類は、パーキンソン病の進行を、症状の左右差、姿勢保持の障害、障害の程度と介助の必要性にもとづいて、段階で示す分類です（1967年）。MDS-UPDRSは、運動症状と非運動症状を評価する尺度です。以下は、これらを使った公開論文の記載にもとづきます。"
   },
   {
    "t": "h2",
-   "x": "Hoehn & Yahr重症度分類の概要と特徴"
-  },
-  {
-   "t": "p",
-   "x": "H&Y分類は、症状の片側性・両側性および姿勢保持障害（プルテスト等による判定）に着目し、病期を段階的に評価する尺度です。特別な器具を必要とせず短時間で評価できる利点がありますが、非運動症状が反映されない点や、機能障害と不活動性が混在している点などの限界も指摘されています。"
+   "x": "修正 Hoehn & Yahr 分類"
   },
   {
    "t": "table",
    "head": [
-    "ステージ",
-    "オリジナル版（5段階）",
-    "改訂版（0.5刻み）"
+    "段階",
+    "内容（論文の記載）"
    ],
    "rows": [
     [
-     "ステージ0",
-     "-",
-     "無症状"
+     "0",
+     "病気の徴候なし"
     ],
     [
-     "ステージ1 / 1.0",
-     "片側性障害（機能障害は軽微またはなし）",
-     "片側性障害"
+     "1",
+     "一側のみの障害"
     ],
     [
-     "ステージ1.5",
-     "-",
-     "片側性障害＋軸性症状"
+     "1.5",
+     "一側の障害と、体幹（軸）の障害"
     ],
     [
-     "ステージ2 / 2.0",
-     "両側性または正中性障害（バランス障害なし）",
-     "両側性障害（バランス障害なし）"
+     "2",
+     "両側の障害で、バランスの障害はない"
     ],
     [
-     "ステージ2.5",
-     "-",
-     "軽度両側性障害（プルテストで姿勢立ち直り可能）"
+     "2.5",
+     "軽度の両側の障害で、プルテストで立ち直れる"
     ],
     [
-     "ステージ3 / 3.0",
-     "軽度〜中等度両側性障害、姿勢反射障害あり、身体的に自立",
-     "軽度〜中等度両側性障害、一部の姿勢不安定性あり、身体的に自立"
+     "3",
+     "両側の障害で、軽度から中等度の障害があり、姿勢反射の障害があるが、身体的には自立している（プルテストで回復に介助が必要）"
     ],
     [
-     "ステージ4 / 4.0",
-     "高度の障害、介助なしで歩行または起立可能",
-     "重度障害、介助なしで歩行または起立可能"
+     "4",
+     "重度の障害があるが、介助なしで歩行または起立ができる"
     ],
     [
-     "ステージ5 / 5.0",
-     "介助なしでは車椅子またはベッド上生活",
-     "介助なしでは車椅子またはベッド上生活"
+     "5",
+     "介助なしでは、ベッドまたは車椅子での生活"
     ]
    ]
   },
   {
-   "t": "h2",
-   "x": "MDS-UPDRSの構成と評価方法"
-  },
-  {
    "t": "p",
-   "x": "MDS-UPDRSは、従来版UPDRSの改訂版であり、運動症状だけでなく非運動症状の影響も含めて包括的に評価します。全4パートで構成され、各項目は0（正常）から4（重度）の5段階でスコア化されます。全スケール評価には約30分、Part III（運動能力検査）のみでは約10分を要します。"
+   "x": "なお、1.5と2.5は、後から加えられた中間の段階です。論文では、H&Yの段階は、症状の左右差、姿勢保持の不安定さ、障害、機能的な依存にもとづく、5段階の分類と説明されています。"
   },
   {
-   "t": "table",
-   "head": [
-    "パート",
-    "評価内容",
-    "評価形式・対象期間",
-    "軽度/中等度カットオフ",
-    "中等度/重度カットオフ"
-   ],
-   "rows": [
-    [
-     "Part I",
-     "日常生活における非運動症状",
-     "医療者面接（6項目）＋患者自己評価（7項目）/ 過去1週間",
-     "10 / 11 点",
-     "21 / 22 点"
-    ],
-    [
-     "Part II",
-     "日常生活における運動症状",
-     "患者・介護者自己評価（13項目）/ 過去1週間",
-     "12 / 13 点",
-     "29 / 30 点"
-    ],
-    [
-     "Part III",
-     "運動能力検査",
-     "医療者による直接観察評価（18項目・33スコア）/ 検査時点",
-     "32 / 33 点",
-     "58 / 59 点"
-    ],
-    [
-     "Part IV",
-     "治療合併症（ジスキネジア・変動等）",
-     "医療者問診および観察（6項目）/ 過去1週間",
-     "4 / 5 点",
-     "12 / 13 点"
-    ]
+   "t": "h2",
+   "x": "MDS-UPDRSの構成"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Part I：日常生活における非運動症状（認知、行動、気分、睡眠、自律神経、感覚、疲労など）",
+    "Part II：日常生活における運動症状",
+    "Part III：運動能力の検査（医療者による評価）",
+    "Part IV：運動合併症"
    ]
   },
   {
-   "t": "h2",
-   "x": "両評価尺度の関係性と理学療法評価での注意点"
-  },
-  {
    "t": "p",
-   "x": "MDS-UPDRSはH&Y分類をサブコンポーネントとして含んでおり、H&Yステージが進むにつれてMDS-UPDRSの各パートスコアも有意に増加する強い相関関係が確認されています。ただし、H&Y分類は変化に対する感度が低いため、理学療法効果の判定にはMDS-UPDRS（Part II・III）や各種歩行・バランス評価指標（TUG、10m歩行テスト等）を併用することが推奨されます。"
+   "x": "Part Iの総得点の重症度は、論文で、以前に提案されたカットオフ値として、軽度：10点以下、中等度：11〜21点、重度：22点以上が使われています。Part II〜IVのカットオフ値は、今回、確認できていません。"
   },
   {
    "t": "note",
-   "x": "注意: 本ページに記載された分類やカットオフ値は臨床的評価の目安です。実際の評価や診断・研究での運用にあたっては、必ず学会等の最新の公式資料やガイドラインをご確認ください。"
+   "x": "理学療法の評価では、H&Yの段階だけでなく、歩行・バランスの指標なども組み合わせてください（この点は、今回の出典の記載ではなく、一般的な注意です）。MDS-UPDRSの項目数・所要時間・採点の詳細は、公式の資料で確認してください。確認日：2026年10月24日。"
   }
  ],
- "verification": "summary"
+ "verification": "primary"
 }
