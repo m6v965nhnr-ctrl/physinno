@@ -494,6 +494,7 @@ export default function HospitalSearch() {
             >
               <p className="text-sm font-semibold text-gray-900">{h.name}</p>
               <p className="mt-1 text-xs text-gray-500">
+                {h.facility_type && <span className="mr-1 rounded-full bg-gray-100 px-2 py-0.5 text-[11px] text-gray-600">{h.facility_type}</span>}
                 {[h.prefecture, h.city].filter(Boolean).join(" ") || "地域未設定"}
                 {h.size && (
                   <>
