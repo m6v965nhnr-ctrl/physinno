@@ -29,7 +29,7 @@ import {
   ReviewAxis,
   WORKPLACE_SIZE_LABEL,
   WorkplaceSize,
-  canEditHospitalData,
+  isHospitalOrg,
   followHospital,
   getFollowerCount,
   getHospital,
@@ -184,7 +184,8 @@ export default function HospitalDetailPage() {
       if (myType === "pt" || myType === "student") loadQuestions();
       setIsPt(myType === "pt");
       setFollowing(await isFollowingHospital(id, user.id));
-      setCanEditRatios(await canEditHospitalData(id, user.id));
+      // 疾患比率・採用情報を編集できるのは、この施設にひもづいた承認済みの組織（採用アカウント）だけ
+      setCanEditRatios(await isHospitalOrg(id));
 
       const mine = reviewList.find((r) => r.is_mine);
       if (mine) {
@@ -299,21 +300,11 @@ export default function HospitalDetailPage() {
     setReviews(await listHospitalReviews(id));
   }
 
-  // 病院の情報を編集する前に、「本当にここで働いていますか？」を聞く（「はい」と答えたPTだけが、編集できる。記録は本人にだけ見える）
+  // 疾患比率・採用情報を編集できるのは、この施設にひもづいた承認済みの組織（採用アカウント）だけ
   async function ensureCanEdit(): Promise<boolean> {
     if (canEditRatios) return true;
-    const ok = await askConfirm(
-      "あなたは本当に、ここで働いていますか？\n「はい」を押した方だけが、この病院の情報（疾患比率・採用情報）を編集できます。どこで働いているかは、ほかの人には表示されません。",
-      { okLabel: "はい、働いています", cancelLabel: "いいえ" },
-    );
-    if (!ok) return false;
-    const { error } = await supabase.rpc("confirm_hospital_work", { p_hospital: id });
-    if (error) {
-      notify("確認できませんでした。PTのアカウントで、もう一度お試しください");
-      return false;
-    }
-    setCanEditRatios(true);
-    return true;
+    notify("疾患比率・採用情報を編集できるのは、この施設の採用アカウントだけです（組織を登録して、この職場ページにひもづけてください）");
+    return false;
   }
 
   async function openRatioEditor() {
@@ -949,7 +940,7 @@ export default function HospitalDetailPage() {
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
-            {(canEditRatios || isPt) && !editingRatios && (
+            {canEditRatios && !editingRatios && (
               <button
                 onClick={openRatioEditor}
                 className="text-xs text-gray-400 hover:text-gray-700"
@@ -1013,7 +1004,7 @@ export default function HospitalDetailPage() {
             </div>
           ) : (
             <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
+              まだ登録されていません{canEditRatios && "（この施設の採用アカウントが入力できます）"}
             </p>
           )}
         </section>
@@ -1025,7 +1016,7 @@ export default function HospitalDetailPage() {
         <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
-            {(canEditRatios || isPt) && !editingRecruitment && (
+            {canEditRatios && !editingRecruitment && (
               <button
                 onClick={openRecruitmentEditor}
                 className="text-xs text-gray-400 hover:text-gray-700"
@@ -1035,7 +1026,7 @@ export default function HospitalDetailPage() {
             )}
           </div>
 
-          <HospitalRecruitCard hospitalId={id} canEdit={canEditRatios || isPt} ensureCanEdit={ensureCanEdit} />
+          <HospitalRecruitCard hospitalId={id} canEdit={canEditRatios} ensureCanEdit={ensureCanEdit} />
 
           {editingRecruitment ? (
             <div className="mt-4 space-y-2">
@@ -1072,7 +1063,7 @@ export default function HospitalDetailPage() {
             </p>
           ) : (
             <p className="mt-3 text-sm text-gray-400">
-              まだ登録されていません{(canEditRatios || isPt) && "（ここで働くPTが入力できます）"}
+              まだ登録されていません{canEditRatios && "（この施設の採用アカウントが入力できます）"}
             </p>
           )}
         </section>

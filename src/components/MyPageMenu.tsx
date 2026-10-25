@@ -54,6 +54,15 @@ export default function MyPageMenu({ onLogout, className = "" }: { onLogout: () 
   const item = "block w-full px-4 py-3 text-left text-sm text-gray-800 hover:bg-gray-50";
 
   return (
+    <>
+    {/* 右利きの人が片手で押しやすいように、右上にも「戻る」を置く（左上の⋯メニューは、そのまま） */}
+    <button
+      type="button"
+      onClick={() => window.history.back()}
+      className="absolute right-3 top-3 z-30 rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm ring-1 ring-gray-200 hover:bg-white"
+    >
+      ← 戻る
+    </button>
     <div ref={wrapRef} className={`absolute left-3 top-3 z-30 ${className}`}>
       <button
         type="button"
@@ -106,5 +115,6 @@ export default function MyPageMenu({ onLogout, className = "" }: { onLogout: () 
         </div>
       )}
     </div>
+    </>
   );
 }

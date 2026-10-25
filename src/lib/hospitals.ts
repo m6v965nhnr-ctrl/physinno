@@ -538,12 +538,19 @@ export async function updateRecruitmentInfo(
   hospitalId: string,
   recruitmentInfo: string
 ): Promise<string | null> {
-  const { error } = await supabase
-    .from("hospitals")
-    .update({ recruitment_info: recruitmentInfo.trim() || null })
-    .eq("id", hospitalId);
+  // 列の権限は閉じていて、施設にひもづいた承認済みの組織だけが、この関数経由で書ける
+  const { error } = await supabase.rpc("set_hospital_recruitment_info", {
+    p_hospital: hospitalId,
+    p_text: recruitmentInfo,
+  });
 
   return error ? error.message : null;
+}
+
+// その施設にひもづいた承認済みの組織（採用アカウント）かどうか。疾患比率・採用情報を編集できるのは、この人だけ
+export async function isHospitalOrg(hospitalId: string): Promise<boolean> {
+  const { data } = await supabase.rpc("is_hospital_org", { p_hospital: hospitalId });
+  return data === true;
 }
 
 export async function canEditHospitalData(
