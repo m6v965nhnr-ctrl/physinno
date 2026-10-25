@@ -399,12 +399,10 @@ export default function EditProfilePage() {
       return;
     }
 
-    // プロフィールに必要な項目は必須（所属部署・出身・生年月日・連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
+    // プロフィールに必要な項目は必須（アイコン・勤務先・所属部署・出身・生年月日・連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
     const requiredFields: { label: string; filled: boolean; focusId: string }[] = [
-      { label: "アイコン", filled: Boolean(profileImage || selectedImage), focusId: "icon-section" },
       { label: "名前", filled: Boolean(fullName.trim()), focusId: "field-1" },
       { label: "ふりがな", filled: Boolean(fullNameKana.trim()), focusId: "field-kana" },
-      { label: "勤務先", filled: Boolean(workplace.trim()), focusId: "field-2" },
       { label: "資格", filled: Boolean(qualification.trim()), focusId: "field-5" },
       { label: "経験（何年目か）", filled: experienceYears.trim() !== "", focusId: "field-exp" },
       { label: "学歴", filled: Boolean(education.trim()), focusId: "field-6" },
@@ -593,7 +591,7 @@ export default function EditProfilePage() {
             <p className="mt-1 text-sm leading-6 text-emerald-700">
               はじめに、あなたのプロフィールを登録しましょう。
               <span className="text-red-500">（必須）</span>の項目をすべて入力すると、Re:lightを使いはじめられます。
-              連絡先・自己紹介・自分の強み・興味のある分野・カバー写真は、あとからでも追加できます。
+              アイコン・勤務先・連絡先・自己紹介・自分の強み・興味のある分野・カバー写真は、あとからでも追加できます。
             </p>
           </div>
         )}
@@ -666,7 +664,7 @@ export default function EditProfilePage() {
           ========================= */}
           <div className="text-center">
             <p id="icon-section" tabIndex={-1} className="mb-3 font-semibold">
-              アイコン <span className="text-xs font-normal text-red-500">（必須）</span>
+              アイコン <span className="text-xs font-normal text-gray-500">（任意）</span>
             </p>
 
             <div className="mx-auto h-32 w-32 overflow-hidden rounded-full bg-gray-100 flex items-center justify-center">
@@ -818,7 +816,7 @@ export default function EditProfilePage() {
           {/* 勤務先（自由入力。病院ページとは、連携しない） */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-2">
-              勤務先 <span className="text-xs font-normal text-red-500">（必須）</span>
+              勤務先 <span className="text-xs font-normal text-gray-500">（任意）</span>
             </label>
 
             <input
