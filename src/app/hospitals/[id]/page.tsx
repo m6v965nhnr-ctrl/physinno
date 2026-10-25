@@ -587,7 +587,7 @@ export default function HospitalDetailPage() {
                     onClick={() => { track("facility_cta", { kind: "review_pt" }); setReviewModalOpen(true); }}
                     className="w-full rounded-full bg-relight-gradient px-4 py-2.5 text-sm font-medium text-white"
                   >
-                    この職場で働いていますか？最初の口コミを書く
+                    この職場で働いていますか？他のPTのために口コミを書きませんか
                   </button>
                 ) : !userId ? (
                   <Link
@@ -595,7 +595,7 @@ export default function HospitalDetailPage() {
                     onClick={() => track("facility_cta", { kind: "register_pt" })}
                     className="block w-full rounded-full bg-relight-gradient px-4 py-2.5 text-center text-sm font-medium text-white"
                   >
-                    この職場で働くPTの方：登録して最初の口コミを書く
+                    この職場で働くPTの方：登録して、口コミを書いてみませんか
                   </Link>
                 ) : null}
                 <Link

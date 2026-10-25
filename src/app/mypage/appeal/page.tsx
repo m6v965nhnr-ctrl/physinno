@@ -128,7 +128,7 @@ export default function AppealPage() {
   const [whyPt, setWhyPt] = useState("");
   const [values, setValues] = useState<string[]>([]);
   const [learning, setLearning] = useState("");
-  const [acceptScouts, setAcceptScouts] = useState(false);
+  const [acceptScouts, setAcceptScouts] = useState(true);
   const [prefs, setPrefs] = useState<WorkPrefs>(EMPTY_PREFS);
   // プレビューに、経験・専門を出すため
   const [facts, setFacts] = useState<{ experience_years: number | null; specialty: string | null }>({

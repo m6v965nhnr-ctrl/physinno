@@ -40,7 +40,7 @@ export default function EditProfilePage() {
   const [contact, setContact] = useState("");
   const [biography, setBiography] = useState("");
   const [strengths, setStrengths] = useState("");
-  const [acceptScouts, setAcceptScouts] = useState(false);
+  const [acceptScouts, setAcceptScouts] = useState(true);
   const [whyPt, setWhyPt] = useState("");
   const [qualStory, setQualStory] = useState("");
   const [qualUse, setQualUse] = useState("");
