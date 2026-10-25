@@ -51,13 +51,13 @@ export default function IdeasBrowser() {
       </div>
       )}
 
+      {/* 投稿はまだ少ないため、導線は控えめにする（機能は残す） */}
       {isPt && (
-        <Link
-          href="/ideas/new"
-          className="mt-2 block rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-center text-sm font-semibold text-sky-900"
-        >
-          ＋ リハビリのアイデアを登録
-        </Link>
+        <p className="mt-2 text-right">
+          <Link href="/ideas/new" className="text-xs font-medium text-gray-500 underline underline-offset-4">
+            ＋ リハビリのアイデアを登録
+          </Link>
+        </p>
       )}
 
       <Link

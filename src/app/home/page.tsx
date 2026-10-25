@@ -468,7 +468,7 @@ export default function HomePage() {
             className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
           >
             <span aria-hidden="true">👥</span>
-            コミニティ
+            コミュニティ
           </Link>
 
           <Link

@@ -84,10 +84,11 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote 
         <h2 className="text-sm font-semibold">応援</h2>
         {!isSelf && (
           <button type="button" onClick={like} aria-pressed={s.liked} className={`rounded-full border px-4 py-1.5 text-sm font-medium ${s.liked ? "border-rose-300 bg-rose-50 text-rose-700" : "border-gray-300 bg-white text-gray-700"}`}>
-            {s.liked ? "♥" : "♡"} いいね {s.likes}
+            {/* 0件の数字は見せない（過疎感を出さない） */}
+            {s.liked ? "♥" : "♡"} いいね{s.likes > 0 ? ` ${s.likes}` : ""}
           </button>
         )}
-        {isSelf && <span className="text-sm text-gray-600">♥ {s.likes}</span>}
+        {isSelf && s.likes > 0 && <span className="text-sm text-gray-600">♥ {s.likes}</span>}
       </div>
       <p className="text-[11px] leading-5 text-gray-500">いいねやコメントの数は、理学療法士の能力や医療の質を示すものではありません。コメントは、Re:lightの登録ユーザーからの応援で、実際に担当した患者さんによる確認済みの評価ではありません。</p>
 

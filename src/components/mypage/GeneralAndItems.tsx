@@ -137,7 +137,15 @@ export function GeneralMyPage({
           )}
         </section>
 
-        {userId && <MedicalHistorySection userId={userId} />}
+        {/* 使う人が少ないため、折りたたんで場所を取らないようにする（機能は残す） */}
+        {userId && (
+          <details className="rounded-3xl border border-gray-100 bg-white px-6 py-4 shadow-[0_2px_12px_rgba(0,0,0,0.03)]">
+            <summary className="cursor-pointer text-sm font-semibold text-gray-700">病歴・持病を記録する（任意）</summary>
+            <div className="mt-3">
+              <MedicalHistorySection userId={userId} />
+            </div>
+          </details>
+        )}
 
         {userId && <ReferralCard userId={userId} />}
         <AddToHomeButton placement="bottom" />
