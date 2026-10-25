@@ -1,0 +1,140 @@
+{
+ "slug": "first-year-rehab-basics",
+ "title": "リハの前に知っておくこと総まとめ：安全管理・疾患と手術・評価・制度（1年目のPTのために）",
+ "description": "1年目のPTがリハを行ううえで知っておきたい基礎知識を、仕事の流れ順にまとめた目次ページです。リハを中止する基準・検査値・心電図などの安全管理、疾患別の手術方式と気をつけること、評価の選び方、診療報酬・保険制度まで、出典つきの各ページへ案内します。",
+ "category": "1年目のきほん",
+ "publishedAt": "2026-10-25",
+ "updatedAt": "2026-10-25",
+ "checkedOn": "2026-10-25",
+ "verification": "primary",
+ "sources": [
+  {
+   "name": "このページは目次です。数値・基準・推奨は、各リンク先のページに、それぞれの出典（学会ガイドライン・公的資料）と確認日を記載しています（コラム一覧）",
+   "url": "https://relight-1wet.vercel.app/columns"
+  }
+ ],
+ "blocks": [
+  {
+   "t": "p",
+   "x": "「教科書は大まかで、検索すると一般向けか研究しか出てこない」。1年目のPTからよく聞く悩みです。このページは、リハを行ううえで知っておきたい基礎知識を、現場の1日の流れ（安全確認 → カルテを読む → 介入 → 評価 → 記録・算定）の順に並べた目次です。各ページに出典と確認日が付いています。"
+  },
+  { "t": "h2", "x": "1. まず安全：今日、この患者さんにリハをしていいか" },
+  {
+   "t": "p",
+   "x": "介入の前に、バイタル・中止基準・最近の検査値・意識レベルを確かめる習慣をつけます。迷ったら中止して、看護師・主治医に確認します。"
+  },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/vital-signs-criteria", "label": "バイタルサインと、リハを中止する基準" },
+    { "href": "/columns/lab-values-pt", "label": "採血データの見かた（PTが見る検査値）" },
+    { "href": "/columns/ecg-basics", "label": "心電図のきほん" },
+    { "href": "/columns/oxygen-therapy", "label": "酸素療法のきほん" },
+    { "href": "/columns/jcs-gcs", "label": "意識レベル（JCS・GCS）の伝え方" },
+    { "href": "/columns/pressure-ulcer", "label": "褥瘡のきほん" }
+   ]
+  },
+  { "t": "h2", "x": "2. 疾患と手術のきほん：カルテの術式名がわかるように（運動器）" },
+  {
+   "t": "p",
+   "x": "「γネイル」「SHS」「BTB」のような術式名から、何をした手術で、何に気をつけるか（荷重・脱臼・禁忌）をつかみます。"
+  },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/hip-fracture-rehab", "label": "大腿骨近位部骨折（髄内釘・SHS・人工骨頭の選び方）" },
+    { "href": "/columns/total-hip-arthroplasty-rehab", "label": "人工股関節全置換術（THA）後：脱臼予防" },
+    { "href": "/columns/total-knee-arthroplasty-rehab", "label": "人工膝関節全置換術（TKA）後" },
+    { "href": "/columns/acl-reconstruction-rehab", "label": "ACL再建後のリハビリ" },
+    { "href": "/columns/rotator-cuff-rehab", "label": "腱板断裂のリハビリ" },
+    { "href": "/columns/frozen-shoulder-pt", "label": "凍結肩（五十肩）" },
+    { "href": "/columns/knee-osteoarthritis", "label": "変形性膝関節症" },
+    { "href": "/columns/lumbar-disc-herniation", "label": "腰椎椎間板ヘルニア" },
+    { "href": "/columns/lumbar-spinal-stenosis", "label": "腰部脊柱管狭窄症" },
+    { "href": "/columns/rheumatoid-arthritis-rehab", "label": "関節リウマチ" },
+    { "href": "/columns/osteoporosis-exercise", "label": "骨粗鬆症と運動" }
+   ]
+  },
+  { "t": "h2", "x": "3. 疾患のきほん：中枢神経" },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/stroke-rehab", "label": "脳卒中：期別アプローチと離床基準" },
+    { "href": "/columns/parkinson-disease-pt", "label": "パーキンソン病" },
+    { "href": "/columns/spinal-cord-injury-pt", "label": "脊髄損傷" },
+    { "href": "/columns/traumatic-brain-injury-pt", "label": "外傷性脳損傷" },
+    { "href": "/columns/multiple-sclerosis-pt", "label": "多発性硬化症" },
+    { "href": "/columns/als-pt", "label": "ALS（筋萎縮性側索硬化症）" },
+    { "href": "/columns/guillain-barre-pt", "label": "ギラン・バレー症候群" },
+    { "href": "/columns/cerebral-palsy-pt", "label": "脳性まひ" }
+   ]
+  },
+  { "t": "h2", "x": "4. 疾患のきほん：内部障害・全身状態" },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/heart-failure-rehab", "label": "心不全のリハビリ" },
+    { "href": "/columns/cardiac-rehab-mi", "label": "心筋梗塞後の心臓リハ" },
+    { "href": "/columns/copd-pulmonary-rehab", "label": "COPDの呼吸リハ" },
+    { "href": "/columns/diabetes-exercise", "label": "糖尿病と運動（低血糖に注意）" },
+    { "href": "/columns/ckd-exercise", "label": "慢性腎臓病（CKD）と運動" },
+    { "href": "/columns/cancer-rehabilitation", "label": "がんのリハビリ" },
+    { "href": "/columns/sarcopenia", "label": "サルコペニア" },
+    { "href": "/columns/frailty-pt", "label": "フレイル" },
+    { "href": "/columns/disuse-syndrome", "label": "廃用症候群" },
+    { "href": "/columns/icu-acquired-weakness", "label": "ICU関連筋力低下（ICU-AW）" },
+    { "href": "/columns/fall-prevention", "label": "転倒予防" }
+   ]
+  },
+  { "t": "h2", "x": "5. 評価：何で測るか迷ったら" },
+  {
+   "t": "p",
+   "x": "よく使う評価の、やり方・基準値・カットオフ。ほかの評価は、コラム一覧の「評価・検査」から探せます。"
+  },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/pain-nrs-vas", "label": "痛みの評価（NRS・VAS）" },
+    { "href": "/columns/timed-up-and-go", "label": "TUG（転倒リスクのカットオフ）" },
+    { "href": "/columns/berg-balance-scale", "label": "バーグバランススケール（BBS）" },
+    { "href": "/columns/six-minute-walk-test", "label": "6分間歩行試験（6MWT）" },
+    { "href": "/columns/ten-meter-walk-test", "label": "10m歩行テスト" },
+    { "href": "/columns/grip-strength", "label": "握力（基準値）" },
+    { "href": "/columns/barthel-index", "label": "バーセルインデックス（BI）" },
+    { "href": "/columns/functional-independence-measure", "label": "FIM（やっているADL）" },
+    { "href": "/columns/mmse-hds-r", "label": "MMSE・長谷川式（認知機能）" },
+    { "href": "/columns/modified-ashworth-scale", "label": "修正アシュワーススケール（痙縮）" },
+    { "href": "/columns/brunnstrom-recovery-stage", "label": "ブルンストロームステージ" },
+    { "href": "/columns/reflexes-basic", "label": "深部腱反射のとり方" }
+   ]
+  },
+  { "t": "h2", "x": "6. 記録・算定・制度：なぜ単位数が決まっているのか" },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/rehab-fee-structure", "label": "リハビリの診療報酬のしくみ" },
+    { "href": "/columns/rehab-calculation-limit", "label": "算定日数の上限" },
+    { "href": "/columns/kaifukuki-rehab-ward", "label": "回復期リハビリテーション病棟とは" },
+    { "href": "/columns/chiiki-houkatsu-ward", "label": "地域包括ケア病棟とは" },
+    { "href": "/columns/medical-vs-care-insurance", "label": "医療保険と介護保険の違い" },
+    { "href": "/columns/long-term-care-insurance", "label": "介護保険のきほん" },
+    { "href": "/columns/pt-law-and-scope", "label": "理学療法士法と、PTができること" }
+   ]
+  },
+  { "t": "h2", "x": "7. 用語・からだのきほん" },
+  {
+   "t": "links",
+   "items": [
+    { "href": "/columns/pt-abbreviations", "label": "略語集（FEV1・HFrEF・6MWTなど）" },
+    { "href": "/columns/icf-model", "label": "ICFモデル" },
+    { "href": "/columns/gait-cycle", "label": "歩行周期" },
+    { "href": "/columns/muscle-contraction-types", "label": "筋収縮の種類" },
+    { "href": "/columns", "label": "筋213・骨64の個別ページ（コラム一覧から）" }
+   ]
+  },
+  {
+   "t": "note",
+   "x": "このページは目次で、医学的な判断の根拠は各リンク先に書いています。リンク先の数値・推奨は、学会ガイドライン・公的資料と照合し、確認日を記載しています。実際の患者さんへの適用は、必ず職場の先輩・主治医の指示と、最新の公式資料で確認してください。足りないテーマは、意見箱から教えてください。"
+  }
+ ]
+}

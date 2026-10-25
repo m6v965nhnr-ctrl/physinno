@@ -12,8 +12,9 @@ const guides = files.map((f) => {
   if (!Array.isArray(g.sources) || g.sources.length === 0 || g.sources.some((s) => !/^https?:\/\//.test(s.url) || !s.name)) errs.push(`${f}: 出典（name と https の url）が必要`);
   if (!Array.isArray(g.blocks) || g.blocks.length < 3) errs.push(`${f}: 本文が少ない`);
   for (const b of g.blocks ?? []) {
-    if (!["h2", "h3", "p", "ul", "table", "note"].includes(b.t)) errs.push(`${f}: 不明なブロック ${b.t}`);
+    if (!["h2", "h3", "p", "ul", "table", "note", "links"].includes(b.t)) errs.push(`${f}: 不明なブロック ${b.t}`);
     if (b.t === "table" && (!b.head || !b.rows || b.rows.some((r) => r.length !== b.head.length))) errs.push(`${f}: 表の列数が合わない`);
+    if (b.t === "links" && (!Array.isArray(b.items) || b.items.some((x) => !x.label || !/^\//.test(x.href)))) errs.push(`${f}: links は label と、/ で始まる href が必要`);
   }
   return g;
 });

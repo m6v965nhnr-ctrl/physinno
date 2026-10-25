@@ -1,3 +1,4 @@
+import Link from "next/link";
 import type { Guide } from "@/content/guides/types";
 
 export default function GuideBody({ guide }: { guide: Guide }) {
@@ -30,6 +31,18 @@ export default function GuideBody({ guide }: { guide: Guide }) {
         if (b.t === "p") return <p key={i}>{b.x}</p>;
         if (b.t === "note") return <p key={i} className="rounded-xl bg-amber-50 p-3 text-xs leading-5 text-amber-900">{b.x}</p>;
         if (b.t === "ul") return <ul key={i} className="list-disc space-y-1 pl-5">{b.items.map((x, j) => <li key={j}>{x}</li>)}</ul>;
+        if (b.t === "links")
+          return (
+            <ul key={i} className="grid gap-2 sm:grid-cols-2">
+              {b.items.map((x, j) => (
+                <li key={j}>
+                  <Link href={x.href} className="block rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm text-gray-800 hover:border-gray-400">
+                    {x.label} <span aria-hidden="true" className="text-gray-400">→</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          );
         if (b.t !== "table") return null;
         return (
           <div key={i} className="overflow-x-auto">

@@ -1,7 +1,9 @@
 export type GuideBlock =
   | { t: "h2" | "h3" | "p" | "note"; x: string }
   | { t: "ul"; items: string[] }
-  | { t: "table"; head: string[]; rows: string[][] };
+  | { t: "table"; head: string[]; rows: string[][] }
+  // サイト内のガイドへのリンク集（総まとめページで使う）
+  | { t: "links"; items: { href: string; label: string }[] };
 
 export type Guide = {
   slug: string;
