@@ -559,7 +559,14 @@ export default function PTProfile() {
           </div>
         </section>
 
-        {pt.user_id && !pt.is_student && <ProfileSocial ptUserId={pt.user_id} loggedIn={!!user} isSelf={user?.id === pt.user_id} />}
+        {pt.user_id && !pt.is_student && (
+          <ProfileSocial
+            ptUserId={pt.user_id}
+            loggedIn={!!user}
+            isSelf={user?.id === pt.user_id}
+            appealQuote={pt.one_liner?.trim() || pt.why_pt?.trim().slice(0, 60) || null}
+          />
+        )}
 
         {/* ポートフォリオ（公開設定した学歴・職歴・資格・実績などをプロフィールの下にそのまま表示） */}
         <section className="mt-8">

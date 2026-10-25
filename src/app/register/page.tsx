@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { getAttribution } from "@/lib/attribution";
 import { trackRegistration } from "@/lib/metaPixel";
+import { track } from "@vercel/analytics";
 import { graduationYearOptions } from "@/lib/student";
 import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
 
@@ -159,6 +160,8 @@ export default function RegisterPage() {
     }
 
     trackRegistration();
+    // 種類ごとの登録数（個人は特定できない。/register は集計の許可パス）
+    track("register_done", { type: isTeacher ? "teacher" : isOrg ? "org" : accountType ?? "" });
 
     // 先生の学校・学部・学科・アイコン（ログインできた場合は、ここで保存。できなかったときは、アカウントの画面で入れられる）
     if (isTeacher && icon && data.session) {

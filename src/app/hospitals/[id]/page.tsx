@@ -5,6 +5,7 @@ import HospitalRecruitCard from "@/components/HospitalRecruitCard";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import { track } from "@vercel/analytics";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { AccountType, getMyAccountType } from "@/lib/account";
@@ -578,6 +579,33 @@ export default function HospitalDetailPage() {
               <p className="mt-1 text-center text-[11px] leading-5 text-gray-500">
                 まだ口コミがないため、仮に10点満点の5点で描いた形です。口コミが集まると、実際の平均に切り替わります。
               </p>
+
+              {/* 空のページを、口コミ・登録の入口にする */}
+              <div className="mt-3 space-y-2">
+                {isPt ? (
+                  <button
+                    onClick={() => { track("facility_cta", { kind: "review_pt" }); setReviewModalOpen(true); }}
+                    className="w-full rounded-full bg-relight-gradient px-4 py-2.5 text-sm font-medium text-white"
+                  >
+                    この職場で働いていますか？最初の口コミを書く
+                  </button>
+                ) : !userId ? (
+                  <Link
+                    href={`/register?type=pt&next=${encodeURIComponent(`/hospitals/${id}`)}`}
+                    onClick={() => track("facility_cta", { kind: "register_pt" })}
+                    className="block w-full rounded-full bg-relight-gradient px-4 py-2.5 text-center text-sm font-medium text-white"
+                  >
+                    この職場で働くPTの方：登録して最初の口コミを書く
+                  </Link>
+                ) : null}
+                <Link
+                  href={userId ? "/org" : "/for-org"}
+                  onClick={() => track("facility_cta", { kind: "org" })}
+                  className="block w-full rounded-full border border-gray-300 bg-white px-4 py-2.5 text-center text-sm font-medium text-gray-800"
+                >
+                  採用担当の方はこちら（無料で求人掲載・ページ運営）
+                </Link>
+              </div>
             </div>
           )}
 

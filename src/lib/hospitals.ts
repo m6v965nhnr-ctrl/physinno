@@ -284,7 +284,12 @@ export async function searchHospitals({
 }): Promise<Hospital[]> {
   // 給与・休日・アクセスで絞るときは、その情報がある病院だけ（!inner）。絞らないときは、あれば付ける
   const inner = hasRecruitFilters(recruit) ? "!inner" : "";
-  let query = supabase.from("hospitals").select(`${HOSPITAL_COLUMNS}, hospital_recruit${inner}(*)`).order("name");
+  // 病院（facility_typeがnull）を先に出す。種類を選ばずに県だけで検索したとき、件数の多いデイサービスなどに病院が埋もれないように
+  let query = supabase
+    .from("hospitals")
+    .select(`${HOSPITAL_COLUMNS}, hospital_recruit${inner}(*)`)
+    .order("facility_type", { ascending: true, nullsFirst: true })
+    .order("name");
 
   // 正式名称（例：「公益社団法人〇〇　△△病院」）で登録されているため、
   // 一般的に呼ばれる名前の一部でも見つかるよう部分一致で検索する

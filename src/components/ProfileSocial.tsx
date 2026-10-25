@@ -15,7 +15,7 @@ const AREA = "w-full rounded-2xl border border-gray-300 bg-white px-4 py-2.5 tex
 
 // PTの公開プロフィールに出す「応援（いいね・コメント）」と、承認済みの組織からの「スカウト」。
 // 数は、能力や医療の質を表すものではない。コメントは、実際の担当患者さんによる確認済みの評価ではない
-export default function ProfileSocial({ ptUserId, loggedIn, isSelf }: { ptUserId: string; loggedIn: boolean; isSelf: boolean }) {
+export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote }: { ptUserId: string; loggedIn: boolean; isSelf: boolean; appealQuote?: string | null }) {
   const [s, setS] = useState<Social | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [body, setBody] = useState("");
@@ -97,6 +97,21 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf }: { ptUserId
           {scoutOpen && (
             <div className="mt-2 space-y-2">
               <select aria-label="関連する求人" value={jobId} onChange={(e) => setJobId(e.target.value)} className="w-full rounded-full border border-gray-300 bg-white px-4 py-2.5 text-sm"><option value="">関連する求人：なし</option>{jobs.map((j) => <option key={j.id} value={j.id}>{j.title}</option>)}</select>
+              {/* プロフィールを読んだことが伝わるスカウトは、返信されやすい。引用つきの書き出しを用意する */}
+              {!msg && (
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMsg(
+                      (appealQuote ? `「${appealQuote}」というプロフィールを拝見し、ぜひお話ししたいと思いご連絡しました。\n` : "プロフィールを拝見し、ぜひお話ししたいと思いご連絡しました。\n") +
+                        "私たちは（施設名・地域）で、（どんな患者さん・利用者さんが多いか）。あなたの（良いと思った点）が、（職場のどんな場面）で活きると感じています。\nまずは見学だけでも歓迎です。"
+                    )
+                  }
+                  className="rounded-full border border-gray-300 bg-white px-4 py-1.5 text-xs font-medium text-gray-700"
+                >
+                  ✍ プロフィールを引用した書き出しを入れる
+                </button>
+              )}
               <textarea aria-label="スカウトのメッセージ" rows={5} maxLength={2000} value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="なぜ、この方に声をかけたか、どんな職場かを、具体的に書いてください（10文字以上）" className={AREA} />
               <p className="text-[11px] text-gray-500">同じ相手には、返信があるまで、続けて送れません。受け取った方は、辞退できます。</p>
               <button type="button" onClick={sendScout} disabled={busy || msg.trim().length < 10} className="w-full rounded-full bg-black py-2.5 text-sm font-semibold text-white disabled:opacity-50">{busy ? "送信中…" : "送る"}</button>
