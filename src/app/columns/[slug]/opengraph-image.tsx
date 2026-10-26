@@ -1,8 +1,8 @@
 import { ImageResponse } from "next/og";
 import { getColumnMeta } from "@/lib/columns";
-import { SITE_NAME } from "@/lib/site";
 
-export const alt = "コラム｜Re:light";
+// 記事ごとのOG画像（XやLINEで共有されたときに、タイトル入りのカードが出る）
+export const alt = "Re:light のガイド記事";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,18 +21,12 @@ async function loadJapaneseFont(text: string) {
   }
 }
 
-export default async function ColumnOpengraphImage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+export default async function OpengraphImage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const meta = getColumnMeta(slug);
-
-  const title = meta?.title || "コラム";
-  const category = meta?.category || "";
-
-  const font = await loadJapaneseFont(title + category + SITE_NAME + "編集部");
+  const title = meta?.title ?? "理学療法士のためのガイド";
+  const category = meta?.category ?? "ガイド";
+  const font = await loadJapaneseFont(title + category + "Re:light 出典つき");
 
   return new ImageResponse(
     (
@@ -44,47 +38,33 @@ export default async function ColumnOpengraphImage({
           flexDirection: "column",
           justifyContent: "space-between",
           padding: "72px",
-          background:
-            "linear-gradient(135deg, #55c7dc 0%, #45d0c2 50%, #4ed7a7 100%)",
+          background: "linear-gradient(135deg, #55c7dc 0%, #45d0c2 50%, #4ed7a7 100%)",
           color: "#ffffff",
-          fontFamily: font ? "NotoSansJP" : "sans-serif",
+          fontFamily: "noto",
         }}
       >
-        {category && (
-          <div
-            style={{
-              display: "flex",
-              alignSelf: "flex-start",
-              fontSize: 28,
-              fontWeight: 700,
-              padding: "8px 24px",
-              borderRadius: 999,
-              background: "rgba(255,255,255,0.25)",
-            }}
-          >
-            {category}
-          </div>
-        )}
-
         <div
           style={{
             display: "flex",
-            fontSize: title.length > 28 ? 48 : 58,
+            alignSelf: "flex-start",
+            background: "rgba(255,255,255,0.25)",
+            borderRadius: 9999,
+            padding: "10px 28px",
+            fontSize: 30,
             fontWeight: 700,
-            lineHeight: 1.4,
           }}
         >
-          {title}
+          {category}
         </div>
-
-        <div style={{ display: "flex", fontSize: 28, fontWeight: 700, opacity: 0.9 }}>
-          {SITE_NAME} 編集部
+        <div style={{ display: "flex", fontSize: title.length > 40 ? 52 : 62, fontWeight: 700, lineHeight: 1.35 }}>
+          {title.length > 70 ? `${title.slice(0, 70)}…` : title}
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontSize: 32, fontWeight: 700 }}>
+          <div style={{ display: "flex" }}>Re:light｜出典つきのPT向けガイド</div>
+          <div style={{ display: "flex", opacity: 0.9 }}>relight-1wet.vercel.app</div>
         </div>
       </div>
     ),
-    {
-      ...size,
-      fonts: font ? [{ name: "NotoSansJP", data: font, weight: 700, style: "normal" }] : [],
-    }
+    { ...size, fonts: font ? [{ name: "noto", data: font, weight: 700 as const, style: "normal" as const }] : undefined }
   );
 }

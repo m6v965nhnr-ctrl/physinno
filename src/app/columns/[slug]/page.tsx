@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { COLUMNS, getColumnMeta, getGuide } from "@/lib/columns";
 import GuideBody from "@/components/GuideBody";
+import ColumnShare from "@/components/ColumnShare";
 import { COLUMN_BODIES } from "@/content/columns";
 import { SITE_NAME } from "@/lib/site";
 
@@ -49,6 +50,8 @@ export default async function ColumnDetailPage({ params }: Props) {
             {Body ? <Body /> : <GuideBody guide={guide!} />}
           </div>
         </div>
+
+        <ColumnShare title={meta.title} path={`/columns/${slug}`} />
 
         {related.length > 0 && (
           <section className="mt-8" aria-label="同じ分野のガイド">
