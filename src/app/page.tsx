@@ -118,6 +118,13 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
           <p className="mt-3 text-sm leading-7 text-gray-700">
             登録は、メールアドレスだけで1分です。上の入口から、あなたに合うページを選んでください。病院・施設・法人の採用担当の方も、組織を登録して、求人の掲載やスカウトができます。
           </p>
+          <p className="mt-3 text-sm leading-7 text-gray-700">
+            1年目の理学療法士の方は、
+            <Link href="/columns/first-year-rehab-basics" className="font-bold text-[var(--lp-g700)] underline underline-offset-4">
+              リハの前に知っておくこと総まとめ（安全管理・疾患と手術・評価・制度）
+            </Link>
+            から読むのがおすすめです。出典つきのガイド99本に、ここから入れます。
+          </p>
         </div>
       </section>
 
