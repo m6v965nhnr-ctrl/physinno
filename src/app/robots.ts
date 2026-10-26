@@ -28,6 +28,8 @@ export default function robots(): MetadataRoute.Robots {
         "/job-hunting",
         "/hospital-areas",
         "/hospital-areas/*",
+        "/facility-areas",
+        "/facility-areas/*",
         "/evidence-levels",
         "/terms",
         "/privacy",

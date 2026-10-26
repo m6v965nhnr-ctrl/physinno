@@ -42,6 +42,7 @@ export default async function HospitalAreasPage() {
       <div className="mx-auto max-w-3xl">
         <Link href="/" className="text-sm text-gray-500 hover:text-gray-800">← {SITE_NAME}</Link>
         <h1 className="mt-6 text-2xl font-bold leading-snug text-gray-900 text-balance sm:text-3xl"><span className="inline-block">全国の病院を、</span><span className="inline-block">都道府県から探す</span></h1>
+        <p className="mt-2 text-sm leading-7 text-gray-700">老健・デイサービス・訪問看護などは<Link href="/facility-areas" className="font-semibold underline">施設の種類から探す</Link>へ。</p>
         <p className="mt-4 text-sm leading-7 text-gray-700">
           実習先や就職先の候補を探すための、リハビリテーション科のある病院の一覧です。各病院のページでは、基本情報のほか、理学療法士による職場環境の口コミや、採用情報（登録があるもの）を見られます。
         </p>

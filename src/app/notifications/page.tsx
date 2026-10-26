@@ -196,6 +196,7 @@ export default function NotificationsPage() {
             const group = n.group_id ? groups[n.group_id] : null;
             const isGroupType = n.type === "group_created" || n.type === "group_joined";
             const isGraduated = n.type === "graduated";
+            const isAnnouncement = n.type === "announcement_scouts";
             const label = isGroupType
               ? GROUP_TYPE_LABEL[n.type]
               : TYPE_LABEL[n.type as NotificationType] || "の通知";
@@ -209,9 +210,9 @@ export default function NotificationsPage() {
                 }`}
               >
                 <div className="h-10 w-10 shrink-0 overflow-hidden rounded-full bg-gray-100">
-                  {isGroupType ? (
+                  {isGroupType || isAnnouncement ? (
                     <div className="flex h-full w-full items-center justify-center text-gray-300">
-                      👥
+                      {isAnnouncement ? "📣" : "👥"}
                     </div>
                   ) : (
                     <ProfileLink userId={n.actor_id} name={actor?.full_name} nested className="block h-full w-full">
@@ -234,7 +235,11 @@ export default function NotificationsPage() {
 
                 <div className="min-w-0 flex-1">
                   <p className="text-sm text-gray-900">
-                    {isGraduated ? (
+                    {isAnnouncement ? (
+                      <span className="font-medium">
+                        スカウトを受け取れる設定になりました。「採用担当に伝える」ページで、内容の確認と、受け取らない設定（オフ）ができます
+                      </span>
+                    ) : isGraduated ? (
                       <span className="font-medium">
                         ご卒業おめでとうございます！アカウントがPTに切り替わりました。プロフィールを入力しましょう
                       </span>
@@ -263,6 +268,14 @@ export default function NotificationsPage() {
                 </div>
               </div>
             );
+
+            if (isAnnouncement) {
+              return (
+                <Link key={n.id} href="/mypage/appeal">
+                  {body}
+                </Link>
+              );
+            }
 
             if (isGraduated) {
               return (

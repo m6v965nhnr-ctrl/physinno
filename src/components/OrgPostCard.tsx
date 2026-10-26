@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ReportButton from "@/components/ReportButton";
+import OrgPostLike from "@/components/OrgPostLike";
 import { ORG_POST_KIND_LABEL, mediaUrl, type OrgPost } from "@/lib/orgPosts";
 
 const day = (s: string) => new Date(s).toLocaleDateString("ja-JP");
@@ -29,9 +30,10 @@ export default function OrgPostCard({ post, showOrg = true, reportable = false }
       {post.job_id && (
         <Link href={`/jobs/${post.job_id}`} className="mt-3 block rounded-full border border-gray-300 py-2 text-center text-xs font-semibold text-gray-800">この求人を見る</Link>
       )}
-      {reportable && (
-        <div className="mt-2 text-right"><ReportButton targetType="org_post" targetId={post.id} /></div>
-      )}
+      <div className="mt-3 flex items-center justify-between">
+        <OrgPostLike postId={post.id} />
+        {reportable && <ReportButton targetType="org_post" targetId={post.id} />}
+      </div>
     </article>
   );
 }

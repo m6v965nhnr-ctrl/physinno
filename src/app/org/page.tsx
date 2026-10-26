@@ -28,6 +28,7 @@ export default function OrgPage() {
   const [hresults, setHresults] = useState<{ id: string; name: string; prefecture: string | null; city: string | null }[]>([]);
   const [f, setF] = useState({ name: "", facility_category: "病院・医療機関", facility_type: "", prefecture: "", city: "", website: "", description: "" });
   const [busy, setBusy] = useState(false);
+  const [logoFile, setLogoFile] = useState<File | null>(null);
   const [editing, setEditing] = useState(false);
 
   const load = useCallback(async () => {
@@ -56,7 +57,21 @@ export default function OrgPage() {
     if (!f.name.trim()) return notify("組織名を入力してください");
     if (f.website.trim() && !/^https?:\/\//i.test(f.website.trim())) return notify("公式サイトは、https:// から書いてください");
     setBusy(true);
-    const body = { name: f.name.trim(), facility_category: f.facility_category, facility_type: f.facility_type || null, prefecture: f.prefecture || null, city: f.city.trim() || null, website: f.website.trim() || null, description: f.description.trim() || null };
+    let logoUrl: string | undefined;
+    if (logoFile && org) {
+      if (!logoFile.type.startsWith("image/") || logoFile.size > 5 * 1024 * 1024) {
+        setBusy(false);
+        return notify("ロゴは5MBまでの画像にしてください");
+      }
+      const path = `${org.id}/logo-${Date.now()}.${logoFile.name.split(".").pop() || "png"}`;
+      const up = await supabase.storage.from("org-media").upload(path, logoFile, { upsert: true, contentType: logoFile.type });
+      if (up.error) {
+        setBusy(false);
+        return notify("ロゴをアップロードできませんでした（承認後に設定できます）");
+      }
+      logoUrl = supabase.storage.from("org-media").getPublicUrl(path).data.publicUrl;
+    }
+    const body = { name: f.name.trim(), facility_category: f.facility_category, facility_type: f.facility_type || null, prefecture: f.prefecture || null, city: f.city.trim() || null, website: f.website.trim() || null, description: f.description.trim() || null, ...(logoUrl ? { logo_url: logoUrl } : {}) };
     const { error } = org ? await supabase.from("organizations").update(body).eq("id", org.id) : await supabase.from("organizations").insert({ ...body, owner_id: userId });
     setBusy(false);
     if (error) return notify("保存できませんでした。入力内容を確かめてください");
@@ -114,6 +129,15 @@ export default function OrgPage() {
         <input aria-label="市区町村" placeholder="市区町村" value={f.city} maxLength={50} onChange={(e) => setF({ ...f, city: e.target.value })} className={INPUT_CLASS} />
       </div>
       <input aria-label="公式サイト" type="url" placeholder="公式サイトのURL（https://…）" value={f.website} maxLength={300} onChange={(e) => setF({ ...f, website: e.target.value })} className={INPUT_CLASS} />
+      {org && (
+        <div>
+          <label className="mb-1 block text-xs font-medium text-gray-600" htmlFor="org-logo">ロゴ画像（任意・5MBまで。投稿やマイページに表示されます）</label>
+          <div className="flex items-center gap-3">
+            {org.logo_url && !logoFile && <img src={org.logo_url} alt="" className="h-10 w-10 rounded-full object-cover" />}
+            <input id="org-logo" type="file" accept="image/*" onChange={(e) => setLogoFile(e.target.files?.[0] ?? null)} className="block w-full text-sm" />
+          </div>
+        </div>
+      )}
       <textarea aria-label="組織の紹介" rows={4} placeholder="組織の紹介（2,000文字まで）" value={f.description} maxLength={2000} onChange={(e) => setF({ ...f, description: e.target.value })} className={AREA} />
       <p className="text-[11px] leading-5 text-gray-500">登録したあと、運営が内容を確認します。承認されると、求人の公開と、スカウトが使えます。承認後に、組織名・公式サイトを変えると、もう一度、確認になります。</p>
       <button type="button" onClick={save} disabled={busy} className={PRIMARY_BUTTON_CLASS}>{busy ? "保存中…" : org ? "保存する" : "この内容で登録する"}</button>

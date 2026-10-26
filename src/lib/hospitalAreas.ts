@@ -29,3 +29,30 @@ export async function listHospitalsInPrefecture(pref: string): Promise<AreaHospi
     .limit(1000);
   return (data as AreaHospital[] | null) ?? [];
 }
+
+// 施設の種類×県のSEOページ（/facility-areas）。スラッグ → hospitals.facility_type
+export const FACILITY_AREA_TYPES = {
+  "roken": "介護老人保健施設（老健）",
+  "tokuyo": "特別養護老人ホーム（特養）",
+  "kaigo-iryoin": "介護医療院",
+  "day-care": "デイケア",
+  "day-service": "デイサービス",
+  "houmon-reha": "訪問リハビリテーション事業所",
+  "houmon-kango": "訪問看護ステーション",
+  "clinic": "クリニック・診療所",
+  "yuryo-home": "有料老人ホーム",
+} as const;
+export type FacilityAreaSlug = keyof typeof FACILITY_AREA_TYPES;
+
+export async function listFacilitiesInPrefecture(facilityType: string, pref: string): Promise<AreaHospital[]> {
+  // shortcut: 1,000件まで（東京のデイサービスなどは超える）, 苦情が出たらページ分割にする
+  const { data } = await supabasePublic
+    .from("hospitals")
+    .select("id, name, city, beds_total")
+    .eq("facility_type", facilityType)
+    .eq("prefecture", pref)
+    .order("city")
+    .order("name")
+    .limit(1000);
+  return (data as AreaHospital[] | null) ?? [];
+}

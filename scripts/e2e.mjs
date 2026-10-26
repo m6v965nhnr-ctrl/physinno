@@ -46,6 +46,8 @@ const PUBLIC_PAGES = [
   ["/for-students", "学生"],
   ["/for-general", "一般"],
   ["/for-org", "採用"],
+  ["/facility-areas", "施設の種類"],
+  ["/facility-areas/roken/%E9%B3%A5%E5%8F%96%E7%9C%8C", "老健"],
   ["/schools/%E9%A0%86%E5%A4%A9%E5%A0%82%E5%A4%A7%E5%AD%A6", "順天堂大学"],
   ["/feedback", ""],
   ["/terms", "利用規約"],

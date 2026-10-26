@@ -497,8 +497,17 @@ export default function HomePage() {
         {/* 投稿一覧 */}
         <div id="feed" className="space-y-4 py-4">
           {posts.length === 0 ? (
-            <div className="bg-white px-5 py-12 text-center">
-              <p className="text-gray-400">まだ投稿がありません</p>
+            // 投稿がまだ少ない時期に、空のフィードで止まらないように、よく使う機能へ案内する
+            <div className="space-y-3 bg-white px-5 py-10 text-center">
+              <p className="text-gray-400">まだ投稿がありません。さいしょの1件を書いてみませんか</p>
+              <div className="mx-auto grid max-w-sm gap-2">
+                <Link href="/columns/first-year-rehab-basics" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-800">
+                  📚 リハの前に知っておくこと総まとめを読む
+                </Link>
+                <Link href="/pts?mode=hospitals" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-800">
+                  🏥 自分の職場の口コミを見る・書く
+                </Link>
+              </div>
             </div>
           ) : (
             posts.map((post) => {
