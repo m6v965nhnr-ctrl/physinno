@@ -113,6 +113,22 @@
     {
      "href": "/columns/osteoporosis-exercise",
      "label": "骨粗鬆症と運動"
+    },
+    {
+     "href": "/columns/low-back-pain-pt",
+     "label": "非特異的腰痛（見逃してはいけない腰痛）"
+    },
+    {
+     "href": "/columns/neck-pain-pt",
+     "label": "頸部痛（やること・やらないこと）"
+    },
+    {
+     "href": "/columns/ankle-sprain-pt",
+     "label": "足関節捻挫・アキレス腱障害"
+    },
+    {
+     "href": "/columns/throwing-injury-pt",
+     "label": "投球障害肩・肘（野球肩・野球肘）"
     }
    ]
   },
@@ -154,6 +170,10 @@
     {
      "href": "/columns/cerebral-palsy-pt",
      "label": "脳性まひ"
+    },
+    {
+     "href": "/columns/spinocerebellar-degeneration-pt",
+     "label": "脊髄小脳変性症（SCD）"
     }
    ]
   },
