@@ -61,7 +61,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <ruby className="text-[1.3em] text-[var(--lp-g700)]">
               PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
             </ruby>
-            <span className="ml-1">のための</span>
+            <span className="ml-1 inline-block">のための</span>
             <br />
             アプリ。
           </h1>
