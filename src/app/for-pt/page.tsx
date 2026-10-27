@@ -29,12 +29,12 @@ const PAINS = [
 const SITES = ["PubMed", "J-STAGE", "CiNii Research", "Semantic Scholar", "Europe PMC", "OpenAlex", "ClinicalTrials.gov", "DOAJ"];
 
 const SMALL_FEATURES = [
-  { icon: "🏅", title: "資格の進捗が、ひと目で", body: "登録・認定・専門理学療法士の条件を一覧にして、「あと何をすればいいか」が分かります。更新の点数の目安も。" },
-  { icon: "🗂", title: "実績が、自然にたまる", body: "症例・学会発表・研修を投稿するだけで、経歴と実績がポートフォリオに整い、PDFで保存・共有できます。" },
-  { icon: "🗓", title: "研修・学会を、逃さない", body: "協会や各士会などが公開している研修・学会の情報を、毎日自動で集約。気になるものは保存できます。" },
-  { icon: "💼", title: "求人を探す・スカウトを受ける", body: "病院・介護・訪問・企業まで、運営が確認した組織の求人を、条件で探せます。プロフィールで受け付けをオンにすると、組織からスカウトが届きます（いつでも辞退できます）。" },
-  { icon: "📖", title: "評価・疾患・制度を、出典つきで", body: "TUGやBBSなどの評価の方法・基準値、疾患別の理学療法、リハビリの制度まで。出典と確認日つきで、まとめています。" },
-  { icon: "👥", title: "本音で、相談できる", body: "病院や専門分野ごとの、公開範囲を限った場をつくれます。一人職場や新人の相談相手づくりにも。" },
+  { icon: "🏅", title: "認定・専門の「あと何が要る？」が分かる", body: "登録・認定・専門理学療法士の条件を一覧にしてあるので、更新まであと何点足りないかをすぐ確認できます。" },
+  { icon: "🗂", title: "投稿が、そのまま実績になる", body: "症例や学会発表、受けた研修を投稿しておくと、ポートフォリオとして勝手に整理されます。PDFにして履歴書に添えることもできます。" },
+  { icon: "🗓", title: "研修・学会の情報を毎日拾ってくる", body: "協会や各士会のサイトに出た研修・学会の情報を、毎日自動で集めています。気になったものは保存しておけます。" },
+  { icon: "💼", title: "求人を探す・スカウトを受ける", body: "病院・介護・訪問・企業まで、運営が確認した組織の求人を条件で探せます。プロフィールで受け付けをオンにした人にだけ、組織からスカウトが届きます（いつでも辞退できます）。" },
+  { icon: "📖", title: "評価・疾患・制度のガイドは出典つき", body: "TUGやBBSの基準値、疾患別の理学療法、リハビリの制度まで。全部に出典と確認日を書いています。" },
+  { icon: "👥", title: "本音で相談できる場所", body: "病院や専門分野ごとに、公開範囲を絞った場をつくれます。一人職場や新人の、相談相手づくりにも使われています。" },
 ];
 const STEPS = [
   { title: "メールアドレスで無料登録", body: "アカウントの種類で「PT（理学療法士）」を選ぶだけ。1分です。" },
@@ -73,7 +73,7 @@ export default function ForPtPage() {
               <br />
               <span className="text-[var(--lp-g700)]">これ1つに。</span>
             </h1>
-            <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">調べる・記録する・つながる。ぜんぶ、無料。</p>
+            <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">論文検索も、資格の管理も、職場の口コミも。ぜんぶ無料です。</p>
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link href={registerHref} className={BTN_PRIMARY}>理学療法士として無料ではじめる</Link>
               <Link href="/guest" className={BTN_SECONDARY}>👀 ログインなしで、中を見てみる</Link>
@@ -99,7 +99,7 @@ export default function ForPtPage() {
             ))}
           </ul>
           <p className="mt-6 text-center text-lg font-bold text-[var(--lp-g800)]">
-            ↓ Re:lightは、この全部に、答えます。
+            ↓ この4つを片づけたくて、Re:lightを作りました。
           </p>
         </div>
       </section>

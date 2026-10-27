@@ -18,7 +18,7 @@ const STATS = [
 
 
 const DOORS = [
-  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "調べる・記録する・つながる", body: "論文検索・資格の進捗・研修情報・職場の口コミ" },
+  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "仕事の調べものを、ここで済ませる", body: "論文検索・資格の進捗・研修情報・職場の口コミ" },
   { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,500問・筋と骨の確認・先生のクラスのテスト" },
   { key: "teacher", href: "/teachers", who: "教員の方へ", title: "国試の一問一答を、クラスで", body: "テストを配って、学生ごと・単元ごとの状況を見る" },
   { key: "general", href: "/for-general", who: "一般の方へ", title: "理学療法士・病院を探す", body: "地域や専門分野から探せます" },
@@ -62,8 +62,8 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <br />
             <span className="text-[var(--lp-g700)]">これ1つに。</span>
           </h1>
-          <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">調べる・学ぶ・記録する。ぜんぶ、無料。</p>
-          <p className="mt-1 text-sm leading-7 text-gray-600">あなたに合う入口を、選んでください。</p>
+          <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">論文も、国試も、職場探しも。ぜんぶ無料で使えます。</p>
+          <p className="mt-1 text-sm leading-7 text-gray-600">自分に近い立場の入口からどうぞ。</p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {doors.map((d, i) => (
@@ -112,18 +112,18 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-bold text-[var(--lp-g900)]">Re:light（リライト）とは</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            Re:lightは、理学療法士と、理学療法士をめざす学生のための、無料のWebアプリです。論文を8つのサイトからまとめて検索し、認定・専門理学療法士の更新の進捗や、研修・学会の情報、職場の口コミを、ひとつの場所で調べられます。
-            学生は、国家試験の過去問（第49〜61回）を、解説つきで解けます。教員は、クラスにテストを配って、学生ごと・単元ごとの結果を見られます。
+            Re:light（リライト）は、理学療法士と、PTをめざす学生のための無料Webアプリです。論文を探すとき8つのサイトを行き来しなくて済むように、認定・専門の更新があとどれくらいか迷わないように、転職の前にあの病院の働き心地が分かるように──仕事まわりの調べものがここで済むことを目指して作っています。
+            学生向けには国家試験の過去問が約2,500問（第49〜61回・解説つき）。先生はクラスにテストを配って、誰がどの単元でつまずいているかを見られます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            登録は、メールアドレスだけで1分です。上の入口から、あなたに合うページを選んでください。病院・施設・法人の採用担当の方も、組織を登録して、求人の掲載やスカウトができます。
+            登録に必要なのはメールアドレスだけで、1分あれば終わります。病院・施設・法人の採用担当の方は、組織として登録すると求人の掲載やPTへのスカウトができます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            1年目の理学療法士の方は、
+            1年目の理学療法士の方には
             <Link href="/columns/first-year-rehab-basics" className="font-bold text-[var(--lp-g700)] underline underline-offset-4">
               リハの前に知っておくこと総まとめ（安全管理・疾患と手術・評価・制度）
             </Link>
-            から読むのがおすすめです。出典つきのガイド99本に、ここから入れます。
+            をおすすめしています。出典つきで書いたガイド99本の入口になっています。
           </p>
         </div>
       </section>
