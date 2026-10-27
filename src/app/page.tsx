@@ -57,10 +57,13 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
         <div className="relative mx-auto max-w-5xl px-6 pb-10 pt-9 md:pt-14">
-          <h1 className="font-bold leading-[1.15] tracking-tight text-[var(--lp-g900)]" style={{ fontSize: "clamp(2.1rem, 9.5vw, 3.6rem)" }}>
-            PTの学びを、
+          <h1 className="pt-4 font-bold leading-[1.15] tracking-tight text-[var(--lp-g900)]" style={{ fontSize: "clamp(2.1rem, 9.5vw, 3.6rem)" }}>
+            <ruby className="text-[1.3em] text-[var(--lp-g700)]">
+              PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
+            </ruby>
+            <span className="ml-1">のための</span>
             <br />
-            <span className="text-[var(--lp-g700)]">これ1つに。</span>
+            アプリ。
           </h1>
           <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">論文も、国試も、職場探しも。ぜんぶ無料で使えます。</p>
           <p className="mt-1 text-sm leading-7 text-gray-600">自分に近い立場の入口からどうぞ。</p>
