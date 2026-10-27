@@ -58,10 +58,12 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
         <div className="relative mx-auto max-w-5xl px-6 pb-10 pt-9 md:pt-14">
           <h1 className="pt-4 font-bold leading-[1.15] tracking-tight text-[var(--lp-g900)]" style={{ fontSize: "clamp(2.1rem, 9.5vw, 3.6rem)" }}>
-            <ruby className="text-[1.3em] text-[var(--lp-g700)]">
-              PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
-            </ruby>
-            <span className="ml-1 inline-block">のための、</span>
+            <span className="whitespace-nowrap">
+              <ruby className="text-[1.3em] text-[var(--lp-g700)]">
+                PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
+              </ruby>
+              <span className="ml-1">のための、</span>
+            </span>
             <br />
             アプリ。
           </h1>
