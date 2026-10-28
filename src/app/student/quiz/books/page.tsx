@@ -311,7 +311,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         </div>
       </div>
 
-      <div className="sticky bottom-4 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
+      <div className="sticky bottom-0 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs text-gray-600">選択中: {selected.size}ページ</p>
           <label className="flex items-center gap-1.5 text-xs text-gray-500">
