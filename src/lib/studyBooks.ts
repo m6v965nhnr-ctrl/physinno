@@ -38,6 +38,15 @@ export type StudyStudentProgress = {
   log_count: number;
 };
 
+export type MyStudyBook = {
+  id: string;
+  name: string;
+  total_pages: number | null;
+  class_id: string;
+  class_name: string;
+  unit_count: number;
+};
+
 export async function listStudyBooks(classId: string): Promise<StudyBook[]> {
   const { data } = await supabase.rpc("study_list_books", { p_class: classId });
   return (data ?? []) as StudyBook[];
@@ -73,6 +82,18 @@ export async function deleteStudyUnit(unitId: string): Promise<boolean> {
 export async function addStudyLog(bookId: string, pageStart: number, pageEnd: number, studiedOn: string): Promise<boolean> {
   const { error } = await supabase.rpc("study_add_log", { p_book: bookId, p_page_start: pageStart, p_page_end: pageEnd, p_studied_on: studiedOn });
   return !error;
+}
+
+// タップで選んだページ・範囲でまとめて選んだページを、まとめて1回で記録する（連続するページは1件にまとめて保存される）
+export async function addStudyLogPages(bookId: string, pages: number[], studiedOn: string): Promise<boolean> {
+  const { error } = await supabase.rpc("study_add_log_pages", { p_book: bookId, p_pages: pages, p_studied_on: studiedOn });
+  return !error;
+}
+
+// 自分が参加している、すべてのクラスの参考書をまとめて見る
+export async function listMyBooks(): Promise<MyStudyBook[]> {
+  const { data } = await supabase.rpc("study_my_books");
+  return (data ?? []) as MyStudyBook[];
 }
 
 export async function deleteStudyLog(logId: string): Promise<boolean> {

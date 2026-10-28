@@ -1,135 +1,198 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import {
-  StudyBook,
+  MyStudyBook,
   StudyUnit,
   StudyLog,
-  StudyProgress,
-  listStudyBooks,
+  listMyBooks,
   listStudyUnits,
-  addStudyLog,
+  addStudyLogPages,
   deleteStudyLog,
   listMyStudyLogs,
-  getMyStudyProgress,
 } from "@/lib/studyBooks";
 import { LoadingScreen } from "@/components/states";
 
-// 学生用: 参考書の進捗の記録。「今日はp.◯〜◯をやった」を記録すると、先生に進み具合が伝わる
+// 学生用: 参考書の進捗。ページをタップ、または範囲でまとめて選んで記録する。本の中身は一切扱わない
 
 function todayStr() {
   return new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
 }
 
-function BookDetail({ book }: { book: StudyBook }) {
+function expandPages(logs: StudyLog[]): Set<number> {
+  const s = new Set<number>();
+  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) s.add(p);
+  return s;
+}
+
+function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void }) {
   const [units, setUnits] = useState<StudyUnit[] | null>(null);
-  const [progress, setProgress] = useState<StudyProgress | null>(null);
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
-  const [start, setStart] = useState("");
-  const [end, setEnd] = useState("");
+  const [selected, setSelected] = useState<Set<number>>(new Set());
+  const [rangeFrom, setRangeFrom] = useState("");
+  const [rangeTo, setRangeTo] = useState("");
   const [date, setDate] = useState(todayStr());
+  const [extra, setExtra] = useState(0);
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => {
-    const [u, p, l] = await Promise.all([listStudyUnits(book.id), getMyStudyProgress(book.id), listMyStudyLogs(book.id)]);
+    const [u, l] = await Promise.all([listStudyUnits(book.id), listMyStudyLogs(book.id, 200)]);
     setUnits(u);
-    setProgress(p);
     setLogs(l);
-    setStart(String((p.furthest_page ?? 0) + 1));
   }, [book.id]);
   useEffect(() => {
     load();
   }, [load]);
 
-  async function handleAdd() {
-    const s = Number(start);
-    const e = Number(end);
-    if (!s || !e || e < s) {
-      notify("正しいページ範囲を入れてください");
+  const done = useMemo(() => (logs ? expandPages(logs) : new Set<number>()), [logs]);
+  const furthest = logs && logs.length > 0 ? Math.max(...logs.map((l) => l.page_end)) : 0;
+  const unitMax = units && units.length > 0 ? Math.max(...units.map((u) => u.page_end)) : 0;
+  const visibleMax = Math.max(book.total_pages ?? 0, unitMax, furthest, 30) + extra;
+
+  function toggle(p: number) {
+    setSelected((s) => {
+      const next = new Set(s);
+      if (next.has(p)) next.delete(p);
+      else next.add(p);
+      return next;
+    });
+  }
+
+  function addRange() {
+    const from = Number(rangeFrom);
+    const to = Number(rangeTo);
+    if (!from || !to || to < from) {
+      notify("正しいページ範囲を入れてください（開始・終了とも）");
+      return;
+    }
+    if (to - from > 500) {
+      notify("一度に選べるのは500ページまでです");
+      return;
+    }
+    setSelected((s) => {
+      const next = new Set(s);
+      for (let p = from; p <= to; p++) next.add(p);
+      return next;
+    });
+    setRangeFrom("");
+    setRangeTo("");
+    notify(`p.${from}〜${to} を選択に追加しました`);
+  }
+
+  async function handleSave() {
+    if (selected.size === 0) {
+      notify("ページを選んでください");
       return;
     }
     setBusy(true);
-    const ok = await addStudyLog(book.id, s, e, date);
+    const ok = await addStudyLogPages(book.id, [...selected], date);
     setBusy(false);
     if (!ok) {
       notify("記録できませんでした");
       return;
     }
-    setEnd("");
-    notify("記録しました");
+    notify(`${selected.size}ページ、記録しました`);
+    setSelected(new Set());
     load();
   }
 
-  async function handleDelete(id: string) {
+  async function handleDeleteLog(id: string) {
     if (!(await askConfirm("この記録を削除します。よろしいですか？"))) return;
     if (await deleteStudyLog(id)) load();
     else notify("削除できませんでした");
   }
 
-  const furthest = progress?.furthest_page ?? 0;
-  const percent = book.total_pages ? Math.min(100, Math.round((furthest / book.total_pages) * 100)) : null;
+  const unitStartingAt = (p: number) => units?.find((u) => u.page_start === p);
+
+  const cells: React.ReactNode[] = [];
+  for (let p = 1; p <= visibleMax; p++) {
+    const u = unitStartingAt(p);
+    if (u) {
+      cells.push(
+        <p key={`h${p}`} className="col-span-full mt-2 text-[10px] font-semibold text-gray-500 first:mt-0">
+          {u.name}（p.{u.page_start}〜{u.page_end}）
+        </p>
+      );
+    }
+    const isDone = done.has(p);
+    const isSelected = selected.has(p);
+    cells.push(
+      <button
+        key={p}
+        onClick={() => toggle(p)}
+        aria-label={`${p}ページ${isDone ? "（記録済み）" : ""}${isSelected ? "（選択中）" : ""}`}
+        aria-pressed={isSelected}
+        className={`h-7 w-7 shrink-0 rounded text-[9px] font-medium transition ${
+          isSelected ? "bg-emerald-500 text-white" : isDone ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-500 active:bg-gray-200"
+        }`}
+      >
+        {p}
+      </button>
+    );
+  }
 
   return (
-    <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-      <div>
+    <section className="space-y-3">
+      <button onClick={onBack} className="text-xs text-gray-400">
+        ← 参考書を選びなおす
+      </button>
+
+      <div className="rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-sm font-semibold">{book.name}</p>
         <p className="mt-0.5 text-xs text-gray-500">
-          {furthest > 0 ? `p.${furthest}まで記録済み` : "まだ記録がありません"}
+          {book.class_name} ・ {done.size}ページ記録済み
           {book.total_pages ? `（全${book.total_pages}ページ中）` : ""}
         </p>
-        {percent !== null && (
-          <div className="mt-1.5 h-2 w-full overflow-hidden rounded-full bg-gray-100">
-            <div className="h-full bg-emerald-500" style={{ width: `${percent}%` }} />
-          </div>
-        )}
       </div>
 
-      {units && units.length > 0 && (
-        <ul className="space-y-1 rounded-xl bg-gray-50 p-2.5 text-xs">
-          {units.map((u) => {
-            const done = furthest >= u.page_end;
-            const inProgress = !done && furthest >= u.page_start;
-            return (
-              <li key={u.id} className="flex items-center justify-between gap-2">
-                <span className={done ? "text-gray-400 line-through" : ""}>
-                  {u.name}（p.{u.page_start}〜{u.page_end}）
-                </span>
-                {done && <span className="shrink-0 text-emerald-600">済み</span>}
-                {inProgress && <span className="shrink-0 text-amber-600">途中</span>}
-              </li>
-            );
-          })}
-        </ul>
-      )}
+      <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-xs font-semibold text-gray-700">ページをタップして選ぶ</p>
+        <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
+        <button onClick={() => setExtra((e) => e + 50)} className="mt-1 text-xs text-gray-400 underline">
+          もっと表示（+50ページ）
+        </button>
+      </div>
 
-      <div className="space-y-2 rounded-xl bg-gray-50 p-3">
-        <p className="text-xs font-semibold text-gray-700">今日のぶんを記録する</p>
-        <div className="grid grid-cols-3 gap-2">
-          <input value={start} onChange={(e) => setStart(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
-          <input value={end} onChange={(e) => setEnd(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
-          <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+      <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-xs font-semibold text-gray-700">何ページもやったときは、まとめて選ぶ</p>
+        <div className="grid grid-cols-[1fr_1fr_auto] gap-2">
+          <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+          <input value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+          <button onClick={addRange} className="shrink-0 rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700">
+            選択に追加
+          </button>
         </div>
-        <button onClick={handleAdd} disabled={busy} className="w-full rounded-full bg-black py-2 text-sm font-medium text-white disabled:opacity-40">
+      </div>
+
+      <div className="sticky bottom-16 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-xs text-gray-600">選択中: {selected.size}ページ</p>
+          <label className="flex items-center gap-1.5 text-xs text-gray-500">
+            日付
+            <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+          </label>
+        </div>
+        <button onClick={handleSave} disabled={busy || selected.size === 0} className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40">
           記録する
         </button>
         <p className="text-[11px] text-gray-400">この記録は、クラスの先生に見えます。</p>
       </div>
 
       {logs && logs.length > 0 && (
-        <details className="rounded-xl border border-gray-200">
-          <summary className="cursor-pointer list-none px-3 py-2 text-xs font-medium text-gray-700">これまでの記録 ▾</summary>
-          <ul className="divide-y divide-gray-100 px-3 pb-2">
+        <details className="rounded-2xl bg-white shadow-sm">
+          <summary className="cursor-pointer list-none px-4 py-3 text-xs font-medium text-gray-700">これまでの記録 ▾</summary>
+          <ul className="divide-y divide-gray-100 px-4 pb-3">
             {logs.map((l) => (
               <li key={l.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
                 <span>
                   {l.studied_on} ・ p.{l.page_start}〜{l.page_end}
                 </span>
-                <button onClick={() => handleDelete(l.id)} className="shrink-0 text-red-500 underline">
+                <button onClick={() => handleDeleteLog(l.id)} className="shrink-0 text-red-500 underline">
                   削除
                 </button>
               </li>
@@ -141,47 +204,53 @@ function BookDetail({ book }: { book: StudyBook }) {
   );
 }
 
-function BooksForClass({ classId }: { classId: string }) {
-  const [books, setBooks] = useState<StudyBook[] | null>(null);
-  useEffect(() => {
-    listStudyBooks(classId).then((bs) => setBooks(bs.filter((b) => !b.archived)));
-  }, [classId]);
-
-  if (books === null) return <p className="py-6 text-center text-sm text-gray-400">読み込み中…</p>;
-  if (books.length === 0) return <p className="rounded-2xl bg-white p-4 text-xs leading-5 text-gray-500 shadow-sm">このクラスには、まだ参考書が登録されていません。</p>;
-
+function BooksList({ books, onSelect }: { books: MyStudyBook[]; onSelect: (b: MyStudyBook) => void }) {
+  if (books.length === 0) {
+    return <p className="rounded-2xl bg-white p-4 text-xs leading-5 text-gray-500 shadow-sm">まだ、参考書は登録されていません。先生が登録すると、ここに表示されます。</p>;
+  }
   return (
-    <div className="space-y-3">
+    <ul className="space-y-2">
       {books.map((b) => (
-        <BookDetail key={b.id} book={b} />
+        <li key={b.id}>
+          <button onClick={() => onSelect(b)} className="block w-full rounded-2xl bg-white p-4 text-left shadow-sm transition active:bg-gray-50">
+            <p className="text-sm font-semibold">{b.name}</p>
+            <p className="mt-0.5 text-[11px] text-gray-400">
+              {b.class_name}
+              {b.total_pages ? ` ・ 全${b.total_pages}ページ` : ""} ・ 単元 {b.unit_count}件
+            </p>
+          </button>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
 export default function StudyBooksPage() {
   useRequireQuizAccess();
   const { loading } = useMyAccount(["student", "pt"]);
-  const [classId, setClassId] = useState<string | null>(null);
-  useEffect(() => {
-    setClassId(new URLSearchParams(window.location.search).get("class"));
-  }, []);
+  const [books, setBooks] = useState<MyStudyBook[] | null>(null);
+  const [selected, setSelected] = useState<MyStudyBook | null>(null);
 
-  if (loading || classId === null) return <LoadingScreen />;
+  useEffect(() => {
+    if (loading) return;
+    listMyBooks().then(setBooks);
+  }, [loading]);
+
+  if (loading || books === null) return <LoadingScreen />;
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/student/quiz/classes" className="text-sm text-gray-400">
-            ← クラスの課題
+          <Link href="/study" className="text-sm text-gray-400">
+            ← 勉強
           </Link>
           <h1 className="mt-2 text-xl font-semibold tracking-tight">参考書の進捗</h1>
-          <p className="mt-1 text-xs leading-5 text-gray-500">今日やったページを記録すると、先生に進み具合が伝わります。</p>
+          <p className="mt-1 text-xs leading-5 text-gray-500">{selected ? "やったページをタップして、まとめて記録できます。" : "参考書を選んでください。"}</p>
         </div>
       </header>
       <div className="mx-auto max-w-2xl space-y-4 px-6 py-5">
-        {classId ? <BooksForClass classId={classId} /> : <p className="rounded-2xl bg-white p-6 text-center text-sm text-gray-600 shadow-sm">クラスが指定されていません。</p>}
+        {selected ? <BookDetail book={selected} onBack={() => setSelected(null)} /> : <BooksList books={books} onSelect={setSelected} />}
       </div>
     </main>
   );

@@ -222,7 +222,7 @@ export default function QuizClassesPage() {
                     </button>
                   </div>
                 </div>
-                  <Link href={`/student/quiz/books?class=${c.id}`} className="block rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-medium text-gray-700 hover:bg-gray-50">
+                  <Link href="/student/quiz/books" className="block rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-medium text-gray-700 hover:bg-gray-50">
                     参考書の進捗を記録する
                   </Link>
                 </li>

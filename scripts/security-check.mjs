@@ -145,6 +145,8 @@ for (const [fn, body] of [
   ["study_my_logs", { p_book: ZERO }],
   ["study_my_progress", { p_book: ZERO }],
   ["study_teacher_progress", { p_book: ZERO }],
+  ["study_my_books", {}],
+  ["study_add_log_pages", { p_book: ZERO, p_pages: [1, 2, 3], p_studied_on: "2026-01-01" }],
 ]) {
   const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });
   check(`匿名は ${fn} を呼べない`, r.status >= 400, `status=${r.status}`);

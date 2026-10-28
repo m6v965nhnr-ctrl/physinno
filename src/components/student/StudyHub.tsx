@@ -31,7 +31,7 @@ function Bar({ answered, total }: { answered: number; total: number }) {
 }
 
 type Setting = "auto" | QuizMode;
-type Tab = "unit" | "exam" | "mock" | "pdf";
+type Tab = "unit" | "exam" | "saved" | "mock" | "pdf";
 
 // 勉強（一問一答）。進み具合・今日の10問・近道・科目／回／模擬試験／PDF・キーワード・大学内ランキング・クラスの課題を、1つの画面に。
 // 「出題の設定」（どの問題を・どの順で・何問）は、ここで選んで、下のどこから始めても使われる
@@ -146,27 +146,25 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
 
       {/* 近道（縦を狭く） */}
       <section className="grid grid-cols-4 gap-1.5" aria-label="近道">
-        {[
-          { icon: "🔁", label: "復習", n: counts?.wrong ?? 0, href: fixed("wrong", 0), color: "text-red-500" },
-          { icon: "🔖", label: "保存", n: counts?.bookmarked ?? 0, href: fixed("bookmarked", 0), color: "text-gray-600" },
-        ].map((t) =>
-          t.n > 0 ? (
-            <Link key={t.label} href={t.href} className={tile}>
-              <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">{t.icon} </span>{t.label}</span>
-              <span className={`block text-[10px] font-semibold ${t.color}`}>{t.n}問</span>
-            </Link>
-          ) : (
-            <div key={t.label} className={`${tile} opacity-50`}>
-              <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">{t.icon} </span>{t.label}</span>
-              <span className="block text-[10px] text-gray-400">まだなし</span>
-            </div>
-          )
+        {counts && counts.wrong > 0 ? (
+          <Link href={fixed("wrong", 0)} className={tile}>
+            <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
+            <span className="block text-[10px] font-semibold text-red-500">{counts.wrong}問</span>
+          </Link>
+        ) : (
+          <div className={`${tile} opacity-50`}>
+            <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
+            <span className="block text-[10px] text-gray-400">まだなし</span>
+          </div>
         )}
         <Link href="/student/quiz/review" className={tile}>
           <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト<br />振り返り</span>
         </Link>
         <Link href="/student/quiz/ask" className={tile}>
           <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">🙋 </span>先生に質問</span>
+        </Link>
+        <Link href="/student/quiz/books" className={tile}>
+          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📚 </span>参考書<br />進捗</span>
         </Link>
       </section>
 
@@ -204,11 +202,12 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
 
       {/* 科目・回・模擬試験・PDF */}
       <section className="space-y-3">
-        <div className="grid grid-cols-4 gap-1 rounded-full bg-gray-100 p-1 text-xs sm:text-sm" role="tablist" aria-label="問題の選び方">
+        <div className="grid grid-cols-5 gap-1 rounded-full bg-gray-100 p-1 text-[11px] sm:text-sm" role="tablist" aria-label="問題の選び方">
           {(
             [
               ["unit", "科目"],
               ["exam", "回"],
+              ["saved", "保存済み"],
               ["mock", "模擬試験"],
               ["pdf", "PDF"],
             ] as const
@@ -288,6 +287,23 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
                 </span>
               </Link>
             ))}
+          </div>
+        )}
+
+        {tab === "saved" && (
+          <div className="rounded-2xl bg-white p-4 shadow-sm">
+            {counts && counts.bookmarked > 0 ? (
+              <>
+                <p className="text-sm text-gray-700">
+                  保存した問題が <span className="font-semibold">{counts.bookmarked}問</span> あります。
+                </p>
+                <Link href={fixed("bookmarked", 0)} className="mt-3 inline-block rounded-full bg-black px-5 py-2 text-sm font-medium text-white">
+                  保存した問題を解く
+                </Link>
+              </>
+            ) : (
+              <p className="text-xs leading-5 text-gray-500">まだ、保存した問題はありません。問題画面の🔖で、あとで解きたい問題を保存できます。</p>
+            )}
           </div>
         )}
 
