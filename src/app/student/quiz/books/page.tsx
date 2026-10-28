@@ -35,10 +35,10 @@ function pageCounts(logs: StudyLog[]): Map<number, number> {
 const CELL_COLORS = [
   "bg-gray-100 text-gray-500 active:bg-gray-200",
   "bg-emerald-100 text-emerald-700",
-  "bg-emerald-200 text-emerald-700",
-  "bg-emerald-300 text-emerald-800",
-  "bg-emerald-400 text-white",
-  "bg-emerald-600 text-white",
+  "bg-teal-500 text-white",
+  "bg-blue-500 text-white",
+  "bg-indigo-500 text-white",
+  "bg-purple-600 text-white",
 ];
 function cellColor(n: number) {
   return CELL_COLORS[Math.min(Math.max(n, 0), 5)];

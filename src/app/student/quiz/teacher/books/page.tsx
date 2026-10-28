@@ -22,7 +22,7 @@ import {
 } from "@/lib/studyBooks";
 
 // 記録の回数（0〜5回以上）で、気温・降水量の予報のように、少しずつ色を濃くする。0回・1回は、今までどおりの色のまま
-const COUNT_COLORS = ["text-gray-400", "text-gray-500", "text-emerald-500", "text-emerald-600", "text-emerald-700 font-semibold", "text-emerald-800 font-bold"];
+const COUNT_COLORS = ["text-gray-400", "text-gray-500", "text-teal-600", "text-blue-600", "text-indigo-600", "text-purple-600 font-semibold"];
 function countColor(n: number) {
   return COUNT_COLORS[Math.min(Math.max(n, 0), 5)];
 }
