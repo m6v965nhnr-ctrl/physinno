@@ -1,5 +1,4 @@
 import { ldJson } from "@/lib/jsonLd";
-import { Yuji_Boku } from "next/font/google";
 import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import LpHeader from "@/components/lp/LpHeader";
@@ -9,9 +8,6 @@ import StandaloneRedirect from "@/components/StandaloneRedirect";
 import { pickLpEntrance } from "@/lib/lpEntrance";
 
 // トップページ。理学療法士・学生・教員・一般の方、それぞれの専用ページへの入口（内容は、それぞれのページに分けている）
-
-// 見出しだけ筆文字（書道風）にする
-const brush = Yuji_Boku({ weight: "400", subsets: ["latin"], display: "swap" });
 
 const STATS = [
   { big: "完全無料", small: "登録も基本機能も" },
@@ -61,10 +57,10 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
 
       <section className="relative overflow-hidden bg-gradient-to-b from-[var(--lp-g100)] via-[var(--lp-g50)] to-white">
         <div className="relative mx-auto max-w-5xl px-6 pb-10 pt-9 md:pt-14">
-          <h1 className={`${brush.className} pt-4 leading-[1.1] text-[var(--lp-g900)]`} style={{ fontSize: "clamp(2.4rem, 12vw, 5.2rem)" }}>
+          <h1 className="pt-4 font-bold leading-[1.1] tracking-tight text-[var(--lp-g900)]" style={{ fontSize: "clamp(2.4rem, 12vw, 5.2rem)" }}>
             <span className="whitespace-nowrap">
               <ruby className="text-[1.3em] text-[var(--lp-g700)]">
-                PT<rt className="text-[0.26em] tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
+                PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
               </ruby>
               <span className="ml-1">のための、</span>
             </span>
