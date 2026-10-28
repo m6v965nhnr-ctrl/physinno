@@ -26,7 +26,16 @@ export type StudyLog = {
   page_end: number;
   studied_on: string;
   created_at: string;
+  understanding: number | null;
 };
+
+// 理解度(0.0〜10.0)の、目安のことば
+export function understandingLabel(v: number): string {
+  if (v < 2.5) return "理解してない";
+  if (v < 5) return "まあまあ";
+  if (v < 7.5) return "それなりに";
+  return "完璧";
+}
 
 export type StudyProgress = { furthest_page: number | null; last_studied_on: string | null };
 
@@ -95,8 +104,8 @@ export async function addStudyLog(bookId: string, pageStart: number, pageEnd: nu
 }
 
 // タップで選んだページ・範囲でまとめて選んだページを、まとめて1回で記録する（連続するページは1件にまとめて保存される）
-export async function addStudyLogPages(bookId: string, pages: number[], studiedOn: string): Promise<boolean> {
-  const { error } = await supabase.rpc("study_add_log_pages", { p_book: bookId, p_pages: pages, p_studied_on: studiedOn });
+export async function addStudyLogPages(bookId: string, pages: number[], studiedOn: string, understanding: number | null): Promise<boolean> {
+  const { error } = await supabase.rpc("study_add_log_pages", { p_book: bookId, p_pages: pages, p_studied_on: studiedOn, p_understanding: understanding });
   return !error;
 }
 
@@ -111,14 +120,19 @@ export async function deleteStudyLog(logId: string): Promise<boolean> {
   return !error;
 }
 
-export async function updateStudyLog(logId: string, pageStart: number, pageEnd: number, studiedOn: string): Promise<boolean> {
-  const { error } = await supabase.rpc("study_update_log", { p_log: logId, p_page_start: pageStart, p_page_end: pageEnd, p_studied_on: studiedOn });
+export async function updateStudyLog(logId: string, pageStart: number, pageEnd: number, studiedOn: string, understanding: number | null): Promise<boolean> {
+  const { error } = await supabase.rpc("study_update_log", { p_log: logId, p_page_start: pageStart, p_page_end: pageEnd, p_studied_on: studiedOn, p_understanding: understanding });
   return !error;
+}
+
+// numeric列は、精度を保つためPostgRESTから文字列で返ってくるので、数値に直す
+function toStudyLog(row: Omit<StudyLog, "understanding"> & { understanding: number | string | null }): StudyLog {
+  return { ...row, understanding: row.understanding == null ? null : Number(row.understanding) };
 }
 
 export async function listMyStudyLogs(bookId: string, limit = 30): Promise<StudyLog[]> {
   const { data } = await supabase.rpc("study_my_logs", { p_book: bookId, p_limit: limit });
-  return (data ?? []) as StudyLog[];
+  return ((data ?? []) as Parameters<typeof toStudyLog>[0][]).map(toStudyLog);
 }
 
 export async function getMyStudyProgress(bookId: string): Promise<StudyProgress> {
@@ -135,5 +149,5 @@ export async function getTeacherStudyProgress(bookId: string): Promise<StudyStud
 // 先生が、生徒名をタップしたときの、その生徒の記録（ページ範囲・日付）の一覧
 export async function getTeacherStudentLogs(bookId: string, userId: string): Promise<StudyLog[]> {
   const { data } = await supabase.rpc("study_teacher_student_logs", { p_book: bookId, p_user: userId });
-  return (data ?? []) as StudyLog[];
+  return ((data ?? []) as Parameters<typeof toStudyLog>[0][]).map(toStudyLog);
 }

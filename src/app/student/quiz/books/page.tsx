@@ -16,6 +16,7 @@ import {
   deleteStudyLog,
   updateStudyLog,
   listMyStudyLogs,
+  understandingLabel,
 } from "@/lib/studyBooks";
 import { LoadingScreen } from "@/components/states";
 
@@ -44,10 +45,35 @@ function cellColor(n: number) {
   return CELL_COLORS[Math.min(Math.max(n, 0), 5)];
 }
 
+// 理解度（0.0〜10.0）を、細い線の上の丸を動かして選ぶ
+function UnderstandingSlider({ value, onChange }: { value: number; onChange: (v: number) => void }) {
+  return (
+    <div>
+      <div className="flex items-center justify-between text-xs text-gray-600">
+        <span>理解度</span>
+        <span className="font-semibold text-gray-800">
+          {value.toFixed(1)}　{understandingLabel(value)}
+        </span>
+      </div>
+      <input
+        type="range"
+        min={0}
+        max={10}
+        step={0.1}
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))}
+        aria-label="理解度"
+        className="mt-1 h-1 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-emerald-500"
+      />
+    </div>
+  );
+}
+
 function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean) => void }) {
   const [start, setStart] = useState(String(log.page_start));
   const [end, setEnd] = useState(String(log.page_end));
   const [date, setDate] = useState(log.studied_on);
+  const [understanding, setUnderstanding] = useState(log.understanding ?? 5);
   const [busy, setBusy] = useState(false);
 
   async function handleSave() {
@@ -58,7 +84,7 @@ function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean)
       return;
     }
     setBusy(true);
-    const ok = await updateStudyLog(log.id, s, e, date);
+    const ok = await updateStudyLog(log.id, s, e, date, understanding);
     setBusy(false);
     if (!ok) {
       notify("変更できませんでした");
@@ -74,6 +100,7 @@ function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean)
         <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
       </div>
+      <UnderstandingSlider value={understanding} onChange={setUnderstanding} />
       <div className="flex gap-2">
         <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
           保存
@@ -93,6 +120,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
   const [rangeFrom, setRangeFrom] = useState("");
   const [rangeTo, setRangeTo] = useState("");
   const [date, setDate] = useState(todayStr());
+  const [understanding, setUnderstanding] = useState(5);
   const [extra, setExtra] = useState(0);
   const [busy, setBusy] = useState(false);
   const [editingLogId, setEditingLogId] = useState<string | null>(null);
@@ -150,7 +178,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       return;
     }
     setBusy(true);
-    const ok = await addStudyLogPages(book.id, [...selected], date);
+    const ok = await addStudyLogPages(book.id, [...selected], date, understanding);
     setBusy(false);
     if (!ok) {
       notify("記録できませんでした");
@@ -158,6 +186,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
     }
     notify(`${selected.size}ページ、記録しました`);
     setSelected(new Set());
+    setUnderstanding(5);
     load();
   }
 
@@ -286,6 +315,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
             <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="rounded-lg border border-gray-300 px-2 py-1 text-xs" />
           </label>
         </div>
+        <UnderstandingSlider value={understanding} onChange={setUnderstanding} />
         <button onClick={handleSave} disabled={busy || selected.size === 0} className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40">
           記録する
         </button>
@@ -310,6 +340,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
                 <li key={l.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
                   <span>
                     {l.studied_on} ・ p.{l.page_start}〜{l.page_end}
+                    {l.understanding != null && ` ・ 理解度 ${l.understanding.toFixed(1)}（${understandingLabel(l.understanding)}）`}
                   </span>
                   <span className="flex shrink-0 gap-2">
                     <button onClick={() => setEditingLogId(l.id)} className="text-gray-500 underline">

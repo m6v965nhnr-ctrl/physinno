@@ -20,6 +20,7 @@ import {
   deleteStudyUnit,
   getTeacherStudyProgress,
   getTeacherStudentLogs,
+  understandingLabel,
 } from "@/lib/studyBooks";
 
 // 記録の回数（0〜5回以上）で、気温・降水量の予報のように、少しずつ色を濃くする。0回・1回は、今までどおりの色のまま
@@ -210,6 +211,8 @@ function StudentProgressDetail({
   }, [bookId, userId]);
 
   const counts = logs ? pageCounts(logs) : new Map<number, number>();
+  const understandingValues = (logs ?? []).map((l) => l.understanding).filter((v): v is number => v != null);
+  const avgUnderstanding = understandingValues.length > 0 ? understandingValues.reduce((a, b) => a + b, 0) / understandingValues.length : null;
 
   return createPortal(
     <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの参考書の進み具合`}>
@@ -231,6 +234,14 @@ function StudentProgressDetail({
           <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
         ) : (
           <div className="mt-3 space-y-4">
+            {avgUnderstanding != null && (
+              <div className="rounded-xl bg-gray-900 px-3 py-2.5 text-white">
+                <p className="text-[11px] text-white/70">理解度（自己評価の平均）</p>
+                <p className="text-sm font-bold">
+                  {avgUnderstanding.toFixed(1)} <span className="ml-1 text-xs font-normal text-white/80">{understandingLabel(avgUnderstanding)}</span>
+                </p>
+              </div>
+            )}
             {totalPages ? (
               <div>
                 <p className="mb-1 text-xs font-semibold text-gray-700">全体</p>
@@ -256,6 +267,7 @@ function StudentProgressDetail({
                   <li key={l.id} className="py-1.5 text-xs text-gray-500">
                     {l.studied_on} ・ p.{l.page_start}
                     {l.page_end !== l.page_start ? `-${l.page_end}` : ""}
+                    {l.understanding != null && ` ・ 理解度 ${l.understanding.toFixed(1)}（${understandingLabel(l.understanding)}）`}
                   </li>
                 ))}
               </ul>
