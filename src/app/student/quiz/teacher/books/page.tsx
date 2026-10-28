@@ -27,10 +27,33 @@ function countColor(n: number) {
   return COUNT_COLORS[Math.min(Math.max(n, 0), 5)];
 }
 
-function expandPages(logs: StudyLog[]): Set<number> {
-  const s = new Set<number>();
-  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) s.add(p);
-  return s;
+function pageCounts(logs: StudyLog[]): Map<number, number> {
+  const m = new Map<number, number>();
+  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) m.set(p, (m.get(p) ?? 0) + 1);
+  return m;
+}
+
+// 学生のマス目と同じ色（1周目〜5周目以上）。バーの左から、回数の少ない色→多い色の順に積み上げ、残りは灰色（未）
+const BAR_COLORS = ["bg-emerald-400", "bg-teal-500", "bg-blue-500", "bg-indigo-500", "bg-purple-600"];
+function ProgressBar({ counts, from, to }: { counts: Map<number, number>; from: number; to: number }) {
+  const total = to - from + 1;
+  if (total <= 0) return null;
+  const buckets = [0, 0, 0, 0, 0];
+  for (let p = from; p <= to; p++) {
+    const c = counts.get(p) ?? 0;
+    if (c > 0) buckets[Math.min(c, 5) - 1]++;
+  }
+  const done = buckets.reduce((a, b) => a + b, 0);
+  return (
+    <div className="space-y-1">
+      <div className="flex h-3 w-full overflow-hidden rounded-full bg-gray-200">
+        {buckets.map((n, i) => (n > 0 ? <div key={i} className={BAR_COLORS[i]} style={{ width: `${(n / total) * 100}%` }} /> : null))}
+      </div>
+      <p className="text-[10px] text-gray-400">
+        {done}/{total}ページ（{Math.round((done / total) * 100)}%）
+      </p>
+    </div>
+  );
 }
 
 // 先生用: 参考書の進捗機能。本の名前・単元名は先生の自由入力。本の中身（問題・解説）は、いっさい扱わない
@@ -165,21 +188,27 @@ function BookUnits({ bookId }: { bookId: string }) {
 }
 
 // 先生が、生徒名をタップしたときに出す、その生徒ひとりの画面（テストの得点の推移と同じ、モーダルの見せ方）
-function StudentProgressDetail({ bookId, userId, name, units, onClose }: { bookId: string; userId: string; name: string; units: StudyUnit[]; onClose: () => void }) {
+function StudentProgressDetail({
+  bookId,
+  userId,
+  name,
+  totalPages,
+  units,
+  onClose,
+}: {
+  bookId: string;
+  userId: string;
+  name: string;
+  totalPages: number | null;
+  units: StudyUnit[];
+  onClose: () => void;
+}) {
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
   useEffect(() => {
     getTeacherStudentLogs(bookId, userId).then(setLogs);
   }, [bookId, userId]);
 
-  const done = logs ? expandPages(logs) : new Set<number>();
-  function unitStatus(u: StudyUnit) {
-    let n = 0;
-    for (let p = u.page_start; p <= u.page_end; p++) if (done.has(p)) n++;
-    const total = u.page_end - u.page_start + 1;
-    if (n === 0) return "未";
-    if (n >= total) return "済み";
-    return `途中（${n}/${total}）`;
-  }
+  const counts = logs ? pageCounts(logs) : new Map<number, number>();
 
   return createPortal(
     <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの参考書の進み具合`}>
@@ -193,16 +222,23 @@ function StudentProgressDetail({ bookId, userId, name, units, onClose }: { bookI
         {logs === null ? (
           <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
         ) : (
-          <div className="mt-3 space-y-3">
+          <div className="mt-3 space-y-4">
+            {totalPages ? (
+              <div>
+                <p className="mb-1 text-xs font-semibold text-gray-700">全体</p>
+                <ProgressBar counts={counts} from={1} to={totalPages} />
+              </div>
+            ) : null}
             {units.length > 0 && (
-              <ul className="space-y-1">
+              <div className="space-y-2">
+                <p className="text-xs font-semibold text-gray-700">単元ごと</p>
                 {units.map((u) => (
-                  <li key={u.id} className="flex justify-between text-xs">
-                    <span className="text-gray-600">{u.name}</span>
-                    <span className="text-gray-400">{unitStatus(u)}</span>
-                  </li>
+                  <div key={u.id}>
+                    <p className="mb-1 text-xs text-gray-600">{u.name}</p>
+                    <ProgressBar counts={counts} from={u.page_start} to={u.page_end} />
+                  </div>
                 ))}
-              </ul>
+              </div>
             )}
             {logs.length === 0 ? (
               <p className="text-xs text-gray-400">まだ記録がありません。</p>
@@ -224,14 +260,14 @@ function StudentProgressDetail({ bookId, userId, name, units, onClose }: { bookI
   );
 }
 
-function BookProgress({ bookId }: { bookId: string }) {
+function BookProgress({ book }: { book: StudyBook }) {
   const [rows, setRows] = useState<StudyStudentProgress[] | null>(null);
   const [units, setUnits] = useState<StudyUnit[]>([]);
   const [opened, setOpened] = useState<StudyStudentProgress | null>(null);
   useEffect(() => {
-    getTeacherStudyProgress(bookId).then(setRows);
-    listStudyUnits(bookId).then(setUnits);
-  }, [bookId]);
+    getTeacherStudyProgress(book.id).then(setRows);
+    listStudyUnits(book.id).then(setUnits);
+  }, [book.id]);
 
   if (rows === null) return <p className="text-xs text-gray-400">読み込み中…</p>;
   if (rows.length === 0) return <p className="text-xs text-gray-500">まだ、クラスに学生がいません。</p>;
@@ -250,7 +286,9 @@ function BookProgress({ bookId }: { bookId: string }) {
           </li>
         ))}
       </ul>
-      {opened && <StudentProgressDetail bookId={bookId} userId={opened.user_id} name={opened.name} units={units} onClose={() => setOpened(null)} />}
+      {opened && (
+        <StudentProgressDetail bookId={book.id} userId={opened.user_id} name={opened.name} totalPages={book.total_pages} units={units} onClose={() => setOpened(null)} />
+      )}
     </>
   );
 }
@@ -296,7 +334,7 @@ function BookCard({ book, onChanged }: { book: StudyBook; onChanged: () => void 
       )}
       {open === "progress" && (
         <div className="space-y-3 rounded-xl bg-gray-50 p-3">
-          <BookProgress bookId={book.id} />
+          <BookProgress book={book} />
           <button onClick={() => setOpen(null)} className="w-full rounded-full bg-black py-2 text-xs font-medium text-white">
             完了
           </button>
