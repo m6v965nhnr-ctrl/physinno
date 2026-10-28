@@ -209,7 +209,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       </div>
 
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
-        <p className="text-xs font-semibold text-gray-700">何ページもやったときは、まとめて選ぶ</p>
+        <p className="text-xs font-semibold text-gray-700">まとめて選ぶ</p>
         <div className="grid grid-cols-2 gap-2">
           <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
           <input value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
@@ -220,7 +220,16 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       </div>
 
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
-        <p className="text-xs font-semibold text-gray-700">ページをタップして選ぶ</p>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          <p className="text-xs font-semibold text-gray-700">タップして選ぶ</p>
+          <div className="flex flex-wrap items-center justify-end gap-1">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <span key={n} className={`rounded px-1.5 py-0.5 text-[9px] font-medium ${CELL_COLORS[n]}`}>
+                {n}周{n === 5 ? "+" : ""}
+              </span>
+            ))}
+          </div>
+        </div>
         <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
         <button onClick={() => setExtra((e) => e + 50)} className="mt-1 text-xs text-gray-400 underline">
           もっと表示（+50ページ）
