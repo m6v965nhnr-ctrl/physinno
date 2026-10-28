@@ -17,6 +17,9 @@ function isAccountType(v: unknown): v is AccountType {
 // 先生のアカウント（大学・専門学校の先生）が使える画面。それ以外のPT向けの画面は、先生の画面へ戻す
 export const TEACHER_HOME = "/student/quiz/teacher";
 
+// ログインした直後に開く、先生の最初の画面（クラス）。TEACHER_HOMEは「先生の画面かどうか」の判定にも使うため、分けている
+export const TEACHER_LANDING = "/student/quiz/teacher/classes";
+
 export function isTeacherPath(pathname: string) {
   return pathname === TEACHER_HOME || pathname.startsWith(`${TEACHER_HOME}/`);
 }
@@ -185,7 +188,7 @@ export function isPublicGuestPath(pathname: string) {
 export function landingPathFor(accountType: AccountType | null | undefined): string {
   // 種類が未設定の人は、先に設定の画面へ
   if (!accountType) return "/setup";
-  if (accountType === "teacher") return TEACHER_HOME;
+  if (accountType === "teacher") return TEACHER_LANDING;
   if (accountType === "org") return "/org";
   return accountType === "student" ? "/mypage" : "/pts";
 }

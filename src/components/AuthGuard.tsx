@@ -8,7 +8,7 @@ import {
   getMyAccountTypeChecked,
   isPtOnlyPath,
   isTeacherPath,
-  TEACHER_HOME,
+  TEACHER_LANDING,
   isPublicColumnPath,
   isPublicHospitalPath,
   isPublicPostPath,
@@ -182,7 +182,7 @@ export default function AuthGuard({
 
         // 先生のアカウントは、先生の画面だけ（PTの画面へ入ってしまったら、先生の画面へ戻す）
         if (accountType === "teacher" && !isTeacherPath(pathname)) {
-          router.replace(TEACHER_HOME);
+          router.replace(TEACHER_LANDING);
           return;
         }
       }

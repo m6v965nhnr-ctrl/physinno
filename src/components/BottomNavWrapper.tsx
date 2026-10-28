@@ -43,16 +43,15 @@ const TEACHER_BASE = "/student/quiz/teacher";
 const TEACHER_MENUS: Menu[] = [
   { href: `${TEACHER_BASE}/account`, icon: "○", label: "アカウント" },
   { href: `${TEACHER_BASE}/tests`, icon: "📝", label: "テスト" },
-  { href: `${TEACHER_BASE}/analysis`, icon: "📊", label: "分析" },
   { href: `${TEACHER_BASE}/classes`, icon: "👥", label: "クラス" },
+  { href: `${TEACHER_BASE}/analysis`, icon: "📊", label: "分析" },
   { href: TEACHER_BASE, icon: "⌂", label: "ホーム" },
 ];
 
-// 先生のメニューの、いまの場所。テストの作成・課題の結果は「テスト」、クラスの状況は「分析」に含める
+// 先生のメニューの、いまの場所。テストの作成・課題の結果は「テスト」
 function teacherActive(href: string, pathname: string) {
   if (href === TEACHER_BASE) return pathname === TEACHER_BASE;
   if (href.endsWith("/tests")) return /^\/student\/quiz\/teacher\/(tests|test|assignment)(\/|$)/.test(pathname);
-  if (href.endsWith("/analysis")) return /^\/student\/quiz\/teacher\/(analysis|class)(\/|$)/.test(pathname);
   return pathname === href || pathname.startsWith(`${href}/`);
 }
 
