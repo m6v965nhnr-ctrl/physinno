@@ -83,6 +83,7 @@ export default function QuizTestBuilderPage() {
   const [aiCounts, setAiCounts] = useState<Record<string, number>>({});
   const [aiUnit, setAiUnit] = useState("");
   const [aiN, setAiN] = useState(10);
+  const [addTab, setAddTab] = useState<"official" | "ai">("official");
 
   const reload = useCallback(async (aid: string) => {
     const r = await getAssignmentPreview(aid);
@@ -312,80 +313,102 @@ export default function QuizTestBuilderPage() {
           </ol>
         </section>
 
-        {editable && Object.keys(aiCounts).length > 0 && (
-          <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold">AIで問題を作る</p>
-            <p className="text-[11px] leading-5 text-gray-400">運営が確認済みの、AI作成の対策問題を、単元ごとにまとめて追加します。解説にも「AIが作成」の注意が表示されます。</p>
-            <div className="grid grid-cols-2 gap-2">
-              <select value={aiUnit} onChange={(e) => setAiUnit(e.target.value)} aria-label="AI問題の単元" className={selectClass}>
-                <option value="">単元を選ぶ</option>
-                {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
-                  <option key={u.id} value={u.id}>{u.name}（{aiCounts[u.id]}問）</option>
-                ))}
-              </select>
-              <input
-                type="number"
-                min={1}
-                max={30}
-                value={aiN}
-                onChange={(e) => setAiN(Math.max(1, Math.min(30, Number(e.target.value) || 1)))}
-                aria-label="追加する問題数"
-                className="rounded-xl border border-gray-300 px-3 py-2 text-sm"
-              />
-            </div>
-            <button onClick={handleAddAi} disabled={busy || !aiUnit} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
-              追加する
-            </button>
-          </section>
-        )}
-
         {editable && (
           <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
-            <p className="text-sm font-semibold">問題を探して追加</p>
-            <div className="grid grid-cols-2 gap-2">
-              <select value={fUnit} onChange={(e) => setFUnit(e.target.value)} aria-label="単元" className={selectClass}>
-                <option value="">単元：すべて</option>
-                {units.map((u) => (
-                  <option key={u.id} value={u.id}>{u.name}</option>
-                ))}
-              </select>
-              <select value={fExam} onChange={(e) => setFExam(e.target.value)} aria-label="回" className={selectClass}>
-                <option value="">回：すべて</option>
-                {exams.map((e) => (
-                  <option key={e.exam_no} value={e.exam_no}>第{e.exam_no}回</option>
-                ))}
-              </select>
-              <input value={fKeyword} onChange={(e) => setFKeyword(e.target.value)} placeholder="キーワード" aria-label="キーワード" className="rounded-xl border border-gray-300 px-3 py-2 text-sm" />
+            <div className="grid grid-cols-2 gap-2 rounded-full bg-gray-100 p-1 text-sm font-medium">
+              <button
+                onClick={() => setAddTab("official")}
+                className={`rounded-full px-3 py-2 transition ${addTab === "official" ? "bg-black text-white" : "text-gray-600"}`}
+              >
+                国試から作る
+              </button>
+              <button
+                onClick={() => setAddTab("ai")}
+                className={`rounded-full px-3 py-2 transition ${addTab === "ai" ? "bg-black text-white" : "text-gray-600"}`}
+              >
+                オリジナル問題
+              </button>
             </div>
-            <button onClick={handleSearch} disabled={busy} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
-              探す
-            </button>
-            {hits && (
-              hits.length === 0 ? (
-                <p className="text-xs text-gray-500">条件に合う問題がありません。</p>
-              ) : (
-                <ul className="divide-y divide-gray-100">
-                  {hits.map((h) => {
-                    const added = ids.includes(h.id);
-                    return (
-                      <li key={h.id} className="flex items-start gap-2 py-2">
-                        <div className="min-w-0 flex-1">
-                          <p className="text-[11px] text-gray-400">
-                            {h.label}
-                            {unitName(h.unit) && ` ・ ${unitName(h.unit)}`}
-                          </p>
-                          <p className="text-xs leading-5 text-gray-700">{h.stem}</p>
-                        </div>
-                        <button onClick={() => add(h)} disabled={busy || added} className="shrink-0 rounded-full border border-gray-300 px-3 py-1.5 text-xs disabled:opacity-40">
-                          {added ? "追加済み" : "追加"}
-                        </button>
-                      </li>
-                    );
-                  })}
-                </ul>
-              )
+
+            {addTab === "official" ? (
+              <div className="space-y-3">
+                <p className="text-[11px] leading-5 text-gray-400">過去に実際に出た国試の問題（第49〜61回）を、単元・回・キーワードで探して追加します。</p>
+                <div className="grid grid-cols-2 gap-2">
+                  <select value={fUnit} onChange={(e) => setFUnit(e.target.value)} aria-label="単元" className={selectClass}>
+                    <option value="">単元：すべて</option>
+                    {units.map((u) => (
+                      <option key={u.id} value={u.id}>{u.name}</option>
+                    ))}
+                  </select>
+                  <select value={fExam} onChange={(e) => setFExam(e.target.value)} aria-label="回" className={selectClass}>
+                    <option value="">回：すべて</option>
+                    {exams.map((e) => (
+                      <option key={e.exam_no} value={e.exam_no}>第{e.exam_no}回</option>
+                    ))}
+                  </select>
+                  <input value={fKeyword} onChange={(e) => setFKeyword(e.target.value)} placeholder="キーワード" aria-label="キーワード" className="rounded-xl border border-gray-300 px-3 py-2 text-sm" />
+                </div>
+                <button onClick={handleSearch} disabled={busy} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
+                  探す
+                </button>
+                {hits && (
+                  hits.length === 0 ? (
+                    <p className="text-xs text-gray-500">条件に合う問題がありません。</p>
+                  ) : (
+                    <ul className="divide-y divide-gray-100">
+                      {hits.map((h) => {
+                        const added = ids.includes(h.id);
+                        return (
+                          <li key={h.id} className="flex items-start gap-2 py-2">
+                            <div className="min-w-0 flex-1">
+                              <p className="text-[11px] text-gray-400">
+                                {h.label}
+                                {unitName(h.unit) && ` ・ ${unitName(h.unit)}`}
+                              </p>
+                              <p className="text-xs leading-5 text-gray-700">{h.stem}</p>
+                            </div>
+                            <button onClick={() => add(h)} disabled={busy || added} className="shrink-0 rounded-full border border-gray-300 px-3 py-1.5 text-xs disabled:opacity-40">
+                              {added ? "追加済み" : "追加"}
+                            </button>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )
+                )}
+                <p className="text-[11px] leading-5 text-gray-400">難易度での絞り込みは、今後実装予定です。最大50問まで。</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <p className="text-[11px] leading-5 text-gray-400">運営が確認済みの、AI作成の国試対策問題を、単元ごとにまとめて追加します。解説にも「AIが作成」の注意が表示されます。</p>
+                {Object.keys(aiCounts).length === 0 ? (
+                  <p className="text-xs text-gray-500">今は、追加できるAI作成の問題がありません。</p>
+                ) : (
+                  <>
+                    <div className="grid grid-cols-2 gap-2">
+                      <select value={aiUnit} onChange={(e) => setAiUnit(e.target.value)} aria-label="AI問題の単元" className={selectClass}>
+                        <option value="">単元を選ぶ</option>
+                        {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
+                          <option key={u.id} value={u.id}>{u.name}（{aiCounts[u.id]}問）</option>
+                        ))}
+                      </select>
+                      <input
+                        type="number"
+                        min={1}
+                        max={30}
+                        value={aiN}
+                        onChange={(e) => setAiN(Math.max(1, Math.min(30, Number(e.target.value) || 1)))}
+                        aria-label="追加する問題数"
+                        className="rounded-xl border border-gray-300 px-3 py-2 text-sm"
+                      />
+                    </div>
+                    <button onClick={handleAddAi} disabled={busy || !aiUnit} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
+                      追加する
+                    </button>
+                  </>
+                )}
+              </div>
             )}
-            <p className="text-[11px] leading-5 text-gray-400">難易度での絞り込みは、今後実装予定です。最大50問まで。</p>
           </section>
         )}
 
