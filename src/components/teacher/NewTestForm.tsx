@@ -47,14 +47,24 @@ export default function NewTestForm({
   const [searching, setSearching] = useState(false);
   const [manual, setManual] = useState<Map<string, QuestionHit>>(new Map());
 
-  // オリジナル問題（AI作成）用
+  // オリジナル問題（AI作成）用。単元 → 入れる問題数
   const [aiCounts, setAiCounts] = useState<Record<string, number>>({});
-  const [aiUnit, setAiUnit] = useState("");
-  const [aiN, setAiN] = useState(10);
+  const [aiPicked, setAiPicked] = useState<Map<string, number>>(new Map());
 
   useEffect(() => {
     getAiQuestionCounts().then(setAiCounts);
   }, []);
+
+  function toggleAi(id: string) {
+    setAiPicked((p) => {
+      const x = new Map(p);
+      if (x.has(id)) x.delete(id);
+      else x.set(id, Math.min(10, aiCounts[id] ?? 10));
+      return x;
+    });
+  }
+
+  const aiTotal = [...aiPicked.values()].reduce((a, c) => a + c, 0);
 
   const fields = useMemo(() => {
     const m = new Map<string, QuizUnit[]>();
@@ -99,16 +109,20 @@ export default function NewTestForm({
 
   async function handleCreateAi() {
     if (busy) return;
-    if (!title.trim() || !classId || !aiUnit) {
+    if (!title.trim() || !classId || aiPicked.size === 0) {
       setTried(true);
       return;
     }
     setBusy(true);
-    const hits = await searchQuestions({ unit: aiUnit, exam: null, difficulty: "any", keyword: "", limit: 100, source: "ai_generated" });
-    const ids = shuffle(hits).slice(0, aiN).map((h) => h.id);
+    const ids: string[] = [];
+    for (const [unit, count] of aiPicked) {
+      const hits = await searchQuestions({ unit, exam: null, difficulty: "any", keyword: "", limit: 100, source: "ai_generated" });
+      shuffle(hits).slice(0, count).forEach((h) => ids.push(h.id));
+    }
     let id: string | null = null;
     if (ids.length > 0) {
-      id = await createAssignment({ classId, title: title.trim(), difficulty: "any", due: due ? `${due}T23:59:59+09:00` : null, unit: aiUnit, exam: null, n: 1 });
+      const unit = aiPicked.size === 1 ? [...aiPicked.keys()][0] : null;
+      id = await createAssignment({ classId, title: title.trim(), difficulty: "any", due: due ? `${due}T23:59:59+09:00` : null, unit, exam: null, n: 1 });
       if (id && !(await setAssignmentQuestions(id, ids))) id = null;
     }
     setBusy(false);
@@ -170,7 +184,7 @@ export default function NewTestForm({
     ? [
         !classId && "クラスを選んでください",
         !title.trim() && "テストの名前を入れてください（いちばん上の欄）",
-        !aiUnit && "単元を選んでください",
+        aiPicked.size === 0 && "単元を選んでください",
       ].filter(Boolean)
     : [
         !classId && "クラスを選んでください",
@@ -325,29 +339,38 @@ export default function NewTestForm({
         </>
       ) : (
         <div className="space-y-3">
-          <p className="text-[11px] leading-5 text-gray-500">運営が確認済みの、AI作成の国試対策問題です。単元を選んで、件数を指定してください。解説にも「AIが作成」の注意が表示されます。</p>
+          <p className="text-[11px] leading-5 text-gray-500">運営が確認済みの、オリジナルの国試対策問題です。単元をチェックして、件数を指定してください。解説にも「AIが作成」の注意が表示されます。</p>
           {Object.keys(aiCounts).length === 0 ? (
-            <p className="text-xs text-gray-500">今は、作れるAI作成の問題がありません。</p>
+            <p className="text-xs text-gray-500">今は、作れるオリジナル問題がありません。</p>
           ) : (
-            <div className="grid grid-cols-2 gap-2">
-              <label className="text-[11px] text-gray-500">
-                単元
-                <select value={aiUnit} onChange={(e) => setAiUnit(e.target.value)} aria-label="AI問題の単元" className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
-                  <option value="">選んでください</option>
-                  {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
-                    <option key={u.id} value={u.id}>{u.name}（{aiCounts[u.id]}問）</option>
-                  ))}
-                </select>
-              </label>
-              <label className="text-[11px] text-gray-500">
-                問題数
-                <select value={aiN} onChange={(e) => setAiN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
-                  {COUNT_OPTIONS.filter((c) => c > 0).map((c) => (
-                    <option key={c} value={c}>{c}問</option>
-                  ))}
-                </select>
-              </label>
-            </div>
+            <>
+              <div className="max-h-60 space-y-0.5 overflow-y-auto rounded-xl border border-gray-200 p-2">
+                {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
+                  <div key={u.id} className="flex items-center gap-2 py-0.5 text-xs">
+                    <label className="flex min-w-0 flex-1 items-center gap-2">
+                      <input type="checkbox" checked={aiPicked.has(u.id)} onChange={() => toggleAi(u.id)} />
+                      <span className="min-w-0 truncate">{u.name}</span>
+                      <span className="shrink-0 text-[10px] text-gray-400">{aiCounts[u.id]}問</span>
+                    </label>
+                    {aiPicked.has(u.id) && (
+                      <select
+                        value={aiPicked.get(u.id)}
+                        onChange={(e) => setAiPicked((p) => new Map(p).set(u.id, Number(e.target.value)))}
+                        aria-label={`${u.name}から入れる問題数`}
+                        className="shrink-0 rounded-lg border border-gray-300 bg-white px-1 py-0.5 text-xs"
+                      >
+                        {Array.from({ length: Math.min(aiCounts[u.id], 30) }, (_, k) => k + 1).map((c) => (
+                          <option key={c} value={c}>{c}問</option>
+                        ))}
+                      </select>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs leading-6 text-gray-700">
+                合計 <span className="text-sm font-bold">{aiTotal}問</span>
+              </p>
+            </>
           )}
         </div>
       )}
