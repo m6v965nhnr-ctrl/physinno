@@ -92,7 +92,7 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
     router.push(href(q.toString(), false));
   }
 
-  const tile = "flex min-h-[2.75rem] flex-col items-center justify-center rounded-xl bg-white px-1 py-1.5 text-center shadow-sm transition active:scale-[0.98]";
+  const tile = "flex min-h-[3.5rem] flex-col items-center justify-center rounded-xl bg-white px-1 py-2 text-center shadow-sm transition active:scale-[0.98]";
 
   return (
     <div className="space-y-4">
@@ -144,27 +144,24 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         <p className="mt-1 pl-6 text-[10px] leading-4 text-gray-400">関係する問題も集めます。人名のつく病名・評価法は、英語でも。</p>
       </section>
 
-      {/* 近道（縦を狭く） */}
-      <section className="grid grid-cols-4 gap-1.5" aria-label="近道">
+      {/* 近道 */}
+      <section className="grid grid-cols-3 gap-1.5" aria-label="近道">
         {counts && counts.wrong > 0 ? (
           <Link href={fixed("wrong", 0)} className={tile}>
-            <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
+            <span className="text-xs font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
             <span className="block text-[10px] font-semibold text-red-500">{counts.wrong}問</span>
           </Link>
         ) : (
           <div className={`${tile} opacity-50`}>
-            <span className="text-[11px] font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
+            <span className="text-xs font-bold text-gray-900"><span aria-hidden="true">🔁 </span>復習</span>
             <span className="block text-[10px] text-gray-400">まだなし</span>
           </div>
         )}
         <Link href="/student/quiz/review" className={tile}>
-          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト<br />振り返り</span>
-        </Link>
-        <Link href="/student/quiz/ask" className={tile}>
-          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">🙋 </span>先生に質問</span>
+          <span className="text-xs font-bold leading-tight text-gray-900"><span aria-hidden="true">📈 </span>テスト<br />振り返り</span>
         </Link>
         <Link href="/student/quiz/books" className={tile}>
-          <span className="text-[11px] font-bold leading-tight text-gray-900"><span aria-hidden="true">📚 </span>参考書<br />進捗</span>
+          <span className="text-xs font-bold leading-tight text-gray-900"><span aria-hidden="true">📚 </span>参考書<br />進捗</span>
         </Link>
       </section>
 

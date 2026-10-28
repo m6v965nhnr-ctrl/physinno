@@ -33,7 +33,8 @@ export type StudyLog = {
 export function understandingLabel(v: number): string {
   if (v < 2.5) return "理解してない";
   if (v < 5) return "まあまあ";
-  if (v < 7.5) return "それなりに";
+  if (v < 9) return "それなりに";
+  if (v < 10) return "ほぼ完璧";
   return "完璧";
 }
 

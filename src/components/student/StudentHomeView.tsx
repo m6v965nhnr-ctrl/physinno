@@ -30,6 +30,7 @@ function HideWidgetButton({ onHide }: { onHide: () => void }) {
 
 const LINKS = [
   { href: "/student/tracker", icon: "🗂️", title: "実習・就活トラッカー", body: "実習先・病院見学・応募・提出物を管理" },
+  { href: "/student/quiz/ask", icon: "🙋", title: "先生に質問", body: "クラスのチャットで、先生に質問（匿名も選べます）" },
   { href: "/student/exam", icon: "⏳", title: "国試カウントダウン", body: "学習ログと、科目ごとの積み上げ" },
   { href: "/student/exams", icon: "📚", title: "先輩からの勉強方法（科目ごと）", body: "科目ごとの出題の傾向・勉強法・過去問を、同じ学校の先輩から" },
   { href: "/student/questions", icon: "🙋", title: "先輩に質問", body: "実習・国試・就活を現役PTに相談" },

@@ -63,7 +63,11 @@ function UnderstandingSlider({ value, onChange }: { value: number; onChange: (v:
         value={value}
         onChange={(e) => onChange(Number(e.target.value))}
         aria-label="理解度"
-        className="mt-1 h-1 w-full cursor-pointer appearance-none rounded-full bg-gray-200 accent-emerald-500"
+        className="mt-2 h-4 w-full cursor-pointer appearance-none bg-transparent
+          [&::-webkit-slider-runnable-track]:h-1.5 [&::-webkit-slider-runnable-track]:rounded-full [&::-webkit-slider-runnable-track]:bg-blue-950
+          [&::-moz-range-track]:h-1.5 [&::-moz-range-track]:rounded-full [&::-moz-range-track]:bg-blue-950
+          [&::-webkit-slider-thumb]:-mt-[5px] [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-emerald-500
+          [&::-moz-range-thumb]:h-4 [&::-moz-range-thumb]:w-4 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:border-0 [&::-moz-range-thumb]:bg-emerald-500"
       />
     </div>
   );
