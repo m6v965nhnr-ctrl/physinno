@@ -1,9 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { notify } from "@/lib/notify";
 import { QuizExam, QuizUnit } from "@/lib/quiz";
-import { QuestionHit, TeacherClass, createAssignment, searchQuestions, setAssignmentQuestions } from "@/lib/quizClass";
+import { QuestionHit, TeacherClass, createAssignment, getAiQuestionCounts, searchQuestions, setAssignmentQuestions } from "@/lib/quizClass";
 
 const COUNT_OPTIONS = [0, 5, 10, 20, 30, 50];
 
@@ -32,6 +32,8 @@ export default function NewTestForm({
 }) {
   const [classId, setClassId] = useState(defaultClassId ?? classes[0]?.id ?? "");
   const [title, setTitle] = useState("");
+  // 国試から作る／オリジナル問題（AI作成）の切り替え
+  const [mode, setMode] = useState<"official" | "ai">("official");
   // 選んだ単元 → 入れる問題数（"random" は、下の「ランダムに入れる問題数」から割り振る）
   const [picked, setPicked] = useState<Map<string, number | "random">>(new Map());
   const [exam, setExam] = useState("");
@@ -44,6 +46,15 @@ export default function NewTestForm({
   const [hits, setHits] = useState<QuestionHit[] | null>(null);
   const [searching, setSearching] = useState(false);
   const [manual, setManual] = useState<Map<string, QuestionHit>>(new Map());
+
+  // オリジナル問題（AI作成）用
+  const [aiCounts, setAiCounts] = useState<Record<string, number>>({});
+  const [aiUnit, setAiUnit] = useState("");
+  const [aiN, setAiN] = useState(10);
+
+  useEffect(() => {
+    getAiQuestionCounts().then(setAiCounts);
+  }, []);
 
   const fields = useMemo(() => {
     const m = new Map<string, QuizUnit[]>();
@@ -86,7 +97,30 @@ export default function NewTestForm({
     });
   }
 
+  async function handleCreateAi() {
+    if (busy) return;
+    if (!title.trim() || !classId || !aiUnit) {
+      setTried(true);
+      return;
+    }
+    setBusy(true);
+    const hits = await searchQuestions({ unit: aiUnit, exam: null, difficulty: "any", keyword: "", limit: 100, source: "ai_generated" });
+    const ids = shuffle(hits).slice(0, aiN).map((h) => h.id);
+    let id: string | null = null;
+    if (ids.length > 0) {
+      id = await createAssignment({ classId, title: title.trim(), difficulty: "any", due: due ? `${due}T23:59:59+09:00` : null, unit: aiUnit, exam: null, n: 1 });
+      if (id && !(await setAssignmentQuestions(id, ids))) id = null;
+    }
+    setBusy(false);
+    if (!id) {
+      notify("テストを作れませんでした");
+      return;
+    }
+    window.location.href = `/student/quiz/teacher/test?id=${id}`;
+  }
+
   async function handleCreate() {
+    if (mode === "ai") return handleCreateAi();
     if (busy) return;
     if (!title.trim() || !classId || total === 0) {
       setTried(true);
@@ -132,11 +166,17 @@ export default function NewTestForm({
     window.location.href = `/student/quiz/teacher/test?id=${id}`;
   }
 
-  const reasons = [
-    !classId && "クラスを選んでください",
-    !title.trim() && "テストの名前を入れてください（いちばん上の欄）",
-    total === 0 && "問題がありません。単元を選ぶか、キーワードで問題を足してください",
-  ].filter(Boolean);
+  const reasons = mode === "ai"
+    ? [
+        !classId && "クラスを選んでください",
+        !title.trim() && "テストの名前を入れてください（いちばん上の欄）",
+        !aiUnit && "単元を選んでください",
+      ].filter(Boolean)
+    : [
+        !classId && "クラスを選んでください",
+        !title.trim() && "テストの名前を入れてください（いちばん上の欄）",
+        total === 0 && "問題がありません。単元を選ぶか、キーワードで問題を足してください",
+      ].filter(Boolean);
 
   return (
     <div className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
@@ -155,128 +195,167 @@ export default function NewTestForm({
 
       <input value={title} onChange={(e) => setTitle(e.target.value)} maxLength={80} placeholder="テストの名前（例：運動学 第1回）" aria-label="テストの名前" className="w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm" />
 
-      <fieldset>
-        <div className="flex items-center justify-between gap-2">
-          <legend className="text-[11px] font-semibold text-gray-700">単元（チェックで選びます。選ぶと、右に問題数が出ます。選ばないと「すべて」）</legend>
-          {picked.size > 0 && (
-            <button type="button" onClick={() => setPicked(new Map())} className="text-[11px] text-sky-700 underline">選択をすべて外す</button>
-          )}
-        </div>
-        <div className="mt-1 max-h-60 space-y-2 overflow-y-auto rounded-xl border border-gray-200 p-2">
-          {fields.map(([field, list]) => (
-            <div key={field}>
-              <p className="text-[11px] font-semibold text-gray-500">{field}</p>
-              <ul className="mt-0.5 grid grid-cols-1 gap-x-3 sm:grid-cols-2">
-                {list.map((u) => (
-                  <li key={u.id}>
-                    <div className="flex items-center gap-2 py-0.5 text-xs">
-                      <label className="flex min-w-0 flex-1 items-center gap-2">
-                        <input type="checkbox" checked={picked.has(u.id)} onChange={() => toggle(u.id)} />
-                        <span className="min-w-0 truncate">{u.name}</span>
-                        <span className="shrink-0 text-[10px] text-gray-400">{u.total}問</span>
-                      </label>
-                      {picked.has(u.id) && (
-                        <select
-                          value={String(picked.get(u.id))}
-                          onChange={(e) => setPicked((p) => new Map(p).set(u.id, e.target.value === "random" ? "random" : Number(e.target.value)))}
-                          aria-label={`${u.name}から入れる問題数`}
-                          className="shrink-0 rounded-lg border border-gray-300 bg-white px-1 py-0.5 text-xs"
-                        >
-                          <option value="random">ランダム</option>
-                          {Array.from({ length: Math.min(u.total, 50) }, (_, k) => k + 1).map((c) => (
-                            <option key={c} value={c}>{c}問</option>
-                          ))}
-                        </select>
-                      )}
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </fieldset>
-
-      <div className="grid grid-cols-2 gap-2">
-        <label className="text-[11px] text-gray-500">
-          回
-          <select value={exam} onChange={(e) => setExam(e.target.value)} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
-            <option value="">すべて</option>
-            {exams.map((x) => (
-              <option key={x.exam_no} value={x.exam_no}>第{x.exam_no}回</option>
-            ))}
-          </select>
-        </label>
-        <label className="text-[11px] text-gray-500">
-          期限（任意）
-          <input type="date" value={due} onChange={(e) => setDue(e.target.value)} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900" />
-        </label>
+      <div className="grid grid-cols-2 gap-2 rounded-full bg-gray-100 p-1 text-sm font-medium">
+        <button type="button" onClick={() => setMode("official")} className={`rounded-full px-3 py-2 transition ${mode === "official" ? "bg-black text-white" : "text-gray-600"}`}>
+          国試から作る
+        </button>
+        <button type="button" onClick={() => setMode("ai")} className={`rounded-full px-3 py-2 transition ${mode === "ai" ? "bg-black text-white" : "text-gray-600"}`}>
+          オリジナル問題
+        </button>
       </div>
 
-      <div className="space-y-2 rounded-xl border border-gray-200 p-3">
-        <p className="text-[11px] font-semibold text-gray-700">問題数</p>
-        {randomActive && (
+      {mode === "official" ? (
+        <>
+          <fieldset>
+            <div className="flex items-center justify-between gap-2">
+              <legend className="text-[11px] font-semibold text-gray-700">単元（チェックで選びます。選ぶと、右に問題数が出ます。選ばないと「すべて」）</legend>
+              {picked.size > 0 && (
+                <button type="button" onClick={() => setPicked(new Map())} className="text-[11px] text-sky-700 underline">選択をすべて外す</button>
+              )}
+            </div>
+            <div className="mt-1 max-h-60 space-y-2 overflow-y-auto rounded-xl border border-gray-200 p-2">
+              {fields.map(([field, list]) => (
+                <div key={field}>
+                  <p className="text-[11px] font-semibold text-gray-500">{field}</p>
+                  <ul className="mt-0.5 grid grid-cols-1 gap-x-3 sm:grid-cols-2">
+                    {list.map((u) => (
+                      <li key={u.id}>
+                        <div className="flex items-center gap-2 py-0.5 text-xs">
+                          <label className="flex min-w-0 flex-1 items-center gap-2">
+                            <input type="checkbox" checked={picked.has(u.id)} onChange={() => toggle(u.id)} />
+                            <span className="min-w-0 truncate">{u.name}</span>
+                            <span className="shrink-0 text-[10px] text-gray-400">{u.total}問</span>
+                          </label>
+                          {picked.has(u.id) && (
+                            <select
+                              value={String(picked.get(u.id))}
+                              onChange={(e) => setPicked((p) => new Map(p).set(u.id, e.target.value === "random" ? "random" : Number(e.target.value)))}
+                              aria-label={`${u.name}から入れる問題数`}
+                              className="shrink-0 rounded-lg border border-gray-300 bg-white px-1 py-0.5 text-xs"
+                            >
+                              <option value="random">ランダム</option>
+                              {Array.from({ length: Math.min(u.total, 50) }, (_, k) => k + 1).map((c) => (
+                                <option key={c} value={c}>{c}問</option>
+                              ))}
+                            </select>
+                          )}
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </fieldset>
+
           <label className="block text-[11px] text-gray-500">
-            {picked.size === 0 ? "単元を選んでいないので、すべての単元から" : "「ランダム」の単元から"}入れる問題数を指定
-            <select value={n} onChange={(e) => setN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
-              {COUNT_OPTIONS.map((c) => (
-                <option key={c} value={c}>{c}問</option>
+            回
+            <select value={exam} onChange={(e) => setExam(e.target.value)} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
+              <option value="">すべて</option>
+              {exams.map((x) => (
+                <option key={x.exam_no} value={x.exam_no}>第{x.exam_no}回</option>
               ))}
             </select>
           </label>
-        )}
-        <p className="text-xs leading-6 text-gray-700">
-          {[
-            ...fixedUnits.map(([u, c]) => `${units.find((x) => x.id === u)?.name ?? u} ${c}`),
-            randomActive ? `ランダム ${Math.min(n, randomPool)}` : null,
-            manual.size > 0 ? `キーワードで足した問題 ${manual.size}` : null,
-          ]
-            .filter(Boolean)
-            .join(" ＋ ") || "（まだ、問題が選ばれていません）"}
-          <span className="block text-sm font-bold">合計 {total}問</span>
-        </p>
-      </div>
 
-      <div className="space-y-2 rounded-xl bg-gray-50 p-2">
-        <p className="text-[11px] font-semibold text-gray-700">キーワードで問題を探して、足す</p>
-        <div className="flex gap-2">
-          <input
-            value={keyword}
-            onChange={(e) => setKeyword(e.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" && !e.nativeEvent.isComposing) {
-                e.preventDefault();
-                handleSearch();
-              }
-            }}
-            placeholder="例：糖尿病、歩行"
-            aria-label="キーワード"
-            className="min-w-0 flex-1 rounded-xl border border-gray-300 bg-white px-3 py-1.5 text-sm"
-          />
-          <button type="button" onClick={handleSearch} disabled={searching || !keyword.trim()} className="shrink-0 rounded-full bg-black px-4 py-1.5 text-sm font-medium text-white disabled:opacity-40">
-            {searching ? "…" : "探す"}
-          </button>
+          <div className="space-y-2 rounded-xl border border-gray-200 p-3">
+            <p className="text-[11px] font-semibold text-gray-700">問題数</p>
+            {randomActive && (
+              <label className="block text-[11px] text-gray-500">
+                {picked.size === 0 ? "単元を選んでいないので、すべての単元から" : "「ランダム」の単元から"}入れる問題数を指定
+                <select value={n} onChange={(e) => setN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
+                  {COUNT_OPTIONS.map((c) => (
+                    <option key={c} value={c}>{c}問</option>
+                  ))}
+                </select>
+              </label>
+            )}
+            <p className="text-xs leading-6 text-gray-700">
+              {[
+                ...fixedUnits.map(([u, c]) => `${units.find((x) => x.id === u)?.name ?? u} ${c}`),
+                randomActive ? `ランダム ${Math.min(n, randomPool)}` : null,
+                manual.size > 0 ? `キーワードで足した問題 ${manual.size}` : null,
+              ]
+                .filter(Boolean)
+                .join(" ＋ ") || "（まだ、問題が選ばれていません）"}
+              <span className="block text-sm font-bold">合計 {total}問</span>
+            </p>
+          </div>
+
+          <div className="space-y-2 rounded-xl bg-gray-50 p-2">
+            <p className="text-[11px] font-semibold text-gray-700">キーワードで問題を探して、足す</p>
+            <div className="flex gap-2">
+              <input
+                value={keyword}
+                onChange={(e) => setKeyword(e.target.value)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" && !e.nativeEvent.isComposing) {
+                    e.preventDefault();
+                    handleSearch();
+                  }
+                }}
+                placeholder="例：糖尿病、歩行"
+                aria-label="キーワード"
+                className="min-w-0 flex-1 rounded-xl border border-gray-300 bg-white px-3 py-1.5 text-sm"
+              />
+              <button type="button" onClick={handleSearch} disabled={searching || !keyword.trim()} className="shrink-0 rounded-full bg-black px-4 py-1.5 text-sm font-medium text-white disabled:opacity-40">
+                {searching ? "…" : "探す"}
+              </button>
+            </div>
+            {hits && (
+              <ul className="max-h-56 divide-y divide-gray-100 overflow-y-auto rounded-xl bg-white">
+                {hits.length === 0 && <li className="p-2 text-xs text-gray-500">見つかりませんでした。</li>}
+                {hits.map((h) => (
+                  <li key={h.id}>
+                    <label className="flex items-start gap-2 p-2 text-xs">
+                      <input type="checkbox" className="mt-0.5" checked={manual.has(h.id)} onChange={() => toggleHit(h)} />
+                      <span className="min-w-0">
+                        <span className="block text-[10px] text-gray-400">{h.label}</span>
+                        <span className="leading-5 text-gray-700">{h.stem}</span>
+                      </span>
+                    </label>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {manual.size > 0 && <p className="text-[11px] text-emerald-700">キーワードで足した問題: {manual.size}問</p>}
+          </div>
+
+          <p className="text-[11px] leading-5 text-gray-500">下書きにしてから、問題を入れ替えたり足したりできます。難易度での絞り込みは、今後実装予定です。</p>
+        </>
+      ) : (
+        <div className="space-y-3">
+          <p className="text-[11px] leading-5 text-gray-500">運営が確認済みの、AI作成の国試対策問題です。単元を選んで、件数を指定してください。解説にも「AIが作成」の注意が表示されます。</p>
+          {Object.keys(aiCounts).length === 0 ? (
+            <p className="text-xs text-gray-500">今は、作れるAI作成の問題がありません。</p>
+          ) : (
+            <div className="grid grid-cols-2 gap-2">
+              <label className="text-[11px] text-gray-500">
+                単元
+                <select value={aiUnit} onChange={(e) => setAiUnit(e.target.value)} aria-label="AI問題の単元" className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
+                  <option value="">選んでください</option>
+                  {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
+                    <option key={u.id} value={u.id}>{u.name}（{aiCounts[u.id]}問）</option>
+                  ))}
+                </select>
+              </label>
+              <label className="text-[11px] text-gray-500">
+                問題数
+                <select value={aiN} onChange={(e) => setAiN(Number(e.target.value))} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900">
+                  {COUNT_OPTIONS.filter((c) => c > 0).map((c) => (
+                    <option key={c} value={c}>{c}問</option>
+                  ))}
+                </select>
+              </label>
+            </div>
+          )}
         </div>
-        {hits && (
-          <ul className="max-h-56 divide-y divide-gray-100 overflow-y-auto rounded-xl bg-white">
-            {hits.length === 0 && <li className="p-2 text-xs text-gray-500">見つかりませんでした。</li>}
-            {hits.map((h) => (
-              <li key={h.id}>
-                <label className="flex items-start gap-2 p-2 text-xs">
-                  <input type="checkbox" className="mt-0.5" checked={manual.has(h.id)} onChange={() => toggleHit(h)} />
-                  <span className="min-w-0">
-                    <span className="block text-[10px] text-gray-400">{h.label}</span>
-                    <span className="leading-5 text-gray-700">{h.stem}</span>
-                  </span>
-                </label>
-              </li>
-            ))}
-          </ul>
-        )}
-        {manual.size > 0 && <p className="text-[11px] text-emerald-700">キーワードで足した問題: {manual.size}問</p>}
-      </div>
+      )}
 
-      <p className="text-[11px] leading-5 text-gray-500">下書きにしてから、問題を入れ替えたり足したりできます。難易度での絞り込みは、今後実装予定です。</p>
+      <label className="block text-[11px] text-gray-500">
+        期限（任意）
+        <input type="date" value={due} onChange={(e) => setDue(e.target.value)} className="mt-1 w-full rounded-xl border border-gray-300 bg-white px-2 py-2 text-sm text-gray-900" />
+      </label>
 
       {tried && reasons.length > 0 && (
         <p className="text-xs leading-5 text-red-600" role="status">作れない理由：{reasons.join(" ／ ")}</p>

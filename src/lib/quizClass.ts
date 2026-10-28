@@ -230,6 +230,7 @@ export async function searchQuestions(params: {
   difficulty: Difficulty;
   keyword: string;
   limit?: number;
+  source?: "any" | "official" | "ai_generated";
 }): Promise<QuestionHit[]> {
   const { data } = await supabase.rpc("quiz_teacher_search_questions", {
     p_unit: params.unit,
@@ -237,6 +238,7 @@ export async function searchQuestions(params: {
     p_difficulty: params.difficulty,
     p_keyword: params.keyword || null,
     p_limit: params.limit ?? 30,
+    p_source: params.source ?? "any",
   });
   return (data ?? []) as QuestionHit[];
 }
