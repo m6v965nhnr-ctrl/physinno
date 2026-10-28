@@ -58,6 +58,11 @@ export async function createStudyBook(classId: string, name: string, totalPages:
   return data as string;
 }
 
+export async function updateStudyBook(bookId: string, name: string, totalPages: number | null): Promise<boolean> {
+  const { data, error } = await supabase.rpc("study_update_book", { p_book: bookId, p_name: name, p_total_pages: totalPages });
+  return !error && data === true;
+}
+
 export async function archiveStudyBook(bookId: string, archived: boolean): Promise<boolean> {
   const { error } = await supabase.rpc("study_archive_book", { p_book: bookId, p_archived: archived });
   return !error;

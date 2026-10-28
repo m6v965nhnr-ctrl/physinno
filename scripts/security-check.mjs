@@ -150,6 +150,7 @@ for (const [fn, body] of [
   ["study_update_unit", { p_unit: ZERO, p_name: "x", p_page_start: 1, p_page_end: 10 }],
   ["study_update_log", { p_log: ZERO, p_page_start: 1, p_page_end: 10, p_studied_on: "2026-01-01" }],
   ["study_teacher_student_logs", { p_book: ZERO, p_user: ZERO }],
+  ["study_update_book", { p_book: ZERO, p_name: "x", p_total_pages: 100 }],
 ]) {
   const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });
   check(`匿名は ${fn} を呼べない`, r.status >= 400, `status=${r.status}`);

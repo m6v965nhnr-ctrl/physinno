@@ -12,6 +12,7 @@ import {
   StudyStudentProgress,
   listStudyBooks,
   createStudyBook,
+  updateStudyBook,
   archiveStudyBook,
   listStudyUnits,
   addStudyUnit,
@@ -303,13 +304,71 @@ function BookProgress({ book }: { book: StudyBook }) {
   );
 }
 
+function EditBookHeader({ book, onDone }: { book: StudyBook; onDone: (changed: boolean) => void }) {
+  const [name, setName] = useState(book.name);
+  const [totalPages, setTotalPages] = useState(book.total_pages ? String(book.total_pages) : "");
+  const [busy, setBusy] = useState(false);
+
+  async function handleSave() {
+    if (!name.trim()) {
+      notify("参考書の名前を入れてください");
+      return;
+    }
+    setBusy(true);
+    const ok = await updateStudyBook(book.id, name.trim(), totalPages.trim() ? Number(totalPages) : null);
+    setBusy(false);
+    if (!ok) {
+      notify("変更できませんでした");
+      return;
+    }
+    onDone(true);
+  }
+
+  return (
+    <div className="space-y-2">
+      <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} aria-label="参考書の名前" className="w-full rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+      <input
+        value={totalPages}
+        onChange={(e) => setTotalPages(e.target.value)}
+        placeholder="総ページ数（任意）"
+        inputMode="numeric"
+        aria-label="総ページ数"
+        className="w-full rounded-lg border border-gray-300 px-2 py-1.5 text-sm"
+      />
+      <div className="flex gap-2">
+        <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
+          保存
+        </button>
+        <button onClick={() => onDone(false)} className="rounded-full border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700">
+          やめる
+        </button>
+      </div>
+    </div>
+  );
+}
+
 function BookCard({ book, onChanged }: { book: StudyBook; onChanged: () => void }) {
   const [open, setOpen] = useState<"units" | "progress" | null>(null);
+  const [editing, setEditing] = useState(false);
 
   async function handleArchiveToggle() {
     if (!book.archived && !(await askConfirm(`「${book.name}」を終了します。学生には見えなくなります。よろしいですか？`))) return;
     if (await archiveStudyBook(book.id, !book.archived)) onChanged();
     else notify("変更できませんでした");
+  }
+
+  if (editing) {
+    return (
+      <section className="rounded-2xl bg-white p-4 shadow-sm">
+        <EditBookHeader
+          book={book}
+          onDone={(changed) => {
+            setEditing(false);
+            if (changed) onChanged();
+          }}
+        />
+      </section>
+    );
   }
 
   return (
@@ -322,9 +381,14 @@ function BookCard({ book, onChanged }: { book: StudyBook; onChanged: () => void 
             {book.archived && " ・ 終了済み"}
           </p>
         </div>
-        <button onClick={handleArchiveToggle} className="shrink-0 text-[11px] text-gray-400 underline">
-          {book.archived ? "再開する" : "終了する"}
-        </button>
+        <div className="flex shrink-0 gap-2 text-[11px] text-gray-400">
+          <button onClick={() => setEditing(true)} className="underline">
+            編集
+          </button>
+          <button onClick={handleArchiveToggle} className="underline">
+            {book.archived ? "再開する" : "終了する"}
+          </button>
+        </div>
       </div>
       <div className="flex gap-2">
         <button onClick={() => setOpen(open === "progress" ? null : "progress")} className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700">
