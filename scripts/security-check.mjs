@@ -134,6 +134,17 @@ for (const [fn, body] of [
   ["admin_set_teacher_suspended", { p_user: ZERO, p_suspended: true }],
   ["quiz_own_assignment", { p_assignment: ZERO }],
   ["quiz_audit_view", { p_action: "view_class", p_target: ZERO }],
+  ["study_create_book", { p_class: ZERO, p_name: "x", p_total_pages: 100 }],
+  ["study_archive_book", { p_book: ZERO, p_archived: true }],
+  ["study_add_unit", { p_book: ZERO, p_name: "x", p_page_start: 1, p_page_end: 10 }],
+  ["study_delete_unit", { p_unit: ZERO }],
+  ["study_list_books", { p_class: ZERO }],
+  ["study_list_units", { p_book: ZERO }],
+  ["study_add_log", { p_book: ZERO, p_page_start: 1, p_page_end: 10, p_studied_on: "2026-01-01" }],
+  ["study_delete_log", { p_log: ZERO }],
+  ["study_my_logs", { p_book: ZERO }],
+  ["study_my_progress", { p_book: ZERO }],
+  ["study_teacher_progress", { p_book: ZERO }],
 ]) {
   const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });
   check(`匿名は ${fn} を呼べない`, r.status >= 400, `status=${r.status}`);

@@ -194,7 +194,8 @@ export default function QuizClassesPage() {
             <h2 className="mb-2 text-sm font-semibold text-gray-700">参加しているクラス</h2>
             <ul className="space-y-2">
               {classes.map((c) => (
-                <li key={c.id} className="flex items-center justify-between gap-3 rounded-2xl bg-white p-4 shadow-sm">
+                <li key={c.id} className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
+                <div className="flex items-center justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-sm font-medium">{c.name}</p>
                     {c.teacher_name && <p className="text-[11px] text-gray-400">先生: {c.teacher_name}</p>}
@@ -220,6 +221,10 @@ export default function QuizClassesPage() {
                       退出する
                     </button>
                   </div>
+                </div>
+                  <Link href={`/student/quiz/books?class=${c.id}`} className="block rounded-xl border border-gray-200 px-3 py-2 text-center text-xs font-medium text-gray-700 hover:bg-gray-50">
+                    参考書の進捗を記録する
+                  </Link>
                 </li>
               ))}
             </ul>

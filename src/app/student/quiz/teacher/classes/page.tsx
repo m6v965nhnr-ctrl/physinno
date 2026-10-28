@@ -61,6 +61,10 @@ function ClassCard({ cls, onChanged }: { cls: TeacherClass; onChanged: () => voi
         </Link>
       </div>
 
+      <Link href={`/student/quiz/teacher/books?class=${cls.id}`} className="block rounded-xl border border-gray-300 px-3 py-2.5 text-center text-sm font-medium text-gray-800">
+        参考書の進捗
+      </Link>
+
       <details className="rounded-xl border border-gray-200">
         <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-gray-800">
           質問 {openQ > 0 && <span className="ml-1 rounded-full bg-red-100 px-2 py-0.5 text-[10px] font-semibold text-red-600">未回答 {openQ}</span>} <span className="text-gray-400">▾</span>
