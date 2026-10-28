@@ -272,6 +272,9 @@ function BookProgress({ book }: { book: StudyBook }) {
   if (rows === null) return <p className="text-xs text-gray-400">読み込み中…</p>;
   if (rows.length === 0) return <p className="text-xs text-gray-500">まだ、クラスに学生がいません。</p>;
 
+  // 総ページ数が未登録でも、単元の一番大きいページ番号を「全体」の目安として使う
+  const effectiveTotal = book.total_pages ?? (units.length > 0 ? Math.max(...units.map((u) => u.page_end)) : null);
+
   return (
     <>
       <ul className="divide-y divide-gray-100">
@@ -287,7 +290,7 @@ function BookProgress({ book }: { book: StudyBook }) {
         ))}
       </ul>
       {opened && (
-        <StudentProgressDetail bookId={book.id} userId={opened.user_id} name={opened.name} totalPages={book.total_pages} units={units} onClose={() => setOpened(null)} />
+        <StudentProgressDetail bookId={book.id} userId={opened.user_id} name={opened.name} totalPages={effectiveTotal} units={units} onClose={() => setOpened(null)} />
       )}
     </>
   );
@@ -317,24 +320,24 @@ function BookCard({ book, onChanged }: { book: StudyBook; onChanged: () => void 
         </button>
       </div>
       <div className="flex gap-2">
-        <button onClick={() => setOpen(open === "units" ? null : "units")} className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700">
-          単元を編集
-        </button>
         <button onClick={() => setOpen(open === "progress" ? null : "progress")} className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700">
           学生の進み具合
         </button>
+        <button onClick={() => setOpen(open === "units" ? null : "units")} className="flex-1 rounded-xl border border-gray-300 px-3 py-2 text-xs font-medium text-gray-700">
+          単元を編集
+        </button>
       </div>
-      {open === "units" && (
+      {open === "progress" && (
         <div className="space-y-3 rounded-xl bg-gray-50 p-3">
-          <BookUnits bookId={book.id} />
+          <BookProgress book={book} />
           <button onClick={() => setOpen(null)} className="w-full rounded-full bg-black py-2 text-xs font-medium text-white">
             完了
           </button>
         </div>
       )}
-      {open === "progress" && (
+      {open === "units" && (
         <div className="space-y-3 rounded-xl bg-gray-50 p-3">
-          <BookProgress book={book} />
+          <BookUnits bookId={book.id} />
           <button onClick={() => setOpen(null)} className="w-full rounded-full bg-black py-2 text-xs font-medium text-white">
             完了
           </button>
