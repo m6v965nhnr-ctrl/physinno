@@ -14,12 +14,20 @@ export default function StandaloneRedirect({ always = false }: { always?: boolea
 
   useEffect(() => {
     if (!always && !isStandaloneApp()) return;
+
+    // 行き先が決まる前から、よく使う行き先の画面を読み込んでおく(認証確認と並行して進む)
+    router.prefetch("/login");
+    router.prefetch("/pts");
+    router.prefetch("/mypage");
+
     supabase.auth.getSession().then(async ({ data: { session } }) => {
       if (!session) {
         router.replace("/login");
         return;
       }
-      router.replace(landingPathFor(await getMyAccountType(session.user.id)));
+      const landingPath = landingPathFor(await getMyAccountType(session.user.id));
+      router.prefetch(landingPath);
+      router.replace(landingPath);
     });
   }, [router, always]);
 
