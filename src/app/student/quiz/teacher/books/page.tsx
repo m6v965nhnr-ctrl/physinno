@@ -219,6 +219,13 @@ function StudentProgressDetail({
             閉じる
           </button>
         </div>
+        <div className="mt-2 flex flex-wrap items-center gap-1">
+          {BAR_COLORS.map((c, i) => (
+            <span key={i} className={`rounded px-1.5 py-0.5 text-[9px] font-medium text-white ${c}`}>
+              {i + 1}周{i === BAR_COLORS.length - 1 ? "+" : ""}
+            </span>
+          ))}
+        </div>
         {logs === null ? (
           <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
         ) : (
