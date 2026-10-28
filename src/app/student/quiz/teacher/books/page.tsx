@@ -85,10 +85,10 @@ function EditUnitRow({ unit, onDone }: { unit: StudyUnit; onDone: (changed: bool
 
   return (
     <li className="space-y-2 py-2">
-      <div className="grid grid-cols-[1fr_4rem_4rem] gap-2">
-        <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} aria-label="単元名" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
-        <input value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
-        <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+      <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} aria-label="単元名" className="w-full min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+      <div className="grid grid-cols-2 gap-2">
+        <input value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+        <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
       </div>
       <div className="flex gap-2">
         <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
@@ -177,10 +177,10 @@ function BookUnits({ bookId }: { bookId: string }) {
           )}
         </ul>
       )}
-      <div className="grid grid-cols-[1fr_4rem_4rem] gap-2">
-        <input value={name} onChange={(e) => setName(e.target.value)} placeholder="単元名（例：呼吸器）" maxLength={60} aria-label="単元名" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
-        <input value={start} onChange={(e) => setStart(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
-        <input value={end} onChange={(e) => setEnd(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+      <input value={name} onChange={(e) => setName(e.target.value)} placeholder="単元名（例：呼吸器）" maxLength={60} aria-label="単元名" className="w-full min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+      <div className="grid grid-cols-2 gap-2">
+        <input value={start} onChange={(e) => setStart(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+        <input value={end} onChange={(e) => setEnd(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
       </div>
       <button onClick={handleAdd} disabled={busy} className="rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700 disabled:opacity-40">
         単元を追加
