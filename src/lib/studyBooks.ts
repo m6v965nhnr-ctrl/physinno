@@ -79,6 +79,11 @@ export async function deleteStudyUnit(unitId: string): Promise<boolean> {
   return !error;
 }
 
+export async function updateStudyUnit(unitId: string, name: string, pageStart: number, pageEnd: number): Promise<boolean> {
+  const { error } = await supabase.rpc("study_update_unit", { p_unit: unitId, p_name: name, p_page_start: pageStart, p_page_end: pageEnd });
+  return !error;
+}
+
 export async function addStudyLog(bookId: string, pageStart: number, pageEnd: number, studiedOn: string): Promise<boolean> {
   const { error } = await supabase.rpc("study_add_log", { p_book: bookId, p_page_start: pageStart, p_page_end: pageEnd, p_studied_on: studiedOn });
   return !error;
@@ -98,6 +103,11 @@ export async function listMyBooks(): Promise<MyStudyBook[]> {
 
 export async function deleteStudyLog(logId: string): Promise<boolean> {
   const { error } = await supabase.rpc("study_delete_log", { p_log: logId });
+  return !error;
+}
+
+export async function updateStudyLog(logId: string, pageStart: number, pageEnd: number, studiedOn: string): Promise<boolean> {
+  const { error } = await supabase.rpc("study_update_log", { p_log: logId, p_page_start: pageStart, p_page_end: pageEnd, p_studied_on: studiedOn });
   return !error;
 }
 

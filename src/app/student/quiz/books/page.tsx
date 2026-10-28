@@ -14,6 +14,7 @@ import {
   listStudyUnits,
   addStudyLogPages,
   deleteStudyLog,
+  updateStudyLog,
   listMyStudyLogs,
 } from "@/lib/studyBooks";
 import { LoadingScreen } from "@/components/states";
@@ -30,6 +31,48 @@ function expandPages(logs: StudyLog[]): Set<number> {
   return s;
 }
 
+function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean) => void }) {
+  const [start, setStart] = useState(String(log.page_start));
+  const [end, setEnd] = useState(String(log.page_end));
+  const [date, setDate] = useState(log.studied_on);
+  const [busy, setBusy] = useState(false);
+
+  async function handleSave() {
+    const s = Number(start);
+    const e = Number(end);
+    if (!s || !e || e < s) {
+      notify("正しいページ範囲を入れてください");
+      return;
+    }
+    setBusy(true);
+    const ok = await updateStudyLog(log.id, s, e, date);
+    setBusy(false);
+    if (!ok) {
+      notify("変更できませんでした");
+      return;
+    }
+    onDone(true);
+  }
+
+  return (
+    <li className="space-y-2 py-2">
+      <div className="grid grid-cols-3 gap-2">
+        <input value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+        <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+      </div>
+      <div className="flex gap-2">
+        <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
+          保存
+        </button>
+        <button onClick={() => onDone(false)} className="rounded-full border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700">
+          やめる
+        </button>
+      </div>
+    </li>
+  );
+}
+
 function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void }) {
   const [units, setUnits] = useState<StudyUnit[] | null>(null);
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
@@ -39,6 +82,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
   const [date, setDate] = useState(todayStr());
   const [extra, setExtra] = useState(0);
   const [busy, setBusy] = useState(false);
+  const [editingLogId, setEditingLogId] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     const [u, l] = await Promise.all([listStudyUnits(book.id), listMyStudyLogs(book.id, 200)]);
@@ -154,14 +198,6 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       </div>
 
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
-        <p className="text-xs font-semibold text-gray-700">ページをタップして選ぶ</p>
-        <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
-        <button onClick={() => setExtra((e) => e + 50)} className="mt-1 text-xs text-gray-400 underline">
-          もっと表示（+50ページ）
-        </button>
-      </div>
-
-      <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-xs font-semibold text-gray-700">何ページもやったときは、まとめて選ぶ</p>
         <div className="grid grid-cols-2 gap-2">
           <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
@@ -169,6 +205,14 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         </div>
         <button onClick={addRange} className="w-full rounded-full border border-gray-300 py-1.5 text-xs font-medium text-gray-700">
           選択に追加
+        </button>
+      </div>
+
+      <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
+        <p className="text-xs font-semibold text-gray-700">ページをタップして選ぶ</p>
+        <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
+        <button onClick={() => setExtra((e) => e + 50)} className="mt-1 text-xs text-gray-400 underline">
+          もっと表示（+50ページ）
         </button>
       </div>
 
@@ -190,16 +234,32 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         <details className="rounded-2xl bg-white shadow-sm">
           <summary className="cursor-pointer list-none px-4 py-3 text-xs font-medium text-gray-700">これまでの記録 ▾</summary>
           <ul className="divide-y divide-gray-100 px-4 pb-3">
-            {logs.map((l) => (
-              <li key={l.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
-                <span>
-                  {l.studied_on} ・ p.{l.page_start}〜{l.page_end}
-                </span>
-                <button onClick={() => handleDeleteLog(l.id)} className="shrink-0 text-red-500 underline">
-                  削除
-                </button>
-              </li>
-            ))}
+            {logs.map((l) =>
+              editingLogId === l.id ? (
+                <EditLogRow
+                  key={l.id}
+                  log={l}
+                  onDone={(changed) => {
+                    setEditingLogId(null);
+                    if (changed) load();
+                  }}
+                />
+              ) : (
+                <li key={l.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
+                  <span>
+                    {l.studied_on} ・ p.{l.page_start}〜{l.page_end}
+                  </span>
+                  <span className="flex shrink-0 gap-2">
+                    <button onClick={() => setEditingLogId(l.id)} className="text-gray-500 underline">
+                      編集
+                    </button>
+                    <button onClick={() => handleDeleteLog(l.id)} className="text-red-500 underline">
+                      削除
+                    </button>
+                  </span>
+                </li>
+              )
+            )}
           </ul>
         </details>
       )}

@@ -13,14 +13,58 @@ import {
   archiveStudyBook,
   listStudyUnits,
   addStudyUnit,
+  updateStudyUnit,
   deleteStudyUnit,
   getTeacherStudyProgress,
 } from "@/lib/studyBooks";
 
 // 先生用: 参考書の進捗機能。本の名前・単元名は先生の自由入力。本の中身（問題・解説）は、いっさい扱わない
 
+function EditUnitRow({ unit, onDone }: { unit: StudyUnit; onDone: (changed: boolean) => void }) {
+  const [name, setName] = useState(unit.name);
+  const [start, setStart] = useState(String(unit.page_start));
+  const [end, setEnd] = useState(String(unit.page_end));
+  const [busy, setBusy] = useState(false);
+
+  async function handleSave() {
+    const s = Number(start);
+    const e = Number(end);
+    if (!name.trim() || !s || !e || e < s) {
+      notify("単元名と、正しいページ範囲を入れてください");
+      return;
+    }
+    setBusy(true);
+    const ok = await updateStudyUnit(unit.id, name.trim(), s, e);
+    setBusy(false);
+    if (!ok) {
+      notify("変更できませんでした");
+      return;
+    }
+    onDone(true);
+  }
+
+  return (
+    <li className="space-y-2 py-2">
+      <div className="grid grid-cols-[1fr_4rem_4rem] gap-2">
+        <input value={name} onChange={(e) => setName(e.target.value)} maxLength={60} aria-label="単元名" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+        <input value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+        <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-xs" />
+      </div>
+      <div className="flex gap-2">
+        <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
+          保存
+        </button>
+        <button onClick={() => onDone(false)} className="rounded-full border border-gray-300 px-3 py-1 text-xs font-medium text-gray-700">
+          やめる
+        </button>
+      </div>
+    </li>
+  );
+}
+
 function BookUnits({ bookId }: { bookId: string }) {
   const [units, setUnits] = useState<StudyUnit[] | null>(null);
+  const [editingId, setEditingId] = useState<string | null>(null);
   const [name, setName] = useState("");
   const [start, setStart] = useState("");
   const [end, setEnd] = useState("");
@@ -65,16 +109,32 @@ function BookUnits({ bookId }: { bookId: string }) {
         <p className="text-xs text-gray-500">単元はまだありません。</p>
       ) : (
         <ul className="divide-y divide-gray-100">
-          {units.map((u) => (
-            <li key={u.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
-              <span>
-                {u.name}（p.{u.page_start}〜{u.page_end}）
-              </span>
-              <button onClick={() => handleDelete(u.id)} className="shrink-0 text-red-500 underline">
-                削除
-              </button>
-            </li>
-          ))}
+          {units.map((u) =>
+            editingId === u.id ? (
+              <EditUnitRow
+                key={u.id}
+                unit={u}
+                onDone={(changed) => {
+                  setEditingId(null);
+                  if (changed) load();
+                }}
+              />
+            ) : (
+              <li key={u.id} className="flex items-center justify-between gap-2 py-1.5 text-xs">
+                <span>
+                  {u.name}（p.{u.page_start}〜{u.page_end}）
+                </span>
+                <span className="flex shrink-0 gap-2">
+                  <button onClick={() => setEditingId(u.id)} className="text-gray-500 underline">
+                    編集
+                  </button>
+                  <button onClick={() => handleDelete(u.id)} className="text-red-500 underline">
+                    削除
+                  </button>
+                </span>
+              </li>
+            )
+          )}
         </ul>
       )}
       <div className="grid grid-cols-[1fr_4rem_4rem] gap-2">
