@@ -144,13 +144,19 @@ function BookCard({ book, onChanged }: { book: StudyBook; onChanged: () => void 
         </button>
       </div>
       {open === "units" && (
-        <div className="rounded-xl bg-gray-50 p-3">
+        <div className="space-y-3 rounded-xl bg-gray-50 p-3">
           <BookUnits bookId={book.id} />
+          <button onClick={() => setOpen(null)} className="w-full rounded-full bg-black py-2 text-xs font-medium text-white">
+            完了
+          </button>
         </div>
       )}
       {open === "progress" && (
-        <div className="rounded-xl bg-gray-50 p-3">
+        <div className="space-y-3 rounded-xl bg-gray-50 p-3">
           <BookProgress bookId={book.id} />
+          <button onClick={() => setOpen(null)} className="w-full rounded-full bg-black py-2 text-xs font-medium text-white">
+            完了
+          </button>
         </div>
       )}
     </section>
