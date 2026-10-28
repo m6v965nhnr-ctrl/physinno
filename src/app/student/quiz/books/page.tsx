@@ -107,17 +107,20 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
     else notify("削除できませんでした");
   }
 
-  const unitStartingAt = (p: number) => units?.find((u) => u.page_start === p);
+  const unitAt = (p: number) => units?.find((u) => u.page_start <= p && p <= u.page_end);
 
   const cells: React.ReactNode[] = [];
+  let lastLabel: string | null = null;
   for (let p = 1; p <= visibleMax; p++) {
-    const u = unitStartingAt(p);
-    if (u) {
+    const u = unitAt(p);
+    const label = u ? `${u.name}（p.${u.page_start}〜${u.page_end}）` : "その他";
+    if (label !== lastLabel) {
       cells.push(
         <p key={`h${p}`} className="col-span-full mt-2 text-[10px] font-semibold text-gray-500 first:mt-0">
-          {u.name}（p.{u.page_start}〜{u.page_end}）
+          {label}
         </p>
       );
+      lastLabel = label;
     }
     const isDone = done.has(p);
     const isSelected = selected.has(p);
@@ -160,13 +163,13 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
 
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-xs font-semibold text-gray-700">何ページもやったときは、まとめて選ぶ</p>
-        <div className="grid grid-cols-[1fr_1fr_auto] gap-2">
-          <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
-          <input value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
-          <button onClick={addRange} className="shrink-0 rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700">
-            選択に追加
-          </button>
+        <div className="grid grid-cols-2 gap-2">
+          <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+          <input value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
         </div>
+        <button onClick={addRange} className="w-full rounded-full border border-gray-300 py-1.5 text-xs font-medium text-gray-700">
+          選択に追加
+        </button>
       </div>
 
       <div className="sticky bottom-16 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
