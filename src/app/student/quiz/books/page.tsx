@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
@@ -96,6 +96,9 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
   const [extra, setExtra] = useState(0);
   const [busy, setBusy] = useState(false);
   const [editingLogId, setEditingLogId] = useState<string | null>(null);
+  const [jumpTo, setJumpTo] = useState("");
+  const [pendingJump, setPendingJump] = useState<number | null>(null);
+  const cellRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
 
   const load = useCallback(async () => {
     const [u, l] = await Promise.all([listStudyUnits(book.id), listMyStudyLogs(book.id, 200)]);
@@ -164,6 +167,25 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
     else notify("削除できませんでした");
   }
 
+  function handleJump() {
+    const target = Number(jumpTo);
+    if (!target || target < 1) {
+      notify("正しいページ番号を入れてください");
+      return;
+    }
+    if (target > visibleMax) setExtra((e) => e + (target - visibleMax) + 10);
+    setPendingJump(target);
+  }
+
+  useEffect(() => {
+    if (pendingJump == null) return;
+    const el = cellRefs.current.get(pendingJump);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "center" });
+      setPendingJump(null);
+    }
+  }, [pendingJump, extra]);
+
   const unitAt = (p: number) => units?.find((u) => u.page_start <= p && p <= u.page_end);
 
   const cells: React.ReactNode[] = [];
@@ -184,6 +206,10 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
     cells.push(
       <button
         key={p}
+        ref={(el) => {
+          if (el) cellRefs.current.set(p, el);
+          else cellRefs.current.delete(p);
+        }}
         onClick={() => toggle(p)}
         aria-label={`${p}ページ${count > 0 ? `（記録${count}回）` : ""}${isSelected ? "（選択中）" : ""}`}
         aria-pressed={isSelected}
@@ -230,10 +256,26 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
             ))}
           </div>
         </div>
-        <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
-        <button onClick={() => setExtra((e) => e + 50)} className="mt-1 text-xs text-gray-400 underline">
-          もっと表示（+50ページ）
-        </button>
+        <div className="flex items-center gap-2">
+          <input
+            value={jumpTo}
+            onChange={(e) => setJumpTo(e.target.value)}
+            onKeyDown={(e) => e.key === "Enter" && handleJump()}
+            placeholder="ページ番号"
+            inputMode="numeric"
+            aria-label="移動したいページ番号"
+            className="w-24 min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm"
+          />
+          <button onClick={handleJump} className="rounded-full border border-gray-300 px-3 py-1.5 text-xs font-medium text-gray-700">
+            そのページへ移動
+          </button>
+        </div>
+        <div className="max-h-96 overflow-y-auto rounded-xl border border-gray-100 p-2">
+          <div className="grid grid-cols-8 gap-1 sm:grid-cols-10">{cells}</div>
+          <button onClick={() => setExtra((e) => e + 50)} className="mt-2 text-xs text-gray-400 underline">
+            もっと表示（+50ページ）
+          </button>
+        </div>
       </div>
 
       <div className="sticky bottom-16 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
