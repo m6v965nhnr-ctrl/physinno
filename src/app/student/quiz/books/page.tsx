@@ -25,10 +25,23 @@ function todayStr() {
   return new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
 }
 
-function expandPages(logs: StudyLog[]): Set<number> {
-  const s = new Set<number>();
-  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) s.add(p);
-  return s;
+function pageCounts(logs: StudyLog[]): Map<number, number> {
+  const m = new Map<number, number>();
+  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) m.set(p, (m.get(p) ?? 0) + 1);
+  return m;
+}
+
+// 記録した回数（0〜5回以上）で、気温・降水量の予報のように、少しずつ色を濃くする。0回・1回は、今までどおりの色のまま
+const CELL_COLORS = [
+  "bg-gray-100 text-gray-500 active:bg-gray-200",
+  "bg-emerald-100 text-emerald-700",
+  "bg-emerald-200 text-emerald-700",
+  "bg-emerald-300 text-emerald-800",
+  "bg-emerald-400 text-white",
+  "bg-emerald-600 text-white",
+];
+function cellColor(n: number) {
+  return CELL_COLORS[Math.min(Math.max(n, 0), 5)];
 }
 
 function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean) => void }) {
@@ -93,7 +106,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
     load();
   }, [load]);
 
-  const done = useMemo(() => (logs ? expandPages(logs) : new Set<number>()), [logs]);
+  const counts = useMemo(() => (logs ? pageCounts(logs) : new Map<number, number>()), [logs]);
   const furthest = logs && logs.length > 0 ? Math.max(...logs.map((l) => l.page_end)) : 0;
   const unitMax = units && units.length > 0 ? Math.max(...units.map((u) => u.page_end)) : 0;
   const visibleMax = Math.max(book.total_pages ?? 0, unitMax, furthest, 30) + extra;
@@ -166,17 +179,15 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       );
       lastLabel = label;
     }
-    const isDone = done.has(p);
+    const count = counts.get(p) ?? 0;
     const isSelected = selected.has(p);
     cells.push(
       <button
         key={p}
         onClick={() => toggle(p)}
-        aria-label={`${p}ページ${isDone ? "（記録済み）" : ""}${isSelected ? "（選択中）" : ""}`}
+        aria-label={`${p}ページ${count > 0 ? `（記録${count}回）` : ""}${isSelected ? "（選択中）" : ""}`}
         aria-pressed={isSelected}
-        className={`h-7 w-7 shrink-0 rounded text-[9px] font-medium transition ${
-          isSelected ? "bg-emerald-500 text-white" : isDone ? "bg-emerald-100 text-emerald-700" : "bg-gray-100 text-gray-500 active:bg-gray-200"
-        }`}
+        className={`h-7 w-7 shrink-0 rounded text-[9px] font-medium transition ${isSelected ? "bg-emerald-500 text-white" : cellColor(count)}`}
       >
         {p}
       </button>
@@ -192,7 +203,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       <div className="rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-sm font-semibold">{book.name}</p>
         <p className="mt-0.5 text-xs text-gray-500">
-          {book.class_name} ・ {done.size}ページ記録済み
+          {book.class_name} ・ {counts.size}ページ記録済み
           {book.total_pages ? `（全${book.total_pages}ページ中）` : ""}
         </p>
       </div>
