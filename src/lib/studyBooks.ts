@@ -10,6 +10,7 @@ export type StudyBook = {
   archived: boolean;
   unit_count: number;
   created_at: string;
+  show_understanding: boolean;
 };
 
 export type StudyUnit = {
@@ -32,9 +33,10 @@ export type StudyLog = {
 // 理解度(0.0〜10.0)の、目安のことば
 export function understandingLabel(v: number): string {
   if (v < 2.5) return "理解してない";
-  if (v < 5) return "まあまあ";
-  if (v < 9) return "それなりに";
-  if (v < 10) return "ほぼ完璧";
+  if (v < 4.5) return "少し";
+  if (v < 5.5) return "半分";
+  if (v < 7) return "まあまあ";
+  if (v < 9.5) return "それなりに";
   return "完璧";
 }
 
@@ -55,6 +57,7 @@ export type MyStudyBook = {
   class_id: string;
   class_name: string;
   unit_count: number;
+  show_understanding: boolean;
 };
 
 export async function listStudyBooks(classId: string): Promise<StudyBook[]> {
@@ -62,14 +65,14 @@ export async function listStudyBooks(classId: string): Promise<StudyBook[]> {
   return (data ?? []) as StudyBook[];
 }
 
-export async function createStudyBook(classId: string, name: string, totalPages: number | null): Promise<string | null> {
-  const { data, error } = await supabase.rpc("study_create_book", { p_class: classId, p_name: name, p_total_pages: totalPages });
+export async function createStudyBook(classId: string, name: string, totalPages: number | null, showUnderstanding: boolean): Promise<string | null> {
+  const { data, error } = await supabase.rpc("study_create_book", { p_class: classId, p_name: name, p_total_pages: totalPages, p_show_understanding: showUnderstanding });
   if (error || !data) return null;
   return data as string;
 }
 
-export async function updateStudyBook(bookId: string, name: string, totalPages: number | null): Promise<boolean> {
-  const { data, error } = await supabase.rpc("study_update_book", { p_book: bookId, p_name: name, p_total_pages: totalPages });
+export async function updateStudyBook(bookId: string, name: string, totalPages: number | null, showUnderstanding: boolean): Promise<boolean> {
+  const { data, error } = await supabase.rpc("study_update_book", { p_book: bookId, p_name: name, p_total_pages: totalPages, p_show_understanding: showUnderstanding });
   return !error && data === true;
 }
 

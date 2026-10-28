@@ -196,6 +196,7 @@ function StudentProgressDetail({
   name,
   totalPages,
   units,
+  showUnderstanding,
   onClose,
 }: {
   bookId: string;
@@ -203,6 +204,7 @@ function StudentProgressDetail({
   name: string;
   totalPages: number | null;
   units: StudyUnit[];
+  showUnderstanding: boolean;
   onClose: () => void;
 }) {
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
@@ -234,7 +236,7 @@ function StudentProgressDetail({
           <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
         ) : (
           <div className="mt-3 space-y-4">
-            {avgUnderstanding != null && (
+            {showUnderstanding && avgUnderstanding != null && (
               <div className="rounded-xl bg-gray-900 px-3 py-2.5 text-white">
                 <p className="text-[11px] text-white/70">理解度（自己評価の平均）</p>
                 <p className="text-sm font-bold">
@@ -267,7 +269,7 @@ function StudentProgressDetail({
                   <li key={l.id} className="py-1.5 text-xs text-gray-500">
                     {l.studied_on} ・ p.{l.page_start}
                     {l.page_end !== l.page_start ? `-${l.page_end}` : ""}
-                    {l.understanding != null && ` ・ 理解度 ${l.understanding.toFixed(1)}（${understandingLabel(l.understanding)}）`}
+                    {showUnderstanding && l.understanding != null && ` ・ 理解度 ${l.understanding.toFixed(1)}（${understandingLabel(l.understanding)}）`}
                   </li>
                 ))}
               </ul>
@@ -310,7 +312,15 @@ function BookProgress({ book }: { book: StudyBook }) {
         ))}
       </ul>
       {opened && (
-        <StudentProgressDetail bookId={book.id} userId={opened.user_id} name={opened.name} totalPages={effectiveTotal} units={units} onClose={() => setOpened(null)} />
+        <StudentProgressDetail
+          bookId={book.id}
+          userId={opened.user_id}
+          name={opened.name}
+          totalPages={effectiveTotal}
+          units={units}
+          showUnderstanding={book.show_understanding}
+          onClose={() => setOpened(null)}
+        />
       )}
     </>
   );
@@ -319,6 +329,7 @@ function BookProgress({ book }: { book: StudyBook }) {
 function EditBookHeader({ book, onDone }: { book: StudyBook; onDone: (changed: boolean) => void }) {
   const [name, setName] = useState(book.name);
   const [totalPages, setTotalPages] = useState(book.total_pages ? String(book.total_pages) : "");
+  const [showUnderstanding, setShowUnderstanding] = useState(book.show_understanding);
   const [busy, setBusy] = useState(false);
 
   async function handleSave() {
@@ -327,7 +338,7 @@ function EditBookHeader({ book, onDone }: { book: StudyBook; onDone: (changed: b
       return;
     }
     setBusy(true);
-    const ok = await updateStudyBook(book.id, name.trim(), totalPages.trim() ? Number(totalPages) : null);
+    const ok = await updateStudyBook(book.id, name.trim(), totalPages.trim() ? Number(totalPages) : null, showUnderstanding);
     setBusy(false);
     if (!ok) {
       notify("変更できませんでした");
@@ -347,6 +358,10 @@ function EditBookHeader({ book, onDone }: { book: StudyBook; onDone: (changed: b
         aria-label="総ページ数"
         className="w-full rounded-lg border border-gray-300 px-2 py-1.5 text-sm"
       />
+      <label className="flex items-center gap-2 text-xs text-gray-700">
+        <input type="checkbox" checked={showUnderstanding} onChange={(e) => setShowUnderstanding(e.target.checked)} />
+        理解度を記録してもらう（学生にスライダーを出し、先生にも見えるようにする）
+      </label>
       <div className="flex gap-2">
         <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
           保存
@@ -434,6 +449,7 @@ function BooksBody({ classId }: { classId: string }) {
   const [books, setBooks] = useState<StudyBook[] | null>(null);
   const [name, setName] = useState("");
   const [totalPages, setTotalPages] = useState("");
+  const [showUnderstanding, setShowUnderstanding] = useState(true);
   const [busy, setBusy] = useState(false);
 
   const load = useCallback(async () => setBooks(await listStudyBooks(classId)), [classId]);
@@ -447,7 +463,7 @@ function BooksBody({ classId }: { classId: string }) {
       return;
     }
     setBusy(true);
-    const id = await createStudyBook(classId, name.trim(), totalPages.trim() ? Number(totalPages) : null);
+    const id = await createStudyBook(classId, name.trim(), totalPages.trim() ? Number(totalPages) : null, showUnderstanding);
     setBusy(false);
     if (!id) {
       notify("作れませんでした");
@@ -478,6 +494,10 @@ function BooksBody({ classId }: { classId: string }) {
           aria-label="総ページ数"
           className="w-full rounded-xl border border-gray-300 px-3 py-2 text-sm"
         />
+        <label className="flex items-center gap-2 text-xs text-gray-700">
+          <input type="checkbox" checked={showUnderstanding} onChange={(e) => setShowUnderstanding(e.target.checked)} />
+          理解度を記録してもらう（学生にスライダーを出し、先生にも見えるようにする）
+        </label>
         <button onClick={handleCreate} disabled={busy} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
           追加する
         </button>

@@ -73,7 +73,7 @@ function UnderstandingSlider({ value, onChange }: { value: number; onChange: (v:
   );
 }
 
-function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean) => void }) {
+function EditLogRow({ log, showUnderstanding, onDone }: { log: StudyLog; showUnderstanding: boolean; onDone: (changed: boolean) => void }) {
   const [start, setStart] = useState(String(log.page_start));
   const [end, setEnd] = useState(String(log.page_end));
   const [date, setDate] = useState(log.studied_on);
@@ -104,7 +104,7 @@ function EditLogRow({ log, onDone }: { log: StudyLog; onDone: (changed: boolean)
         <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
       </div>
-      <UnderstandingSlider value={understanding} onChange={setUnderstanding} />
+      {showUnderstanding && <UnderstandingSlider value={understanding} onChange={setUnderstanding} />}
       <div className="flex gap-2">
         <button onClick={handleSave} disabled={busy} className="rounded-full bg-black px-3 py-1 text-xs font-medium text-white disabled:opacity-40">
           保存
@@ -182,7 +182,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       return;
     }
     setBusy(true);
-    const ok = await addStudyLogPages(book.id, [...selected], date, understanding);
+    const ok = await addStudyLogPages(book.id, [...selected], date, book.show_understanding ? understanding : null);
     setBusy(false);
     if (!ok) {
       notify("記録できませんでした");
@@ -311,7 +311,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         </div>
       </div>
 
-      <div className="sticky bottom-16 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
+      <div className="sticky bottom-4 z-10 space-y-2 rounded-2xl bg-white p-4 shadow-md">
         <div className="flex items-center justify-between gap-2">
           <p className="text-xs text-gray-600">選択中: {selected.size}ページ</p>
           <label className="flex items-center gap-1.5 text-xs text-gray-500">
@@ -319,7 +319,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
             <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="rounded-lg border border-gray-300 px-2 py-1 text-xs" />
           </label>
         </div>
-        <UnderstandingSlider value={understanding} onChange={setUnderstanding} />
+        {book.show_understanding && <UnderstandingSlider value={understanding} onChange={setUnderstanding} />}
         <button onClick={handleSave} disabled={busy || selected.size === 0} className="w-full rounded-full bg-black py-2.5 text-sm font-medium text-white disabled:opacity-40">
           記録する
         </button>
@@ -335,6 +335,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
                 <EditLogRow
                   key={l.id}
                   log={l}
+                  showUnderstanding={book.show_understanding}
                   onDone={(changed) => {
                     setEditingLogId(null);
                     if (changed) load();
