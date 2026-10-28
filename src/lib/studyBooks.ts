@@ -126,3 +126,9 @@ export async function getTeacherStudyProgress(bookId: string): Promise<StudyStud
   const { data } = await supabase.rpc("study_teacher_progress", { p_book: bookId });
   return (data ?? []) as StudyStudentProgress[];
 }
+
+// 先生が、生徒名をタップしたときの、その生徒の記録（ページ範囲・日付）の一覧
+export async function getTeacherStudentLogs(bookId: string, userId: string): Promise<StudyLog[]> {
+  const { data } = await supabase.rpc("study_teacher_student_logs", { p_book: bookId, p_user: userId });
+  return (data ?? []) as StudyLog[];
+}

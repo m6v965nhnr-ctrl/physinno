@@ -7,6 +7,7 @@ import { askConfirm } from "@/lib/confirm";
 import {
   StudyBook,
   StudyUnit,
+  StudyLog,
   StudyStudentProgress,
   listStudyBooks,
   createStudyBook,
@@ -16,7 +17,20 @@ import {
   updateStudyUnit,
   deleteStudyUnit,
   getTeacherStudyProgress,
+  getTeacherStudentLogs,
 } from "@/lib/studyBooks";
+
+// 記録の回数（0〜5回以上）で、気温・降水量の予報のように、少しずつ色を濃くする。0回・1回は、今までどおりの色のまま
+const COUNT_COLORS = ["text-gray-400", "text-gray-500", "text-emerald-500", "text-emerald-600", "text-emerald-700 font-semibold", "text-emerald-800 font-bold"];
+function countColor(n: number) {
+  return COUNT_COLORS[Math.min(Math.max(n, 0), 5)];
+}
+
+function expandPages(logs: StudyLog[]): Set<number> {
+  const s = new Set<number>();
+  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) s.add(p);
+  return s;
+}
 
 // 先生用: 参考書の進捗機能。本の名前・単元名は先生の自由入力。本の中身（問題・解説）は、いっさい扱わない
 
@@ -149,10 +163,59 @@ function BookUnits({ bookId }: { bookId: string }) {
   );
 }
 
+function StudentDetail({ bookId, userId, units }: { bookId: string; userId: string; units: StudyUnit[] }) {
+  const [logs, setLogs] = useState<StudyLog[] | null>(null);
+  useEffect(() => {
+    getTeacherStudentLogs(bookId, userId).then(setLogs);
+  }, [bookId, userId]);
+
+  if (logs === null) return <p className="py-2 text-xs text-gray-400">読み込み中…</p>;
+
+  const done = expandPages(logs);
+  function unitStatus(u: StudyUnit) {
+    let n = 0;
+    for (let p = u.page_start; p <= u.page_end; p++) if (done.has(p)) n++;
+    const total = u.page_end - u.page_start + 1;
+    if (n === 0) return "未";
+    if (n >= total) return "済み";
+    return `途中（${n}/${total}）`;
+  }
+
+  return (
+    <div className="space-y-3 border-t border-gray-100 pt-2">
+      {units.length > 0 && (
+        <ul className="space-y-1">
+          {units.map((u) => (
+            <li key={u.id} className="flex justify-between text-xs">
+              <span className="text-gray-600">{u.name}</span>
+              <span className="text-gray-400">{unitStatus(u)}</span>
+            </li>
+          ))}
+        </ul>
+      )}
+      {logs.length === 0 ? (
+        <p className="text-xs text-gray-400">まだ記録がありません。</p>
+      ) : (
+        <ul className="space-y-1">
+          {logs.map((l) => (
+            <li key={l.id} className="text-xs text-gray-500">
+              {l.studied_on} ・ p.{l.page_start}
+              {l.page_end !== l.page_start ? `-${l.page_end}` : ""}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+}
+
 function BookProgress({ bookId }: { bookId: string }) {
   const [rows, setRows] = useState<StudyStudentProgress[] | null>(null);
+  const [units, setUnits] = useState<StudyUnit[]>([]);
+  const [expanded, setExpanded] = useState<string | null>(null);
   useEffect(() => {
     getTeacherStudyProgress(bookId).then(setRows);
+    listStudyUnits(bookId).then(setUnits);
   }, [bookId]);
 
   if (rows === null) return <p className="text-xs text-gray-400">読み込み中…</p>;
@@ -161,11 +224,14 @@ function BookProgress({ bookId }: { bookId: string }) {
   return (
     <ul className="divide-y divide-gray-100">
       {rows.map((r) => (
-        <li key={r.user_id} className="py-1.5 text-xs">
-          <span className="font-medium">{r.name}</span>
-          <span className="ml-2 text-gray-500">
-            {r.furthest_page ? `p.${r.furthest_page}まで（記録${r.log_count}回・最終 ${r.last_studied_on}）` : "記録なし"}
-          </span>
+        <li key={r.user_id} className="py-1.5">
+          <button onClick={() => setExpanded(expanded === r.user_id ? null : r.user_id)} className="w-full text-left text-xs">
+            <span className="font-medium">{r.name}</span>
+            <span className={`ml-2 ${countColor(r.log_count)}`}>
+              {r.furthest_page ? `p.${r.furthest_page}まで（記録${r.log_count}回・最終 ${r.last_studied_on}）` : "記録なし"}
+            </span>
+          </button>
+          {expanded === r.user_id && <StudentDetail bookId={bookId} userId={r.user_id} units={units} />}
         </li>
       ))}
     </ul>
