@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import TeacherPage from "@/components/teacher/TeacherPage";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
@@ -163,15 +164,14 @@ function BookUnits({ bookId }: { bookId: string }) {
   );
 }
 
-function StudentDetail({ bookId, userId, units }: { bookId: string; userId: string; units: StudyUnit[] }) {
+// 先生が、生徒名をタップしたときに出す、その生徒ひとりの画面（テストの得点の推移と同じ、モーダルの見せ方）
+function StudentProgressDetail({ bookId, userId, name, units, onClose }: { bookId: string; userId: string; name: string; units: StudyUnit[]; onClose: () => void }) {
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
   useEffect(() => {
     getTeacherStudentLogs(bookId, userId).then(setLogs);
   }, [bookId, userId]);
 
-  if (logs === null) return <p className="py-2 text-xs text-gray-400">読み込み中…</p>;
-
-  const done = expandPages(logs);
+  const done = logs ? expandPages(logs) : new Set<number>();
   function unitStatus(u: StudyUnit) {
     let n = 0;
     for (let p = u.page_start; p <= u.page_end; p++) if (done.has(p)) n++;
@@ -181,38 +181,53 @@ function StudentDetail({ bookId, userId, units }: { bookId: string; userId: stri
     return `途中（${n}/${total}）`;
   }
 
-  return (
-    <div className="space-y-3 border-t border-gray-100 pt-2">
-      {units.length > 0 && (
-        <ul className="space-y-1">
-          {units.map((u) => (
-            <li key={u.id} className="flex justify-between text-xs">
-              <span className="text-gray-600">{u.name}</span>
-              <span className="text-gray-400">{unitStatus(u)}</span>
-            </li>
-          ))}
-        </ul>
-      )}
-      {logs.length === 0 ? (
-        <p className="text-xs text-gray-400">まだ記録がありません。</p>
-      ) : (
-        <ul className="space-y-1">
-          {logs.map((l) => (
-            <li key={l.id} className="text-xs text-gray-500">
-              {l.studied_on} ・ p.{l.page_start}
-              {l.page_end !== l.page_start ? `-${l.page_end}` : ""}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+  return createPortal(
+    <div className="fixed inset-0 z-[10000] flex items-end justify-center bg-black/40 sm:items-center" role="dialog" aria-modal="true" aria-label={`${name}さんの参考書の進み具合`}>
+      <div className="max-h-[80dvh] w-full max-w-lg overflow-y-auto rounded-t-2xl bg-white p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:rounded-2xl">
+        <div className="flex items-center justify-between gap-2">
+          <p className="text-sm font-semibold">{name}さんの参考書の進み具合</p>
+          <button type="button" onClick={onClose} className="rounded-full border border-gray-300 px-3 py-1 text-xs text-gray-700">
+            閉じる
+          </button>
+        </div>
+        {logs === null ? (
+          <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
+        ) : (
+          <div className="mt-3 space-y-3">
+            {units.length > 0 && (
+              <ul className="space-y-1">
+                {units.map((u) => (
+                  <li key={u.id} className="flex justify-between text-xs">
+                    <span className="text-gray-600">{u.name}</span>
+                    <span className="text-gray-400">{unitStatus(u)}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+            {logs.length === 0 ? (
+              <p className="text-xs text-gray-400">まだ記録がありません。</p>
+            ) : (
+              <ul className="divide-y divide-gray-100">
+                {logs.map((l) => (
+                  <li key={l.id} className="py-1.5 text-xs text-gray-500">
+                    {l.studied_on} ・ p.{l.page_start}
+                    {l.page_end !== l.page_start ? `-${l.page_end}` : ""}
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        )}
+      </div>
+    </div>,
+    document.body
   );
 }
 
 function BookProgress({ bookId }: { bookId: string }) {
   const [rows, setRows] = useState<StudyStudentProgress[] | null>(null);
   const [units, setUnits] = useState<StudyUnit[]>([]);
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [opened, setOpened] = useState<StudyStudentProgress | null>(null);
   useEffect(() => {
     getTeacherStudyProgress(bookId).then(setRows);
     listStudyUnits(bookId).then(setUnits);
@@ -222,19 +237,21 @@ function BookProgress({ bookId }: { bookId: string }) {
   if (rows.length === 0) return <p className="text-xs text-gray-500">まだ、クラスに学生がいません。</p>;
 
   return (
-    <ul className="divide-y divide-gray-100">
-      {rows.map((r) => (
-        <li key={r.user_id} className="py-1.5">
-          <button onClick={() => setExpanded(expanded === r.user_id ? null : r.user_id)} className="w-full text-left text-xs">
-            <span className="font-medium">{r.name}</span>
+    <>
+      <ul className="divide-y divide-gray-100">
+        {rows.map((r) => (
+          <li key={r.user_id} className="py-1.5 text-xs">
+            <button type="button" onClick={() => setOpened(r)} className="text-left font-medium text-sky-800 underline decoration-dotted">
+              {r.name}
+            </button>
             <span className={`ml-2 ${countColor(r.log_count)}`}>
               {r.furthest_page ? `p.${r.furthest_page}まで（記録${r.log_count}回・最終 ${r.last_studied_on}）` : "記録なし"}
             </span>
-          </button>
-          {expanded === r.user_id && <StudentDetail bookId={bookId} userId={r.user_id} units={units} />}
-        </li>
-      ))}
-    </ul>
+          </li>
+        ))}
+      </ul>
+      {opened && <StudentProgressDetail bookId={bookId} userId={opened.user_id} name={opened.name} units={units} onClose={() => setOpened(null)} />}
+    </>
   );
 }
 
