@@ -17,6 +17,7 @@ import {
 import { askConfirm } from "@/lib/confirm";
 import { takeReturnTo } from "@/lib/returnTo";
 import { LoadingScreen } from "@/components/states";
+import { HOME_WIDGET_LABELS, HomeWidgetKey, HomeWidgetVisibility, getHomeWidgetState, setStudentWidgetHidden } from "@/lib/homeWidgets";
 
 // 学生の設定: 名前・自己紹介(他のユーザーに見える)と、養成校・卒業予定年・国試日(本人だけに表示)
 export default function StudentSettingsPage() {
@@ -31,6 +32,24 @@ export default function StudentSettingsPage() {
   const [loaded, setLoaded] = useState(false);
   const [saving, setSaving] = useState(false);
   const [schoolOptions, setSchoolOptions] = useState<School[]>([]);
+  const [widgets, setWidgets] = useState<HomeWidgetVisibility | null>(null);
+  const [lockedByClass, setLockedByClass] = useState<Record<HomeWidgetKey, boolean>>({} as Record<HomeWidgetKey, boolean>);
+
+  useEffect(() => {
+    getHomeWidgetState().then(({ visible, lockedByClass }) => {
+      setWidgets(visible);
+      setLockedByClass(lockedByClass);
+    });
+  }, []);
+
+  async function handleToggleWidget(key: HomeWidgetKey, show: boolean) {
+    setWidgets((w) => (w ? { ...w, [key]: show } : w));
+    const ok = await setStudentWidgetHidden(key, !show);
+    if (!ok) {
+      notify("変更できませんでした");
+      setWidgets((w) => (w ? { ...w, [key]: !show } : w));
+    }
+  }
 
   // 学校名の入力に合わせて、すでに登録されている学校を候補に出す(同じ学校が別々に登録されないように)
   useEffect(() => {
@@ -279,6 +298,33 @@ export default function StudentSettingsPage() {
             {saving ? "保存中…" : "保存する"}
           </button>
         </form>
+
+        <section className="mt-6 space-y-3 rounded-2xl border border-gray-100 p-4">
+          <h2 className="text-sm font-semibold text-gray-900">ホーム画面に表示するもの</h2>
+          <p className="text-xs leading-5 text-gray-500">
+            ホームの「非表示にする」で消したものは、ここでいつでも戻せます。クラスの先生が外しているものは、ここでは選べません。
+          </p>
+          {widgets === null ? (
+            <p className="text-xs text-gray-400">読み込み中…</p>
+          ) : (
+            <ul className="space-y-2">
+              {(Object.keys(HOME_WIDGET_LABELS) as HomeWidgetKey[]).map((key) => (
+                <li key={key}>
+                  <label className={`flex items-center gap-2 text-sm ${lockedByClass[key] ? "text-gray-400" : ""}`}>
+                    <input
+                      type="checkbox"
+                      checked={widgets[key]}
+                      disabled={lockedByClass[key]}
+                      onChange={(e) => handleToggleWidget(key, e.target.checked)}
+                    />
+                    {HOME_WIDGET_LABELS[key]}
+                    {lockedByClass[key] && <span className="text-xs text-gray-400">（先生がクラスで非表示にしています）</span>}
+                  </label>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
 
         <section className="mt-10 space-y-3 border-t pt-6 text-sm">
           <Link href="/notifications" className="block text-gray-600 underline underline-offset-4">

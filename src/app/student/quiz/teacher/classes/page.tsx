@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import ClassChat from "@/components/ClassChat";
 import ClassQuestions from "@/components/teacher/ClassQuestions";
@@ -9,6 +9,45 @@ import { useTeacherData } from "@/components/teacher/useTeacherData";
 import { askConfirm } from "@/lib/confirm";
 import { notify } from "@/lib/notify";
 import { TeacherClass, archiveClass, createClass } from "@/lib/quizClass";
+import { HOME_WIDGET_LABELS, HomeWidgetKey, getClassHiddenWidgets, setClassHiddenWidgets } from "@/lib/homeWidgets";
+
+function ClassWidgetSettings({ classId }: { classId: string }) {
+  const [hidden, setHidden] = useState<HomeWidgetKey[] | null>(null);
+  const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    getClassHiddenWidgets(classId).then(setHidden);
+  }, [classId]);
+
+  async function toggle(key: HomeWidgetKey, show: boolean) {
+    if (!hidden) return;
+    const prev = hidden;
+    const next = show ? hidden.filter((w) => w !== key) : [...hidden, key];
+    setHidden(next);
+    setBusy(true);
+    const ok = await setClassHiddenWidgets(classId, next);
+    setBusy(false);
+    if (!ok) {
+      notify("変更できませんでした");
+      setHidden(prev);
+    }
+  }
+
+  if (hidden === null) return <p className="text-xs text-gray-400">読み込み中…</p>;
+
+  return (
+    <ul className="space-y-2">
+      {(Object.keys(HOME_WIDGET_LABELS) as HomeWidgetKey[]).map((key) => (
+        <li key={key}>
+          <label className="flex items-center gap-2 text-sm">
+            <input type="checkbox" checked={!hidden.includes(key)} disabled={busy} onChange={(e) => toggle(key, e.target.checked)} />
+            {HOME_WIDGET_LABELS[key]}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function ClassCard({ cls, onChanged }: { cls: TeacherClass; onChanged: () => void }) {
   const [openQ, setOpenQ] = useState(0);
@@ -80,6 +119,18 @@ function ClassCard({ cls, onChanged }: { cls: TeacherClass; onChanged: () => voi
         </summary>
         <div className="border-t border-gray-100 p-3">
           <ClassChat classId={cls.id} height="h-[50vh]" />
+        </div>
+      </details>
+
+      <details className="rounded-xl border border-gray-200">
+        <summary className="cursor-pointer list-none px-3 py-2.5 text-sm font-medium text-gray-800">
+          学生ホームに表示するもの <span className="text-gray-400">▾</span>
+        </summary>
+        <div className="space-y-2 border-t border-gray-100 p-3">
+          <p className="text-xs leading-5 text-gray-500">
+            ランキングや、国試・卒業までのカウントダウンは、人によってはやる気をなくす原因になることがあります。このクラスでは外すこともできます（学生は自分のホームからも、個別に非表示にできます）。
+          </p>
+          <ClassWidgetSettings classId={cls.id} />
         </div>
       </details>
 

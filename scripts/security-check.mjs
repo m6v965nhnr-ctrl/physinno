@@ -151,6 +151,10 @@ for (const [fn, body] of [
   ["study_update_log", { p_log: ZERO, p_page_start: 1, p_page_end: 10, p_studied_on: "2026-01-01" }],
   ["study_teacher_student_logs", { p_book: ZERO, p_user: ZERO }],
   ["study_update_book", { p_book: ZERO, p_name: "x", p_total_pages: 100 }],
+  ["set_student_widget_hidden", { p_widget: "ranking", p_hidden: true }],
+  ["quiz_set_class_widgets", { p_class: ZERO, p_hidden: ["ranking"] }],
+  ["quiz_class_widgets", { p_class: ZERO }],
+  ["get_home_widget_visibility", {}],
 ]) {
   const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });
   check(`匿名は ${fn} を呼べない`, r.status >= 400, `status=${r.status}`);

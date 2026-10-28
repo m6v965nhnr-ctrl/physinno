@@ -1,12 +1,15 @@
 "use client";
 
 import type { ReactNode } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import StudyCalendarCard from "@/components/student/StudyCalendarCard";
 import StudentHomePosts from "@/components/student/StudentHomePosts";
 import OrgPostsFeed from "@/components/OrgPostsFeed";
+import { notify } from "@/lib/notify";
+import { HomeWidgetKey, getHomeWidgetVisibility, setStudentWidgetHidden } from "@/lib/homeWidgets";
 import {
   StudentItem,
   StudentProfile,
@@ -16,6 +19,14 @@ import {
   statusLabel,
   upcomingEvents,
 } from "@/lib/student";
+
+function HideWidgetButton({ onHide }: { onHide: () => void }) {
+  return (
+    <button onClick={onHide} className="mt-1 block w-full text-right text-[10px] text-gray-400 underline">
+      このカードを非表示にする
+    </button>
+  );
+}
 
 const LINKS = [
   { href: "/student/tracker", icon: "🗂️", title: "実習・就活トラッカー", body: "実習先・病院見学・応募・提出物を管理" },
@@ -57,6 +68,24 @@ export default function StudentHomeView({
   // 4月1日のPT切り替えの案内は、約3か月前（1月ごろ）から出す。1か月前からは、目立つ色にする
   const switchSoon = countdown.switchDays <= 92 && countdown.switchDays >= 0;
   const switchVerySoon = countdown.switchDays <= 31;
+
+  // ウィジェット（今日の学習・ランキング・国試/卒業まで）。先生がクラスで外したもの・自分で非表示にしたものは出さない
+  const [widgets, setWidgets] = useState({ study_calendar: true, ranking: true, exam_countdown: true, graduation_countdown: true });
+  useEffect(() => {
+    if (preview) return;
+    getHomeWidgetVisibility().then(setWidgets);
+  }, [preview]);
+
+  async function hideWidget(key: HomeWidgetKey) {
+    setWidgets((w) => ({ ...w, [key]: false }));
+    const ok = await setStudentWidgetHidden(key, true);
+    if (!ok) {
+      notify("変更できませんでした");
+      setWidgets((w) => ({ ...w, [key]: true }));
+      return;
+    }
+    notify("非表示にしました。設定からいつでも戻せます");
+  }
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
@@ -117,37 +146,55 @@ export default function StudentHomeView({
         )}
 
         {/* カウントダウン */}
-        <section className="grid grid-cols-2 gap-3">
-          <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
-            <p className="text-xs text-gray-500">国家試験まで</p>
-            <p className="text-2xl font-bold leading-tight tracking-tight">
-              {countdown.examDays >= 0 ? countdown.examDays : 0}
-              <span className="ml-1 text-sm font-medium text-gray-500">日</span>
-            </p>
-            <p className="whitespace-nowrap text-[11px] text-gray-400">
-              {countdown.examDate.getFullYear()}/{countdown.examDate.getMonth() + 1}/{countdown.examDate.getDate()}
-              {countdown.examIsEstimate ? "ごろ（目安）" : ""}
-            </p>
-          </div>
+        {(widgets.exam_countdown || widgets.graduation_countdown) && (
+          <section className={`grid gap-3 ${widgets.exam_countdown && widgets.graduation_countdown ? "grid-cols-2" : "grid-cols-1"}`}>
+            {widgets.exam_countdown && (
+              <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
+                <p className="text-xs text-gray-500">国家試験まで</p>
+                <p className="text-2xl font-bold leading-tight tracking-tight">
+                  {countdown.examDays >= 0 ? countdown.examDays : 0}
+                  <span className="ml-1 text-sm font-medium text-gray-500">日</span>
+                </p>
+                <p className="whitespace-nowrap text-[11px] text-gray-400">
+                  {countdown.examDate.getFullYear()}/{countdown.examDate.getMonth() + 1}/{countdown.examDate.getDate()}
+                  {countdown.examIsEstimate ? "ごろ（目安）" : ""}
+                </p>
+                {!preview && <HideWidgetButton onHide={() => hideWidget("exam_countdown")} />}
+              </div>
+            )}
 
-          <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
-            <p className="text-xs text-gray-500">卒業まで</p>
-            <p className="text-2xl font-bold leading-tight tracking-tight">
-              {countdown.graduationDays >= 0 ? countdown.graduationDays : 0}
-              <span className="ml-1 text-sm font-medium text-gray-500">日</span>
-            </p>
-            <p className="whitespace-nowrap text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
-          </div>
-        </section>
+            {widgets.graduation_countdown && (
+              <div className="rounded-2xl border border-[var(--relight-line)] bg-white px-3.5 py-2.5 shadow-sm">
+                <p className="text-xs text-gray-500">卒業まで</p>
+                <p className="text-2xl font-bold leading-tight tracking-tight">
+                  {countdown.graduationDays >= 0 ? countdown.graduationDays : 0}
+                  <span className="ml-1 text-sm font-medium text-gray-500">日</span>
+                </p>
+                <p className="whitespace-nowrap text-[11px] text-gray-400">{profile.graduation_year}年3月卒業予定</p>
+                {!preview && <HideWidgetButton onHide={() => hideWidget("graduation_countdown")} />}
+              </div>
+            )}
+          </section>
+        )}
 
         {/* ホーム画面に追加（目立つ場所に。追加済みのアプリの中では出ない） */}
         <AddToHomeButton />
 
         {/* 今日の学習（解いた問題の数・連続日数）と、やった日に色がつくカレンダー */}
-        <StudyCalendarCard preview={preview} />
+        {widgets.study_calendar && (
+          <div>
+            <StudyCalendarCard preview={preview} />
+            {!preview && <HideWidgetButton onHide={() => hideWidget("study_calendar")} />}
+          </div>
+        )}
 
         {/* 学校のランキング */}
-        {!preview && <QuizSchoolRanking />}
+        {!preview && widgets.ranking && (
+          <div>
+            <QuizSchoolRanking />
+            <HideWidgetButton onHide={() => hideWidget("ranking")} />
+          </div>
+        )}
 
         {/* 直近の予定 */}
         <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
