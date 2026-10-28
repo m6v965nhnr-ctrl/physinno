@@ -123,6 +123,8 @@ for (const [fn, body] of [
   ["school_is_active", { p_school: ZERO }],
   ["quiz_assignment_preview", { p_assignment: ZERO }],
   ["quiz_teacher_search_questions", {}],
+  ["quiz_ai_question_counts", {}],
+  ["quiz_teacher_add_ai_questions", { p_assignment: ZERO, p_unit: "eval_basic" }],
   ["quiz_set_assignment_questions", { p_assignment: ZERO, p_ids: [] }],
   ["quiz_publish_assignment", { p_assignment: ZERO }],
   ["quiz_delete_assignment", { p_assignment: ZERO }],

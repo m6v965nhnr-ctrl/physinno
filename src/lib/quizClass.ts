@@ -241,6 +241,17 @@ export async function searchQuestions(params: {
   return (data ?? []) as QuestionHit[];
 }
 
+export async function getAiQuestionCounts(): Promise<Record<string, number>> {
+  const { data } = await supabase.rpc("quiz_ai_question_counts");
+  return Object.fromEntries(((data ?? []) as { unit: string; total: number }[]).map((r) => [r.unit, r.total]));
+}
+
+export async function addAiQuestions(assignmentId: string, unit: string, n: number): Promise<number | null> {
+  const { data, error } = await supabase.rpc("quiz_teacher_add_ai_questions", { p_assignment: assignmentId, p_unit: unit, p_n: n });
+  if (error) return null;
+  return data as number;
+}
+
 export async function setAssignmentQuestions(id: string, ids: string[]): Promise<boolean> {
   const { error } = await supabase.rpc("quiz_set_assignment_questions", { p_assignment: id, p_ids: ids });
   return !error;

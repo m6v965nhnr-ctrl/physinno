@@ -11,8 +11,10 @@ import {
   AssignmentPreview,
   QuestionHit,
   PreviewQuestion,
+  addAiQuestions,
   deleteAssignment,
   duplicateAssignment,
+  getAiQuestionCounts,
   getAssignmentPreview,
   publishAssignment,
   searchQuestions,
@@ -78,6 +80,10 @@ export default function QuizTestBuilderPage() {
   const [fKeyword, setFKeyword] = useState("");
   const [hits, setHits] = useState<QuestionHit[] | null>(null);
 
+  const [aiCounts, setAiCounts] = useState<Record<string, number>>({});
+  const [aiUnit, setAiUnit] = useState("");
+  const [aiN, setAiN] = useState(10);
+
   const reload = useCallback(async (aid: string) => {
     const r = await getAssignmentPreview(aid);
     setPv(r);
@@ -98,6 +104,7 @@ export default function QuizTestBuilderPage() {
     reload(aid);
     listQuizUnits().then(setUnits);
     listQuizExams().then(setExams);
+    getAiQuestionCounts().then(setAiCounts);
   }, [loading, reload]);
 
   if (loading || pv === undefined) return <LoadingScreen />;
@@ -156,6 +163,26 @@ export default function QuizTestBuilderPage() {
     setBusy(true);
     setHits(await searchQuestions({ unit: fUnit || null, exam: fExam ? Number(fExam) : null, difficulty: "any", keyword: fKeyword.trim() }));
     setBusy(false);
+  }
+
+  async function handleAddAi() {
+    if (!aiUnit) {
+      notify("単元を選んでください");
+      return;
+    }
+    setBusy(true);
+    const added = await addAiQuestions(id, aiUnit, aiN);
+    setBusy(false);
+    if (added === null) {
+      notify("追加できませんでした。すでに解答がある場合は、問題を変えられません");
+      return;
+    }
+    if (added === 0) {
+      notify("この単元には、追加できるAI問題がありませんでした（すでに全部追加済みかもしれません）");
+      return;
+    }
+    notify(`AI作成の問題を${added}問、追加しました`);
+    await reload(id);
   }
 
   async function saveMeta() {
@@ -284,6 +311,33 @@ export default function QuizTestBuilderPage() {
             ))}
           </ol>
         </section>
+
+        {editable && Object.keys(aiCounts).length > 0 && (
+          <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
+            <p className="text-sm font-semibold">AIで問題を作る</p>
+            <p className="text-[11px] leading-5 text-gray-400">運営が確認済みの、AI作成の対策問題を、単元ごとにまとめて追加します。解説にも「AIが作成」の注意が表示されます。</p>
+            <div className="grid grid-cols-2 gap-2">
+              <select value={aiUnit} onChange={(e) => setAiUnit(e.target.value)} aria-label="AI問題の単元" className={selectClass}>
+                <option value="">単元を選ぶ</option>
+                {units.filter((u) => aiCounts[u.id] > 0).map((u) => (
+                  <option key={u.id} value={u.id}>{u.name}（{aiCounts[u.id]}問）</option>
+                ))}
+              </select>
+              <input
+                type="number"
+                min={1}
+                max={30}
+                value={aiN}
+                onChange={(e) => setAiN(Math.max(1, Math.min(30, Number(e.target.value) || 1)))}
+                aria-label="追加する問題数"
+                className="rounded-xl border border-gray-300 px-3 py-2 text-sm"
+              />
+            </div>
+            <button onClick={handleAddAi} disabled={busy || !aiUnit} className="rounded-full bg-black px-5 py-2 text-sm font-medium text-white disabled:opacity-40">
+              追加する
+            </button>
+          </section>
+        )}
 
         {editable && (
           <section className="space-y-3 rounded-2xl bg-white p-4 shadow-sm">
