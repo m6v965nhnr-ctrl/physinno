@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import AvatarIcon from "@/components/AvatarIcon";
 import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import StudyCalendarCard from "@/components/student/StudyCalendarCard";
@@ -153,7 +154,7 @@ export default function StudentHomeView({
             {avatarUrl ? (
               <img loading="lazy" decoding="async" src={avatarUrl} alt="" className="h-full w-full object-cover" />
             ) : (
-              <span aria-hidden="true">👤</span>
+              <AvatarIcon className="h-14 w-14" />
             )}
           </div>
           <h1 className="mt-3 text-xl font-semibold leading-tight tracking-tight">{name ? `${name}さん` : "学生ホーム"}</h1>

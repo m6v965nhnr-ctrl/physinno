@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import ReferralCard from "@/components/ReferralCard";
 import AddToHomeButton from "@/components/AddToHomeButton";
 import MyPageMenu from "@/components/MyPageMenu";
+import AvatarIcon from "@/components/AvatarIcon";
 import CertificateAttachments from "@/components/CertificateAttachments";
 import { AccountType, getMyAccountType } from "@/lib/account";
 import {
@@ -351,12 +352,12 @@ export default function MyPage() {
                     flex
                     items-center
                     justify-center
-                    text-4xl
+                    overflow-hidden
                     ring-4
                     ring-white
                   "
                 >
-                  👤
+                  <AvatarIcon className="h-20 w-20" />
                 </div>
               )}
 
