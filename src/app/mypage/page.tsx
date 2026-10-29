@@ -326,10 +326,10 @@ export default function MyPage() {
 
           <div className="relative px-6 pt-12 pb-6 text-center">
 
-            {/* 名前・資格・評価が、カバー写真の上でも読みやすいように、アイコンの体のイメージで背景を敷く */}
+            {/* 名前・資格・評価が、カバー写真の上でも読みやすいように、角丸の四角で背景を敷く */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-44 h-40 w-72 max-w-[90%] -translate-x-1/2 rounded-t-full bg-emerald-50"
+              className="absolute left-1/2 top-44 h-40 w-72 max-w-[90%] -translate-x-1/2 rounded-2xl bg-emerald-50"
             />
 
             {/* プロフィール画像 */}
