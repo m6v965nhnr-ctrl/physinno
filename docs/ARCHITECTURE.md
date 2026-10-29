@@ -130,7 +130,7 @@
 - LINEで送る: `LineShareButton`（招待カード・過去問の結果画面）。
 - しばらく使っていない人へのお知らせ: `users.last_seen_at`（1日1回、`touchLastSeen`）。DBの `queue_inactive_reminders`（pg_cron 毎日10:00 JST）が、3週間使っていない人へ1通（60日に1通まで、1回50人まで、全体と種類別（reminder）のスイッチを尊重）。メール本文は `/api/notify-email` の `reminder`。
 - 養成校ページ: `/schools`、`/schools/[slug]`（大学。`src/content/schools/pt-universities.ts`。第61回・大学新卒。出典: 旺文社 教育情報センター（厚生労働省発表資料に基づく）。取り出しは `scripts/schools/extract-obunsha.mjs`）。専門学校・短大は、公表資料が確認できていないため、なし。
-- SNS: `scripts/sns/`（`templates.mjs` `render.mjs` `PngsToMp4.swift`、内容は `content/weekN.json`）。画像はChrome、動画はmacOS標準のAVFoundation。素材は `_sns/`（Git管理外）。毎日12:30に、スケジュールタスク `relight-sns-daily-post` が、Chrome（Claude in Chrome）で Instagram と X に投稿し、`リサーチ/sns_log.md` に記録。毎週日曜20:00に `relight-sns-weekly-plan` が来週分を作る。毎週月曜9:00の `relight-weekly-growth-report` が、登録・SNSの数字を分析。
+- SNS: 2026-10-29に、別プロジェクト `~/Projects/relight-sns` へ分離（アプリ本体のセッション・リポジトリとは別）。スケジュールタスク `relight-sns-daily-post`（毎日12:30）・`relight-sns-weekly-plan`（毎週日曜20:00）・`relight-tiktok-extend`（毎晩19:10）は、そちら側の `scripts/sns/` を使う。登録・SNSの数字の分析は、必要なときにこちらのSupabase（quiz_questionsなど）・`admin_signup_sources` を参照する。
 
 ## ブロック機能（2026-10-14〜）
 - `user_blocks`（ブロックする人→される人。本人にだけ見える）。追加・解除は RPC の `block_user` / `unblock_user`（フォロー関係も外す）、一覧は `list_my_blocks`。
