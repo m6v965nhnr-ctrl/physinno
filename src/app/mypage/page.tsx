@@ -308,7 +308,7 @@ export default function MyPage() {
             プロフィール上部
             （カバー写真はアバター〜評価までを背景として覆う）
         ========================= */}
-        <div className="relative -mx-6 -mt-12">
+        <div className="relative -mx-6 -mt-12 overflow-hidden">
           <MyPageMenu onLogout={handleLogout} />
 
           {/* カバー写真 */}
@@ -329,7 +329,7 @@ export default function MyPage() {
             {/* 名前・資格・評価が、カバー写真の上でも読みやすいように、アイコンの体のイメージで背景を敷く */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-44 h-52 w-72 max-w-[90%] -translate-x-1/2 rounded-t-full bg-emerald-50"
+              className="absolute left-1/2 top-44 h-40 w-72 max-w-[90%] -translate-x-1/2 rounded-t-full bg-emerald-50"
             />
 
             {/* プロフィール画像 */}
