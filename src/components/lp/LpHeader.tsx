@@ -8,6 +8,7 @@ const MENU = [
   { href: "/for-students", label: "学生の方へ" },
   { href: "/teachers", label: "教員の方へ" },
   { href: "/for-general", label: "一般の方へ" },
+  { href: "/for-org", label: "病院・施設・法人の方へ" },
 ];
 
 // ホームページの上の帯。Re:light の横の3本バーで、4つの入口を開く
