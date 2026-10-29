@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import QuizSchoolRanking from "@/components/student/QuizSchoolRanking";
 import AddToHomeButton from "@/components/AddToHomeButton";
@@ -19,6 +19,61 @@ import {
   statusLabel,
   upcomingEvents,
 } from "@/lib/student";
+
+// マイページ右上の「⋯」メニュー（PTアカウントと同じ考え方）。マイページを編集・ログアウト
+function StudentHeaderMenu({ onLogout, preview }: { onLogout?: () => void; preview: boolean }) {
+  const [open, setOpen] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+    const onDown = (e: MouseEvent | TouchEvent) => {
+      if (!ref.current?.contains(e.target as Node)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onDown);
+    document.addEventListener("touchstart", onDown);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      document.removeEventListener("touchstart", onDown);
+    };
+  }, [open]);
+
+  const item = "block w-full px-4 py-3 text-left text-sm text-gray-800 hover:bg-gray-50";
+
+  return (
+    <div ref={ref} className="relative shrink-0">
+      <button
+        type="button"
+        aria-label="メニュー"
+        aria-haspopup="menu"
+        aria-expanded={open}
+        inert={preview}
+        onClick={() => setOpen((v) => !v)}
+        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-xl font-bold leading-none text-gray-700 hover:bg-gray-50"
+      >
+        <span aria-hidden="true">⋯</span>
+      </button>
+      {open && (
+        <div role="menu" className="absolute right-0 top-12 z-20 w-56 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
+          <Link role="menuitem" href="/student/settings" className={item} onClick={() => setOpen(false)}>
+            マイページを編集
+          </Link>
+          <button
+            role="menuitem"
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              onLogout?.();
+            }}
+            className={`${item} border-t border-gray-100`}
+          >
+            ログアウト
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
 
 function HideWidgetButton({ onHide }: { onHide: () => void }) {
   return (
@@ -98,13 +153,7 @@ export default function StudentHomeView({
               {name ? `${name}さんの学生ホーム` : "学生ホーム"}
             </h1>
           </div>
-          <button
-            onClick={onLogout}
-            inert={preview}
-            className="shrink-0 rounded-full border border-gray-300 px-4 py-2 text-sm text-gray-700 hover:bg-gray-50"
-          >
-            ログアウト
-          </button>
+          <StudentHeaderMenu onLogout={onLogout} preview={preview} />
         </div>
       </header>
 
