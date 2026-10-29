@@ -20,7 +20,7 @@ import {
   upcomingEvents,
 } from "@/lib/student";
 
-// マイページ右上の「⋯」メニュー（PTアカウントと同じ考え方）。マイページを編集・ログアウト
+// PTのマイページ（写真・名前の下の「⋯」）と同じ考え方。マイページを編集・ログアウト
 function StudentHeaderMenu({ onLogout, preview }: { onLogout?: () => void; preview: boolean }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -41,7 +41,7 @@ function StudentHeaderMenu({ onLogout, preview }: { onLogout?: () => void; previ
   const item = "block w-full px-4 py-3 text-left text-sm text-gray-800 hover:bg-gray-50";
 
   return (
-    <div ref={ref} className="relative shrink-0">
+    <div ref={ref} className="relative inline-block">
       <button
         type="button"
         aria-label="メニュー"
@@ -49,12 +49,12 @@ function StudentHeaderMenu({ onLogout, preview }: { onLogout?: () => void; previ
         aria-expanded={open}
         inert={preview}
         onClick={() => setOpen((v) => !v)}
-        className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-xl font-bold leading-none text-gray-700 hover:bg-gray-50"
+        className="flex h-8 w-10 items-center justify-center rounded-full text-2xl font-bold leading-none tracking-widest text-gray-400 hover:bg-gray-50"
       >
         <span aria-hidden="true">⋯</span>
       </button>
       {open && (
-        <div role="menu" className="absolute right-0 top-12 z-20 w-56 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
+        <div role="menu" className="absolute left-1/2 top-9 z-20 w-56 -translate-x-1/2 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg">
           <Link role="menuitem" href="/student/settings" className={item} onClick={() => setOpen(false)}>
             マイページを編集
           </Link>
@@ -104,6 +104,7 @@ function dayText(days: number) {
 // preview のときは、ボタンやリンクを押せない（見るだけ）。上の案内（banner）だけ押せる
 export default function StudentHomeView({
   name,
+  avatarUrl,
   profile,
   items,
   logs,
@@ -112,6 +113,7 @@ export default function StudentHomeView({
   banner,
 }: {
   name: string | null;
+  avatarUrl?: string | null;
   profile: StudentProfile;
   items: StudentItem[];
   logs: StudyLog[];
@@ -145,14 +147,17 @@ export default function StudentHomeView({
 
   return (
     <main className="min-h-screen bg-[#fafafa] pb-28">
-      <header className="border-b border-gray-100 bg-white px-6 py-2.5">
-        <div className="mx-auto flex max-w-2xl items-start justify-between gap-3">
-          <div className="min-w-0">
-            <p className="text-xs font-medium text-emerald-600">学生</p>
-            <h1 className="text-xl font-semibold leading-tight tracking-tight">
-              {name ? `${name}さんの学生ホーム` : "学生ホーム"}
-            </h1>
+      <header className="border-b border-gray-100 bg-white px-6 py-6 text-center">
+        <div className="mx-auto max-w-2xl">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-3xl ring-4 ring-white">
+            {avatarUrl ? (
+              <img loading="lazy" decoding="async" src={avatarUrl} alt="" className="h-full w-full object-cover" />
+            ) : (
+              <span aria-hidden="true">👤</span>
+            )}
           </div>
+          <h1 className="mt-3 text-xl font-semibold leading-tight tracking-tight">{name ? `${name}さん` : "学生ホーム"}</h1>
+          <p className="mt-0.5 text-xs font-medium text-emerald-600">学生</p>
           <StudentHeaderMenu onLogout={onLogout} preview={preview} />
         </div>
       </header>

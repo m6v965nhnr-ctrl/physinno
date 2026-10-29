@@ -24,6 +24,7 @@ export default function StudentHomePage() {
   const [items, setItems] = useState<StudentItem[]>([]);
   const [logs, setLogs] = useState<StudyLog[]>([]);
   const [name, setName] = useState<string | null | undefined>(undefined);
+  const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
 
   useEffect(() => {
     if (!userId) return;
@@ -33,13 +34,14 @@ export default function StudentHomePage() {
         getMyStudentProfile(userId),
         listStudentItems(userId),
         listStudyLogs(userId, 120),
-        supabase.from("pt_profiles").select("full_name").eq("user_id", userId).maybeSingle(),
+        supabase.from("pt_profiles").select("full_name, profile_image").eq("user_id", userId).maybeSingle(),
       ]);
 
       setProfile(p);
       setItems(i);
       setLogs(l);
       setName(pt?.full_name?.trim() || null);
+      setAvatarUrl(pt?.profile_image ?? null);
     })();
   }, [userId]);
 
@@ -55,6 +57,6 @@ export default function StudentHomePage() {
   }
 
   return (
-    <StudentHomeView name={name} profile={profile} items={items} logs={logs} onLogout={handleLogout} />
+    <StudentHomeView name={name} avatarUrl={avatarUrl} profile={profile} items={items} logs={logs} onLogout={handleLogout} />
   );
 }
