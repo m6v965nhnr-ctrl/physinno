@@ -326,8 +326,14 @@ export default function MyPage() {
 
           <div className="relative px-6 pt-12 pb-6 text-center">
 
+            {/* 名前・資格・評価が、カバー写真の上でも読みやすいように、アイコンの体のイメージで背景を敷く */}
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-44 h-52 w-72 max-w-[90%] -translate-x-1/2 rounded-t-full bg-emerald-50"
+            />
+
             {/* プロフィール画像 */}
-            <div className="mx-auto w-32 h-32">
+            <div className="relative mx-auto w-32 h-32">
 
               {profile?.profile_image ? (
                 <img loading="lazy" decoding="async"
@@ -364,17 +370,17 @@ export default function MyPage() {
             </div>
 
             {/* 名前 */}
-            <h1 className="text-3xl font-semibold mt-6">
+            <h1 className="relative text-3xl font-semibold mt-6">
               {ptName(profile?.full_name)}
             </h1>
 
             {/* 資格 */}
-            <p className="text-lg text-gray-600 mt-2">
+            <p className="relative text-lg text-gray-600 mt-2">
               {profile?.qualification || "理学療法士"}
             </p>
 
             {/* 評価 */}
-            <p className="text-xl mt-5">
+            <p className="relative text-xl mt-5">
               ⭐ {profile?.rating || 0}{" "}
               ({profile?.review_count || 0}件)
             </p>
