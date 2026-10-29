@@ -31,9 +31,9 @@ function Bar({ answered, total }: { answered: number; total: number }) {
 }
 
 type Setting = "auto" | QuizMode;
-type Tab = "unit" | "exam" | "saved" | "mock" | "pdf";
+type Tab = "unit" | "exam" | "saved" | "kokushi";
 
-// 勉強（一問一答）。進み具合・今日の10問・近道・科目／回／模擬試験／PDF・キーワード・大学内ランキング・クラスの課題を、1つの画面に。
+// 勉強（一問一答）。進み具合・今日の10問・近道・科目／回／保存済み／国試（模擬試験・PDF）・キーワード・大学内ランキング・クラスの課題を、1つの画面に。
 // 「出題の設定」（どの問題を・どの順で・何問）は、ここで選んで、下のどこから始めても使われる
 export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) {
   // 学校コードが必要な設定のとき、所属していない人は、学校コードの画面へ
@@ -49,6 +49,7 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
   const [order, setOrder] = useState<"random" | "seq">("random");
   const [n, setN] = useState(0); // 0 = 最後まで
   const [tab, setTab] = useState<Tab>("unit");
+  const [kokushiSub, setKokushiSub] = useState<"mock" | "pdf">("mock");
   const [keyword, setKeyword] = useState("");
   const [finding, setFinding] = useState(false);
 
@@ -197,16 +198,15 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
         </div>
       </section>
 
-      {/* 科目・回・模擬試験・PDF */}
+      {/* 科目・回・保存済み・国試（模擬試験・PDF） */}
       <section className="space-y-3">
-        <div className="grid grid-cols-5 gap-1 rounded-full bg-gray-100 p-1 text-[11px] sm:text-sm" role="tablist" aria-label="問題の選び方">
+        <div className="grid grid-cols-4 gap-1 rounded-full bg-gray-100 p-1 text-[11px] sm:text-sm" role="tablist" aria-label="問題の選び方">
           {(
             [
               ["unit", "科目"],
               ["exam", "回"],
               ["saved", "保存済み"],
-              ["mock", "模擬試験"],
-              ["pdf", "PDF"],
+              ["kokushi", "国試"],
             ] as const
           ).map(([k, label]) => (
             <button
@@ -304,71 +304,94 @@ export default function StudyHub({ isStudent = true }: { isStudent?: boolean }) 
           </div>
         )}
 
-        {tab === "mock" && (
+        {tab === "kokushi" && (
           <div className="space-y-3">
-            <p className="text-xs leading-5 text-gray-500">
-              1回分の午前または午後を、本番と同じ解答時間（{MOCK_MINUTES}分）で、通して解きます。答え合わせは、最後にまとめて行います。
-            </p>
-            <div className="grid grid-cols-2 gap-3">
-              {sortedExams.map((e) => (
-                <section key={e.exam_no} className="rounded-2xl bg-white p-3 shadow-sm">
-                  <p className="text-sm font-semibold">第{e.exam_no}回</p>
-                  <div className="mt-2 grid grid-cols-2 gap-1.5">
-                    {(["am", "pm"] as const).map((sess) => {
-                      const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
-                      return (
-                        <Link
-                          key={sess}
-                          href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
-                          className="rounded-xl border border-gray-200 px-1 py-2 text-center transition active:bg-gray-50"
-                        >
-                          <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
-                          <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">{m ? `${m.last_score}/${m.last_total}問` : "未挑戦"}</span>
-                        </Link>
-                      );
-                    })}
-                  </div>
-                </section>
+            <div className="grid grid-cols-2 gap-1 rounded-full bg-gray-100 p-1 text-xs" role="tablist" aria-label="国試の資料">
+              {(
+                [
+                  ["mock", "模擬試験"],
+                  ["pdf", "PDF"],
+                ] as const
+              ).map(([k, label]) => (
+                <button
+                  key={k}
+                  role="tab"
+                  aria-selected={kokushiSub === k}
+                  onClick={() => setKokushiSub(k)}
+                  className={`rounded-full py-1.5 ${kokushiSub === k ? "bg-white font-semibold text-gray-900 shadow-sm" : "text-gray-500"}`}
+                >
+                  {label}
+                </button>
               ))}
             </div>
-          </div>
-        )}
 
-        {tab === "pdf" && (
-          <div className="space-y-3">
-            <p className="text-xs leading-5 text-gray-500">
-              厚生労働省が公開している公式の問題・正答のPDFと、このアプリで作った、解説つきの印刷用ページ（PDFで保存できます）です。
-            </p>
-            {OFFICIAL_EXAMS.map((e) => (
-              <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
-                <p className="text-sm font-semibold">
-                  第{e.exam_no}回 <span className="text-xs font-normal text-gray-500">（{e.date}実施）</span>
+            {kokushiSub === "mock" && (
+              <div className="space-y-3">
+                <p className="text-xs leading-5 text-gray-500">
+                  1回分の午前または午後を、本番と同じ解答時間（{MOCK_MINUTES}分）で、通して解きます。答え合わせは、最後にまとめて行います。
                 </p>
-                <p className="mt-3 text-xs font-semibold text-gray-600">公式PDF（厚生労働省）</p>
-                <ul className="mt-1.5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
-                  {officialPdfs(e).map((f) => (
-                    <li key={f.href}>
-                      <a href={f.href} target="_blank" rel="noopener noreferrer" className="block rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-800">
-                        📄 {f.label}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-                <p className="mt-1.5 text-[11px] text-gray-400">
-                  <a href={officialPage(e)} target="_blank" rel="noopener noreferrer" className="underline">
-                    厚生労働省の公開ページ
-                  </a>
-                </p>
-                <p className="mt-3 text-xs font-semibold text-gray-600">解説つき（印刷・PDF保存）</p>
-                <div className="mt-1.5 grid grid-cols-2 gap-1.5">
-                  {(["am", "pm"] as const).map((sess) => (
-                    <Link key={sess} href={`/student/quiz/print?exam=${e.exam_no}&session=${sess}`} className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs text-gray-800">
-                      🖨️ {sess === "am" ? "午前" : "午後"}（問題・正答・解説）
-                    </Link>
+                <div className="grid grid-cols-2 gap-3">
+                  {sortedExams.map((e) => (
+                    <section key={e.exam_no} className="rounded-2xl bg-white p-3 shadow-sm">
+                      <p className="text-sm font-semibold">第{e.exam_no}回</p>
+                      <div className="mt-2 grid grid-cols-2 gap-1.5">
+                        {(["am", "pm"] as const).map((sess) => {
+                          const m = mocks.find((x) => x.exam_no === e.exam_no && x.session === sess);
+                          return (
+                            <Link
+                              key={sess}
+                              href={`/student/quiz/mock?exam=${e.exam_no}&session=${sess}`}
+                              className="rounded-xl border border-gray-200 px-1 py-2 text-center transition active:bg-gray-50"
+                            >
+                              <span className="block text-sm font-semibold">{sess === "am" ? "午前" : "午後"}</span>
+                              <span className="mt-0.5 block text-[11px] leading-4 text-gray-500">{m ? `${m.last_score}/${m.last_total}問` : "未挑戦"}</span>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </section>
                   ))}
                 </div>
-              </section>
-            ))}
+              </div>
+            )}
+
+            {kokushiSub === "pdf" && (
+              <div className="space-y-3">
+                <p className="text-xs leading-5 text-gray-500">
+                  厚生労働省が公開している公式の問題・正答のPDFと、このアプリで作った、解説つきの印刷用ページ（PDFで保存できます）です。
+                </p>
+                {OFFICIAL_EXAMS.map((e) => (
+                  <section key={e.exam_no} className="rounded-2xl bg-white p-4 shadow-sm">
+                    <p className="text-sm font-semibold">
+                      第{e.exam_no}回 <span className="text-xs font-normal text-gray-500">（{e.date}実施）</span>
+                    </p>
+                    <p className="mt-3 text-xs font-semibold text-gray-600">公式PDF（厚生労働省）</p>
+                    <ul className="mt-1.5 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                      {officialPdfs(e).map((f) => (
+                        <li key={f.href}>
+                          <a href={f.href} target="_blank" rel="noopener noreferrer" className="block rounded-lg border border-gray-200 px-3 py-2 text-xs text-gray-800">
+                            📄 {f.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <p className="mt-1.5 text-[11px] text-gray-400">
+                      <a href={officialPage(e)} target="_blank" rel="noopener noreferrer" className="underline">
+                        厚生労働省の公開ページ
+                      </a>
+                    </p>
+                    <p className="mt-3 text-xs font-semibold text-gray-600">解説つき（印刷・PDF保存）</p>
+                    <div className="mt-1.5 grid grid-cols-2 gap-1.5">
+                      {(["am", "pm"] as const).map((sess) => (
+                        <Link key={sess} href={`/student/quiz/print?exam=${e.exam_no}&session=${sess}`} className="rounded-lg border border-gray-200 px-3 py-2 text-center text-xs text-gray-800">
+                          🖨️ {sess === "am" ? "午前" : "午後"}（問題・正答・解説）
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            )}
           </div>
         )}
       </section>
