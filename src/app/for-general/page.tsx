@@ -19,12 +19,19 @@ export const metadata: Metadata = {
 const FEATURES = [
   { icon: "🔎", title: "理学療法士を、探せる", body: "一般アカウントで無料登録すると、地域や専門分野から、理学療法士を探せます。" },
   { icon: "🏥", title: "病院・施設を、地域から探せる", body: "全国の病院・施設 約14.6万件を、地域から探せます（登録なしで見られます）。診療科や、現役PTの口コミも参考になります。" },
+  { icon: "📋", title: "病歴・持病を、記録できる", body: "ご自身の病歴・持病を記録できます。公開するかどうかは記録ごとに選べ、公開にすると、メッセージをやり取りしている理学療法士に伝わります。" },
   { icon: "✍️", title: "レビューを書ける", body: "一般アカウントで、理学療法士のレビューを書けます。" },
+];
+const STEPS = [
+  { title: "メールアドレスで無料登録", body: "アカウントの種類で「一般」を選ぶだけ。1分です。" },
+  { title: "地域・専門分野で探す", body: "気になる理学療法士や、病院・施設を、条件で絞り込めます。" },
+  { title: "相談する、記録を残す", body: "メッセージで相談でき、病歴・持病を公開しておけば、やり取りしているPTに伝わります。" },
 ];
 const FAQS = [
   { q: "料金はかかりますか？", a: "一般の方も、登録と基本機能は無料です。" },
   { q: "理学療法士でなくても使えますか？", a: "はい。一般アカウントで登録すると、地域や専門分野から理学療法士を探したり、レビューを書いたりできます。" },
   { q: "登録しなくても、病院を探せますか？", a: "はい。病院を探す画面は、登録なしで見られます。" },
+  { q: "病歴・持病は、誰に見られますか？", a: "記録ごとに公開・非公開を選べます。公開にした記録だけ、メッセージをやり取りしている理学療法士に表示されます。非公開の記録は、ご本人以外には見えません。" },
 ];
 
 const registerHref = "/register?type=general";
@@ -77,6 +84,23 @@ export default function ForGeneralPage() {
         ]}
       />
       <SafetySection registerHref={registerHref} />
+
+      <section className="bg-white px-6 py-16">
+        <div className="mx-auto max-w-3xl">
+          <p className={SECTION_LABEL}>HOW TO START</p>
+          <h2 className={H2}>はじめ方は、3ステップ</h2>
+          <ol className="mt-8 grid gap-4 md:grid-cols-3">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="relative rounded-2xl border border-[var(--lp-g200)] bg-[var(--lp-g50)] p-6">
+                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-relight-gradient text-sm font-bold">{i + 1}</span>
+                <h3 className="mt-3 text-base font-bold text-[var(--lp-g900)]">{s.title}</h3>
+                <p className="mt-1 text-sm leading-7 text-gray-700">{s.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       <FaqSection faqs={FAQS} />
       <FinalCta registerHref={registerHref} title="あなたに合う、理学療法士を探す。" />
       <LpFooter audience="general" />
