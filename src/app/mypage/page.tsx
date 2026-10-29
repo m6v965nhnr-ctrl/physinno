@@ -329,7 +329,7 @@ export default function MyPage() {
             {/* 名前・資格・評価が、カバー写真の上でも読みやすいように、角丸の四角で背景を敷く */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-44 h-40 w-72 max-w-[90%] -translate-x-1/2 rounded-2xl bg-emerald-50"
+              className="absolute left-1/2 top-44 h-40 w-56 max-w-[80%] -translate-x-1/2 rounded-2xl bg-emerald-50"
             />
 
             {/* プロフィール画像 */}
