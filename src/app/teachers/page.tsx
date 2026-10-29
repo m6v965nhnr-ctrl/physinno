@@ -18,12 +18,28 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
 };
 
+// とくに押したい3つは、大きいカードで（他は、下の一覧で）
+const BIG_FEATURES = [
+  {
+    icon: "📝",
+    title: "一問一答で、そのままテストに",
+    body: "第49〜61回・約2,500問の国試の一問一答から、単元・キーワードで選んでテストに。足りない分は、運営が確認したAI作成のオリジナル問題で補えます。下書きで問題を確かめてから、クラスへ配ります。",
+  },
+  {
+    icon: "📚",
+    title: "参考書の進み具合も、クラスで把握",
+    body: "学生が参考書ごとに記録した、読んだページと理解度（0〜10）を、先生の画面でも見られます。表示するかどうかは参考書ごとに選べ、周回数は色の濃さで一目で分かります。",
+  },
+  {
+    icon: "🎛",
+    title: "学生に見せるものを、クラスごとに選べる",
+    body: "学生ホームの「今日の学習」「校内ランキング」「国試・卒業までのカウントダウン」は、クラスごとに表示・非表示を選べます。ランキングなどがやる気をなくす原因になりそうなクラスでは、オフに（学生も個別に非表示にできます）。",
+  },
+];
+
 const FEATURES = [
-  { icon: "📝", title: "国試の過去問から、テストをつくる", body: "第49〜61回・約2,500問から、単元をチェックで選び、キーワードで問題を探して足せます。下書きで問題を確かめてから、クラスに配ります。" },
-  { icon: "🤖", title: "過去問にない問題は、AIで補える", body: "運営が確認した、AI作成のオリジナル問題も、国試の過去問と同じ操作でテストに追加できます。解説には「AIが作成」の注意が表示されます。" },
   { icon: "👥", title: "クラスは、参加コードだけ", body: "クラスを作ると、6文字の参加コードが出ます。学生がコードを入れるだけで参加できます。クラスのチャットで、学生にメッセージも送れます。" },
   { icon: "📊", title: "テストごとに、結果が見られる", body: "テストごとに、学生ごと・問題ごと・分野ごとの結果を、名前順や点数・正答率の高い順・低い順で並べ替えて見られます。学生の名前をタップすると、テストごとの得点の推移が、棒グラフで見られます。" },
-  { icon: "📚", title: "参考書の進み具合も、見られる", body: "学生が記録した参考書の進捗・理解度を、先生の画面にも表示するかどうか、参考書ごとに選べます。" },
   { icon: "📄", title: "PDFで保存して、ほかの先生にも共有", body: "単元ごと・テストごと・学生ごとの結果や、得点の推移を、PDFで保存できます。" },
   { icon: "🙋", title: "学生からの質問に、回答できる", body: "学生は、匿名でも先生に質問できます。回答は、クラスのチャットに流れて、クラスのみんなが読めます。" },
   { icon: "📈", title: "学生は、テストを振り返れる", body: "学生は、平均点・中央値・クラスでの順位・偏差値で、自分のテストを振り返れます。" },
@@ -74,17 +90,27 @@ export default function TeachersPage() {
         <div className="mx-auto max-w-3xl">
           <p className={SECTION_LABEL}>FEATURES</p>
           <h2 className={H2}>先生ができること</h2>
-          <ul className="mt-6 grid gap-4">
-            {FEATURES.map((f) => (
-              <li key={f.title} className="flex gap-4 rounded-2xl border border-[var(--lp-g200)] bg-white p-5 shadow-sm">
-                <span aria-hidden="true" className="text-2xl">{f.icon}</span>
-                <div>
-                  <h3 className="text-base font-bold text-[var(--lp-g900)]">{f.title}</h3>
-                  <p className="mt-1 text-sm leading-7 text-gray-700">{f.body}</p>
-                </div>
-              </li>
+
+          <div className="mt-8 space-y-6">
+            {BIG_FEATURES.map((f) => (
+              <article key={f.title} className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
+                <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">{f.icon} {f.title}</h3>
+                <p className="mt-2 text-sm leading-7 text-gray-700">{f.body}</p>
+              </article>
             ))}
-          </ul>
+
+            <ul className="grid gap-4 md:grid-cols-2">
+              {FEATURES.map((f) => (
+                <li key={f.title} className="flex gap-4 rounded-2xl border border-[var(--lp-g200)] bg-white p-5 shadow-sm">
+                  <span aria-hidden="true" className="text-2xl">{f.icon}</span>
+                  <div>
+                    <h3 className="text-base font-bold text-[var(--lp-g900)]">{f.title}</h3>
+                    <p className="mt-1 text-sm leading-7 text-gray-700">{f.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </section>
 
