@@ -50,6 +50,7 @@ export default function RegisterPage() {
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
   const [isOrg, setIsOrg] = useState(false);
+  const [orgName, setOrgName] = useState("");
   const isTeacher = accountType === "teacher";
   const [school, setSchool] = useState("");
   const [faculty, setFaculty] = useState("");
@@ -102,6 +103,12 @@ export default function RegisterPage() {
       return;
     }
 
+    if (isOrg && !orgName.trim()) {
+      setError("病院名・法人名を入力してください");
+      document.getElementById("field-org-name")?.focus();
+      return;
+    }
+
     if (!agreed) {
       setError("利用規約とプライバシーポリシーへの同意が必要です");
       return;
@@ -136,6 +143,7 @@ export default function RegisterPage() {
           account_type: isTeacher ? "teacher" : isOrg ? "org" : accountType,
           // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
           school: isTeacher ? `${school.trim()} ${faculty.trim()} ${department.trim()}`.slice(0, 100) : undefined,
+          org_name: isOrg ? orgName.trim().slice(0, 100) : undefined,
           full_name: fullName.trim().slice(0, 50),
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
@@ -174,6 +182,15 @@ export default function RegisterPage() {
         faculty: faculty.trim().slice(0, 100),
         department: department.trim().slice(0, 100),
         icon_url: iconUrl,
+      });
+    }
+
+    // 組織名は、ここで登録しておく（/orgで、残りの情報を入れて運営の確認に出す）
+    if (isOrg && data.session) {
+      await supabase.from("organizations").insert({
+        name: orgName.trim().slice(0, 100),
+        facility_category: "病院・医療機関",
+        owner_id: data.user.id,
       });
     }
 
@@ -313,10 +330,32 @@ export default function RegisterPage() {
               {isTeacher
                 ? "クラスに参加した学生に、先生の名前として表示されます。"
                 : isOrg
-                ? "担当者の名前です。組織名は、登録のあとに入れます。"
+                ? "担当者の名前です。"
                 : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
             </p>
           </div>
+
+          {isOrg && (
+            <div>
+              <label className="mb-2 block text-sm font-medium" htmlFor="field-org-name">
+                病院名・法人名 <span className="text-xs font-normal text-red-500">（必須）</span>
+              </label>
+
+              <input id="field-org-name"
+                type="text"
+                maxLength={100}
+                required
+                value={orgName}
+                onChange={(e) => setOrgName(e.target.value)}
+                placeholder="例：〇〇病院、株式会社〇〇"
+                className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
+              />
+
+              <p className="mt-2 text-xs leading-5 text-gray-400">
+                施設の種類・所在地などの残りの情報は、登録のあとに入れます。運営が確認すると、求人の掲載とスカウトができます。
+              </p>
+            </div>
+          )}
 
           {isTeacher && (
             <>
@@ -418,7 +457,7 @@ export default function RegisterPage() {
 
           {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
           {(() => {
-            const missing = [!isTeacher && !isOrg && !accountType && "アカウントの種類", !fullName.trim() && "名前", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
+            const missing = [!isTeacher && !isOrg && !accountType && "アカウントの種類", !fullName.trim() && "名前", isOrg && !orgName.trim() && "病院名・法人名", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
             return missing.length > 0 ? (
               <p className="text-center text-xs text-red-600" role="status">
                 未入力：{missing.join("・")}
@@ -428,7 +467,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || !fullName.trim() || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
+            disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || !fullName.trim() || (isOrg && !orgName.trim()) || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}
