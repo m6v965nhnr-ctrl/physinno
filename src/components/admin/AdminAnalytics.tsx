@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/lib/supabase";
-import { Bar, Legend, LineChart, Series, StackedBarChart } from "@/components/admin/Charts";
+import { Bar, Legend, Series, StackedBarChart } from "@/components/admin/Charts";
 
 type Summary = {
   total: number;
@@ -17,9 +17,8 @@ type Summary = {
   first_day: string | null;
 };
 type SignupRow = { day: string; account_type: string; n: number };
-type ActivityRow = { day: string; posts: number; comments: number; likes: number };
 
-type Unit = "day" | "week" | "month";
+type Unit = "day" | "week";
 
 const TYPE_ORDER = ["pt", "student", "general", "unset"] as const;
 const TYPE_SERIES: Record<(typeof TYPE_ORDER)[number], Series> = {
@@ -28,11 +27,6 @@ const TYPE_SERIES: Record<(typeof TYPE_ORDER)[number], Series> = {
   general: { name: "一般", color: "#f59e0b" },
   unset: { name: "未設定", color: "#9ca3af" },
 };
-const ACTIVITY_SERIES: Series[] = [
-  { name: "投稿", color: "#0e8ea5" },
-  { name: "コメント", color: "#10b981" },
-  { name: "いいね", color: "#f472b6" },
-];
 
 // ---- 日付の処理（日本時間の「YYYY-MM-DD」で扱う）----
 const pad = (n: number) => String(n).padStart(2, "0");
@@ -58,15 +52,9 @@ function weekStart(iso: string): string {
   return addDays(iso, -dow);
 }
 function bucketKey(iso: string, unit: Unit): string {
-  if (unit === "day") return iso;
-  if (unit === "week") return weekStart(iso);
-  return iso.slice(0, 7);
+  return unit === "day" ? iso : weekStart(iso);
 }
-function bucketLabel(key: string, unit: Unit): string {
-  if (unit === "month") {
-    const [y, m] = key.split("-");
-    return `${y}/${Number(m)}`;
-  }
+function bucketLabel(key: string): string {
   const [, m, d] = key.split("-");
   return `${Number(m)}/${Number(d)}`;
 }
@@ -90,66 +78,38 @@ function Card({ label, value, sub, tone }: { label: string; value: number | stri
   );
 }
 
-function Pills<T extends string | number>({
-  value,
-  options,
-  onChange,
-  label,
-}: {
-  value: T;
-  options: [T, string][];
-  onChange: (v: T) => void;
-  label: string;
-}) {
-  return (
-    <div role="group" aria-label={label} className="flex flex-wrap gap-1.5">
-      {options.map(([v, l]) => (
-        <button
-          key={String(v)}
-          type="button"
-          onClick={() => onChange(v)}
-          aria-pressed={value === v}
-          className={`rounded-full px-3 py-1 text-xs ${value === v ? "bg-black text-white" : "border border-gray-300 text-gray-700"}`}
-        >
-          {l}
-        </button>
-      ))}
-    </div>
-  );
-}
+// 期間ごとに、日数と集計の単位(全期間だけ週ごと、それ以外は日ごと)を決める
+const PERIODS: { key: "30" | "90" | "all"; label: string }[] = [
+  { key: "30", label: "30日" },
+  { key: "90", label: "90日" },
+  { key: "all", label: "全期間" },
+];
 
-// 運営用: 登録者数の推移と、アプリの活動の分析
+// 運営用: 登録者数の推移の分析（必要な数字だけに絞ってある）
 export default function AdminAnalytics() {
-  const [range, setRange] = useState(30);
-  const [unit, setUnit] = useState<Unit>("day");
+  const [period, setPeriod] = useState<"30" | "90" | "all">("30");
   const [includeTest, setIncludeTest] = useState(false);
 
   const [summary, setSummary] = useState<Summary | null>(null);
   const [signups, setSignups] = useState<SignupRow[] | null>(null);
-  const [activity, setActivity] = useState<ActivityRow[] | null>(null);
+
+  // 全期間は、最初の登録日からの日数（最低30日）
+  const daysSinceFirst = summary?.first_day
+    ? Math.max(30, Math.round((Date.now() - new Date(`${summary.first_day}T00:00:00Z`).getTime()) / 86400000) + 1)
+    : 30;
+  const range = period === "30" ? 30 : period === "90" ? 90 : daysSinceFirst;
+  const unit: Unit = range > 90 ? "week" : "day";
 
   useEffect(() => {
     let mounted = true;
     setSummary(null);
     setSignups(null);
-    setActivity(null);
 
     supabase.rpc("admin_signup_summary", { p_exclude_test: !includeTest }).then(({ data }) => {
       if (mounted) setSummary((data ?? null) as Summary | null);
     });
     supabase.rpc("admin_signups_daily", { p_days: range, p_exclude_test: !includeTest }).then(({ data }) => {
       if (mounted) setSignups(((data ?? []) as SignupRow[]).map((r) => ({ ...r, n: Number(r.n) })));
-    });
-    supabase.rpc("admin_activity_daily", { p_days: Math.min(range, 90) }).then(({ data }) => {
-      if (mounted)
-        setActivity(
-          ((data ?? []) as ActivityRow[]).map((r) => ({
-            day: r.day,
-            posts: Number(r.posts),
-            comments: Number(r.comments),
-            likes: Number(r.likes),
-          }))
-        );
     });
 
     return () => {
@@ -179,53 +139,18 @@ export default function AdminAnalytics() {
     }
 
     const bars: Bar[] = keys.map((k) => ({
-      label: bucketLabel(k, unit),
+      label: bucketLabel(k),
       values: shown.map((t) => sums.get(`${k}|${t}`) ?? 0),
     }));
-    const totalsPerBar = bars.map((b) => b.values.reduce((a, v) => a + v, 0));
-    const inRange = totalsPerBar.reduce((a, v) => a + v, 0);
+    const inRange = bars.reduce((a, b) => a + b.values.reduce((x, v) => x + v, 0), 0);
 
-    // 累計: 期間の前までの人数 ＋ 期間内の積み上げ
-    const baseline = Math.max(0, (summary?.total ?? inRange) - inRange);
-    let acc = baseline;
-    const cumulative = bars.map((b, i) => {
-      acc += totalsPerBar[i];
-      return { label: b.label, value: acc };
-    });
-
-    return { bars, series: shown.map((t) => TYPE_SERIES[t]), cumulative, inRange, keys, totalsPerBar };
-  }, [signups, range, unit, summary]);
-
-  // ---- 活動（日ごと）----
-  const activityView = useMemo(() => {
-    if (!activity) return null;
-    const count = Math.min(range, 90);
-    const days = daysBack(count);
-    const map = new Map(activity.map((r) => [r.day, r]));
-    const unitForActivity: Unit = unit === "month" ? "week" : unit;
-
-    const keys: string[] = [];
-    for (const d of days) {
-      const k = bucketKey(d, unitForActivity);
-      if (keys[keys.length - 1] !== k) keys.push(k);
-    }
-    const sums = new Map<string, [number, number, number]>();
-    for (const d of days) {
-      const r = map.get(d);
-      if (!r) continue;
-      const k = bucketKey(d, unitForActivity);
-      const cur = sums.get(k) ?? [0, 0, 0];
-      sums.set(k, [cur[0] + r.posts, cur[1] + r.comments, cur[2] + r.likes]);
-    }
-    const bars: Bar[] = keys.map((k) => ({ label: bucketLabel(k, unitForActivity), values: sums.get(k) ?? [0, 0, 0] }));
-    const total = bars.reduce((a, b) => a + b.values.reduce((x, v) => x + v, 0), 0);
-    return { bars, total, days: count };
-  }, [activity, range, unit]);
+    return { bars, series: shown.map((t) => TYPE_SERIES[t]), inRange };
+  }, [signups, range, unit]);
 
   const c7 = summary ? change(summary.last7, summary.prev7) : null;
   const c30 = summary ? change(summary.last30, summary.prev30) : null;
   const typeTotal = summary ? summary.pt + summary.student + summary.general : 0;
-  const unitLabel = unit === "day" ? "日" : unit === "week" ? "週" : "月";
+  const unitLabel = unit === "day" ? "日" : "週";
 
   return (
     <section id="analytics" className="mb-10 scroll-mt-20">
@@ -276,30 +201,19 @@ export default function AdminAnalytics() {
         </div>
       )}
 
-      {/* 期間・単位 */}
-      <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2">
-        <Pills
-          label="期間"
-          value={range}
-          onChange={setRange}
-          options={[
-            [7, "7日"],
-            [30, "30日"],
-            [90, "90日"],
-            [180, "半年"],
-            [365, "1年"],
-          ]}
-        />
-        <Pills
-          label="集計の単位"
-          value={unit}
-          onChange={setUnit}
-          options={[
-            ["day", "日ごと"],
-            ["week", "週ごと"],
-            ["month", "月ごと"],
-          ]}
-        />
+      {/* 期間 */}
+      <div className="mt-6 flex flex-wrap gap-1.5" role="group" aria-label="期間">
+        {PERIODS.map((p) => (
+          <button
+            key={p.key}
+            type="button"
+            onClick={() => setPeriod(p.key)}
+            aria-pressed={period === p.key}
+            className={`rounded-full px-3 py-1 text-xs ${period === p.key ? "bg-black text-white" : "border border-gray-300 text-gray-700"}`}
+          >
+            {p.label}
+          </button>
+        ))}
       </div>
 
       {/* 登録者数の棒グラフ */}
@@ -321,73 +235,6 @@ export default function AdminAnalytics() {
                 series={signupView.series}
                 ariaLabel={`${unitLabel}ごとの登録者数。この期間の合計は${signupView.inRange}人`}
               />
-            </div>
-            <details className="mt-2">
-              <summary className="cursor-pointer text-xs text-gray-700">数字で見る</summary>
-              <div className="mt-2 max-h-64 overflow-auto">
-                <table className="w-full text-left text-xs">
-                  <thead className="sticky top-0 bg-white text-gray-600">
-                    <tr>
-                      <th className="py-1 pr-2 font-medium">{unit === "month" ? "月" : unit === "week" ? "週のはじまり" : "日"}</th>
-                      {signupView.series.map((s) => (
-                        <th key={s.name} className="py-1 pr-2 text-right font-medium">
-                          {s.name}
-                        </th>
-                      ))}
-                      <th className="py-1 text-right font-medium">計</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-100">
-                    {[...signupView.bars].reverse().map((b, i) => (
-                      <tr key={i}>
-                        <td className="py-1 pr-2 text-gray-800">{b.label}</td>
-                        {b.values.map((v, k) => (
-                          <td key={k} className="py-1 pr-2 text-right text-gray-800">
-                            {v}
-                          </td>
-                        ))}
-                        <td className="py-1 text-right font-semibold text-gray-900">{b.values.reduce((a, v) => a + v, 0)}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </details>
-          </>
-        )}
-      </div>
-
-      {/* 累計 */}
-      <div className="mt-4 rounded-2xl border border-gray-100 bg-white p-4">
-        <h3 className="text-sm font-semibold text-gray-900">登録者数の累計</h3>
-        {!signupView ? (
-          <p className="mt-4 text-sm text-gray-500">読み込み中…</p>
-        ) : (
-          <div className="mt-2">
-            <LineChart points={signupView.cumulative} color="#0e8ea5" ariaLabel="登録者数の累計の推移" />
-          </div>
-        )}
-      </div>
-
-      {/* 活動 */}
-      <div className="mt-4 rounded-2xl border border-gray-100 bg-white p-4">
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <h3 className="text-sm font-semibold text-gray-900">アプリの活動（投稿・コメント・いいね）</h3>
-          {activityView && (
-            <p className="text-xs text-gray-600">
-              直近{activityView.days}日の合計: <strong>{activityView.total}件</strong>
-            </p>
-          )}
-        </div>
-        {!activityView ? (
-          <p className="mt-4 text-sm text-gray-500">読み込み中…</p>
-        ) : (
-          <>
-            <div className="mt-2">
-              <Legend series={ACTIVITY_SERIES} />
-            </div>
-            <div className="mt-2">
-              <StackedBarChart bars={activityView.bars} series={ACTIVITY_SERIES} ariaLabel="投稿・コメント・いいねの件数の推移" />
             </div>
           </>
         )}
