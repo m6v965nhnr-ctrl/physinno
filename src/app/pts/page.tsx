@@ -13,12 +13,13 @@ import IdeasBrowser from "@/components/IdeasBrowser";
 import PtSearchPanel from "@/components/PtSearchPanel";
 import { myOrganization } from "@/lib/recruit";
 
-type SearchMode = "papers" | "ideas" | "hospitals" | "pts" | "other";
+type SearchMode = "papers" | "ideas" | "hospitals" | "pts" | "other" | "news";
 
-// PT: 論文 / 臨床アイデア（職場口コミは、ボトムナビの「職場」へ。PTを探すは、ホームの「PT検索」へ）。それ以外（一般・未ログイン）: 病院 / PT
+// PT: 論文 / 臨床アイデア / イベント（職場口コミは、ボトムナビの「職場」へ。PTを探すは、ホームの「PT検索」へ）。それ以外（一般・未ログイン）: 病院 / PT
 const PT_MODES: [SearchMode, string][] = [
   ["papers", "論文を探す"],
   ["ideas", "臨床アイデア"],
+  ["news", "イベント"],
 ];
 // ログインしていない訪問者（ゲスト閲覧）: 論文 / 臨床アイデア / 病院 / PT。見て触れる（保存・投稿・AIなどは登録後）
 const GUEST_MODES: [SearchMode, string][] = [
@@ -71,13 +72,10 @@ function PTSearchPageInner() {
 
 
 
-  // PTアカウントのみ「Events（研修・学会情報）」タブと「論文を探す」を表示
+  // PTアカウントのみ「論文を探す」「イベント」を表示
   const [isPt, setIsPt] = useState(false);
   const [isOrg, setIsOrg] = useState(false);
   const [otherSub, setOtherSub] = useState<"papers" | "ideas" | "events">("papers");
-  const [tab, setTab] = useState<"search" | "news">(
-    () => (searchParams.get("tab") as "search" | "news") || "search"
-  );
   const [searchMode, setSearchMode] = useState<SearchMode | null>(
     () => searchParams.get("mode") as SearchMode | null
   );
@@ -111,60 +109,36 @@ function PTSearchPageInner() {
   return (
     <main className="search-large min-h-screen bg-white px-6 py-8 pb-24">
       <div className="max-w-3xl mx-auto">
-        {isPt && (
-          <div
-            role="tablist"
-            aria-label="検索の種類"
-            className="mb-5 grid grid-cols-2 rounded-full bg-gray-100 p-1 text-sm font-medium"
-          >
-            {([["search", "Search"], ["news", "Events"]] as const).map(([key, label]) => (
-              <button
-                key={key}
-                role="tab"
-                aria-selected={tab === key}
-                onClick={() => {
-                  setTab(key);
-                  updateUrlParam("tab", key);
-                }}
-                className={`rounded-full py-2.5 transition ${
-                  tab === key ? "bg-white text-gray-900 shadow-sm" : "text-gray-500"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
+        <div
+          role="tablist"
+          aria-label="探すの種類"
+          className={`mb-5 grid ${
+            modes.length === 4 ? "grid-cols-4" : modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
+          } rounded-full border border-gray-200 p-1 text-sm font-medium`}
+        >
+          {modes.map(([key, label]) => (
+            <button
+              key={key}
+              role="tab"
+              aria-selected={mode === key}
+              onClick={() => {
+                setSearchMode(key);
+                updateUrlParam("mode", key);
+              }}
+              className={`rounded-full py-2 transition ${
+                mode === key ? "bg-gray-900 text-white" : "text-gray-500"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
 
-        {!(isPt && tab === "news") && (
-          <div
-            role="tablist"
-            aria-label="探すの種類"
-            className={`mb-5 grid ${
-              modes.length === 4 ? "grid-cols-4" : modes.length === 3 ? "grid-cols-3" : "grid-cols-2"
-            } rounded-full border border-gray-200 p-1 text-sm font-medium`}
-          >
-            {modes.map(([key, label]) => (
-              <button
-                key={key}
-                role="tab"
-                aria-selected={mode === key}
-                onClick={() => {
-                  setSearchMode(key);
-                  updateUrlParam("mode", key);
-                }}
-                className={`rounded-full py-2 transition ${
-                  mode === key ? "bg-gray-900 text-white" : "text-gray-500"
-                }`}
-              >
-                {label}
-              </button>
-            ))}
-          </div>
-        )}
-
-        {isPt && tab === "news" ? (
-          <SeminarNews />
+        {mode === "news" ? (
+          <>
+            <h1 className="text-3xl font-semibold mb-3">イベント</h1>
+            <SeminarNews />
+          </>
         ) : mode === "other" ? (
           <>
             <div role="tablist" aria-label="その他の検索" className="mb-5 grid grid-cols-3 rounded-full bg-gray-100 p-1 text-sm font-medium">

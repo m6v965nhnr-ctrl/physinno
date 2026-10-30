@@ -92,7 +92,7 @@ export async function POST(request: Request) {
             "",
             `・論文検索（日本語でも英語でも、8つのサイトを同時に。エビデンスレベルで絞り込み）: ${SITE_URL}/pts?mode=papers&${utm}`,
             `・臨床アイデア（疾患ごとの、評価とリハビリの引き出し）: ${SITE_URL}/pts?mode=ideas&${utm}`,
-            `・研修・学会情報（毎日更新）: ${SITE_URL}/pts?tab=news&${utm}`,
+            `・研修・学会情報（毎日更新）: ${SITE_URL}/pts?mode=news&${utm}`,
           ];
     return [...lines, "", `${SITE_NAME}を開く: ${SITE_URL}/?${utm}`];
   };

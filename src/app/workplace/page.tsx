@@ -1,8 +1,15 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import HospitalSearch from "@/components/HospitalSearch";
+
+type WorkplaceTab = "reviews" | "hiring";
+const TABS: [WorkplaceTab, string][] = [
+  ["reviews", "口コミ"],
+  ["hiring", "採用"],
+];
 
 // PTのボトムナビ「職場」。以前は検索タブの中にあった職場口コミを、ここへ移した
 export default function WorkplacePage() {
@@ -16,16 +23,56 @@ export default function WorkplacePage() {
 }
 
 function WorkplacePageInner() {
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [tab, setTab] = useState<WorkplaceTab>(
+    () => (searchParams.get("tab") as WorkplaceTab) || "reviews"
+  );
+
   return (
     <main className="min-h-screen bg-white px-6 py-8 pb-24">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-semibold mb-1">職場口コミ</h1>
-        <div className="mb-3 flex flex-wrap gap-2 text-xs">
-          <Link href="/jobs" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">求人を探す</Link>
-          <Link href="/scouts" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">スカウト</Link>
-          <Link href="/org" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">組織の方：求人の管理</Link>
+        <div
+          role="tablist"
+          aria-label="職場の種類"
+          className="mb-5 grid grid-cols-2 rounded-full border border-gray-200 p-1 text-sm font-medium"
+        >
+          {TABS.map(([key, label]) => (
+            <button
+              key={key}
+              role="tab"
+              aria-selected={tab === key}
+              onClick={() => {
+                setTab(key);
+                const params = new URLSearchParams(searchParams.toString());
+                params.set("tab", key);
+                router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+              }}
+              className={`rounded-full py-2 transition ${
+                tab === key ? "bg-gray-900 text-white" : "text-gray-500"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
         </div>
-        <HospitalSearch />
+
+        {tab === "reviews" ? (
+          <>
+            <h1 className="text-3xl font-semibold mb-3">職場口コミ</h1>
+            <HospitalSearch />
+          </>
+        ) : (
+          <>
+            <h1 className="text-3xl font-semibold mb-3">採用</h1>
+            <div className="flex flex-wrap gap-2 text-xs">
+              <Link href="/jobs" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">求人を探す</Link>
+              <Link href="/scouts" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">スカウト</Link>
+              <Link href="/org" className="rounded-full border border-gray-300 bg-white px-4 py-1.5 font-medium">組織の方：求人の管理</Link>
+            </div>
+          </>
+        )}
       </div>
     </main>
   );
