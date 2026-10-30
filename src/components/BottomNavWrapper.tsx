@@ -22,11 +22,11 @@ type Menu = {
 // 通知はマイページの「⋯」メニューに置くため、PTのボトムナビには含めない
 // （一般の方にはホーム相当の画面がないため残す）。メッセージはホーム画面内のボタンへ移動した
 const PT_MENUS: Menu[] = [
-  { href: "/mypage", icon: "○", label: "マイページ" },
-  { href: "/pts", icon: "⌕", label: "検索" },
-  { href: "/posts/create", icon: "+", label: "投稿" },
-  { href: "/workplace", icon: "🏥", label: "職場" },
   { href: "/home", icon: "⌂", label: "ホーム" },
+  { href: "/posts/create", icon: "+", label: "投稿" },
+  { href: "/pts", icon: "⌕", label: "検索" },
+  { href: "/workplace", icon: "🏥", label: "職場" },
+  { href: "/mypage", icon: "○", label: "マイページ" },
 ];
 
 // ログインしていない訪問者（ゲスト閲覧）：見て回るための最小限のメニューと、登録への入口
