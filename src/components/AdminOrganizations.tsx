@@ -37,7 +37,15 @@ export default function AdminOrganizations() {
               <p className="text-sm font-semibold">{r.name}　<span className="font-normal text-gray-500">{ORG_STATUS_LABEL[r.status].split("（")[0]}</span></p>
               <p className="mt-0.5 text-gray-600">{r.facility_category}{r.facility_type ? `・${r.facility_type}` : ""}　{r.prefecture ?? ""}　登録者：{r.owner_name ?? "（名前なし）"}</p>
               {r.website && <a href={r.website} target="_blank" rel="noopener noreferrer" className="break-all underline">{r.website}</a>}
-              <p className="mt-1 text-gray-700">職場ページとのひもづけ：{r.hospital_id ? <a href={`/hospitals/${r.hospital_id}`} target="_blank" rel="noopener noreferrer" className="underline">{r.hospital_name ?? "（名前なし）"}</a> : "なし"}　<span className="text-gray-500">（承認すると、この組織の投稿が、そのページの「投稿」タブに出ます。組織名と見くらべてください）</span></p>
+              {r.hospital_id ? (
+                <p className="mt-2 rounded-lg border border-amber-200 bg-amber-50 px-2 py-1.5 text-amber-900">
+                  ⚠ 職場ページとのひもづけ：<a href={`/hospitals/${r.hospital_id}`} target="_blank" rel="noopener noreferrer" className="underline">{r.hospital_name ?? "（名前なし）"}</a>
+                  <br />
+                  <span className="text-[11px]">承認すると、この組織の投稿が、そのページの「投稿」タブに出ます。組織名と見くらべて、本人の職場で間違いないか確認してから承認してください。</span>
+                </p>
+              ) : (
+                <p className="mt-1 text-gray-500">職場ページとのひもづけ：なし</p>
+              )}
               {r.description && <p className="mt-1 whitespace-pre-wrap text-gray-700">{r.description}</p>}
               <input aria-label="本人に伝えるメモ（任意）" placeholder="本人に伝えるメモ（任意）" value={note[r.id] ?? ""} maxLength={500} onChange={(e) => setNote({ ...note, [r.id]: e.target.value })} className="mt-2 w-full rounded-lg border border-gray-300 px-3 py-1.5" />
               <div className="mt-2 flex flex-wrap gap-2">
