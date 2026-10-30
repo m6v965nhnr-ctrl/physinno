@@ -114,7 +114,7 @@ export default function RegisterPage() {
       return;
     }
 
-    if (!fullName.trim()) {
+    if (!isOrg && !fullName.trim()) {
       setError("名前を入力してください");
       document.getElementById("field-name")?.focus();
       return;
@@ -144,7 +144,7 @@ export default function RegisterPage() {
           // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
           school: isTeacher ? `${school.trim()} ${faculty.trim()} ${department.trim()}`.slice(0, 100) : undefined,
           org_name: isOrg ? orgName.trim().slice(0, 100) : undefined,
-          full_name: fullName.trim().slice(0, 50),
+          full_name: (isOrg ? orgName : fullName).trim().slice(0, 50),
           referred_by: referredBy || undefined,
           graduation_year: accountType === "student" ? graduationYear : undefined,
           // どのリンクから来たか（運営の集計用。utm_source などがあるときだけ入る）
@@ -309,6 +309,7 @@ export default function RegisterPage() {
             </div>
           )}
 
+          {!isOrg && (
           <div>
             <label className="mb-2 block text-sm font-medium" htmlFor="field-name">
               名前 <span className="text-xs font-normal text-red-500">（必須）</span>
@@ -329,11 +330,10 @@ export default function RegisterPage() {
             <p className="mt-2 text-xs leading-5 text-gray-400">
               {isTeacher
                 ? "クラスに参加した学生に、先生の名前として表示されます。"
-                : isOrg
-                ? "担当者の名前です。"
                 : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
             </p>
           </div>
+          )}
 
           {isOrg && (
             <div>
@@ -457,7 +457,7 @@ export default function RegisterPage() {
 
           {/* アカウントの種類と名前は、必須。そろうまで、登録できない（足りないものを、ボタンの上に出す） */}
           {(() => {
-            const missing = [!isTeacher && !isOrg && !accountType && "アカウントの種類", !fullName.trim() && "名前", isOrg && !orgName.trim() && "病院名・法人名", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
+            const missing = [!isTeacher && !isOrg && !accountType && "アカウントの種類", !isOrg && !fullName.trim() && "名前", isOrg && !orgName.trim() && "病院名・法人名", isTeacher && (!school.trim() || !faculty.trim() || !department.trim()) && "学校・学部・学科", isTeacher && !icon && "アイコン", !agreed && "利用規約への同意"].filter(Boolean);
             return missing.length > 0 ? (
               <p className="text-center text-xs text-red-600" role="status">
                 未入力：{missing.join("・")}
@@ -467,7 +467,7 @@ export default function RegisterPage() {
 
           <button
             onClick={handleRegister}
-            disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || !fullName.trim() || (isOrg && !orgName.trim()) || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
+            disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || (!isOrg && !fullName.trim()) || (isOrg && !orgName.trim()) || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
             {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}
