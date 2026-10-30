@@ -22,7 +22,7 @@ export default function ScoutsPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-8 pb-28">
       <div className="mx-auto max-w-2xl space-y-4">
-        <Link href="/mypage" className="text-sm text-gray-400">← マイページ</Link>
+        <button type="button" onClick={() => window.history.back()} className="text-sm text-gray-400">← 戻る</button>
         <h1 className="text-2xl font-semibold">スカウト</h1>
         <p className="text-xs leading-5 text-gray-500">組織から届いたスカウトと、送ったスカウトです。内容は、送った組織と、受け取った人だけが読めます。受け付けの設定は、プロフィールの編集にあります。</p>
         {error ? <ErrorState onRetry={() => location.reload()} /> : rows === null ? <p className="text-sm text-gray-400">読み込み中…</p> : rows.length === 0 ? (

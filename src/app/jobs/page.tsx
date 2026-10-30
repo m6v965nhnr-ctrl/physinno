@@ -37,7 +37,7 @@ export default function JobsPage() {
   return (
     <main className="min-h-screen bg-[#fafafa] px-5 py-8 pb-28">
       <div className="mx-auto max-w-2xl space-y-4">
-        <Link href="/pts?mode=hospitals" className="text-sm text-gray-400">← 探す</Link>
+        <button type="button" onClick={() => window.history.back()} className="text-sm text-gray-400">← 戻る</button>
         <h1 className="text-2xl font-semibold">求人を探す</h1>
         <p className="text-xs leading-5 text-gray-500">運営が確認した組織の、公開中の求人です。書かれていない項目は「未掲載」と表示します。給与や条件は、応募前に、掲載元に確認してください。</p>
         <div className="grid gap-2 sm:grid-cols-3">
