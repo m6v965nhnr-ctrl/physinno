@@ -8,6 +8,7 @@ import { getMyAccountType, landingPathFor, syncMyAccountType } from "@/lib/accou
 import { notify } from "@/lib/notify";
 import { rememberReturnTo, takeReturnTo } from "@/lib/returnTo";
 import { askConfirm } from "@/lib/confirm";
+import { clearGuestRole } from "@/lib/guestRole";
 import {
   biometricAvailable,
   declinedBiometric,
@@ -76,6 +77,7 @@ export default function LoginPage() {
     }
 
     notify("ログインしました");
+    clearGuestRole();
     try {
       sessionStorage.removeItem("relight-logged-out");
     } catch {

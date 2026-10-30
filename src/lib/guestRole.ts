@@ -26,6 +26,17 @@ export function setGuestRole(role: GuestRole) {
   window.dispatchEvent(new Event(EVENT));
 }
 
+// 本物のログイン・登録が済んだら呼ぶ。残っていると、次にこの端末で開いたとき
+// ゲスト閲覧の画面が優先されてしまう（ログイン済みなのに本人の中身が出ない）ため
+export function clearGuestRole() {
+  try {
+    window.localStorage.removeItem(KEY);
+  } catch {
+    // 何もしない
+  }
+  window.dispatchEvent(new Event(EVENT));
+}
+
 // 選んだ立場。まだ読み込み中は undefined、未選択は null
 export function useGuestRole(): GuestRole | null | undefined {
   const [role, setRole] = useState<GuestRole | null | undefined>(undefined);

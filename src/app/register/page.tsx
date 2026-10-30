@@ -9,6 +9,7 @@ import { trackRegistration } from "@/lib/metaPixel";
 import { track } from "@vercel/analytics";
 import { graduationYearOptions } from "@/lib/student";
 import { rememberReturnTo, signupFromPath, takeReturnTo } from "@/lib/returnTo";
+import { clearGuestRole } from "@/lib/guestRole";
 
 type AccountType = "pt" | "general" | "student" | "teacher";
 
@@ -168,6 +169,7 @@ export default function RegisterPage() {
     }
 
     trackRegistration();
+    clearGuestRole();
     // 種類ごとの登録数（個人は特定できない。/register は集計の許可パス）
     track("register_done", { type: isTeacher ? "teacher" : isOrg ? "org" : accountType ?? "" });
 

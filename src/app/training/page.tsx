@@ -129,7 +129,7 @@ function TrainingInner() {
           </div>
         )}
 
-        {canPost && (
+        {canPost && !guest && (
           <Link
             href={`/training/new${region ? `?region=${region}${muscle ? `&muscle=${encodeURIComponent(muscle)}` : ""}` : ""}`}
             className="mt-4 block rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-center text-sm font-semibold text-sky-900"

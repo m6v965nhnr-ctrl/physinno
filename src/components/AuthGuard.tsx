@@ -23,6 +23,7 @@ import {
 import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
 import { hasName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
+import { getGuestRole } from "@/lib/guestRole";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start", "/teachers", "/for-pt", "/for-students", "/for-general", "/for-org"];
 
@@ -67,6 +68,15 @@ export default function AuthGuard({
     let cancelled = false;
 
     async function checkAuth() {
+      // 「ログインなしで、中を見てみる」で選んだ立場が残っていれば、ゲストの見え方を優先する。
+      // 本物のセッションがブラウザに残っていても（例: 以前ログインしたままの端末で見てみるを押した場合）、
+      // 本人の中身を出さず、ゲスト用の見た目のまま開く（ホーム画面のアプリでは、この簡易閲覧は出さない）
+      if (!isStandaloneApp() && isPublicGuestPath(pathname) && getGuestRole()) {
+        if (cancelled) return;
+        setChecking(false);
+        return;
+      }
+
       // ホーム画面のアプリで、ログインしていないときは、どの画面から始まっても、ログイン画面へ
       if (isStandaloneApp() && !STANDALONE_OPEN_PATHS.includes(pathname)) {
         const {

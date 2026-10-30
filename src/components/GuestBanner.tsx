@@ -4,12 +4,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { withReturnTo } from "@/lib/returnTo";
+import { getGuestRole } from "@/lib/guestRole";
 
-// ログインしていない訪問者に、「見るだけ」であることと、登録の案内を出す。ログイン中は、何も出さない
+// ログインしていない訪問者に、「見るだけ」であることと、登録の案内を出す。ログイン中は、何も出さない。
+// 「見てみる」で選んだ立場が残っていれば、本物のセッションが残っていても、ゲストの見え方を優先する
 export function useIsGuest() {
   const [guest, setGuest] = useState(false);
 
   useEffect(() => {
+    if (getGuestRole()) {
+      setGuest(true);
+      return;
+    }
     supabase.auth.getSession().then(({ data: { session } }) => setGuest(!session));
   }, []);
 

@@ -150,13 +150,13 @@ export default function HomePage() {
       data: { user },
     } = await getLocalUser();
 
-    if (!user) {
-      // ゲストは、先に「PTか、学生か」を選んでもらう
-      if (!getGuestRole()) {
-        window.location.replace("/guest");
-        return;
-      }
+    if (getGuestRole()) {
+      // 「見てみる」で選んだ立場が残っていれば、本物のセッションが残っていても、ゲストの見え方を優先する
       setGuest(true);
+    } else if (!user) {
+      // ゲストは、先に「PTか、学生か」を選んでもらう
+      window.location.replace("/guest");
+      return;
     } else {
       setUserId(user.id);
     }

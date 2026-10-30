@@ -8,7 +8,7 @@ import { withReturnTo } from "@/lib/returnTo";
 import { isAdminUser } from "@/lib/admin";
 import { touchLastSeen } from "@/lib/lastSeen";
 import { supabase } from "@/lib/supabase";
-import { AccountType, getMyAccountType, isPublicPaperSitePath, syncMyAccountType } from "@/lib/account";
+import { AccountType, getMyAccountType, isPublicGuestPath, isPublicPaperSitePath, syncMyAccountType } from "@/lib/account";
 import { notify } from "@/lib/notify";
 import { useGuestRole } from "@/lib/guestRole";
 import { myOrganization } from "@/lib/recruit";
@@ -298,8 +298,11 @@ export default function BottomNavWrapper() {
     return null;
   }
 
-  // 立場（PT／学生）を選んで中を見ているゲストには、本物と同じメニューを「見るだけ」で出す（押せない）
-  const previewOnly = !loggedIn && (guestRole === "pt" || guestRole === "student");
+  // 立場（PT／学生）を選んで中を見ているゲストには、本物と同じメニューを「見るだけ」で出す（押せない）。
+  // 本物のセッションが残っていても、ゲスト閲覧できる画面を開いている間は、ゲストの見た目を優先する
+  // （AuthGuardのゲスト優先と揃える。それ以外の画面では、ログイン済みなら普段どおりの操作できるメニューを出す）
+  const previewOnly =
+    (guestRole === "pt" || guestRole === "student") && (!loggedIn || isPublicGuestPath(pathname));
 
   // ログインしていない訪問者（立場を選んでいない人）には、ゲスト用のメニューを出す
   // 先生のアカウント、または、先生の画面（PTの先生も）では、先生のメニュー
