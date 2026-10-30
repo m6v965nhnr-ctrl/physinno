@@ -82,7 +82,10 @@ export default function MyPageMenu({ onLogout, className = "" }: { onLogout: () 
           role="menu"
           className="mt-2 w-64 overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-lg"
         >
-          <Link role="menuitem" href="/feedback" className={item} onClick={() => setOpen(false)}>
+          <Link role="menuitem" href="/notifications" className={item} onClick={() => setOpen(false)}>
+            通知
+          </Link>
+          <Link role="menuitem" href="/feedback" className={`${item} border-t border-gray-100`} onClick={() => setOpen(false)}>
             運営へのメッセージ・意見箱
           </Link>
           <Link role="menuitem" href="/mypage/blocked" className={`${item} border-t border-gray-100`} onClick={() => setOpen(false)}>

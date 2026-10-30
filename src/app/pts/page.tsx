@@ -15,11 +15,10 @@ import { myOrganization } from "@/lib/recruit";
 
 type SearchMode = "papers" | "ideas" | "hospitals" | "pts" | "other";
 
-// PT: 論文 / 臨床アイデア / 病院（PTを探すは、ホームの「PT検索」へ）。それ以外（一般・未ログイン）: 病院 / PT
+// PT: 論文 / 臨床アイデア（職場口コミは、ボトムナビの「職場」へ。PTを探すは、ホームの「PT検索」へ）。それ以外（一般・未ログイン）: 病院 / PT
 const PT_MODES: [SearchMode, string][] = [
   ["papers", "論文を探す"],
   ["ideas", "臨床アイデア"],
-  ["hospitals", "職場口コミ"],
 ];
 // ログインしていない訪問者（ゲスト閲覧）: 論文 / 臨床アイデア / 病院 / PT。見て触れる（保存・投稿・AIなどは登録後）
 const GUEST_MODES: [SearchMode, string][] = [

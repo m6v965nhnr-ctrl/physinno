@@ -77,7 +77,6 @@ export default function HomePage() {
   const [userId, setUserId] = useState("");
   // ログインしていない訪問者（見るだけ。いいね・コメント・フォローなどは、登録を案内する）
   const [guest, setGuest] = useState(false);
-  const [unreadCount, setUnreadCount] = useState(0);
 
   // 名前・アイコンを取得して state に足す（匿名などで user_id が無いものは飛ばす）
   async function loadProfiles(ids: (string | null)[]) {
@@ -160,14 +159,6 @@ export default function HomePage() {
       setGuest(true);
     } else {
       setUserId(user.id);
-
-      const { count } = await supabase
-        .from("notifications")
-        .select("id", { count: "exact", head: true })
-        .eq("user_id", user.id)
-        .eq("is_read", false);
-
-      setUnreadCount(count || 0);
     }
 
     const firstPage = await fetchPostPage();
@@ -439,22 +430,9 @@ export default function HomePage() {
           </div>
         </header>
 
-        {/* 通知・投稿検索・コミニティ・コラム（常にヘッダーの下に固定表示） */}
+        {/* 投稿検索・コミニティ・コラム・メッセージ（常にヘッダーの下に固定表示） */}
         {/* ゲスト（ログインなし）のときも、本物と同じボタンを出す。ただし見るだけで、押せない */}
         <div inert={guest} className="flex gap-1.5 bg-white px-5 pt-4">
-          <Link
-            href="/notifications"
-            className="relative inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
-          >
-            <span aria-hidden="true">🔔</span>
-            通知
-            {unreadCount > 0 && (
-              <span className="absolute -right-1.5 -top-1.5 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-semibold text-white">
-                {unreadCount > 9 ? "9+" : unreadCount}
-              </span>
-            )}
-          </Link>
-
           <Link
             href="/posts"
             className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
@@ -477,6 +455,14 @@ export default function HomePage() {
           >
             <span aria-hidden="true">📖</span>
             コラム
+          </Link>
+
+          <Link
+            href="/messages"
+            className="inline-flex flex-1 items-center justify-center gap-0.5 whitespace-nowrap rounded-xl border border-gray-200 bg-white px-1 py-2.5 text-[11px] font-medium text-gray-700 transition hover:bg-gray-50 active:scale-[0.98]"
+          >
+            <span aria-hidden="true">💬</span>
+            メッセージ
           </Link>
         </div>
 
@@ -504,7 +490,7 @@ export default function HomePage() {
                 <Link href="/columns/first-year-rehab-basics" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-800">
                   📚 リハの前に知っておくこと総まとめを読む
                 </Link>
-                <Link href="/pts?mode=hospitals" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-800">
+                <Link href="/workplace" className="rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium text-gray-800">
                   🏥 自分の職場の口コミを見る・書く
                 </Link>
               </div>
