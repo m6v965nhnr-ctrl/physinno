@@ -9,6 +9,7 @@ import type { AuthUser } from "@/lib/types";
 import { ptName } from "@/lib/format";
 import { listMyGroups } from "@/lib/groups";
 import { ClassRoom, listClassRooms } from "@/lib/quizClass";
+import { ScoutRow } from "@/lib/recruit";
 
 type GroupRow = {
   id: string;
@@ -43,6 +44,8 @@ export default function MessagesPage() {
   const [groups, setGroups] = useState<GroupRow[]>([]);
   // 先生のクラス（クラス全員のチャット）
   const [rooms, setRooms] = useState<ClassRoom[]>([]);
+  // 届いたスカウト（承認済みの組織から）
+  const [scouts, setScouts] = useState<ScoutRow[]>([]);
   const [loading, setLoading] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -64,6 +67,7 @@ export default function MessagesPage() {
     setUser(user);
 
     listClassRooms().then(setRooms);
+    supabase.rpc("list_my_scouts").then(({ data }) => setScouts(((data ?? []) as ScoutRow[]).filter((s) => s.role === "pt")));
 
     // 参加しているグループと、それぞれの最新メッセージ
     const myGroups = await listMyGroups(user.id);
@@ -252,13 +256,13 @@ export default function MessagesPage() {
           </h1>
 
           <p className="mt-1 text-xs text-gray-400">
-            PTとのメッセージ・参加しているグループ
+            PTとのメッセージ・参加しているグループ・届いたスカウト
           </p>
         </div>
       </header>
 
       <div className="mx-auto max-w-2xl px-4 py-4">
-        {conversations.length === 0 && groups.length === 0 && rooms.length === 0 ? (
+        {conversations.length === 0 && groups.length === 0 && rooms.length === 0 && scouts.length === 0 ? (
           <div className="flex min-h-[50vh] items-center justify-center">
             <p className="text-sm text-gray-400">
               まだメッセージはありません
@@ -303,6 +307,34 @@ export default function MessagesPage() {
                         {g.lastText ?? "グループのチャットを開く"}
                       </p>
                     </div>
+                    <span className="text-gray-300">→</span>
+                  </Link>
+                ),
+              })),
+              ...scouts.map((s) => ({
+                key: `s-${s.id}`,
+                at: s.last_message_at,
+                node: (
+                  <Link
+                    key={`s-${s.id}`}
+                    href={`/scouts/${s.id}`}
+                    className={`flex items-center gap-3 border-b border-gray-100 px-4 py-4 transition hover:bg-gray-50 last:border-b-0 ${
+                      s.unread ? "bg-cyan-50/60" : ""
+                    }`}
+                  >
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-100 text-xl">
+                      🏥
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className={`truncate text-sm text-gray-900 ${s.unread ? "font-bold" : "font-semibold"}`}>
+                        {s.org_name}
+                        <span className="ml-1 text-[10px] font-normal text-emerald-700">スカウト</span>
+                      </p>
+                      <p className="mt-1 truncate text-xs text-gray-400">
+                        {s.status === "declined" ? "辞退済み" : s.last_body ?? "スカウトが届きました"}
+                      </p>
+                    </div>
+                    {s.unread && <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-red-500" />}
                     <span className="text-gray-300">→</span>
                   </Link>
                 ),
