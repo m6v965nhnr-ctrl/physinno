@@ -416,7 +416,7 @@ export default function HospitalDetailPage() {
         </Link>
 
         <div className="mt-4 rounded-3xl border border-gray-100 bg-white p-6">
-          <h1 className="text-2xl font-semibold text-gray-900">
+          <h1 className="text-2xl font-semibold text-gray-900" style={{ textWrap: "wrap" }}>
             {hospital.name}
           </h1>
 
