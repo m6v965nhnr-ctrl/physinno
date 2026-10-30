@@ -79,24 +79,16 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote 
 
   if (!s) return null;
   return (
-    <section className="mt-6 space-y-4 rounded-2xl bg-white p-5 shadow-sm" aria-label="応援とスカウト">
-      <div className="flex items-center justify-between gap-2">
-        <h2 className="text-sm font-semibold">応援</h2>
-        {!isSelf && (
-          <button type="button" onClick={like} aria-pressed={s.liked} className={`rounded-full border px-4 py-1.5 text-sm font-medium ${s.liked ? "border-rose-300 bg-rose-50 text-rose-700" : "border-gray-300 bg-white text-gray-700"}`}>
-            {/* 0件の数字は見せない（過疎感を出さない） */}
-            {s.liked ? "♥" : "♡"} いいね{s.likes > 0 ? ` ${s.likes}` : ""}
-          </button>
-        )}
-        {isSelf && s.likes > 0 && <span className="text-sm text-gray-600">♥ {s.likes}</span>}
-      </div>
-      <p className="text-[11px] leading-5 text-gray-500">いいねやコメントの数は、理学療法士の能力や医療の質を示すものではありません。コメントは、Re:lightの登録ユーザーからの応援で、実際に担当した患者さんによる確認済みの評価ではありません。</p>
-
+    <>
       {s.org_can_scout && !isSelf && (
-        <div>
-          <button type="button" onClick={openScout} className="w-full rounded-full bg-black py-2.5 text-sm font-semibold text-white">この方にスカウトを送る</button>
+        <section className="mt-6 space-y-3 rounded-2xl border border-emerald-200 bg-emerald-50 p-5" aria-label="スカウト">
+          <div>
+            <h2 className="text-sm font-semibold text-emerald-900">スカウトを送る</h2>
+            <p className="mt-1 text-[11px] leading-5 text-emerald-800">採用担当の方だけに表示されています。送った内容は、この方にしか見えません（下の「応援」コメントとは別の、あなただけに届く非公開メッセージです）。</p>
+          </div>
+          <button type="button" onClick={openScout} className="w-full rounded-full bg-black py-2.5 text-sm font-semibold text-white">{scoutOpen ? "閉じる" : "この方にスカウトを送る"}</button>
           {scoutOpen && (
-            <div className="mt-2 space-y-2">
+            <div className="space-y-2">
               <select aria-label="関連する求人" value={jobId} onChange={(e) => setJobId(e.target.value)} className="w-full rounded-full border border-gray-300 bg-white px-4 py-2.5 text-sm"><option value="">関連する求人：なし</option>{jobs.map((j) => <option key={j.id} value={j.id}>{j.title}</option>)}</select>
               {/* プロフィールを読んだことが伝わるスカウトは、返信されやすい。引用つきの書き出しを用意する */}
               {!msg && (
@@ -114,12 +106,25 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote 
                 </button>
               )}
               <textarea aria-label="スカウトのメッセージ" rows={5} maxLength={2000} value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="なぜ、この方に声をかけたか、どんな職場かを、具体的に書いてください（10文字以上）" className={AREA} />
-              <p className="text-[11px] text-gray-500">同じ相手には、返信があるまで、続けて送れません。受け取った方は、辞退できます。</p>
+              <p className="text-[11px] text-emerald-800">同じ相手には、返信があるまで、続けて送れません。受け取った方は、辞退できます。</p>
               <button type="button" onClick={sendScout} disabled={busy || msg.trim().length < 10} className="w-full rounded-full bg-black py-2.5 text-sm font-semibold text-white disabled:opacity-50">{busy ? "送信中…" : "送る"}</button>
             </div>
           )}
-        </div>
+        </section>
       )}
+
+      <section className="mt-6 space-y-4 rounded-2xl bg-white p-5 shadow-sm" aria-label="応援">
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold">応援</h2>
+        {!isSelf && (
+          <button type="button" onClick={like} aria-pressed={s.liked} className={`rounded-full border px-4 py-1.5 text-sm font-medium ${s.liked ? "border-rose-300 bg-rose-50 text-rose-700" : "border-gray-300 bg-white text-gray-700"}`}>
+            {/* 0件の数字は見せない（過疎感を出さない） */}
+            {s.liked ? "♥" : "♡"} いいね{s.likes > 0 ? ` ${s.likes}` : ""}
+          </button>
+        )}
+        {isSelf && s.likes > 0 && <span className="text-sm text-gray-600">♥ {s.likes}</span>}
+      </div>
+      <p className="text-[11px] leading-5 text-gray-500">いいねやコメントの数は、理学療法士の能力や医療の質を示すものではありません。コメントは、Re:lightの登録ユーザーからの応援で、実際に担当した患者さんによる確認済みの評価ではありません。</p>
 
       {!isSelf && (
         loggedIn ? (
@@ -148,6 +153,7 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote 
           ))}
         </ul>
       )}
-    </section>
+      </section>
+    </>
   );
 }
