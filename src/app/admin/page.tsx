@@ -159,33 +159,66 @@ export default function AdminPage() {
             </button>
           </div>
 
-          {/* 目次（押すと、その項目へ移動） */}
-          <nav aria-label="運営画面の目次" className="-mx-1 mt-3 flex gap-1.5 overflow-x-auto pb-1">
+          {/* 目次（押すと、その項目へ移動）。「分析」は見るだけ、「承認・対応」は運営が何かする必要があるもの */}
+          <nav aria-label="運営画面の目次" className="mt-3 space-y-2">
             {[
-              ["analytics", "登録の分析"],
-              ["reports", "通報"],
-              ["feedback", "意見箱"],
-              ["errors", "画面のエラー"],
-              ["sources", "登録の経路"],
-              ["teachers", "先生の申請"],
-              ["usage", "利用状況"],
-              ["users", "ユーザー一覧"],
-            ].map(([id, label]) => (
-              <a
-                key={id}
-                href={`#${id}`}
-                className="shrink-0 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs text-gray-700 hover:bg-gray-50"
-              >
-                {label}
-              </a>
+              [
+                "分析",
+                [
+                  ["analytics", "登録の分析"],
+                  ["sources", "登録の経路"],
+                  ["usage", "利用状況"],
+                  ["users", "ユーザー一覧"],
+                ],
+              ],
+              [
+                "承認・対応",
+                [
+                  ["teachers", "先生の申請"],
+                  ["orgs", "組織の確認"],
+                  ["reports", "通報"],
+                  ["feedback", "意見箱"],
+                ],
+              ],
+              [
+                "その他",
+                [
+                  ["errors", "画面のエラー"],
+                  ["schools", "学校の管理"],
+                  ["security", "先生のセキュリティ"],
+                ],
+              ],
+            ].map(([group, links]) => (
+              <div key={group as string}>
+                <p className="mb-1 text-[10px] font-semibold tracking-wide text-gray-400">{group as string}</p>
+                <div className="-mx-1 flex gap-1.5 overflow-x-auto pb-1">
+                  {(links as [string, string][]).map(([id, label]) => (
+                    <a
+                      key={id}
+                      href={`#${id}`}
+                      className="shrink-0 rounded-full border border-gray-300 bg-white px-3 py-1 text-xs text-gray-700 hover:bg-gray-50"
+                    >
+                      {label}
+                    </a>
+                  ))}
+                </div>
+              </div>
             ))}
           </nav>
         </div>
       </header>
 
       <div className="mx-auto max-w-6xl px-5 py-6">
-        <AdminAnalytics />
+        <div id="analytics" className="scroll-mt-28">
+          <AdminAnalytics />
+        </div>
 
+        <div id="teachers" className="scroll-mt-28">
+          <AdminTeacherRequests />
+        </div>
+        <div id="orgs" className="scroll-mt-28">
+          <AdminOrganizations />
+        </div>
         <div id="reports" className="scroll-mt-28">
           <AdminReports />
         </div>
@@ -195,14 +228,14 @@ export default function AdminPage() {
         <div id="errors" className="scroll-mt-28">
           <AdminClientErrors />
         </div>
+        <div id="schools" className="scroll-mt-28">
+          <AdminSchools />
+        </div>
+        <div id="security" className="scroll-mt-28">
+          <AdminTeacherSecurity />
+        </div>
         <div id="sources" className="scroll-mt-28">
           <AdminSignupSources />
-        </div>
-        <div id="teachers" className="scroll-mt-28">
-          <AdminTeacherRequests />
-          <AdminSchools />
-          <AdminOrganizations />
-          <AdminTeacherSecurity />
         </div>
 
         <section id="usage" className="scroll-mt-28">
