@@ -163,14 +163,32 @@ export default function OrgPage() {
               <button type="button" onClick={() => setEditing(!editing)} className="mt-2 text-xs text-gray-500 underline">{editing ? "閉じる" : "組織の情報を編集する"}</button>
             </section>
             {editing && form}
-            <div className="flex gap-2">
-              <Link href="/org/posts/new" className="flex-1 rounded-full bg-relight-gradient py-2.5 text-center text-sm font-semibold text-white">＋ 投稿する</Link>
-              <Link href="/org/jobs/new" className="flex-1 rounded-full bg-black py-2.5 text-center text-sm font-semibold text-white">＋ 求人をつくる</Link>
-              <Link href="/scouts" className="flex-1 rounded-full border border-gray-300 bg-white py-2.5 text-center text-sm font-semibold">スカウト</Link>
+            <div className="space-y-2">
+              <Link href="/org/posts/new" className="flex items-center justify-between gap-3 rounded-2xl bg-relight-gradient px-4 py-3 text-white">
+                <div>
+                  <p className="text-sm font-semibold">＋ 投稿する</p>
+                  <p className="mt-0.5 text-xs text-white/90">職場の雰囲気や取り組みを、お知らせのように発信します</p>
+                </div>
+                <span className="text-lg">›</span>
+              </Link>
+              <Link href="/org/jobs/new" className="flex items-center justify-between gap-3 rounded-2xl bg-black px-4 py-3 text-white">
+                <div>
+                  <p className="text-sm font-semibold">＋ 求人をつくる</p>
+                  <p className="mt-0.5 text-xs text-white/80">募集中の仕事（給与・勤務時間など）を公開します</p>
+                </div>
+                <span className="text-lg">›</span>
+              </Link>
+              <Link href="/scouts" className="flex items-center justify-between gap-3 rounded-2xl border border-gray-300 bg-white px-4 py-3">
+                <div>
+                  <p className="text-sm font-semibold text-gray-900">スカウト</p>
+                  <p className="mt-0.5 text-xs text-gray-500">気になる理学療法士に、直接メッセージを送ります</p>
+                </div>
+                <span className="text-lg text-gray-400">›</span>
+              </Link>
             </div>
             <section className="rounded-2xl bg-white p-4 shadow-sm">
-              <h2 className="text-sm font-semibold">職場ページ（職場口コミ）とのひもづけ</h2>
-              <p className="mt-1 text-[11px] leading-5 text-gray-500">ひもづけると、投稿が、その職場の口コミページの「投稿」タブに表示されます。ひもづけは、運営が確認します。</p>
+              <h2 className="text-sm font-semibold">職場ページ（職場口コミ）と繋げる（任意）</h2>
+              <p className="mt-1 text-[11px] leading-5 text-gray-500">繋げなくても、求人の掲載やスカウトはできます。繋げたい場合は、下から職場の名前を探してください。繋げると、投稿がその職場の口コミページにも表示されます（運営の確認後）。</p>
               {linked ? (
                 <p className="mt-2 text-sm">ひもづけ中：<Link href={`/hospitals/${linked.id}`} className="underline">{linked.name}</Link>　<button type="button" onClick={() => linkHospital(null)} className="text-xs text-gray-500 underline">はずす</button></p>
               ) : <p className="mt-2 text-xs text-gray-500">まだ、ひもづけていません</p>}
