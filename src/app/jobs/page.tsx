@@ -49,16 +49,28 @@ export default function JobsPage() {
           <EmptyState title="いま公開されている求人はありません" description="条件を変えると、見つかることがあります" />
         ) : (
           <ul className="space-y-3">
-            {rows.map((r) => (
-              <li key={r.id}>
-                <Link href={`/jobs/${r.id}`} className="block rounded-2xl bg-white p-4 shadow-sm">
-                  <p className="text-xs text-gray-500">{r.org?.name ?? "組織"}・{r.org?.facility_type ?? r.org?.facility_category}</p>
-                  <p className="mt-1 text-base font-semibold">{r.title}</p>
-                  <p className="mt-1 text-xs text-gray-600">{[r.prefecture, r.city].filter(Boolean).join(" ") || "所在地：未掲載"}　{r.employment_type ?? "雇用形態：未掲載"}　{r.salary_text ?? "給与：未掲載"}</p>
-                  <p className="mt-1 text-[11px] text-gray-400">掲載日 {fmtDate(r.published_at)}</p>
-                </Link>
-              </li>
-            ))}
+            {rows.map((r) => {
+              const icon = (
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-lg">
+                  {r.org?.logo_url ? <img src={r.org.logo_url} alt="" className="h-full w-full object-cover" /> : "🏥"}
+                </div>
+              );
+              return (
+                <li key={r.id} className="flex items-start gap-3 rounded-2xl bg-white p-4 shadow-sm">
+                  {r.org?.hospital_id ? (
+                    <Link href={`/hospitals/${r.org.hospital_id}`} className="shrink-0" aria-label={`${r.org.name}のページを見る`}>
+                      {icon}
+                    </Link>
+                  ) : icon}
+                  <Link href={`/jobs/${r.id}`} className="min-w-0 flex-1">
+                    <p className="text-xs text-gray-500">{r.org?.name ?? "組織"}・{r.org?.facility_type ?? r.org?.facility_category}</p>
+                    <p className="mt-1 text-base font-semibold">{r.title}</p>
+                    <p className="mt-1 text-xs text-gray-600">{[r.prefecture, r.city].filter(Boolean).join(" ") || "所在地：未掲載"}　{r.employment_type ?? "雇用形態：未掲載"}　{r.salary_text ?? "給与：未掲載"}</p>
+                    <p className="mt-1 text-[11px] text-gray-400">掲載日 {fmtDate(r.published_at)}</p>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
         <p className="text-center text-xs text-gray-500">

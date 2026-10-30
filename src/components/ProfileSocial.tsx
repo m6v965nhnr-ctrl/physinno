@@ -106,6 +106,9 @@ export default function ProfileSocial({ ptUserId, loggedIn, isSelf, appealQuote 
                 </button>
               )}
               <textarea aria-label="スカウトのメッセージ" rows={5} maxLength={2000} value={msg} onChange={(e) => setMsg(e.target.value)} placeholder="なぜ、この方に声をかけたか、どんな職場かを、具体的に書いてください（10文字以上）" className={AREA} />
+              {msg.trim().length > 0 && msg.trim().length < 10 && (
+                <p className="text-[11px] text-red-600">あと{10 - msg.trim().length}文字、具体的に書いてください（短すぎて送れません）</p>
+              )}
               <p className="text-[11px] text-emerald-800">同じ相手には、返信があるまで、続けて送れません。受け取った方は、辞退できます。</p>
               <button type="button" onClick={sendScout} disabled={busy || msg.trim().length < 10} className="w-full rounded-full bg-black py-2.5 text-sm font-semibold text-white disabled:opacity-50">{busy ? "送信中…" : "送る"}</button>
             </div>

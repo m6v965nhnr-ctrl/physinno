@@ -42,7 +42,7 @@ export type Job = {
 
 export const JOB_STATUS_LABEL: Record<Job["status"], string> = { draft: "下書き", open: "公開中", closed: "募集終了" };
 export const EMPLOYMENT_TYPES = ["常勤", "非常勤", "パート", "業務委託", "その他"];
-export const ORG_COLUMNS = "id, name, facility_category, facility_type, prefecture, city, website, description, logo_url, status";
+export const ORG_COLUMNS = "id, name, facility_category, facility_type, prefecture, city, website, description, logo_url, status, hospital_id";
 
 export type ScoutRow = {
   id: string;

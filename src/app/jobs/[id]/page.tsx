@@ -55,8 +55,24 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
         {org && (
           <section className="rounded-2xl bg-white p-5 shadow-sm">
             <h2 className="text-sm font-semibold">掲載している組織</h2>
-            <p className="mt-2 text-sm font-medium">{org.name}</p>
-            <p className="text-xs text-gray-500">{org.facility_category}{org.facility_type ? `・${org.facility_type}` : ""}　{[org.prefecture, org.city].filter(Boolean).join(" ")}</p>
+            <div className="mt-2 flex items-center gap-3">
+              {(() => {
+                const icon = (
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-xl">
+                    {org.logo_url ? <img src={org.logo_url} alt="" className="h-full w-full object-cover" /> : "🏥"}
+                  </div>
+                );
+                return org.hospital_id ? (
+                  <Link href={`/hospitals/${org.hospital_id}`} className="shrink-0" aria-label={`${org.name}のページを見る`}>
+                    {icon}
+                  </Link>
+                ) : icon;
+              })()}
+              <div className="min-w-0">
+                <p className="text-sm font-medium">{org.name}</p>
+                <p className="text-xs text-gray-500">{org.facility_category}{org.facility_type ? `・${org.facility_type}` : ""}　{[org.prefecture, org.city].filter(Boolean).join(" ")}</p>
+              </div>
+            </div>
             {org.description && <p className="mt-2 whitespace-pre-wrap text-sm text-gray-700">{org.description}</p>}
             {org.website ? (
               <a href={org.website} target="_blank" rel="noopener noreferrer" className="mt-3 inline-block rounded-full bg-black px-5 py-2 text-sm font-semibold text-white">公式サイトで、応募・問い合わせ</a>
