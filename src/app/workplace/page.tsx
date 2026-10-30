@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
 import { Job, Org, ORG_COLUMNS, fmtDate } from "@/lib/recruit";
 import { EmptyState, ErrorState, LoadingScreen } from "@/components/states";
+import { OrgIcon } from "@/components/OrgIcon";
 import HospitalSearch from "@/components/HospitalSearch";
 
 type JobRow = Job & { org: Org | null };
@@ -97,28 +98,17 @@ function WorkplacePageInner() {
               <EmptyState title="いま公開されている求人はありません" description="条件を変えると、見つかることがあります" />
             ) : (
               <ul className="space-y-3">
-                {jobs.map((j) => {
-                  const icon = (
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-lg">
-                      {j.org?.logo_url ? <img src={j.org.logo_url} alt="" className="h-full w-full object-cover" /> : "🏥"}
-                    </div>
-                  );
-                  return (
-                    <li key={j.id} className="flex items-start gap-3 rounded-2xl border border-gray-100 p-4 shadow-sm">
-                      {j.org?.hospital_id ? (
-                        <Link href={`/hospitals/${j.org.hospital_id}`} className="shrink-0" aria-label={`${j.org.name}のページを見る`}>
-                          {icon}
-                        </Link>
-                      ) : icon}
-                      <Link href={`/jobs/${j.id}`} className="min-w-0 flex-1">
-                        <p className="text-xs text-gray-500">{j.org?.name ?? "組織"}・{j.org?.facility_type ?? j.org?.facility_category}</p>
-                        <p className="mt-1 text-base font-semibold">{j.title}</p>
-                        <p className="mt-1 text-xs text-gray-600">{[j.prefecture, j.city].filter(Boolean).join(" ") || "所在地：未掲載"}　{j.employment_type ?? "雇用形態：未掲載"}　{j.salary_text ?? "給与：未掲載"}</p>
-                        <p className="mt-1 text-[11px] text-gray-400">掲載日 {fmtDate(j.published_at)}</p>
-                      </Link>
-                    </li>
-                  );
-                })}
+                {jobs.map((j) => (
+                  <li key={j.id} className="flex items-start gap-3 rounded-2xl border border-gray-100 p-4 shadow-sm">
+                    <OrgIcon org={j.org} fallbackHref={`/jobs/${j.id}`} />
+                    <Link href={`/jobs/${j.id}`} className="min-w-0 flex-1">
+                      <p className="text-xs text-gray-500">{j.org?.name ?? "組織"}・{j.org?.facility_type ?? j.org?.facility_category}</p>
+                      <p className="mt-1 text-base font-semibold">{j.title}</p>
+                      <p className="mt-1 text-xs text-gray-600">{[j.prefecture, j.city].filter(Boolean).join(" ") || "所在地：未掲載"}　{j.employment_type ?? "雇用形態：未掲載"}　{j.salary_text ?? "給与：未掲載"}</p>
+                      <p className="mt-1 text-[11px] text-gray-400">掲載日 {fmtDate(j.published_at)}</p>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             )}
           </>

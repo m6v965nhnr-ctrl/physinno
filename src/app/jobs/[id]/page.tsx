@@ -6,6 +6,7 @@ import { supabase } from "@/lib/supabase";
 import { Job, Org, ORG_COLUMNS, fmtDate } from "@/lib/recruit";
 import ReportButton from "@/components/ReportButton";
 import { ErrorState, LoadingScreen } from "@/components/states";
+import { OrgIcon } from "@/components/OrgIcon";
 
 const row = (label: string, v: string | null) => (
   <div className="border-b border-gray-100 py-3 last:border-0">
@@ -38,8 +39,11 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
       <div className="mx-auto max-w-2xl space-y-4">
         <Link href="/jobs" className="text-sm text-gray-400">← 求人一覧</Link>
         <div className="rounded-2xl bg-white p-5 shadow-sm">
-          <p className="text-xs text-gray-500">{org?.name}・{org?.facility_type ?? org?.facility_category}</p>
-          <h1 className="mt-1 text-xl font-semibold">{job.title}</h1>
+          <div className="flex items-center gap-2">
+            <OrgIcon org={org} size={24} />
+            <p className="text-xs text-gray-500">{org?.name}・{org?.facility_type ?? org?.facility_category}</p>
+          </div>
+          <h1 className="mt-2 text-xl font-semibold">{job.title}</h1>
           <p className="mt-1 text-[11px] text-gray-400">掲載日 {fmtDate(job.published_at)}　更新日 {fmtDate(job.updated_at)}</p>
           <div className="mt-3">
             {row("所在地", [job.prefecture, job.city].filter(Boolean).join(" "))}
@@ -56,18 +60,7 @@ export default function JobDetailPage({ params }: { params: Promise<{ id: string
           <section className="rounded-2xl bg-white p-5 shadow-sm">
             <h2 className="text-sm font-semibold">掲載している組織</h2>
             <div className="mt-2 flex items-center gap-3">
-              {(() => {
-                const icon = (
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-full bg-gray-100 text-xl">
-                    {org.logo_url ? <img src={org.logo_url} alt="" className="h-full w-full object-cover" /> : "🏥"}
-                  </div>
-                );
-                return org.hospital_id ? (
-                  <Link href={`/hospitals/${org.hospital_id}`} className="shrink-0" aria-label={`${org.name}のページを見る`}>
-                    {icon}
-                  </Link>
-                ) : icon;
-              })()}
+              <OrgIcon org={org} size={48} />
               <div className="min-w-0">
                 <p className="text-sm font-medium">{org.name}</p>
                 <p className="text-xs text-gray-500">{org.facility_category}{org.facility_type ? `・${org.facility_type}` : ""}　{[org.prefecture, org.city].filter(Boolean).join(" ")}</p>
