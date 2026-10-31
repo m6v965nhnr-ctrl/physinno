@@ -79,9 +79,14 @@ export default function JobFormPage({ params }: { params: Promise<{ id: string }
         {t("requirements", "応募条件", "資格・経験など", 2000, 3)}
         {t("benefits", "福利厚生", "研修・資格取得の支援など", 2000, 3)}
         <p className="text-[11px] leading-5 text-gray-500">実際と違う内容や、応募者の個人情報は書かないでください。公開すると、承認された組織の求人として、一覧に出ます。</p>
+        {org.status !== "approved" && (
+          <p className="rounded-xl bg-amber-50 px-3 py-2 text-xs text-amber-900">組織が運営に承認されるまでは、公開できません。いまは下書きとして保存されます。承認されると、ここから公開できるようになります。</p>
+        )}
         <div className="flex gap-2">
           <button type="button" onClick={() => save("draft")} disabled={busy} className="flex-1 rounded-full border border-gray-300 bg-white py-2.5 text-sm font-semibold disabled:opacity-50">下書き保存</button>
-          <button type="button" onClick={() => save("open")} disabled={busy} className={`flex-1 ${PRIMARY_BUTTON_CLASS}`}>{busy ? "保存中…" : "公開する"}</button>
+          {org.status === "approved" && (
+            <button type="button" onClick={() => save("open")} disabled={busy} className={`flex-1 ${PRIMARY_BUTTON_CLASS}`}>{busy ? "保存中…" : "公開する"}</button>
+          )}
         </div>
       </div>
     </main>

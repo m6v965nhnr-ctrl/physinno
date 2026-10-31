@@ -227,7 +227,7 @@ export default function OrgPage() {
                     <p className="mt-1 text-[11px] text-gray-400">更新日 {fmtDate(j.updated_at)}</p>
                     <div className="mt-2 flex flex-wrap gap-2 text-xs">
                       <Link href={`/org/jobs/${j.id}`} className="rounded-full border border-gray-300 px-3 py-1">編集</Link>
-                      {j.status !== "open" && <button type="button" onClick={() => setStatus(j, "open")} className="rounded-full border border-gray-300 px-3 py-1">公開する</button>}
+                      {j.status !== "open" && org.status === "approved" && <button type="button" onClick={() => setStatus(j, "open")} className="rounded-full border border-gray-300 px-3 py-1">公開する</button>}
                       {j.status === "open" && <button type="button" onClick={() => setStatus(j, "draft")} className="rounded-full border border-gray-300 px-3 py-1">非公開（下書き）に戻す</button>}
                       {j.status === "open" && <button type="button" onClick={() => setStatus(j, "closed")} className="rounded-full border border-gray-300 px-3 py-1">募集を終了</button>}
                       <button type="button" onClick={() => remove(j)} className="rounded-full border border-red-200 px-3 py-1 text-red-700">削除</button>
