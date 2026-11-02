@@ -29,16 +29,26 @@ export default async function sitemap({ id }: { id: Promise<string> }): Promise<
   const start = chunkId * CHUNK_SIZE;
   const end = Math.min(start + CHUNK_SIZE, MAX_FACILITIES);
 
+  // 1チャンクあたり最大40回、連続でDBに取りに行くため、1回の一時的な失敗で
+  // ビルド全体を落とさないよう、各ページの取得は3回まで試す
+  async function fetchPage(from: number, to: number) {
+    for (let attempt = 1; attempt <= 3; attempt++) {
+      const { data, error } = await supabasePublic
+        .from("hospitals")
+        .select("id, created_at")
+        .neq("facility_category", "病院・医療機関")
+        .order("id")
+        .range(from, to);
+      if (!error) return data;
+      if (attempt === 3) throw new Error(`facilities sitemap fetch failed: ${error.message}`);
+      await new Promise((r) => setTimeout(r, attempt * 500));
+    }
+    return null;
+  }
+
   const rows: { id: string; created_at: string | null }[] = [];
   for (let from = start; from < end; from += 1000) {
-    const { data, error } = await supabasePublic
-      .from("hospitals")
-      .select("id, created_at")
-      .neq("facility_category", "病院・医療機関")
-      .order("id")
-      .range(from, Math.min(from + 999, end - 1));
-    // 取得が失敗した途中結果を「0件」としてキャッシュしてしまわないよう、エラー時は投げて再試行に任せる
-    if (error) throw new Error(`facilities sitemap fetch failed: ${error.message}`);
+    const data = await fetchPage(from, Math.min(from + 999, end - 1));
     if (!data || data.length === 0) break;
     rows.push(...data);
     if (data.length < 1000) break;
