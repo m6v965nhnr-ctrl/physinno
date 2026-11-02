@@ -37,8 +37,8 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
   const place = [hospital.prefecture, hospital.city].filter(Boolean).join("");
   const title = stats ? `${hospital.name}の口コミ（${stats.count}件）と職場環境` : `${hospital.name}の基本情報と職場環境の口コミ`;
   const description = stats
-    ? `${place ? `${place}の` : ""}${hospital.name}の職場環境の口コミ${stats.count}件（理学療法士による6項目の評価、平均${stats.average.toFixed(1)}/10）。基本情報・疾患比率・採用情報も確認できます。`
-    : `${place ? `${place}の` : ""}${hospital.name}の基本情報、疾患比率、採用情報、理学療法士による職場環境の口コミ（6項目の評価）を確認できます。`;
+    ? `${place ? `${place}の` : ""}${hospital.name}で働く理学療法士によるリアルな職場環境の口コミ${stats.count}件（6項目の評価、平均${stats.average.toFixed(1)}/10）。基本情報・疾患比率・採用情報も確認できます。`
+    : `${place ? `${place}の` : ""}${hospital.name}の基本情報、疾患比率、採用情報、理学療法士によるリアルな職場環境の口コミ（6項目の評価）を確認できます。`;
 
   return {
     title,
