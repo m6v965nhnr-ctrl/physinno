@@ -24,34 +24,39 @@ export async function generateSitemaps() {
   return Array.from({ length: chunks }, (_, id) => ({ id }));
 }
 
+// idで絞り込んで1000件ずつ読み進める（OFFSETは深いページほどDBが遅くなり、
+// 本番で「canceling statement due to statement timeout」になったため使わない）
+async function fetchPage(afterId: string | null) {
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    let query = supabasePublic.from("hospitals").select("id, created_at").neq("facility_category", "病院・医療機関").order("id").limit(1000);
+    if (afterId) query = query.gt("id", afterId);
+    const { data, error } = await query;
+    if (!error) return data;
+    if (attempt === 3) throw new Error(`facilities sitemap fetch failed: ${error.message}`);
+    await new Promise((r) => setTimeout(r, attempt * 500));
+  }
+  return null;
+}
+
 export default async function sitemap({ id }: { id: Promise<string> }): Promise<MetadataRoute.Sitemap> {
   const chunkId = Number(await id);
   const start = chunkId * CHUNK_SIZE;
   const end = Math.min(start + CHUNK_SIZE, MAX_FACILITIES);
 
-  // 1チャンクあたり最大40回、連続でDBに取りに行くため、1回の一時的な失敗で
-  // ビルド全体を落とさないよう、各ページの取得は3回まで試す
-  async function fetchPage(from: number, to: number) {
-    for (let attempt = 1; attempt <= 3; attempt++) {
-      const { data, error } = await supabasePublic
-        .from("hospitals")
-        .select("id, created_at")
-        .neq("facility_category", "病院・医療機関")
-        .order("id")
-        .range(from, to);
-      if (!error) return data;
-      if (attempt === 3) throw new Error(`facilities sitemap fetch failed: ${error.message}`);
-      await new Promise((r) => setTimeout(r, attempt * 500));
-    }
-    return null;
-  }
-
+  // 自分のチャンクより前の分も、同じidの並びで読み進める必要がある(前のチャンクの終点が分からないため)
+  let afterId: string | null = null;
+  let seen = 0;
   const rows: { id: string; created_at: string | null }[] = [];
-  for (let from = start; from < end; from += 1000) {
-    const data = await fetchPage(from, Math.min(from + 999, end - 1));
-    if (!data || data.length === 0) break;
-    rows.push(...data);
-    if (data.length < 1000) break;
+
+  while (seen < end) {
+    const page = await fetchPage(afterId);
+    if (!page || page.length === 0) break;
+    for (const row of page) {
+      if (seen >= start && seen < end) rows.push(row);
+      seen++;
+    }
+    afterId = page[page.length - 1].id;
+    if (page.length < 1000) break;
   }
 
   return rows.map((h) => ({
