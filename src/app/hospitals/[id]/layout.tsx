@@ -14,6 +14,15 @@ const getHospital = cache(async (id: string) => {
   return (data as Hospital | null) ?? null;
 });
 
+// 口コミの平均・件数を、検索結果のスニペット（概要文・星評価の構造化データ）に使う
+const getReviewStats = cache(async (id: string) => {
+  const { data } = await supabasePublic.rpc("get_hospital_reviews", { p_hospital_id: id });
+  const reviews = (data ?? []) as { overall_score: number }[];
+  if (reviews.length === 0) return null;
+  const average = reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length;
+  return { average, count: reviews.length };
+});
+
 export async function generateMetadata({ params }: Pick<Props, "params">): Promise<Metadata> {
   const { id } = await params;
 
@@ -23,9 +32,13 @@ export async function generateMetadata({ params }: Pick<Props, "params">): Promi
     return { title: "病院ページ", robots: { index: false, follow: true } };
   }
 
+  const stats = await getReviewStats(id);
+
   const place = [hospital.prefecture, hospital.city].filter(Boolean).join("");
-  const title = `${hospital.name}の基本情報と職場環境の口コミ`;
-  const description = `${place ? `${place}の` : ""}${hospital.name}の基本情報、疾患比率、採用情報、理学療法士による職場環境の口コミ（6項目の評価）を確認できます。`;
+  const title = stats ? `${hospital.name}の口コミ（${stats.count}件）と職場環境` : `${hospital.name}の基本情報と職場環境の口コミ`;
+  const description = stats
+    ? `${place ? `${place}の` : ""}${hospital.name}の職場環境の口コミ${stats.count}件（理学療法士による6項目の評価、平均${stats.average.toFixed(1)}/10）。基本情報・疾患比率・採用情報も確認できます。`
+    : `${place ? `${place}の` : ""}${hospital.name}の基本情報、疾患比率、採用情報、理学療法士による職場環境の口コミ（6項目の評価）を確認できます。`;
 
   return {
     title,
@@ -51,6 +64,8 @@ export default async function HospitalLayout({ params, children }: Props) {
 
   if (!hospital) return <HospitalInitialProvider hospital={null}>{children}</HospitalInitialProvider>;
 
+  const stats = await getReviewStats(id);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -67,6 +82,18 @@ export default async function HospitalLayout({ params, children }: Props) {
           ...(hospital.city ? { addressLocality: hospital.city } : {}),
           ...(hospital.address ? { streetAddress: hospital.address } : {}),
         },
+        // 理学療法士による職場環境の口コミ（1〜10点）。検索結果の星評価に使われることがある
+        ...(stats
+          ? {
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: stats.average.toFixed(1),
+                reviewCount: stats.count,
+                bestRating: "10",
+                worstRating: "1",
+              },
+            }
+          : {}),
       },
       {
         "@type": "BreadcrumbList",
