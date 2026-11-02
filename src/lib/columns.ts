@@ -78,6 +78,15 @@ export const COLUMNS: ColumnMeta[] = [
     updatedAt: "2026-09-29",
   },
   {
+    slug: "pt-job-change-checklist",
+    title: "PTが転職で後悔しないために確認すべき10のポイント",
+    description:
+      "理学療法士が転職先を決める前に確認したい、教育体制・PTの人数・残業・給与の内訳など10のポイントを解説。在職中でも見学しづらいときの確認方法もまとめました。",
+    category: "資格・キャリア",
+    publishedAt: "2026-11-02",
+    updatedAt: "2026-11-02",
+  },
+  {
     slug: "resume-writing-pt",
     title: "理学療法士の履歴書・職務経歴書の書き方｜自己PR例文つき",
     description:

@@ -21,6 +21,7 @@ import FirstStepCard from "@/components/FirstStepCard";
 import InstallHint from "@/components/InstallHint";
 import { markLiked } from "@/lib/firstSteps";
 import HomeAudienceCard from "@/components/HomeAudienceCard";
+import WorkplaceReviewPrompt from "@/components/WorkplaceReviewPrompt";
 import GuestBanner from "@/components/GuestBanner";
 import HomeQuestionsStrip from "@/components/HomeQuestionsStrip";
 import OrgPostsFeed from "@/components/OrgPostsFeed";
@@ -477,6 +478,7 @@ export default function HomePage() {
         {!guest && <FirstStepCard userId={userId} />}
         {!guest && <InstallHint />}
         {!guest && <HomeAudienceCard userId={userId} />}
+        {!guest && <WorkplaceReviewPrompt userId={userId} />}
         {!guest && <HomeQuestionsStrip userId={userId} />}
         {!guest && <OrgPostsFeed />}
 

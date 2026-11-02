@@ -216,6 +216,7 @@ export default function JobHuntingGuide() {
             {[
               ["resume-writing-pt", "理学療法士の履歴書・職務経歴書の書き方｜自己PR例文つき"],
               ["portfolio-for-job-change", "PTの転職で差がつくポートフォリオの作り方"],
+              ["pt-job-change-checklist", "PTが転職で後悔しないために確認すべき10のポイント"],
               ["pt-salary-reality", "理学療法士は「稼げない」って本当？年収の実態とこれからの働き方"],
               ["pt-oversupply-reality", "理学療法士は「多すぎる」のか？需給の実態とこれからのキャリア戦略"],
             ].map(([slug, label]) => (

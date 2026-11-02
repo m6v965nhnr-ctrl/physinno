@@ -81,6 +81,9 @@ function WorkplacePageInner() {
         {tab === "reviews" ? (
           <>
             <h1 className="text-3xl font-semibold mb-3">職場口コミ</h1>
+            <Link href="/columns/pt-job-change-checklist" className="mb-3 block text-xs text-gray-500 underline">
+              転職で確認すべき10のポイント（記事）
+            </Link>
             <HospitalSearch />
           </>
         ) : (
