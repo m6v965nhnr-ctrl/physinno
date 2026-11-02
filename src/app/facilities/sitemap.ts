@@ -31,12 +31,14 @@ export default async function sitemap({ id }: { id: Promise<string> }): Promise<
 
   const rows: { id: string; created_at: string | null }[] = [];
   for (let from = start; from < end; from += 1000) {
-    const { data } = await supabasePublic
+    const { data, error } = await supabasePublic
       .from("hospitals")
       .select("id, created_at")
       .neq("facility_category", "病院・医療機関")
       .order("id")
       .range(from, Math.min(from + 999, end - 1));
+    // 取得が失敗した途中結果を「0件」としてキャッシュしてしまわないよう、エラー時は投げて再試行に任せる
+    if (error) throw new Error(`facilities sitemap fetch failed: ${error.message}`);
     if (!data || data.length === 0) break;
     rows.push(...data);
     if (data.length < 1000) break;
