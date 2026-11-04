@@ -22,7 +22,7 @@ import {
 } from "@/lib/account";
 import { isAdminUser } from "@/lib/admin";
 import { isStandaloneApp } from "@/lib/install";
-import { hasName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
+import { hasName, hasSchoolName, isAllowedBeforeOnboarding, isOnboarded, markOnboarded } from "@/lib/onboarding";
 import { getGuestRole } from "@/lib/guestRole";
 
 const publicPaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/terms", "/privacy", "/evidence-levels", "/guest", "/guest/student", "/feedback", "/start", "/teachers", "/for-pt", "/for-students", "/for-general", "/for-org"];
@@ -113,6 +113,22 @@ export default function AuthGuard({
           if (cancelled) return;
           if (type === "pt" || type === "student") {
             router.replace(type === "pt" ? "/mypage/edit?welcome=1" : "/student/settings?welcome=1");
+            return;
+          }
+        }
+
+        // 学生は、学校名が入っていなければ、設定画面から先へ進めない（教科ごとの勉強法は
+        // 学校で違うため、学校ごとにナレッジを貯める目的で必須にしている。既存の学生も対象）
+        if (
+          early?.user &&
+          !isAllowedBeforeOnboarding(pathname) &&
+          !pathname.startsWith("/student/settings") &&
+          !(await isAdminUser(early.user.id))
+        ) {
+          const type = await getMyAccountType(early.user.id);
+          if (cancelled) return;
+          if (type === "student" && !(await hasSchoolName(early.user.id))) {
+            router.replace("/student/settings?welcome=1");
             return;
           }
         }

@@ -20,11 +20,15 @@ export default function StudentSetupForm() {
       setError("卒業予定年を選んでください");
       return;
     }
+    if (!school.trim()) {
+      setError("学校名を入力してください");
+      return;
+    }
     setSaving(true);
     setError("");
     const { error: rpcError } = await supabase.rpc("become_student", {
       p_graduation_year: Number(gradYear),
-      p_school: school.trim() || null,
+      p_school: school.trim(),
     });
     setSaving(false);
     if (rpcError) {
@@ -53,7 +57,7 @@ export default function StudentSetupForm() {
         value={school}
         onChange={(e) => setSchool(e.target.value)}
         maxLength={80}
-        placeholder="学校名（任意）"
+        placeholder="学校名（必須）"
         aria-label="学校名"
         className="w-full rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-sm"
       />

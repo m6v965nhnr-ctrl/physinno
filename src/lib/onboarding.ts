@@ -43,6 +43,24 @@ export async function hasName(userId: string): Promise<boolean> {
   return ok;
 }
 
+// 学生は、学校名が入っているかを確認する。教科ごとの勉強法は学校で違うため、
+// 学校ごとにナレッジを貯める目的で必須にしている。確認できたら、このタブでは再確認しない
+let schoolNameCache: string | null = null;
+
+export async function hasSchoolName(userId: string): Promise<boolean> {
+  if (schoolNameCache === userId) return true;
+
+  const { data } = await supabase
+    .from("student_profiles")
+    .select("school_name")
+    .eq("user_id", userId)
+    .maybeSingle();
+
+  const ok = Boolean(data?.school_name?.trim());
+  if (ok) schoolNameCache = userId;
+  return ok;
+}
+
 // 初回登録が済むまでも開けるページ（入力画面そのものと、規約・問い合わせなど）
 const ALLOWED_BEFORE_ONBOARDING = ["/mypage/edit", "/contact", "/terms", "/privacy"];
 

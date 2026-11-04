@@ -99,6 +99,12 @@ export default function StudentSettingsPage() {
       return;
     }
 
+    if (!schoolName.trim()) {
+      notify("養成校名を入力してください");
+      document.getElementById("field-school")?.focus();
+      return;
+    }
+
     setSaving(true);
 
     // 名前・自己紹介は pt_profiles に保存(コメントやメッセージで他のユーザーに表示される)
@@ -196,8 +202,8 @@ export default function StudentSettingsPage() {
 
         {welcome && (
           <div className="mt-4 rounded-2xl bg-emerald-50 p-4 text-sm leading-6 text-emerald-800">
-            登録ありがとうございます！まずは名前を入力してください。名前は、コメントやメッセージで他のユーザーに表示されます。
-            養成校名や卒業予定は、あなただけに表示されます。
+            登録ありがとうございます！名前と養成校名を入力してください（どちらも必須です）。名前は、コメントやメッセージで他のユーザーに表示されます。
+            養成校名や卒業予定は、あなただけに表示されます（学校ごとの勉強方法の共有に使います）。
           </div>
         )}
 
@@ -238,9 +244,10 @@ export default function StudentSettingsPage() {
               </span>
             </h2>
 
-            <label className="block text-sm font-medium">
-              養成校名（任意）
+            <label className="block text-sm font-medium" htmlFor="field-school">
+              養成校名（必須）
               <input
+                id="field-school"
                 value={schoolName}
                 onChange={(e) => setSchoolName(e.target.value)}
                 maxLength={100}
