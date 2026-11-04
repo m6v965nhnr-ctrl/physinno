@@ -11,9 +11,9 @@ import { pickLpEntrance } from "@/lib/lpEntrance";
 
 const STATS = [
   { big: "完全無料", small: "登録も基本機能も" },
+  { big: "約14.6万", small: "全国の病院・施設のリアルな口コミが見れる" },
   { big: "8サイト", small: "論文をまとめて検索" },
   { big: "約2,500問", small: "国試の過去問（第49〜61回）" },
-  { big: "約14.6万", small: "全国の病院・施設を探せる" },
 ];
 
 
@@ -68,7 +68,6 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             アプリ。
           </h1>
           <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">論文も、国試も、職場探しも。ぜんぶ無料で使えます。</p>
-          <p className="mt-1 text-sm leading-7 text-gray-600">自分に近い立場の入口からどうぞ。</p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {doors.map((d, i) => (
