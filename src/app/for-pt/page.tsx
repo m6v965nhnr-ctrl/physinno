@@ -98,9 +98,6 @@ export default function ForPtPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-6 text-center text-lg font-bold text-[var(--lp-g800)]">
-            ↓ この4つを片づけたくて、Re:lightを作りました。
-          </p>
         </div>
       </section>
 
@@ -110,65 +107,82 @@ export default function ForPtPage() {
           <p className={SECTION_LABEL}>FEATURES</p>
           <h2 className={H2}>Re:lightで、できること</h2>
 
-          <div className="mt-8 space-y-6">
+          <div className="mt-8 divide-y divide-[var(--lp-g200)] rounded-3xl border border-[var(--lp-g200)] bg-white px-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:px-8">
             {/* 論文 */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
-              <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">📚 論文を、8サイトまとめて探す</h3>
-              <p className="mt-2 text-sm leading-7 text-gray-700">
-                日本語で検索すれば、自動で英語にも変換して、海外の論文も一緒に探します。見つけた論文は、エビデンスレベルで絞り込め、要約の日本語訳も読めます。普通の文章で質問する「AIモード」では、見つかった論文だけをもとに、引用番号つきで答えます。
-              </p>
-              <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="対応サイト">
-                {SITES.map((s) => (
-                  <li key={s} className="rounded-full border border-[var(--lp-g200)] bg-[var(--lp-g50)] px-3 py-1 text-xs font-medium text-[var(--lp-g800)]">{s}</li>
-                ))}
-              </ul>
-              <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="エビデンスレベル">
-                {LEVELS.map((l) => (
-                  <li key={l} className="rounded-md bg-[var(--lp-g100)] px-2.5 py-1 text-[11px] font-semibold text-[var(--lp-g900)]">{l}</li>
-                ))}
-              </ul>
-              <Link href="/evidence-levels" className="mt-4 inline-block text-sm font-bold text-[var(--lp-g700)] underline underline-offset-4">
-                エビデンスレベル早見表を見る →
-              </Link>
-            </article>
-
-            {/* 臨床アイデア */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:p-8">
-              <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">💡 疾患から、評価とリハビリのアイデアを引く</h3>
-              <p className="mt-2 text-sm leading-7 text-gray-700">
-                診療報酬の区分から疾患を選ぶと、まず見たい評価と、リハビリのアイデアが見られます。自分のアイデアを登録して共有でき、「実践した」の数で、よく使われているものが分かります。AIに相談もできます。
-              </p>
-              <p className="mt-2 text-[11px] leading-5 text-gray-500">公開されているガイドライン等をもとにした一般的な参考情報です。実際の判断は、医師の指示とご自身の評価に従ってください。</p>
-            </article>
-
-            {/* 病院 */}
-            <article className="rounded-3xl border border-[var(--lp-g200)] bg-white p-6 shadow-[0_8px_24px_rgba(8,76,91,0.08)] md:flex md:items-center md:gap-8 md:p-8">
-              <div className="md:flex-1">
-                <h3 className="text-xl font-bold leading-snug text-[var(--lp-g900)]">🏥 職場選びに、リアルな情報を</h3>
-                <p className="mt-2 text-sm leading-7 text-gray-700">
-                  全国の病院・施設 約14.6万件（病院・クリニック・老健・訪問看護・デイサービスなど）を、地域から探せます。年収・雇用形態・休日・アクセスでの絞り込みと、現役PTによる口コミ（残業・教育体制・女性の働きやすさなど）を、匿名で投稿・閲覧できます。
+            <details className="group py-6">
+              <summary className="flex cursor-pointer list-none items-center gap-2 text-xl font-bold leading-snug text-[var(--lp-g900)]">
+                <span className="flex-1">📚 論文を、8サイトまとめて探す</span>
+                <span aria-hidden="true" className="text-[var(--lp-g600)] group-open:hidden">＋</span>
+                <span aria-hidden="true" className="hidden text-[var(--lp-g600)] group-open:inline">−</span>
+              </summary>
+              <div className="mt-3">
+                <p className="text-sm leading-7 text-gray-700">
+                  日本語で検索すれば、自動で英語にも変換して、海外の論文も一緒に探します。見つけた論文は、エビデンスレベルで絞り込め、要約の日本語訳も読めます。普通の文章で質問する「AIモード」では、見つかった論文だけをもとに、引用番号つきで答えます。
                 </p>
-                <Link href="/pts?mode=hospitals" className="mt-4 inline-block text-sm font-bold text-[var(--lp-g700)] underline underline-offset-4">
-                  病院を探してみる（登録不要）→
+                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label="対応サイト">
+                  {SITES.map((s) => (
+                    <li key={s} className="rounded-full border border-[var(--lp-g200)] bg-[var(--lp-g50)] px-3 py-1 text-xs font-medium text-[var(--lp-g800)]">{s}</li>
+                  ))}
+                </ul>
+                <ul className="mt-3 flex flex-wrap gap-1.5" aria-label="エビデンスレベル">
+                  {LEVELS.map((l) => (
+                    <li key={l} className="rounded-md bg-[var(--lp-g100)] px-2.5 py-1 text-[11px] font-semibold text-[var(--lp-g900)]">{l}</li>
+                  ))}
+                </ul>
+                <Link href="/evidence-levels" className="mt-4 inline-block text-sm font-bold text-[var(--lp-g700)] underline underline-offset-4">
+                  エビデンスレベル早見表を見る →
                 </Link>
               </div>
-              <div className="mt-6 flex justify-center md:mt-0">
-                <MockHospital />
+            </details>
+
+            {/* 臨床アイデア */}
+            <details className="group py-6">
+              <summary className="flex cursor-pointer list-none items-center gap-2 text-xl font-bold leading-snug text-[var(--lp-g900)]">
+                <span className="flex-1">💡 疾患から、評価とリハビリのアイデアを引く</span>
+                <span aria-hidden="true" className="text-[var(--lp-g600)] group-open:hidden">＋</span>
+                <span aria-hidden="true" className="hidden text-[var(--lp-g600)] group-open:inline">−</span>
+              </summary>
+              <div className="mt-3">
+                <p className="text-sm leading-7 text-gray-700">
+                  診療報酬の区分から疾患を選ぶと、まず見たい評価と、リハビリのアイデアが見られます。自分のアイデアを登録して共有でき、「実践した」の数で、よく使われているものが分かります。AIに相談もできます。
+                </p>
+                <p className="mt-2 text-[11px] leading-5 text-gray-500">公開されているガイドライン等をもとにした一般的な参考情報です。実際の判断は、医師の指示とご自身の評価に従ってください。</p>
               </div>
-            </article>
+            </details>
+
+            {/* 病院 */}
+            <details className="group py-6">
+              <summary className="flex cursor-pointer list-none items-center gap-2 text-xl font-bold leading-snug text-[var(--lp-g900)]">
+                <span className="flex-1">🏥 職場選びに、リアルな情報を</span>
+                <span aria-hidden="true" className="text-[var(--lp-g600)] group-open:hidden">＋</span>
+                <span aria-hidden="true" className="hidden text-[var(--lp-g600)] group-open:inline">−</span>
+              </summary>
+              <div className="mt-3 md:flex md:items-center md:gap-8">
+                <div className="md:flex-1">
+                  <p className="text-sm leading-7 text-gray-700">
+                    全国の病院・施設 約14.6万件（病院・クリニック・老健・訪問看護・デイサービスなど）を、地域から探せます。年収・雇用形態・休日・アクセスでの絞り込みと、現役PTによる口コミ（残業・教育体制・女性の働きやすさなど）を、匿名で投稿・閲覧できます。
+                  </p>
+                  <Link href="/pts?mode=hospitals" className="mt-4 inline-block text-sm font-bold text-[var(--lp-g700)] underline underline-offset-4">
+                    病院を探してみる（登録不要）→
+                  </Link>
+                </div>
+                <div className="mt-6 flex justify-center md:mt-0">
+                  <MockHospital />
+                </div>
+              </div>
+            </details>
 
             {/* 小さい機能 */}
-            <ul className="grid gap-4 md:grid-cols-2">
-              {SMALL_FEATURES.map((f) => (
-                <li key={f.title} className="flex gap-4 rounded-2xl border border-[var(--lp-g200)] bg-white p-5 shadow-sm">
-                  <span aria-hidden="true" className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[var(--lp-g100)] text-xl">{f.icon}</span>
-                  <div>
-                    <h3 className="text-base font-bold text-[var(--lp-g900)]">{f.title}</h3>
-                    <p className="mt-1 text-sm leading-7 text-gray-700">{f.body}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
+            {SMALL_FEATURES.map((f) => (
+              <details key={f.title} className="group py-6">
+                <summary className="flex cursor-pointer list-none items-center gap-2 text-xl font-bold leading-snug text-[var(--lp-g900)]">
+                  <span className="flex-1">{f.icon} {f.title}</span>
+                  <span aria-hidden="true" className="text-[var(--lp-g600)] group-open:hidden">＋</span>
+                  <span aria-hidden="true" className="hidden text-[var(--lp-g600)] group-open:inline">−</span>
+                </summary>
+                <p className="mt-3 text-sm leading-7 text-gray-700">{f.body}</p>
+              </details>
+            ))}
           </div>
 
           <div className="mt-10 text-center">

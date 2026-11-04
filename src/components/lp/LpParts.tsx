@@ -45,17 +45,19 @@ export function SafetySection({ registerHref }: { registerHref: string }) {
           <p className="text-xs font-bold tracking-[0.14em] text-[var(--lp-g300)]">SAFETY</p>
           <h2 className="mt-2 text-balance text-2xl font-bold leading-snug tracking-tight text-white md:text-3xl">安心して本音を書けるように、守りを厚くしています</h2>
           <p className="mt-2 max-w-2xl text-sm leading-7 text-white/80">口コミや相談は、安心して書けてこそ。見せる範囲も、名前を出すかどうかも、使う人が自分で決められます。情報を守る仕組みは、点検のたびに見直しています。</p>
-          <ul className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-8 divide-y divide-white/15 rounded-2xl border border-white/15 bg-white/[0.07] px-5">
             {SAFETY.map((s) => (
-              <li key={s.title} className="flex gap-4 rounded-2xl border border-white/15 bg-white/[0.07] p-4">
-                <span aria-hidden="true" className="text-2xl">{s.icon}</span>
-                <div>
-                  <h3 className="text-base font-bold text-white">{s.title}</h3>
-                  <p className="mt-1 text-sm leading-7 text-white/80">{s.body}</p>
-                </div>
-              </li>
+              <details key={s.title} className="group py-4">
+                <summary className="flex cursor-pointer list-none items-center gap-3 text-base font-bold text-white">
+                  <span aria-hidden="true" className="text-2xl">{s.icon}</span>
+                  <span className="flex-1">{s.title}</span>
+                  <span aria-hidden="true" className="text-white/60 group-open:hidden">＋</span>
+                  <span aria-hidden="true" className="hidden text-white/60 group-open:inline">−</span>
+                </summary>
+                <p className="mt-2 pl-11 text-sm leading-7 text-white/80">{s.body}</p>
+              </details>
             ))}
-          </ul>
+          </div>
           <div className="mt-8 rounded-2xl border border-white/15 bg-white/[0.07] p-5">
             <h3 className="text-base font-bold text-white">使っているサービスと、その安全性</h3>
             <p className="mt-1 text-sm leading-7 text-white/80">データは、世界の多くの企業が使う、次の基盤に預けています。認証・準拠の内容は、各社の公式な発表によるもので、Re:light自身が取得したものではありません。</p>

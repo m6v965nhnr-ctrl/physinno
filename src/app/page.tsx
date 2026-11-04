@@ -114,7 +114,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-bold text-[var(--lp-g900)]">Re:light（リライト）とは</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            Re:light（リライト）は、理学療法士と、PTをめざす学生のための無料Webアプリです。論文を探すとき8つのサイトを行き来しなくて済むように、認定・専門の更新があとどれくらいか迷わないように、転職の前にあの病院の働き心地が分かるように──仕事まわりの調べものがここで済むことを目指して作っています。
+            Re:light（リライト）は、理学療法士と、PTをめざす学生のための無料Webアプリです。
             学生向けには国家試験の過去問が約2,500問（第49〜61回・解説つき）。先生はクラスにテストを配って、誰がどの単元でつまずいているかを見られます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">
