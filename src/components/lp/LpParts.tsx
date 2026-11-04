@@ -58,9 +58,13 @@ export function SafetySection({ registerHref }: { registerHref: string }) {
               </details>
             ))}
           </div>
-          <div className="mt-8 rounded-2xl border border-white/15 bg-white/[0.07] p-5">
-            <h3 className="text-base font-bold text-white">使っているサービスと、その安全性</h3>
-            <p className="mt-1 text-sm leading-7 text-white/80">データは、世界の多くの企業が使う、次の基盤に預けています。認証・準拠の内容は、各社の公式な発表によるもので、Re:light自身が取得したものではありません。</p>
+          <details className="group mt-8 rounded-2xl border border-white/15 bg-white/[0.07] p-5">
+            <summary className="flex cursor-pointer list-none items-center gap-3 text-base font-bold text-white">
+              <span className="flex-1">使っているサービスと、その安全性</span>
+              <span aria-hidden="true" className="text-white/60 group-open:hidden">＋</span>
+              <span aria-hidden="true" className="hidden text-white/60 group-open:inline">−</span>
+            </summary>
+            <p className="mt-3 text-sm leading-7 text-white/80">データは、世界の多くの企業が使う、次の基盤に預けています。認証・準拠の内容は、各社の公式な発表によるもので、Re:light自身が取得したものではありません。</p>
             <div className="mt-4 grid gap-3 sm:grid-cols-2">
               {INFRA.map((i) => (
                 <div key={i.name} className="rounded-xl bg-white/10 p-4">
@@ -75,7 +79,7 @@ export function SafetySection({ registerHref }: { registerHref: string }) {
               ))}
             </div>
             <p className="mt-3 text-xs leading-6 text-white/70">基盤が安全でも、設定を誤れば情報は守れません。だから、誰が何を読めるかの制限（上の項目）は、Re:light側で設定し、テストで確かめています。どんなサービスにも「絶対」はないため、患者さんが特定される情報は、投稿しないでください。</p>
-          </div>
+          </details>
           <p className="mt-6 text-xs leading-6 text-white/70">
             患者さんが特定される情報は、投稿しないでください。AIに入力した内容は、外部のサービス（Google）に送信されます。詳しくは
             <Link href="/privacy" className="mx-1 underline">プライバシーポリシー</Link>
