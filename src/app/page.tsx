@@ -18,11 +18,11 @@ const STATS = [
 
 
 const DOORS = [
-  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", title: "仕事の調べものを、ここで済ませる", body: "論文検索・資格の進捗・研修情報・職場の口コミ" },
-  { key: "student", href: "/for-students", who: "学生の方へ", title: "国試・実習・就活をひとつに", body: "過去問約2,500問・筋と骨の確認・先生のクラスのテスト" },
-  { key: "teacher", href: "/teachers", who: "教員の方へ", title: "国試の一問一答を、クラスで", body: "テストを配って、学生ごと・単元ごとの状況を見る" },
-  { key: "general", href: "/for-general", who: "一般の方へ", title: "理学療法士・病院を探す", body: "地域や専門分野から探せます" },
-  { key: "org", href: "/for-org", who: "病院・施設・法人の方へ", title: "採用・求人・スカウト", body: "求人の掲載・職場の発信・PTへのスカウト" },
+  { key: "pt", href: "/for-pt", who: "理学療法士の方へ" },
+  { key: "student", href: "/for-students", who: "学生の方へ" },
+  { key: "teacher", href: "/teachers", who: "教員の方へ" },
+  { key: "general", href: "/for-general", who: "一般の方へ" },
+  { key: "org", href: "/for-org", who: "病院・施設・法人の方へ" },
 ];
 
 const jsonLd = {
@@ -82,10 +82,8 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
                     : "border-2 border-[var(--lp-g700)] bg-white text-[var(--lp-g900)] hover:bg-[var(--lp-g50)]"
                 }`}
               >
-                <span className={`block text-[11px] font-bold ${i === 0 ? "text-[var(--on-brand)]/70" : "text-[var(--lp-g600)]"}`}>{d.who}</span>
-                <span className="mt-0.5 block text-[15px] font-bold leading-snug">{d.title}</span>
-                <span className={`mt-1 block text-xs leading-5 ${i === 0 ? "text-[var(--on-brand)]/80" : "text-gray-600"}`}>{d.body}</span>
-                <span className={`mt-3 inline-block rounded-full px-4 py-1.5 text-xs font-bold ${i === 0 ? "bg-white text-[var(--lp-g800)]" : "bg-relight-gradient"}`}>詳しく見る →</span>
+                <span className={`block text-[15px] font-bold ${i === 0 ? "text-[var(--on-brand)]" : "text-[var(--lp-g900)]"}`}>{d.who}</span>
+                <span className={`mt-2 inline-block rounded-full px-4 py-1.5 text-xs font-bold ${i === 0 ? "bg-white text-[var(--lp-g800)]" : "bg-relight-gradient"}`}>詳しく見る →</span>
               </Link>
             ))}
           </div>
