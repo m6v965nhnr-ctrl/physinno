@@ -17,9 +17,13 @@ const STATS = [
 ];
 
 
+// 理学療法士・学生が、登録者のほとんどを占めるため、この2つを主役にする
 const DOORS = [
   { key: "pt", href: "/for-pt", who: "理学療法士の方へ" },
   { key: "student", href: "/for-students", who: "学生の方へ" },
+];
+
+const OTHER_DOORS = [
   { key: "teacher", href: "/teachers", who: "教員の方へ" },
   { key: "general", href: "/for-general", who: "一般の方へ" },
   { key: "org", href: "/for-org", who: "病院・施設・法人の方へ" },
@@ -47,7 +51,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
   const entrance = pickLpEntrance(one(q.utm_source), one(q.utm_campaign));
   const registerHref = `/register?type=${entrance.register}`;
   // どのリンクから来たかで、並びの先頭（理学療法士／学生）を変える
-  const doors = entrance.tab === "student" ? [DOORS[1], DOORS[0], DOORS[2], DOORS[3], DOORS[4]] : DOORS;
+  const doors = entrance.tab === "student" ? [DOORS[1], DOORS[0]] : DOORS;
 
   return (
     <main className="lp min-h-screen bg-white text-[var(--lp-ink)]">
@@ -67,7 +71,11 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
             <br />
             アプリ。
           </h1>
-          <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">論文も、国試も、職場探しも。ぜんぶ無料で使えます。</p>
+          <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">
+            論文も、国試も、職場探しも。
+            <br />
+            ぜんぶ無料で使えます。
+          </p>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {doors.map((d, i) => (
@@ -86,6 +94,15 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
               </Link>
             ))}
           </div>
+
+          <p className="mt-3 text-xs leading-6 text-gray-500">
+            {OTHER_DOORS.map((d, i) => (
+              <span key={d.key}>
+                {i > 0 && "・"}
+                <Link href={d.href} className="underline underline-offset-2 hover:text-gray-700">{d.who}</Link>
+              </span>
+            ))}
+          </p>
 
           <p className="mt-4 text-sm leading-7 text-gray-600">
             <Link href="/guest" className="font-bold text-[var(--lp-g700)] underline underline-offset-4">
