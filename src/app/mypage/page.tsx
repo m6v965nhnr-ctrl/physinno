@@ -476,6 +476,9 @@ export default function MyPage() {
           </Link>
         )}
 
+        {/* 同僚を招待する（紹介経由の登録が一番伸びが良いため、プロフィールの最下部から上へ移動） */}
+        <ReferralCard userId={userId} />
+
         {/* =========================
             実績・資格更新（クリックしなくても内容が見える。プロフィールをこの分だけ押し下げる）
         ========================= */}
@@ -672,7 +675,6 @@ export default function MyPage() {
             {profileExpanded ? "閉じる ▲" : "もっと見る ▼"}
           </button>
 
-          <ReferralCard userId={userId} />
           <AddToHomeButton placement="bottom" />
         </div>
 
