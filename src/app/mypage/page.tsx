@@ -1,6 +1,7 @@
 "use client";
 
 import { getLocalUser } from "@/lib/authUser";
+import { getGuestRole } from "@/lib/guestRole";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -54,6 +55,8 @@ export default function MyPage() {
   const [appealDone, setAppealDone] = useState<number | null>(null);
   // 採用（組織）のアカウント、または組織を登録した一般アカウントの組織
   const [org, setOrg] = useState<Org | null>(null);
+  // 「立場を選んで見てみる」で、ログインせずに見ている人（本物のデータは無い）
+  const [guest, setGuest] = useState(false);
 
 
   useEffect(() => {
@@ -80,6 +83,11 @@ export default function MyPage() {
     } = await getLocalUser();
 
     if (!user) {
+      if (getGuestRole()) {
+        setGuest(true);
+        setLoading(false);
+        return;
+      }
       router.replace("/login");
       return;
     }
@@ -278,6 +286,41 @@ export default function MyPage() {
         <p className="text-gray-500">
           読み込み中…
         </p>
+      </main>
+    );
+  }
+
+  // 立場を選んで見ている人には、本物のデータの代わりに、空のマイページを見せる
+  if (guest) {
+    return (
+      <main className="min-h-screen bg-white px-6 py-12 pb-24">
+        <div className="mx-auto max-w-lg text-center">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-gray-100 ring-4 ring-white">
+            <AvatarIcon className="h-20 w-20" />
+          </div>
+          <h1 className="mt-6 text-2xl font-semibold text-gray-400">（未設定）</h1>
+          <p className="mt-2 text-sm text-gray-400">登録すると、ここにあなたのプロフィールが表示されます</p>
+
+          <div className="mt-6 flex justify-center gap-6 text-center">
+            {["投稿", "フォロー", "フォロワー"].map((label) => (
+              <div key={label}>
+                <p className="font-semibold text-gray-300">0</p>
+                <p className="text-sm text-gray-400">{label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 rounded-2xl border border-dashed border-gray-200 p-6 text-left text-sm leading-6 text-gray-400">
+            実績・資格更新の目標・プロフィールなどは、登録するとここに表示され、自分で入力・編集できます。
+          </div>
+
+          <Link
+            href="/register?type=pt"
+            className="mt-8 block rounded-full bg-relight-gradient py-3.5 text-center text-sm font-bold text-white"
+          >
+            無料登録して、自分のページを作る
+          </Link>
+        </div>
       </main>
     );
   }

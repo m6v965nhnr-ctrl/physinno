@@ -363,9 +363,7 @@ export default function BottomNavWrapper() {
   }
 
   // いま開いているメニューの位置（なければ -1）。ここに、背景の丸がスライドして移動する
-  const activeIndex = previewOnly
-    ? menus.findIndex((m) => m.href === "/home")
-    : menus.findIndex((m) => isActive(m.href));
+  const activeIndex = menus.findIndex((m) => isActive(m.href));
 
   return (
     <nav
@@ -419,26 +417,16 @@ export default function BottomNavWrapper() {
             </span>
           );
 
-          // 見るだけのとき: 同じ見た目で、押せないメニュー（ホームだけ、いまの画面として濃く出す）
-          if (previewOnly) {
-            return (
-              <span
-                key={menu.href}
-                aria-disabled="true"
-                title="無料登録すると使えます"
-                className={`relative z-10 flex cursor-not-allowed select-none justify-center rounded-full px-2 py-1 ${
-                  active ? "font-semibold text-black" : "text-gray-400"
-                }`}
-              >
-                {inner}
-              </span>
-            );
-          }
+          // 見ている立場のまま進めるが、投稿の作成だけは登録が要るので、登録画面へ
+          const href =
+            previewOnly && menu.href === "/posts/create"
+              ? withReturnTo("/register", "/posts/create")
+              : menu.href;
 
           return (
             <Link
               key={menu.href}
-              href={menu.href}
+              href={href}
               aria-current={active ? "page" : undefined}
               aria-label={
                 badgeCount > 0
