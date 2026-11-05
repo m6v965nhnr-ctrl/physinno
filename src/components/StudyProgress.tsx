@@ -36,7 +36,11 @@ export function ProgressBar({ counts, from, to }: { counts: Map<number, number>;
   );
 }
 
-// 「日々の記録」: 1件の記録が何ページぶんか（終了p - 開始p + 1）を、日または週ごとに積み上げる
+// 「日々の記録」: 1件の記録が何ページぶんか（終了p - 開始p + 1）を、日・週・月ごとに積み上げる
+type RecordUnit = "day" | "week" | "month";
+const UNIT_LABEL: Record<RecordUnit, string> = { day: "日ごと", week: "週ごと", month: "月ごと" };
+const UNIT_SUFFIX: Record<RecordUnit, string> = { day: "日", week: "週", month: "月" };
+
 function pagesOf(l: StudyLog): number {
   return l.page_end - l.page_start + 1;
 }
@@ -47,35 +51,51 @@ function mondayOf(iso: string): string {
   d.setUTCDate(d.getUTCDate() - dow);
   return d.toISOString().slice(0, 10);
 }
-function bucketLabel(key: string): string {
+function monthOf(iso: string): string {
+  return `${iso.slice(0, 7)}-01`;
+}
+function bucketKeyOf(studiedOn: string, unit: RecordUnit): string {
+  if (unit === "day") return studiedOn;
+  if (unit === "week") return mondayOf(studiedOn);
+  return monthOf(studiedOn);
+}
+function bucketLabel(key: string, unit: RecordUnit): string {
   const [, m, d] = key.split("-");
-  return `${Number(m)}/${Number(d)}`;
+  return unit === "month" ? `${Number(m)}月` : `${Number(m)}/${Number(d)}`;
 }
 
 export function DailyRecordView({ logs }: { logs: StudyLog[] }) {
-  const [unit, setUnit] = useState<"day" | "week">("day");
+  const [unit, setUnit] = useState<RecordUnit>("day");
 
-  const bars = useMemo(() => {
+  const buckets = useMemo(() => {
     const map = new Map<string, number>();
     for (const l of logs) {
-      const key = unit === "day" ? l.studied_on : mondayOf(l.studied_on);
+      const key = bucketKeyOf(l.studied_on, unit);
       map.set(key, (map.get(key) ?? 0) + pagesOf(l));
     }
-    return Array.from(map.entries())
-      .sort(([a], [b]) => (a < b ? -1 : 1))
-      .slice(-14)
-      .map(([key, value]) => ({ label: bucketLabel(key), values: [value] }));
+    return map;
   }, [logs, unit]);
+
+  const bars = useMemo(
+    () =>
+      Array.from(buckets.entries())
+        .sort(([a], [b]) => (a < b ? -1 : 1))
+        .slice(-14)
+        .map(([key, value]) => ({ label: bucketLabel(key, unit), values: [value] })),
+    [buckets, unit]
+  );
 
   if (logs.length === 0) return <p className="py-8 text-center text-xs text-gray-400">まだ記録がありません。</p>;
 
   const lastStudiedOn = logs.reduce((latest, l) => (l.studied_on > latest ? l.studied_on : latest), logs[0].studied_on);
   const daysSince = Math.floor((Date.parse(new Date().toISOString().slice(0, 10)) - Date.parse(lastStudiedOn)) / 86400000);
+  const totalPages = Array.from(buckets.values()).reduce((a, b) => a + b, 0);
+  const avgPerBucket = buckets.size > 0 ? totalPages / buckets.size : 0;
 
   return (
     <div className="space-y-3">
-      <div role="tablist" aria-label="表示の単位" className="grid w-40 grid-cols-2 rounded-full border border-gray-200 p-1 text-xs font-medium">
-        {(["day", "week"] as const).map((u) => (
+      <div role="tablist" aria-label="表示の単位" className="grid w-56 grid-cols-3 rounded-full border border-gray-200 p-1 text-xs font-medium">
+        {(["day", "week", "month"] as const).map((u) => (
           <button
             key={u}
             role="tab"
@@ -83,14 +103,17 @@ export function DailyRecordView({ logs }: { logs: StudyLog[] }) {
             onClick={() => setUnit(u)}
             className={`rounded-full py-1.5 transition ${unit === u ? "bg-gray-900 text-white" : "text-gray-500"}`}
           >
-            {u === "day" ? "日ごと" : "週ごと"}
+            {UNIT_LABEL[u]}
           </button>
         ))}
       </div>
+      <p className="text-xs text-gray-600">
+        記録した{UNIT_SUFFIX[unit]}の平均：<span className="font-semibold text-gray-900">{avgPerBucket.toFixed(1)}ページ</span>
+      </p>
       {daysSince >= 7 && (
         <p className="rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-800">最後の記録から{daysSince}日たっています。</p>
       )}
-      <StackedBarChart bars={bars} series={[{ name: "ページ数", color: "#0e8ea5" }]} ariaLabel={`${unit === "day" ? "日ごと" : "週ごと"}のページ数`} />
+      <StackedBarChart bars={bars} series={[{ name: "ページ数", color: "#0e8ea5" }]} ariaLabel={`${UNIT_LABEL[unit]}のページ数`} />
     </div>
   );
 }
