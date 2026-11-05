@@ -1,10 +1,11 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import TeacherPage from "@/components/teacher/TeacherPage";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
+import { StackedBarChart } from "@/components/admin/Charts";
 import {
   StudyBook,
   StudyUnit,
@@ -189,6 +190,65 @@ function BookUnits({ bookId }: { bookId: string }) {
   );
 }
 
+// 「日々の記録」タブ: 1件の記録が何ページぶんか（終了p - 開始p + 1）を、日または週ごとに積み上げる
+function pagesOf(l: StudyLog): number {
+  return l.page_end - l.page_start + 1;
+}
+// 週は月曜はじまり（studied_onは "YYYY-MM-DD" の日付文字列）
+function mondayOf(iso: string): string {
+  const d = new Date(`${iso}T00:00:00Z`);
+  const dow = (d.getUTCDay() + 6) % 7;
+  d.setUTCDate(d.getUTCDate() - dow);
+  return d.toISOString().slice(0, 10);
+}
+function bucketLabel(key: string): string {
+  const [, m, d] = key.split("-");
+  return `${Number(m)}/${Number(d)}`;
+}
+
+function DailyRecordView({ logs }: { logs: StudyLog[] }) {
+  const [unit, setUnit] = useState<"day" | "week">("day");
+
+  const bars = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const l of logs) {
+      const key = unit === "day" ? l.studied_on : mondayOf(l.studied_on);
+      map.set(key, (map.get(key) ?? 0) + pagesOf(l));
+    }
+    return Array.from(map.entries())
+      .sort(([a], [b]) => (a < b ? -1 : 1))
+      .slice(-14)
+      .map(([key, value]) => ({ label: bucketLabel(key), values: [value] }));
+  }, [logs, unit]);
+
+  if (logs.length === 0) return <p className="py-8 text-center text-xs text-gray-400">まだ記録がありません。</p>;
+
+  const lastStudiedOn = logs.reduce((latest, l) => (l.studied_on > latest ? l.studied_on : latest), logs[0].studied_on);
+  const daysSince = Math.floor((Date.parse(new Date().toISOString().slice(0, 10)) - Date.parse(lastStudiedOn)) / 86400000);
+
+  return (
+    <div className="space-y-3">
+      <div role="tablist" aria-label="表示の単位" className="grid w-40 grid-cols-2 rounded-full border border-gray-200 p-1 text-xs font-medium">
+        {(["day", "week"] as const).map((u) => (
+          <button
+            key={u}
+            role="tab"
+            aria-selected={unit === u}
+            onClick={() => setUnit(u)}
+            className={`rounded-full py-1.5 transition ${unit === u ? "bg-gray-900 text-white" : "text-gray-500"}`}
+          >
+            {u === "day" ? "日ごと" : "週ごと"}
+          </button>
+        ))}
+      </div>
+      {daysSince >= 7 && (
+        <p className="rounded-lg bg-amber-50 px-3 py-2 text-[11px] text-amber-800">最後の記録から{daysSince}日たっています。</p>
+      )}
+      <StackedBarChart bars={bars} series={[{ name: "ページ数", color: "#0e8ea5" }]} ariaLabel={`${unit === "day" ? "日ごと" : "週ごと"}のページ数`} />
+    </div>
+  );
+}
+
 // 先生が、生徒名をタップしたときに出す、その生徒ひとりの画面（テストの得点の推移と同じ、モーダルの見せ方）
 function StudentProgressDetail({
   bookId,
@@ -208,6 +268,7 @@ function StudentProgressDetail({
   onClose: () => void;
 }) {
   const [logs, setLogs] = useState<StudyLog[] | null>(null);
+  const [tab, setTab] = useState<"progress" | "daily">("progress");
   useEffect(() => {
     getTeacherStudentLogs(bookId, userId).then(setLogs);
   }, [bookId, userId]);
@@ -225,17 +286,34 @@ function StudentProgressDetail({
             閉じる
           </button>
         </div>
-        <div className="mt-2 flex flex-wrap items-center gap-1">
-          {BAR_COLORS.map((c, i) => (
-            <span key={i} className={`rounded px-1.5 py-0.5 text-[9px] font-medium text-white ${c}`}>
-              {i + 1}周{i === BAR_COLORS.length - 1 ? "+" : ""}
-            </span>
+        <div role="tablist" aria-label="表示の種類" className="mt-3 grid grid-cols-2 rounded-full border border-gray-200 p-1 text-xs font-medium">
+          {(["progress", "daily"] as const).map((t) => (
+            <button
+              key={t}
+              role="tab"
+              aria-selected={tab === t}
+              onClick={() => setTab(t)}
+              className={`rounded-full py-1.5 transition ${tab === t ? "bg-gray-900 text-white" : "text-gray-500"}`}
+            >
+              {t === "progress" ? "進み具合" : "日々の記録"}
+            </button>
           ))}
         </div>
         {logs === null ? (
           <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
+        ) : tab === "daily" ? (
+          <div className="mt-3">
+            <DailyRecordView logs={logs} />
+          </div>
         ) : (
           <div className="mt-3 space-y-4">
+            <div className="flex flex-wrap items-center gap-1">
+              {BAR_COLORS.map((c, i) => (
+                <span key={i} className={`rounded px-1.5 py-0.5 text-[9px] font-medium text-white ${c}`}>
+                  {i + 1}周{i === BAR_COLORS.length - 1 ? "+" : ""}
+                </span>
+              ))}
+            </div>
             {showUnderstanding && avgUnderstanding != null && (
               <div className="rounded-xl bg-gray-900 px-3 py-2.5 text-white">
                 <p className="text-[11px] text-white/70">理解度（自己評価の平均）</p>
