@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { askConfirm } from "@/lib/confirm";
+import { pageCounts, ProgressBar, DailyRecordView } from "@/components/StudyProgress";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { useRequireQuizAccess } from "@/lib/useQuizAccess";
 import {
@@ -24,12 +25,6 @@ import { LoadingScreen } from "@/components/states";
 
 function todayStr() {
   return new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
-}
-
-function pageCounts(logs: StudyLog[]): Map<number, number> {
-  const m = new Map<number, number>();
-  for (const l of logs) for (let p = l.page_start; p <= l.page_end; p++) m.set(p, (m.get(p) ?? 0) + 1);
-  return m;
 }
 
 // 記録した回数（0〜5回以上）で、気温・降水量の予報のように、少しずつ色を濃くする。0回・1回は、今までどおりの色のまま
@@ -130,6 +125,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
   const [editingLogId, setEditingLogId] = useState<string | null>(null);
   const [jumpTo, setJumpTo] = useState("");
   const [pendingJump, setPendingJump] = useState<number | null>(null);
+  const [tab, setTab] = useState<"record" | "progress">("record");
   const cellRefs = useRef<Map<number, HTMLButtonElement>>(new Map());
 
   const load = useCallback(async () => {
@@ -145,6 +141,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
   const furthest = logs && logs.length > 0 ? Math.max(...logs.map((l) => l.page_end)) : 0;
   const unitMax = units && units.length > 0 ? Math.max(...units.map((u) => u.page_end)) : 0;
   const visibleMax = Math.max(book.total_pages ?? 0, unitMax, furthest, 30) + extra;
+  const effectiveTotal = book.total_pages ?? (unitMax > 0 ? unitMax : null);
 
   function toggle(p: number) {
     setSelected((s) => {
@@ -267,6 +264,52 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         </p>
       </div>
 
+      <div role="tablist" aria-label="表示の種類" className="grid grid-cols-2 rounded-full border border-gray-200 p-1 text-xs font-medium">
+        {(["record", "progress"] as const).map((t) => (
+          <button
+            key={t}
+            role="tab"
+            aria-selected={tab === t}
+            onClick={() => setTab(t)}
+            className={`rounded-full py-1.5 transition ${tab === t ? "bg-gray-900 text-white" : "text-gray-500"}`}
+          >
+            {t === "record" ? "記録" : "進捗"}
+          </button>
+        ))}
+      </div>
+
+      {tab === "progress" ? (
+        <div className="space-y-4 rounded-2xl bg-white p-4 shadow-sm">
+          {units === null || logs === null ? (
+            <p className="py-8 text-center text-xs text-gray-400">読み込み中…</p>
+          ) : (
+            <>
+              {effectiveTotal ? (
+                <div>
+                  <p className="mb-1 text-xs font-semibold text-gray-700">全体</p>
+                  <ProgressBar counts={counts} from={1} to={effectiveTotal} />
+                </div>
+              ) : null}
+              {units.length > 0 && (
+                <div className="space-y-2">
+                  <p className="text-xs font-semibold text-gray-700">単元ごと</p>
+                  {units.map((u) => (
+                    <div key={u.id}>
+                      <p className="mb-1 text-xs text-gray-600">{u.name}</p>
+                      <ProgressBar counts={counts} from={u.page_start} to={u.page_end} />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div>
+                <p className="mb-1 text-xs font-semibold text-gray-700">日々の記録</p>
+                <DailyRecordView logs={logs} />
+              </div>
+            </>
+          )}
+        </div>
+      ) : (
+        <>
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-xs font-semibold text-gray-700">まとめて選ぶ</p>
         <div className="grid grid-cols-2 gap-2">
@@ -360,6 +403,8 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
             )}
           </ul>
         </details>
+      )}
+        </>
       )}
     </section>
   );
