@@ -95,8 +95,8 @@ function EditLogRow({ log, showUnderstanding, onDone }: { log: StudyLog; showUnd
   return (
     <li className="space-y-2 py-2">
       <div className="grid grid-cols-3 gap-2">
-        <input value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
-        <input value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+        <input type="tel" value={start} onChange={(e) => setStart(e.target.value)} inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
+        <input type="tel" value={end} onChange={(e) => setEnd(e.target.value)} inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} aria-label="日付" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1 text-xs" />
       </div>
       {showUnderstanding && <UnderstandingSlider value={understanding} onChange={setUnderstanding} />}
@@ -313,8 +313,8 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
       <div className="space-y-2 rounded-2xl bg-white p-4 shadow-sm">
         <p className="text-xs font-semibold text-gray-700">まとめて選ぶ</p>
         <div className="grid grid-cols-2 gap-2">
-          <input value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
-          <input value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+          <input type="tel" value={rangeFrom} onChange={(e) => setRangeFrom(e.target.value)} placeholder="開始p" inputMode="numeric" aria-label="開始ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
+          <input type="tel" value={rangeTo} onChange={(e) => setRangeTo(e.target.value)} placeholder="終了p" inputMode="numeric" aria-label="終了ページ" className="min-w-0 rounded-lg border border-gray-300 px-2 py-1.5 text-sm" />
         </div>
         <button onClick={addRange} className="w-full rounded-full border border-gray-300 py-1.5 text-xs font-medium text-gray-700">
           選択に追加
@@ -334,6 +334,7 @@ function BookDetail({ book, onBack }: { book: MyStudyBook; onBack: () => void })
         </div>
         <div className="flex items-center gap-2">
           <input
+            type="tel"
             value={jumpTo}
             onChange={(e) => setJumpTo(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleJump()}
