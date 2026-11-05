@@ -403,9 +403,11 @@ export default function StudyBooksPage() {
     <main className="min-h-screen bg-[#fafafa] pb-28">
       <header className="border-b border-gray-100 bg-white px-6 py-5">
         <div className="mx-auto max-w-2xl">
-          <Link href="/study" className="text-sm text-gray-400">
-            ← 勉強
-          </Link>
+          {!selected && (
+            <Link href="/study" className="text-sm text-gray-400">
+              ← 勉強
+            </Link>
+          )}
           <h1 className="mt-2 text-xl font-semibold tracking-tight">参考書の進捗</h1>
           <p className="mt-1 text-xs leading-5 text-gray-500">{selected ? "やったページをタップして、まとめて記録できます。" : "参考書を選んでください。"}</p>
         </div>
