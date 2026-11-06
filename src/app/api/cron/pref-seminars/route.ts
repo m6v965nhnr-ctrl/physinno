@@ -61,15 +61,18 @@ export async function GET(request: Request) {
     ...PREF_SITES.filter((s) => WITH_CALENDAR.includes(s.code)).map((site) => ({ site, mode: "calendar" as const })),
   ];
 
-  for (const { site, mode } of targets) {
-    try {
-      const r = await syncPrefSite(site, { ...deps, mode });
-      rows.push(...r.rows);
-      stats[`${site.prefecture}(${mode})`] = JSON.stringify(r.stat);
-    } catch (e) {
-      stats[site.prefecture] = `skip ${String(e).slice(0, 80)}`;
+  // 他のcron(community-seminars等)と同じく、サイトごとに並行して取りに行く
+  // (順番に1件ずつ処理していたため、10サイト分の合計で60秒のタイムアウトに達していた)
+  const results = await Promise.allSettled(targets.map(({ site, mode }) => syncPrefSite(site, { ...deps, mode })));
+  results.forEach((result, i) => {
+    const { site, mode } = targets[i];
+    if (result.status === "fulfilled") {
+      rows.push(...result.value.rows);
+      stats[`${site.prefecture}(${mode})`] = JSON.stringify(result.value.stat);
+    } else {
+      stats[site.prefecture] = `skip ${String(result.reason).slice(0, 80)}`;
     }
-  }
+  });
 
   const supabase = createClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
