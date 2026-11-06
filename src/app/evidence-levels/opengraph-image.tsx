@@ -4,6 +4,8 @@ import { EVIDENCE_LEVELS } from "@/lib/evidence";
 export const alt = "エビデンスレベル早見表 I〜VI｜Re:light";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+// クロール・シェアのたびに毎回フォント取得+再描画すると重いので、生成結果を30日キャッシュする
+export const revalidate = 2592000;
 
 const TITLE = "エビデンスレベル早見表";
 
