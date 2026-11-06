@@ -6,8 +6,8 @@ import { ACHIEVEMENT_CATEGORY_LABEL } from "@/lib/achievements";
 export const alt = "投稿｜Re:light";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-// クロール・シェアのたびに毎回フォント取得+再描画すると重いので、生成結果を30日キャッシュする
-export const revalidate = 2592000;
+// クロール・シェアのたびに毎回フォント取得+再描画すると重いので、一度作ったら作り直さない（再デプロイ時のみ更新）
+export const revalidate = false;
 
 async function loadJapaneseFont(text: string) {
   try {

@@ -3,8 +3,8 @@ import { ImageResponse } from "next/og";
 export const alt = "Re:light｜理学療法士・学生のための症例共有・論文検索・病院情報";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
-// クロール・シェアのたびに毎回フォント取得+再描画すると重いので、生成結果を30日キャッシュする
-export const revalidate = 2592000;
+// クロール・シェアのたびに毎回フォント取得+再描画すると重いので、一度作ったら作り直さない（再デプロイ時のみ更新）
+export const revalidate = false;
 
 const HEADLINE = "理学療法士の臨床を、ひとりにしない。";
 const SUB = "症例共有・論文検索・職場の口コミ・学生の実習と就活";
