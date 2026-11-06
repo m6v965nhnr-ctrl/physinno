@@ -8,7 +8,10 @@ import { supabasePublic } from "@/lib/supabasePublic";
 export const revalidate = 3600;
 
 const CHUNK_SIZE = 40000;
-const MAX_FACILITIES = 160000;
+// 無料プランのCPU上限を超えて一時停止した(2026-11-06)ため、一旦は件数を絞って様子を見る。
+// 問題なければ、少しずつ増やしていく(本来の全件は160000)。robots.tsのsitemap一覧も、
+// チャンク数が変わるたびに合わせて直すこと。
+const MAX_FACILITIES = 10000;
 
 async function countNonMedicalFacilities() {
   const { count } = await supabasePublic

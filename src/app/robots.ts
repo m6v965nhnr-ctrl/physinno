@@ -54,8 +54,8 @@ export default function robots(): MetadataRoute.Robots {
     },
     // /sitemap.xml: 病院・クリニック（facility_category='病院・医療機関'）など。
     // /facilities/sitemap/*.xml: それ以外の施設（介護・訪問・障害福祉など、約13万件。5万URL上限のため分割）
-    // shortcut: チャンク数0〜3を固定で書いている(facilities/sitemap.tsのMAX_FACILITIES=160,000件まで対応)。
-    // 施設が増えてチャンクが5個目(4)以上になったら、ここにも追記する
-    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`, `${SITE_URL}/facilities/sitemap/1.xml`, `${SITE_URL}/facilities/sitemap/2.xml`, `${SITE_URL}/facilities/sitemap/3.xml`],
+    // shortcut: チャンク数は、facilities/sitemap.tsのMAX_FACILITIESに合わせて固定で書いている。
+    // 現在は件数を絞っているため1個(0)のみ。MAX_FACILITIESを増やしたら、ここにも追記する
+    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`],
   };
 }
