@@ -13,6 +13,8 @@ const IGNORE = [
   /NotAllowedError|play\(\) request was interrupted/i,
   // 他のアプリの中で開いたときに、そのアプリが差し込む部品（Googleアプリなどの内蔵ブラウザ・iPhoneの拡張機能）のエラー
   /iabjs:\/\/|webkit-masked-url:|Java exception was raised during method invocation/i,
+  // 仮想通貨ウォレットの拡張機能同士が衝突するエラー（閲覧者のブラウザの問題。アプリとは無関係）
+  /window\.ethereum/i,
 ];
 
 const sent = new Set<string>();
