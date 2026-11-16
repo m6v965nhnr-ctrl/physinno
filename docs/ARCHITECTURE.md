@@ -267,7 +267,8 @@
 - **ログインなしで読めるのは、各施設の新しい口コミ3件まで**（`FREE_REVIEW_LIMIT`）。DB側で絞る: `get_hospital_reviews` と `get_hospital_review_topics` は、`auth.uid()` が null のとき3件まで（分類コメントも、その3件に付いたものだけ）。4件目以降は、ログインした人だけ。画面は、サーバーで3件を出し、ログイン中なら、全件に入れ替える（`ReviewsSection`）。
 - 件数と平均点は、ログインなしでも `get_hospital_review_stats` で返す（検索のスニペット・「あと◯件」の表示用）。`/hospitals/[id]` の layout・件数表示も、これを使う。ゲストの `/hospitals/[id]` にも、4件目以降の登録案内を出す。
 - 口コミのある施設の一覧: `list_reviewed_hospitals`（トップ・サイトマップ用）。**口コミが1件もない施設のページは noindex**、サイトマップに載せるのも、口コミが付いた施設だけ（最大1,000件。薄いページを増やさない）。
-- 投稿できるのは、**PT・作業療法士(OT)・言語聴覚士(ST)**（学生は「実習生の声」）。サイトの「口コミを書く」は、`/hospitals/[id]?tab=reviews&review=1`（投稿の画面が開く）へ。
+- 投稿できるのは、**PT・作業療法士(OT)・言語聴覚士(ST)**（学生は「実習生の声」）。「口コミを書く」は、**口コミサイトの中で完結する専用の投稿画面** `/kuchikomi/[id]/write`（×で施設ページ `/kuchikomi/[id]` へ戻る。アプリの職場ページには入らない）。入力欄・保存（`upsertHospitalReview`）は、アプリの職場ページの投稿画面と同じ。**フォームの見た目は、`ReviewForm.tsx` と `hospitals/[id]/page.tsx` の2か所にある**（片方を直したらもう片方も）。
+- 施設ページ `/kuchikomi/[id]` の見た目は、アプリの職場口コミと同じ（総合評価の星・レーダーチャート・項目ごとのバー・年収などの平均[3件以上の回答だけ。`get_hospital_review_numbers`]・分類のボタンと、その項目の口コミ・口コミのカード・年収の推移）。
 - 施設検索（`FacilitySearch`）は、全約14.6万件の名前の部分一致。`hospitals.name` に pg_trgm の索引（`hospitals_name_trgm_idx`）を追加した（無いと、ゲスト用の3秒の制限で失敗した）。
 - 対象の読者は、理学療法士・作業療法士・言語聴覚士（OpenWorkのような、検索が主役のLP）。
 - **職種（20261217_rehab_profession.sql）**: `users.profession`（'pt'|'ot'|'st'、自己申告）。**OT・STは、account_type='general' のまま職種だけを持つ**（PT向けの機能・RLSは変えない。将来OT・ST向けのアカウントを作るときも、引き継げる）。`/register?from=kuchikomi` で、職種（PT/OT/ST）を選ぶ形になる（PT→account_type='pt'、OT/ST→'general'+profession を、サインアップ時のメタデータで渡し、`handle_new_user` が保存）。すでに「一般」で登録した人は、口コミのページ・`/kuchikomi/write` で、あとから職種を選べる（`set_my_profession`、1回だけ）。

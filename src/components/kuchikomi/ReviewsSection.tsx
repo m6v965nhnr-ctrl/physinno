@@ -83,14 +83,18 @@ export default function ReviewsSection({
   }
   const mine = reviews.some((r) => r.is_mine);
   const topicCats = [...REVIEW_TOPICS.map((t) => t.key), REVIEW_TOPIC_OTHER];
-  const byCat = (k: string) => topics.filter((t) => t.category === k);
+  // 分類ごとの口コミ（「その他・全体」は、分類なしの従来のコメント）
+  const [topicCat, setTopicCat] = useState<string | null>(null);
+  const legacy = reviews.filter((r) => r.comment).map((r) => ({ id: r.id, body: r.comment as string, created_at: r.created_at }));
+  const count = (k: string) => (k === REVIEW_TOPIC_OTHER ? legacy.length : topics.filter((x) => x.category === k).length);
+  const items = topicCat === null ? [] : topicCat === REVIEW_TOPIC_OTHER ? legacy : topics.filter((x) => x.category === topicCat);
 
   return (
     <section aria-label="口コミ" className="mt-6">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <h2 className="text-lg font-bold text-gray-900">口コミ{totalCount > 0 ? `（${totalCount}件）` : ""}</h2>
         {checked && canPost && (
-          <Link href={`/hospitals/${hospitalId}?tab=reviews&review=1`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">
+          <Link href={`/kuchikomi/${hospitalId}/write`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">
             {mine ? "自分の口コミを編集する" : "口コミを書く"}
           </Link>
         )}
@@ -124,18 +128,31 @@ export default function ReviewsSection({
         </div>
       )}
 
-      {topics.length > 0 && (
-        <div className="mt-4 space-y-4">
-          {topicCats.filter((k) => byCat(k).length > 0).map((k) => (
-            <div key={k} className="rounded-2xl border border-gray-100 bg-white p-4">
-              <h3 className="text-sm font-bold text-gray-900">{k}</h3>
-              <ul className="mt-2 space-y-2">
-                {byCat(k).map((t) => (
-                  <li key={t.id} className="whitespace-pre-wrap text-sm leading-6 text-gray-700">{t.body}</li>
-                ))}
-              </ul>
+      {reviews.length > 0 && (
+        <div className="mt-4">
+          <p className="text-[11px] text-gray-500">知りたい項目を選ぶと、その項目の口コミだけを読めます</p>
+          <div className="mt-2 grid grid-cols-2 gap-2">
+            {topicCats.map((k) => (
+              <button key={k} type="button" onClick={() => setTopicCat(topicCat === k ? null : k)} aria-pressed={topicCat === k} className={`rounded-lg border px-2 py-3 text-center text-sm font-semibold ${topicCat === k ? "border-transparent bg-relight-gradient" : "border-gray-200 bg-white text-gray-800"}`}>
+                {k}
+                <span className={`block text-xs font-normal ${topicCat === k ? "text-gray-900/80" : "text-gray-500"}`}>（{count(k)}件）</span>
+              </button>
+            ))}
+          </div>
+          {topicCat !== null && (
+            <div className="mt-3 space-y-2">
+              {items.length === 0 && <p className="text-sm text-gray-400">この項目の口コミは、まだありません</p>}
+              {items.map((x) => (
+                <div key={x.id} className="rounded-2xl border border-gray-100 bg-white p-4">
+                  <p className="text-[11px] text-gray-400">{topicCat}　{new Date(x.created_at).toLocaleDateString("ja-JP")}</p>
+                  <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-700">{x.body}</p>
+                  {userId && topicCat !== REVIEW_TOPIC_OTHER && !(x as ReviewTopic).is_mine && (
+                    <div className="mt-2 text-right"><ReportButton targetType="hospital_review_topic" targetId={x.id} /></div>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
+          )}
         </div>
       )}
 

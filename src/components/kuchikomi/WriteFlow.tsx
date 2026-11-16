@@ -98,7 +98,7 @@ export default function WriteFlow() {
         <div className="rounded-3xl bg-relight-gradient p-5">
           <p className="text-xs font-bold text-gray-900/70">プロフィールの勤務先</p>
           <p className="mt-1 text-base font-black text-gray-900">{workplace.name}</p>
-          <Link href={`/hospitals/${workplace.id}?tab=reviews&review=1`} className="mt-3 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">この職場の口コミを書く（1分）</Link>
+          <Link href={`/kuchikomi/${workplace.id}/write`} className="mt-3 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">この職場の口コミを書く（1分）</Link>
         </div>
       )}
       <div>

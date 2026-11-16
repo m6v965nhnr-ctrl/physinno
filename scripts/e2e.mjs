@@ -40,6 +40,7 @@ const PUBLIC_PAGES = [
   ["/certified-pt/orthopaedic", "運動器"],
   ["/kuchikomi", "職場口コミ"],
   ["/kuchikomi/write", "口コミを書く"],
+  ["/kuchikomi/fdc8d8ba-6269-42f8-bce5-2871a404ef81/write", "口コミを投稿する"],
   ["/register?from=kuchikomi", "作業療法士"],
   ["/hospital-areas", "都道府県"],
   ["/hospital-areas/%E6%9D%B1%E4%BA%AC%E9%83%BD", "東京都の病院一覧"],
