@@ -14,6 +14,39 @@ function isAccountType(v: unknown): v is AccountType {
   return v === "pt" || v === "general" || v === "student" || v === "teacher" || v === "org";
 }
 
+// リハビリ職の職種（自己申告）。PTは account_type='pt'。作業療法士・言語聴覚士は、account_type='general' に職種(ot/st)を持つ
+export type Profession = "pt" | "ot" | "st";
+
+export const PROFESSION_LABEL: Record<Profession, string> = {
+  pt: "理学療法士",
+  ot: "作業療法士",
+  st: "言語聴覚士",
+};
+
+export function isProfession(v: unknown): v is Profession {
+  return v === "pt" || v === "ot" || v === "st";
+}
+
+// 職場口コミを書ける人（DBの is_rehab_pro と同じ条件）
+export function canPostWorkplaceReview(type: AccountType | null, profession: Profession | null) {
+  return type === "pt" || profession === "ot" || profession === "st";
+}
+
+let professionCache: { userId: string; profession: Profession | null } | null = null;
+
+// 自分の職種。PTは、account_type='pt' のとき 'pt'。未設定なら null
+export async function getMyProfession(userId: string): Promise<Profession | null> {
+  if (professionCache?.userId === userId) return professionCache.profession;
+  const { data } = await supabase.from("users").select("account_type, profession").eq("id", userId).maybeSingle();
+  const p = data?.account_type === "pt" ? "pt" : isProfession(data?.profession) ? data.profession : null;
+  professionCache = { userId, profession: p };
+  return p;
+}
+
+export function clearProfessionCache() {
+  professionCache = null;
+}
+
 // 先生のアカウント（大学・専門学校の先生）が使える画面。それ以外のPT向けの画面は、先生の画面へ戻す
 export const TEACHER_HOME = "/student/quiz/teacher";
 

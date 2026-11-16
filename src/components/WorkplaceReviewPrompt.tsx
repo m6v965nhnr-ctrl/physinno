@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { getMyAccountType } from "@/lib/account";
+import { canPostWorkplaceReview, getMyAccountType, getMyProfession } from "@/lib/account";
+import { supabase } from "@/lib/supabase";
 
 const DISMISSED_KEY = "relight_workplace_review_prompt_dismissed";
 
@@ -26,11 +27,19 @@ function dismiss() {
 // サーバー側で持っていないため、特定の病院名は出さない一般的な案内にする）
 export default function WorkplaceReviewPrompt({ userId }: { userId: string }) {
   const [show, setShow] = useState(false);
+  // プロフィールの勤務先（施設に結びついているとき）。分かれば、その施設の投稿画面へ1タップで行ける
+  const [workplace, setWorkplace] = useState<{ id: string; name: string } | null>(null);
 
   useEffect(() => {
     if (!userId || isDismissed()) return;
-    getMyAccountType(userId).then((type) => {
-      if (type === "pt") setShow(true);
+    getMyAccountType(userId).then(async (type) => {
+      if (!canPostWorkplaceReview(type, await getMyProfession(userId))) return;
+      setShow(true);
+      const { data } = await supabase.from("pt_profiles").select("hospital_id").eq("user_id", userId).maybeSingle();
+      const hid = (data as { hospital_id: string | null } | null)?.hospital_id;
+      if (!hid) return;
+      const { data: h } = await supabase.from("hospitals").select("id, name").eq("id", hid).maybeSingle();
+      if (h) setWorkplace(h as { id: string; name: string });
     });
   }, [userId]);
 
@@ -56,8 +65,8 @@ export default function WorkplaceReviewPrompt({ userId }: { userId: string }) {
           ✕
         </button>
       </div>
-      <Link href="/workplace" className="mt-3 inline-block text-sm font-semibold text-amber-700 underline">
-        口コミを書く →
+      <Link href={workplace ? `/hospitals/${workplace.id}?tab=reviews&review=1` : "/kuchikomi/write"} className="mt-3 inline-block text-sm font-semibold text-amber-700 underline">
+        {workplace ? `${workplace.name}の口コミを書く（1分）→` : "口コミを書く →"}
       </Link>
     </div>
   );

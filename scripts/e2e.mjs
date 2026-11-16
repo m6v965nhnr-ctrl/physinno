@@ -39,6 +39,8 @@ const PUBLIC_PAGES = [
   ["/job-hunting", "就活"],
   ["/certified-pt/orthopaedic", "運動器"],
   ["/kuchikomi", "職場口コミ"],
+  ["/kuchikomi/write", "口コミを書く"],
+  ["/register?from=kuchikomi", "作業療法士"],
   ["/hospital-areas", "都道府県"],
   ["/hospital-areas/%E6%9D%B1%E4%BA%AC%E9%83%BD", "東京都の病院一覧"],
   ["/paper-search/topics/knee-osteoarthritis", "変形性膝関節症"],

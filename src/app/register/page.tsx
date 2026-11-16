@@ -50,6 +50,10 @@ export default function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [accountType, setAccountType] = useState<AccountType | null>(null);
+  // 職場口コミサイト（?from=kuchikomi）から来たときは、職種（PT・OT・ST）を選ぶ形にする。
+  // OT・STは、アカウントの種類は「一般」で、職種だけを持つ（PT向けの機能は使わない）
+  const [fromKuchikomi, setFromKuchikomi] = useState(false);
+  const [profession, setProfession] = useState<"pt" | "ot" | "st" | null>(null);
   const [isOrg, setIsOrg] = useState(false);
   const [orgName, setOrgName] = useState("");
   const isTeacher = accountType === "teacher";
@@ -75,6 +79,9 @@ export default function RegisterPage() {
     if (type === "org") {
       setIsOrg(true);
     }
+    if (params.get("from") === "kuchikomi" && !type) {
+      setFromKuchikomi(true);
+    }
 
     // ゲストとして見ていた画面（?next=）を覚えておき、プロフィールの入力が終わったら、そこへ戻す
     rememberReturnTo(params.get("next"));
@@ -89,7 +96,7 @@ export default function RegisterPage() {
     setError("");
 
     if (!isTeacher && !isOrg && !accountType) {
-      setError("アカウントの種類（PT／学生／教員／一般）を選んでください");
+      setError(fromKuchikomi ? "職種（理学療法士／作業療法士／言語聴覚士）を選んでください" : "アカウントの種類（PT／学生／教員／一般）を選んでください");
       return;
     }
 
@@ -142,6 +149,8 @@ export default function RegisterPage() {
         // DBトリガー on_auth_user_created が users.account_type / referred_by に保存します
         data: {
           account_type: isTeacher ? "teacher" : isOrg ? "org" : accountType,
+          // 作業療法士・言語聴覚士（口コミサイトから）。DBトリガーが users.profession に保存する
+          profession: !isTeacher && !isOrg && (profession === "ot" || profession === "st") ? profession : undefined,
           // 先生: 所属・補足は、運営が承認の確認に使う（DBトリガーが先生の申請を作る）
           school: isTeacher ? `${school.trim()} ${faculty.trim()} ${department.trim()}`.slice(0, 100) : undefined,
           org_name: isOrg ? orgName.trim().slice(0, 100) : undefined,
@@ -171,7 +180,7 @@ export default function RegisterPage() {
     trackRegistration();
     clearGuestRole();
     // 種類ごとの登録数（個人は特定できない。/register は集計の許可パス）
-    track("register_done", { type: isTeacher ? "teacher" : isOrg ? "org" : accountType ?? "" });
+    track("register_done", { type: isTeacher ? "teacher" : isOrg ? "org" : profession === "ot" || profession === "st" ? profession : accountType ?? "" });
 
     // 先生の学校・学部・学科・アイコン（ログインできた場合は、ここで保存。できなかったときは、アカウントの画面で入れられる）
     if (isTeacher && icon && data.session) {
@@ -205,7 +214,7 @@ export default function RegisterPage() {
         : isOrg
         ? "/org"
         : accountType === "general"
-        ? (takeReturnTo() ?? "/pts")
+        ? (takeReturnTo() ?? (profession ? "/kuchikomi/write" : "/pts"))
         : accountType === "student"
           ? "/student/settings?welcome=1"
           : "/mypage/edit?welcome=1"
@@ -237,7 +246,46 @@ export default function RegisterPage() {
 
         <div className="mt-10 space-y-5">
 
-          {!isOrg && (
+          {!isOrg && fromKuchikomi && (
+          <div>
+            <p className="mb-2 block text-sm font-medium">
+              職種 <span className="text-xs font-normal text-red-500">（必須）</span>
+            </p>
+            <div role="radiogroup" aria-label="職種" className="grid grid-cols-1 gap-3">
+              {(
+                [
+                  { v: "pt", t: "pt", label: "理学療法士（PT）", d: "口コミの閲覧・投稿。PT同士の交流・情報共有も" },
+                  { v: "ot", t: "general", label: "作業療法士（OT）", d: "口コミの閲覧・投稿" },
+                  { v: "st", t: "general", label: "言語聴覚士（ST）", d: "口コミの閲覧・投稿" },
+                ] as const
+              ).map((o) => {
+                const selected = profession === o.v;
+                return (
+                  <button
+                    key={o.v}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    onClick={() => {
+                      setProfession(o.v);
+                      setAccountType(o.t);
+                    }}
+                    className={`rounded-2xl border px-4 py-3.5 text-left transition ${selected ? "border-black bg-black text-white" : "border-gray-200 bg-white text-gray-900 hover:border-gray-400"}`}
+                  >
+                    <span className="block text-sm font-medium">{o.label}</span>
+                    <span className={`mt-1 block text-xs ${selected ? "text-white/90" : "text-gray-500"}`}>{o.d}</span>
+                  </button>
+                );
+              })}
+            </div>
+            <p className="mt-2 text-xs text-gray-400">資格は自己申告です。学生・一般の方は、
+              <button type="button" onClick={() => { setFromKuchikomi(false); setProfession(null); setAccountType(null); }} className="underline">こちら</button>
+              から登録できます。
+            </p>
+          </div>
+          )}
+
+          {!isOrg && !fromKuchikomi && (
           <div>
             <p className="mb-2 block text-sm font-medium">
               アカウントの種類 <span className="text-xs font-normal text-red-500">（必須）</span>

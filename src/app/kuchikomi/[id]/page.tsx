@@ -34,8 +34,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = n > 0 ? `${h.name}の口コミ・評判（${n}件）｜リハビリ職の職場環境` : `${h.name}の口コミ・評判｜リハビリ職の職場環境`;
   const description =
     n > 0
-      ? `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）の職場選びに役立つ口コミ${n}件（理学療法士による投稿。6項目の評価、平均${(stats?.avg_overall ?? 0).toFixed(1)}/10）。教育体制・残業・給与・人間関係などを確認できます。`
-      : `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）向けの職場口コミのページです。まだ口コミはありません。働いたことのある理学療法士の方の投稿をお待ちしています。`;
+      ? `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）の職場選びに役立つ口コミ${n}件（6項目の評価、平均${(stats?.avg_overall ?? 0).toFixed(1)}/10）。教育体制・残業・給与・人間関係などを確認できます。`
+      : `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）向けの職場口コミのページです。まだ口コミはありません。働いたことのあるリハビリ職の方の投稿をお待ちしています。`;
   return {
     title,
     description,
@@ -51,12 +51,14 @@ export default async function KuchikomiHospitalPage({ params }: Props) {
   const h = await getHospital(id);
   if (!h) notFound();
 
-  const [stats, rev, top, inc] = await Promise.all([
+  const [stats, rev, top, inc, prof] = await Promise.all([
     getReviewStats(id),
     supabasePublic.rpc("get_hospital_reviews", { p_hospital_id: id }),
     supabasePublic.rpc("get_hospital_review_topics", { p_hospital: id }),
     supabasePublic.rpc("get_hospital_income_by_age", { p_hospital: id }),
+    supabasePublic.rpc("get_hospital_review_professions", { p_hospital: id }),
   ]);
+  const professions = Object.fromEntries(((prof.data ?? []) as { review_id: string; profession: string | null }[]).map((x) => [x.review_id, x.profession]));
   const reviews = ((rev.data ?? []) as HospitalReview[]).map((r) => ({ ...r, is_mine: false }));
   const topics = ((top.data ?? []) as ReviewTopic[]).map((t) => ({ ...t, is_mine: false }));
   const income = ((inc.data ?? []) as { age_band: number; n: number | string; avg_income: number }[]).map((r) => ({ ...r, n: Number(r.n) })) as IncomeByAge[];
@@ -104,7 +106,7 @@ export default async function KuchikomiHospitalPage({ params }: Props) {
           </section>
         )}
 
-        <ReviewsSection hospitalId={id} hospitalName={h.name} totalCount={total} initialReviews={reviews} initialTopics={topics} />
+        <ReviewsSection hospitalId={id} hospitalName={h.name} totalCount={total} initialReviews={reviews} initialTopics={topics} initialProfessions={professions} />
 
         {income.length > 0 && <IncomeByAgeChart data={income} />}
 

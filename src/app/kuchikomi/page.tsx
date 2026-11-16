@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ldJson } from "@/lib/jsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
-import { KUCHIKOMI_REGISTER, KUCHIKOMI_REGISTER_GENERAL, FREE_REVIEW_LIMIT, listReviewedHospitals } from "@/lib/kuchikomi";
+import { KUCHIKOMI_REGISTER, FREE_REVIEW_LIMIT, listReviewedHospitals } from "@/lib/kuchikomi";
 import { REVIEW_AXES, REVIEW_AXIS_LABEL, REVIEW_TOPICS } from "@/lib/hospitals";
 import { REGIONS } from "@/lib/prefectures";
 import { FACILITY_AREA_TYPES } from "@/lib/hospitalAreas";
@@ -49,14 +49,14 @@ const CHECKS = [
 ];
 
 const FAQS = [
-  { q: "理学療法士以外（作業療法士・言語聴覚士）でも読めますか？", a: `どなたでも読めます。各施設の新しい口コミ${FREE_REVIEW_LIMIT}件までは、登録なしで読めます。すべての口コミを読むには、無料登録（ログイン）が必要です。作業療法士・言語聴覚士の方は、アカウントの種類「一般」で登録できます。` },
-  { q: "口コミは、誰が書いていますか？", a: "現在、口コミを投稿できるのは、理学療法士のアカウントで登録した方です。匿名での投稿もできます。投稿者の情報は、ほかの利用者には表示されません。作業療法士・言語聴覚士の方の投稿は、今後の対応を検討しています。" },
+  { q: "作業療法士・言語聴覚士でも使えますか？", a: `はい。理学療法士・作業療法士・言語聴覚士のどなたでも、読むことも、書くこともできます。各施設の新しい口コミ${FREE_REVIEW_LIMIT}件までは、登録なしで読めます。すべての口コミを読む・書くには、無料登録（ログイン）が必要です。登録のとき、職種を選べます。` },
+  { q: "口コミは、誰が書いていますか？", a: "理学療法士・作業療法士・言語聴覚士として登録した方（職種は自己申告）です。各口コミに、投稿した人の職種が表示されます。匿名での投稿もできます。投稿者の氏名などは、ほかの利用者には表示されません。" },
   { q: "登録しなくても読めますか？", a: `各施設の新しい口コミ${FREE_REVIEW_LIMIT}件までは、登録なしで読めます。それ以降は、無料登録（ログイン）で、すべての口コミと分類ごとのコメントを読めます。` },
   { q: "どんな項目が分かりますか？", a: `職場環境・教育体制・給与満足度・残業の少なさ・有休消化率・風通しの良さの${REVIEW_AXES.length}項目（10点満点）に加えて、教育・研修、症例・患者層、残業・休暇、人間関係、女性の働きやすさなど${REVIEW_TOPICS.length}分類のコメントと、年収・残業時間・年間休日などの数字（回答があるもの）を確認できます。` },
-  { q: "口コミのない施設もありますか？", a: "全国約14.6万件の病院・施設を検索できますが、口コミが付いている施設は、まだ一部です。口コミのない施設のページからは、最初の1件を書けます（理学療法士のアカウント）。" },
+  { q: "口コミのない施設もありますか？", a: "全国約14.6万件の病院・施設を検索できますが、口コミが付いている施設は、まだ一部です。口コミのない施設のページからは、最初の1件を書けます。" },
   { q: "口コミは、信じてよいですか？", a: "1人の感想は、その人の立場や時期に左右されます。複数の口コミの傾向を見て、病院見学や募集要項で確かめるのがおすすめです。事実と異なる口コミや、権利を侵害する口コミは、通報できます。" },
   { q: "施設の関係者です。口コミを削除・訂正してほしいです。", a: "運営へのメッセージから、削除・訂正を申し出られます。内容を確認して対応します。" },
-  { q: "学生でも使えますか？", a: "読むことはできます。就職先・実習先の候補を探す学生の方は、就活ガイドもご覧ください。職場の口コミを書けるのは、現役の理学療法士です。学生の方は、実習先での経験を、病院ページの「実習生の声」に書けます。" },
+  { q: "学生でも使えますか？", a: "読むことはできます。就職先・実習先の候補を探す学生の方は、就活ガイドもご覧ください。職場の口コミを書けるのは、現役の理学療法士・作業療法士・言語聴覚士です。学生の方は、実習先での経験を、病院ページの「実習生の声」に書けます。" },
 ];
 
 export default async function KuchikomiTop() {
@@ -186,7 +186,6 @@ export default async function KuchikomiTop() {
               </div>
             ))}
           </div>
-          <p className="mt-3 text-xs leading-6 text-gray-500">現在、口コミを書けるのは理学療法士のアカウントです。作業療法士・言語聴覚士の方の投稿は、今後の対応を検討しています。</p>
         </div>
       </section>
 
@@ -248,11 +247,10 @@ export default async function KuchikomiTop() {
           <ol className="mt-4 grid gap-4 md:grid-cols-3">
             <li><p className="text-sm font-bold text-gray-900">① 探す</p><p className="mt-1 text-sm leading-6 text-gray-700">施設名や都道府県で検索。各施設の新しい口コミ{FREE_REVIEW_LIMIT}件までは、登録なしで読めます。</p></li>
             <li><p className="text-sm font-bold text-gray-900">② もっと読む</p><p className="mt-1 text-sm leading-6 text-gray-700">無料登録（ログイン）で、すべての口コミと、分類ごとのコメントを読めます。</p></li>
-            <li><p className="text-sm font-bold text-gray-900">③ 書く</p><p className="mt-1 text-sm leading-6 text-gray-700">理学療法士のアカウントで、口コミを投稿できます。匿名にもできます。</p></li>
+            <li><p className="text-sm font-bold text-gray-900">③ 書く</p><p className="mt-1 text-sm leading-6 text-gray-700">登録のとき、職種（PT・OT・ST）を選べます。口コミを投稿できます。匿名にもできます。</p></li>
           </ol>
           <div className="mt-5 flex flex-wrap gap-2">
-            <Link href={KUCHIKOMI_REGISTER} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">理学療法士として無料登録</Link>
-            <Link href={KUCHIKOMI_REGISTER_GENERAL} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">作業療法士・言語聴覚士の方は「一般」で登録</Link>
+            <Link href={KUCHIKOMI_REGISTER} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料で登録する（PT・OT・ST）</Link>
             <Link href="/login" className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>
           </div>
         </div>
@@ -263,7 +261,7 @@ export default async function KuchikomiTop() {
         <div className="mx-auto max-w-4xl">
           <h2 className="text-xl font-bold text-gray-900">口コミを、安心して使うために</h2>
           <ul className="mt-3 grid gap-3 md:grid-cols-3">
-            <li className="rounded-2xl border border-gray-100 bg-white p-4 text-sm leading-6 text-gray-700"><strong className="text-gray-900">投稿者は特定されません。</strong>匿名でも、記名でも、投稿者の情報は、ほかの利用者に表示されません。</li>
+            <li className="rounded-2xl border border-gray-100 bg-white p-4 text-sm leading-6 text-gray-700"><strong className="text-gray-900">投稿者は特定されません。</strong>匿名でも、記名でも、投稿者の氏名などは、ほかの利用者に表示されません（職種だけ表示されます）。</li>
             <li className="rounded-2xl border border-gray-100 bg-white p-4 text-sm leading-6 text-gray-700"><strong className="text-gray-900">通報できます。</strong>事実と異なる口コミ、権利を侵害する口コミは、各口コミの「通報」から運営へ連絡できます。</li>
             <li className="rounded-2xl border border-gray-100 bg-white p-4 text-sm leading-6 text-gray-700"><strong className="text-gray-900">施設の関係者の方へ。</strong><Link href="/contact" className="underline">運営へのメッセージ</Link>から、削除・訂正を申し出られます。</li>
           </ul>
@@ -291,8 +289,7 @@ export default async function KuchikomiTop() {
           <p className="text-xl font-black text-gray-900">職場選びを、ひとりで悩まない。</p>
           <p className="mt-2 text-sm font-bold leading-6 text-gray-900">無料登録で、すべての口コミが読めます。</p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <Link href={KUCHIKOMI_REGISTER} className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">理学療法士として登録</Link>
-            <Link href={KUCHIKOMI_REGISTER_GENERAL} className="rounded-full border border-gray-900/30 px-5 py-2.5 text-sm font-semibold text-gray-900">OT・STの方は「一般」で登録</Link>
+            <Link href={KUCHIKOMI_REGISTER} className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">無料で登録する（PT・OT・ST）</Link>
           </div>
         </div>
       </section>

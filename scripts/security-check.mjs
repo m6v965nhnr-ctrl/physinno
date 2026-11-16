@@ -154,6 +154,8 @@ for (const [fn, body] of [
   ["set_student_widget_hidden", { p_widget: "ranking", p_hidden: true }],
   ["quiz_set_class_widgets", { p_class: ZERO, p_hidden: ["ranking"] }],
   ["quiz_class_widgets", { p_class: ZERO }],
+  ["set_my_profession", { p_profession: "ot" }],
+  ["is_rehab_pro", { p_user: ZERO }],
   ["get_home_widget_visibility", {}],
 ]) {
   const r = await req(`/rest/v1/rpc/${fn}`, { method: "POST", body: JSON.stringify(body) });

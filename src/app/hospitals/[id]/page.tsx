@@ -8,7 +8,7 @@ import Link from "next/link";
 import { track } from "@vercel/analytics";
 import { useParams } from "next/navigation";
 import { supabase } from "@/lib/supabase";
-import { AccountType, getMyAccountType } from "@/lib/account";
+import { AccountType, canPostWorkplaceReview, getMyAccountType, getMyProfession } from "@/lib/account";
 import InternshipReviews from "@/components/InternshipReviews";
 import StudentHospitalActions from "@/components/StudentHospitalActions";
 import {
@@ -54,6 +54,7 @@ import ReviewBars from "@/components/ReviewBars";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
+import { shareContent, shareUrl } from "@/lib/share";
 import { askConfirm } from "@/lib/confirm";
 import ReportButton from "@/components/ReportButton";
 import { LoadingScreen } from "@/components/states";
@@ -192,12 +193,8 @@ export default function HospitalDetailPage() {
       const myType = await getMyAccountType(user.id);
       setAccountType(myType);
       if (myType === "pt" || myType === "student") loadQuestions();
-      setIsPt(myType === "pt");
-      // 職場口コミサイト（/kuchikomi）の「口コミを書く」から来たときは、投稿の画面を開く
-      if (myType === "pt" && new URLSearchParams(window.location.search).get("write") === "1") {
-        setTab("reviews");
-        setReviewModalOpen(true);
-      }
+      // 口コミを書けるのは、PT・作業療法士・言語聴覚士（?review=1 のときは、下のeffectで投稿画面を開く）
+      setIsPt(canPostWorkplaceReview(myType, await getMyProfession(user.id)));
       setFollowing(await isFollowingHospital(id, user.id));
       // 疾患比率・採用情報を編集できるのは、この施設にひもづいた承認済みの組織（採用アカウント）だけ
       setCanEditRatios(await isHospitalOrg(id));
@@ -308,7 +305,15 @@ export default function HospitalDetailPage() {
       return;
     }
 
-    notify("口コミを投稿しました");
+    notify("口コミを投稿しました。同じ職場の方にも、教えませんか", "info", {
+      label: "共有する",
+      onAction: () =>
+        shareContent({
+          title: `${hospital?.name ?? "職場"}の口コミ`,
+          text: "リハビリ職の職場口コミサイトで、職場の口コミを書きました。働いたことがある方は、ぜひ書いてみてください。",
+          url: shareUrl(`/kuchikomi/${id}`, "kuchikomi-after-review", "kuchikomi"),
+        }),
+    });
     getIncomeByAge(id).then(setIncomeByAge);
     listReviewTopics(id).then(setTopics);
     setReviewModalOpen(false);
@@ -584,7 +589,7 @@ export default function HospitalDetailPage() {
               </button>
             ) : (
               <span className="text-[11px] text-gray-400">
-                {accountType === "student" ? "投稿は現役PTのみ（学生は上の「実習生の声」へ）" : "投稿はPTアカウントのみ"}
+                {accountType === "student" ? "投稿は現役のPT・OT・STのみ（学生は上の「実習生の声」へ）" : "投稿はPT・OT・STのアカウントのみ"}
               </span>
             )}
           </div>
@@ -610,7 +615,7 @@ export default function HospitalDetailPage() {
                     onClick={() => { track("facility_cta", { kind: "review_pt" }); setReviewModalOpen(true); }}
                     className="w-full rounded-full bg-relight-gradient px-4 py-2.5 text-sm font-medium text-white"
                   >
-                    この職場で働いていますか？他のPTのために口コミを書きませんか
+                    この職場で働いていますか？これから職場を選ぶ人のために口コミを書きませんか
                   </button>
                 ) : !userId ? (
                   <Link

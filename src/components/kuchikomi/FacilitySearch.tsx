@@ -10,7 +10,7 @@ import { INPUT_CLASS, PRIMARY_BUTTON_CLASS } from "@/lib/ui";
 type Row = { id: string; name: string; prefecture: string | null; city: string | null; facility_type: string | null };
 
 // 施設名（一部でよい）と都道府県で探す。結果は、口コミの有無にかかわらず出す（口コミがなければ「書く」へ）
-export default function FacilitySearch() {
+export default function FacilitySearch({ mode = "read" }: { mode?: "read" | "write" }) {
   const [keyword, setKeyword] = useState("");
   const [prefecture, setPrefecture] = useState("");
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -58,9 +58,10 @@ export default function FacilitySearch() {
         <ul className="mt-3 space-y-2">
           {rows.map((h) => (
             <li key={h.id}>
-              <Link href={`/kuchikomi/${h.id}`} className="block rounded-2xl border border-gray-200 bg-white px-4 py-3 transition hover:border-gray-400">
+              <Link href={mode === "write" ? `/hospitals/${h.id}?tab=reviews&review=1` : `/kuchikomi/${h.id}`} className="block rounded-2xl border border-gray-200 bg-white px-4 py-3 transition hover:border-gray-400">
                 <span className="block text-sm font-semibold text-gray-900">{h.name}</span>
                 <span className="mt-0.5 block text-xs text-gray-500">{[h.prefecture, h.city].filter(Boolean).join(" ")}{h.facility_type ? ` ・ ${h.facility_type}` : ""}</span>
+                {mode === "write" && <span className="mt-1 block text-xs font-semibold text-gray-900">この施設の口コミを書く →</span>}
               </Link>
             </li>
           ))}
