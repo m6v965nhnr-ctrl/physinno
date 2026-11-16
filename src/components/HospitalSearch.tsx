@@ -29,6 +29,7 @@ import { internshipReviewCounts } from "@/lib/internship";
 import { PREFECTURES } from "@/lib/prefectures";
 import { FACILITY_CATEGORIES, typesOf } from "@/lib/facilityTypes";
 import { notify } from "@/lib/notify";
+import ReviewedHospitals from "@/components/ReviewedHospitals";
 import { INPUT_CLASS, PRIMARY_BUTTON_CLASS, chipClass } from "@/lib/ui";
 
 // 病院はPTが作成・編集できる施設ページ。検索結果から /hospitals/{id} に
@@ -479,6 +480,8 @@ export default function HospitalSearch() {
       <p className="mt-3 text-xs text-gray-400">
         PTが登録した病院が対象です。規模はPTが任意で設定するため、未設定の病院は規模での絞り込みに出てきません。
       </p>
+
+      {!searched && <ReviewedHospitals />}
 
       {searched && (
         <div className="mt-6 space-y-3">
