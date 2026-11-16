@@ -14,6 +14,7 @@ export const KUCHIKOMI_SITE: GuideSite = {
   href: "/kuchikomi",
   register: KUCHIKOMI_REGISTER,
   blurb: "の、職場口コミの入口です。",
+  audience: "理学療法士・作業療法士・言語聴覚士・学生",
   links: [
     { href: "/kuchikomi/write", label: "口コミを書く" },
     { href: "/hospital-areas", label: "病院を探す" },

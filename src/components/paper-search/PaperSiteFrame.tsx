@@ -3,7 +3,21 @@ import Link from "next/link";
 // 論文検索サイトの、共通の枠（ヘッダー・フッター）。Re:lightの「入口」であることは、小さく示す
 const REGISTER = "/register?type=pt&utm_source=paper-site&utm_medium=web&utm_campaign=paper-search";
 
-type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[]; note?: string };
+type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[]; note?: string; audience?: string };
+
+// フッターの共通リンク（サイトごとのリンクと重なるものは、1回だけ出す）
+const COMMON_LINKS = [
+  { href: "/paper-search", label: "論文検索" },
+  { href: "/certified-pt", label: "認定理学療法士ガイド" },
+  { href: "/job-hunting", label: "就活ガイド" },
+  { href: "/kuchikomi", label: "職場口コミ" },
+  { href: "/hospital-areas", label: "病院を探す" },
+  { href: "/kokushi", label: "国試過去問" },
+  { href: "/evidence-levels", label: "エビデンスレベル早見表" },
+  { href: "/columns", label: "コラム" },
+  { href: "/privacy", label: "プライバシーポリシー" },
+  { href: "/terms", label: "利用規約" },
+];
 
 const PAPER_SITE: Site = {
   brand: "理学療法の論文検索",
@@ -16,7 +30,8 @@ const PAPER_SITE: Site = {
 // 論文検索サイト・認定PTガイドなど、アプリの外から来た人向けの公開ページの共通の枠
 export default function PaperSiteFrame({ children, site = PAPER_SITE }: { children: React.ReactNode; site?: Site }) {
   return (
-    <div className="min-h-screen bg-[#f6fbfc] text-gray-900">
+    // フッターは、ページが短くても、画面の一番下に付くようにする（main が余白を埋める）
+    <div className="flex min-h-screen flex-col bg-[#f6fbfc] text-gray-900">
       <header className="sticky top-0 z-30 border-b border-[var(--lp-g100,#e0f2f4)] bg-white/95 backdrop-blur">
         <div className="mx-auto flex h-14 max-w-4xl items-center justify-between gap-3 px-5">
           <Link href={site.href} className="text-base font-bold tracking-tight text-gray-900">
@@ -34,27 +49,17 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
           </nav>
         </div>
       </header>
-      <main>{children}</main>
+      <main className="flex-1">{children}</main>
       <footer className="border-t border-gray-200 bg-white px-5 py-8 text-center text-xs leading-6 text-gray-600">
         <p>
-          このサイトは、理学療法士・理学療法学生のための無料アプリ
+          このサイトは、{site.audience ?? "理学療法士・理学療法学生"}のための無料アプリ
           <Link href="/" className="mx-1 font-bold underline">Re:light</Link>
           {site.blurb}
         </p>
         <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
-          {site.links.map((l) => (
+          {[...site.links, ...COMMON_LINKS.filter((c) => !site.links.some((l) => l.href === c.href))].map((l) => (
             <Link key={l.href} href={l.href}>{l.label}</Link>
           ))}
-          <Link href="/paper-search">論文検索</Link>
-          <Link href="/certified-pt">認定理学療法士ガイド</Link>
-          <Link href="/job-hunting">就活ガイド</Link>
-          <Link href="/kuchikomi">職場口コミ</Link>
-          <Link href="/hospital-areas">病院を探す</Link>
-          <Link href="/kokushi">国試過去問</Link>
-          <Link href="/evidence-levels">エビデンスレベル早見表</Link>
-          <Link href="/columns">コラム</Link>
-          <Link href="/privacy">プライバシーポリシー</Link>
-          <Link href="/terms">利用規約</Link>
         </div>
         <p className="mt-3">{site.note ?? "個人情報や、患者さんが特定される情報は、入れないでください。（論文検索の検索語は、外部の論文サイトと翻訳のサービスに送られます）"}</p>
       </footer>
