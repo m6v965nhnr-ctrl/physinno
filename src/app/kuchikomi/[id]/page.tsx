@@ -31,11 +31,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const stats = await getReviewStats(id);
   const n = stats?.review_count ?? 0;
   const place = [h.prefecture, h.city].filter(Boolean).join("");
-  const title = n > 0 ? `${h.name}の理学療法士の口コミ・評判（${n}件）` : `${h.name}の理学療法士の職場口コミ`;
+  const title = n > 0 ? `${h.name}の口コミ・評判（${n}件）｜リハビリ職の職場環境` : `${h.name}の口コミ・評判｜リハビリ職の職場環境`;
   const description =
     n > 0
-      ? `${place ? `${place}の` : ""}${h.name}で働く理学療法士による職場環境の口コミ${n}件（6項目の評価、平均${(stats?.avg_overall ?? 0).toFixed(1)}/10）。教育体制・残業・給与・人間関係などを確認できます。`
-      : `${place ? `${place}の` : ""}${h.name}の、理学療法士の職場口コミのページです。まだ口コミはありません。働いたことのある方の投稿をお待ちしています。`;
+      ? `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）の職場選びに役立つ口コミ${n}件（理学療法士による投稿。6項目の評価、平均${(stats?.avg_overall ?? 0).toFixed(1)}/10）。教育体制・残業・給与・人間関係などを確認できます。`
+      : `${place ? `${place}の` : ""}${h.name}の、リハビリ職（理学療法士・作業療法士・言語聴覚士）向けの職場口コミのページです。まだ口コミはありません。働いたことのある理学療法士の方の投稿をお待ちしています。`;
   return {
     title,
     description,
@@ -82,7 +82,7 @@ export default async function KuchikomiHospitalPage({ params }: Props) {
       "@context": "https://schema.org",
       "@type": "BreadcrumbList",
       itemListElement: [
-        { "@type": "ListItem", position: 1, name: "PTの職場口コミ", item: `${SITE_URL}/kuchikomi` },
+        { "@type": "ListItem", position: 1, name: "リハビリ職の職場口コミ", item: `${SITE_URL}/kuchikomi` },
         { "@type": "ListItem", position: 2, name: h.name, item: `${SITE_URL}/kuchikomi/${id}` },
       ],
     },

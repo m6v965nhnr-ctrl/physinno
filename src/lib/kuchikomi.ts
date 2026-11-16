@@ -5,14 +5,21 @@ import type { GuideSite } from "@/components/paper-search/PaperSiteFrame";
 // 4件目以降は、Re:lightに登録（ログイン）すると読める。件数は、DB（get_hospital_reviews）側で絞る。
 export const FREE_REVIEW_LIMIT = 3;
 
-export const KUCHIKOMI_REGISTER = "/register?type=pt&utm_source=kuchikomi&utm_medium=web&utm_campaign=kuchikomi";
+// 登録の入口。理学療法士は type=pt。作業療法士・言語聴覚士などは「一般」で登録して、すべての口コミを読める
+const REG = "utm_source=kuchikomi&utm_medium=web&utm_campaign=kuchikomi";
+export const KUCHIKOMI_REGISTER = `/register?type=pt&${REG}`;
+export const KUCHIKOMI_REGISTER_GENERAL = `/register?type=general&${REG}`;
 
 export const KUCHIKOMI_SITE: GuideSite = {
-  brand: "PTの職場口コミ",
+  brand: "リハ職の職場口コミ",
   href: "/kuchikomi",
-  register: KUCHIKOMI_REGISTER,
+  register: `/register?${REG}`,
   blurb: "の、職場口コミの入口です。",
-  links: [{ href: "/hospital-areas", label: "病院を探す" }],
+  links: [
+    { href: "/hospital-areas", label: "病院を探す" },
+    { href: "/job-hunting", label: "就活ガイド" },
+  ],
+  note: "口コミは、個人の感想です。個人情報や、患者さんが特定される情報は、書かないでください。",
 };
 
 export type ReviewStats = {

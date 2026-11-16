@@ -5,7 +5,7 @@ import Link from "next/link";
 import { getLocalUser } from "@/lib/authUser";
 import { getMyAccountType, type AccountType } from "@/lib/account";
 import { listHospitalReviews, listReviewTopics, REVIEW_AXES, REVIEW_AXIS_LABEL, REVIEW_TOPICS, REVIEW_TOPIC_OTHER, type HospitalReview, type ReviewTopic } from "@/lib/hospitals";
-import { KUCHIKOMI_REGISTER } from "@/lib/kuchikomi";
+import { KUCHIKOMI_REGISTER, KUCHIKOMI_REGISTER_GENERAL } from "@/lib/kuchikomi";
 import { withReturnTo } from "@/lib/returnTo";
 import ReportButton from "@/components/ReportButton";
 
@@ -71,7 +71,7 @@ export default function ReviewsSection({
 
       {checked && userId && !isPt && (
         <p className="mt-2 rounded-2xl bg-gray-50 px-4 py-3 text-xs leading-5 text-gray-600">
-          口コミを書けるのは、現役の理学療法士（PTアカウント）です。{accountType === "student" ? "学生の方は、実習先での経験を「実習生の声」に書けます（職場ページの口コミタブの下）。" : ""}
+          現在、口コミを書けるのは、理学療法士（PTアカウント）です。作業療法士・言語聴覚士の方の投稿は、今後の対応を検討しています。{accountType === "student" ? "学生の方は、実習先での経験を「実習生の声」に書けます（職場ページの口コミタブの下）。" : ""}
         </p>
       )}
 
@@ -81,7 +81,7 @@ export default function ReviewsSection({
           <p className="mt-2 text-sm leading-6 text-gray-600">{hospitalName}で働いたことのある理学療法士の方は、最初の口コミを書いてみませんか。教育体制・残業・給与など、6項目の評価と、分類ごとのコメントを書けます（匿名にもできます）。</p>
           {checked && !userId && (
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料登録して書く</Link>
+              <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">理学療法士として登録して書く</Link>
               <Link href={withReturnTo("/login", here)} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>
             </div>
           )}
@@ -139,9 +139,10 @@ export default function ReviewsSection({
       {checked && !userId && hidden > 0 && (
         <div className="mt-4 rounded-3xl bg-relight-gradient p-5 text-center">
           <p className="text-base font-bold text-gray-900">ほかの{hidden}件の口コミは、無料登録で読めます</p>
-          <p className="mt-1 text-xs leading-5 text-gray-900/80">理学療法士・学生のための無料アプリ「Re:light」に登録すると、すべての口コミと分類ごとのコメントを読めます。</p>
+          <p className="mt-1 text-xs leading-5 text-gray-900/80">リハビリ職（理学療法士・作業療法士・言語聴覚士）と学生のための無料アプリ「Re:light」に登録すると、すべての口コミと分類ごとのコメントを読めます。</p>
           <div className="mt-3 flex flex-wrap justify-center gap-2">
-            <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">無料で登録する</Link>
+            <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-white px-5 py-2.5 text-sm font-bold text-gray-900">理学療法士として登録</Link>
+            <Link href={`${KUCHIKOMI_REGISTER_GENERAL}&next=${encodeURIComponent(here)}`} className="rounded-full border border-gray-900/30 px-5 py-2.5 text-sm font-semibold text-gray-900">OT・STの方は「一般」で登録</Link>
             <Link href={withReturnTo("/login", here)} className="rounded-full border border-gray-900/30 px-5 py-2.5 text-sm font-semibold text-gray-900">ログイン</Link>
           </div>
         </div>

@@ -3,7 +3,7 @@ import Link from "next/link";
 // 論文検索サイトの、共通の枠（ヘッダー・フッター）。Re:lightの「入口」であることは、小さく示す
 const REGISTER = "/register?type=pt&utm_source=paper-site&utm_medium=web&utm_campaign=paper-search";
 
-type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[] };
+type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[]; note?: string };
 
 const PAPER_SITE: Site = {
   brand: "理学療法の論文検索",
@@ -56,7 +56,7 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
           <Link href="/privacy">プライバシーポリシー</Link>
           <Link href="/terms">利用規約</Link>
         </div>
-        <p className="mt-3">個人情報や、患者さんが特定される情報は、入れないでください。（論文検索の検索語は、外部の論文サイトと翻訳のサービスに送られます）</p>
+        <p className="mt-3">{site.note ?? "個人情報や、患者さんが特定される情報は、入れないでください。（論文検索の検索語は、外部の論文サイトと翻訳のサービスに送られます）"}</p>
       </footer>
     </div>
   );

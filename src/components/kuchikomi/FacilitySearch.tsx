@@ -42,7 +42,7 @@ export default function FacilitySearch() {
 
   return (
     <div>
-      <form onSubmit={search} className="grid gap-2 sm:grid-cols-[1fr_9rem_auto]">
+      <form onSubmit={search} className="grid gap-2 sm:grid-cols-[1fr_10rem_6.5rem]">
         <input value={keyword} onChange={(e) => setKeyword(e.target.value)} placeholder="施設名（例: 〇〇病院）" aria-label="施設名" className={INPUT_CLASS} />
         <select value={prefecture} onChange={(e) => setPrefecture(e.target.value)} aria-label="都道府県" className={INPUT_CLASS}>
           <option value="">都道府県</option>
@@ -50,7 +50,7 @@ export default function FacilitySearch() {
             <option key={p} value={p}>{p}</option>
           ))}
         </select>
-        <button type="submit" disabled={busy} className={`${PRIMARY_BUTTON_CLASS} disabled:opacity-60`}>{busy ? "検索中…" : "探す"}</button>
+        <button type="submit" disabled={busy} className={`${PRIMARY_BUTTON_CLASS} whitespace-nowrap bg-relight-gradient disabled:opacity-60`}>{busy ? "検索中…" : "探す"}</button>
       </form>
       {failed && <p role="alert" className="mt-3 text-sm text-red-600">検索できませんでした。もう一度お試しください。</p>}
       {rows && rows.length === 0 && <p className="mt-3 text-sm text-gray-600">見つかりませんでした。施設名の一部だけで、もう一度お試しください。</p>}
