@@ -26,6 +26,8 @@ export default function robots(): MetadataRoute.Robots {
         "/certified-pt",
         "/certified-pt/*",
         "/job-hunting",
+        "/kuchikomi",
+        "/kuchikomi/*",
         "/hospital-areas",
         "/hospital-areas/*",
         "/facility-areas",

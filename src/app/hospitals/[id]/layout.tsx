@@ -4,6 +4,7 @@ import { supabasePublic } from "@/lib/supabasePublic";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Hospital } from "@/lib/hospitals";
 import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
+import { getReviewStats as getReviewStatsRpc } from "@/lib/kuchikomi";
 import { HospitalInitialProvider } from "./HospitalInitial";
 
 type Props = { params: Promise<{ id: string }>; children: React.ReactNode };
@@ -14,13 +15,12 @@ const getHospital = cache(async (id: string) => {
   return (data as Hospital | null) ?? null;
 });
 
-// 口コミの平均・件数を、検索結果のスニペット（概要文・星評価の構造化データ）に使う
+// 口コミの平均・件数を、検索結果のスニペット（概要文・星評価の構造化データ）に使う。
+// 口コミ一覧は、ログインなしだと3件までしか返らないので、件数・平均は集計用のRPCから取る
 const getReviewStats = cache(async (id: string) => {
-  const { data } = await supabasePublic.rpc("get_hospital_reviews", { p_hospital_id: id });
-  const reviews = (data ?? []) as { overall_score: number }[];
-  if (reviews.length === 0) return null;
-  const average = reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length;
-  return { average, count: reviews.length };
+  const stats = await getReviewStatsRpc(id);
+  if (!stats || stats.review_count === 0 || stats.avg_overall == null) return null;
+  return { average: stats.avg_overall, count: stats.review_count };
 });
 
 export async function generateMetadata({ params }: Pick<Props, "params">): Promise<Metadata> {

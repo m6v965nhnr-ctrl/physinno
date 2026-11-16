@@ -93,6 +93,9 @@ export default function HospitalDetailPage() {
   const [topicInputs, setTopicInputs] = useState<Record<string, string>>({});
   const [topicCat, setTopicCat] = useState<string | null>(null);
   const [reviews, setReviews] = useState<HospitalReview[]>([]);
+  // 全体の件数・平均（ログインなしだと、口コミ一覧は3件までしか返らないので、集計用のRPCから取る）
+  const [reviewTotal, setReviewTotal] = useState(0);
+  const [reviewAvgs, setReviewAvgs] = useState<Record<string, number> | null>(null);
   const [scores, setScores] = useState<Record<ReviewAxis, number>>({
     work_environment: 5,
     education_system: 5,
@@ -156,6 +159,12 @@ export default function HospitalDetailPage() {
     }
     setHospital(h);
     getIncomeByAge(id).then(setIncomeByAge);
+    supabase.rpc("get_hospital_review_stats", { p_hospital: id }).then(({ data }) => {
+      const row = (Array.isArray(data) ? data[0] : data) as Record<string, number | string | null> | undefined;
+      if (!row) return;
+      setReviewTotal(Number(row.review_count ?? 0));
+      setReviewAvgs(Object.fromEntries(Object.entries(row).map(([k, v]) => [k, Number(v ?? 0)])));
+    });
     listOrgPosts({ hospitalId: id, limit: 20 }).then(setOrgPosts);
     listReviewTopics(id).then((t) => {
       setTopics(t);
@@ -184,6 +193,11 @@ export default function HospitalDetailPage() {
       setAccountType(myType);
       if (myType === "pt" || myType === "student") loadQuestions();
       setIsPt(myType === "pt");
+      // 職場口コミサイト（/kuchikomi）の「口コミを書く」から来たときは、投稿の画面を開く
+      if (myType === "pt" && new URLSearchParams(window.location.search).get("write") === "1") {
+        setTab("reviews");
+        setReviewModalOpen(true);
+      }
       setFollowing(await isFollowingHospital(id, user.id));
       // 疾患比率・採用情報を編集できるのは、この施設にひもづいた承認済みの組織（採用アカウント）だけ
       setCanEditRatios(await isHospitalOrg(id));
@@ -380,10 +394,15 @@ export default function HospitalDetailPage() {
     );
   }
 
+  // ログインなしは、口コミ一覧が3件までなので、件数・平均は、全体の集計値を使う
+  const gated = reviewTotal > reviews.length;
+  const reviewCount = Math.max(reviews.length, reviewTotal);
   const averageRating =
-    reviews.length > 0
-      ? reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length
-      : null;
+    gated && reviewAvgs
+      ? reviewAvgs.avg_overall
+      : reviews.length > 0
+        ? reviews.reduce((sum, r) => sum + r.overall_score, 0) / reviews.length
+        : null;
 
   // 数字で答えてもらった項目の平均（少人数で個人が特定されないよう、3件以上そろったものだけ出す）
   const avgOf = (pick: (r: HospitalReview) => number | null | undefined) => {
@@ -403,9 +422,11 @@ export default function HospitalDetailPage() {
   const axisAverages = REVIEW_AXES.map((axis) => ({
     label: REVIEW_AXIS_LABEL[axis],
     value:
-      reviews.length > 0
-        ? reviews.reduce((sum, r) => sum + r[axis], 0) / reviews.length
-        : 0,
+      gated && reviewAvgs
+        ? reviewAvgs[`avg_${axis}`] ?? 0
+        : reviews.length > 0
+          ? reviews.reduce((sum, r) => sum + r[axis], 0) / reviews.length
+          : 0,
   }));
 
   return (
@@ -486,7 +507,7 @@ export default function HospitalDetailPage() {
             <span>フォロワー {followerCount}人</span>
             {averageRating !== null && (
               <span>
-                総合 {averageRating.toFixed(1)}/10（{reviews.length}件）
+                総合 {averageRating.toFixed(1)}/10（{reviewCount}件）
               </span>
             )}
           </div>
@@ -510,7 +531,7 @@ export default function HospitalDetailPage() {
 
         {dataReady && (
           <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
-            {([["top", "TOP", null], ["reviews", "口コミ", reviews.length], ["posts", "投稿", orgPosts.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
+            {([["top", "TOP", null], ["reviews", "口コミ", reviewCount], ["posts", "投稿", orgPosts.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
               <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
                 {n !== null ? (
                   <span className={`flex h-6 min-w-9 items-center justify-center rounded-md border px-1.5 text-[11px] ${tab === key ? "border-gray-400" : "border-white/80"}`}>{n}</span>
@@ -627,14 +648,14 @@ export default function HospitalDetailPage() {
                       {"★".repeat(Math.round(averageRating / 2))}
                       <span className="text-gray-300">{"★".repeat(5 - Math.round(averageRating / 2))}</span>
                     </p>
-                    <p className="mt-1 text-[11px] text-gray-500">{reviews.length}件の口コミ</p>
+                    <p className="mt-1 text-[11px] text-gray-500">{reviewCount}件の口コミ</p>
                   </div>
                 </div>
               )}
               <ReviewRadarChart items={axisAverages} />
               <ReviewBars items={axisAverages} />
               <p className="mt-3 text-center text-xs text-gray-500">
-                {reviews.length}件の口コミの平均（10点満点）
+                {reviewCount}件の口コミの平均（10点満点）
                 {averageRating !== null && (
                   <>
                     ・総合 <span className="font-semibold text-gray-900">{averageRating.toFixed(1)}</span>
@@ -842,7 +863,7 @@ export default function HospitalDetailPage() {
           , document.body)}
 
           {tab !== "reviews" && reviews.length > 0 && (
-            <button type="button" onClick={() => setTab("reviews")} className="mt-3 w-full rounded-full border border-gray-300 bg-white py-2 text-sm font-medium text-gray-700">口コミを読む（{reviews.length}件）</button>
+            <button type="button" onClick={() => setTab("reviews")} className="mt-3 w-full rounded-full border border-gray-300 bg-white py-2 text-sm font-medium text-gray-700">口コミを読む（{reviewCount}件）</button>
           )}
 
           {tab === "reviews" && (() => {
@@ -851,7 +872,7 @@ export default function HospitalDetailPage() {
             const items = topicCat === null ? [] : topicCat === REVIEW_TOPIC_OTHER ? legacy : topics.filter((x) => x.category === topicCat);
             return (
               <div className="mt-4">
-                <p className="rounded-xl bg-gray-100 py-2 text-center text-sm font-bold text-gray-800">職場口コミ（{reviews.length}件）</p>
+                <p className="rounded-xl bg-gray-100 py-2 text-center text-sm font-bold text-gray-800">職場口コミ（{reviewCount}件）</p>
                 <p className="mt-3 text-[11px] text-gray-500">知りたい項目を選ぶと、その項目の口コミだけを読めます</p>
                 <div className="mt-2 grid grid-cols-2 gap-2">
                   {[...REVIEW_TOPICS.map((t) => t.key), REVIEW_TOPIC_OTHER].map((k) => (
@@ -941,6 +962,17 @@ export default function HospitalDetailPage() {
                 )}
               </div>
             ))}
+
+            {!userId && gated && (
+              <div className="rounded-2xl bg-relight-gradient p-4 text-center">
+                <p className="text-sm font-bold text-gray-900">ほかの{reviewTotal - reviews.length}件の口コミは、無料登録で読めます</p>
+                <p className="mt-1 text-[11px] leading-5 text-gray-900/80">登録なしで読めるのは、新しい口コミ3件までです。</p>
+                <div className="mt-3 flex flex-wrap justify-center gap-2">
+                  <Link href={`/register?type=pt&utm_source=kuchikomi&utm_medium=web&utm_campaign=hospital-page&next=${encodeURIComponent(`/hospitals/${id}?tab=reviews`)}`} className="rounded-full bg-white px-4 py-2 text-xs font-bold text-gray-900">無料で登録する</Link>
+                  <Link href={`/login?next=${encodeURIComponent(`/hospitals/${id}?tab=reviews`)}`} className="rounded-full border border-gray-900/30 px-4 py-2 text-xs font-semibold text-gray-900">ログイン</Link>
+                </div>
+              </div>
+            )}
           </div>
         </section>
         )}
