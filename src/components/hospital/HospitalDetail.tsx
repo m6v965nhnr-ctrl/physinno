@@ -640,8 +640,6 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
             )}
           </div>
 
-          <p className="mt-1 text-[11px] text-gray-500">理学療法士による、リアルな職場環境の声（実際の評価・口コミ）です。</p>
-
           {tab === "top" && dataReady && reviews.length === 0 && (
             <div className="mt-4 rounded-2xl border border-dashed border-gray-300 p-3">
               <p className="text-center text-xs font-semibold text-gray-700">

@@ -41,7 +41,7 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
 
           <div className="mt-1.5 rounded-xl border border-gray-100 bg-white p-2.5">
             <p className="text-[9px] font-semibold text-gray-500">職場の総合評価</p>
-            <div className="mt-1 flex items-center gap-1">
+            <div className="mt-1 flex items-start gap-1">
               <div className="w-[56%] shrink-0">
                 <ReviewRadarChart items={SAMPLE} />
               </div>
@@ -52,7 +52,18 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
                 <p className="mt-0.5"><StarRating score={8.0} className="text-[11px]" /></p>
               </div>
             </div>
-            <p className="mt-1.5 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">匿名で口コミを書く</p>
+            <ul className="mt-1.5 space-y-1">
+              {SAMPLE.map((it) => (
+                <li key={it.label} className="flex items-center gap-1.5">
+                  <span className="w-[4.2rem] shrink-0 text-[7px] text-gray-700">{it.label}</span>
+                  <span className="h-1.5 flex-1 rounded-full bg-gray-100">
+                    <span className="block h-1.5 rounded-full bg-brand-500" style={{ width: `${(it.value / 10) * 100}%` }} />
+                  </span>
+                  <span className="w-5 text-right text-[7px] font-semibold text-gray-900">{it.value.toFixed(1)}</span>
+                </li>
+              ))}
+            </ul>
+            <p className="mt-2 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">匿名で口コミを書く</p>
           </div>
         </div>
       </div>

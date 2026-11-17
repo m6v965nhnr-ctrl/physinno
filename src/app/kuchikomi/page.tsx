@@ -114,7 +114,6 @@ export default async function KuchikomiTop() {
 
           {/* 施設をタップしたあとの画面の見本。スマホでは、上の部分だけをのぞかせ、縦に長くならないようにする */}
           <div className="px-4 pb-4 md:px-0 md:py-6 md:pr-8">
-            <p className="mb-1.5 text-center text-[11px] font-bold text-gray-900/70">施設をタップすると、こんな画面（サンプル）</p>
             <FacilityPreview caption={false} />
           </div>
         </div>
