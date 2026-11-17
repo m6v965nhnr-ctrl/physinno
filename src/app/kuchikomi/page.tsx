@@ -99,10 +99,6 @@ export default async function KuchikomiTop() {
           <p className="mt-3 text-sm font-bold leading-7 text-gray-900 sm:text-base">
             理学療法士・作業療法士・言語聴覚士のための、病院・施設の口コミ。教育体制・残業・給与・人間関係を、6項目の評価と、分類ごとの声で。
           </p>
-          <div className="mt-5 rounded-2xl bg-white p-4 shadow-sm sm:p-5">
-            <p className="mb-2 text-sm font-bold text-gray-900">気になる職場を探す</p>
-            <FacilitySearch />
-          </div>
           <ul className="mt-4 flex flex-wrap gap-2 text-xs font-bold text-gray-900">
             <li className="rounded-full bg-white/60 px-3 py-1.5">登録なしで{FREE_REVIEW_LIMIT}件まで読める</li>
             <li className="rounded-full bg-white/60 px-3 py-1.5">匿名で投稿できる</li>
@@ -112,7 +108,16 @@ export default async function KuchikomiTop() {
         </div>
       </section>
 
-      {/* ② 口コミのある施設 */}
+      {/* ② 職場を探す（名前／条件。ボタンで切り替え） */}
+      <section className="px-5 pt-6">
+        <div className="mx-auto max-w-4xl rounded-3xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
+          <h2 className="text-lg font-bold text-gray-900">気になる職場を探す</h2>
+          <p className="mt-1 text-sm text-gray-600">施設名で探すか、地域や施設の種類で絞って探せます。口コミがない施設も、最初の1件を書けます。</p>
+          <div className="mt-4"><FacilitySearch /></div>
+        </div>
+      </section>
+
+      {/* ③ 口コミのある施設 */}
       <section className="px-5 pt-10">
         <div className="mx-auto max-w-4xl">
           <h2 className="text-xl font-bold text-gray-900">口コミのある施設</h2>
