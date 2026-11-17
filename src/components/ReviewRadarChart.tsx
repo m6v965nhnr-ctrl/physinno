@@ -39,7 +39,7 @@ export default function ReviewRadarChart({
       viewBox={`0 0 ${SIZE_W} ${SIZE_H}`}
       role="img"
       aria-label={`職場環境の評価（10点満点の平均）: ${summary}`}
-      className="mx-auto w-full max-w-sm"
+      className="mx-auto w-full max-w-[290px]"
     >
       {/* 目盛りの六角形 */}
       {RINGS.map((ring) => (

@@ -127,7 +127,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
   // 口コミを書く入口。書けるのは、登録した人だけ（登録なしでは書けない）。ゲストは、登録のあと、この施設の投稿画面へ進む
   const writeHref = `/kuchikomi/${id}/write`;
   const writeCta = (
-    <div className="mt-4">
+    <div className="mt-3">
       {isPt ? (
         <button
           onClick={() => { track("facility_cta", { kind: "review_pt" }); openReview(); }}
@@ -577,7 +577,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         </div>
 
         {dataReady && (
-          <div role="tablist" aria-label="ページの切り替え" className="mt-5 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
+          <div role="tablist" aria-label="ページの切り替え" className="mt-3 flex overflow-hidden rounded-2xl bg-relight-gradient text-center text-xs font-semibold text-white">
             {([["top", "TOP", null], ["reviews", "口コミ", reviewCount], ["posts", "投稿", orgPosts.length], ["questions", "質問", questions.length], ["recruit", "採用情報", null]] as const).map(([key, label, n]) => (
               <button key={key} type="button" role="tab" aria-selected={tab === key} onClick={() => setTab(key)} className={`flex flex-1 flex-col items-center gap-1 px-1 py-2.5 ${tab === key ? "bg-white text-gray-900" : ""}`}>
                 {n !== null ? (
@@ -596,7 +596,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         {dataReady && (
           <>
         {tab === "top" && pts.length > 0 && (
-          <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
             <h2 className="text-sm font-semibold text-gray-500">在籍PT</h2>
             <div className="mt-3 space-y-2">
               {pts.map((pt) => (
@@ -618,7 +618,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         )}
 
         {(tab === "top" || tab === "reviews") && (
-        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+        <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
           <div className="flex items-center justify-between gap-3">
             <h2 className="text-sm font-semibold text-gray-500">{tab === "top" ? "職場の総合評価" : "職場口コミ"}</h2>
 
@@ -667,9 +667,9 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
           )}
 
           {tab === "top" && reviews.length > 0 && (
-            <div className="mt-4">
+            <div className="mt-2">
               {averageRating !== null && (
-                <div className="mb-2 flex items-end justify-center gap-3 rounded-2xl bg-gray-50 py-3">
+                <div className="mb-1 flex items-end justify-center gap-3 rounded-2xl bg-gray-50 py-2">
                   <div className="text-center">
                     <p className="text-[11px] font-semibold text-gray-500">総合評価</p>
                     <p className="text-4xl font-extrabold leading-none tracking-tight text-gray-900">
@@ -685,7 +685,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
               )}
               <ReviewRadarChart items={axisAverages} />
               <ReviewBars items={axisAverages} />
-              <p className="mt-3 text-center text-xs text-gray-500">
+              <p className="mt-2 text-center text-xs text-gray-500">
                 {reviewCount}件の口コミの平均（10点満点）
                 {averageRating !== null && (
                   <>
@@ -1016,7 +1016,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         )}
 
         {tab === "posts" && dataReady && (
-          <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+          <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
             <h2 className="text-sm font-semibold text-gray-500">施設からの投稿（{orgPosts.length}）</h2>
             <p className="mt-2 text-xs leading-5 text-gray-500">この職場の運営者（運営が確認した施設アカウント）が投稿した、お知らせ・採用情報・写真や動画です。</p>
             {orgPosts.length === 0 ? (
@@ -1037,7 +1037,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
 
 
         {tab === "top" && (
-        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+        <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">疾患比率</h2>
             {canEditRatios && !editingRatios && (
@@ -1113,7 +1113,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         {tab === "top" && <IncomeByAgeChart data={incomeByAge} />}
 
         {tab === "recruit" && (
-        <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+        <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
           <div className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-gray-500">採用情報</h2>
             {canEditRatios && !editingRecruitment && (

@@ -68,7 +68,7 @@ export default function HospitalQuestions({ hospitalId, hospitalName, accountTyp
   }
 
   return (
-    <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+    <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
       <h2 className="text-sm font-semibold text-gray-500">質問（{canUse ? questions.length : "—"}）</h2>
       <p className="mt-2 text-xs leading-5 text-gray-500">{hospitalName}について知りたいことを、ここで働いている人に聞けます。給与・教育・雰囲気など、なんでも。</p>
 

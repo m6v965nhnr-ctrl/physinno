@@ -5,7 +5,7 @@ export default function IncomeByAgeChart({ data }: { data: IncomeByAge[] }) {
   const max = Math.max(...data.map((d) => d.avg_income), 1);
   const byBand = new Map(data.map((d) => [d.age_band, d]));
   return (
-    <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+    <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
       <h2 className="text-sm font-semibold text-gray-500">年齢ごとの年収の推移（口コミの平均）</h2>
       {data.length < 2 ? (
         <p className="mt-3 text-sm leading-6 text-gray-500">年収と年齢を答えた口コミが、年齢の層ごとに3件以上そろうと、ここに表示されます（少ない件数だと、回答した人が特定されるおそれがあるため）。</p>

@@ -138,7 +138,7 @@ export default function InternshipReviews({
   const averages = averageScores(reviews);
 
   return (
-    <section className="mt-5 rounded-3xl border border-gray-100 bg-white p-6">
+    <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
       <div className="flex items-center justify-between gap-3">
         <h2 className="text-sm font-semibold text-gray-500">実習生の声（実習先として）</h2>
 

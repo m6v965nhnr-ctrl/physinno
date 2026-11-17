@@ -1,7 +1,7 @@
 // 職場環境の口コミ（6項目・各1〜10点）の平均を、項目ごとのバーと数字で表示する（スマホでも読みやすいように、レーダーチャートと併用）
 export default function ReviewBars({ items }: { items: { label: string; value: number }[] }) {
   return (
-    <ul className="mt-4 space-y-2.5" aria-label="項目ごとの平均点（10点満点）">
+    <ul className="mt-1 space-y-2" aria-label="項目ごとの平均点（10点満点）">
       {items.map((it) => (
         <li key={it.label} className="flex items-center gap-3">
           <span className="w-36 shrink-0 text-xs leading-tight text-gray-700">{it.label}</span>
