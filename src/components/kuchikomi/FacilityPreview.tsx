@@ -45,11 +45,15 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
           <div className="mt-1.5 rounded-xl border border-gray-100 bg-white p-2.5">
             <p className="text-[9px] font-semibold text-gray-500">職場の総合評価</p>
             {/* 点数と星を、レーダーチャートの上に。チャートは、中央（正中線）に合わせる */}
-            <div className="mt-1 rounded-lg bg-gray-50 py-1.5 text-center">
-              <p className="text-[8px] font-semibold text-gray-500">総合評価</p>
-              <p className="text-2xl font-extrabold leading-none text-gray-900">8.0</p>
-              <p className="text-[8px] text-gray-500">/ 10（12件）</p>
-              <p className="mt-0.5"><StarRating score={8.0} className="text-[11px]" /></p>
+            <div className="mt-1 flex items-end justify-center gap-2 rounded-lg bg-gray-50 py-1">
+              <div className="text-center">
+                <p className="text-[7px] font-semibold leading-none text-gray-500">総合評価</p>
+                <p className="text-xl font-extrabold leading-none text-gray-900">8.0<span className="ml-0.5 text-[8px] font-semibold text-gray-500">/ 10</span></p>
+              </div>
+              <div className="pb-0.5 text-left">
+                <StarRating score={8.0} className="text-[11px]" />
+                <p className="mt-0.5 text-[7px] leading-none text-gray-500">12件の口コミ</p>
+              </div>
             </div>
             <div className="mx-auto mt-1 w-[78%]">
               <ReviewRadarChart items={SAMPLE} />
