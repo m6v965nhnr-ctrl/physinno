@@ -13,6 +13,9 @@ const SAMPLE: { label: string; value: number }[] = [
   { label: "風通しの良さ", value: 9.0 },
 ];
 
+// バーは、4本だけ（縦を短くするため）
+const BARS = [SAMPLE[0], SAMPLE[1], SAMPLE[3], SAMPLE[5]];
+
 const TABS: [string, string][] = [["TOP", ""], ["口コミ", "12"], ["投稿", "0"], ["質問", "0"], ["採用情報", ""]];
 
 export default function FacilityPreview({ caption = true }: { caption?: boolean }) {
@@ -41,19 +44,18 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
 
           <div className="mt-1.5 rounded-xl border border-gray-100 bg-white p-2.5">
             <p className="text-[9px] font-semibold text-gray-500">職場の総合評価</p>
-            <div className="mt-1 flex items-start gap-1">
-              <div className="w-[56%] shrink-0">
-                <ReviewRadarChart items={SAMPLE} />
-              </div>
-              <div className="flex-1 rounded-lg bg-gray-50 py-2 text-center">
-                <p className="text-[8px] font-semibold text-gray-500">総合評価</p>
-                <p className="text-2xl font-extrabold leading-none text-gray-900">8.0</p>
-                <p className="text-[8px] text-gray-500">/ 10（12件）</p>
-                <p className="mt-0.5"><StarRating score={8.0} className="text-[11px]" /></p>
-              </div>
+            {/* 点数と星を、レーダーチャートの上に。チャートは、中央（正中線）に合わせる */}
+            <div className="mt-1 rounded-lg bg-gray-50 py-1.5 text-center">
+              <p className="text-[8px] font-semibold text-gray-500">総合評価</p>
+              <p className="text-2xl font-extrabold leading-none text-gray-900">8.0</p>
+              <p className="text-[8px] text-gray-500">/ 10（12件）</p>
+              <p className="mt-0.5"><StarRating score={8.0} className="text-[11px]" /></p>
             </div>
-            <ul className="mt-1.5 space-y-1">
-              {SAMPLE.map((it) => (
+            <div className="mx-auto mt-1 w-[78%]">
+              <ReviewRadarChart items={SAMPLE} />
+            </div>
+            <ul className="mt-1 space-y-1">
+              {BARS.map((it) => (
                 <li key={it.label} className="flex items-center gap-1.5">
                   <span className="w-[4.2rem] shrink-0 text-[7px] text-gray-700">{it.label}</span>
                   <span className="h-1.5 flex-1 rounded-full bg-gray-100">
@@ -63,7 +65,6 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
                 </li>
               ))}
             </ul>
-            <p className="mt-2 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">匿名で口コミを書く</p>
           </div>
         </div>
       </div>
