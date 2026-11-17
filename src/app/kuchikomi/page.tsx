@@ -110,27 +110,32 @@ export default async function KuchikomiTop() {
     <KuchikomiFrame>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
 
-      {/* ① ヒーロー: 検索が主役 */}
-      <section className="px-5 pt-6">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient p-6 shadow-sm sm:p-10">
-          <p className="text-xs font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの職場口コミ</p>
-          <h1 className="mt-2 text-4xl font-black leading-tight tracking-tight text-gray-900 sm:text-6xl">リハ職の本音</h1>
-          <p className="mt-2 text-lg font-black leading-snug text-gray-900 sm:text-2xl">職場の本当のところが、分かる。</p>
-          <p className="mt-3 text-sm font-bold leading-7 text-gray-900 sm:text-base">
-            理学療法士・作業療法士・言語聴覚士のための、病院・施設の口コミ。教育体制・残業・給与・人間関係を、6項目の評価と、分類ごとの声で。
+      {/* ① ヒーロー: 検索が主役（縦に長くならないよう、コンパクトに。施設の種類は、押すと開く） */}
+      <section className="px-5 pt-4">
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient p-4 shadow-sm sm:p-8">
+          <p className="text-[11px] font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの職場口コミ</p>
+          <h1 className="mt-1 text-3xl font-black leading-tight tracking-tight text-gray-900 sm:text-5xl">リハ職の本音</h1>
+          <p className="mt-1 text-base font-black leading-snug text-gray-900 sm:text-xl">職場の本当のところが、分かる。</p>
+          <p className="mt-1.5 text-xs font-bold leading-6 text-gray-900 sm:text-sm">
+            理学療法士・作業療法士・言語聴覚士のための、病院・施設の口コミ。6項目の評価と、分類ごとの声で。
           </p>
-          <ul className="mt-4 flex flex-wrap gap-2 text-xs font-bold text-gray-900">
-            <li className="rounded-full bg-white/60 px-3 py-1.5">登録なしで{FREE_REVIEW_LIMIT}件まで読める</li>
-            <li className="rounded-full bg-white/60 px-3 py-1.5">匿名で投稿できる</li>
-            <li className="rounded-full bg-white/60 px-3 py-1.5">無料</li>
-            <li className="rounded-full bg-white/60 px-3 py-1.5">全国約14.6万の病院・施設</li>
+          <ul className="mt-2.5 flex flex-wrap gap-1.5 text-[11px] font-bold text-gray-900">
+            <li className="rounded-full bg-white/60 px-2.5 py-1">登録なしで{FREE_REVIEW_LIMIT}件まで読める</li>
+            <li className="rounded-full bg-white/60 px-2.5 py-1">匿名で投稿できる</li>
+            <li className="rounded-full bg-white/60 px-2.5 py-1">無料</li>
+            <li className="rounded-full bg-white/60 px-2.5 py-1">全国約14.6万の病院・施設</li>
           </ul>
-          <p className="mt-4 text-xs font-bold text-gray-900/70">探せる施設の種類</p>
-          <ul className="mt-1.5 flex flex-wrap gap-1.5 text-xs font-bold text-gray-900">
-            {FACILITY_KINDS.map((k) => (
-              <li key={k} className="rounded-full border border-gray-900/20 bg-white/40 px-3 py-1.5">{k}</li>
-            ))}
-          </ul>
+          <details className="group mt-2">
+            <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full border border-gray-900/25 bg-white/50 px-3 py-1 text-[11px] font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
+              探せる施設の種類（{FACILITY_KINDS.length}）
+              <span aria-hidden="true" className="transition group-open:rotate-180">▾</span>
+            </summary>
+            <ul className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-bold text-gray-900">
+              {FACILITY_KINDS.map((k) => (
+                <li key={k} className="rounded-full border border-gray-900/20 bg-white/40 px-2.5 py-1">{k}</li>
+              ))}
+            </ul>
+          </details>
         </div>
       </section>
 
