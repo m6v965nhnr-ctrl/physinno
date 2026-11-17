@@ -5,8 +5,8 @@ import { listReviewedHospitals } from "@/lib/kuchikomi";
 
 // 職場口コミサイト（/kuchikomi）の施設ページのサイトマップ（/kuchikomi/sitemap.xml）。
 // 施設ページは、全施設（約14.6万件）が検索の対象（noindex にしない）。ただし、検索エンジンへの案内（サイトマップ）は、
-// Vercel無料枠の使用量を抑えるため、段階的に広げる。第2段階: 病院・老健・訪問リハ・デイケア・介護医療院・障害者支援施設・重症心身障害児者施設（約2万件）と、口コミが付いた施設。
-// 広げるときは、SITEMAP_TYPES に種類を足す（1ファイルは5万件まで。それを超えたら generateSitemaps で分割する）。
+// Vercel無料枠の使用量を抑えるため、段階的に広げる。第3段階: 病院・老健・訪問リハ・デイケア・介護医療院・障害者支援施設・重症心身障害児者施設・訪問看護ステーション・クリニック（約4.8万件）と、口コミが付いた施設。
+// 広げるときは、SITEMAP_TYPES に種類を足す。1ファイルは5万件までなので、今はほぼ上限。これ以上（特養・児童発達支援・放課後等デイ・デイサービス等）は、generateSitemaps で分割してから足す（robots.txt の案内先も変わる）。
 export const revalidate = 86400;
 export const maxDuration = 60;
 
@@ -19,6 +19,8 @@ const SITEMAP_TYPES: [string, string | null][] = [
   ["介護・高齢者福祉施設", "介護医療院"],
   ["小児・障害福祉分野", "障害者支援施設"],
   ["小児・障害福祉分野", "重症心身障害児・者施設"],
+  ["訪問・在宅分野", "訪問看護ステーション"],
+  ["病院・医療機関", "クリニック・診療所"],
 ];
 
 type Row = { id: string; created_at: string | null };
@@ -26,7 +28,7 @@ type Row = { id: string; created_at: string | null };
 async function listType([category, type]: [string, string | null]): Promise<Row[]> {
   const out: Row[] = [];
   // APIの1回の上限(1,000件)を超えるので、ページを分けて取る
-  for (let from = 0; from < 8000; from += 1000) {
+  for (let from = 0; from < 20000; from += 1000) {
     let q = supabasePublic.from("hospitals").select("id, created_at").eq("facility_category", category);
     q = type === null ? q.is("facility_type", null) : q.eq("facility_type", type);
     const { data, error } = await q.order("name").order("id").range(from, from + 999);
