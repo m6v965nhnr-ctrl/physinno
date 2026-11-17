@@ -33,7 +33,7 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
     // フッターは、ページが短くても、画面の一番下に付くようにする（main が余白を埋める）
     <div className="flex min-h-screen flex-col bg-[#f6fbfc] text-gray-900">
       <header className="sticky top-0 z-30 border-b border-[var(--lp-g100,#e0f2f4)] bg-white/95 backdrop-blur">
-        <div className="mx-auto flex h-14 max-w-4xl items-center justify-between gap-3 px-5">
+        <div className="mx-auto flex h-12 max-w-4xl items-center justify-between gap-3 px-5">
           <Link href={site.href} className="text-base font-bold tracking-tight text-gray-900">
             {site.brand}
           </Link>

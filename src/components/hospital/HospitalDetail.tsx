@@ -123,6 +123,34 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
   const [submitting, setSubmitting] = useState(false);
   const [reviewModalOpen, setReviewModalOpen] = useState(false);
   // 口コミを書く: アプリはこの画面のモーダル、口コミサイトは、専用の投稿画面（×で口コミサイトに戻る）
+  // 口コミを書く入口。書けるのは、登録した人だけ（登録なしでは書けない）。ゲストは、登録のあと、この施設の投稿画面へ進む
+  const writeHref = `/kuchikomi/${id}/write`;
+  const writeCta = (
+    <div className="mt-4">
+      {isPt ? (
+        <button
+          onClick={() => { track("facility_cta", { kind: "review_pt" }); openReview(); }}
+          className="w-full rounded-full bg-relight-gradient px-4 py-3 text-sm font-bold text-white"
+        >
+          {reviews.some((r) => r.is_mine) ? "自分の口コミを編集する" : "口コミを書く"}
+        </button>
+      ) : (
+        <Link
+          href={userId ? writeHref : `${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(writeHref)}`}
+          onClick={() => track("facility_cta", { kind: userId ? "review_other" : "register_review" })}
+          className="block w-full rounded-full bg-relight-gradient px-4 py-3 text-center text-sm font-bold text-white"
+        >
+          口コミを書く
+        </Link>
+      )}
+      {!userId && (
+        <p className="mt-1.5 text-center text-[11px] leading-5 text-gray-500">
+          口コミを書けるのは、無料登録した人だけです（匿名で投稿できます）。登録のあと、そのまま、この施設の投稿画面に進みます。
+          <Link href={`/login?next=${encodeURIComponent(writeHref)}`} className="ml-1 underline">登録済みの方はログイン</Link>
+        </p>
+      )}
+    </div>
+  );
   const selfPath = variant === "kuchikomi" ? `/kuchikomi/${id}` : `/hospitals/${id}`;
   const openReview = () => {
     if (variant === "kuchikomi") router.push(`/kuchikomi/${id}/write`);
@@ -462,7 +490,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
   }));
 
   return (
-    <main className={`bg-[#fafafa] px-5 py-8 ${variant === "kuchikomi" ? "pb-12" : "min-h-screen pb-28"}`}>
+    <main className={`bg-[#fafafa] px-5 ${variant === "kuchikomi" ? "pb-12 pt-3" : "min-h-screen py-8 pb-28"}`}>
       <div className="mx-auto max-w-2xl">
         <Link href={variant === "kuchikomi" ? "/kuchikomi" : "/pts"} className="text-sm text-gray-400 hover:text-gray-700">
           {variant === "kuchikomi" ? "← 職場口コミのトップ" : "← 探すに戻る"}
@@ -627,22 +655,8 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
 
               {/* 空のページを、口コミ・登録の入口にする */}
               <div className="mt-3 space-y-2">
-                {isPt ? (
-                  <button
-                    onClick={() => { track("facility_cta", { kind: "review_pt" }); openReview(); }}
-                    className="w-full rounded-full bg-relight-gradient px-4 py-2.5 text-sm font-medium text-white"
-                  >
-                    この職場で働いていますか？これから職場を選ぶ人のために口コミを書きませんか
-                  </button>
-                ) : !userId ? (
-                  <Link
-                    href={`/register?type=pt&next=${encodeURIComponent(`/hospitals/${id}`)}`}
-                    onClick={() => track("facility_cta", { kind: "register_pt" })}
-                    className="block w-full rounded-full bg-relight-gradient px-4 py-2.5 text-center text-sm font-medium text-white"
-                  >
-                    この職場で働くPTの方：登録して、口コミを書いてみませんか
-                  </Link>
-                ) : null}
+                <p className="text-center text-xs font-semibold text-gray-700">この職場で働いたことがありますか？最初の口コミを書いてみませんか</p>
+                {writeCta}
                 <Link
                   href={userId ? "/org" : "/for-org"}
                   onClick={() => track("facility_cta", { kind: "org" })}
@@ -698,6 +712,8 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
               ))}
             </dl>
           )}
+
+          {tab === "top" && reviews.length > 0 && writeCta}
 
           {isPt && reviewModalOpen && typeof document !== "undefined" && createPortal(
             <div

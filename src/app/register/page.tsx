@@ -208,8 +208,12 @@ export default function RegisterPage() {
     // 一般の方は検索から始める。PTは、他のPTに見つけてもらえるよう
     // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。
     // 学生は、名前と養成校・卒業予定年などを入れる設定画面へ案内する
+    // 職場口コミサイトの「口コミを書く」から来た人は、登録のあと、開いていた施設の口コミ投稿画面へ進む（ホーム・マイページには行かない）
+    const kuchikomiNext = fromKuchikomi && !isTeacher && !isOrg ? takeReturnTo() : null;
     router.push(
-      isTeacher
+      kuchikomiNext
+        ? kuchikomiNext
+        : isTeacher
         ? "/student/quiz/teacher"
         : isOrg
         ? "/org"
