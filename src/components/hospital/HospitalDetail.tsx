@@ -468,12 +468,12 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
           {variant === "kuchikomi" ? "← 職場口コミのトップ" : "← 探すに戻る"}
         </Link>
 
-        <div className="mt-4 rounded-3xl border border-gray-100 bg-white p-6">
-          <h1 className="text-2xl font-semibold text-gray-900" style={{ textWrap: "wrap" }}>
+        <div className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:p-6">
+          <h1 className="text-xl font-semibold leading-snug text-gray-900 sm:text-2xl" style={{ textWrap: "wrap" }}>
             {hospital.name}
           </h1>
 
-          <p className="mt-1 text-sm text-gray-500">
+          <p className="mt-0.5 text-sm text-gray-500">
             {hospital.prefecture ? (
               <Link href={`/hospital-areas/${encodeURIComponent(hospital.prefecture)}`} className="underline underline-offset-2 hover:text-gray-800">
                 {hospital.prefecture}
@@ -503,58 +503,44 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
             </p>
           )}
 
-          {hospital.website && hospital.website_status !== "dead" ? (
-            <a
-              href={
-                hospital.website.startsWith("http")
-                  ? hospital.website
-                  : `https://${hospital.website}`
-              }
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              🌐 公式サイト
-            </a>
-          ) : (
-            // 登録されたURLが開けなくなっているとき（定期チェックで確認）は、リンクを出さず、検索へ案内する
-            <a
-              href={`https://www.google.com/search?q=${encodeURIComponent(`${hospital.name} ${hospital.city ?? ""} 公式サイト`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              🔎 公式サイトを検索
-            </a>
-          )}
-
-          {hospital.data_source === "mhlw_opendata" && (
-            <p className="mt-2 text-[11px] text-gray-400">
-              {hospital.data_source_note ??
-                "出典: 厚生労働省 医療情報ネット オープンデータを加工して作成"}
-            </p>
-          )}
-
-          <div className="mt-4 flex items-center gap-4 text-sm text-gray-600">
-            <span>フォロワー {followerCount}人</span>
-            {averageRating !== null && (
-              <span>
-                総合 {averageRating.toFixed(1)}/10（{reviewCount}件）
-              </span>
+          {/* 公式サイト・フォロー・件数を、1つの行に（縦に長くならないように） */}
+          <div className="mt-2.5 flex flex-wrap items-center gap-x-2 gap-y-2">
+            {hospital.website && hospital.website_status !== "dead" ? (
+              <a
+                href={hospital.website.startsWith("http") ? hospital.website : `https://${hospital.website}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+              >
+                🌐 公式サイト
+              </a>
+            ) : (
+              // 登録されたURLが開けなくなっているとき（定期チェックで確認）は、リンクを出さず、検索へ案内する
+              <a
+                href={`https://www.google.com/search?q=${encodeURIComponent(`${hospital.name} ${hospital.city ?? ""} 公式サイト`)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 rounded-full border border-gray-300 bg-white px-3 py-1.5 text-xs font-medium text-gray-700 hover:bg-gray-50"
+              >
+                🔎 公式サイトを検索
+              </a>
             )}
+            <button
+              onClick={handleToggleFollow}
+              disabled={followBusy}
+              className={`rounded-full px-4 py-1.5 text-xs font-medium transition disabled:opacity-50 ${
+                following
+                  ? "border border-gray-300 bg-white text-gray-700"
+                  : "bg-relight-gradient text-white"
+              }`}
+            >
+              {following ? "フォロー中" : "＋ フォローする"}
+            </button>
+            <span className="text-xs text-gray-600">
+              フォロワー {followerCount}人
+              {averageRating !== null && <> ・ 総合 {averageRating.toFixed(1)}/10（{reviewCount}件）</>}
+            </span>
           </div>
-
-          <button
-            onClick={handleToggleFollow}
-            disabled={followBusy}
-            className={`mt-4 rounded-full px-6 py-2.5 text-sm font-medium transition disabled:opacity-50 ${
-              following
-                ? "border border-gray-300 bg-white text-gray-700"
-                : "bg-relight-gradient text-white"
-            }`}
-          >
-            {following ? "フォロー中" : "＋ フォローする"}
-          </button>
 
           {accountType === "student" && (
             <StudentHospitalActions hospitalId={hospital.id} hospitalName={hospital.name} />
@@ -1177,6 +1163,11 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
         )}
 
           </>
+        )}
+        {hospital.data_source === "mhlw_opendata" && (
+          <p className="mt-6 text-[11px] leading-5 text-gray-400">
+            {hospital.data_source_note ?? "出典: 厚生労働省 医療情報ネット オープンデータを加工して作成"}
+          </p>
         )}
       </div>
     </main>

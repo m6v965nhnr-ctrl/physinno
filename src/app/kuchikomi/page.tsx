@@ -8,6 +8,7 @@ import { REGIONS } from "@/lib/prefectures";
 import { FACILITY_AREA_TYPES } from "@/lib/hospitalAreas";
 import KuchikomiFrame from "@/components/kuchikomi/KuchikomiFrame";
 import FacilitySearch from "@/components/kuchikomi/FacilitySearch";
+import FacilityPreview from "@/components/kuchikomi/FacilityPreview";
 
 export const revalidate = 3600;
 
@@ -139,6 +140,26 @@ export default async function KuchikomiTop() {
               ))}
             </ul>
           )}
+        </div>
+      </section>
+
+      {/* 施設をタップしたあとの画面の見本 */}
+      <section className="px-5 pt-12">
+        <div className="mx-auto grid max-w-4xl items-center gap-8 md:grid-cols-[280px_1fr]">
+          <FacilityPreview />
+          <div>
+            <h2 className="text-xl font-bold text-gray-900">施設をタップすると、こんな画面</h2>
+            <p className="mt-2 text-sm leading-7 text-gray-700">
+              口コミの平均が、レーダーチャートと項目ごとのバーで分かります。タブを切り替えて、口コミ・投稿・質問・採用情報も見られます。
+            </p>
+            <ul className="mt-3 space-y-2 text-sm leading-6 text-gray-700">
+              <li className="flex gap-2"><span aria-hidden="true" className="text-brand-600">●</span><span><strong className="text-gray-900">TOP</strong>: 総合評価・レーダーチャート・年収や残業の平均</span></li>
+              <li className="flex gap-2"><span aria-hidden="true" className="text-brand-600">●</span><span><strong className="text-gray-900">口コミ</strong>: 教育・残業・人間関係などの分類ごとに読める</span></li>
+              <li className="flex gap-2"><span aria-hidden="true" className="text-brand-600">●</span><span><strong className="text-gray-900">投稿・質問</strong>: 施設からのお知らせと、働く人への質問</span></li>
+              <li className="flex gap-2"><span aria-hidden="true" className="text-brand-600">●</span><span><strong className="text-gray-900">採用情報</strong>: 給与・休日などの募集の情報</span></li>
+            </ul>
+            <p className="mt-3 text-xs leading-5 text-gray-500">画面のイメージです。施設名と点数は、サンプルで、実在の施設の評価ではありません。</p>
+          </div>
         </div>
       </section>
 
