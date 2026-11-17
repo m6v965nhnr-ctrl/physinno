@@ -9,6 +9,7 @@ import { FACILITY_CATEGORIES, typesOf } from "@/lib/facilityTypes";
 import { PREFECTURES } from "@/lib/prefectures";
 import { HOSPITAL_TYPE, KIND_EVENT, listReviewedHospitals, type ReviewedHospital } from "@/lib/kuchikomi";
 import { INPUT_CLASS, PRIMARY_BUTTON_CLASS, chipClass } from "@/lib/ui";
+import StarRating from "@/components/StarRating";
 
 type Row = { id: string; name: string; prefecture: string | null; city: string | null; facility_type: string | null };
 type Mode = "name" | "filter";
@@ -199,8 +200,9 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
                   <span className="block text-sm font-semibold text-gray-900">{h.name}</span>
                   <span className="mt-0.5 block text-xs text-gray-500">{[h.prefecture, h.city].filter(Boolean).join(" ")}{h.facility_type ? ` ・ ${h.facility_type}` : ""}</span>
                   {rv && (
-                    <span className="mt-1.5 inline-block rounded-full bg-emerald-50 px-2 py-0.5 text-xs text-emerald-700">
-                      口コミ {rv.review_count}件{rv.avg_overall != null ? ` ・ 平均 ${rv.avg_overall.toFixed(1)} / 10` : ""}
+                    <span className="mt-1.5 flex items-center gap-1.5 text-xs text-gray-700">
+                      {rv.avg_overall != null && <StarRating score={rv.avg_overall} className="text-sm" />}
+                      <span>口コミ {rv.review_count}件{rv.avg_overall != null ? ` ・ ${rv.avg_overall.toFixed(1)} / 10` : ""}</span>
                     </span>
                   )}
                   {linkMode === "write" && <span className="mt-1 block text-xs font-semibold text-gray-900">この施設の口コミを書く →</span>}

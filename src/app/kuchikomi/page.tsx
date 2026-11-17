@@ -10,6 +10,7 @@ import KuchikomiFrame from "@/components/kuchikomi/KuchikomiFrame";
 import FacilitySearch from "@/components/kuchikomi/FacilitySearch";
 import FacilityPreview from "@/components/kuchikomi/FacilityPreview";
 import FacilityKinds from "@/components/kuchikomi/FacilityKinds";
+import StarRating from "@/components/StarRating";
 
 export const revalidate = 3600;
 
@@ -144,7 +145,10 @@ export default async function KuchikomiTop() {
                   <Link href={`/kuchikomi/${h.id}`} className="block h-full rounded-2xl border border-gray-200 bg-white px-4 py-3 transition hover:border-gray-400">
                     <span className="block text-sm font-semibold text-gray-900">{h.name}</span>
                     <span className="mt-0.5 block text-xs text-gray-500">{[h.prefecture, h.city].filter(Boolean).join(" ")}</span>
-                    <span className="mt-1 block text-xs text-gray-700">口コミ{h.review_count}件{h.avg_overall != null ? ` ・ 平均 ${h.avg_overall.toFixed(1)} / 10` : ""}</span>
+                    <span className="mt-1 flex items-center gap-1.5 text-xs text-gray-700">
+                      {h.avg_overall != null && <StarRating score={h.avg_overall} className="text-sm" />}
+                      <span>口コミ{h.review_count}件{h.avg_overall != null ? ` ・ ${h.avg_overall.toFixed(1)} / 10` : ""}</span>
+                    </span>
                   </Link>
                 </li>
               ))}

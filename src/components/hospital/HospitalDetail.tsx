@@ -51,6 +51,7 @@ import IncomeByAgeChart from "@/components/IncomeByAgeChart";
 import OrgPostCard from "@/components/OrgPostCard";
 import { listOrgPosts, type OrgPost } from "@/lib/orgPosts";
 import ReviewBars from "@/components/ReviewBars";
+import StarRating from "@/components/StarRating";
 import type { PtProfile } from "@/lib/types";
 import { ptNameWithTitle } from "@/lib/format";
 import { notify } from "@/lib/notify";
@@ -679,10 +680,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
                     </p>
                   </div>
                   <div className="pb-0.5 text-left">
-                    <p aria-hidden="true" className="text-lg leading-none text-amber-400">
-                      {"★".repeat(Math.round(averageRating / 2))}
-                      <span className="text-gray-300">{"★".repeat(5 - Math.round(averageRating / 2))}</span>
-                    </p>
+                    <StarRating score={averageRating} className="text-xl" />
                     <p className="mt-1 text-[11px] text-gray-500">{reviewCount}件の口コミ</p>
                   </div>
                 </div>

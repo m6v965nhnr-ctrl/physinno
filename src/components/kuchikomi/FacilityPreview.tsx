@@ -1,4 +1,5 @@
 import ReviewRadarChart from "@/components/ReviewRadarChart";
+import StarRating from "@/components/StarRating";
 
 // 「施設をタップすると、こんな画面」の見本（コードで描いた、操作できない画像）。
 // 施設名・点数は、サンプル。実在の施設の評価ではない（トップの文にも書く）。
@@ -48,7 +49,7 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
                 <p className="text-[8px] font-semibold text-gray-500">総合評価</p>
                 <p className="text-2xl font-extrabold leading-none text-gray-900">8.0</p>
                 <p className="text-[8px] text-gray-500">/ 10（12件）</p>
-                <p className="mt-0.5 text-[11px] leading-none text-amber-400">★★★★<span className="text-gray-300">★</span></p>
+                <p className="mt-0.5"><StarRating score={8.0} className="text-[11px]" /></p>
               </div>
             </div>
             <p className="mt-1.5 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">匿名で口コミを書く</p>
