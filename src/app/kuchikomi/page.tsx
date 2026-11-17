@@ -112,7 +112,8 @@ export default async function KuchikomiTop() {
 
       {/* ① ヒーロー: 検索が主役（縦に長くならないよう、コンパクトに。施設の種類は、押すと開く） */}
       <section className="px-5 pt-4">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient p-4 shadow-sm sm:p-8">
+        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient shadow-sm md:grid md:grid-cols-[1fr_300px] md:items-center">
+          <div className="p-4 sm:p-8">
           <p className="text-[11px] font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの職場口コミ</p>
           <h1 className="mt-1 text-3xl font-black leading-tight tracking-tight text-gray-900 sm:text-5xl">リハ職の本音</h1>
           <p className="mt-1 text-base font-black leading-snug text-gray-900 sm:text-xl">職場の本当のところが、分かる。</p>
@@ -136,6 +137,15 @@ export default async function KuchikomiTop() {
               ))}
             </ul>
           </details>
+          </div>
+
+          {/* 施設をタップしたあとの画面の見本。スマホでは、上の部分だけをのぞかせ、縦に長くならないようにする */}
+          <div className="px-4 md:px-0 md:py-6 md:pr-8">
+            <p className="mb-1.5 text-center text-[11px] font-bold text-gray-900/70">施設をタップすると、こんな画面（サンプル）</p>
+            <div className="mx-auto h-[250px] overflow-hidden md:h-auto md:overflow-visible">
+              <FacilityPreview caption={false} />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -175,8 +185,7 @@ export default async function KuchikomiTop() {
 
       {/* 施設をタップしたあとの画面の見本 */}
       <section className="px-5 pt-12">
-        <div className="mx-auto grid max-w-4xl items-center gap-8 md:grid-cols-[280px_1fr]">
-          <FacilityPreview />
+        <div className="mx-auto max-w-4xl">
           <div>
             <h2 className="text-xl font-bold text-gray-900">施設をタップすると、こんな画面</h2>
             <p className="mt-2 text-sm leading-7 text-gray-700">

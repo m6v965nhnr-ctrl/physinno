@@ -13,7 +13,7 @@ const SAMPLE: { label: string; value: number }[] = [
 
 const TABS: [string, string][] = [["TOP", ""], ["口コミ", "12"], ["投稿", "0"], ["質問", "0"], ["採用情報", ""]];
 
-export default function FacilityPreview() {
+export default function FacilityPreview({ caption = true }: { caption?: boolean }) {
   return (
     <figure className="mx-auto w-[280px] shrink-0">
       <div aria-hidden="true" className="rounded-[2rem] border-[6px] border-gray-800 bg-[#fafafa] shadow-xl">
@@ -51,7 +51,7 @@ export default function FacilityPreview() {
           </div>
         </div>
       </div>
-      <figcaption className="mt-3 text-center text-xs font-medium text-gray-600">施設をタップしたあとの画面（サンプル）</figcaption>
+      {caption && <figcaption className="mt-3 text-center text-xs font-medium text-gray-600">施設をタップしたあとの画面（サンプル）</figcaption>}
     </figure>
   );
 }
