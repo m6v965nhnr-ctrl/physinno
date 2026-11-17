@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import ExplanationText from "@/components/ExplanationText";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { notify } from "@/lib/notify";
@@ -54,7 +55,7 @@ function QuestionDetail({ q }: { q: PreviewQuestion }) {
       {q.explanation && (
         <div>
           <p className="font-semibold text-gray-800">解説</p>
-          <p className="whitespace-pre-wrap">{q.explanation}</p>
+          <ExplanationText text={q.explanation} />
           {q.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-500">解説はAIが作成したものです。誤りを含むことがあります。授業での利用前に、先生が確認してください。</p>}
         </div>
       )}

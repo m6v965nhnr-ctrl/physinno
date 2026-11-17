@@ -1,5 +1,6 @@
 "use client";
 
+import ExplanationText from "@/components/ExplanationText";
 import { getLocalUser } from "@/lib/authUser";
 import PaperCredits from "@/components/papers/PaperCredits";
 import Link from "next/link";
@@ -842,9 +843,7 @@ export default function PaperSearch({ initialQuery: initialQueryProp }: { initia
                 {turn.answer && (
                   <div className="mt-3 mr-auto max-w-[95%] rounded-2xl rounded-bl-sm bg-emerald-50 px-4 py-3">
                     <p className="text-xs font-semibold text-emerald-700">✨ AIの回答</p>
-                    <p className="mt-1 whitespace-pre-wrap text-sm leading-6 text-gray-800">
-                      {turn.answer}
-                    </p>
+                    <ExplanationText text={turn.answer} className="mt-1 text-sm leading-6 text-gray-800" />
                     <p className="mt-2 text-xs text-gray-400">
                       取得できた論文の要約のみを根拠にしています。臨床判断は必ず原典と患者さんの状態に基づいて行ってください。
                     </p>

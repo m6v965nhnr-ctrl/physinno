@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ExplanationText from "@/components/ExplanationText";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 
@@ -169,9 +170,7 @@ export default function AnswerReveal({ examNo, session, no, choices, choicesInIm
                 <p className="text-sm font-semibold text-gray-900">
                   解説{explanation.source === "ai" && <span className="ml-1 text-xs font-normal text-gray-500">（AIが作成。誤りがある場合があります）</span>}
                 </p>
-                <p className="mt-2 whitespace-pre-wrap text-base leading-8 text-gray-800">
-                  {explanation.text || "この問題の解説は準備中です。"}
-                </p>
+                <ExplanationText text={explanation.text || "この問題の解説は準備中です。"} className="mt-2 text-base leading-8 text-gray-800" />
                 {explanation.freeLeft !== null && (
                   <p className="mt-3 rounded-xl bg-cyan-50 px-4 py-3 text-sm leading-6 text-gray-800">
                     {explanation.freeLeft > 0

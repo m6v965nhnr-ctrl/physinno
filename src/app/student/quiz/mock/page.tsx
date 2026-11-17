@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import ExplanationText from "@/components/ExplanationText";
 import Link from "next/link";
 import { notify } from "@/lib/notify";
 import { scrollPageToTop } from "@/lib/scroll";
@@ -708,7 +709,7 @@ function ReviewItem({
               <p className="mt-1 text-xs text-gray-400">読み込み中…</p>
             ) : reveal.explanation ? (
               <>
-                <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
+                <ExplanationText text={reveal.explanation} className="mt-1 text-sm leading-7 text-gray-700" />
                 {reveal.explanation_source === "ai" && (
                   <p className="mt-2 text-[11px] leading-5 text-gray-400">
                     この解説はAIが作成したもので、誤りを含むことがあります。教科書・ガイドラインで確認してください。

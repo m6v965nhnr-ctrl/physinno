@@ -29,6 +29,7 @@ import MuscleLookup from "@/components/student/MuscleLookup";
 import RomMmtGuide from "@/components/student/RomMmtGuide";
 import CalcMemo from "@/components/student/CalcMemo";
 import { LoadingScreen } from "@/components/states";
+import ExplanationText from "@/components/ExplanationText";
 
 type Params = {
   unit: string | null;
@@ -103,7 +104,7 @@ function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[];
       {reveal.explanation ? (
         <div>
           <p className="text-xs font-semibold text-gray-700">解説</p>
-          <p className="mt-1 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
+          <ExplanationText text={reveal.explanation} className="mt-1 text-sm leading-7 text-gray-700" />
           {reveal.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-400">AIが作成した解説です。誤りを含むことがあります。</p>}
           <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
           <RomMmtGuide text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
@@ -640,7 +641,7 @@ export default function QuizPlayPage() {
               <p className="text-sm font-semibold">解説</p>
               {reveal.explanation ? (
                 <>
-                  <p className="mt-2 whitespace-pre-wrap text-sm leading-7 text-gray-700">{reveal.explanation}</p>
+                  <ExplanationText text={reveal.explanation} className="mt-2 text-sm leading-7 text-gray-700" />
                   {reveal.explanation_source === "ai" && (
                     <p className="mt-2 text-[11px] leading-5 text-gray-400">
                       この解説はAIが作成したもので、誤りを含むことがあります。教科書・ガイドラインで確認してください。

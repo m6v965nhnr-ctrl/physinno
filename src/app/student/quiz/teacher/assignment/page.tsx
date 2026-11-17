@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import ExplanationText from "@/components/ExplanationText";
 import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { QuizUnit, imageUrl, listQuizUnits, percent } from "@/lib/quiz";
@@ -287,7 +288,7 @@ export default function QuizAssignmentResultsPage() {
                               {detail.explanation && (
                                 <div>
                                   <p className="font-semibold text-gray-800">解説</p>
-                                  <p className="whitespace-pre-wrap">{detail.explanation}</p>
+                                  <ExplanationText text={detail.explanation} />
                                   {detail.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-500">AIが作成した解説です。誤りを含むことがあります。</p>}
                                 </div>
                               )}

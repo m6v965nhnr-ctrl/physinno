@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import ExplanationText from "@/components/ExplanationText";
 import Link from "next/link";
 import { useMyAccount } from "@/lib/useMyAccount";
 import { PrintQuestion, imageUrl, listPrintQuestions } from "@/lib/quiz";
@@ -109,7 +110,7 @@ export default function QuizPrintPage() {
                 </p>
               )}
               {withAnswers && withExplain && q.explanation && (
-                <p className="mt-1 whitespace-pre-wrap text-xs leading-6 text-gray-700">{q.explanation}</p>
+                <ExplanationText text={q.explanation} className="mt-1 text-xs leading-6 text-gray-700" />
               )}
             </section>
           ))}
