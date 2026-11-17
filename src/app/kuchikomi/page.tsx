@@ -25,6 +25,25 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
 };
 
+// 探せる施設の種類（データに入っているもの。2026-11-17にDBで確認した15種類）
+const FACILITY_KINDS = [
+  "病院",
+  "クリニック・診療所",
+  "介護老人保健施設（老健）",
+  "特別養護老人ホーム（特養）",
+  "介護医療院",
+  "デイケア",
+  "デイサービス",
+  "有料老人ホーム",
+  "訪問リハビリ",
+  "訪問看護ステーション",
+  "児童発達支援",
+  "放課後等デイサービス",
+  "障害者支援施設",
+  "障害福祉サービス事業所",
+  "重症心身障害児・者施設",
+];
+
 const JOBS = [
   {
     name: "理学療法士（PT）",
@@ -105,6 +124,12 @@ export default async function KuchikomiTop() {
             <li className="rounded-full bg-white/60 px-3 py-1.5">匿名で投稿できる</li>
             <li className="rounded-full bg-white/60 px-3 py-1.5">無料</li>
             <li className="rounded-full bg-white/60 px-3 py-1.5">全国約14.6万の病院・施設</li>
+          </ul>
+          <p className="mt-4 text-xs font-bold text-gray-900/70">探せる施設の種類</p>
+          <ul className="mt-1.5 flex flex-wrap gap-1.5 text-xs font-bold text-gray-900">
+            {FACILITY_KINDS.map((k) => (
+              <li key={k} className="rounded-full border border-gray-900/20 bg-white/40 px-3 py-1.5">{k}</li>
+            ))}
           </ul>
         </div>
       </section>
