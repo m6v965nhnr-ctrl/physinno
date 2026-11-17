@@ -24,7 +24,7 @@ export default function ReviewedHospitals() {
     <section aria-label="口コミのある職場" className="mt-6">
       <h2 className="text-sm font-semibold text-gray-500">口コミのある職場</h2>
       {rows.length === 0 ? (
-        <p className="mt-2 text-sm leading-6 text-gray-500">まだ口コミはありません。職場を検索して、最初の口コミを書いてみませんか。</p>
+        <p className="mt-2 text-sm leading-6 text-gray-500">まだ口コミはありません。職場を検索して、匿名で口コミを書いてみませんか。</p>
       ) : (
         <ul className="mt-2 space-y-2">
           {rows.map((h) => (

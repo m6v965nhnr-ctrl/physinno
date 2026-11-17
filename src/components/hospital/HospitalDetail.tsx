@@ -132,7 +132,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
           onClick={() => { track("facility_cta", { kind: "review_pt" }); openReview(); }}
           className="w-full rounded-full bg-relight-gradient px-4 py-3 text-sm font-bold text-white"
         >
-          {reviews.some((r) => r.is_mine) ? "自分の口コミを編集する" : "口コミを書く"}
+          {reviews.some((r) => r.is_mine) ? "自分の口コミを編集する" : "匿名で口コミを書く"}
         </button>
       ) : (
         <Link
@@ -140,12 +140,12 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
           onClick={() => track("facility_cta", { kind: userId ? "review_other" : "register_review" })}
           className="block w-full rounded-full bg-relight-gradient px-4 py-3 text-center text-sm font-bold text-white"
         >
-          口コミを書く
+          匿名で口コミを書く
         </Link>
       )}
       {!userId && (
         <p className="mt-1.5 text-center text-[11px] leading-5 text-gray-500">
-          口コミを書けるのは、無料登録した人だけです（匿名で投稿できます）。登録のあと、そのまま、この施設の投稿画面に進みます。
+          無料・約1分で登録できます。お名前は表に出ません。登録のあと、そのまま、この施設の投稿画面に進めます。
           <Link href={`/login?next=${encodeURIComponent(writeHref)}`} className="ml-1 underline">登録済みの方はログイン</Link>
         </p>
       )}
@@ -630,7 +630,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
               </button>
             ) : accountType === "general" && !myProfession ? (
               <Link href={`/kuchikomi/${id}/write`} className="shrink-0 rounded-full bg-relight-gradient px-4 py-2 text-xs font-medium text-white">
-                職種を選んで口コミを書く
+                職種を選んで、匿名で口コミを書く
               </Link>
             ) : (
               <span className="text-[11px] text-gray-400">
@@ -655,7 +655,6 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
 
               {/* 空のページを、口コミ・登録の入口にする */}
               <div className="mt-3 space-y-2">
-                <p className="text-center text-xs font-semibold text-gray-700">この職場で働いたことがありますか？最初の口コミを書いてみませんか</p>
                 {writeCta}
                 <Link
                   href={userId ? "/org" : "/for-org"}

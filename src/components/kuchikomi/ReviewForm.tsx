@@ -152,7 +152,7 @@ export default function ReviewForm({ hospitalId, hospitalName }: { hospitalId: s
 
       {state === "guest" && (
         <div className="mt-4">
-          <p className="text-sm leading-7 text-gray-700">口コミを書くには、無料登録（またはログイン）が必要です。登録のとき、職種（理学療法士・作業療法士・言語聴覚士）を選びます。</p>
+          <p className="text-sm leading-7 text-gray-700">口コミは、匿名で書けます。無料・約1分で登録できます（登録のとき、職種を選ぶだけ）。登録のあと、そのまま、この画面に戻って書けます。</p>
           <div className="mt-3 flex flex-wrap gap-2">
             <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料で登録する</Link>
             <Link href={withReturnTo("/login", here)} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>

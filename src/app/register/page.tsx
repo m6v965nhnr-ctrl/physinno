@@ -245,6 +245,8 @@ export default function RegisterPage() {
             ? "養成校の教員向けです。クラスとテストをつくって、学生の状況を見られます。"
             : isOrg
             ? "病院・施設・企業の採用担当向けです。登録後に組織の情報を入れると、運営の確認のあと、求人の掲載やPTへのスカウトができます。"
+            : fromKuchikomi
+            ? "無料・約1分で登録できます。登録のあと、そのまま、口コミを書けます。口コミは、匿名にできます。"
             : "Re:lightをはじめましょう"}
         </p>
 
@@ -524,7 +526,7 @@ export default function RegisterPage() {
             disabled={loading || !agreed || (!isTeacher && !isOrg && !accountType) || (!isOrg && !fullName.trim()) || (isOrg && !orgName.trim()) || (isTeacher && (!school.trim() || !faculty.trim() || !department.trim() || !icon))}
             className="w-full rounded-full bg-black py-3.5 text-sm font-medium text-white transition hover:bg-gray-800 disabled:opacity-50"
           >
-            {loading ? "登録中…" : isTeacher ? "先生として登録" : "新規登録"}
+            {loading ? "登録中…" : isTeacher ? "先生として登録" : fromKuchikomi ? "無料で登録して、口コミを書く" : "新規登録"}
           </button>
 
           <p className="text-center text-sm text-gray-500">

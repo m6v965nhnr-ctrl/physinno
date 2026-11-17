@@ -61,8 +61,8 @@ export default function WriteFlow() {
   if (state === "guest") {
     return (
       <div className="rounded-3xl border border-gray-100 bg-white p-6">
-        <h2 className="text-lg font-bold text-gray-900">まず、無料登録（1分）</h2>
-        <p className="mt-2 text-sm leading-7 text-gray-700">登録のとき、職種（理学療法士・作業療法士・言語聴覚士）を選びます。口コミは匿名で投稿できます。</p>
+        <h2 className="text-lg font-bold text-gray-900">無料・約1分で登録</h2>
+        <p className="mt-2 text-sm leading-7 text-gray-700">口コミは、匿名で書けます。登録は無料・約1分で、登録のあと、そのまま書けます（登録のとき、職種を選ぶだけ）。</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(HERE)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料で登録する</Link>
           <Link href={withReturnTo("/login", HERE)} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>

@@ -51,7 +51,7 @@ export default function FacilityPreview({ caption = true }: { caption?: boolean 
                 <p className="mt-0.5 text-[11px] leading-none text-amber-400">★★★★<span className="text-gray-300">★</span></p>
               </div>
             </div>
-            <p className="mt-1.5 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">口コミを書く</p>
+            <p className="mt-1.5 rounded-full bg-relight-gradient py-1 text-center text-[9px] font-bold">匿名で口コミを書く</p>
           </div>
         </div>
       </div>
