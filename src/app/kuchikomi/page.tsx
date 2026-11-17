@@ -11,14 +11,14 @@ import FacilitySearch from "@/components/kuchikomi/FacilitySearch";
 
 export const revalidate = 3600;
 
-const TITLE = "リハビリ職の職場口コミ｜理学療法士・作業療法士・言語聴覚士の病院・施設の評判";
+const TITLE = "リハ職の本音｜理学療法士・作業療法士・言語聴覚士の職場口コミ・病院の評判";
 const DESCRIPTION =
   "理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）の、病院・施設選びのための口コミサイト。教育体制・残業・給与・人間関係・女性の働きやすさを、6項目の評価と分類ごとのコメントで確認できます。全国約14.6万の病院・施設から検索。登録なしでも各施設3件まで読めます。";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  keywords: ["理学療法士 口コミ", "作業療法士 口コミ", "言語聴覚士 口コミ", "リハビリ 職場 評判", "PT OT ST 転職", "病院 口コミ リハビリ"],
+  keywords: ["リハ職の本音", "理学療法士 口コミ", "作業療法士 口コミ", "言語聴覚士 口コミ", "リハビリ 職場 評判", "PT OT ST 転職", "病院 口コミ リハビリ"],
   alternates: { canonical: "/kuchikomi" },
   openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/kuchikomi", type: "website" },
   twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
@@ -65,8 +65,8 @@ export default async function KuchikomiTop() {
     {
       "@context": "https://schema.org",
       "@type": "WebSite",
-      name: "リハ職の職場口コミ",
-      alternateName: ["理学療法士・作業療法士・言語聴覚士の職場口コミ", "Re:light 職場口コミ"],
+      name: "リハ職の本音",
+      alternateName: ["リハ職の本音｜PT・OT・STの職場口コミ", "理学療法士・作業療法士・言語聴覚士の職場口コミ"],
       url: `${SITE_URL}/kuchikomi`,
       inLanguage: "ja",
       publisher: { "@type": "Organization", name: SITE_NAME, url: SITE_URL },
@@ -76,7 +76,7 @@ export default async function KuchikomiTop() {
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: SITE_NAME, item: `${SITE_URL}/` },
-        { "@type": "ListItem", position: 2, name: "リハビリ職の職場口コミ", item: `${SITE_URL}/kuchikomi` },
+        { "@type": "ListItem", position: 2, name: "リハ職の本音", item: `${SITE_URL}/kuchikomi` },
       ],
     },
     {
@@ -93,11 +93,9 @@ export default async function KuchikomiTop() {
       {/* ① ヒーロー: 検索が主役 */}
       <section className="px-5 pt-6">
         <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient p-6 shadow-sm sm:p-10">
-          <p className="text-xs font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの、職場選びに</p>
-          <h1 className="mt-2 text-3xl font-black leading-tight tracking-tight text-gray-900 sm:text-5xl">
-            <span className="inline-block">リハ職の、</span>
-            <span className="inline-block">職場の本音が分かる。</span>
-          </h1>
+          <p className="text-xs font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの職場口コミ</p>
+          <h1 className="mt-2 text-4xl font-black leading-tight tracking-tight text-gray-900 sm:text-6xl">リハ職の本音</h1>
+          <p className="mt-2 text-lg font-black leading-snug text-gray-900 sm:text-2xl">職場の本当のところが、分かる。</p>
           <p className="mt-3 text-sm font-bold leading-7 text-gray-900 sm:text-base">
             理学療法士・作業療法士・言語聴覚士のための、病院・施設の口コミ。教育体制・残業・給与・人間関係を、6項目の評価と、分類ごとの声で。
           </p>

@@ -262,7 +262,7 @@
 - ユーザーごとの上限は `ai_usage`（日×ユーザー×機能）、全体の1日1,500回は `ai_usage_global`（日ごとの1行のカウンター）。全員の行を毎回合計しない。全体の上限に届いたときは、そのユーザーの分を1つ戻して断る。
 - `ai_usage_global` は、利用者から直接読み書きできない（SECURITY DEFINER の関数だけが更新）。マイグレーション: `20261126_ai_quota_global_counter.sql`。
 
-## 職場口コミの単体サイト `/kuchikomi`（2026-11-17、20261215_review_gate_kuchikomi.sql・20261216_hospitals_name_trgm.sql）
+## 職場口コミの単体サイト「リハ職の本音」 `/kuchikomi`（サイト名は2026-11-17に決定。商標はJ-PlatPatの称呼検索で0件。英字表記・区分の絞り込みは未確認。ドメイン rehahonne.jp/.com は空きを確認しただけで、未取得。2026-11-17、20261215_review_gate_kuchikomi.sql・20261216_hospitals_name_trgm.sql）
 - アプリとは別のURL（`/kuchikomi`、`/kuchikomi/[id]`）で、検索から来た人向けに口コミを見せる入口サイト。**同じプロジェクト・同じログイン**（別プロジェクトにしてもVercelの無料枠はアカウント単位で分けられず、ログインも共有できないため）。論文検索などと同じ `PaperSiteFrame`（下のメニューなし）で、公開パスは `isPublicPaperSitePath` に `kuchikomi` を追加。
 - **ログインなしで読めるのは、各施設の新しい口コミ3件まで**（`FREE_REVIEW_LIMIT`）。DB側で絞る: `get_hospital_reviews` と `get_hospital_review_topics` は、`auth.uid()` が null のとき3件まで（分類コメントも、その3件に付いたものだけ）。4件目以降は、ログインした人だけ。画面は、サーバーで3件を出し、ログイン中なら、全件に入れ替える（`ReviewsSection`）。
 - 件数と平均点は、ログインなしでも `get_hospital_review_stats` で返す（検索のスニペット・「あと◯件」の表示用）。`/hospitals/[id]` の layout・件数表示も、これを使う。ゲストの `/hospitals/[id]` にも、4件目以降の登録案内を出す。

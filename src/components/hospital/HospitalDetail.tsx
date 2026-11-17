@@ -336,7 +336,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
       onAction: () =>
         shareContent({
           title: `${hospital?.name ?? "職場"}の口コミ`,
-          text: "リハビリ職の職場口コミサイトで、職場の口コミを書きました。働いたことがある方は、ぜひ書いてみてください。",
+          text: "「リハ職の本音」で、職場の口コミを書きました。働いたことがある方は、ぜひ書いてみてください。",
           url: shareUrl(`/kuchikomi/${id}`, "kuchikomi-after-review", "kuchikomi"),
         }),
     });

@@ -10,10 +10,10 @@ const REG = "from=kuchikomi&utm_source=kuchikomi&utm_medium=web&utm_campaign=kuc
 export const KUCHIKOMI_REGISTER = `/register?${REG}`;
 
 export const KUCHIKOMI_SITE: GuideSite = {
-  brand: "リハ職の職場口コミ",
+  brand: "リハ職の本音",
   href: "/kuchikomi",
   register: KUCHIKOMI_REGISTER,
-  blurb: "の、職場口コミの入口です。",
+  blurb: "の、「リハ職の本音」（職場口コミ）の入口です。",
   audience: "理学療法士・作業療法士・言語聴覚士・学生",
   links: [
     { href: "/kuchikomi/write", label: "口コミを書く" },

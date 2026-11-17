@@ -10,7 +10,7 @@ const COMMON_LINKS = [
   { href: "/paper-search", label: "論文検索" },
   { href: "/certified-pt", label: "認定理学療法士ガイド" },
   { href: "/job-hunting", label: "就活ガイド" },
-  { href: "/kuchikomi", label: "職場口コミ" },
+  { href: "/kuchikomi", label: "リハ職の本音" },
   { href: "/hospital-areas", label: "病院を探す" },
   { href: "/kokushi", label: "国試過去問" },
   { href: "/evidence-levels", label: "エビデンスレベル早見表" },

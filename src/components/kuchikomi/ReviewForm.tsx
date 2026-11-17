@@ -128,7 +128,7 @@ export default function ReviewForm({ hospitalId, hospitalName }: { hospitalId: s
       onAction: () =>
         shareContent({
           title: `${hospitalName}の口コミ`,
-          text: "リハビリ職の職場口コミサイトで、職場の口コミを書きました。働いたことがある方は、ぜひ書いてみてください。",
+          text: "「リハ職の本音」で、職場の口コミを書きました。働いたことがある方は、ぜひ書いてみてください。",
           url: shareUrl(back, "kuchikomi-after-review", "kuchikomi"),
         }),
     });
