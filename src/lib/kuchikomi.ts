@@ -77,3 +77,27 @@ export async function listReviewedHospitals(limit = 24, prefecture?: string): Pr
     last_at: (r.last_at as string | null) ?? null,
   }));
 }
+
+// 探せる施設の種類（DBに入っている15種類。2026-11-17に確認）。category/type は、hospitals の facility_category / facility_type。
+// 「病院」は facility_type が空（null）のもの。type に "__hospital" を入れて表す
+export const HOSPITAL_TYPE = "__hospital";
+export const FACILITY_KINDS: { label: string; category: string; type: string }[] = [
+  { label: "病院", category: "病院・医療機関", type: HOSPITAL_TYPE },
+  { label: "クリニック・診療所", category: "病院・医療機関", type: "クリニック・診療所" },
+  { label: "介護老人保健施設（老健）", category: "介護・高齢者福祉施設", type: "介護老人保健施設（老健）" },
+  { label: "特別養護老人ホーム（特養）", category: "介護・高齢者福祉施設", type: "特別養護老人ホーム（特養）" },
+  { label: "介護医療院", category: "介護・高齢者福祉施設", type: "介護医療院" },
+  { label: "デイケア", category: "介護・高齢者福祉施設", type: "デイケア" },
+  { label: "デイサービス", category: "介護・高齢者福祉施設", type: "デイサービス" },
+  { label: "有料老人ホーム", category: "介護・高齢者福祉施設", type: "有料老人ホーム" },
+  { label: "訪問リハビリ", category: "訪問・在宅分野", type: "訪問リハビリテーション事業所" },
+  { label: "訪問看護ステーション", category: "訪問・在宅分野", type: "訪問看護ステーション" },
+  { label: "児童発達支援", category: "小児・障害福祉分野", type: "児童発達支援事業所" },
+  { label: "放課後等デイサービス", category: "小児・障害福祉分野", type: "放課後等デイサービス" },
+  { label: "障害者支援施設", category: "小児・障害福祉分野", type: "障害者支援施設" },
+  { label: "障害福祉サービス事業所", category: "小児・障害福祉分野", type: "障害福祉サービス事業所" },
+  { label: "重症心身障害児・者施設", category: "小児・障害福祉分野", type: "重症心身障害児・者施設" },
+];
+
+// 施設の種類のボタンから、検索欄へ知らせるイベント
+export const KIND_EVENT = "kuchikomi:kind";

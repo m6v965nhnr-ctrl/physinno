@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { HOSPITAL_COLUMNS } from "@/lib/hospitalColumns";
 import { listCitiesByPrefecture } from "@/lib/hospitals";
 import { FACILITY_CATEGORIES, typesOf } from "@/lib/facilityTypes";
 import { PREFECTURES } from "@/lib/prefectures";
-import { listReviewedHospitals, type ReviewedHospital } from "@/lib/kuchikomi";
+import { HOSPITAL_TYPE, KIND_EVENT, listReviewedHospitals, type ReviewedHospital } from "@/lib/kuchikomi";
 import { INPUT_CLASS, PRIMARY_BUTTON_CLASS, chipClass } from "@/lib/ui";
 
 type Row = { id: string; name: string; prefecture: string | null; city: string | null; facility_type: string | null };
@@ -53,18 +53,20 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
     };
   }, [prefecture]);
 
-  const matchCategory = (t: string | null) => !category || (ftype ? t === ftype : typesOf(category).includes(t ?? "") || (category === "病院・医療機関" && !t));
+  type Cond = { mode: Mode; keyword: string; prefecture: string; city: string; category: string; ftype: string; reviewedOnly: boolean };
+  const matchCategory = (c: Cond, t: string | null) =>
+    !c.category ||
+    (c.ftype === HOSPITAL_TYPE ? !t : c.ftype ? t === c.ftype : typesOf(c.category).includes(t ?? "") || (c.category === "病院・医療機関" && !t));
 
-  async function search(e: React.FormEvent) {
-    e.preventDefault();
-    const kw = mode === "name" ? keyword.trim() : "";
-    const hasCondition = mode === "name" ? !!(kw || prefecture) : !!(prefecture || city || category || ftype || reviewedOnly);
+  async function exec(c: Cond) {
+    const kw = c.mode === "name" ? c.keyword.trim() : "";
+    const hasCondition = c.mode === "name" ? !!(kw || c.prefecture) : !!(c.prefecture || c.city || c.category || c.ftype || c.reviewedOnly);
     if (!hasCondition) return;
     setFailed(false);
 
     // 口コミのある施設だけ: 口コミの一覧から、条件で絞る
-    if (mode === "filter" && reviewedOnly) {
-      setRows(reviewed.filter((h) => (!prefecture || h.prefecture === prefecture) && (!city || h.city === city) && matchCategory(h.facility_type)));
+    if (c.mode === "filter" && c.reviewedOnly) {
+      setRows(reviewed.filter((h) => (!c.prefecture || h.prefecture === c.prefecture) && (!c.city || h.city === c.city) && matchCategory(c, h.facility_type)));
       return;
     }
 
@@ -76,13 +78,16 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
       .order("name")
       .limit(30);
     if (kw) q = q.ilike("name", `%${kw.replace(/[%,]/g, " ")}%`);
-    if (prefecture) q = q.eq("prefecture", prefecture);
-    if (mode === "filter") {
-      if (city) q = q.eq("city", city);
-      if (category) q = q.eq("facility_category", category);
-      if (category && ftype) q = q.eq("facility_type", ftype);
+    if (c.prefecture) q = q.eq("prefecture", c.prefecture);
+    if (c.mode === "filter") {
+      if (c.city) q = q.eq("city", c.city);
+      if (c.category) q = q.eq("facility_category", c.category);
+      if (c.category && c.ftype === HOSPITAL_TYPE) q = q.is("facility_type", null);
+      else if (c.category && c.ftype) q = q.eq("facility_type", c.ftype);
     }
-    const { data, error } = await q;
+    let { data, error } = await q;
+    // 冷えているときの一時的な失敗は、1回だけ、やり直す
+    if (error) ({ data, error } = await q);
     setBusy(false);
     if (error) {
       setFailed(true);
@@ -91,6 +96,31 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
     setRows((data ?? []) as unknown as Row[]);
   }
 
+  function search(e: React.FormEvent) {
+    e.preventDefault();
+    exec({ mode, keyword, prefecture, city, category, ftype, reviewedOnly });
+  }
+
+  // 「探せる施設の種類」のボタンから: 条件の画面に切り替えて、その種類で、すぐ検索する
+  const execRef = useRef(exec);
+  execRef.current = exec;
+  useEffect(() => {
+    const onKind = (e: Event) => {
+      const { category: cat, type } = (e as CustomEvent<{ category: string; type: string }>).detail;
+      setMode("filter");
+      setKeyword("");
+      setPrefecture("");
+      setCity("");
+      setCategory(cat);
+      setFtype(type);
+      setReviewedOnly(false);
+      setRows(null);
+      execRef.current({ mode: "filter", keyword: "", prefecture: "", city: "", category: cat, ftype: type, reviewedOnly: false });
+    };
+    window.addEventListener(KIND_EVENT, onKind);
+    return () => window.removeEventListener(KIND_EVENT, onKind);
+  }, []);
+
   function switchMode(m: Mode) {
     setMode(m);
     setRows(null);
@@ -98,7 +128,7 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
   }
 
   return (
-    <div>
+    <div id="facility-search" className="scroll-mt-16">
       <div role="tablist" aria-label="探し方" className="flex gap-2">
         {([["name", "名前で探す"], ["filter", "条件で絞って探す"]] as const).map(([m, label]) => (
           <button key={m} type="button" role="tab" aria-selected={mode === m} onClick={() => switchMode(m)} className={`${chipClass(mode === m)} px-4 py-2 text-sm`}>
@@ -142,6 +172,7 @@ export default function FacilitySearch({ mode: linkMode = "read" }: { mode?: "re
               </select>
               <select value={ftype} onChange={(e) => setFtype(e.target.value)} disabled={!category} aria-label="施設の種類" className={INPUT_CLASS}>
                 <option value="">{category ? "施設の種類：すべて" : "施設の種類（先に分類を選ぶ）"}</option>
+                {category === "病院・医療機関" && <option value={HOSPITAL_TYPE}>病院</option>}
                 {typesOf(category).map((t) => (
                   <option key={t} value={t}>{t}</option>
                 ))}

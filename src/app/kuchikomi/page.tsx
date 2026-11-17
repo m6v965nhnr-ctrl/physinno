@@ -9,6 +9,7 @@ import { FACILITY_AREA_TYPES } from "@/lib/hospitalAreas";
 import KuchikomiFrame from "@/components/kuchikomi/KuchikomiFrame";
 import FacilitySearch from "@/components/kuchikomi/FacilitySearch";
 import FacilityPreview from "@/components/kuchikomi/FacilityPreview";
+import FacilityKinds from "@/components/kuchikomi/FacilityKinds";
 
 export const revalidate = 3600;
 
@@ -24,25 +25,6 @@ export const metadata: Metadata = {
   openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/kuchikomi", type: "website" },
   twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
 };
-
-// 探せる施設の種類（データに入っているもの。2026-11-17にDBで確認した15種類）
-const FACILITY_KINDS = [
-  "病院",
-  "クリニック・診療所",
-  "介護老人保健施設（老健）",
-  "特別養護老人ホーム（特養）",
-  "介護医療院",
-  "デイケア",
-  "デイサービス",
-  "有料老人ホーム",
-  "訪問リハビリ",
-  "訪問看護ステーション",
-  "児童発達支援",
-  "放課後等デイサービス",
-  "障害者支援施設",
-  "障害福祉サービス事業所",
-  "重症心身障害児・者施設",
-];
 
 const JOBS = [
   {
@@ -112,7 +94,7 @@ export default async function KuchikomiTop() {
 
       {/* ① ヒーロー: 検索が主役（縦に長くならないよう、コンパクトに。施設の種類は、押すと開く） */}
       <section className="px-5 pt-4">
-        <div className="mx-auto max-w-4xl overflow-hidden rounded-3xl bg-relight-gradient shadow-sm md:grid md:grid-cols-[1fr_300px] md:items-center">
+        <div className="mx-auto max-w-4xl rounded-3xl bg-relight-gradient shadow-sm md:grid md:grid-cols-[1fr_300px] md:items-center">
           <div className="p-4 sm:p-8">
           <p className="text-[11px] font-bold tracking-[0.14em] text-gray-900/70">PT・OT・STの職場口コミ</p>
           <h1 className="mt-1 text-3xl font-black leading-tight tracking-tight text-gray-900 sm:text-5xl">リハ職の本音</h1>
@@ -122,29 +104,17 @@ export default async function KuchikomiTop() {
           </p>
           <ul className="mt-2.5 flex flex-wrap gap-1.5 text-[11px] font-bold text-gray-900">
             <li className="rounded-full bg-white/60 px-2.5 py-1">登録なしで{FREE_REVIEW_LIMIT}件まで読める</li>
-            <li className="rounded-full bg-white/60 px-2.5 py-1">匿名で投稿できる</li>
+            <li className="rounded-full bg-white/60 px-2.5 py-1">匿名で投稿OK</li>
             <li className="rounded-full bg-white/60 px-2.5 py-1">無料</li>
-            <li className="rounded-full bg-white/60 px-2.5 py-1">全国約14.6万の病院・施設</li>
+            <li className="rounded-full bg-white/60 px-2.5 py-1">全国約14.6万の施設</li>
+            <li><FacilityKinds /></li>
           </ul>
-          <details className="group mt-2">
-            <summary className="inline-flex cursor-pointer list-none items-center gap-1 rounded-full border border-gray-900/25 bg-white/50 px-3 py-1 text-[11px] font-bold text-gray-900 [&::-webkit-details-marker]:hidden">
-              探せる施設の種類（{FACILITY_KINDS.length}）
-              <span aria-hidden="true" className="transition group-open:rotate-180">▾</span>
-            </summary>
-            <ul className="mt-2 flex flex-wrap gap-1.5 text-[11px] font-bold text-gray-900">
-              {FACILITY_KINDS.map((k) => (
-                <li key={k} className="rounded-full border border-gray-900/20 bg-white/40 px-2.5 py-1">{k}</li>
-              ))}
-            </ul>
-          </details>
           </div>
 
           {/* 施設をタップしたあとの画面の見本。スマホでは、上の部分だけをのぞかせ、縦に長くならないようにする */}
-          <div className="px-4 md:px-0 md:py-6 md:pr-8">
+          <div className="px-4 pb-4 md:px-0 md:py-6 md:pr-8">
             <p className="mb-1.5 text-center text-[11px] font-bold text-gray-900/70">施設をタップすると、こんな画面（サンプル）</p>
-            <div className="mx-auto h-[250px] overflow-hidden md:h-auto md:overflow-visible">
-              <FacilityPreview caption={false} />
-            </div>
+            <FacilityPreview caption={false} />
           </div>
         </div>
       </section>
