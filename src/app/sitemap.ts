@@ -5,7 +5,6 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
-import { listReviewedHospitals } from "@/lib/kuchikomi";
 import { MUSCLES } from "@/content/muscles/data";
 import { BONES } from "@/content/muscles/bones";
 import { MUSCLE_COLUMNS } from "@/content/muscles/columnsMuscles";
@@ -105,15 +104,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.5,
   }));
 
-  // 職場口コミサイト: 口コミが付いた施設だけ（薄いページを増やさない。件数が増えたら、段階的に広げる）
-  const reviewed = await listReviewedHospitals(1000);
-  const kuchikomiEntries: MetadataRoute.Sitemap = reviewed.map((h) => ({
-    url: `${SITE_URL}/kuchikomi/${h.id}`,
-    lastModified: h.last_at ? new Date(h.last_at) : now,
-    changeFrequency: "weekly" as const,
-    priority: 0.7,
-  }));
-
   // 国家試験の過去問（回ごとの一覧と、1問ずつのページ）
   const exams = await getPublicExams();
   const kokushiEntries: MetadataRoute.Sitemap = exams.flatMap((e) => [
@@ -148,5 +138,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
-  return [...jobEntries, ...staticEntries, ...columnEntries, ...anatomyEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries, ...kuchikomiEntries];
+  return [...jobEntries, ...staticEntries, ...columnEntries, ...anatomyEntries, ...kokushiEntries, ...schoolEntries, ...ptEntries, ...hospitalEntries];
 }

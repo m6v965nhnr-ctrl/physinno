@@ -58,6 +58,7 @@ export default function robots(): MetadataRoute.Robots {
     // /facilities/sitemap/*.xml: それ以外の施設（介護・訪問・障害福祉など、約13万件。5万URL上限のため分割）
     // shortcut: チャンク数は、facilities/sitemap.tsのMAX_FACILITIESに合わせて固定で書いている。
     // 現在は件数を絞っているため1個(0)のみ。MAX_FACILITIESを増やしたら、ここにも追記する
-    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`],
+    // /kuchikomi/sitemap.xml: 職場口コミサイト（リハ職の本音）の施設ページ（病院と、口コミのある施設）
+    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`, `${SITE_URL}/kuchikomi/sitemap.xml`],
   };
 }

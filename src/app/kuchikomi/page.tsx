@@ -15,16 +15,17 @@ import StarRating from "@/components/StarRating";
 export const revalidate = 3600;
 
 const TITLE = "リハ職の本音｜理学療法士・作業療法士・言語聴覚士の職場口コミ・病院の評判";
+// 説明文は、検索結果で切れないよう、約110字までに収める
 const DESCRIPTION =
-  "理学療法士（PT）・作業療法士（OT）・言語聴覚士（ST）の、病院・施設選びのための口コミサイト。教育体制・残業・給与・人間関係・女性の働きやすさを、6項目の評価と分類ごとのコメントで確認できます。全国約14.6万の病院・施設から検索。登録なしでも各施設3件まで読めます。";
+  "理学療法士・作業療法士・言語聴覚士の職場口コミ。教育体制・残業・給与・人間関係を、6項目の評価と分類ごとの声で。全国約14.6万の病院・施設から検索。各施設3件まで登録なしで読めます。";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
   keywords: ["リハ職の本音", "理学療法士 口コミ", "作業療法士 口コミ", "言語聴覚士 口コミ", "リハビリ 職場 評判", "PT OT ST 転職", "病院 口コミ リハビリ"],
   alternates: { canonical: "/kuchikomi" },
-  openGraph: { title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION, url: "/kuchikomi", type: "website" },
-  twitter: { card: "summary_large_image", title: `${TITLE}｜${SITE_NAME}`, description: DESCRIPTION },
+  openGraph: { title: TITLE, description: DESCRIPTION, url: "/kuchikomi", type: "website", siteName: "リハ職の本音", locale: "ja_JP" },
+  twitter: { card: "summary_large_image", title: TITLE, description: DESCRIPTION },
 };
 
 const JOBS = [
