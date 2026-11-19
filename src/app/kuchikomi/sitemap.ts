@@ -44,15 +44,18 @@ type Row = { id: string; created_at: string | null };
 
 async function listType([category, type]: Kind): Promise<Row[]> {
   const out: Row[] = [];
-  // APIの1回の上限(1,000件)を超えるので、ページを分けて取る
-  for (let from = 0; from < 50000; from += 1000) {
+  // 深いページを OFFSET で取ると、匿名ロールの3秒の制限を超える（約3万件目で3.6秒）。id の続きから取る
+  let last: string | null = null;
+  for (let n = 0; n < 60; n++) {
     let q = supabasePublic.from("hospitals").select("id, created_at").eq("facility_category", category);
     q = type === null ? q.is("facility_type", null) : q.eq("facility_type", type);
-    const { data, error } = await q.order("name").order("id").range(from, from + 999);
+    if (last) q = q.gt("id", last);
+    const { data, error } = await q.order("id").limit(1000);
     if (error) throw new Error(`sitemap: ${category}/${type}: ${error.message}`); // 一部が欠けた形で出さない（再生成のときに、やり直す）
     if (!data || data.length === 0) break;
     out.push(...(data as Row[]));
     if (data.length < 1000) break;
+    last = (data[data.length - 1] as Row).id;
   }
   return out;
 }

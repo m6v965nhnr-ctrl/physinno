@@ -302,3 +302,10 @@
 ## 認定PTの分野ページ（/certified-pt/[field]）
 - 21分野それぞれのページ（`src/content/certifiedFields.ts` が元データ: 分野名・英語表記・協会の定義・取得者数）。内容は、協会の公式の定義・取得者数（2026-03-31）と、全分野共通の流れ・試験の形式のみ。分野ごとの要件の違いは、確認できていないので載せていない。
 - 取得者数・分野の追加や変更は、協会の「各資格の取得状況」と「分野・英語表記・定義」で確かめて、元データを直す（合計は、協会の認定の取得数の合計19,012件と一致）。
+
+## 疾患カード（国試に出る疾患の周辺知識）`/columns/diseases`（2026-11-19〜）
+- データ: `src/content/diseases/data/<slug>.json`（1疾患1ファイル）→ `scripts/build-diseases.mjs`（`prebuild`・`npm run verify` で実行。出典のない記述・存在しない出典番号があると、ビルドを止める）→ `generated.ts`。型は `types.ts`。各記述 `{t, s}` の `s` は、その疾患の `sources[].n`。`unverified` / `conflicts` は公開データに入れない。
+- 一問一答でタップして読む: `components/student/DiseaseLookup.tsx`（`lib/diseaseMatch.ts` が、問題文・選択肢・解説から、名前・かっこ内の略称・`aliases` を探す。2文字以下は除外、英字の語は前後が英数字のときは一致させない。長い語を優先）。`student/quiz/play` の解説の下に、筋・骨（MuscleLookup）の次に表示。模擬試験と公開の過去問ページには入れていない（公開ページは問題文の情報が無い）。
+- ページ: `/columns/diseases`（系統別の一覧）と `/columns/diseases/[slug]`（`components/columns/DiseasePage.tsx`）。`sitemap.ts` に追加。ゲストにも公開（`PUBLIC_COLUMN_PATH`）。
+- 作り方（品質のため）: ①`リサーチ/` の疾患洗い出し（問題→疾患の抽出）から、疾患ごとの過去問パケットを作る → ②調査担当が一次資料を読んで作成 → ③別の担当が出典の本文と1項目ずつ照合（ok/weak/wrong/unsupported）→ ④weak は直し、根拠が取れないものは削除 → `review: "ai"`。専門家が確認したら `review: "human"`（ページの注記が変わる）。パイロット8疾患（パーキンソン病・重症筋無力症・多発性硬化症・ギラン・バレー症候群・統合失調症・変形性膝関節症・ダウン症候群・COPD）の照合結果は、ok 283 / weak 90（直した）/ wrong 0 / unsupported 0。
+- 注意: 出典が取れない（Cloudflare・reCAPTCHA）サイトは回避しない。数値は本文で確かめたものだけ。公式の正答と最新の資料が食い違うときは、本文には載せず、調査メモ（`conflicts`）に残す。
