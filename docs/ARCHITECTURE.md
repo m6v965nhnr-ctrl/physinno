@@ -193,6 +193,13 @@
 - クラスの課題の結果の画面（`/student/quiz/play?assignment=`）: 「間違えた問題」の問題文をタップすると、その場で開き（`ReviewPanel`）、選択肢・自分の選択・正答・解説が見える（正答・解説は、開いたときに `quiz_reveal` で読む）。通常のドリルの結果の画面は、これまでどおり、その問題の画面（正答・解説つき）に戻る。
 - 先生の課題の結果（`/student/quiz/teacher/assignment?id=`）: 「学生ごと／問題ごと／分野ごと／学生×分野」を切り替えて見る（20261120_quiz_assignment_matrix.sql の `quiz_assignment_matrix` ＝ 学生×問題の正誤＋問題の分野。呼べるのは、自分のクラスの課題の先生だけ）。問題ごとは、分野で絞り込み・正答率の低い順。分野ごとの「この分野の問題を見る」で問題ごとへ移る。学生×分野は、50%未満に ▼ と赤、80%以上に緑（色だけに頼らず、数字と記号も出す）。分野の名前は `quiz_units`。
 
+## オリジナル問題（AI作成）100問の取り込み（2026-11-20）
+- `quiz_questions` に `source='ai_generated'` の100問（`exam_no=9001`・`session='am'`・`no=1〜100`）。AIが作り、別のAIが審査。**人間の教員の確認は未**。`review_sources` に通しID（v4-G?-?／v5-G?-?）と出典を残した。
+- `review_status='approved'` は63問（審査で「使える」）。先生のテスト作成の「オリジナル問題」と「AIで問題を作る」に出る。`pending` は37問（要教員確認・要教員判断）。誰にも出ない。教員が確認したら `update … set review_status='approved'` で出す。
+- 学生の自習・模擬試験・回別には出ない（`source='official'` で絞る）。先生が課題に入れたときだけ学生に届く。
+- 取り込みは、JSONを `public/_tmp/` に置いて公開 → `net.http_get` → `jsonb_to_recordset` で insert → ファイルを削除。元データは `リサーチ/ナレッジ深掘り/分析スキーマ/v5作問/完成/全問題_100.json`（Git管理外）。
+- 未対応: 正答位置の偏り（2と4がやや多い）・先生が自分で問題文を編集する機能。
+
 ## 下のメニューを固定する: 本文だけをスクロールさせる（2026-10-16）
 - iPhoneのホーム画面アプリで、一番上・一番下まで行ってさらに引っ張ると、画面全体が弾み、下のメニューも本文といっしょに動いてしまっていた（`sticky` / `fixed` / `visualViewport` の補正では、止まらなかった）。
 - 対策: 下のメニューを出す画面では、`BottomNavWrapper` が `<html data-shell>` を付ける。`globals.css` の `html[data-shell]` で、画面全体（html・body）はスクロールさせず（高さ100dvh・overflow hidden）、本文（`#main-content`）だけを `overflow-y: auto` でスクロールさせる。メニューは本文の外（flexの下）にあるので、本文が弾んでも動かない。トップ・ログイン・登録・先生の画面・運営は、これまでどおり（data-shellなし）。印刷（`@media print`）では解除する。
