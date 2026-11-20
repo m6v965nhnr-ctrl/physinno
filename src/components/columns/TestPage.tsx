@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ldJson } from "@/lib/jsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { TestCard } from "@/content/tests/types";
+import BackLink from "@/components/BackLink";
 
 const qHref = (id: string) => {
   const [e, s, n] = id.split("-");
@@ -54,7 +55,8 @@ export default function TestPage({ d, diseases }: { d: TestCard; diseases: { slu
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-2xl">
-        <nav className="text-xs text-gray-400" aria-label="パンくず">
+        <BackLink fallback="/columns/tests" />
+        <nav className="mt-2 text-xs text-gray-400" aria-label="パンくず">
           <Link href="/columns" className="hover:text-gray-700">コラム</Link>
           <span className="mx-1">/</span>
           <Link href="/columns/tests" className="hover:text-gray-700">検査・基準値の一覧</Link>

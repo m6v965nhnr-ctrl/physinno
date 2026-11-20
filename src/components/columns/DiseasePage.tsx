@@ -3,6 +3,7 @@ import { ldJson } from "@/lib/jsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Claim, Disease } from "@/content/diseases/types";
 import { TESTS } from "@/content/tests/generated";
+import BackLink from "@/components/BackLink";
 
 const cite = (s: number[]) => (
   <sup className="ml-0.5 text-[10px] text-gray-400">[{s.join(",")}]</sup>
@@ -67,7 +68,8 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: ldJson(jsonLd) }} />
       <div className="mx-auto max-w-2xl">
-        <nav className="text-xs text-gray-400" aria-label="パンくず">
+        <BackLink fallback="/columns/diseases" />
+        <nav className="mt-2 text-xs text-gray-400" aria-label="パンくず">
           <Link href="/columns" className="hover:text-gray-700">コラム</Link>
           <span className="mx-1">/</span>
           <Link href="/columns/diseases" className="hover:text-gray-700">疾患の一覧</Link>
