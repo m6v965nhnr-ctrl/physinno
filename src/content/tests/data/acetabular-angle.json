@@ -1,0 +1,30 @@
+{
+ "slug": "acetabular-angle",
+ "name": "臼蓋角",
+ "category": "臨床検査",
+ "aliases": [
+  "臼蓋角"
+ ],
+ "rows": [
+  {
+   "item": "臼蓋角",
+   "target": "発育性股関節形成不全（臼蓋形成不全）",
+   "value": "臼蓋角30度以上で臼蓋形成不全と診断",
+   "exam": "53-am-19 問題文 生後4か月・X線で臼蓋角を選ぶ（正答e、数値の出題はなし）。53-am-20 同症例（リーメンビューゲル装具）",
+   "q": [
+    "53-am-19",
+    "53-am-20"
+   ],
+   "note": "確認済み [S24]（乳児健診の二次検診の手引き）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S24",
+     "url": "https://www.jpoa.org/wp-content/uploads/2013/07/180306.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

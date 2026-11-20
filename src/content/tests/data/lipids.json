@@ -1,0 +1,40 @@
+{
+ "slug": "lipids",
+ "name": "脂質異常症の基準(TG・LDL-C・HDL-C)",
+ "category": "臨床検査",
+ "aliases": [
+  "LDL-C",
+  "HDL-C",
+  "トリグリセライド",
+  "中性脂肪",
+  "LDLコレステロール",
+  "HDLコレステロール"
+ ],
+ "rows": [
+  {
+   "item": "トリグリセライド（TG）・LDL-C・HDL-C",
+   "target": "脂質異常症",
+   "value": "LDL-C 140 mg/dL以上（境界120〜139）、HDL-C 40未満、TG 150以上（空腹時）・175以上（随時）、non-HDL-C 170以上",
+   "exam": "57-am-19 問題文 TG 362（基準30〜150）、LDL-C 128（基準70〜139）。61-am-25 正答「有酸素運動でHDL-C増加」（TG、LDL-C、内臓脂肪、IMTは減少）。54-pm-23 正答「持久力運動で中性脂肪低下」",
+   "q": [
+    "54-pm-23",
+    "57-am-19",
+    "61-am-25"
+   ],
+   "note": "確認済み [S5]。57-am-19 の基準範囲（TG 30〜150、LDL 70〜139）は施設値で共用基準範囲 [S1]（TG 男40〜234・女30〜117、LDL 65〜163）と異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.j-athero.org/jp/wp-content/uploads/publications/pdf/GL2022_s/jas_gl2022_220808.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

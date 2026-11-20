@@ -1,0 +1,243 @@
+{
+ "slug": "icu-mobilization",
+ "name": "ICU・急性期の離床の開始・中止基準",
+ "category": "リスク管理",
+ "aliases": [
+  "離床の開始基準",
+  "早期離床",
+  "RASS"
+ ],
+ "rows": [
+  {
+   "item": "離床の開始基準:RASS",
+   "target": "ICU・急性期の離床",
+   "value": "−2≦RASS≦＋1、かつ30分以内に鎮静が必要な不穏がない。−3以下(RASS≦−3)は重篤な覚醒障害、＋2以上(RASS≧2)は過度の興奮で、早期離床を原則行わない",
+   "exam": "59-pm-17(脳梗塞・急性発症2日目:選択肢「RASS −3」は積極的離床の条件に当たらず誤答)／60-pm-10(食道癌術後ICU:選択肢「RASS −3である」は誤答)",
+   "q": [
+    "59-pm-17",
+    "60-pm-10"
+   ],
+   "note": "確認済み[S8](表1・表2)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S8",
+     "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+    }
+   ]
+  },
+  {
+   "item": "離床の開始基準:呼吸・循環",
+   "target": "ICU・急性期の離床",
+   "value": "呼吸回数<35/min／SaO₂≧90%／FiO₂<0.6／PEEP<10 cmH₂O／心拍数50〜120/min(一定時間持続)／平均血圧(MAP)≧65 mmHg／疼痛=NRS≦3またはVAS≦3(BPS≦5・CPOT≦2)",
+   "exam": "59-pm-17(正答=心拍数80/分・平均血圧65 mmHg以上。誤答=呼吸数40/分・神経症状の増悪・RASS−3)／60-pm-10(正答=平均動脈圧80 mmHg。誤答=NRS8・心拍数120/分・SOFA前日より4点増加・RASS−3)",
+   "q": [
+    "59-pm-17",
+    "60-pm-10"
+   ],
+   "note": "確認済み[S8](表2) ★60-pm-10 は誤答とされた「心拍数120/分」が S8 の表2では基準「50〜120/min」の範囲に含まれる。正答が平均動脈圧80のみとなる根拠は S8 では確認できず、食い違いの可能性(別の基準・版の違いは未確認)",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S8",
+     "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+    }
+   ]
+  },
+  {
+   "item": "離床の開始基準:疼痛 NRS",
+   "target": "離床の判断",
+   "value": "NRS≦3(またはVAS≦3)が開始基準。NRS8は基準外",
+   "exam": "60-pm-10(誤答:「疼痛がNRS 8」)／61-am-20(TKA術後3日・体動時NRS 6点=問題文)",
+   "q": [
+    "60-pm-10",
+    "61-am-20"
+   ],
+   "note": "確認済み[S8](NRS≦3)。61-am-20 の NRS6 は問題文のみ",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://www.nanbyou.or.jp/entry/314"
+    },
+    {
+     "label": "S8",
+     "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+    }
+   ]
+  },
+  {
+   "item": "発熱・体温",
+   "target": "運動・離床の可否",
+   "value": "急性全身性疾患または発熱=運動療法の絶対的禁忌(心リハ)。大動脈解離の開始: 38.5℃以上の発熱がない。大血管術後の中止: 37.5℃以上",
+   "exam": "58-am-83 誤答選択肢「体温38.6℃」／61-am-41 誤答選択肢「体温38.8℃」／54-am-19 問題文 体温37.5℃(COPD急性増悪・人工呼吸管理)／56-am-46 誤答選択肢「体温37.0℃」(糖尿病の中止基準)",
+   "q": [
+    "54-am-19",
+    "56-am-46",
+    "58-am-83",
+    "61-am-41"
+   ],
+   "note": "確認済み(S1 表25／S2 表62・66, 2026-11-19)。37.0℃を中止とする基準は無く、誤答と整合",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    }
+   ]
+  },
+  {
+   "item": "心拍数の開始・中止基準(ICU・脳卒中)",
+   "target": "離床・早期リハ",
+   "value": "ICU開始: HR 50〜120/分が一定時間持続。ICU中止: HR<40 または >130/分。脳卒中急性期: 心拍数に一定の見解なし、40/分未満の徐脈で中止が一般的、新たに急に生じた異常でなく他のバイタルが安定していれば継続可。心リハ中止: HR≤40/分",
+   "exam": "59-pm-17 正答の1つ「心拍数80/分」／60-pm-10 誤答選択肢「心拍数120/分」／56-pm-2 誤答選択肢「心拍数105/分」(入院時102)／55-am-8 誤答選択肢「心拍数105/分」／56-am-46 誤答選択肢「脈拍数110/分」",
+   "q": [
+    "55-am-8",
+    "56-am-46",
+    "56-pm-2",
+    "59-pm-17",
+    "60-pm-10"
+   ],
+   "note": "確認済み(S3 Table2・4／S4 CQ2-4／S1 表25, 2026-11-19)。食い違い: 60-pm-10の「心拍数120/分」はICU開始基準(HR≥50または≤120)の範囲内に当たるが、国試では離床不可の誤答扱い(他の選択肢が正答の平均動脈圧80 mmHgのため単独の可否は未確定)",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    },
+    {
+     "label": "S4",
+     "url": "https://jsts.gr.jp/img/acute_rehabilitation.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SpO2の基準(運動・離床)",
+   "target": "運動の開始・中止、呼吸器疾患",
+   "value": "心リハ中止: SpO2<90% または安静時から5%以上低下。ICU開始: SaO2≥90%。ICU中止: SpO2<88%(別表: 88〜90%または4%以上低下)。呼吸リハ(高強度負荷の適応): 運動時SpO2≥90%",
+   "exam": "55-am-8 正答「SpO2 82%」(COPD、中止すべき状態)／58-am-83 正答「経皮的酸素飽和度94%」／59-am-49 誤答選択肢「有酸素運動はSpO2 60%を目標に実施」／61-am-41 誤答選択肢「SaO2 85%」／57-am-18 問題文 SpO2 96%／60-am-14 問題文 SpO2 95%(room air)",
+   "q": [
+    "55-am-8",
+    "57-am-18",
+    "58-am-83",
+    "59-am-49",
+    "60-am-14",
+    "61-am-41"
+   ],
+   "note": "確認済み(S1 表25／S2 表62・63／S3 Table2・4・5／S16, 2026-11-19)。COPDなど呼吸疾患に固有の中止基準(呼吸リハビリテーションマニュアル)は一次資料を取得できず未確認。「SpO2 90%前後を維持」(間質性肺疾患)は呼吸疾患別資料では未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    },
+    {
+     "label": "S16",
+     "url": "https://www.jsrcr.jp/publish/file/rehabilitation_statement2018_v2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "呼吸数の基準",
+   "target": "離床・バイタル・健常成人",
+   "value": "ICU開始: 呼吸回数<35/分。ICU中止: <5/分 または >40/分。大血管術後の開始: 頻呼吸(呼吸回数30/分未満であること)。健常成人安静時の呼吸数の基準値は資料で未確認",
+   "exam": "59-pm-17 誤答選択肢「呼吸数40/分」／61-am-41 誤答選択肢「呼吸数38回/分」／52-am-64 誤答選択肢「健常者の安静時呼吸数は25/分程度」(記録上は12〜20/分が正)／55-am-8 誤答選択肢「呼吸数22/分」／54-am-19 問題文 呼吸数26回/分・努力性呼吸／57-am-18 問題文 呼吸数19／60-am-14 問題文 呼吸数20",
+   "q": [
+    "52-am-64",
+    "54-am-19",
+    "55-am-8",
+    "57-am-18",
+    "59-pm-17",
+    "60-am-14",
+    "61-am-41"
+   ],
+   "note": "確認済み(ICU・大動脈の呼吸数: S3 Table2・4／S2 表62・63・65, 2026-11-19)。健常成人安静時 12〜20回/分は未確認(公式資料を取得できなかった)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "意識レベル・鎮静(RASS)",
+   "target": "ICU・急性期の離床",
+   "value": "開始: −2≦RASS≦1(かつ30分以内に鎮静が必要だった不穏がない)。中止: RASS≦−3、または鎮静薬の増量・新規投与が必要なRASS>2",
+   "exam": "59-pm-17 誤答選択肢「RASS −3」／60-pm-10 誤答選択肢「RASS −3」／61-am-41 正答「RASS」(選択肢の数値はDBで欠落)",
+   "q": [
+    "59-pm-17",
+    "60-pm-10",
+    "61-am-41"
+   ],
+   "note": "確認済み(S3 Table2・5／S2 表62・63, 2026-11-19)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "疼痛(NRS)",
+   "target": "ICU離床の開始",
+   "value": "開始: NRS≦3 または VAS≦3(自己申告不能時はBPS≦5またはCPOT≦2)",
+   "exam": "60-pm-10 誤答選択肢「疼痛がNRS 8である」",
+   "q": [
+    "60-pm-10"
+   ],
+   "note": "確認済み(S3 Table2, 2026-11-19)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "ICU離床・運動の開始基準(まとめ)",
+   "target": "食道癌術後ICU・急性期脳梗塞",
+   "value": "開始: RASS−2〜1／NRS≦3／呼吸回数<35／SaO2≧90%／FiO2<0.6／PEEP<10 cmH2O／HR 50〜120／MAP≧65 mmHg／昇圧剤の24時間以内の増量なし。中止: RR<5または>40、SpO2<88%、HR<40または>130、収縮期>180、MAP<65または>110 ほか",
+   "exam": "60-pm-10「積極的に離床を行ってもよいのはどの場合か」: 正答=平均動脈圧80 mmHg。誤答選択肢=RASS−3・NRS 8・心拍数120/分・SOFA +4点",
+   "q": [
+    "60-pm-10"
+   ],
+   "note": "確認済み(S3 Table2〜5, 2026-11-19)。食い違い: 心拍数120/分は開始基準内、SOFAは基準なし",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jsicm/24/2/24_24_255/_article/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

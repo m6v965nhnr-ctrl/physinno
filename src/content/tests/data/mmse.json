@@ -1,0 +1,87 @@
+{
+ "slug": "mmse",
+ "name": "MMSE",
+ "category": "評価尺度",
+ "aliases": [
+  "MMSE",
+  "Mini-Mental State Examination"
+ ],
+ "rows": [
+  {
+   "item": "MMSE 満点・構成",
+   "target": "全般的認知機能",
+   "value": "30点満点。11項目(時間・場所の見当識、3単語の即時・遅延再生、計算、物品呼称、文章復唱、3段階口頭命令、書字命令、文章書字、図形模写)",
+   "exam": "61-am-98(誤答:「人格検査」ではない)／59-am-9(誤答:優先度が低い=全般認知)／59-pm-81(誤答:日常生活場面の記憶障害の検出には最適でない)",
+   "q": [
+    "59-am-9",
+    "59-pm-81",
+    "61-am-98"
+   ],
+   "note": "確認済み[S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "MMSE カットオフ:認知症疑い",
+   "target": "認知症のスクリーニング",
+   "value": "23点以下で認知症疑い(感度81%・特異度89%)",
+   "exam": "57-am-35(認知症のスクリーニング検査=MMSEが正答)／56-pm-18(認知症患者のMMSEは13点=30点満点・23点以下で認知症疑い)",
+   "q": [
+    "56-pm-18",
+    "57-am-35"
+   ],
+   "note": "確認済み[S4]。S20 は「24/23」と記載し同じ区切り",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    },
+    {
+     "label": "S20",
+     "url": "https://www.jstage.jst.go.jp/article/jamt/66/J-STAGE-2/66_17J2-3/_html/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "MMSE カットオフ:MCI",
+   "target": "軽度認知障害",
+   "value": "27点以下でMCIが疑われる(感度45〜60%・特異度65〜90%)",
+   "exam": "出題なし(参考。入力の27/28点に対応)",
+   "q": [],
+   "note": "確認済み[S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "MMSE による重症度の例",
+   "target": "認知症の重症度",
+   "value": "軽度=21点以上／中等度=11〜20点／重度=0〜10点",
+   "exam": "56-pm-18(MMSE 13点=中等度に当たる)／57-am-36(MMSE 25→20点で悪化方向。30点満点)",
+   "q": [
+    "56-pm-18",
+    "57-am-36"
+   ],
+   "note": "確認済み[S4](表3「認知症の重症度の判定例」)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

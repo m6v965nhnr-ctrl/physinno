@@ -1,0 +1,83 @@
+{
+ "slug": "bls",
+ "name": "一次救命処置(BLS)",
+ "category": "リスク管理",
+ "aliases": [
+  "一次救命処置",
+  "BLS",
+  "胸骨圧迫",
+  "AED"
+ ],
+ "rows": [
+  {
+   "item": "一次救命処置: 胸骨圧迫の回数",
+   "target": "成人の心停止(BLS)",
+   "value": "胸骨圧迫は100〜120回/分",
+   "exam": "54-am-38 正答「胸骨圧迫は1分間に100〜120回」／58-pm-26 正答(救急措置で正しいのは100〜120回/分)／59-am-40 正答「100回」(選択肢20・50・70・100・130回)／52-am-22 誤答選択肢「胸骨圧迫10回/分」",
+   "q": [
+    "52-am-22",
+    "54-am-38",
+    "58-pm-26",
+    "59-am-40"
+   ],
+   "note": "確認済み(S9 JRC2020, S10 指針2025(JRC2025準拠), 2026-11-19)。改訂前後で変更なし。59-am-40の正答「100回」は100〜120回/分の下限で整合、130回は範囲外",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S9",
+     "url": "https://www.jrc-cpr.org/wp-content/uploads/2022/07/JRC_0017-0046_BLS.pdf"
+    },
+    {
+     "label": "S10",
+     "url": "https://qqzaidan.jp/wp-content/uploads/2026/09/shishin2025_shimin_teisei_0910.pdf"
+    }
+   ]
+  },
+  {
+   "item": "一次救命処置: 胸骨圧迫の深さ",
+   "target": "成人の心停止(BLS)",
+   "value": "胸が約5 cm沈む深さ。6 cmを超えない(2020)。小児は胸の厚さの約1/3",
+   "exam": "54-am-38 誤答選択肢「胸骨が1 cm程度沈む強さ」／52-am-22 誤答選択肢「胸が1 cm沈む強さ」(正答の記録は約5 cm)",
+   "q": [
+    "52-am-22",
+    "54-am-38"
+   ],
+   "note": "確認済み(S9 JRC2020「6 cmを超えない」, S10 指針2025「約5 cm」, 2026-11-19)。JRC2025原文の「6 cm」記述は本文未確認(指針2025は約5 cmまで)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S9",
+     "url": "https://www.jrc-cpr.org/wp-content/uploads/2022/07/JRC_0017-0046_BLS.pdf"
+    },
+    {
+     "label": "S10",
+     "url": "https://qqzaidan.jp/wp-content/uploads/2026/09/shishin2025_shimin_teisei_0910.pdf"
+    }
+   ]
+  },
+  {
+   "item": "一次救命処置: 人工呼吸・AED・胸骨圧迫の中断",
+   "target": "成人のBLS",
+   "value": "人工呼吸は約1秒かけ胸が上がる程度の量を吹き込む、2回まで(胸が上がらなくても)。2回の吹込みの間の胸骨圧迫の中断はできるだけ短く(10秒以内)。電気ショックの後は直ちに胸骨圧迫(CPR)を再開。ショックは傷病者から離れて実施",
+   "exam": "52-am-22 正答「人工呼吸は胸が上がる程度の空気を吹き込む」。誤答選択肢=呼吸数測定・人工呼吸10回以上連続／54-am-38 誤答選択肢「口対口の吹込みは続けて10回以上」「AED後は胸骨圧迫を行わない」「胸骨圧迫をしながら電気ショック」",
+   "q": [
+    "52-am-22",
+    "54-am-38"
+   ],
+   "note": "確認済み(S9, S10, 2026-11-19)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S9",
+     "url": "https://www.jrc-cpr.org/wp-content/uploads/2022/07/JRC_0017-0046_BLS.pdf"
+    },
+    {
+     "label": "S10",
+     "url": "https://qqzaidan.jp/wp-content/uploads/2026/09/shishin2025_shimin_teisei_0910.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

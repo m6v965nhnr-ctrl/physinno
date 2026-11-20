@@ -1,0 +1,234 @@
+{
+ "slug": "blood-tests",
+ "name": "血液検査の基準値",
+ "category": "臨床検査",
+ "aliases": [
+  "白血球",
+  "ヘモグロビン",
+  "血小板",
+  "クレアチニン",
+  "CRP",
+  "血清カリウム",
+  "血清カルシウム",
+  "ALP",
+  "アルカリホスファターゼ",
+  "CK",
+  "クレアチンキナーゼ",
+  "アミラーゼ",
+  "KL-6",
+  "SP-D"
+ ],
+ "rows": [
+  {
+   "item": "白血球数",
+   "target": "炎症・感染の指標",
+   "value": "共用基準範囲 3.3〜8.6 ×10^3/μL",
+   "exam": "57-am-1 問題文 7.5×10^3/μL（基準3.3〜8.6）。61-pm-44 誤答（白血球数は腎機能評価に不適）",
+   "q": [
+    "57-am-1",
+    "61-pm-44"
+   ],
+   "note": "確認済み [S1]（問題文の基準と一致）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ヘモグロビン（血色素量）",
+   "target": "貧血",
+   "value": "共用基準範囲 男13.7〜16.8、女11.6〜14.8 g/dL。貧血の診断閾値は未確認",
+   "exam": "57-am-1 問題文 12.5 g/dL（女性、基準11.6〜14.8）。53-pm-92 大球性貧血（葉酸欠乏）",
+   "q": [
+    "53-pm-92",
+    "57-am-1"
+   ],
+   "note": "確認済み [S1]（基準範囲）。貧血の診断閾値は一次資料で未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血小板数",
+   "target": "出血傾向、肝不全、栄養評価では不適",
+   "value": "共用基準範囲 158〜348 ×10^3/μL",
+   "exam": "52-pm-50 正答「栄養評価に血小板数は不適」。52-pm-94 誤答「血友病で血小板減少」（正常）。55-am-46 誤答「多発性筋炎の運動負荷を血小板数で決める」。55-pm-92 誤答「血友病で血小板減少・出血時間延長」。58-am-92 誤答「肝不全で血小板増加」",
+   "q": [
+    "52-pm-50",
+    "52-pm-94",
+    "55-am-46",
+    "55-pm-92",
+    "58-am-92"
+   ],
+   "note": "確認済み [S1]（基準範囲）。出血時間の基準値は出題になし",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血清クレアチニン",
+   "target": "腎機能、筋量",
+   "value": "共用基準範囲 男0.65〜1.07、女0.46〜0.79 mg/dL",
+   "exam": "57-am-1 問題文 0.74 mg/dL（女性、基準0.46〜0.79）。55-am-93 誤答「尿毒症で血清クレアチニン低下」（上昇）。57-am-47 正答「筋量の影響を受ける」。56-am-91 正答「心筋梗塞で上昇しない」。53-pm-24 誤答「加齢でクレアチニンクリアランス増加」",
+   "q": [
+    "53-pm-24",
+    "55-am-93",
+    "56-am-91",
+    "57-am-1",
+    "57-am-47"
+   ],
+   "note": "確認済み [S1]（基準範囲）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "CRP",
+   "target": "炎症",
+   "value": "共用基準範囲 0.00〜0.14 mg/dL",
+   "exam": "57-am-1 問題文 2.25 mg/dL（基準0.00〜0.14）。57-am-17 問題文 3.1 mg/dL（基準0.3未満）。61-am-10 問題文「炎症反応は正常」（骨髄炎を否定）",
+   "q": [
+    "57-am-1",
+    "57-am-17",
+    "61-am-10"
+   ],
+   "note": "確認済み [S1]（57-am-1 の基準は一致）。57-am-17 の「0.3未満」は共用基準（0.14以下）と食い違う。施設により異なる",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血清カリウム",
+   "target": "尿毒症、神経性大食症",
+   "value": "共用基準範囲 3.6〜4.8 mmol/L",
+   "exam": "55-am-93 誤答「尿毒症で低カリウム血症」。52-am-99 誤答「神経性大食症で高カリウム血症」",
+   "q": [
+    "52-am-99",
+    "55-am-93"
+   ],
+   "note": "確認済み [S1]（基準範囲）。高・低の区分の閾値は出題になし",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血清カルシウム",
+   "target": "多発性骨髄腫、転移性骨腫瘍、骨粗鬆症",
+   "value": "共用基準範囲 8.8〜10.1 mg/dL",
+   "exam": "59-pm-94 誤答「前立腺癌転移で高率に低カルシウム血症」。57-pm-93 正答「多発性骨髄腫に特徴的でないのは低カルシウム血症」。57-am-89 誤答「原発性骨粗鬆症で低カルシウム血症」",
+   "q": [
+    "57-am-89",
+    "57-pm-93",
+    "59-pm-94"
+   ],
+   "note": "確認済み [S1]（基準範囲）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ALP（アルカリホスファターゼ）",
+   "target": "骨肉腫（上昇）",
+   "value": "共用基準範囲 106〜322 U/L（測定法により異なる）",
+   "exam": "61-am-10 問題文「ALP上昇」（骨肉腫・正答）。53-am-87 誤答「関節リウマチでALP高値」",
+   "q": [
+    "53-am-87",
+    "61-am-10"
+   ],
+   "note": "確認済み [S1]（基準範囲）。測定法で値が変わる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血清CK",
+   "target": "筋炎・筋疾患、運動負荷量の目安",
+   "value": "共用基準範囲 男59〜248、女41〜153 U/L",
+   "exam": "57-pm-84 正答「多発性筋炎でCK上昇」。58-pm-17 誤答「重症筋無力症でCKを指標に運動量調整」。54-pm-91 誤答「重症筋無力症でCK上昇」。55-am-46 誤答（目安は血小板数ではない）。56-am-91 正答「心筋梗塞でCKは上昇」",
+   "q": [
+    "54-pm-91",
+    "55-am-46",
+    "56-am-91",
+    "57-pm-84",
+    "58-pm-17"
+   ],
+   "note": "確認済み [S1]（基準範囲）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "血中アミラーゼ",
+   "target": "急性膵炎",
+   "value": "共用基準範囲 44〜132 U/L",
+   "exam": "54-pm-93 誤答「急性膵炎で血中アミラーゼが低下」（上昇が正）",
+   "q": [
+    "54-pm-93"
+   ],
+   "note": "確認済み [S1]（基準範囲。急性膵炎の診断閾値は出題になし）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    }
+   ]
+  },
+  {
+   "item": "KL-6・SP-D",
+   "target": "間質性肺炎の血清マーカー",
+   "value": "KL-6 500 U/mL未満、SP-D 110 ng/mL未満",
+   "exam": "57-am-17 問題文 KL-6 790 U/mL（基準500未満、間質性肺炎）。59-am-2 誤答選択肢（SP-D）。60-am-39 誤答「SP-D-慢性心不全」",
+   "q": [
+    "57-am-17",
+    "59-am-2",
+    "60-am-39"
+   ],
+   "note": "確認済み [S27]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S27",
+     "url": "https://www.jstage.jst.go.jp/article/naika/96/10/96_2144/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

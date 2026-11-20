@@ -5,6 +5,8 @@ import path from "node:path";
 const dir = "src/content/diseases/data";
 const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort() : [];
 const errs = [];
+const tdir = "src/content/tests/data";
+const TEST_SLUGS = new Set(fs.existsSync(tdir) ? fs.readdirSync(tdir).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")) : []);
 const SYSTEMS = ["神経", "運動器", "循環器", "呼吸器", "代謝・内分泌・腎・消化", "がん・血液・免疫", "感染症", "小児・先天", "精神", "老年・その他"];
 const out = files.map((f) => {
   const d = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
@@ -19,16 +21,17 @@ const out = files.map((f) => {
     else if (!Array.isArray(c.s) || c.s.length === 0 || c.s.some((n) => !ns.has(n))) errs.push(`${f}: ${label} の出典番号が不正「${c.t.slice(0, 20)}」`);
   };
   chk("summary", d.summary);
-  for (const k of ["cause", "symptoms", "diagnosis", "treatment", "pt"]) (d[k] ?? []).forEach((c, i) => chk(`${k}[${i}]`, c));
+  for (const k of ["cause", "symptoms", "diagnosis", "classification", "treatment", "pt", "risk"]) (d[k] ?? []).forEach((c, i) => chk(`${k}[${i}]`, c));
   (d.examPoints ?? []).forEach((c, i) => {
     chk(`examPoints[${i}]`, c);
     for (const q of c.q ?? []) if (!/^\d{2}-(am|pm)-\d{1,3}$/.test(q)) errs.push(`${f}: 問題IDが不正 ${q}`);
   });
   (d.confusable ?? []).forEach((c, i) => { if (!c.name || !c.diff) errs.push(`${f}: confusable[${i}] が空`); else chk(`confusable[${i}]`, { t: c.diff, s: c.s }); });
+  for (const t of d.tests ?? []) if (!TEST_SLUGS.has(t)) errs.push(`${f}: 検査カードがない ${t}`);
   const checkedOn = (d.sources ?? []).map((s) => s.checked).sort().at(-1) ?? "";
   return {
     slug: d.slug, name: d.name, reading: d.reading, aliases: d.aliases ?? [], system: d.system,
-    summary: d.summary, cause: d.cause ?? [], symptoms: d.symptoms ?? [], diagnosis: d.diagnosis ?? [], treatment: d.treatment ?? [], pt: d.pt ?? [],
+    summary: d.summary, cause: d.cause ?? [], symptoms: d.symptoms ?? [], diagnosis: d.diagnosis ?? [], classification: d.classification ?? [], treatment: d.treatment ?? [], pt: d.pt ?? [], risk: d.risk ?? [], tests: d.tests ?? [],
     examPoints: (d.examPoints ?? []).map((e) => ({ ...e, q: e.q ?? [] })), confusable: d.confusable ?? [], related: d.related ?? [], ...(d.guide ? { guide: d.guide } : {}),
     sources: d.sources, checkedOn, review: d.review ?? "ai",
   };

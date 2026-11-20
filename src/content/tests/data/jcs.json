@@ -1,0 +1,154 @@
+{
+ "slug": "jcs",
+ "name": "Japan Coma Scale(JCS)",
+ "category": "評価尺度",
+ "aliases": [
+  "JCS",
+  "Japan Coma Scale",
+  "ジャパン・コーマ・スケール"
+ ],
+ "rows": [
+  {
+   "item": "JCS 全体の構成",
+   "target": "意識障害(3-3-9度方式)",
+   "value": "0=清明／Ⅰ(1・2・3)=刺激しなくても覚醒／Ⅱ(10・20・30)=刺激すると覚醒／Ⅲ(100・200・300)=刺激しても覚醒しない",
+   "exam": "55-pm-44(誤答:「JCS 3桁」は急性期の離床を控える側。積極的離床が可能な場合の正答は「重度な運動麻痺」)／55-am-39(誤答:神経筋再教育が「JCSⅢ-200にも適応される」。正答は「随意運動を促通する」)",
+   "q": [
+    "55-am-39",
+    "55-pm-44"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅰ-1〜Ⅰ-3",
+   "target": "覚醒している",
+   "value": "1=大体清明だが今ひとつはっきりしない／2=見当識障害がある／3=自分の名前・生年月日が言えない",
+   "exam": "出題は直接なし(Ⅰ桁の区分の参考)",
+   "q": [],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅱ-10",
+   "target": "刺激で覚醒",
+   "value": "10=普通の呼びかけで容易に開眼する",
+   "exam": "54-am-10(誤答選択肢Ⅱ-10)",
+   "q": [
+    "54-am-10"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅱ-20",
+   "target": "刺激で覚醒",
+   "value": "20=大きな声または体を揺さぶることにより開眼する",
+   "exam": "53-pm-1(呼びかけでも大声でも開眼せず、体を揺さぶって初めて開眼するがすぐ閉眼=Ⅱ-20が正答。選択肢Ⅱ-10/20/30/Ⅲ-100/Ⅲ-200)／54-am-19(問題文にJCS Ⅱ-20)／54-am-10(誤答選択肢Ⅱ-20)",
+   "q": [
+    "53-pm-1",
+    "54-am-10",
+    "54-am-19"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅱ-30",
+   "target": "刺激で覚醒",
+   "value": "30=痛み刺激を加えつつ呼びかけを繰り返すと辛うじて開眼する",
+   "exam": "53-pm-1・54-am-10(誤答選択肢Ⅱ-30)",
+   "q": [
+    "53-pm-1",
+    "54-am-10"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅲ-100",
+   "target": "刺激で覚醒しない",
+   "value": "100=痛み刺激に対して払いのけるような動作をする",
+   "exam": "54-am-10(大声で呼びかけても開眼せず、胸骨部の痛み刺激で刺激部位を払いのける動き=Ⅲ-100が正答。選択肢Ⅱ-10・Ⅱ-20・Ⅱ-30・Ⅲ-100・Ⅲ-200)／53-pm-1(誤答選択肢Ⅲ-100)",
+   "q": [
+    "53-pm-1",
+    "54-am-10"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅲ-200",
+   "target": "刺激で覚醒しない",
+   "value": "200=痛み刺激で少し手足を動かしたり顔をしかめる",
+   "exam": "59-pm-4(くも膜下出血の症例が「JCSⅢ-200」で搬入=問題文)／55-am-39(誤答の前提)／54-am-10・53-pm-1(誤答選択肢Ⅲ-200)",
+   "q": [
+    "53-pm-1",
+    "54-am-10",
+    "55-am-39",
+    "59-pm-4"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "JCS Ⅲ-300",
+   "target": "刺激で覚醒しない",
+   "value": "300=痛み刺激に全く反応しない",
+   "exam": "出題なし(参考)",
+   "q": [],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

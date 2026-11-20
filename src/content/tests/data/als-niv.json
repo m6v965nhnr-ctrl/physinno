@@ -1,0 +1,31 @@
+{
+ "slug": "als-niv",
+ "name": "ALSのNPPV導入基準",
+ "category": "臨床検査",
+ "aliases": [
+  "NPPV",
+  "NIV"
+ ],
+ "rows": [
+  {
+   "item": "筋萎縮性側索硬化症（ALS）のNIV（NPPV）導入基準",
+   "target": "呼吸不全の判断・NPPV導入時期",
+   "value": "指針の記載: %FVC 80%未満（EFNS、NICEは起坐呼吸を伴う場合）／50%未満（AAN、NICE）、SNIP 40 cmH2O未満、MIP 60 cmH2O未満、PCO2 45 mmHg以上、夜間SpO2 88%未満が5分以上",
+   "exam": "56-am-44 正答 PaCO2 60 mmHg。誤答: PaO2 80 mmHg、睡眠中SpO2 94%、最大吸気圧75 cmH2O、%FVC 85%（いずれも導入基準に達しない）。59-pm-12 問題文 %VC 95%・PaO2 90・PaCO2 40（ALS症例、BFO導入）",
+   "q": [
+    "56-am-44",
+    "59-pm-12"
+   ],
+   "note": "確認済み [S10]。入力の「%FVC<50%」は一つの基準（AAN・NICE）で、EFNSは80%未満と食い違いがある（指針に併記）",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S10",
+     "url": "https://neurology-jp.org/guidelinem/pdf/als_2023.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

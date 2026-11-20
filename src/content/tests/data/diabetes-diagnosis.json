@@ -1,0 +1,40 @@
+{
+ "slug": "diabetes-diagnosis",
+ "name": "糖尿病の診断(血糖・HbA1c)",
+ "category": "臨床検査",
+ "aliases": [
+  "HbA1c",
+  "空腹時血糖",
+  "随時血糖"
+ ],
+ "rows": [
+  {
+   "item": "空腹時血糖・随時血糖・HbA1c（糖尿病の診断）",
+   "target": "糖尿病型の判定",
+   "value": "糖尿病型: 空腹時血糖126 mg/dL以上、OGTT 2時間値200 mg/dL以上、随時血糖200 mg/dL以上、HbA1c 6.5%以上。正常型: 空腹時110未満かつ2時間値140未満",
+   "exam": "57-am-19 問題文 空腹時血糖385 mg/dL（基準65〜109）、HbA1c 8.6%（基準4.6〜6.2）。56-am-20 問題文 HbA1c 8.2%・空腹時血糖145。53-pm-11 問題文 空腹時血糖305。59-am-2 誤答（HbA1c）。58-am-17 誤答「HbA1cで運動強度を決める」。61-pm-44 誤答（HbA1cは腎機能に不適）",
+   "q": [
+    "53-pm-11",
+    "56-am-20",
+    "57-am-19",
+    "58-am-17",
+    "59-am-2",
+    "61-pm-44"
+   ],
+   "note": "確認済み [S2]。57-am-19 の基準範囲（HbA1c 4.6〜6.2、血糖65〜109）は共用基準範囲 [S1]（HbA1c 4.9〜6.0、血糖73〜109）と食い違い、施設により異なる",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jds.or.jp/uploads/files/publications/gl2024/01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

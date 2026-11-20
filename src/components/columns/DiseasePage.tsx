@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ldJson } from "@/lib/jsonLd";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Claim, Disease } from "@/content/diseases/types";
+import { TESTS } from "@/content/tests/generated";
 
 const cite = (s: number[]) => (
   <sup className="ml-0.5 text-[10px] text-gray-400">[{s.join(",")}]</sup>
@@ -59,6 +60,7 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
       mainEntityOfPage: `${SITE_URL}${path}`,
     },
   ];
+  const tests = d.tests.map((s) => TESTS.find((t) => t.slug === s)).filter((t): t is NonNullable<typeof t> => !!t);
   const qids = [...new Set(d.examPoints.flatMap((e) => e.q))];
 
   return (
@@ -84,8 +86,25 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
         <List title="原因・病態" items={d.cause} />
         <List title="主な症状・所見" items={d.symptoms} />
         <List title="診断・検査" items={d.diagnosis} />
+        <List title="分類・重症度" items={d.classification} />
         <List title="治療" items={d.treatment} />
         <List title="理学療法・リハで押さえること" items={d.pt} />
+        <List title="リスク管理・禁忌" items={d.risk} />
+
+        {tests.length > 0 && (
+          <section className="mt-8">
+            <h2 className="text-base font-bold text-gray-900">関係する検査・基準値</h2>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {tests.map((t) => (
+                <li key={t.slug}>
+                  <Link href={`/columns/tests/${t.slug}`} className="block rounded-full border border-teal-300 bg-white px-3 py-1.5 text-xs font-medium text-teal-800 hover:border-teal-500">
+                    {t.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
         {d.examPoints.length > 0 && (
           <section className="mt-8">

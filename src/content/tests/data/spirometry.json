@@ -1,0 +1,121 @@
+{
+ "slug": "spirometry",
+ "name": "呼吸機能検査(スパイロメトリー)",
+ "category": "臨床検査",
+ "aliases": [
+  "スパイロメトリー",
+  "%肺活量",
+  "%VC",
+  "1秒率",
+  "FEV1",
+  "%FEV1",
+  "肺拡散能",
+  "DLco"
+ ],
+ "rows": [
+  {
+   "item": "%肺活量（%VC）",
+   "target": "拘束性換気障害",
+   "value": "%VC 80%未満",
+   "exam": "56-am-19 問題文 %VC 54%→拘束性（正答）。61-pm-9 問題文 %VC 75%。55-am-7 問題文 %VC 81%（COPD症例）。54-pm-17 問題文 %VC 62%。59-pm-12 問題文 %VC 95%（ALS症例）。55-am-73 誤答選択肢「拘束性=%肺活量90%未満」。59-pm-41 誤答「間質性肺疾患で閉塞性換気障害」（拘束性が正）",
+   "q": [
+    "54-pm-17",
+    "55-am-7",
+    "55-am-73",
+    "56-am-19",
+    "59-pm-12",
+    "59-pm-41",
+    "61-pm-9"
+   ],
+   "note": "確認済み [S7]（%VC 80%未満を拘束性と診断）。55-am-73 の「90%未満」は公式の80%と食い違うため誤り。入力の「(要確認)」は解消",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.aichi-amt.or.jp/aamt/wp-content/uploads/2024/03/aicc-guide-19.lung_function.pdf（地域の検査標準化団体の資料で、学会ガイドラインそのものではない"
+    }
+   ]
+  },
+  {
+   "item": "1秒率（FEV1/FVC、FEV1.0%）",
+   "target": "閉塞性換気障害、COPD診断（気管支拡張薬吸入後）",
+   "value": "1秒率 70%未満＝閉塞性。COPD診断は吸入後 FEV1/FVC 70%未満",
+   "exam": "55-am-73 誤答「閉塞性換気障害=1秒率80%未満」。55-am-7 問題文 FEV1% 31%。54-pm-17 問題文 FEV1% 42%。56-am-19 問題文 FEV1% 82%（閉塞なし）。57-pm-38 問題文 1秒率80%（FEV1の計算）。58-pm-3 正答「1秒率低下」。58-pm-85 誤答選択肢（1秒率）。54-am-77 誤答「1秒率=1秒量÷%肺活量」（正しくは÷努力肺活量）",
+   "q": [
+    "54-am-77",
+    "54-pm-17",
+    "55-am-7",
+    "55-am-73",
+    "56-am-19",
+    "57-pm-38",
+    "58-pm-3",
+    "58-pm-85"
+   ],
+   "note": "確認済み [S7][S8][S9]。55-am-73 の「80%未満」は公式の70%と食い違うため誤り",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.aichi-amt.or.jp/aamt/wp-content/uploads/2024/03/aicc-guide-19.lung_function.pdf（地域の検査標準化団体の資料で、学会ガイドラインそのものではない"
+    },
+    {
+     "label": "S8",
+     "url": "https://www.jstage.jst.go.jp/article/naika/101/6/101_1631/_pdf"
+    },
+    {
+     "label": "S9",
+     "url": "https://www.jstage.jst.go.jp/article/naika/109/12/109_2496/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "%1秒量（%FEV1）",
+   "target": "気流閉塞の重症度（COPD病期。GOLD1:≧80、2:50〜80未満、3:30〜50未満、4:30未満）",
+   "value": "%FEV1 80%以上／50%以上80%未満／30%以上50%未満／30%未満",
+   "exam": "57-pm-38 問題文 FEV1 4.00L÷予測3.46L→%FEV1 約116%（正答5）。COPD症例 55-am-7・54-pm-17 の重症度に関わる（病期分類そのものは出題なし）",
+   "q": [
+    "54-pm-17",
+    "55-am-7",
+    "57-pm-38"
+   ],
+   "note": "確認済み [S8][S9][S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.aichi-amt.or.jp/aamt/wp-content/uploads/2024/03/aicc-guide-19.lung_function.pdf（地域の検査標準化団体の資料で、学会ガイドラインそのものではない"
+    },
+    {
+     "label": "S8",
+     "url": "https://www.jstage.jst.go.jp/article/naika/101/6/101_1631/_pdf"
+    },
+    {
+     "label": "S9",
+     "url": "https://www.jstage.jst.go.jp/article/naika/109/12/109_2496/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "肺拡散能（%DLco）",
+   "target": "拡散障害",
+   "value": "予測値の80%以上を正常と判定",
+   "exam": "54-pm-22 正答「COPDで拡散能低下」。59-am-64 問題文（拡散能に影響するのはHbと肺胞表面積）。59-pm-41 正答「拡散障害による低酸素血症」。56-am-19 誤答「拡散障害」。値の記載は出題になし",
+   "q": [
+    "54-pm-22",
+    "56-am-19",
+    "59-am-64",
+    "59-pm-41"
+   ],
+   "note": "確認済み [S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.aichi-amt.or.jp/aamt/wp-content/uploads/2024/03/aicc-guide-19.lung_function.pdf（地域の検査標準化団体の資料で、学会ガイドラインそのものではない"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

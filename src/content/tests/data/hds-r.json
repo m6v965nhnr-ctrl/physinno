@@ -1,0 +1,53 @@
+{
+ "slug": "hds-r",
+ "name": "改訂長谷川式簡易知能評価スケール(HDS-R)",
+ "category": "評価尺度",
+ "aliases": [
+  "HDS-R",
+  "改訂長谷川式",
+  "長谷川式"
+ ],
+ "rows": [
+  {
+   "item": "HDS-R 満点・構成",
+   "target": "認知症のスクリーニング",
+   "value": "30点満点。9項目(年齢・時間の見当識・場所の見当識・3単語の即時記銘と遅延再生・計算・数字の逆唱・物品記銘・言語流暢性)",
+   "exam": "61-pm-81(正答=「数字を逆から言う」(数唱)と「知っている野菜の名前をできるだけ多く」(語の流暢性)。誤答=文章を書く／手の形を真似る／図版を見て答える=MMSE等の項目)／61-am-80(誤答:質問紙法ではない)／59-pm-81(誤答:日常記憶の検出に最適でない)／52-am-81(語の流暢性課題を含む検査=HDS-Rが正答。誤答=MMPI・MMSE・WCST・Rorschach)",
+   "q": [
+    "52-am-81",
+    "59-pm-81",
+    "61-am-80",
+    "61-pm-81"
+   ],
+   "note": "確認済み[S4]。「文章を書く(文章書字)」「図形模写」はMMSEの項目であることも S4 で確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "HDS-R カットオフ",
+   "target": "認知症疑い",
+   "value": "20点以下で認知症疑い(感度93%・特異度86%)",
+   "exam": "出題の直接の数値はなし(HDS-Rの出題は構成項目)",
+   "q": [],
+   "note": "確認済み[S4]。S20 は「21/20」と記載し同じ区切り",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jpn-geriat-soc.or.jp/tool/pdf/tool_02.pdf"
+    },
+    {
+     "label": "S20",
+     "url": "https://www.jstage.jst.go.jp/article/jamt/66/J-STAGE-2/66_17J2-3/_html/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -1,0 +1,30 @@
+{
+ "slug": "cobb-angle",
+ "name": "Cobb角",
+ "category": "臨床検査",
+ "aliases": [
+  "Cobb角",
+  "コブ角"
+ ],
+ "rows": [
+  {
+   "item": "Cobb角",
+   "target": "脊柱側弯症の装具・手術の適応",
+   "value": "装具療法は25°を超えて進行が予測される場合（目安25〜40°）。25°未満でも外見上のhumpが大きければ装具。45°を超えると手術適応",
+   "exam": "60-pm-13 問題文 15歳女子・胸椎Cobb角30°→Milwaukee装具（正答）",
+   "q": [
+    "60-pm-13"
+   ],
+   "note": "確認済み [S23]（装具学会誌の総説。学会ガイドライン本体は未確認）",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S23",
+     "url": "https://www.jstage.jst.go.jp/article/jspo/32/3/32_198/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -1,0 +1,56 @@
+{
+ "slug": "repetitive-stimulation",
+ "name": "反復刺激試験",
+ "category": "臨床検査",
+ "aliases": [
+  "反復刺激試験",
+  "waning",
+  "waxing",
+  "漸減現象",
+  "漸増現象"
+ ],
+ "rows": [
+  {
+   "item": "反復刺激試験（重症筋無力症）",
+   "target": "重症筋無力症（MG）の診断",
+   "value": "3 Hzで10回刺激し、減衰率10%以上で異常（顔面筋では7〜8%に下げる）",
+   "exam": "54-pm-91 誤答「MGで振幅の漸増」（漸減が正）。57-pm-44 誤答「waxing現象」（waningが正）。59-pm-91 誤答「ALSでWaning・Waxing」。58-am-14 誤答「CIDPで反復刺激でwaning・waxing」",
+   "q": [
+    "54-pm-91",
+    "57-pm-44",
+    "58-am-14",
+    "59-pm-91"
+   ],
+   "note": "確認済み [S17]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S17",
+     "url": "https://www.neurology-jp.org/guidelinem/pdf/mg_2022.pdf"
+    }
+   ]
+  },
+  {
+   "item": "反復刺激試験（ランバート・イートン症候群）",
+   "target": "LEMSの診断",
+   "value": "低頻度刺激（2〜5 Hz）で10%以上の漸減。高頻度刺激（20〜50 Hz）または10秒間の最大随意収縮後に60%以上の漸増",
+   "exam": "53-am-9 誤答「連続刺激でM波振幅漸増」（LEMSの所見）。58-am-14 誤答（waxing）。54-pm-91・57-pm-44（waxing）",
+   "q": [
+    "53-am-9",
+    "54-pm-91",
+    "57-pm-44",
+    "58-am-14"
+   ],
+   "note": "確認済み [S17]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S17",
+     "url": "https://www.neurology-jp.org/guidelinem/pdf/mg_2022.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

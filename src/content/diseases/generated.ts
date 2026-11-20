@@ -122,6 +122,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "最も大切なのは禁煙。禁煙はCOPDの進行を遅らせる。感染予防のためにワクチンも行う。",
@@ -213,6 +214,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "COPDは閉塞性換気障害で、気管支拡張薬吸入後の1秒率が70%未満。胸部CTで気腫性変化がみられるCOPDでは、1秒率が低下する。病期は%FEV1(80・50・30%)で分ける。",
@@ -545,6 +548,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "症状や年齢に応じて、必要な検査と治療を適切な時期に行う。",
@@ -613,6 +617,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "乳児期の姿勢は、筋緊張低下と関節の弛緩が基本で、下肢が外転（外に開く）しやすい（出典3）。図問題の正答は、52-pm-11と58-pm-4が、仰向けで一方の下肢を大きく外に開いた図、57-pm-5が、手で支えて脚を開いて座る図だった。",
@@ -977,6 +983,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "免疫療法は、経静脈的免疫グロブリン療法(IVIg)か血漿浄化療法(単純血漿交換)で、どちらも有効とされる。選択は施設と患者の状況で決める。",
@@ -1055,6 +1062,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "発症前の約4週以内に、かぜ症状(上気道感染)や下痢などの先行感染があることが多い。呼吸器感染が契機になる例が多い。小児期に限った病気ではなく、全年齢にみられ、男性に多い。",
@@ -1353,6 +1362,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "まず保存療法(患者教育・生活指導、運動、薬、物理療法、装具)を行う。痛み止めの内服・外用薬や、関節内へのヒアルロン酸注射が用いられる。",
@@ -1431,6 +1441,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "初期の痛みは動作の開始時(立ち上がり・歩き始め)に出て、休むと治まる。起立など体重をかける動作で痛みが強い。",
@@ -1781,6 +1793,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "急性期はステロイドパルス療法(メチルプレドニゾロンの点滴を3〜5日)が用いられる。効果が乏しいときは繰り返すか、血漿浄化療法を行う。",
@@ -1848,6 +1861,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "再発と寛解を繰り返すのが基本の経過。ただし後遺症は残りうる(視神経・脊髄・小脳に障害が残り、ADLが低下する人もいる)。「後遺障害は稀」は誤り。",
@@ -2204,6 +2219,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "対症療法はコリンエステラーゼ阻害薬(通常ピリドスチグミン)で、一時的な効果であり補助的に使う。治療の基本は免疫療法である。",
@@ -2290,6 +2306,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "自己免疫疾患であり、神経筋接合部の筋側(シナプス後膜)のAChRなどが標的になる。",
@@ -2614,6 +2632,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "病気の進行を止める治療はまだなく、すべて対症療法である。",
@@ -2711,6 +2730,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "主な徴候は静止時振戦・筋強剛（歯車様）・運動緩慢・姿勢反射障害（突進現象）。振戦は静止時が基本で、動作時振戦は混ざることがあっても主徴ではない。",
@@ -3164,6 +3185,7 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "classification": [],
   "treatment": [
    {
     "t": "薬物療法の中心は抗精神病薬で、ドパミンD2受容体を介した神経伝達を調整する。第二世代（非定型）はセロトニン神経系にも作用する。効果が2〜4週続く持効性注射剤もあり、飲み忘れ対策になる。",
@@ -3250,6 +3272,8 @@ export const DISEASES: Disease[] = [
     ]
    }
   ],
+  "risk": [],
+  "tests": [],
   "examPoints": [
    {
     "t": "家族の感情表出（EE）が高い（批判的・感情的な関わりが多い）と再発率が上がる。この場合は家族への心理教育（家族心理教育）が有効である。SSTや認知行動療法は主に本人への働きかけである。",

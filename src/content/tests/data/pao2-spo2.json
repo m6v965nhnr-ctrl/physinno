@@ -1,0 +1,40 @@
+{
+ "slug": "pao2-spo2",
+ "name": "動脈血酸素分圧(PaO2)・SpO2",
+ "category": "臨床検査",
+ "aliases": [
+  "PaO2",
+  "SpO2",
+  "動脈血酸素分圧",
+  "経皮的動脈血酸素飽和度"
+ ],
+ "rows": [
+  {
+   "item": "動脈血酸素分圧（PaO2）・SpO2",
+   "target": "呼吸不全の定義、在宅酸素療法（HOT）の適応",
+   "value": "室内気でPaO2 60mmHg以下（SpO2 約90%）＝呼吸不全。準呼吸不全は70≧PaO2＞60。HOT: PaO2 55mmHg以下、または60mmHg以下で睡眠時・労作時に著しい低酸素血症",
+   "exam": "52-am-3 問題文 PaO2 60.2（低酸素血症）。60-am-16 問題文 PaO2 60→100 mmHg（腹臥位）。55-am-7/8 問題文 PaO2 65 Torr。54-pm-17 問題文 PaO2 65 Torr（在宅酸素療法中）。56-am-19 問題文 PaO2 66。53-pm-34 問題文 PaO2 83。59-pm-12 問題文 PaO2 90。56-am-44 誤答選択肢 PaO2 80（NPPV適応とならない）。60-am-14 問題文 SpO2 95%（室内気）。56-am-44 誤答 睡眠中SpO2 94%",
+   "q": [
+    "52-am-3",
+    "53-pm-34",
+    "54-pm-17",
+    "55-am-7",
+    "56-am-19",
+    "56-am-44",
+    "59-pm-12",
+    "60-am-14",
+    "60-am-16"
+   ],
+   "note": "確認済み [S21]（呼吸不全の定義・HOT基準）。成人の正常値 PaO2 80〜100 Torr は一次資料で未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S21",
+     "url": "https://www.jrs.or.jp/file/pulse-oximeter_medical.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

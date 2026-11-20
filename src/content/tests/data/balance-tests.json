@@ -1,0 +1,68 @@
+{
+ "slug": "balance-tests",
+ "name": "バランス・転倒リスクの評価(TUG・片脚立位・SPPB)",
+ "category": "評価尺度",
+ "aliases": [
+  "TUG",
+  "Timed Up and Go",
+  "片脚立位",
+  "SPPB"
+ ],
+ "rows": [
+  {
+   "item": "TUG(Timed Up and Go) 方法",
+   "target": "移動能力・バランス・転倒リスク",
+   "value": "肘掛け付き椅子の座位から立ち上がり、3m歩き、折り返して再び着座するまでの時間(「心地よい早さ」)。6m先ではない",
+   "exam": "55-pm-27(正答2つ=バランス機能の評価方法である／動作開始から背もたれ座位までの時間を測定する。誤答=開始肢位は立位／6m先に目印／歩行補助具の使用を禁止)／60-am-12(Brunnstrom上肢Ⅳ下肢Ⅳの右片麻痺・通所リハ利用者の転倒リスク評価=TUGが正答。誤答=NIHSS・UPDRS・modified Tardieu・PCI。カットオフ値は出題なし)",
+   "q": [
+    "55-pm-27",
+    "60-am-12"
+   ],
+   "note": "確認済み[S10](3m・肘掛け椅子・折り返し)。「歩行補助具の使用を禁止」(誤)は S10 では未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S10",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    }
+   ]
+  },
+  {
+   "item": "片脚立位時間",
+   "target": "バランス・運動器不安定症",
+   "value": "開眼で両手を腰に当て、片足を5cm上げて最大60秒まで測定。15秒以下は運動器不安定症の診断基準。5秒間の片脚立位が不可能なことは3年以内の外傷を伴う転倒の予測因子",
+   "exam": "54-am-26(片脚立位時間 10秒→55秒=延長=改善(誤答選択肢))／56-am-6(誤答:片脚立位時間は全身持久性の評価ではない)",
+   "q": [
+    "54-am-26",
+    "56-am-6"
+   ],
+   "note": "確認済み[S10]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S10",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SPPB",
+   "target": "下肢機能・フレイル",
+   "value": "3課題(バランステスト(閉脚・セミタンデム・タンデム立位)・4m歩行時間・椅子から5回の立ち上がり時間)。各0〜4点、12点満点。3点刻みで「きわめて低運動機能」「低運動機能」「中等度」「良好」",
+   "exam": "60-am-34(誤答:「FRTはSPPBの一部」→SPPBはバランス・歩行・椅子立ち上がりの3課題で、FRTは含まれない)",
+   "q": [
+    "60-am-34"
+   ],
+   "note": "確認済み[S10]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S10",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -1,0 +1,34 @@
+{
+ "slug": "eeg",
+ "name": "脳波の周波数帯",
+ "category": "臨床検査",
+ "aliases": [
+  "脳波",
+  "α波",
+  "β波",
+  "θ波",
+  "δ波"
+ ],
+ "rows": [
+  {
+   "item": "脳波の周波数帯",
+   "target": "健常成人の基礎律動",
+   "value": "α波 8〜13 Hz、β波 14〜30 Hz、θ波 4〜7 Hz、δ波 0.5〜3 Hz",
+   "exam": "61-am-99 正答「安静閉眼時の基礎律動=α波」。57-am-76 誤答「成人の安静覚醒閉眼時の背景活動はθ帯域」（α帯域が正）",
+   "q": [
+    "57-am-76",
+    "61-am-99"
+   ],
+   "note": "確認済み [S26]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S26",
+     "url": "https://www.jstage.jst.go.jp/article/jscn/42/6/42_365/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -316,3 +316,10 @@
 - ページ: `/columns/diseases`（系統別の一覧）と `/columns/diseases/[slug]`（`components/columns/DiseasePage.tsx`）。`sitemap.ts` に追加。ゲストにも公開（`PUBLIC_COLUMN_PATH`）。
 - 作り方（品質のため）: ①`リサーチ/` の疾患洗い出し（問題→疾患の抽出）から、疾患ごとの過去問パケットを作る → ②調査担当が一次資料を読んで作成 → ③別の担当が出典の本文と1項目ずつ照合（ok/weak/wrong/unsupported）→ ④weak は直し、根拠が取れないものは削除 → `review: "ai"`。専門家が確認したら `review: "human"`（ページの注記が変わる）。パイロット8疾患（パーキンソン病・重症筋無力症・多発性硬化症・ギラン・バレー症候群・統合失調症・変形性膝関節症・ダウン症候群・COPD）の照合結果は、ok 283 / weak 90（直した）/ wrong 0 / unsupported 0。
 - 注意: 出典が取れない（Cloudflare・reCAPTCHA）サイトは回避しない。数値は本文で確かめたものだけ。公式の正答と最新の資料が食い違うときは、本文には載せず、調査メモ（`conflicts`）に残す。
+
+## 検査・基準値カード（国試に出る検査・評価法・基準値）`/columns/tests`（2026-11-20〜）
+- データ: `src/content/tests/data/<slug>.json`（1検査=1ファイル。行ごとに出典URL必須）→ `scripts/build-tests.mjs`（`prebuild`・`npm run verify`）→ `generated.ts`。現在55カード・193行。**公式資料で本文を確認できた値だけ**（`リサーチ/2026-11-20_国試第49〜61回の基準値_一覧表.csv` の「確認済み」から）。要約のみ・二次情報のみ・未確認は載せない。
+- 一問一答でタップして読む: `components/student/TestLookup.tsx`（`lib/testMatch.ts` が、問題文・選択肢・解説から名前・かっこ内の略称・`aliases` を探す。「BI」が「BIOLOGY」に反応しないよう、英字の語は前後が英数字なら数えない）。疾患カード・筋・骨のタップ表示と同じ並びで、解説の下に出る。
+- ページ: `/columns/tests`（一覧）と `/columns/tests/[slug]`（`components/columns/TestPage.tsx`）。`sitemap.ts` に追加。ゲストにも公開（`PUBLIC_COLUMN_PATH` に `tests`）。疾患カードの `tests`（slug の配列）から、関係する検査へリンク。
+- 国試の記載と現行の資料が食い違う行は `conflict: true`（画面に違いの注意が出る）。
+- 追加の手順: 基準値の表で「確認済み」の行を、`data/<slug>.json` に写す（出典・問題IDつき）→ `npm run verify`。問題IDの形は `52-am-13`。

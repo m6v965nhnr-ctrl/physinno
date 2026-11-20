@@ -1,0 +1,70 @@
+{
+ "slug": "egfr",
+ "name": "eGFR・尿蛋白(慢性腎臓病)",
+ "category": "臨床検査",
+ "aliases": [
+  "eGFR",
+  "GFR",
+  "尿蛋白",
+  "蛋白尿"
+ ],
+ "rows": [
+  {
+   "item": "eGFR",
+   "target": "慢性腎臓病（CKD）、腎機能",
+   "value": "CKD: 蛋白尿0.15 g/gCr以上（30 mg/gCr以上のアルブミン尿）、またはGFR 60 mL/分/1.73 m2未満が3か月以上",
+   "exam": "61-pm-44 正答「腎機能評価に最適=eGFR」。60-am-39 誤答「eGFR-COPD」",
+   "q": [
+    "60-am-39",
+    "61-pm-44"
+   ],
+   "note": "確認済み [S6]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://cdn.jsn.or.jp/medic/guideline/pdf/guide/001-294.pdf"
+    }
+   ]
+  },
+  {
+   "item": "尿蛋白",
+   "target": "慢性腎臓病、尿検査",
+   "value": "0.15 g/gCr以上の蛋白尿（30 mg/gCr以上のアルブミン尿）",
+   "exam": "61-am-92 正答「慢性腎臓病で蛋白尿」。57-am-47 誤答「蛋白尿の評価は随時尿のみ」。55-pm-75 正答「尿ミオグロビン-横紋筋融解症」",
+   "q": [
+    "55-pm-75",
+    "57-am-47",
+    "61-am-92"
+   ],
+   "note": "確認済み [S6]。57-am-47 の随時尿のみは誤り",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://cdn.jsn.or.jp/medic/guideline/pdf/guide/001-294.pdf"
+    }
+   ]
+  },
+  {
+   "item": "CKD GFR区分（病期）",
+   "target": "慢性腎臓病の重症度",
+   "value": "G1 正常または高値 90以上／G2 正常または軽度低下 60〜89／G3a 軽度〜中等度低下 45〜59／G3b 中等度〜高度低下 30〜44／G4 高度低下〜末期腎不全 15〜29／G5 末期腎不全(ESKD) 15未満（mL/分/1.73m²）。6区分。尿アルブミン/Cr（mg/gCr）30未満/30〜299/300以上、尿蛋白/Cr（g/gCr）0.15未満/0.15〜0.49/0.50以上",
+   "exam": "57-am-47（誤答選択肢: eGFRは4つの段階に分類される→正しくは6区分）／52-am-44（誤答選択肢: 病期分類ステージ5の症例では5〜6METsの運動が適応。ステージ5=GFR15未満、正答は血液透析日にも運動療法が行われる）",
+   "q": [
+    "52-am-44",
+    "57-am-47"
+   ],
+   "note": "確認済み(公式): 日本腎臓学会「エビデンスに基づくCKD診療ガイドライン2023」第1章 https://jsn.or.jp/data/gl2023_ckd_ch01.pdf の表を読了。出題時点との区分の差は無し（6区分は2012年版から継続、旧版は未確認）。2026-11-19",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "資料1",
+     "url": "https://jsn.or.jp/data/gl2023_ckd_ch01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -1,0 +1,153 @@
+{
+ "slug": "primitive-reflexes",
+ "name": "原始反射の消失時期",
+ "category": "検査法・徴候",
+ "aliases": [
+  "原始反射",
+  "Moro反射",
+  "モロー反射",
+  "手掌把握反射",
+  "ATNR",
+  "非対称性緊張性頸反射",
+  "自動歩行",
+  "Galant反射",
+  "ギャラン反射",
+  "Babinski反射",
+  "バビンスキー反射"
+ ],
+ "rows": [
+  {
+   "item": "Moro反射の消失時期",
+   "target": "原始反射の残存・消失の判断",
+   "value": "4か月までに消失(第I相のみは6週以降)。4か月でMoro反射が残存=異常所見。StatPearls: 4〜6か月で消失、生後6か月を超えて残る場合は異常とみなす。幅: 国内マニュアル4か月までvs海外4〜6か月",
+   "exam": "54-pm-85: Milani運動発達評価表で消失時期が最も遅いものを選ぶ問題の誤答選択肢(入力注記「4〜6か月ころ消失」)。55-am-85・59-am-6・60-pm-6・56-pm-85・54-am-8 でも選択肢に出現(いずれも誤答。55-am-85は「消失時期が最も遅い」の誤答)",
+   "q": [
+    "54-am-8",
+    "54-pm-85",
+    "55-am-85",
+    "56-pm-85",
+    "59-am-6",
+    "60-pm-6"
+   ],
+   "note": "確認済み(原文) [S4] p.23、[S5]。Milani表そのものは原典未取得(未確認)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/0b505d2e-87a3-488b-a78c-46a38fbcf38b/94412340/20250722_policies_boshihoken_manuals-etc_19.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  },
+  {
+   "item": "手掌把握反射の消失時期",
+   "target": "原始反射の残存・消失の判断",
+   "value": "生後3か月頃から消失し始め遅くとも5〜6か月までに消失。強く残存=異常所見。StatPearls: 4〜6か月で消失。幅: 3〜6か月(出典により異なる)",
+   "exam": "54-pm-85: Milaniの消失時期を問う選択肢(誤答。入力注記「4〜6か月ころ消失」)。54-am-47(誤答選択肢)",
+   "q": [
+    "54-am-47",
+    "54-pm-85"
+   ],
+   "note": "確認済み(原文) [S4] p.23、[S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/0b505d2e-87a3-488b-a78c-46a38fbcf38b/94412340/20250722_policies_boshihoken_manuals-etc_19.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  },
+  {
+   "item": "非対称性緊張性頸反射(ATNR)の消失時期・肢位",
+   "target": "原始反射の残存・脳性麻痺の姿勢",
+   "value": "StatPearls: 約35週で出現し3〜4か月で統合。国試の選択肢には「4〜6か月ころ消失」(Milani)。強いATNR肢位(仰臥位で頭が一方を向いたまま動かせない)=姿勢の異常(診察マニュアル)。肢位: 顔を向けた側の上下肢が伸展(58-am-86の正答選択肢)",
+   "exam": "54-pm-85(Milani)の誤答選択肢。58-am-86: ATNR=頸部を回旋させた側の上肢・下肢の伸展(正答の1つ)。60-pm-6: 5歳・痙直型四肢麻痺の背臥位姿勢に影響する反射=ATNR(正答)。54-am-8: 3歳・右片麻痺で背臥位から起き上がるときに影響=ATNR(正答)。61-pm-12: 誤答。59-am-85 ほかで選択肢",
+   "q": [
+    "54-am-8",
+    "54-pm-85",
+    "58-am-86",
+    "59-am-85",
+    "60-pm-6",
+    "61-pm-12"
+   ],
+   "note": "確認済み(原文) [S5][S4] p.22。食い違い: 国試選択肢の「4〜6か月」と StatPearls の「3〜4か月」には幅がある(Milani表の原典は未確認)。58-am-86の肢位記述は資料未照合(問題文のみ)",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/0b505d2e-87a3-488b-a78c-46a38fbcf38b/94412340/20250722_policies_boshihoken_manuals-etc_19.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  },
+  {
+   "item": "自動歩行(原始歩行)の消失時期",
+   "target": "原始反射の消失",
+   "value": "生後2〜3か月で消失(StatPearls)。国試選択肢の入力注記も「2〜3か月ころ」",
+   "exam": "54-pm-85: Milaniの選択肢(誤答)。61-pm-12: 誤答。53-pm-27: アテトーゼ型で残存しやすい反射を問う誤答選択肢",
+   "q": [
+    "53-pm-27",
+    "54-pm-85",
+    "61-pm-12"
+   ],
+   "note": "確認済み(原文) [S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  },
+  {
+   "item": "Galant反射の消失時期",
+   "target": "原始反射の消失・アテトーゼ型での残存",
+   "value": "StatPearls: 4〜6か月で消失。(国内の育児サイトでは3〜9か月と幅があるが非公式のため採用せず)",
+   "exam": "53-pm-27: アテトーゼ型脳性麻痺で残存しやすい反射=Galant反射(正答)。60-pm-85・54-am-8は誤答。58-am-86の誤答選択肢では「Galant=体幹の回旋」(正しくは背部刺激で刺激側へ体幹が側屈)",
+   "q": [
+    "53-pm-27",
+    "60-pm-85"
+   ],
+   "note": "確認済み(原文) [S5](消失時期)。体幹回旋/側屈の記述は未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  },
+  {
+   "item": "Babinski反射の正常月齢",
+   "target": "病的反射か正常な原始反射かの判断",
+   "value": "新生児では陽性が正常。StatPearls: 12〜24か月で消失。陽性所見=足底刺激で母趾の背屈(＋他趾の開扇)。上位運動ニューロン障害で成人でも陽性",
+   "exam": "59-am-85: 出生時に出現しているもの(正答の対象外、誤答)。52-am-35: Duchenne型でBabinski陽性は誤答。58-pm-6: Babinski陽性(亜急性連合性脊髄変性症)。60-pm-29: Parkinson病でBabinski陽性は誤答",
+   "q": [
+    "52-am-35",
+    "58-pm-6",
+    "59-am-85",
+    "60-pm-29"
+   ],
+   "note": "確認済み(原文) [S5](12〜24か月)。陽性所見の定義は確認済み(要約) https://www.ncbi.nlm.nih.gov/sites/books/NBK519009/",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK554606/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

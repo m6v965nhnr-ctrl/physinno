@@ -1,0 +1,139 @@
+{
+ "slug": "dyspnea-scale",
+ "name": "息切れの評価(mMRC・Hugh-Jones)",
+ "category": "評価尺度",
+ "aliases": [
+  "mMRC",
+  "Hugh-Jones",
+  "ヒュー・ジョーンズ"
+ ],
+ "rows": [
+  {
+   "item": "mMRC 息切れスケール 全体",
+   "target": "呼吸困難(息切れ)の程度",
+   "value": "Grade 0〜4の5段階。呼吸リハの保険適用はmMRC Grade 1以上(旧MRC Grade 2以上)",
+   "exam": "61-am-8(COPD。緩やかな上り坂・平坦での早歩きで息切れ→Grade 1が正答。選択肢Grade 0〜4)／57-am-17(間質性肺炎の症例にGrade 3=問題文)／54-pm-40(誤答:Hugh-Jones分類／mMRC息切れスケールは息切れの評価で運動強度の指標ではない)",
+   "q": [
+    "54-pm-40",
+    "57-am-17",
+    "61-am-8"
+   ],
+   "note": "確認済み[S11][S12]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    },
+    {
+     "label": "S12",
+     "url": "https://www.jstage.jst.go.jp/article/jjrmc/54/12/54_941/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "mMRC Grade 0",
+   "target": "息切れの程度",
+   "value": "激しい運動をしたときだけ息切れがある",
+   "exam": "61-am-8(誤答選択肢Grade 0)",
+   "q": [
+    "61-am-8"
+   ],
+   "note": "確認済み[S11]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mMRC Grade 1",
+   "target": "息切れの程度",
+   "value": "平坦な道を早足で歩く、あるいは緩やかな上り坂を歩くときに息切れがある",
+   "exam": "61-am-8(正答)",
+   "q": [
+    "61-am-8"
+   ],
+   "note": "確認済み[S11]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mMRC Grade 2",
+   "target": "息切れの程度",
+   "value": "息切れがあるので、同年代の人より平坦な道を歩くのが遅い、あるいは平坦な道を自分のペースで歩いているとき息切れのために立ち止まることがある",
+   "exam": "61-am-8(誤答選択肢Grade 2)",
+   "q": [
+    "61-am-8"
+   ],
+   "note": "確認済み[S11]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mMRC Grade 3",
+   "target": "息切れの程度",
+   "value": "平坦な道を約100m、あるいは数分歩くと息切れのために立ち止まる",
+   "exam": "57-am-17(間質性肺炎の症例:mMRC Grade 3、6MWT 200m)",
+   "q": [
+    "57-am-17"
+   ],
+   "note": "確認済み[S11]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mMRC Grade 4",
+   "target": "息切れの程度",
+   "value": "息切れがひどく家から出られない、あるいは衣服の着替えをするときにも息切れがある",
+   "exam": "61-am-8(誤答選択肢Grade 4)",
+   "q": [
+    "61-am-8"
+   ],
+   "note": "確認済み[S11]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://www.med.or.jp/dl-med/nosmoke/copd_essence2014_hosoku.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Hugh-Jones 分類",
+   "target": "息切れによる労作能力の低下",
+   "value": "Ⅰ度=同年齢の健常者とほとんど同様の労作ができ、歩行・階段昇降も健常者並み／Ⅱ度=同様に歩行できるが、坂・階段は健常者並みにできない／Ⅲ度=平地でも健常者並みには歩けないが、自分のペースなら1.6km以上歩ける／Ⅳ度=休まなければ50ヤード(約46m)も歩けない／Ⅴ度=会話・衣服の着脱にも息切れがあり、外出できない",
+   "exam": "54-pm-40(誤答選択肢:運動強度の指標ではなく息切れの評価)",
+   "q": [
+    "54-pm-40"
+   ],
+   "note": "確認済み[S12](PDFの数字が文字化けしているため、1.6km・50ヤードは検索要約と照合)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S12",
+     "url": "https://www.jstage.jst.go.jp/article/jjrmc/54/12/54_941/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

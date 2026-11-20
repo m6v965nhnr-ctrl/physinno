@@ -1,0 +1,105 @@
+{
+ "slug": "gcs",
+ "name": "Glasgow Coma Scale(GCS)",
+ "category": "評価尺度",
+ "aliases": [
+  "GCS",
+  "Glasgow Coma Scale",
+  "グラスゴー・コーマ・スケール"
+ ],
+ "rows": [
+  {
+   "item": "GCS 全体",
+   "target": "意識障害",
+   "value": "開眼E(1〜4)＋最良言語反応V(1〜5)＋最良運動反応M(1〜6)、合計3〜15点。E4V5M6=15点",
+   "exam": "56-pm-2(入院時E4V5M6。離床練習を中止すべき所見=「GCS E2V2M5」が正答)／52-am-33(誤答:「評価項目に関節可動域がある」)／57-pm-35(誤答:疼痛検査ではない)",
+   "q": [
+    "52-am-33",
+    "56-pm-2",
+    "57-pm-35"
+   ],
+   "note": "確認済み[S7][S21](区分名と合計3〜15)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    },
+    {
+     "label": "S21",
+     "url": "https://www.glasgowcomascale.org/what-is-gcs/"
+    }
+   ]
+  },
+  {
+   "item": "GCS 開眼 E",
+   "target": "開眼反応",
+   "value": "E4=自発的に開眼／E3=呼びかけにより開眼／E2=痛み刺激により開眼／E1=なし",
+   "exam": "58-pm-28(正答=E2=痛み刺激で開眼。誤答=E3は呼びかけで開眼(自発開眼はE4))",
+   "q": [
+    "58-pm-28"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "GCS 言語 V",
+   "target": "最良言語反応",
+   "value": "V5=見当識あり／V4=混乱した会話／V3=不適当な発語／V2=理解不明の音声／V1=なし",
+   "exam": "58-pm-28(誤答=V4は混乱した会話。日時・場所が言えるのはV5)",
+   "q": [
+    "58-pm-28"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "GCS 運動 M",
+   "target": "最良運動反応",
+   "value": "M6=命令に応じて可／M5=疼痛部へ／M4=逃避反応として／M3=異常な屈曲運動／M2=伸展反応(徐脳姿勢)／M1=なし",
+   "exam": "58-pm-28(誤答=M4は逃避屈曲(払いのけはM5)、M5は疼痛部位を払いのける(指示に従うのはM6))",
+   "q": [
+    "58-pm-28"
+   ],
+   "note": "確認済み[S7]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "GCS E2V2M5",
+   "target": "離床の中止判断",
+   "value": "合計9点(E2＋V2＋M5)。入院時15点からの悪化=意識レベル低下",
+   "exam": "56-pm-2(正答。「離床練習を中止すべき所見」)",
+   "q": [
+    "56-pm-2"
+   ],
+   "note": "確認済み[S7](区分から9点と計算)。「中止基準」としての根拠は問題文のみ",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/naika/99/5/99_1082/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

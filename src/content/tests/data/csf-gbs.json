@@ -1,0 +1,32 @@
+{
+ "slug": "csf-gbs",
+ "name": "髄液検査(ギラン・バレー症候群)",
+ "category": "臨床検査",
+ "aliases": [
+  "髄液検査",
+  "蛋白細胞解離"
+ ],
+ "rows": [
+  {
+   "item": "髄液検査（GBS）",
+   "target": "ギラン・バレー症候群",
+   "value": "蛋白細胞解離。細胞数10/μL以下は診断を支持、50/μL以上は他疾患を疑う。Brighton基準: 細胞数50/μL未満・蛋白45 mg/dL超",
+   "exam": "59-pm-85 正答（GBSの診断に有用）。53-am-9 誤答「髄液で細胞数増加」（増えない）。F波は延長（出題は53-am-9「F波潜時短縮」が誤り、60-pm-43「F波潜時延長・出現率減少」が正答）",
+   "q": [
+    "53-am-9",
+    "59-pm-85",
+    "60-pm-43"
+   ],
+   "note": "確認済み [S18]（髄液の数値）。F波の数値基準は出題になし",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S18",
+     "url": "https://www.neurology-jp.org/guidelinem/pdf/gbs_2024_01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

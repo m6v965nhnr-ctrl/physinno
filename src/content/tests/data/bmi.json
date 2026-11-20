@@ -1,0 +1,38 @@
+{
+ "slug": "bmi",
+ "name": "BMI",
+ "category": "臨床検査",
+ "aliases": [
+  "BMI",
+  "体格指数"
+ ],
+ "rows": [
+  {
+   "item": "BMI",
+   "target": "低体重・肥満の判定、栄養状態",
+   "value": "BMI 18.5未満＝低体重、18.5以上25未満＝普通体重、25以上＝肥満（25〜30未満が肥満1度）",
+   "exam": "61-pm-9 問題文 BMI 17.0（低体重）。60-am-14 問題文 身長165cm・体重45kg（BMI約16.5）。56-am-20 問題文 身長160cm・体重85.0kg（BMI約33）。56-pm-39 誤答「BMI 22.5未満で栄養障害」。52-pm-50 誤答（BMIは栄養評価に有用）。",
+   "q": [
+    "52-pm-50",
+    "56-am-20",
+    "56-pm-39",
+    "60-am-14",
+    "61-pm-9"
+   ],
+   "note": "確認済み [S22][S3]（日本肥満学会の判定）。56-pm-39 の「22.5未満」は公式の18.5未満と食い違うため誤り。GLIM基準のBMI値は日本栄養治療学会の頁で数値を確認できず（未確認）",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jds.or.jp/uploads/fckeditor/files/uid000025_67756964655F323031382D323031392E706466.pdf"
+    },
+    {
+     "label": "S22",
+     "url": "https://www.jasso.or.jp/data/magazine/pdf/chart_A.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

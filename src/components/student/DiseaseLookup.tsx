@@ -9,7 +9,9 @@ const tabs = (d: Disease) =>
   [
     { key: "sym", label: "症状・所見", items: d.symptoms.map((c) => c.t) },
     { key: "dx", label: "診断・検査", items: d.diagnosis.map((c) => c.t) },
+    { key: "cls", label: "分類・重症度", items: d.classification.map((c) => c.t) },
     { key: "tx", label: "治療・リハ", items: [...d.treatment, ...d.pt].map((c) => c.t) },
+    { key: "risk", label: "リスク管理", items: d.risk.map((c) => c.t) },
     { key: "exam", label: "国試で問われる点", items: d.examPoints.map((c) => c.t) },
   ].filter((t) => t.items.length > 0);
 

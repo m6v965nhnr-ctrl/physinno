@@ -7,6 +7,7 @@ import { supabasePublic } from "@/lib/supabasePublic";
 import { COLUMNS } from "@/lib/columns";
 import { MUSCLES } from "@/content/muscles/data";
 import { DISEASES } from "@/content/diseases/generated";
+import { TESTS } from "@/content/tests/generated";
 import { BONES } from "@/content/muscles/bones";
 import { MUSCLE_COLUMNS } from "@/content/muscles/columnsMuscles";
 import { BONE_COLUMNS } from "@/content/muscles/columnsBones";
@@ -66,6 +67,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const anatomyEntries: MetadataRoute.Sitemap = [
     ...(DISEASES.length ? [{ url: `${SITE_URL}/columns/diseases`, lastModified: new Date(DISEASES.map((d) => d.checkedOn).sort().at(-1)!), changeFrequency: "monthly" as const, priority: 0.6 }] : []),
     ...DISEASES.map((d) => ({ url: `${SITE_URL}/columns/diseases/${d.slug}`, lastModified: new Date(d.checkedOn), changeFrequency: "monthly" as const, priority: 0.6 })),
+    ...(TESTS.length ? [{ url: `${SITE_URL}/columns/tests`, lastModified: new Date(TESTS.map((d) => d.checkedOn).sort().at(-1)!), changeFrequency: "monthly" as const, priority: 0.6 }] : []),
+    ...TESTS.map((d) => ({ url: `${SITE_URL}/columns/tests/${d.slug}`, lastModified: new Date(d.checkedOn), changeFrequency: "monthly" as const, priority: 0.6 })),
     ...MUSCLES.filter((m) => MUSCLE_COLUMNS[m.name]).map((m) => ({ url: `${SITE_URL}/columns/muscles/${encodeURIComponent(m.name)}`, lastModified: new Date("2026-10-20"), changeFrequency: "monthly" as const, priority: 0.5 })),
     ...BONES.filter((b) => BONE_COLUMNS[b.name]).map((b) => ({ url: `${SITE_URL}/columns/bones/${encodeURIComponent(b.name)}`, lastModified: new Date("2026-10-20"), changeFrequency: "monthly" as const, priority: 0.5 })),
   ];

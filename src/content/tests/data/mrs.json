@@ -1,0 +1,64 @@
+{
+ "slug": "mrs",
+ "name": "modified Rankin Scale(mRS)",
+ "category": "評価尺度",
+ "aliases": [
+  "mRS",
+  "modified Rankin Scale"
+ ],
+ "rows": [
+  {
+   "item": "mRS 全体",
+   "target": "脳卒中後の全般的な障害度・自立度",
+   "value": "0〜6の7段階(0=まったく症候がない〜5=重度の障害・寝たきり、6=死亡)。歩行速度・筋緊張・バランスなどの個別項目は含まない",
+   "exam": "54-am-34(誤答:「歩行速度の評価を含む」)／52-am-33(誤答:「評価項目に筋緊張がある」)／58-am-82(誤答:「mRS－バランス機能」)／57-pm-35(誤答:疼痛検査ではない)／53-pm-35(誤答:がん患者用ではない)",
+   "q": [
+    "52-am-33",
+    "53-pm-35",
+    "54-am-34",
+    "57-pm-35",
+    "58-am-82"
+   ],
+   "note": "確認済み[S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.mhlw.go.jp/bunya/iryouhoken/iryouhoken15/dl/other1-1-5.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mRS 0〜2",
+   "target": "日常生活が自立",
+   "value": "0=まったく症候がない／1=症候はあっても明らかな障害はない(日常の勤めや活動は行える)／2=軽度の障害(発症以前の活動がすべて行えるわけではないが、自分の身の回りのことは介助なしで行える)",
+   "exam": "出題なし(参考)",
+   "q": [],
+   "note": "確認済み[S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.mhlw.go.jp/bunya/iryouhoken/iryouhoken15/dl/other1-1-5.pdf"
+    }
+   ]
+  },
+  {
+   "item": "mRS 3〜5",
+   "target": "介助が必要",
+   "value": "3=中等度の障害(何らかの介助を必要とするが、歩行は介助なし)／4=中等度から重度の障害(歩行や身体的要求に介助が必要)／5=重度の障害(寝たきり、失禁、常に介護と見守りが必要)／6=死亡",
+   "exam": "出題なし(参考)",
+   "q": [],
+   "note": "確認済み[S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.mhlw.go.jp/bunya/iryouhoken/iryouhoken15/dl/other1-1-5.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

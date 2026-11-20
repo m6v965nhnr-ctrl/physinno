@@ -1,0 +1,49 @@
+{
+ "slug": "rsbi-cpf",
+ "name": "人工呼吸器からの離脱と咳の強さ(RSBI・CPF)",
+ "category": "臨床検査",
+ "aliases": [
+  "RSBI",
+  "浅速呼吸指数",
+  "CPF",
+  "咳最大流量"
+ ],
+ "rows": [
+  {
+   "item": "浅速呼吸指数（f/VT、RSBI）",
+   "target": "人工呼吸器離脱の可否",
+   "value": "f/VT 105回/min/L未満（離脱の目安）",
+   "exam": "60-am-3 誤答選択肢「f/TVが150以上であれば筋力増強運動を行う」（150は基準外のため誤り。正答データなし）",
+   "q": [
+    "60-am-3"
+   ],
+   "note": "確認済み [S16]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S16",
+     "url": "https://www.jsicm.org/pdf/kokyuki_ridatsu1503b.pdf"
+    }
+   ]
+  },
+  {
+   "item": "咳最大流量（CPF）",
+   "target": "咳介助・NIV開始の目安（ALS）",
+   "value": "CPF 270 L/min未満で機械的咳嗽補助、160 L/min未満でNIV開始",
+   "exam": "57-am-45 誤答「咳介助を行う目安にならない」（目安になる）。値は出題なし",
+   "q": [
+    "57-am-45"
+   ],
+   "note": "確認済み [S10]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S10",
+     "url": "https://neurology-jp.org/guidelinem/pdf/als_2023.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

@@ -27,6 +27,7 @@ import { answerAssignmentQuestion, listAssignmentQuestions } from "@/lib/quizCla
 import { shareContent, shareUrl } from "@/lib/share";
 import MuscleLookup from "@/components/student/MuscleLookup";
 import DiseaseLookup from "@/components/student/DiseaseLookup";
+import TestLookup from "@/components/student/TestLookup";
 import RomMmtGuide from "@/components/student/RomMmtGuide";
 import CalcMemo from "@/components/student/CalcMemo";
 import { LoadingScreen } from "@/components/states";
@@ -109,6 +110,7 @@ function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[];
           {reveal.explanation_source === "ai" && <p className="mt-1 text-[11px] text-gray-400">AIが作成した解説です。誤りを含むことがあります。</p>}
           <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <DiseaseLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
+<TestLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
           <RomMmtGuide text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
         </div>
       ) : (
@@ -658,6 +660,7 @@ export default function QuizPlayPage() {
 
               <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <DiseaseLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
+<TestLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
           <RomMmtGuide text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 
               {reveal.ref_url && (

@@ -1,0 +1,78 @@
+{
+ "slug": "aortic-dissection-rehab",
+ "name": "大動脈解離のリハ開始・中止基準",
+ "category": "リスク管理",
+ "aliases": [
+  "大動脈解離"
+ ],
+ "rows": [
+  {
+   "item": "大動脈解離のリハ開始基準:RASS",
+   "target": "大動脈解離のリハ",
+   "value": "−2≦RASS≦＋1、かつ30分以内に鎮静が必要な不穏がない。中止基準=RASS≦−3、または鎮静薬の増量・新規投与が必要なRASS＞2",
+   "exam": "61-am-41(基準範囲内にあるのは「RASS」が正答。選択肢の数値は文字として残っていない)",
+   "q": [
+    "61-am-41"
+   ],
+   "note": "確認済み[S9](表62・表63)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S9",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    }
+   ]
+  },
+  {
+   "item": "大動脈解離のリハ開始基準:体温・呼吸・SpO₂・FiO₂",
+   "target": "大動脈解離のリハ",
+   "value": "体温=38.5℃以上の発熱がない／呼吸数<35回/min／SaO₂≧90%／FiO₂<0.6",
+   "exam": "61-am-41(誤答選択肢:体温38.8℃(38.5℃以上で不可)・呼吸数38回/分(35未満が基準)・SaO₂85%(90%以上が基準)・FiO₂0.7(0.6未満が基準))",
+   "q": [
+    "61-am-41"
+   ],
+   "note": "確認済み[S9](表62)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S9",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    }
+   ]
+  },
+  {
+   "item": "大動脈解離のリハ開始基準",
+   "target": "大動脈解離",
+   "value": "開始: −2≦RASS≦1／呼吸回数<35/分／SaO2≧90%／FiO2<0.6／血圧・心拍数のコントロール達成／新たな重症不整脈・心筋虚血を示唆するECG変化なし／38.5℃以上の発熱なし",
+   "exam": "61-am-41「基準範囲内の組合せ」: 正答=RASS(数値はDBで欠落)。誤答(範囲外)選択肢=体温38.8℃・呼吸数38回/分・SaO2 85%・FiO2 0.7",
+   "q": [
+    "61-am-41"
+   ],
+   "note": "確認済み(S2 表62, 2026-11-19)。誤答4つはすべて表62の範囲外で整合",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    }
+   ]
+  },
+  {
+   "item": "大動脈解離のリハ中止基準",
+   "target": "大動脈解離",
+   "value": "中止: RASS≦−3／鎮静薬増量が必要なRASS>2／労作時呼吸困難・患者の拒否／呼吸数<5または≧40/分／SpO2 88〜90%または4%以上低下／運動療法下にHR≧100/分・収縮期血圧>140 mmHg／新たな重症不整脈・心筋虚血",
+   "exam": "(国試での直接出題は無し。61-am-41の関連基準)",
+   "q": [],
+   "note": "確認済み(S2 表63, 2026-11-19)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2020/07/JCS2020_Ogino.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}

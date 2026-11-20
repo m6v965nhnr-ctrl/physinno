@@ -27,6 +27,10 @@ export default function ColumnList({ columns }: { columns: ColumnMeta[] }) {
           🩺 国試に出る疾患の一覧
           <span className="mt-1 block text-xs font-normal text-gray-500">症状・診断・治療・理学療法・国試で問われる点（出典つき・順次追加）</span>
         </Link>
+        <Link href="/columns/tests" className="col-span-2 rounded-2xl border border-[var(--relight-line)] bg-white p-4 text-sm font-semibold text-gray-900">
+          📏 国試に出る検査・基準値の一覧
+          <span className="mt-1 block text-xs font-normal text-gray-500">評価法・臨床検査・リスク管理の基準を、公式資料で確認（出典つき）</span>
+        </Link>
         <Link href="/columns/rom-mmt" className="col-span-2 rounded-2xl border border-[var(--relight-line)] bg-white p-4 text-sm font-semibold text-gray-900">
           📐 ROMとMMTの図つき早見表
           <span className="mt-1 block text-xs font-normal text-gray-500">参考可動域・基本軸・移動軸・検査の肢位</span>

@@ -12,8 +12,13 @@ export type Disease = {
   cause: Claim[];
   symptoms: Claim[];
   diagnosis: Claim[];
+  // 以下の3つは任意。国試で問われるときだけ書く（分類・重症度・病期、リスク管理・禁忌・中止基準）
+  classification: Claim[];
   treatment: Claim[];
   pt: Claim[];
+  risk: Claim[];
+  // 関係する検査・基準値カードの slug（/columns/tests/<slug>）
+  tests: string[];
   // q: 過去問の問題ID（例: 52-am-3）
   examPoints: { t: string; q: string[]; s: number[] }[];
   confusable: { name: string; diff: string; s: number[] }[];

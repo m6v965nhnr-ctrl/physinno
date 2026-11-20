@@ -1,0 +1,37 @@
+{
+ "slug": "lvef",
+ "name": "左室駆出率(LVEF)",
+ "category": "臨床検査",
+ "aliases": [
+  "LVEF",
+  "左室駆出率",
+  "EF"
+ ],
+ "rows": [
+  {
+   "item": "左室駆出率（LVEF）",
+   "target": "心不全の分類",
+   "value": "2017・2021年版: HFrEF 40%未満、HFmrEF 40〜49%、HFpEF 50%以上。2025年改訂版: HFrEF 40%以下、HFmrEF 41〜49%、HFpEF 50%以上",
+   "exam": "60-pm-4 問題文 LVEF<40%（急性心筋梗塞、低左心機能）。52-am-93 誤答「運動療法でLVEF増加」。55-am-42 誤答「運動療法でLVEFが低下」",
+   "q": [
+    "52-am-93",
+    "55-am-42",
+    "60-pm-4"
+   ],
+   "note": "確認済み [S11][S12]。60-pm-4 の「40%未満」は2017年版と一致、2025年版（40%以下）とは境界が異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S11",
+     "url": "https://jscvs.or.jp/wp-content/uploads/2020/06/JCS2017_tsutsui_ooriginal_190830.pdf"
+    },
+    {
+     "label": "S12",
+     "url": "https://www.jstage.jst.go.jp/article/numa/84/5/84_189/_pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-19",
+ "review": "ai"
+}
