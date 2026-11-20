@@ -20,8 +20,25 @@ function sentences(s: string): string[] {
   return out;
 }
 
+// PDFから取り込んだ元データは、文の途中でも改行が入っていることがある（選択肢の頭「1 〜」等の、
+// 本来の改行とは別物）。文の終わり（。」』など）で終わっていない行は、前の行に続ける
+function joinWrappedLines(text: string): string[] {
+  const raw = text.split("\n").map((l) => l.trim()).filter((l) => l !== "");
+  const out: string[] = [];
+  for (const line of raw) {
+    const prev = out[out.length - 1];
+    const prevEndsUnit = !prev || /[。」』）)!！?？]$/.test(prev);
+    if (prev && !prevEndsUnit && !CHOICE.test(line)) {
+      out[out.length - 1] = prev + line;
+    } else {
+      out.push(line);
+    }
+  }
+  return out;
+}
+
 export default function ExplanationText({ text, className = "" }: { text: string; className?: string }) {
-  const lines = text.split("\n").filter((l) => l.trim() !== "");
+  const lines = joinWrappedLines(text);
   return (
     <div className={`[overflow-wrap:anywhere] [text-wrap:pretty] ${className}`}>
       {lines.map((line, i) => {
