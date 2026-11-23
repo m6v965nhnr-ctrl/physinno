@@ -318,7 +318,7 @@
 - 注意: 出典が取れない（Cloudflare・reCAPTCHA）サイトは回避しない。数値は本文で確かめたものだけ。公式の正答と最新の資料が食い違うときは、本文には載せず、調査メモ（`conflicts`）に残す。
 
 ## 検査・基準値カード（国試に出る検査・評価法・基準値）`/columns/tests`（2026-11-20〜）
-- データ: `src/content/tests/data/<slug>.json`（1検査=1ファイル。行ごとに出典URL必須）→ `scripts/build-tests.mjs`（`prebuild`・`npm run verify`）→ `generated.ts`。現在55カード・193行。**公式資料で本文を確認できた値だけ**（`リサーチ/2026-11-20_国試第49〜61回の基準値_一覧表.csv` の「確認済み」から）。要約のみ・二次情報のみ・未確認は載せない。
+- データ: `src/content/tests/data/<slug>.json`（1検査=1ファイル。行ごとに出典URL必須）→ `scripts/build-tests.mjs`（`prebuild`・`npm run verify`）→ `generated.ts`。現在132カード・583行（2026-11-23）。国試に出た検査・基準のうち出題の多い項目は、一問一答でカードが出る（出題数ベースで約68%。残りは出題の少ない項目）。**資料の本文を読んで確認できた値だけ**を載せ、確認できなかった値は書かない。出典が学会・公的資料でない行（教科書・MSDマニュアル・病院資料・論文など）は、行の `note` に出典の種類を書いてある。要約のみ・二次情報のみ・未確認は載せない。
 - 一問一答でタップして読む: `components/student/TestLookup.tsx`（`lib/testMatch.ts` が、問題文・選択肢・解説から名前・かっこ内の略称・`aliases` を探す。「BI」が「BIOLOGY」に反応しないよう、英字の語は前後が英数字なら数えない）。疾患カード・筋・骨のタップ表示と同じ並びで、解説の下に出る。
 - ページ: `/columns/tests`（一覧）と `/columns/tests/[slug]`（`components/columns/TestPage.tsx`）。`sitemap.ts` に追加。ゲストにも公開（`PUBLIC_COLUMN_PATH` に `tests`）。疾患カードの `tests`（slug の配列）から、関係する検査へリンク。
 - 国試の記載と現行の資料が食い違う行は `conflict: true`（画面に違いの注意が出る）。

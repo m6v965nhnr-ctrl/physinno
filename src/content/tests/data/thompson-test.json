@@ -1,0 +1,81 @@
+{
+ "slug": "thompson-test",
+ "name": "Thompsonテスト(Simmondsテスト)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Thompson test",
+  "Thompson's test",
+  "トンプソンテスト",
+  "Thompson squeeze test",
+  "calf squeeze test",
+  "Simmonds test",
+  "シモンズテスト"
+ ],
+ "rows": [
+  {
+   "item": "Thompsonテストの方法と陽性所見",
+   "target": "アキレス腱断裂",
+   "value": "腹臥位で膝を直角に曲げ、ふくらはぎ(下腿三頭筋)を握る。正常では足関節が底屈するが、断裂していると底屈が起こらない=陽性。断裂部には陥凹(へこみ)も触れる",
+   "exam": "61-pm-88(正答:アキレス腱断裂で陽性)／60-am-87(「Thompson=股関節屈曲拘縮の検査」は誤り)／54-am-3・59-pm-3・53-pm-12・53-pm-32(選択肢の一つとして出題。各設問での正誤の細部は記録では未確認)／58-am-43(「アキレス腱周囲炎で陽性」は誤り)／49回(アキレス腱断裂―Thompson)／50回(アキレス腱周囲炎でのThompson陽性は誤り)／51回(「ハムストリングス―Thompson」が誤り)",
+   "q": [
+    "53-pm-12",
+    "53-pm-32",
+    "54-am-3",
+    "58-am-43",
+    "59-pm-3",
+    "60-am-87",
+    "61-pm-88"
+   ],
+   "note": "確認済み[S1][S2]。[S2]ではThompson test(calf squeeze test)として記載。Simmondsテストの名称は国試の項目名による(今回の資料では確認していない)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jsoa.or.jp/content/images/2023/05/s09-1.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-%E5%A4%96%E5%82%B7%E3%81%A8%E4%B8%AD%E6%AF%92/%E6%8D%BB%E6%8C%AB%E3%81%8A%E3%82%88%E3%81%B3%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%BB%9F%E9%83%A8%E7%B5%84%E7%B9%94%E6%90%8D%E5%82%B7/%E3%82%A2%E3%82%AD%E3%83%AC%E3%82%B9%E8%85%B1%E8%A3%82%E5%82%B7"
+    }
+   ]
+  },
+  {
+   "item": "Thompsonテストの精度と限界",
+   "target": "診断の確からしさ",
+   "value": "システマティックレビュー(3研究)で、calf-squeeze test(Thompsonテスト)は、アキレス腱断裂の臨床検査のなかで感度・特異度ともに最も高く、感度0.96(95%CI 0.93〜0.99)・特異度0.93(0.84〜1.00)。ただし部分断裂では正常になることがあり、見逃されうる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3][S2]。研究数が少ない。完全断裂の見逃しを減らすため、Thompson・Matles・陥凹の触知を組み合わせて評価する[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/25243736/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-%E5%A4%96%E5%82%B7%E3%81%A8%E4%B8%AD%E6%AF%92/%E6%8D%BB%E6%8C%AB%E3%81%8A%E3%82%88%E3%81%B3%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E8%BB%9F%E9%83%A8%E7%B5%84%E7%B9%94%E6%90%8D%E5%82%B7/%E3%82%A2%E3%82%AD%E3%83%AC%E3%82%B9%E8%85%B1%E8%A3%82%E5%82%B7"
+    }
+   ]
+  },
+  {
+   "item": "アキレス腱断裂の背景と治療(誤答選択肢の確認)",
+   "target": "断裂の起こり方・治療方針",
+   "value": "腱の変性を基盤に起こり、膝を伸ばした状態でのジャンプや蹴り出しで、腓腹筋・ヒラメ筋が急に収縮して生じることが多い。若年ではスポーツ、高齢では日常活動中の受傷が多い。治療は保存療法(ギプス・装具)と手術があり、保存療法でも早期に適切に荷重すれば再断裂率は手術と同等になってきた",
+   "exam": "61-pm-88の誤答選択肢:つま先立ち可能／学童期に集中／背屈位でギプス固定／陳旧例は端々縫合(いずれも誤り)",
+   "q": [
+    "61-pm-88"
+   ],
+   "note": "確認済み[S1]。国試の誤答選択肢のうち、「学童期に集中」は、資料の受傷年代(若年のスポーツ・高齢の日常活動)と合わない。つま先立ち・ギプス固定の肢位・陳旧例の縫合法は、今回の資料では確認していないので書かない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jsoa.or.jp/content/images/2023/05/s09-1.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

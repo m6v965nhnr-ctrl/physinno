@@ -1,0 +1,111 @@
+{
+ "slug": "lhermitte-sign",
+ "name": "Lhermitte徴候(頸部前屈時の電撃痛)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Lhermitte",
+  "Lhermitte徴候",
+  "Lhermitte sign",
+  "Lhermitte's sign",
+  "レルミット徴候",
+  "レルミット",
+  "Lhermitte現象",
+  "barber chair phenomenon"
+ ],
+ "rows": [
+  {
+   "item": "Lhermitte徴候とは",
+   "target": "多発性硬化症などの頸髄病変",
+   "value": "頸部を前屈したときに、電気が走るような感覚(電撃様のしびれ・痛み)が脊柱に沿って下方に広がり、しばしば下肢・上肢・体幹に及ぶ。barber chair phenomenonとも呼ばれる。",
+   "exam": "56-pm-44(正答:頸部の前屈により背部中央に走る)／53-am-34(正答:多発性硬化症で頸部前屈により項部から下肢へ電撃痛が放散)／61-am-16(正答:多発性硬化症で起き上がり時に背中から下方へ電撃痛。誤答:Barré徴候・Gowers徴候・Horner徴候・Uhthoff徴候)／54-pm-6(選択肢のみ:Lhermitte徴候=頸部前屈で電撃痛)",
+   "q": [
+    "56-pm-44",
+    "53-am-34",
+    "61-am-16",
+    "54-pm-6"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445188/"
+    }
+   ]
+  },
+  {
+   "item": "起こる病態と病変部位",
+   "target": "原因疾患",
+   "value": "多発性硬化症の患者114人中33.3%で経験されたという報告があり、MRIでは頸髄の後索の病変が原因とされる。亜急性連合性脊髄変性症・頸部外傷・頸椎椎間板ヘルニア・放射線脊髄炎などでも起こり、特異的な徴候ではない。",
+   "exam": "53-am-34・61-am-16(多発性硬化症の症状として正答)／55-am-17・59-am-31にも選択肢として出題(本カードでは問題文を未確認)",
+   "q": [
+    "53-am-34",
+    "61-am-16"
+   ],
+   "note": "確認済み[S1]。55-am-17と59-am-31は問題文の詳細をこのカードで確認していないため、問題IDには含めていない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445188/"
+    }
+   ]
+  },
+  {
+   "item": "診断の感度・特異度",
+   "target": "徴候としての価値",
+   "value": "診断の感度は3〜17%と低い。非特異的な圧迫性脊髄症に対する特異度は97%という報告がある。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445188/"
+    }
+   ]
+  },
+  {
+   "item": "Uhthoff現象(ウートフ現象)との区別",
+   "target": "多発性硬化症の症状",
+   "value": "Uhthoff現象は、熱い風呂に入るなどして体温が上がると、MSの症状が一時的に悪くなる現象。Lhermitte徴候は頸部前屈で誘発される電撃様の感覚で、別の徴候。",
+   "exam": "61-am-16(誤答選択肢:Uhthoff徴候)",
+   "q": [
+    "61-am-16"
+   ],
+   "note": "確認済み[S1][S2]。「体温低下で悪化」は誤りとされる点は、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.nanbyou.or.jp/entry/3806"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445188/"
+    }
+   ]
+  },
+  {
+   "item": "灼熱感や視床痛との区別",
+   "target": "痛みの性質",
+   "value": "Lhermitte徴候の感覚は、焼けるような痛みではなく電撃様。",
+   "exam": "57-pm-89(誤答:Lhermitte徴候は痛みとして灼熱感を生じるものではない。正答=視床痛)／55-am-87(視床痛の設問で「Lhermitte徴候がみられる」は誤)",
+   "q": [
+    "57-pm-89",
+    "55-am-87"
+   ],
+   "note": "確認済み[S1]。視床痛の症状そのものは、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4445188/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

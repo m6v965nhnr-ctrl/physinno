@@ -1,0 +1,159 @@
+{
+ "slug": "crutch-cane-fitting",
+ "name": "松葉杖・T字杖の適合(長さ・握り・杖先の位置)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "松葉杖",
+  "腋窩支持型杖",
+  "T字杖",
+  "ロフストランド杖",
+  "前腕支持型杖",
+  "杖の長さ",
+  "脇当て",
+  "杖先",
+  "杖の適合",
+  "松葉杖歩行",
+  "3動作歩行",
+  "2動作歩行"
+ ],
+ "rows": [
+  {
+   "item": "松葉杖(腋窩支持型)の長さ:脇当てと腋窩の間",
+   "target": "松葉杖の長さの合わせ方",
+   "value": "脇当ての上端が腋窩から2〜3横指(約5cm)下にくるように長さを調整する(MSDマニュアルの手順の別の箇所では2.5〜5cm下)。愛媛県立中央病院の指導資料も『指3本分空ける』。脇に隙間なく当てるのではない。",
+   "exam": "58-pm-12(正答:腋窩と脇当ての隙間=3横指・肘関節屈曲30度の組合せ)。61-pm-22(誤答:脇当てと腋窩を隙間なく／杖は身長から50cm引いた長さ)。52-am-31(誤答:松葉杖の脇当ては腋窩から15cm下方)",
+   "q": [
+    "58-pm-12",
+    "61-pm-22",
+    "52-am-31"
+   ],
+   "note": "確認済み[S1][S2]。『身長から50cm引く』という算式は資料に記載がなく確認できていない。『腋窩から15cm下方』は資料の2〜3横指(約5cm)と合わない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/ギプス固定/腋窩支持型杖の調整と腋窩支持型杖による歩行"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-single-crutch-20230106.pdf"
+    }
+   ]
+  },
+  {
+   "item": "松葉杖の握りの高さと肘の角度",
+   "target": "握りの位置の合わせ方",
+   "value": "握り(ハンドグリップ)は肘が軽く曲がる位置に調整する(MSDマニュアルでは肘が約20〜30°屈曲。手順の別箇所では約15〜30°)。愛媛県立中央病院の資料も『肘は軽く曲げる』。",
+   "exam": "58-pm-12(正答:肘関節屈曲30度)。61-pm-22(誤答:肘関節伸展位)。53-pm-19(杖の肘角度:屈曲30度=関節角度150度が正答)",
+   "q": [
+    "58-pm-12",
+    "61-pm-22",
+    "53-pm-19"
+   ],
+   "note": "確認済み[S1][S2]。肘屈曲30度は関節角度でいうと150度(180度が完全伸展)。MSDマニュアルの記載内に15〜30°と20〜30°の幅がある。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/ギプス固定/腋窩支持型杖の調整と腋窩支持型杖による歩行"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-single-crutch-20230106.pdf"
+    }
+   ]
+  },
+  {
+   "item": "杖先の位置(松葉杖・T字杖)",
+   "target": "杖の長さを決めるときの立ち位置",
+   "value": "T字杖:足先より約15cm外側に杖先を置き、肘を約30度曲げた高さにする(テクノエイド協会)。松葉杖:愛媛県立中央病院の資料では足から前方15cm・外側15cm。MSDマニュアルでは、靴の側面から外側に約5cm、つま先から前方15cm。",
+   "exam": "53-pm-19(正答:杖先は足先の前外側15cm・肘関節30度屈曲=15cm・150度。誤答:20cm-100度／15cm-100度／5cm-150度／5cm-180度)。61-pm-22(誤答:杖先はつま先前方5cm)",
+   "q": [
+    "53-pm-19",
+    "61-pm-22"
+   ],
+   "note": "確認済み[S2][S3][S1]。外側の距離は資料により15cm(愛媛・T字杖)と約5cm(MSD)で異なる。国試の正答(15cm)はT字杖・愛媛の資料と一致。前方5cm・杖先が前外側5cmとする選択肢は、資料の前方15cmと合わない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/ギプス固定/腋窩支持型杖の調整と腋窩支持型杖による歩行"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-single-crutch-20230106.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.techno-aids.or.jp/howto/product.php?code=120303"
+    }
+   ]
+  },
+  {
+   "item": "T字杖の握りの高さ(肘屈曲30°・大転子)",
+   "target": "杖の長さの目安",
+   "value": "一般に、杖の長さは肘屈曲30°や大転子の高さで調整される。軽く肘を曲げて握れる高さが力を入れやすい。極端な円背など姿勢・歩き方によっては個別の調整が必要。",
+   "exam": "61-pm-22(正答:握りの高さは大転子)。52-am-31(誤答:T字杖の握りは肘45度屈曲)",
+   "q": [
+    "61-pm-22",
+    "52-am-31"
+   ],
+   "note": "確認済み[S3][S4]。大転子の高さは研究論文の抄録にある一般的な目安の記載で、公的な指針としては確認できていない。肘45度屈曲は資料の約30度と合わない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.techno-aids.or.jp/howto/product.php?code=120303"
+    },
+    {
+     "label": "S4",
+     "url": "https://www.jstage.jst.go.jp/article/cjpt/2004/0/2004_0_E0836/_article/-char/ja/"
+    }
+   ]
+  },
+  {
+   "item": "松葉杖の荷重のかけ方と神経障害",
+   "target": "松葉杖使用時の注意",
+   "value": "腋窩に体重をかけず、手(握り)に荷重する。腋窩でもたれると橈骨神経の一過性の伝導障害が起こりうる(橈骨神経は腋窩で表在性)。前腕支持型杖(ロフストランド杖)は腋窩に荷重しないため、そのリスクがなく、体重の大部分を手で支える。",
+   "exam": "出題は直接なし(参考)。52-am-31(正答:ロフストランド杖の前腕支え位置は前腕近位1/3)は資料に記載がなく未確認",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/ギプス固定/腋窩支持型杖の調整と腋窩支持型杖による歩行"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-single-crutch-20230106.pdf"
+    }
+   ]
+  },
+  {
+   "item": "杖の歩行パターンと荷重量の目安",
+   "target": "杖・松葉杖歩行の進め方",
+   "value": "T字杖は健側の手につき、不安定なら3動作、安定していれば2動作。階段は、上りは杖→健側→患側、下りは杖→患側→健側。愛媛県立中央病院の資料では、2/3荷重なら松葉杖1本、1/4〜1/3荷重なら松葉杖2本を使う。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3][S2]。荷重量と本数の対応は一施設の患者向け資料の記載。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.techno-aids.or.jp/howto/product.php?code=120303"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-single-crutch-20230106.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.eph.pref.ehime.jp/epch/guide/asset/reha-partial-weight-bearing-20230106.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

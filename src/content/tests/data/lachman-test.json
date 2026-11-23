@@ -1,0 +1,100 @@
+{
+ "slug": "lachman-test",
+ "name": "Lachmanテスト・前方引き出しテスト(前十字靱帯)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "ラックマン",
+  "前方引出しテスト",
+  "前十字靱帯損傷",
+  "前十字靭帯損傷",
+  "ACL損傷"
+ ],
+ "rows": [
+  {
+   "item": "Lachmanテストの手技と陽性",
+   "target": "前十字靱帯(ACL)損傷",
+   "value": "背臥位で膝を20〜30度屈曲し、大腿を固定して脛骨を前方に引き、脛骨の前方移動量と終末抵抗(エンドポイント)を見る。終末抵抗がしっかりある(firm)なら正常側、終末抵抗が消失している(absent)場合はACL損傷を示す。",
+   "exam": "60-am-41(正答:前十字靱帯損傷で陽性)／61-am-30(誤答:半月板には誤り=前十字靱帯)／59-am-32・54-pm-3・53-pm-12(誤答選択肢:Lachmanテスト=前十字靱帯)",
+   "q": [
+    "60-am-41",
+    "61-am-30",
+    "59-am-32",
+    "54-pm-3",
+    "53-pm-12"
+   ],
+   "note": "確認済み[S1][S2]。終末抵抗の有無だけでの判定は感度0.81・特異度1.0と報告(45人の研究)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031379/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/25709863/"
+    }
+   ]
+  },
+  {
+   "item": "前方引き出しテストの手技",
+   "target": "前十字靱帯(ACL)損傷",
+   "value": "膝を90度屈曲、股関節を約45度屈曲、足部を固定し、ハムストリングスを緩めて脛骨を前後に引き、前方への動きを見る。前十字靱帯の検査。",
+   "exam": "54-pm-3(誤答選択肢:前方引き出しテストとLachmanテスト=前十字靱帯)",
+   "q": [
+    "54-pm-3"
+   ],
+   "note": "確認済み[S1][S2]。手技は研究報告の記載で、Lachmanは30度付近・前方引き出しは90度付近で脛骨の前後移動を見る。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031379/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2988045/"
+    }
+   ]
+  },
+  {
+   "item": "診断精度(メタ解析)",
+   "target": "ACL断裂の診断",
+   "value": "2006年のメタ解析: Lachmanは感度85%・特異度94%でACL断裂の診断に最も有用とされ、pivot shiftは特異度98%だが感度24%、前方引き出しは慢性期は感度92%・特異度91%だが急性期は良くない。2022年のメタ解析ではLachmanは感度81%・特異度85%、pivot shiftは感度55%・特異度94%と、Lachmanは以前の報告より低いとされた。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。2つの研究で数値が違う。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/16715828/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9464183/"
+    }
+   ]
+  },
+  {
+   "item": "前十字靱帯損傷の臨床像",
+   "target": "膝の靱帯損傷",
+   "value": "前十字靱帯は膝関節の中にあり、損傷すると関節内の出血(関節血腫)がたまりやすい。急性期のあとは下り坂やひねる動作で膝の不安定感が目立つことがある。診断は徒手的な診察が重要で、MRIが補助になる。損傷した靱帯は固定だけでは治らず、スポーツ復帰を望む場合は手術(腱による再建)が勧められる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jsoa.or.jp/content/images/2023/05/s06.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.joa.or.jp/public/publication/pdf/joa_014.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

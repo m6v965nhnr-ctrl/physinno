@@ -1,0 +1,114 @@
+{
+ "slug": "romberg-test",
+ "name": "Romberg試験・徴候",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Romberg",
+  "Romberg徴候",
+  "Romberg sign",
+  "Romberg test",
+  "Romberg's test",
+  "ロンベルグ試験",
+  "ロンベルグ徴候",
+  "ロンベルグ",
+  "ロンベルク徴候",
+  "ロンベルクテスト",
+  "Romberg肢位"
+ ],
+ "rows": [
+  {
+   "item": "Romberg試験の手技と陽性",
+   "target": "閉眼での立位保持",
+   "value": "靴を脱ぎ、足をそろえて(閉脚立位)、開眼で約30秒、続いて閉眼で30秒〜1分立つ。検者は支えず、転倒に備えて近くにいる。閉眼でバランスを崩す(動揺が増える・足が動く・倒れる)と陽性",
+   "exam": "61-pm-71(誤答: Romberg肢位は開脚立位より安定性が高い。閉脚のため支持基底面は開脚立位より狭い)／60-pm-12(閉眼でふらつく症例。名称は出題文になし)／61-am-40(Hoehn&Yahrの判定問題の誤答選択肢。入力の記録による)",
+   "q": [
+    "61-pm-71",
+    "60-pm-12",
+    "61-am-40"
+   ],
+   "note": "確認済み[S2]。立位バランスの安定性そのものの比較は本資料では確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://my.clevelandclinic.org/health/diagnostics/22901-romberg-test"
+    }
+   ]
+  },
+  {
+   "item": "陽性となる病態: 深部感覚障害(後索性)",
+   "target": "脊髄後索・末梢神経性の感覚性運動失調",
+   "value": "Romberg徴候陽性は、もともと下肢の深部感覚(固有感覚)障害を示唆する所見で、閉眼で視覚情報が断たれ、立位保持の感覚成分が障害されていると解釈されてきた。脊髄癆、糖尿病性ニューロパチー(偽性脊髄癆)、亜急性脊髄連合変性症などでみられる。",
+   "exam": "60-pm-82(正答: 深部感覚障害で陽性)／56-pm-34(正答: 脊髄性運動失調でRomberg徴候陽性。誤答: 折りたたみナイフ現象・断綴性発語・酩酊歩行・羽ばたき振戦)／59-am-31(誤答選択肢: 後索障害)／52-am-83・52-pm-12(錐体路障害の評価ではない)／54-pm-6(Gowers・Lhermitteとの区別)",
+   "q": [
+    "60-pm-82",
+    "56-pm-34",
+    "59-am-31",
+    "52-am-83",
+    "52-pm-12",
+    "54-pm-6"
+   ],
+   "note": "確認済み[S1]。「錐体路障害の評価ではない」は、深部感覚障害を示唆する検査であることからの整理。深部感覚障害が明らかでなくても陽性になることがある点は別の行を参照",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/63/4/63_cn-001820/_html/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "小脳性では古典的に陰性",
+   "target": "小脳性運動失調との鑑別",
+   "value": "感覚性(後索型)ではRomberg陽性、小脳性では古典的には陰性。小脳性の歩行は開脚でよろめく。小脳障害では通常陽性にならないが、前庭小脳や脊髄小脳路の障害では閉眼で不安定さが増すことはある",
+   "exam": "51回(小脳性の企図振戦でみられるものに「Romberg徴候陽性」は誤り)／56-pm-34(小脳性の断綴性発語・酩酊歩行は誤答)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/63/4/63_cn-001820/_html/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "前庭性との関係",
+   "target": "前庭障害・めまい",
+   "value": "前庭性の失調は後索性ともRomberg試験の陽性が共通し、鑑別には使えない。後索性・小脳性では踵膝試験が障害されるが、前庭性では通常正常。Romberg徴候は末梢前庭障害のスクリーニングにも用いられる",
+   "exam": "53-am-36(後索性・小脳性に比べ前庭性に最も関連する異常。正答は耳鳴り。Romberg試験陽性は誤答選択肢)",
+   "q": [
+    "53-am-36"
+   ],
+   "note": "確認済み[S1][S3]。陽性は後索性と共通のため、前庭性に「最も」特徴的とは言えない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/63/4/63_cn-001820/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jser/81/3/81_142/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "注意点",
+   "target": "陽性の読み方",
+   "value": "脊髄癆で深部感覚障害が明らかでない例や、失明後にも閉眼で陽性となることがあり、広義の前庭系の関与も考えられている。下肢の筋力低下(足の内反力の低下)でも陽性になることがある。検査は単独でなく深部感覚検査などと併せて判断する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/63/4/63_cn-001820/_html/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

@@ -1,0 +1,113 @@
+{
+ "slug": "froment-sign",
+ "name": "Froment徴候(尺骨神経麻痺)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Froment徴候",
+  "Froment sign",
+  "Froment's sign",
+  "フロマン徴候",
+  "フローマン徴候",
+  "フローマンサイン",
+  "フロマンサイン"
+ ],
+ "rows": [
+  {
+   "item": "Froment徴候の手技と陽性",
+   "target": "尺骨神経麻痺",
+   "value": "両手の母指と示指で紙をつまみ、反対方向に引っ張る。母指の第1関節(IP関節)が曲がれば陽性で、尺骨神経麻痺を示す。",
+   "exam": "55-am-32(正答:陽性のとき麻痺を疑う神経=尺骨神経。誤答:肩甲背神経・正中神経・長胸神経・橈骨神経)／49回(「前骨間神経麻痺―Froment徴候」は誤。Froment=尺骨神経)",
+   "q": [
+    "55-am-32"
+   ],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/ulnar_nerve_palsy.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12675992/"
+    }
+   ]
+  },
+  {
+   "item": "陽性になるしくみ(母指内転筋の弱さと代償)",
+   "target": "母指内転筋(尺骨神経支配)と長母指屈筋(正中神経の枝)",
+   "value": "母指内転筋が弱いと紙を保持できず、長母指屈筋で代償して母指IP関節が過度に屈曲する。同じ代償で示指のPIP関節も屈曲し、「OKサイン」様の形になる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。長母指屈筋は主に正中神経(前骨間神経)の支配。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12675992/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8216845/"
+    }
+   ]
+  },
+  {
+   "item": "尺骨神経麻痺のほかの所見",
+   "target": "尺骨神経麻痺の診断",
+   "value": "母指球以外の手内筋が萎縮し、環指・小指のMP関節が過伸展してIP関節が曲がるかぎ爪変形(鷲手)になる。Tinelサイン(神経障害部を叩くと支配領域に放散痛)があれば障害部位が確定でき、手内筋萎縮・かぎ爪変形・Froment徴候陽性があれば診断がつく。Wartenberg徴候(小指の外転位)も尺骨神経障害の徴候。",
+   "exam": "50回(肘部管症候群を疑う所見:正答=小指のしびれ・Froment徴候)／51回(肘部管症候群:正答=小指球の筋萎縮・Froment徴候陽性を2つ選ぶ)",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/ulnar_nerve_palsy.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12675992/"
+    }
+   ]
+  },
+  {
+   "item": "肘部管症候群と尺骨神経",
+   "target": "肘で尺骨神経が圧迫・牽引される病態",
+   "value": "初期は小指と環指の一部にしびれが出る。麻痺が進むと手の筋肉がやせ、小指と環指の変形が起こる。肘の内側を軽く叩くと小指・環指にしびれが走る(Tinel様)。",
+   "exam": "50回・51回(肘部管症候群でみられる所見に小指のしびれ・小指球萎縮・Froment徴候が挙がる)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/cubital_tunnel_syndrome.html"
+    }
+   ]
+  },
+  {
+   "item": "正中神経・前骨間神経の障害との区別",
+   "target": "手根管症候群・前骨間神経麻痺",
+   "value": "手根管症候群(正中神経)は母指〜環指(橈側)のしびれと母指球筋の萎縮で、母指と示指でOKの丸ができなくなる。前骨間神経麻痺は母指と示指の第1関節が曲げられず、丸を作ると両方の第1関節が反り返る涙のしずくサイン。感覚障害はない。Froment徴候は尺骨神経の徴候。",
+   "exam": "58-pm-91(誤答:手根管症候群でFroment徴候が陽性は誤り)／49回(誤答:前骨間神経麻痺―Froment徴候)",
+   "q": [
+    "58-pm-91"
+   ],
+   "note": "確認済み[S1][S2]。「猿手」の記載は、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/carpal_tunnel_syndrome.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.joa.or.jp/public/sick/condition/anterior_interosseous_nerve_palsy.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

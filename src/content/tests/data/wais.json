@@ -1,0 +1,75 @@
+{
+ "slug": "wais",
+ "name": "ウェクスラー成人知能検査(WAIS)",
+ "category": "評価尺度",
+ "aliases": [
+  "WAIS-IV",
+  "WAIS-Ⅳ",
+  "WAIS-III",
+  "WAIS-Ⅲ",
+  "Wechsler Adult Intelligence Scale",
+  "ウェクスラー式知能検査",
+  "ウェクスラー成人知能検査"
+ ],
+ "rows": [
+  {
+   "item": "WAIS は何を見る検査か",
+   "target": "成人の知能(認知能力を多面的に測る)",
+   "value": "個別式の知能検査。医療・就労・教育で使われる。人格検査・認知症スクリーニング・遂行機能検査・発達評価の検査ではない",
+   "exam": "59-pm-19(誤答選択肢:WAIS-IVは知能検査)／57-am-35・57-pm-85(誤答選択肢:WAIS-Ⅲは認知症スクリーニング・発達評価ではない)／55-pm-29(誤答選択肢:WAIS-Ⅲは遂行機能の検査として誤り)／61-am-4・61-am-37・61-am-98(選択肢の一つとして出て、各問の正答ではない。WAIS・WMS-R・MMSEは人格検査ではない)",
+   "q": [
+    "55-pm-29",
+    "57-am-35",
+    "57-pm-85",
+    "59-pm-19",
+    "61-am-4",
+    "61-am-37",
+    "61-am-98"
+   ],
+   "note": "確認済み[S1]。「人格検査・認知症スクリーニングではない」は、検査の種類(知能検査)からの整理で、国試の誤答の理由と合わせた",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.nichibun.co.jp/seek/kensa/wais4.html"
+    }
+   ]
+  },
+  {
+   "item": "日本版 WAIS-IV の構成",
+   "target": "知能の合成得点",
+   "value": "2018年発行、適用年齢16歳0カ月〜90歳11カ月。下位検査は15(基本10・補助5)。基本10で、全検査IQ(FSIQ)と4指標(言語理解VCI・知覚推理PRI・ワーキングメモリーWMI・処理速度PSI)の5つの合成得点が出る。補助の得点として一般知的能力指標(GAI)・認知熟達度指標(CPI)。実施は60〜90分",
+   "exam": "出題は直接なし(参考)。59-pm-19でWAIS-IVが知能検査として出た",
+   "q": [],
+   "note": "確認済み[S1]。WAIS-IVには言語性IQ(VIQ)・動作性IQ(PIQ)の掲載がない(指標方式)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.nichibun.co.jp/seek/kensa/wais4.html"
+    }
+   ]
+  },
+  {
+   "item": "WAIS-III の解釈で使う指数",
+   "target": "旧版(WAIS-III)の結果の読み方",
+   "value": "WAIS-IIIの解釈では、群指数のほか、言語性IQ・動作性IQによる解釈の手順がある。WAIS-IVはその改訂版にあたる",
+   "exam": "57-am-35・57-pm-85・55-pm-29(WAIS-Ⅲが選択肢として出た)",
+   "q": [
+    "55-pm-29",
+    "57-am-35",
+    "57-pm-85"
+   ],
+   "note": "確認済み[S2]。解釈書の目次に基づく記載で、各指数の算出法は書かない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.nichibun.co.jp/seek/book/63659.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

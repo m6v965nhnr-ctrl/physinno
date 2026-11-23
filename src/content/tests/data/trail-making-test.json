@@ -1,0 +1,95 @@
+{
+ "slug": "trail-making-test",
+ "name": "Trail Making Test(TMT)",
+ "category": "評価尺度",
+ "aliases": [
+  "Trail Making Test",
+  "トレイルメイキングテスト",
+  "TMT-A",
+  "TMT-B",
+  "TMT-J"
+ ],
+ "rows": [
+  {
+   "item": "TMT は何を見る検査か",
+   "target": "注意機能(注意障害)の評価",
+   "value": "紙と鉛筆で行う検査で、注意機能の評価に広く使われる。Part Bでは作業記憶や認知の柔軟性も関わるとされ、遂行機能の一部も反映する。QOL評価・人格検査・知能検査ではない",
+   "exam": "57-am-28(正答:注意障害の検査)／54-pm-41(正答:注意障害―TMT)／52-am-29(正答:注意機能の検査。誤答:SCT・MMPI・バウムテスト・Kohs立方体組合せテスト)／61-am-4・61-am-37・61-am-98(選択肢の一つとして出て、各問の正答ではない)／59-am-47・56-pm-26(誤答:QOL評価尺度ではない)",
+   "q": [
+    "52-am-29",
+    "54-pm-41",
+    "56-pm-26",
+    "57-am-28",
+    "59-am-47",
+    "61-am-4",
+    "61-am-37",
+    "61-am-98"
+   ],
+   "note": "確認済み[S1][S2]。日本版(TMT-J)は2019年に公表されたと報告されている",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jjrm/69/4/69_351/_article/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fnagi.2022.832158/full"
+    }
+   ]
+  },
+  {
+   "item": "TMT-A(Part A)の手順",
+   "target": "注意(視覚探索・処理速度)",
+   "value": "紙上に散らばった1〜25の数字を、できるだけ速く昇順に線でつなぐ。制限時間240秒(日本の高齢者調査での設定)。所要時間(秒)を測る",
+   "exam": "55-pm-8(正答:1〜25の数字を順に線でつなぐ所要時間を測る検査図=TMT-A)",
+   "q": [
+    "55-pm-8"
+   ],
+   "note": "確認済み[S2]。Part Aは視覚探索など処理速度を反映するとされる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fnagi.2022.832158/full"
+    }
+   ]
+  },
+  {
+   "item": "TMT-B(Part B)の手順",
+   "target": "注意の転換・作業記憶(より高次の注意)",
+   "value": "数字(1〜13)とひらがな(あ〜し・12文字)を交互に、昇順に線でつなぐ。制限時間300秒(日本の高齢者調査での設定)。Part Aより課題が難しく、完了できない人も増える",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。Part Bは作業記憶や認知の柔軟性が関わるとされる。論文の記載は「数字1〜13またはひらがな最初の12文字」",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fnagi.2022.832158/full"
+    }
+   ]
+  },
+  {
+   "item": "TMT の結果の読み方(所要時間・誤り)",
+   "target": "注意障害の程度の判断",
+   "value": "記録するのは、制限時間内に完了できたか・所要時間(秒)・誤りの数。脳疾患では注意障害が強いほど所要時間が長くなる。所要時間は短いほど良好で、数値が大きいことを良好とは判断できない",
+   "exam": "49-pm-48(値が大きいと機能良好と判断できる、は誤り)／49-pm-80(絵を描く検査ではない、という設問)／51回(投影法ではない、という設問)",
+   "q": [],
+   "note": "確認済み[S1][S2]。研究では、誤りが出たらそこで止めて、その箇所から再開する方法が報告されている",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jjrm/69/4/69_351/_article/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fnagi.2022.832158/full"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

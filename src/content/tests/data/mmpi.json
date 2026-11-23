@@ -1,0 +1,79 @@
+{
+ "slug": "mmpi",
+ "name": "MMPI(ミネソタ多面人格目録)",
+ "category": "評価尺度",
+ "aliases": [
+  "MMPI",
+  "MMPI-2",
+  "ミネソタ多面人格目録",
+  "ミネソタ多面人格検査",
+  "Minnesota Multiphasic Personality Inventory"
+ ],
+ "rows": [
+  {
+   "item": "MMPIの分類",
+   "target": "心理検査の種類(質問紙法)",
+   "value": "あらかじめ決められた質問に「はい・いいえ・どちらともいえない」で答える質問紙法の人格検査。投影法(ロールシャッハ・SCT・TATなど)や作業検査法(クレペリンなど)とは別の種類",
+   "exam": "57-am-81(正答: 質問紙法)／59-am-78(誤答選択肢: 質問紙法の説明)／54-am-81(選択肢: HTP・MMPI・P-Fスタディ・ASQ)／51回(投影法ではない)",
+   "q": [
+    "57-am-81",
+    "59-am-78",
+    "54-am-81"
+   ],
+   "note": "確認済み[S2][S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://kompas.hosp.keio.ac.jp/exam/000388/"
+    },
+    {
+     "label": "S4",
+     "url": "https://crd.ndl.go.jp/reference/entry/index.php?page=ref_view&id=1000221958"
+    }
+   ]
+  },
+  {
+   "item": "MMPIの構成",
+   "target": "人格・精神病理の検査",
+   "value": "Hathaway と McKinley が開発。質問項目は550。精神疾患名に対応する10の臨床尺度と、回答の歪曲を調べる妥当性尺度(疑問尺度を含め4つ)からなる。好人物に見せかけたり症状を過大に見せたりする回答を妥当性尺度で検出できる。項目が多く労力がかかり、分析が複雑という短所がある",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://hyogo-u.repo.nii.ac.jp/record/3531/files/iwai_2008_05_rp.pdf"
+    }
+   ]
+  },
+  {
+   "item": "評価対象ではないもの",
+   "target": "出題での誤りの選択肢",
+   "value": "MMPIは人格・精神病理を測る検査で、脳卒中の身体機能評価や前頭葉機能検査ではない。心理検査は診断の補助資料として用いる",
+   "exam": "59-am-91(誤答: 脳卒中の身体機能評価)／49回(前頭葉機能検査ではない)",
+   "q": [
+    "59-am-91"
+   ],
+   "note": "確認済み[S1][S2]。「身体機能評価・前頭葉機能検査ではない」は、MMPIが人格検査であることからの整理",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://kompas.hosp.keio.ac.jp/exam/000388/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

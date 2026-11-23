@@ -1,0 +1,205 @@
+{
+ "slug": "six-minute-walk-test",
+ "name": "6分間歩行テスト(6MWT)",
+ "category": "評価尺度",
+ "aliases": [
+  "6MWT",
+  "6MWD",
+  "6分間歩行試験",
+  "6分間歩行距離",
+  "6分間歩行",
+  "6-minute walk test",
+  "six-minute walk test"
+ ],
+ "rows": [
+  {
+   "item": "6MWTの目的と指標",
+   "target": "運動耐容能・全身持久性の評価",
+   "value": "6分間にできるだけ長く歩いた総歩行距離(6MWD)を主な指標にする。特殊な設備が要らない簡便な検査で、心疾患・呼吸器疾患で運動耐容能や予後、リハの効果判定に使われる。年齢・性別・身長・体重の影響を受ける。",
+   "exam": "56-am-6(正答:肺がん根治術後・退院時の全身持久性の評価として選ぶ)／58-am-19(正答:NYHA class IIIの僧帽弁閉鎖不全症で経皮的僧帽弁形成術後、退院時の運動機能評価)／55-am-36(正答の1つ:6分間の総歩行距離で評価する)／59-pm-29・49回(誤答:バランス・動的バランスの評価ではなく、持久力・運動耐容能の評価)",
+   "q": [
+    "56-am-6",
+    "58-am-19",
+    "55-am-36",
+    "59-pm-29"
+   ],
+   "note": "確認済み[S1][S2]。[S1]は最大努力の負荷試験と位置づけ、[S3]の手順は「できるだけ長く歩く」「走ったり小走りにはならない」と指示する。表現の違いはあるが、いずれも持久力(運動耐容能)の検査。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 検者の位置",
+   "target": "検査手順(ペースを作らない)",
+   "value": "検者は付き添って(横に並んで)歩かない。スタートライン付近に立ち、周回数を数えて見守る。",
+   "exam": "55-am-36(誤答:被験者の斜め前方に並んで歩く)／50回(「誤っているのはどれか」の正答=被検者の横に並んで歩く。ほかの選択肢は正しい内容)",
+   "q": [
+    "55-am-36"
+   ],
+   "note": "確認済み[S2][S3]。[S3]は米国胸部学会(ATS)2002の手順を転載した臨床試験計画書の付録で、一次資料そのものではない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 声かけと残り時間",
+   "target": "検査手順(標準化)",
+   "value": "声かけは1分ごとに、決まった言葉で伝える。その中で残り時間を知らせる(例:1分後に「あと5分」、以後「あと4分」「半分です」「あと2分」「あと1分」)。残り15秒で終わりの合図を予告する。これ以外の励ましは使わない。",
+   "exam": "55-am-36(誤答:残りの時間を伝えられない)／50回(正しい内容の1つ:被検者に残りの時間を伝える)",
+   "q": [
+    "55-am-36"
+   ],
+   "note": "確認済み[S2][S3]。声かけの文言は[S3]の転載(ATS 2002)による。日本語の言い回しは要約。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 途中で立ち止まったとき",
+   "target": "検査手順(休憩の扱い)",
+   "value": "休憩してよいと事前に伝える。立ち止まっても、壁にもたれてよいので歩けるようになったら再開するよう促し、タイマーは止めない。検査を続けることを拒む、または中止すべき状態のときに中止し、距離・止めた時間・理由を記録する。",
+   "exam": "55-am-36(誤答:途中で立ち止まったらテスト中止)",
+   "q": [
+    "55-am-36"
+   ],
+   "note": "確認済み[S2][S3]。立ち止まっただけでは中止にならない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 前後に記録する項目",
+   "target": "自覚症状・バイタルの変化",
+   "value": "検査の前後に、心拍数・呼吸困難・疲労感(Borg scale)・SpO2を記録する。終了後は「何が歩行を妨げたか」も尋ねる。",
+   "exam": "55-am-36(正答の1つ:自覚症状の変化を記録する)／50回(正しい内容の1つ:自覚症状の変化を記録する)",
+   "q": [
+    "55-am-36"
+   ],
+   "note": "確認済み[S2][S3]。[S2]は測定項目として呼吸困難・疲労感などを挙げ、図の説明でBorg CR-10を使っている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 実施回数と練習効果",
+   "target": "結果の解釈(学習効果)",
+   "value": "検査を重ねると成績が良くなる(学習効果)。このため初回は2回行い、良い方の値を使う方法が推奨されている。施設間の比較が難しく、検者の施行法の影響も受ける。",
+   "exam": "50回(正しい内容の1つ:テストは2回施行する)",
+   "q": [],
+   "note": "確認済み[S1][S4]。2回施行は[S4](総説)の記述。ATS 2002の原文では確認できていない。50回の問題IDは入力記録に番号がないため空欄。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7609960"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 歩行コース",
+   "target": "検査環境",
+   "value": "平坦で直線の廊下に30 mのコースをとり、折り返して歩く(1往復60 m)。3 mごとに目印、折り返し点にコーン。屋内で場所が足りないときは20 m直線などの変法もある。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2][S3]。コースの形・長さで距離が変わる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWT 中止する所見",
+   "target": "リスク管理",
+   "value": "胸痛、耐えがたい呼吸困難、下肢のけいれん、ふらつき、冷汗、顔面蒼白のとき、すぐに中止する。座らせるか臥位にし、血圧・脈拍・SpO2を確認する。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。ATS 2002の転載による。日本の運動療法の中止基準は別カード(運動療法の中止基準)も参照。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://cdn.clinicaltrials.gov/large-docs/04/NCT03399604/Prot_000.pdf"
+    }
+   ]
+  },
+  {
+   "item": "6MWD の解釈(変化量・予後)",
+   "target": "症例の距離の読み方",
+   "value": "COPDで臨床的に意味のある最小変化量は25〜33 m(中央値30 m)。6MWDが低い(300〜450 m)と死亡率が高く、300 m未満で予後が悪いとされる。",
+   "exam": "57-am-17(問題文:間質性肺炎で200 m)／58-pm-18(問題文:肺がん術前の6分間歩行距離560 m、SpO2 95%以上、ADL自立で状態良好の根拠)",
+   "q": [
+    "57-am-17",
+    "58-pm-18"
+   ],
+   "note": "確認済み[S2]。変化量はCOPD患者での値で、疾患により異なる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

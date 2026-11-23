@@ -1,0 +1,159 @@
+{
+ "slug": "parkinson-signs-motor-complications",
+ "name": "パーキンソン病の運動症状と薬効変動(wearing-off・on-off)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "wearing-off",
+  "wearing off",
+  "ウェアリングオフ",
+  "on-off",
+  "on/off",
+  "オンオフ",
+  "オン・オフ現象",
+  "すくみ足",
+  "すくみ現象",
+  "freezing of gait",
+  "突進現象",
+  "後方突進",
+  "retropulsion",
+  "歯車様固縮",
+  "歯車様強剛",
+  "歯車現象",
+  "cogwheel",
+  "静止時振戦",
+  "矛盾性運動",
+  "運動合併症"
+ ],
+ "rows": [
+  {
+   "item": "wearing-off現象",
+   "target": "L-ドパ長期治療での薬効変動",
+   "value": "L-ドパの効果が数時間(2〜3時間程度)で切れて動けなくなる。薬が効くon時間と効かないoff時間が出て、次の服薬までは改善しない。服薬のタイミングと関連して起こる(予測できる)日内変動",
+   "exam": "61-pm-16(正答: L-dopaの効用時間が短縮=Wearing-off。誤答: On-off・Cushing現象・Pusher現象・Raynaud現象)",
+   "q": [
+    "61-pm-16"
+   ],
+   "note": "確認済み[S2][S3]。on-offとの違いは、wearing-offは服薬と関連して予測でき次の服薬まで改善しない点",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_26.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.nanbyou.or.jp/entry/169"
+    }
+   ]
+  },
+  {
+   "item": "on-off現象",
+   "target": "L-ドパ長期治療での薬効変動",
+   "value": "スイッチを入れたり切ったりするように、症状が急激に良くなったり悪くなったりする現象。血中濃度や服薬のタイミングと無関係に変動し、発症機序は十分に解明されていない",
+   "exam": "56-am-9(正答: L-dopa服用後30分程度で突然動けなくなることを繰り返す=on-off。誤答: wearing-off・Westphal現象・pusher現象・frozen現象)／61-pm-16(誤答選択肢)",
+   "q": [
+    "56-am-9",
+    "61-pm-16"
+   ],
+   "note": "確認済み[S2]。国試の設問は「服用後30分程度で突然」と書くが、診療ガイドライン本文では「服薬タイミングと無関係に急激に変動」とされ、「30分」という数値は確認できなかった。突然・繰り返す点で見分ける",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_26.pdf"
+    }
+   ]
+  },
+  {
+   "item": "L-ドパ長期治療で起こる問題症状",
+   "target": "抗パーキンソン病薬の長期使用",
+   "value": "L-ドパ長期治療では、症状の日内変動(wearing-off・on-off)、ジスキネジア(ドパ誘発性不随意運動)、精神症状などの問題が出る。欧米の古いデータでは、L-ドパ開始5年後に約半数で日内変動に悩むとされる",
+   "exam": "49-am-84(長期投与で生じうるのは on-off・wearing-off・精神症状・不随意運動の増強。誤りは高血圧)",
+   "q": [
+    "49-am-84"
+   ],
+   "note": "確認済み[S4](2011年版)。「高血圧」が誤りである点は本文では確認できず、選択肢の誤りの根拠は本資料にない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.neurology-jp.org/guidelinem/pdf/parkinson_03.pdf"
+    }
+   ]
+  },
+  {
+   "item": "歯車様強剛(固縮)",
+   "target": "パーキンソン病の筋強剛",
+   "value": "他動的に関節を動かしたときの筋トーヌス亢進による抵抗。他動運動の速度に関係せず、痙縮と区別される。小刻みで規則的なひっかかりを伴うものを歯車現象、抵抗がほぼ一定なら鉛管様強剛。現在は「固縮」より「強剛」の呼称",
+   "exam": "52-am-34(正答: 突進現象・歯車様固縮。誤答: 眼振・動作時振戦・ミオクローヌス)",
+   "q": [
+    "52-am-34"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_07.pdf"
+    }
+   ]
+  },
+  {
+   "item": "静止時振戦",
+   "target": "パーキンソン病の振戦",
+   "value": "多くは4〜6Hzの規則的な静止時振戦。精神的緊張で増強し、睡眠時に消える。動作時振戦が混在したり、少数ながら動作時振戦のみの例もある",
+   "exam": "52-am-34(誤答選択肢に「動作時振戦」)",
+   "q": [
+    "52-am-34"
+   ],
+   "note": "確認済み[S1]。本文は静止時振戦が多いとしており、「動作時振戦」を選ぶ誤答選択肢と対応する",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_07.pdf"
+    }
+   ]
+  },
+  {
+   "item": "姿勢保持障害・後方突進現象",
+   "target": "パーキンソン病の姿勢反射障害",
+   "value": "病初期にはほとんどなく、進行に伴って出現する。pull test(立位で外力を加える)で押された方向に容易に転倒し、特に後方に倒れる現象を後方突進現象(retropulsion)と呼ぶ",
+   "exam": "52-am-34(正答選択肢に「突進現象」)",
+   "q": [
+    "52-am-34"
+   ],
+   "note": "確認済み[S1]。Hoehn-Yahr 3度の姿勢反射障害は既存カード hoehn-yahr を参照",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_07.pdf"
+    }
+   ]
+  },
+  {
+   "item": "すくみ足",
+   "target": "パーキンソン病の歩行障害",
+   "value": "歩行開始時・方向転換時・狭い所の通過時・目標直前などに起こりやすい。床の線や敷石をまたぐ(視覚キュー)、メトロノーム音(聴覚キュー)などで軽減し、矛盾性歩行(kinésie paradoxale)と呼ぶ。そのほか体重移動、横向きに歩く、かけ声、床に線を想像する、などの工夫がある",
+   "exam": "49-am-27(改善: 床に引かれた横線をまたぐ)／50回(廊下の図柄: 市松模様が正答)／51回(適切でないもの=歩幅を狭めた歩行。適切: 横歩き・階段昇降・スラローム・メトロノーム)",
+   "q": [
+    "49-am-27"
+   ],
+   "note": "確認済み[S1][S2]。視覚・聴覚キュー、横向きに歩く、は本文と一致。50回の市松模様と、51回の「歩幅を狭めた歩行は不適切」の根拠は本資料では確認できなかった",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_07.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.neurology-jp.org/guidelinem/pdgl/parkinson_2018_26.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

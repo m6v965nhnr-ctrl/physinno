@@ -1,0 +1,120 @@
+{
+ "slug": "berg-balance-scale",
+ "name": "Berg Balance Scale(BBS・FBS)",
+ "category": "評価尺度",
+ "aliases": [
+  "BBS",
+  "FBS",
+  "Berg Balance Scale",
+  "Functional Balance Scale",
+  "バーグバランススケール",
+  "Berg式バランススケール"
+ ],
+ "rows": [
+  {
+   "item": "BBS の構成(14項目・各0〜4・満点56点)",
+   "target": "高齢者・脳卒中などのバランス能力",
+   "value": "14項目、各項目0〜4の5段階で採点し、合計の満点は56点。高いほどバランスが良好(0=その課題ができない、4=自立して安全にできる)。所要時間は15〜20分ほど。",
+   "exam": "61-pm-40(誤答:16項目・1〜4の4段階)／50回(正答:14項目からなる・得点が高いほどバランス能力が高い。誤答:1項目は4段階の評定)／57-am-36(FBS 42→52点は上昇=好ましい変化)／54-am-26(FBS 47→33点は低下=バランス機能の低下)／49-pm-10(症例の前提:FBS 52点)／49-pm-48(FBSは値が大きいほど機能良好)",
+   "q": [
+    "61-pm-40",
+    "57-am-36",
+    "54-am-26",
+    "49-pm-10",
+    "49-pm-48"
+   ],
+   "note": "確認済み[S1][S2][S3]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.apta.org/contentassets/8dc2763e7cfe4f97bbb9f98ccdf9d60a/bergbalancetest.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.sralab.org/rehabilitation-measures/berg-balance-scale"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.e-arm.org/journal/view.php?number=4366"
+    }
+   ]
+  },
+  {
+   "item": "BBS の14項目の内容",
+   "target": "検査課題",
+   "value": "①座位からの立ち上がり ②支持なし立位 ③背もたれなし座位 ④立位から着座 ⑤移乗 ⑥閉眼立位 ⑦閉脚立位 ⑧上肢前方リーチ ⑨床の物を拾う ⑩左右の後方を振り向く ⑪360度回転 ⑫台に足を交互にのせる ⑬片足を前に出した立位(タンデム) ⑭片脚立位。歩行(4m歩行時間など)の課題は含まれない。",
+   "exam": "61-pm-40(正答:評価項目にタンデム立位保持が含まれる。誤答:4m歩行時間を含む)／50回(誤答:外乱負荷への反応を中心とした検査)",
+   "q": [
+    "61-pm-40"
+   ],
+   "note": "確認済み[S1]。用紙の項目に歩行速度の課題はない。外乱負荷への反応が中心の検査ではない点は、用紙の課題が静的・動的な姿勢保持中心であることからの整理。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.apta.org/contentassets/8dc2763e7cfe4f97bbb9f98ccdf9d60a/bergbalancetest.pdf"
+    }
+   ]
+  },
+  {
+   "item": "転倒リスクのカットオフ",
+   "target": "転倒の予測",
+   "value": "Berg(1992)では、56点=バランス良好、45点未満=転倒リスクが高い可能性。対象によって値は異なり、Shumway-Cook(1997)は転倒歴ありで51点未満・転倒歴なしで42点未満が転倒の予測に有用(感度91%・特異度82%)、施設入所高齢者では47点未満(Viveiro 2019、感度94.4%・特異度54.8%)とされる。",
+   "exam": "61-pm-40(誤答:転倒リスクのカットオフ値は56点=満点であってカットオフではない)／50回(誤答:カットオフ値は52点)／56-pm-20(正答:杖歩行自立の高齢者の転倒リスク評価にFBSが適切)",
+   "q": [
+    "61-pm-40",
+    "56-pm-20"
+   ],
+   "note": "確認済み[S1]。最もよく使われるのは45点未満だが、単一の値ではない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.sralab.org/rehabilitation-measures/berg-balance-scale"
+    }
+   ]
+  },
+  {
+   "item": "得点の目安(記録用紙)",
+   "target": "移動能力のおおまかな区分",
+   "value": "記録用紙の付記: 0〜20点=車椅子レベル、21〜40点=介助歩行、41〜56点=自立。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。この区分は移動能力の目安で、転倒リスクの区分として書かれたものではない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.apta.org/contentassets/8dc2763e7cfe4f97bbb9f98ccdf9d60a/bergbalancetest.pdf"
+    }
+   ]
+  },
+  {
+   "item": "BBS が使われる対象・場面",
+   "target": "評価指標の使い分け",
+   "value": "脳卒中・脊髄損傷・多発性硬化症・Parkinson病・前庭障害などの患者や高齢者のバランス評価に使われる。脊髄小脳変性症の診療ガイドラインでも、姿勢障害の評価として紹介されている。",
+   "exam": "55-pm-12(小脳性運動失調で「適切でない指標」を問う設問に、FBSは適切な指標として並ぶ=誤答側)／58-pm-50(BBSはバランス。VASは疼痛、MMSEは認知機能)／59-pm-82・53-am-37(正答:フレイルの高齢者でFBSは低値)",
+   "q": [
+    "55-pm-12",
+    "58-pm-50",
+    "59-pm-82",
+    "53-am-37"
+   ],
+   "note": "確認済み[S1][S2]。フレイルとBBSの関連は、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.sralab.org/rehabilitation-measures/berg-balance-scale"
+    },
+    {
+     "label": "S2",
+     "url": "https://neurology-jp.org/guidelinem/sd_mst/sd_mst_2018.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

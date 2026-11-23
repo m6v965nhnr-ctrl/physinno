@@ -1,0 +1,77 @@
+{
+ "slug": "iadl-lawton",
+ "name": "IADL(手段的ADL・Lawton)",
+ "category": "評価尺度",
+ "aliases": [
+  "IADL",
+  "手段的ADL",
+  "手段的日常生活動作",
+  "Lawton",
+  "ロートン",
+  "Lawton IADL",
+  "instrumental activities of daily living"
+ ],
+ "rows": [
+  {
+   "item": "IADL に含まれる行為(Lawton IADL 8項目)",
+   "target": "地域生活に必要な、より複雑な活動",
+   "value": "電話の使用／買い物／食事の準備／家事(掃除などの家屋維持)／洗濯／交通機関の利用(バスなど)／服薬の管理／金銭(家計)の管理の8項目。",
+   "exam": "59-pm-25(正答:家屋維持・家計管理)／58-am-24(正答:食事の準備)／56-pm-31(正答:家計管理・洗濯)／53-pm-41(正答:掃除をする・電話をかける)／49回(IADL=買い物・洗濯)／51回(IADL=バスの利用)",
+   "q": [
+    "59-pm-25",
+    "58-am-24",
+    "56-pm-31",
+    "53-pm-41"
+   ],
+   "note": "確認済み[S1]。Lawtonらが1969年に、地域で暮らすために必要なより複雑なADLを測る目的で作った尺度。国試の「掃除」「家屋維持」は家事の項目、「バスの利用」は交通機関の利用に当たる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10001756/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10905928/"
+    }
+   ]
+  },
+  {
+   "item": "基本的ADLの項目(Katz)と、国試で誤答になった行為",
+   "target": "IADLではない行為の見分け",
+   "value": "Katz指数の基本的ADLは、入浴・更衣・トイレ動作・移乗・排泄コントロール(失禁)・食事の6領域。",
+   "exam": "58-am-24(誤答:洗顔・靴下・寝返り・シャワー)／56-pm-31(誤答:更衣・入浴・排泄)／59-pm-25(誤答:意思疎通・階段昇降・排泄コントロール)／53-pm-41(誤答:階段昇降・髪を洗う・髭を剃る)／49回(誤答:移乗・整容・排泄)／51回(誤答:化粧・義足の装着・歩行器歩行・車椅子からベッドへの移乗)",
+   "q": [
+    "58-am-24",
+    "56-pm-31",
+    "59-pm-25",
+    "53-pm-41"
+   ],
+   "note": "確認済み[S2](Katzの6領域)。整容・階段昇降・寝返り・歩行などはKatzの6領域にないが、国試ではIADLではなく基本的な動作側の誤答として出ている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10905928/"
+    }
+   ]
+  },
+  {
+   "item": "Lawton IADL 採点",
+   "target": "IADLの自立度",
+   "value": "8項目それぞれを、できない(部分的にできる)=0、できる=1で採点し、合計0〜8点。高いほど自立。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。8項目すべてが0/1で、合計の最大は8点。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10001756/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

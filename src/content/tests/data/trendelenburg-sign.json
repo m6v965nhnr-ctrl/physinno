@@ -1,0 +1,105 @@
+{
+ "slug": "trendelenburg-sign",
+ "name": "Trendelenburg徴候",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Trendelenburg sign",
+  "Trendelenburg test",
+  "トレンデレンブルグ徴候",
+  "トレンデレンブルグ試験",
+  "Trendelenburg歩行",
+  "Trendelenburg跛行",
+  "Duchenne歩行",
+  "Duchenne跛行"
+ ],
+ "rows": [
+  {
+   "item": "Trendelenburg徴候の方法と陽性所見",
+   "target": "股関節外転筋(中殿筋・小殿筋)の機能低下",
+   "value": "立位で一側の股関節を90°屈曲(片脚立ち)にし、左右の腸骨稜の高さを見る。挙上した側の腸骨稜が、立脚側より下がれば陽性。立脚側へ体幹を傾けて代償する場合も、立脚側の外転筋(中殿筋・小殿筋)の弱さを示す。立脚側の外転筋の機能を見る検査",
+   "exam": "59-am-31(正答:変形性股関節症でみられる。誤答:Tinel=絞扼神経障害、Froment=尺骨神経、Romberg=後索障害、Lhermitte=頸髄)／49-am-15(「左Trendelenburg徴候」は誤答)／51-am-4(「左Trendelenburg徴候」は伸展制限股では予想されない=誤答)",
+   "q": [
+    "59-am-31"
+   ],
+   "note": "確認済み[S1][S2]。[S1]は理学療法の解説サイト(二次資料)。[S2]は、この検査を股関節外転筋の機能の評価法として標準化した原著。陽性の判定基準(角度・時間)は資料により異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.physiotutors.com/ja/wiki/trendelenburg-sign/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/4055873/"
+    }
+   ]
+  },
+  {
+   "item": "Trendelenburg徴候がみられる疾患(変形性股関節症)",
+   "target": "股関節疾患での骨盤の側方下降",
+   "value": "重度の変形性股関節症(とくに臼蓋形成不全に伴う例)では、骨盤の側方下降=Trendelenburg徴候がみられる。大腿骨頭の上方移動が大きいほど骨盤が下がり、体幹を患側へ傾けるDuchenne跛行は、疼痛の影響を受けていた(股関節症18例)",
+   "exam": "56-am-33(正答:生じやすい疾患は変形性股関節症=中殿筋機能低下。誤答:変形性足関節症・膝関節症・腰椎分離症・腰部脊柱管狭窄症)／59-am-31(正答:変形性股関節症)／51-pm-36(Trendelenburg歩行の原因=変形性股関節症。正)",
+   "q": [
+    "56-am-33",
+    "59-am-31"
+   ],
+   "note": "確認済み[S3]。小規模(18例)の歩行解析の報告。Perthes病での陽性・陰性(49-pm-32の記載)は今回の資料では確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/30757914/"
+    }
+   ]
+  },
+  {
+   "item": "変形性膝関節症でも陽性になりうるか",
+   "target": "国試の誤答選択肢(膝関節症)との関係",
+   "value": "小規模な報告(15例30脚)で、症状のある変形性膝関節症の23脚中21脚でTrendelenburg徴候が陽性だった(外転筋のMMTは良好)。下肢の機械軸の内側偏位が原因になりうると考察されている",
+   "exam": "56-am-33(誤答選択肢:変形性膝関節症)",
+   "q": [
+    "56-am-33"
+   ],
+   "note": "国試は「生じやすい疾患=変形性股関節症」と答える設問で、膝関節症は誤答とされた。文献では膝OAで陽性になる報告もあるが、少数例の予備的報告であり、国試では股関節症(中殿筋機能低下)を選ぶ。確認済み[S4]",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.jstage.jst.go.jp/article/nishiseisai1951/49/1/49_1_28/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "偽陽性・偽陰性の原因(検査の落とし穴)",
+   "target": "結果の解釈",
+   "value": "偽陽性の原因は、疼痛・患者の非協力・胸郭と腸骨稜の衝突。偽陰性の原因は、骨盤の上下の筋を使う代償と、立脚側へ体幹を倒すこと。この検査は股関節外転筋の機能の評価法として解釈する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。健常50名・脊椎や股関節の疾患103名を調べた報告",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/4055873/"
+    }
+   ]
+  },
+  {
+   "item": "Trendelenburg試験の精度(変形性股関節症の判別)",
+   "target": "診断の確からしさ",
+   "value": "股関節症20名・健常20名の研究で、片脚立位での骨盤-大腿の内転角を使うと、股関節症の判別は感度0.55・特異度0.70・陽性尤度比1.83。研究者は、早期の股関節症の判別には有用でないとした",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S5]。少人数の研究",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/20331375/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

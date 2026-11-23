@@ -1,0 +1,101 @@
+{
+ "slug": "lasegue-slr",
+ "name": "Lasègue徴候・SLRテスト(下肢伸展挙上テスト)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Lasègue",
+  "Lasègue徴候",
+  "Lasègueテスト",
+  "Lasègue test",
+  "Lasegue",
+  "ラセーグ",
+  "ラセーグ徴候",
+  "ラセグ",
+  "SLR",
+  "SLRテスト",
+  "下肢伸展挙上",
+  "下肢伸展挙上テスト",
+  "straight leg raising",
+  "straight leg raise",
+  "交差SLR"
+ ],
+ "rows": [
+  {
+   "item": "SLR(下肢伸展挙上試験)の手技と陽性",
+   "target": "腰椎椎間板ヘルニアの坐骨神経痛",
+   "value": "膝を伸ばしたまま下肢を持ち上げ、坐骨神経痛(下肢への放散痛)が出るかを見る。腰椎椎間板ヘルニアでは、この試験のほか、下肢の感覚の鈍さや足の力の弱さなどで診断し、X線・MRIで確定する。",
+   "exam": "56-pm-44(正答:腰椎椎間板ヘルニアで陽性)／53-pm-12(正答:腰痛・右殿部痛・右下肢痛・MRIで椎間板ヘルニアの患者で陽性になる検査)／54-am-3(正答:図の検査方法の名称=SLR)／60-pm-82(誤答:深部感覚障害で陽性となるものとしては誤り)",
+   "q": [
+    "56-pm-44",
+    "53-pm-12",
+    "54-am-3",
+    "60-pm-82"
+   ],
+   "note": "確認済み[S1]。陽性とする角度(70度以下など)は、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/publication/pdf/joa_002.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SLRの診断精度",
+   "target": "腰椎椎間板ヘルニア",
+   "value": "手術例を対象としたメタ解析で、SLRは感度が高く(0.91〜0.92)、特異度が低い(0.26〜0.28)。診断精度は特異度の低さで限られる。単独では多くの徒手検査の診断成績は低く、検査を組み合わせると特異度が上がる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。対象は手術例が中心。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10788860/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/20166095/"
+    }
+   ]
+  },
+  {
+   "item": "交差SLR(crossed SLR)",
+   "target": "腰椎椎間板ヘルニア",
+   "value": "メタ解析では特異度が高く(0.88〜0.90)、感度が低い(0.28〜0.29)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。交差SLRの手技の説明は、このカードの資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10788860/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/20166095/"
+    }
+   ]
+  },
+  {
+   "item": "ハムストリングスの影響",
+   "target": "SLR陽性の解釈",
+   "value": "SLRの痛みは、ハムストリングスの tightness(短縮)など腰椎神経根以外の原因でも起こり、偽陽性になりうる。",
+   "exam": "54-am-4(正答:SLRで陽性となるのはハムストリングス損傷。誤答:アキレス腱断裂・膝蓋骨脱臼・大腿筋膜張筋短縮・大腿四頭筋短縮)／51回(縫工筋―SLRテストは誤り。SLRはハムストリングス短縮・坐骨神経伸張)／49回(腓腹筋断裂―SLRは誤)",
+   "q": [
+    "54-am-4"
+   ],
+   "note": "確認済み[S1]。資料は「tightness(短縮)」、国試の正答は「ハムストリングス損傷」と表現が違うため、conflictとした。",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/23220802/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

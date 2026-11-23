@@ -1,0 +1,52 @@
+{
+ "slug": "leg-pulse-palpation",
+ "name": "下肢動脈の触知部位(足背動脈・後脛骨動脈)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "足背動脈",
+  "後脛骨動脈",
+  "膝窩動脈",
+  "脈拍触知",
+  "動脈触知"
+ ],
+ "rows": [
+  {
+   "item": "足背動脈・後脛骨動脈の触診部位",
+   "target": "足関節・足部の血流の確認",
+   "value": "足背動脈は前足部(足背)で、後脛骨動脈は内果の後方で触診する。",
+   "exam": "後脛骨動脈=内果後方(外果後方は誤)／足背動脈=長母指伸筋腱と長指伸筋腱の間(正)",
+   "q": [],
+   "note": "確認済み[S1]。MSDマニュアルは腱を目印にした記載がなく、『長母指伸筋腱と長指伸筋腱の間』は未確認。問題IDは入力記録になし。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/関節症状を有する患者へのアプローチ/足関節の評価"
+    }
+   ]
+  },
+  {
+   "item": "閉塞性動脈硬化症での脈の触診",
+   "target": "下肢閉塞性動脈疾患の身体診察",
+   "value": "脈の触診では膝窩動脈や足背動脈を主に調べる。下肢の動脈拍動は減弱し、ABIが0.9未満なら閉塞性動脈硬化症を強く疑う。",
+   "exam": "52-am-13(誤答選択肢『足背動脈の触診―リズムの不整』。正しくは拍動の減弱・消失)",
+   "q": [
+    "52-am-13"
+   ],
+   "note": "確認済み[S1][S2]。大腿動脈・橈骨動脈・上腕動脈・内頸動脈の触知部位は公式資料の本文を確認できず未掲載。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.tyojyu.or.jp/net/byouki/heisokuseidoumyakukoukashou/shindan.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2022/03/JCS2022_Azuma.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

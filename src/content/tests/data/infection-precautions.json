@@ -1,0 +1,228 @@
+{
+ "slug": "infection-precautions",
+ "name": "感染予防策(標準予防策・感染経路別予防策)",
+ "category": "リスク管理",
+ "aliases": [
+  "標準予防策",
+  "スタンダードプリコーション",
+  "接触予防策",
+  "接触感染予防策",
+  "飛沫予防策",
+  "飛沫感染予防策",
+  "空気予防策",
+  "空気感染予防策",
+  "感染経路別予防策",
+  "ガウンテクニック",
+  "手指衛生",
+  "MRSA",
+  "個人防護具",
+  "Standard Precautions",
+  "Contact Precautions",
+  "Droplet Precautions",
+  "Airborne Precautions"
+ ],
+ "rows": [
+  {
+   "item": "接触予防策: ガウン・手袋は退室前に病室内で脱いで廃棄",
+   "target": "MRSAなど接触感染する菌の患者のケア",
+   "value": "ガウン・手袋は入室時に着け、病室(患者の環境)を出る前に脱いで捨て、そのあとに手指衛生を行う。脱ぐときは衣服や皮膚が汚れた環境に触れないようにする。",
+   "exam": "56-am-1(正答:ガウンは退室時に病室内で脱いで廃棄する。MRSA・個室の症例)",
+   "q": [
+    "56-am-1"
+   ],
+   "note": "確認済み[S1][S2]。S2(厚労省2007年資料)にも「退室時にはガウンを脱いで手指消毒」とある。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/shingi/2007/03/dl/s0315-4f33.pdf"
+    }
+   ]
+  },
+  {
+   "item": "手袋を外したあとも手指衛生が必要・手袋のままドアノブに触れない",
+   "target": "接触予防策・標準予防策での手袋の扱い",
+   "value": "手袋は退室前に外して捨てる。手袋を外したあとにも手指衛生を行う(手袋をしていても省略しない)。同じ手袋を複数の患者に使わず、洗って再使用もしない。",
+   "exam": "56-am-1(誤答:退室時に手袋を装着したままドアノブに触れる/手袋を装着していれば手指消毒は不要)",
+   "q": [
+    "56-am-1"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/shingi/2007/03/dl/s0315-4f33.pdf"
+    }
+   ]
+  },
+  {
+   "item": "接触予防策の患者配置(個室・コホート)",
+   "target": "MRSAなど多剤耐性菌の保菌・感染患者",
+   "value": "個室が望ましい。個室が足りないときは、同じ病原体の患者を同室にする(コホート)か、感染対策担当者に相談して配置を決める。同室ではベッド間を約1m(CDCは3フィート)以上あけ、カーテンで仕切る。MRSAなど多剤耐性菌は、施設の感染対策チームが重要と判断したときに接触予防策の対象とし、継続的な伝播がある・急性期でリスクが高い・創をおおえないときなどに勧められる。",
+   "exam": "56-am-1(MRSA・個室の症例。誤答:個室のドアは開放してはならない)／50-am-86(正答:MRSA=接触感染)",
+   "q": [
+    "56-am-1",
+    "50-am-86"
+   ],
+   "note": "確認済み[S1][S2]。ドアを閉める要件が明記されているのは空気予防策の陰圧室(AIIR)で、接触予防策の項にはドア開放を禁じる記載は見つけられなかった[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/shingi/2007/03/dl/s0315-4f33.pdf"
+    }
+   ]
+  },
+  {
+   "item": "標準予防策: 手指衛生のタイミング・創傷皮膚に触れたとき",
+   "target": "すべての患者のケア",
+   "value": "手指衛生を行う場面: 患者に直接触れる前／血液・体液・排泄物・粘膜・傷のある皮膚・創傷被覆材に触れたあと／同じ患者でも汚れた部位から清潔な部位へ手が移る前／患者の健常な皮膚に触れたあと／患者のすぐ近くの物品に触れたあと／手袋を外したあと。",
+   "exam": "56-pm-50(正答:創傷のある皮膚に触れてしまったときは、他の部位に触れる前に手洗いをする)",
+   "q": [
+    "56-pm-50"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    }
+   ]
+  },
+  {
+   "item": "標準予防策の対象",
+   "target": "すべての医療の場面",
+   "value": "感染症の診断の有無にかかわらず、すべての患者に適用する。血液・体液・分泌物・排泄物(汗を除く)・傷のある皮膚・粘膜は、感染性をもちうるものとして扱う。",
+   "exam": "56-pm-50(誤答:標準予防策は感染のある患者のみを対象とする)",
+   "q": [
+    "56-pm-50"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    }
+   ]
+  },
+  {
+   "item": "標準予防策: 手袋・眼の防護(ゴーグル)",
+   "target": "汗への接触・ゴーグルと眼鏡",
+   "value": "手袋は、血液・体液・粘膜・傷のある皮膚(便や尿が漏れる患者の皮膚なども)に触れる見込みのときに着ける。汗は標準予防策で感染性を考える対象から除かれている。飛沫やしぶきのおそれがあるときは、ゴーグルやフェイスシールドで眼を守る。ふだんの眼鏡やコンタクトレンズは、十分な眼の防護とはみなされない。",
+   "exam": "56-pm-50(誤答:汗に触れるときは手袋を着ける／ゴーグルは眼鏡で代用できる)",
+   "q": [
+    "56-pm-50"
+   ],
+   "note": "確認済み[S1]。「汗は対象外」は感染性を考える対象の話で、手袋の使用が禁止という意味ではない(予想される接触に応じて選ぶ)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    }
+   ]
+  },
+  {
+   "item": "手洗いと擦式アルコール手指消毒の使い分け",
+   "target": "手洗いの方法",
+   "value": "目に見える汚れや血液・体液の汚れがあるときは、石けんと流水で手洗いする。見た目に汚れがなければ、擦式アルコール手指消毒薬が第一選択。芽胞をつくる菌(C. difficileなど)の可能性があるときは、アルコールが効きにくいので石けんと流水で洗う。",
+   "exam": "56-pm-50(誤答:手洗いは温水で行う)",
+   "q": [
+    "56-pm-50"
+   ],
+   "note": "確認済み[S1][S3]。S3(厚労科研の介護施設向けガイド)も、通常は擦式アルコール、汚れたときは流水と石けんとする。温水を指定する記載は見つけられなかった。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.med.nagoya-u.ac.jp/kansenseigyo/kousei/kousei3/2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "空気予防策と呼吸用保護具(N95)",
+   "target": "結核・麻疹・水痘などの空気感染",
+   "value": "空気感染する病原体(結核菌・麻疹・水痘など)に使う。陰圧などの空気感染隔離室に患者を入れ、医療者は入室前にマスクまたは呼吸用保護具(N95以上など)を着ける。MRSAなどの接触予防策で求められる個人防護具はガウンと手袋で、N95は含まれない。",
+   "exam": "56-am-1(誤答:N95マスクを装着する)／50-am-86(誤答:結核の経口感染。結核は空気感染)",
+   "q": [
+    "56-am-1",
+    "50-am-86"
+   ],
+   "note": "確認済み[S1][S3]。マスクか呼吸用保護具かは病原体ごとに決まる[S1]。S3も、接触予防策でのケアには手袋とガウン(またはビニールエプロン)を着けるとしている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.med.nagoya-u.ac.jp/kansenseigyo/kousei/kousei3/2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "飛沫予防策(インフルエンザなど)",
+   "target": "インフルエンザ・百日咳・アデノウイルスなど",
+   "value": "咳やくしゃみなどの大きな飛沫で伝わる病原体に使う。個室が望ましい。医療者は、患者に近づくとき(約1m以内)にサージカルマスクを着ける(N95は不要)。患者を室外へ移すときは、患者にマスクを着けてもらう。",
+   "exam": "49-am-78(正答:飛沫感染=インフルエンザウイルス。誤答:MRSA・C. difficile・B型肝炎ウイルス・緑膿菌)",
+   "q": [
+    "49-am-78"
+   ],
+   "note": "確認済み[S1][S2]。MRSAとC. difficileは接触予防策、B型肝炎は標準予防策の対象[S1]。約1mはS2(邦訳)、CDC原文は3フィート。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/shingi/2007/03/dl/s0315-4f33.pdf"
+    }
+   ]
+  },
+  {
+   "item": "感染症ごとの予防策の型(破傷風・A型肝炎・帯状疱疹)",
+   "target": "感染経路の見分け",
+   "value": "破傷風=標準予防策(人から人へはうつらない)。A型肝炎=標準予防策(糞口感染。おむつや失禁のある患者では接触予防策を追加)。帯状疱疹=免疫が正常で病変を覆える局所例は標準予防策、播種性などでは空気+接触予防策。",
+   "exam": "50-am-86(正答:MRSA=接触感染。誤答:結核の経口感染／破傷風の媒介動物による感染／A型肝炎の血液による感染／帯状疱疹の飛沫感染)",
+   "q": [
+    "50-am-86"
+   ],
+   "note": "確認済み[S1][S4]。「媒介動物による」という言い回しそのものは資料で直接確認していない(S1は破傷風が人から人へうつらないことだけを記載)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cdc.gov/infection-control/media/pdfs/Guideline-Isolation-H.pdf"
+    },
+    {
+     "label": "S4",
+     "url": "https://www.fsc.go.jp/sonota/factsheets/11hepatitis.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

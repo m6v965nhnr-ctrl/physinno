@@ -1,0 +1,112 @@
+{
+ "slug": "wisc",
+ "name": "WISC(ウェクスラー児童用知能検査)",
+ "category": "評価尺度",
+ "aliases": [
+  "WISC",
+  "WISC-III",
+  "WISC-Ⅲ",
+  "WISC-IV",
+  "WISC-Ⅳ",
+  "WISC-V",
+  "ウェクスラー児童用知能検査",
+  "ウィスク"
+ ],
+ "rows": [
+  {
+   "item": "WISCの位置づけ(知能検査)",
+   "target": "児童の知的発達水準の評価",
+   "value": "個別式の知能検査。日本版WISC-IVの対象は5歳0か月〜16歳11か月。WISC-Vも原版は6歳から適用だが、日本版は5歳から評価できる。全検査IQ(FSIQ)が全般的な知的水準を示す",
+   "exam": "53-pm-85(知能検査はどれか→WISC-Ⅲが正答)／57-pm-85(発達評価はどれか→正答はDDST-Ⅱ。WISC-Ⅲ・WPPSI-Ⅱ・K-ABCⅡ・WAIS-Ⅲは誤答選択肢)",
+   "q": [
+    "53-pm-85",
+    "57-pm-85"
+   ],
+   "note": "確認済み[S1][S2]。国試は「知能検査」か「発達評価(発達スクリーニング)」かで分けている",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://k-rain.repo.nii.ac.jp/record/2000006/files/ningenkaihatsu_14_006.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sakushin-u.repo.nii.ac.jp/record/816/files/SDR50007.pdf"
+    }
+   ]
+  },
+  {
+   "item": "WISC-Ⅲ(旧版)",
+   "target": "国試の選択肢に出る版",
+   "value": "全検査IQ(FIQ)に加え、言語性・動作性の検査から得点を出す構成。次の版のWISC-Ⅳで、従来の言語性IQ・動作性IQは廃止されて全検査IQに統合された",
+   "exam": "53-pm-85(正答)／57-pm-85(誤答選択肢)",
+   "q": [
+    "53-pm-85",
+    "57-pm-85"
+   ],
+   "note": "確認済み[S1][S2]。現行は日本版WISC-IV(2010年刊)とWISC-V(2022年刊)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://k-rain.repo.nii.ac.jp/record/2000006/files/ningenkaihatsu_14_006.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sakushin-u.repo.nii.ac.jp/record/816/files/SDR50007.pdf"
+    }
+   ]
+  },
+  {
+   "item": "WISC-Ⅳ(日本版2010年刊)",
+   "target": "4指標で認知特性をみる",
+   "value": "10の基本検査(ほかに補助検査5)から、全検査IQと4つの指標(言語理解VCI・知覚推理PRI・ワーキングメモリーWMI・処理速度PSI)を算出する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://k-rain.repo.nii.ac.jp/record/2000006/files/ningenkaihatsu_14_006.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sakushin-u.repo.nii.ac.jp/record/816/files/SDR50007.pdf"
+    }
+   ]
+  },
+  {
+   "item": "WISC-V(日本版2022年刊)",
+   "target": "5つの主要指標",
+   "value": "主要指標は5つ(言語理解・視空間・流動性推理・ワーキングメモリー・処理速度)。下位検査は16。全検査IQは7下位検査(類似・単語・積木模様・行列推理・バランス・数唱・符号)で算出できる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://k-rain.repo.nii.ac.jp/record/2000006/files/ningenkaihatsu_14_006.pdf"
+    }
+   ]
+  },
+  {
+   "item": "WISCの得点の見方",
+   "target": "IQ・指標の解釈",
+   "value": "全検査IQと各指標の合成得点は平均100・標準偏差15。下位検査の評価点は平均10・標準偏差3。WISC-Vの分類記述は130以上=極めて高い、120〜129=非常に高い、110〜119=平均の上、90〜109=平均、80〜89=平均の下、70〜79=非常に低い、69以下=極めて低い",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。学習用の要約で、診断・判定の指示ではない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://k-rain.repo.nii.ac.jp/record/2000006/files/ningenkaihatsu_14_006.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

@@ -1,0 +1,106 @@
+{
+ "slug": "sara",
+ "name": "Scale for the Assessment and Rating of Ataxia(運動失調の評価尺度)",
+ "category": "評価尺度",
+ "aliases": [
+  "Scale for the Assessment and Rating of Ataxia",
+  "運動失調の評価尺度",
+  "ICARS",
+  "International Cooperative Ataxia Rating Scale"
+ ],
+ "rows": [
+  {
+   "item": "SARA の概要(8項目・満点40点)",
+   "target": "小脳性運動失調の重症度(脊髄小脳変性症など)",
+   "value": "歩行・立位・坐位・言語障害・指追い試験・鼻-指試験・手の回内回外運動・踵-すね試験の8項目で評価し、最重度が40点。0点=運動失調なしで、点が高いほど重い。ICARSより簡便な評価を目的に作られ、脊髄小脳失調症の患者で信頼性・妥当性が検討された。",
+   "exam": "59-am-48・58-am-32(正答:脊髄小脳変性症の運動失調の評価指標)／57-am-34(正答の1つ:脊髄小脳変性症の包括的評価指標)／57-pm-33(誤答:Parkinson病の評価としては誤)／55-pm-12(小脳性運動失調の症例で「適切でない指標」を選ぶ設問で、SARAは適切な指標=誤答側)",
+   "q": [
+    "59-am-48",
+    "58-am-32",
+    "57-am-34",
+    "57-pm-33",
+    "55-pm-12"
+   ],
+   "note": "確認済み[S1][S2][S3]。8項目・最重症40点は日本神経学会ガイドラインの記載。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neurology-jp.org/guidelinem/sd_mst/sd_mst_2018.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/16769946/"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.sralab.org/sites/default/files/2017-06/SARA.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SARA の項目と配点",
+   "target": "8項目の内訳",
+   "value": "歩行0〜8(8=支えがあっても歩けない)、立位0〜6(6=片腕で支えても10秒立てない)、坐位0〜4、言語障害0〜6(6=発話が理解できない)。指追い試験・鼻-指試験・手の回内回外運動・踵-すね試験は各0〜4で、左右別に採点して平均を使う。合計=8+6+4+6+16=40点。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。左右の平均を使う点は記録用紙の記載。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.sralab.org/sites/default/files/2017-06/SARA.pdf"
+    }
+   ]
+  },
+  {
+   "item": "集中リハビリテーションの転帰指標",
+   "target": "脊髄小脳変性症の理学療法",
+   "value": "小脳失調が主体の脊髄小脳変性症では、バランスや歩行に対する理学療法を集中的に行うと小脳失調や歩行が改善する(推奨グレード1B)。研究での介入量の例は1〜2時間/回×週3〜7回×4週間。転帰指標にはSARA・歩行速度・バランス指標・FIMなどが使われ、短期的にSARAと歩行速度が改善し、改善は6〜12か月維持されていた。",
+   "exam": "60-am-43(正答:SARA=脊髄小脳変性症・多系統萎縮症診療ガイドライン2018で集中リハの転帰指標として示されているもの。誤答:筋力・咳嗽力・深部感覚・関節可動域)",
+   "q": [
+    "60-am-43"
+   ],
+   "note": "確認済み[S1]。SARAのほか歩行速度・FIMなども転帰指標に使われる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neurology-jp.org/guidelinem/sd_mst/sd_mst_2018.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SARA 15〜20点以上とADL",
+   "target": "作業療法・ADL支援の目安",
+   "value": "SARAが15〜20点以上になるとADLに支障が出る傾向が強いため、支障のあるADLに関連した動作練習で改善が得られる可能性がある(エビデンスレベルV)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。エビデンスレベルは低い(V)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neurology-jp.org/guidelinem/sd_mst/sd_mst_2018.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ICARS・UMSARS・BBSとの関係",
+   "target": "運動失調・多系統萎縮症の評価尺度の使い分け",
+   "value": "運動失調の半定量的評価の代表はICARS(19項目・最重症100点)とSARA。多系統萎縮症の重症度にはUMSARS。姿勢障害の評価にはBerg Balance Scale(日本語版あり)も紹介されている。",
+   "exam": "55-pm-12の設問でも、FBS(Berg)は運動失調の評価として並ぶ側の選択肢(SARAと同様に適切な指標)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neurology-jp.org/guidelinem/sd_mst/sd_mst_2018.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

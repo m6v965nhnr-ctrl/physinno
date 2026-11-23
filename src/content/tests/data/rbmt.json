@@ -1,0 +1,86 @@
+{
+ "slug": "rbmt",
+ "name": "リバーミード行動記憶検査(RBMT)",
+ "category": "評価尺度",
+ "aliases": [
+  "RBMT",
+  "リバーミード行動記憶検査",
+  "リバーミード",
+  "リバミード行動記憶検査",
+  "Rivermead Behavioural Memory Test",
+  "Rivermead",
+  "日本版RBMT",
+  "行動記憶検査"
+ ],
+ "rows": [
+  {
+   "item": "RBMTの目的",
+   "target": "日常生活での記憶障害の検出",
+   "value": "記憶障害による日常生活上の困難を明らかにするために作られた記憶検査。失点した項目は日常生活でも障害を来している可能性が高いと考えられる",
+   "exam": "59-pm-81(正答: 日常生活場面で必要とされる記憶の障害を検出するのに最も適した検査)／53-am-29(正答: 記憶障害の評価法)",
+   "q": [
+    "59-pm-81",
+    "53-am-29"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/neuropsychology/39/3/39_17190/_pdf/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "下位検査の内容",
+   "target": "日常場面を想定した課題",
+   "value": "顔写真を見せて姓名を覚える(顔と名前の連合記憶)、検査室内で決めた道順を覚える(道順)、20分後に鳴るアラームで決められた言葉を言う(約束)など、日常場面に即した課題を含む。さらに言語性・視覚性の記憶検査と、直後再生・遅延再生の下位検査がある",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。下位検査の全項目名・配点は本資料では確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/neuropsychology/39/3/39_17190/_pdf/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "得点と実施",
+   "target": "結果の表し方",
+   "value": "成績はスクリーニング点と標準プロフィール点の2種類で表し、標準プロフィール点は下位検査間で直接比較できる。実施時間は平均約27分。同等難度の並行バッテリーが4つあり、練習効果を避けて繰り返し評価できる。日本版は2002年初版、2023年に手引きと記録用紙の増補版が出た",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/neuropsychology/39/3/39_17190/_pdf/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "他の記憶・認知検査との区別",
+   "target": "検査の使い分け",
+   "value": "WMS-Rは物語・図形・言語性対連合・視覚性対連合などからなる総合的な記憶検査で、5つの指標(平均100・標準偏差15)を出す。実施に45〜60分かかる。日常場面の記憶障害の検出にはRBMTが向く",
+   "exam": "61-am-4・61-am-37・61-am-98(TMT・WAIS-IV・WCST・WMS-R・BIT・RBMT・VPTAは各問の選択肢。WAIS・WMS-R・MMSEは人格検査ではない)",
+   "q": [
+    "61-am-4",
+    "61-am-37",
+    "61-am-98"
+   ],
+   "note": "確認済み[S1]。TMT・WCST・BIT・VPTAの内容は本カードの範囲外",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/neuropsychology/39/3/39_17190/_pdf/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

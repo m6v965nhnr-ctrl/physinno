@@ -1,0 +1,116 @@
+{
+ "slug": "serum-albumin",
+ "name": "血清アルブミン(Alb)",
+ "category": "臨床検査",
+ "aliases": [
+  "血清アルブミン",
+  "アルブミン値",
+  "血中アルブミン",
+  "血漿アルブミン",
+  "低アルブミン血症",
+  "Alb",
+  "albumin"
+ ],
+ "rows": [
+  {
+   "item": "血清アルブミンの基準範囲",
+   "target": "栄養状態・肝機能の指標",
+   "value": "共用基準範囲(医学教育用)は4.1〜5.1 g/dL。施設・測定法で基準値の表記が少し異なることがある(病院の資料には3.9〜4.9 g/dLとする例もある)。",
+   "exam": "52-pm-50(栄養状態の評価指標のうち、体重減少率・BMI・血清アルブミン値・下腿周囲径は有用な指標として挙げられた。正答は血小板数)",
+   "q": [
+    "52-pm-50"
+   ],
+   "note": "確認済み[S1][S2]。国試は基準値そのものではなく、栄養評価の指標として使えるかを問う形。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jccls.org/wp-content/uploads/2019/10/igakukyouikukijyun.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2022/07/NST_publication76.pdf"
+    }
+   ]
+  },
+  {
+   "item": "半減期と栄養指標としての位置づけ",
+   "target": "長期の栄養状態の評価",
+   "value": "半減期は約21日(2〜3週間)と長く、血中濃度の変動が小さい。そのため長期の栄養状態や栄養障害のスクリーニングに使う静的栄養指標で、測定値は1週間以上前からの状態を反映する。",
+   "exam": "第51回(長期臥床患者で、測定値が1週以上前の状態を反映する指標=血清アルブミン。問題IDは入力になし)／第49回(大腿骨近位部骨折術後で、栄養障害の参考になる血液検査=アルブミン)／第50回(選択肢「血中アルブミン」)",
+   "q": [],
+   "note": "確認済み[S1][S2]。1か月以内の値を指標にするのが理想とされる[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.hosp.mie-u.ac.jp/wp-content/themes/mieuhosp/assets/doc/section/eiyou/nst05.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/topics/2009/05/dl/tp0501-1e_0004.pdf"
+    }
+   ]
+  },
+  {
+   "item": "低栄養リスクの判断(血清アルブミン値)",
+   "target": "低栄養状態のリスク分類(介護予防の栄養改善)",
+   "value": "3.6 g/dL以上=低リスク／3.0〜3.5 g/dL=中リスク／3.0 g/dL未満=高リスク。BMI・体重減少率・食事摂取量なども合わせて判断する。",
+   "exam": "52-pm-50(血清アルブミン値は栄養評価に有用な指標として選択肢に出た)",
+   "q": [
+    "52-pm-50"
+   ],
+   "note": "確認済み[S1]。厚生労働省の様式例(2009年)に基づく。同じ資料で、栄養改善サービス継続の目安として「3.5 g/dL以下」も挙げられている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/topics/2009/05/dl/tp0501-1e_0004.pdf"
+    }
+   ]
+  },
+  {
+   "item": "アルブミンが低下する・上昇する状況",
+   "target": "検査値の解釈",
+   "value": "低下:蛋白欠乏性の栄養障害、肝障害、ネフローゼ症候群、慢性炎症、輸液過剰など。上昇:脱水など。肝臓で合成され、炎症時はCRPの合成が優先されて合成が抑えられ低下する。",
+   "exam": "54-am-49(誤答選択肢:廃用症候群で「高齢者では高アルブミン血症を認める」。低アルブミン側が正しい方向。正答は二次性サルコペニア)／53-pm-24(誤答選択肢:加齢で「血漿アルブミン量の増加」。正答は抗原抗体反応の低下)",
+   "q": [
+    "54-am-49",
+    "53-pm-24"
+   ],
+   "note": "確認済み[S1][S2]。資料に「廃用症候群」「加齢」での変化の記載はなく、国試の2問は資料では直接確認できていない(低下する状況の一般的な方向づけのみ)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2022/07/NST_publication76.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.hosp.mie-u.ac.jp/wp-content/themes/mieuhosp/assets/doc/section/eiyou/nst05.pdf"
+    }
+   ]
+  },
+  {
+   "item": "動的栄養指標(RTP)との違い",
+   "target": "短期の栄養変化を見る指標との使い分け",
+   "value": "アルブミンの半減期は21日。プレアルブミン(トランスサイレチン)は約2日、トランスフェリンは約7日、レチノール結合蛋白は約0.5日と短く、栄養介入の効果判定など動的な指標に使う。",
+   "exam": "出題は直接なし(第51回の「1週以上前の状態を反映」を理解する参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。資料によって半減期の数値に幅がある(アルブミン14〜21日など)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.hosp.mie-u.ac.jp/wp-content/themes/mieuhosp/assets/doc/section/eiyou/nst05.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2022/07/NST_publication76.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

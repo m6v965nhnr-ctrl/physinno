@@ -1,0 +1,164 @@
+{
+ "slug": "fugl-meyer-assessment",
+ "name": "Fugl-Meyer Assessment(FMA)",
+ "category": "評価尺度",
+ "aliases": [
+  "Fugl-Meyer",
+  "Fugl Meyer",
+  "フューグルマイヤー",
+  "フーグルマイヤー",
+  "FMA-UE",
+  "FMA-LE"
+ ],
+ "rows": [
+  {
+   "item": "FMA 全体の構成と満点",
+   "target": "脳卒中片麻痺の運動機能・総合評価",
+   "value": "運動(上肢66＋下肢34=100)・感覚24・バランス14・他動関節可動域44・関節痛44の6領域、満点226点。ADL・高次脳機能・認知・歩行速度の領域は構成にない。",
+   "exam": "60-am-30(正答:満点226点)／61-pm-37(誤答:高次脳機能評価は含まない)／59-am-82(誤答:ADLの評価スケールではない)／54-am-34(誤答:ADLの評価を含む。含まれるのは運動機能・感覚・バランス・関節可動域・疼痛)／52-am-33(正答:評価項目に感覚機能がある)／57-am-35(誤答:認知症スクリーニングではない)／58-am-82(誤答:FMA－歩行速度)",
+   "q": [
+    "60-am-30",
+    "61-pm-37",
+    "59-am-82",
+    "54-am-34",
+    "52-am-33",
+    "57-am-35",
+    "58-am-82"
+   ],
+   "note": "確認済み[S1][S2][S3]。原著の要旨も運動機能・バランス・感覚・関節機能を挙げる[S3]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jptpr/36/1/36_1/_pdf/-char/en"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.sralab.org/rehabilitation-measures/fugl-meyer-assessment-motor-recovery-after-stroke"
+    },
+    {
+     "label": "S3",
+     "url": "https://europepmc.org/article/MED/1135616"
+    }
+   ]
+  },
+  {
+   "item": "FMA 採点方法",
+   "target": "各項目の評価段階",
+   "value": "各項目を3段階(0=できない、1=部分的にできる、2=完全にできる)で採点する。反射項目だけは0か2のみ。",
+   "exam": "60-am-30(誤答:評価は4段階)",
+   "q": [
+    "60-am-30"
+   ],
+   "note": "確認済み[S1][S4]。国試の誤答の言い回し(4段階)と異なり、実際は3段階。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jptpr/36/1/36_1/_pdf/-char/en"
+    },
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12340990/"
+    }
+   ]
+  },
+  {
+   "item": "FMA 感覚項目",
+   "target": "感覚機能(上肢12＋下肢12=24点)",
+   "value": "触覚(上肢:上腕・前腕と手掌、下肢:脚と足底)と深部感覚=位置覚(肩・肘・手・母指/股・膝・足・母趾)を、閉眼で非麻痺側と比べて評価する。痛覚の項目はない。",
+   "exam": "60-am-30(誤答:感覚は痛覚を評価)／52-am-33(正答:評価項目に感覚機能がある)",
+   "q": [
+    "60-am-30",
+    "52-am-33"
+   ],
+   "note": "確認済み[S5][S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://gu.se/sites/default/files/2024-08/fugl-meyer-assessment-japanese-2024-06-09.pdf"
+    },
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jptpr/36/1/36_1/_pdf/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "FMA 運動項目の並び(Brunnstrom stageとの共通点)",
+   "target": "運動機能(上肢66・下肢34)",
+   "value": "上肢=反射→屈筋・伸筋共同運動→分離運動(手を腰椎へ、肩屈曲0〜90°、肘90°での前腕回内外)→正常に近い運動→正常反射。続いて手関節・手・協調性/スピード。下肢=反射→共同運動→座位・立位での分離運動→正常反射、協調性/スピード。回復段階の順に並び、共同運動や分離運動の課題がBrunnstrom stageと重なる。",
+   "exam": "60-am-30(正答:Brunnstrom法ステージと共通する評価項目がある)／55-pm-12(正答:運動失調の評価として適切でない指標=FMA)",
+   "q": [
+    "60-am-30",
+    "55-pm-12"
+   ],
+   "note": "確認[S5]。上肢の「手を腰椎へ」「肩屈曲90°」「肘90°での前腕回内外」がBrunnstrom stage上肢Ⅳの課題と同じであることは、民間の評価表[S6]との照合で確認(公的資料での確認は未)。協調性/スピード(振戦・測定障害・時間)の項目はあるが、運動失調の評価法ではなく片麻痺の評価尺度。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://gu.se/sites/default/files/2024-08/fugl-meyer-assessment-japanese-2024-06-09.pdf"
+    },
+    {
+     "label": "S6",
+     "url": "https://www.stroke-lab.com/wp-content/uploads/2021/10/Br-PDF.pdf"
+    }
+   ]
+  },
+  {
+   "item": "FMA 上肢・下肢の運動の満点内訳",
+   "target": "運動機能の配点",
+   "value": "上肢66点=肩・肘・前腕(36)＋手関節(10)＋手(14)＋協調性/スピード(6)。下肢34点=股・膝・足(28)＋協調性/スピード(6)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S5]。大学公開の日本語版の記録用紙。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://gu.se/sites/default/files/2024-08/fugl-meyer-assessment-japanese-2024-06-09.pdf"
+    }
+   ]
+  },
+  {
+   "item": "FMA バランス・関節可動域・関節痛",
+   "target": "運動以外の領域",
+   "value": "バランス14点=座位(端座位保持・閉眼での保護伸展反応)と立位(両脚・片脚立位)。他動関節可動域44点(上肢24＋下肢20)。関節痛44点(他動運動時の痛み、上肢24＋下肢20)。",
+   "exam": "54-am-34(含まれるのは運動機能・感覚・バランス・関節可動域・疼痛)",
+   "q": [
+    "54-am-34"
+   ],
+   "note": "確認済み[S1][S5]。バランスの具体的な課題は[S1]の要約による。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jptpr/36/1/36_1/_pdf/-char/en"
+    },
+    {
+     "label": "S5",
+     "url": "https://gu.se/sites/default/files/2024-08/fugl-meyer-assessment-japanese-2024-06-09.pdf"
+    }
+   ]
+  },
+  {
+   "item": "FMA 運動の重症度の目安",
+   "target": "運動障害の重症度(カットオフ)",
+   "value": "運動合計(100点):35点以下=重度、36〜55点=重度〜中等度、56〜79点=中等度、80点以上=軽度。FMA-UE(66点):15点以下=重度、16〜34点=重度〜中等度、35〜53点=中等度〜軽度、54点以上=軽度。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。報告された分類で、診断や治療の指示ではない。全項目の実施は約40分かかり、臨床では運動項目のみやFMA-UEのみで使うことが多い。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jstage.jst.go.jp/article/jptpr/36/1/36_1/_pdf/-char/en"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

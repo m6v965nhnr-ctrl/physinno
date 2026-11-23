@@ -1,0 +1,58 @@
+{
+ "slug": "modified-borg-scale",
+ "name": "修正Borgスケール(CR10)",
+ "category": "評価尺度",
+ "aliases": [
+  "修正Borg",
+  "修正ボルグ",
+  "修正Borg指数",
+  "修正Borgスケール",
+  "修正ボルグスケール",
+  "Borg CR10",
+  "Borg CR-10",
+  "modified Borg"
+ ],
+ "rows": [
+  {
+   "item": "修正Borgスケール(0〜10)の段階",
+   "target": "息切れ・足の疲れなどの自覚症状の強さ",
+   "value": "0=何ともない／0.5=極めて弱い(やっとわかる程度)／1=かなり弱い／2=弱い／3=中程度／4=いくらか強い／5=強い／7=かなり強い／9=極めて強い／10=最大(6と8には言葉がない)。息切れや疲れを自分で数字にして答える。",
+   "exam": "54-pm-40(正答:全身持久力トレーニング中の自覚的運動強度の指標=修正Borg指数。誤答:Karvonen法・Hugh-Jones分類・%最大酸素摂取量・mMRC息切れスケール)／57-am-18(運動前の修正Borgは3)",
+   "q": [
+    "54-pm-40",
+    "57-am-18"
+   ],
+   "note": "確認済み[S1][S2]。段階の言葉は病院の患者向け資料[S1]による。S2は0〜10の数字に呼吸困難の強さの言葉を当てはめる方法と説明している。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://minamiokayama.hosp.go.jp/clinical/file/reha_exercise.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jsrcr/30/2/30_172/_html/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "運動中の休憩の目安",
+   "target": "呼吸器疾患の運動・日常生活でのリスク管理",
+   "value": "SpO2が90%以下、または修正Borgスケールが6を超えるときは、運動負荷が強いので休憩する(患者向けの目安)。",
+   "exam": "55-am-8(COPD:中止すべき状態の正答=SpO2 82%。誤答側:修正Borg指数5=6を超えない)",
+   "q": [
+    "55-am-8"
+   ],
+   "note": "確認済み[S1]。患者向けの「休憩の目安」で、医療者向けの中止基準の数値は、この資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://minamiokayama.hosp.go.jp/clinical/file/reha_exercise.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

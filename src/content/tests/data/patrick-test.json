@@ -1,0 +1,90 @@
+{
+ "slug": "patrick-test",
+ "name": "Patrickテスト(FABER)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Patrick test",
+  "Patrick's test",
+  "Patrick徴候",
+  "パトリックテスト",
+  "パトリック試験",
+  "FABER test",
+  "FABERテスト",
+  "フェーバーテスト",
+  "Thomas test",
+  "トーマステスト"
+ ],
+ "rows": [
+  {
+   "item": "Patrickテスト(FABER)の手技",
+   "target": "股関節・仙腸関節",
+   "value": "背臥位で、検査側の足を反対側の膝に乗せる(股関節を屈曲・外転・外旋した4の字の肢位。FABER=Flexion, Abduction, External Rotation)。反対側のASISをテーブルに押さえ、曲げた膝をテーブル側へ押し下げる",
+   "exam": "61-am-30・60-am-87・54-am-3・53-am-34・52-pm-32(いずれも誤答選択肢として登場。Patrickは股関節・仙腸関節の検査で、半月板・股関節屈曲拘縮・腰椎椎間板ヘルニアの検査ではない)／50回(股関節・仙腸関節疾患の検査)／51回(下肢長の左右差に関連するテストとして正答)",
+   "q": [
+    "61-am-30",
+    "60-am-87",
+    "54-am-3",
+    "53-am-34",
+    "52-pm-32"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7646135/"
+    }
+   ]
+  },
+  {
+   "item": "陽性の判定",
+   "target": "痛みの部位で疾患を読み分ける",
+   "value": "屈曲した膝側の仙腸関節に痛みが出れば陽性。殿部の痛みは仙腸関節障害を、鼠径部の痛みは股関節の病変を示唆する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7646135/"
+    }
+   ]
+  },
+  {
+   "item": "診断精度(仙腸関節)",
+   "target": "臨床での使い方",
+   "value": "仙腸関節ブロックを基準にした研究で、FABERは物理テストの中で特異度・陽性的中率が最も高かった(特異度66.7%、感度71.8%)。ただし報告で幅があり、単独では確定できない。複数の誘発テストを組み合わせて判断する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。1つの研究の値で、基準値ではない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7646135/"
+    }
+   ]
+  },
+  {
+   "item": "対比: Thomasテスト",
+   "target": "股関節屈曲拘縮",
+   "value": "背臥位で一側の股・膝を最大屈曲して胸に抱え、骨盤は中間位に保つ。対側の下肢が台から浮いて隙間ができれば、股関節の屈曲拘縮(伸展制限)を示す。骨盤傾斜を制御しないと妥当性が低い",
+   "exam": "60-am-87・52-pm-32(誤答選択肢の説明: 股関節屈曲拘縮の検査はThomas。Patrickは別)",
+   "q": [
+    "60-am-87",
+    "52-pm-32"
+   ],
+   "note": "確認済み[S2]。国試では、Patrick=股関節・仙腸関節、Thomas=股関節屈曲拘縮として区別される",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4991856/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

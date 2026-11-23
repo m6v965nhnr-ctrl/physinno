@@ -1,0 +1,87 @@
+{
+ "slug": "rorschach-test",
+ "name": "Rorschachテスト",
+ "category": "評価尺度",
+ "aliases": [
+  "Rorschach",
+  "Rorschach test",
+  "ロールシャッハテスト",
+  "ロールシャッハ・テスト",
+  "ロールシャッハ検査",
+  "ロールシャッハ",
+  "インクブロット",
+  "インクのしみ"
+ ],
+ "rows": [
+  {
+   "item": "図版と実施",
+   "target": "ロールシャッハテストの内容",
+   "value": "紙にインクを落として二つ折りにして作った、ほぼ左右対称の図版10枚を使う(無彩色5枚、有彩色5枚)。1枚ずつ提示して何に見えるかを自由に答えてもらい(自由反応段階)、次になぜそう見えたかを尋ね(質問段階)、データを分析する",
+   "exam": "59-am-78(正答: 左右対称のインクのシミの図版を順番に提示する検査)",
+   "q": [
+    "59-am-78"
+   ],
+   "note": "確認済み[S1][S5]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.gakushuin.ac.jp/univ/let/top/publication/JI_23/JI_23_006.pdf"
+    }
+   ]
+  },
+  {
+   "item": "分類: 投影法",
+   "target": "心理検査の種類",
+   "value": "曖昧な刺激に自由に反応させ、無意識的な心の動きを探る投影法の代表。質問紙法ではない。SCT・TAT・P-Fスタディ・バウムテストも投影法に分類される。熟練が必要で主観が入りやすく、妥当性への疑問も指摘される",
+   "exam": "57-am-35(誤答: 認知症スクリーニングではない)／57-am-81(バウムテスト・Rorschach: 投影法で質問紙法ではない)／51回(投影法)",
+   "q": [
+    "57-am-35",
+    "57-am-81"
+   ],
+   "note": "確認済み[S1][S2][S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://kompas.hosp.keio.ac.jp/exam/000388/"
+    },
+    {
+     "label": "S4",
+     "url": "https://crd.ndl.go.jp/reference/entry/index.php?page=ref_view&id=1000221958"
+    }
+   ]
+  },
+  {
+   "item": "SCT(文章完成法)・P-Fスタディとの区別",
+   "target": "人格検査の種類",
+   "value": "SCTは未完成の刺激文の続きを自由に書く投影法で、投影法の中では比較的意識に近い。P-Fスタディも投映法に分類される。いずれも認知機能検査・介護負担度・自己効力感の尺度ではない",
+   "exam": "55-pm-81(誤答の組合せ: SCT―認知機能、P-Fスタディ―認知症介護負担度、Rorschach―自己効力感)",
+   "q": [
+    "55-pm-81"
+   ],
+   "note": "確認済み[S1][S4]。「認知機能・介護負担度・自己効力感ではない」は、人格検査であることからの整理",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S4",
+     "url": "https://crd.ndl.go.jp/reference/entry/index.php?page=ref_view&id=1000221958"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

@@ -1,0 +1,65 @@
+{
+ "slug": "apley-test",
+ "name": "Apleyテスト",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Apley test",
+  "Apley's test",
+  "Apley grind test",
+  "Apleyの圧迫テスト",
+  "アプレーテスト",
+  "アプレイテスト",
+  "Apley compression test"
+ ],
+ "rows": [
+  {
+   "item": "Apley 圧迫(grinding)テスト",
+   "target": "半月板損傷",
+   "value": "腹臥位で膝を直角に屈曲し、検者が体重をかけて脛骨をテーブル側へ圧迫したまま強く回旋する。圧迫を加えると痛みが増せば陽性で、半月板損傷を考える",
+   "exam": "52-pm-32(誤答選択肢: 腰椎椎間板ヘルニアで陽性となるテストとして。正答は大腿神経伸張テスト。Apleyは半月板の検査)",
+   "q": [
+    "52-pm-32"
+   ],
+   "note": "確認済み[S1](1947年のApleyの原記述)。腰椎椎間板ヘルニアの検査(Lasègue・大腿神経伸張テスト)ではない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2796951/"
+    }
+   ]
+  },
+  {
+   "item": "Apley 牽引(distraction)テスト",
+   "target": "靱帯・関節包(回旋捻挫)との区別",
+   "value": "同じ姿勢で下腿を上方へ引き上げ(牽引)、その状態で回旋する。牽引で痛みが回旋のみより増せば陽性で、半月板ではなく靱帯(回旋捻挫)を考える",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1](原記述)。牽引で増悪=靱帯、圧迫で増悪=半月板、という対比",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2796951/"
+    }
+   ]
+  },
+  {
+   "item": "診断精度",
+   "target": "臨床での使い方",
+   "value": "報告では感度16〜41%、特異度80〜93%程度で、感度が低く特異度が高い。McMurrayテスト同様、単独で確定せず他の所見と合わせる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。研究ごとの報告値",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC2796951/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

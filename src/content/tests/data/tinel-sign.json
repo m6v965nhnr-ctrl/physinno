@@ -1,0 +1,139 @@
+{
+ "slug": "tinel-sign",
+ "name": "Tinel徴候",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Tinel sign",
+  "Tinel's sign",
+  "ティネル徴候",
+  "ティネルサイン",
+  "Tinel様徴候",
+  "Phalenテスト",
+  "Phalen test",
+  "Phalen徴候",
+  "ファーレンテスト"
+ ],
+ "rows": [
+  {
+   "item": "Tinel徴候(手根管症候群)",
+   "target": "手根管症候群(正中神経の絞扼)",
+   "value": "手関節の手掌側で、手根管部の正中神経をハンマーや指で叩く。正中神経の支配領域(母指〜環指橈側)にしびれ・放散痛が出れば陽性。診断を支持する所見の一つ。Tinel徴候はもともと、末梢神経が再生している先端の位置を、叩打による痛みで知るための所見",
+   "exam": "56-am-82(正答:Tinel徴候が陽性となるのは手根管症候群。誤答:視床症候群・Cushing症候群・内側縦束症候群・Shy-Drager症候群)／51回(「Tinel徴候陰性」が誤り=陽性になる)／53-am-34(誤答選択肢:末梢神経の叩打による放散痛)",
+   "q": [
+    "53-am-34",
+    "56-am-82"
+   ],
+   "note": "確認済み[S1][S2][S3]。手根管症候群の診断は、短母指外転筋の筋力低下・母指球筋萎縮なども合わせて行う[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jsnt.gr.jp/guideline/img/syukonkan.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jscn/41/3/41_164/_pdf/-char/ja"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-%E7%AD%8B%E9%AA%A8%E6%A0%BC%E7%B3%BB%E7%96%BE%E6%82%A3%E3%81%A8%E7%B5%90%E5%90%88%E7%B5%84%E7%B9%94%E7%96%BE%E6%82%A3/%E6%89%8B%E7%96%BE%E6%82%A3/%E6%89%8B%E6%A0%B9%E7%AE%A1%E7%97%87%E5%80%99%E7%BE%A4"
+    }
+   ]
+  },
+  {
+   "item": "Phalenテスト・逆Phalenテスト",
+   "target": "手根管症候群",
+   "value": "Phalen: 手関節を屈曲位に約1分保持し、しびれ・異常感覚が再現されれば陽性。逆Phalen: 手関節を伸展位で同様に行う。いずれも手根管内の圧上昇による症状の再現を見る。逆Phalenのほうが手根管内圧の上昇が大きいとされる",
+   "exam": "出題は直接なし(Phalenは参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jsnt.gr.jp/guideline/img/syukonkan.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jscn/41/3/41_164/_pdf/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "Tinel徴候・Phalenテストの精度(手根管症候群)",
+   "target": "診断の確からしさ",
+   "value": "メタ解析(7研究)の統合値は、Phalen: 感度0.57・特異度0.67、Tinel: 感度0.45・特異度0.78。Tinelは感度が低く特異度が高い、Phalenは中等度。単独の検査で診断せず、感覚・運動の検査、問診票などと組み合わせる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S4]。研究ごとの幅は大きい(Phalen感度0.12〜0.92、Tinel感度0.17〜0.97)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/37366626/"
+    }
+   ]
+  },
+  {
+   "item": "Tinel徴候(足根管症候群)",
+   "target": "足根管症候群(後脛骨神経の絞扼)",
+   "value": "内果下部の後脛骨神経を叩く(または触れる)と、末梢にピリピリ感が出る。疼痛は果の後ろ(内果後部)に多く、足底や足趾に広がることがある。立位・歩行で悪化する",
+   "exam": "59-pm-3(正答:足底のしびれ・疼痛、母指外転筋萎縮の例で、内果下方でTinel徴候が陽性=足根管症候群)",
+   "q": [
+    "59-pm-3"
+   ],
+   "note": "確認済み[S5]。国試の問題文の「母指外転筋萎縮」は、足の場合は母趾外転筋に当たる可能性があるが、筋萎縮はS5に記載がないため確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-%E7%AD%8B%E9%AA%A8%E6%A0%BC%E7%B3%BB%E7%96%BE%E6%82%A3%E3%81%A8%E7%B5%90%E5%90%88%E7%B5%84%E7%B9%94%E7%96%BE%E6%82%A3/%E8%B6%B3%E3%81%8A%E3%82%88%E3%81%B3%E8%B6%B3%E9%96%A2%E7%AF%80%E3%81%AE%E7%96%BE%E6%82%A3/%E8%B6%B3%E6%A0%B9%E7%AE%A1%E7%97%87%E5%80%99%E7%BE%A4"
+    }
+   ]
+  },
+  {
+   "item": "Tinel徴候(肘部管症候群)",
+   "target": "肘部管症候群(尺骨神経の絞扼)",
+   "value": "肘関節の肘部管の位置で尺骨神経を叩くと、手の尺側(環指・小指側)に錯感覚が出れば陽性。症状は環指・小指と手の尺側のしびれ、進行すると手内在筋の筋力低下",
+   "exam": "57-am-84(誤答:「肘部管のTinel徴候が陽性」は、前骨間神経麻痺・後骨間神経麻痺に共通する所見ではない)",
+   "q": [
+    "57-am-84"
+   ],
+   "note": "確認済み[S6]。肘部管は尺骨神経の部位であり、前骨間・後骨間神経の障害の所見ではない、という整理(S6から導いた記載)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-%E7%AD%8B%E9%AA%A8%E6%A0%BC%E7%B3%BB%E7%96%BE%E6%82%A3%E3%81%A8%E7%B5%90%E5%90%88%E7%B5%84%E7%B9%94%E7%96%BE%E6%82%A3/%E6%89%8B%E7%96%BE%E6%82%A3/%E8%82%98%E9%83%A8%E7%AE%A1%E7%97%87%E5%80%99%E7%BE%A4"
+    }
+   ]
+  },
+  {
+   "item": "Guyon管症候群とTinel徴候",
+   "target": "手根管症候群との区別",
+   "value": "Guyon管症候群は、手関節の高さで尺骨神経が絞扼される病態。症例報告では、Guyon管部よりやや近位でTinel徴候を認め、環指・小指のしびれ、鷲手、小指外転筋・母指内転筋の萎縮、Froment徴候を伴った。手根管症候群(正中神経)の症候として「Guyon管のTinel徴候陽性」を挙げるのは誤り",
+   "exam": "59-am-92(誤答:手根管症候群の症候として「Guyon管のTinel徴候陽性」)",
+   "q": [
+    "59-am-92"
+   ],
+   "note": "確認済み[S7][S8][S2]。Guyon管症候群の記載は症例報告による。手根管内圧の上昇がGuyon管にも及び、手根管症候群とGuyon管症候群が合併する例もある[S2]ため、合併例は別として扱う",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S7",
+     "url": "https://www.jstage.jst.go.jp/article/jcsoa/21/1/21_1_171/_article/-char/ja"
+    },
+    {
+     "label": "S8",
+     "url": "https://www.jstage.jst.go.jp/article/jsma/72/1/72_138/_article/-char/ja"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jscn/41/3/41_164/_pdf/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

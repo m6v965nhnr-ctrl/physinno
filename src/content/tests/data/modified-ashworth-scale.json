@@ -1,0 +1,103 @@
+{
+ "slug": "modified-ashworth-scale",
+ "name": "Modified Ashworth Scale(MAS)",
+ "category": "評価尺度",
+ "aliases": [
+  "Modified Ashworth",
+  "Ashworth",
+  "修正アシュワース",
+  "改訂アシュワーススケール",
+  "アシュワーススケール"
+ ],
+ "rows": [
+  {
+   "item": "MAS 全体(6段階)と何を評価するか",
+   "target": "痙縮(他動運動に対する筋緊張の亢進)の程度",
+   "value": "0・1・1+・2・3・4の6段階。関節を他動的に動かしたときの抵抗の大きさで判定する。0=筋緊張の増加なし／4=屈曲または伸展位で固縮。",
+   "exam": "54-pm-36(誤答:疼痛の評価ではない。痙縮の評価)／57-am-28(誤答:注意障害の検査ではない)／57-pm-33(誤答:Parkinson病の評価として誤り。固縮の評価はWestphalなど)／61-pm-37(誤答:高次脳機能評価は含まない)／49-am-46(誤答:バランスを評価できるものの選択肢)／50回(痙縮の評価であり、症状なし〜死亡の分類ではない)",
+   "q": [
+    "54-pm-36",
+    "57-am-28",
+    "57-pm-33",
+    "61-pm-37"
+   ],
+   "note": "確認済み[S1][S2]。Bohannon & Smithの基準による段階。疼痛・注意・バランス・高次脳機能の評価法ではない(段階の定義に含まれない)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13289203"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13374442"
+    }
+   ]
+  },
+  {
+   "item": "MAS 0・1・1+",
+   "target": "軽度の痙縮の見分け",
+   "value": "0=筋緊張の増加なし。1=軽度の増加(引っかかりとその消失、または可動域の最終域でわずかな抵抗)。1+=軽度の増加(引っかかりに続き、可動域の残り=半分未満でわずかな抵抗)。",
+   "exam": "59-pm-34(正答:足関節を底屈位から背屈位へ他動的に動かし、最終域に若干の抵抗感=MAS 1。選択肢は0・1・1+・2・3)／49回pm-10(症例でMAS 1)",
+   "q": [
+    "59-pm-34"
+   ],
+   "note": "確認済み[S1][S2]。「最終域でのわずかな抵抗」=1、「引っかかりの後、可動域の半分未満にわたる抵抗」=1+。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13289203"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13374442"
+    }
+   ]
+  },
+  {
+   "item": "MAS 2",
+   "target": "中等度の痙縮",
+   "value": "可動域の大部分で筋緊張の増加がより明らかだが、動かす部位は容易に動く(他動運動は容易)。",
+   "exam": "53-pm-33(正答:肘を屈曲位から他動的に伸展、可動域の全範囲にわたり抵抗感があるが運動は容易=2)／56-pm-6(問題文:左下腿三頭筋のMASは2。ダブルクレンザック式短下肢装具の誤りを問う設問の前提)／52-pm-13(問題文:右下腿三頭筋のMASは2。装具選択の条件)／51回(多発性硬化症の右内反尖足でMAS 2。治療は電気刺激療法)",
+   "q": [
+    "53-pm-33",
+    "56-pm-6",
+    "52-pm-13"
+   ],
+   "note": "確認済み[S1][S2]。資料の表現は「可動域の大部分(most of the range)」で、国試の「全範囲」の言い回しと少し違うが、正答は2。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13289203"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13374442"
+    }
+   ]
+  },
+  {
+   "item": "MAS 3・4",
+   "target": "重度の痙縮・固縮",
+   "value": "3=筋緊張の著明な増加で、他動運動が困難。4=動かす部位が屈曲または伸展位で固縮している。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13289203"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13374442"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

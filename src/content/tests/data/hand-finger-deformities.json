@@ -1,0 +1,102 @@
+{
+ "slug": "hand-finger-deformities",
+ "name": "手指の変形(ボタン穴変形・Heberden結節ほか)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "ボタン穴変形",
+  "ボタンホール変形",
+  "スワンネック変形",
+  "Heberden結節",
+  "ヘバーデン結節",
+  "Bouchard結節",
+  "ブシャール結節",
+  "フォーク状変形",
+  "尺側偏位",
+  "boutonniere",
+  "swan neck"
+ ],
+ "rows": [
+  {
+   "item": "ボタン穴変形(boutonniere deformity)",
+   "target": "PIP関節の伸筋腱(中央索)の障害による変形",
+   "value": "PIP関節(指先から2番目の関節)が屈曲したまま伸びず、DIP関節(指先の関節)が過伸展する。原因は外傷(PIP関節背側の中央索の断裂など)や、関節リウマチなどによる中央索の弱化。",
+   "exam": "58-am-10(自動ROM:PIP伸展−45°・DIP過伸展などの数値からボタン穴変形が正答。誤答:Z変形・鉤爪変形・Krukenberg変形・スワンネック変形)／49-pm-35(ボタンホール変形=PIP関節の伸筋腱断裂が正答。誤答:スワンネック=DIP屈筋腱断裂、槌指=MP関節屈筋腱断裂など)",
+   "q": [
+    "58-am-10",
+    "49-pm-35"
+   ],
+   "note": "確認済み[S1]。58-am-10はPIPの伸展制限とDIPの過伸展という組み合わせから判断する問題。49-pm-35の他の選択肢(スワンネック・槌指・Volkmann拘縮・Dupuytren拘縮)の記述は本資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.orthoinfo.org/en/diseases--conditions/boutonniere-deformity/"
+    }
+   ]
+  },
+  {
+   "item": "関節リウマチの手指の典型的な変形",
+   "target": "関節リウマチ(RA)で見られる手の変形と合併症",
+   "value": "MCP関節から伸筋腱が尺側へ滑脱し、指が尺側に偏位(尺側偏位)する変形が典型的で、スワンネック変形とボタン穴変形も同様に典型的。進行すると指が短くなったり関節が脱臼して強く変形することがあり、指の伸筋腱が断裂して手術が必要になることもある。",
+   "exam": "58-pm-88(RAで起こりにくい変形:フォーク状変形が正答。誤答:オペラグラス変形・尺側偏位・スワンネック変形・ボタン穴変形)／51-am-34(RAに合併しやすいもの=指伸筋腱皮下断裂が正答)／49-pm-13(RA12年・突然指が伸展できない→障害されたのは総指伸筋)",
+   "q": [
+    "58-pm-88",
+    "51-am-34",
+    "49-pm-13"
+   ],
+   "note": "確認済み[S2][S3]。スワンネック変形の関節の形(どの関節が過伸展・屈曲か)と、オペラグラス変形については、本資料で確認できていない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/関節疾患/関節リウマチ-ra"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.joa.or.jp/public/sick/condition/rheumatoid_arthritis.html"
+    }
+   ]
+  },
+  {
+   "item": "Heberden結節・Bouchard結節(変形性関節症)",
+   "target": "手指の変形性関節症(一次性OA)の所見",
+   "value": "Heberden結節=DIP関節の硬組織(骨性)の隆起。Bouchard結節=PIP関節の硬組織(骨性)の隆起。DIP・PIP関節は変形性関節症の好発部位で、母指CM関節は手で最も疼痛が生じやすい関節。DIP関節が腫れたり曲がったりし、痛みを伴うこともある。",
+   "exam": "56-pm-86(一次性変形性関節症の手指所見:Heberden結節・Bouchard結節が正答。誤答:ボタン穴変形・スワンネック変形(関節リウマチ)、Charcot関節)／51-am-34(誤答選択肢:Heberden結節は関節リウマチの合併症ではなく変形性関節症)",
+   "q": [
+    "56-pm-86",
+    "51-am-34"
+   ],
+   "note": "確認済み[S4][S5]。DIPはHeberden、PIPはBouchardと対で覚える。Charcot関節は本資料の対象外で未確認。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/関節疾患/変形性関節症-oa"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.jssh.or.jp/ippan/sikkan/pdf/4heba-den.pdf"
+    }
+   ]
+  },
+  {
+   "item": "フォーク状変形(橈骨遠位端骨折)",
+   "target": "Colles骨折などの手首の変形",
+   "value": "手のひらをついて転んだ後、手首にフォークを伏せて置いたような変形が見られる。橈骨が手首のところ(遠位端)で折れる骨折(コレス骨折・スミス骨折)で、強い痛みと短時間での腫れを伴う。",
+   "exam": "58-pm-88(RAで起こりにくい変形の正答:フォーク状変形。Colles骨折の変形)",
+   "q": [
+    "58-pm-88"
+   ],
+   "note": "確認済み[S6]。関節リウマチの変形ではない、という区別が出題ポイント。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://www.joa.or.jp/public/sick/condition/distal_radius_fracture.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

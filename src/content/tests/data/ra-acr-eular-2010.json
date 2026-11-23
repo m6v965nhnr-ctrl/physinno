@@ -1,0 +1,93 @@
+{
+ "slug": "ra-acr-eular-2010",
+ "name": "関節リウマチの分類基準(2010 ACR/EULAR)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "関節リウマチ分類基準",
+  "ACR/EULAR",
+  "2010年ACR/EULAR",
+  "RA分類基準",
+  "抗CCP抗体",
+  "ACPA",
+  "リウマトイド因子"
+ ],
+ "rows": [
+  {
+   "item": "分類基準の対象と判定",
+   "target": "RAの分類(早期例)",
+   "value": "対象=明確な滑膜炎(腫脹)が1関節以上にあり、他の疾患で説明できない患者。関節病変・血清学・急性期反応物質・罹患期間の4領域の合計が6点以上(10点満点)でRAと分類。6点未満でも、経過で基準を満たすことがある",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。原著(Arthritis Rheum 2010;62:2569/Ann Rheum Dis 2010;69:1580)の表3。骨びらん(RAに典型的)を伴う長期例や過去に基準を満たした例もRAと分類してよいとされる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hal.univ-brest.fr/hal-01557559/document"
+    }
+   ]
+  },
+  {
+   "item": "関節病変の点数(0〜5点)",
+   "target": "罹患関節の数と部位",
+   "value": "大関節1個=0／大関節2〜10個=1／小関節1〜3個=2(大関節の有無を問わない)／小関節4〜10個=3／11関節超(小関節を1つ以上含む)=5。DIP・第1CMC・第1MTPは評価から除く",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。原著(Arthritis Rheum 2010;62:2569/Ann Rheum Dis 2010;69:1580)の表3",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hal.univ-brest.fr/hal-01557559/document"
+    }
+   ]
+  },
+  {
+   "item": "血清学的検査の点数(0〜3点)",
+   "target": "RF・抗CCP抗体(ACPA)",
+   "value": "RF・ACPAとも陰性=0／低力価陽性(正常上限超〜3倍以下)=2／高力価陽性(正常上限の3倍超)=3。RFが陽性・陰性でしか分からない場合、陽性は低力価陽性として扱う",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。原著(Arthritis Rheum 2010;62:2569/Ann Rheum Dis 2010;69:1580)の表3",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hal.univ-brest.fr/hal-01557559/document"
+    }
+   ]
+  },
+  {
+   "item": "急性期反応物質・罹患期間の点数(各0〜1点)",
+   "target": "CRP・赤沈、症状の持続",
+   "value": "CRP・赤沈とも正常=0、異常=1(基準は施設による)／症状の持続(患者の自己申告)6週未満=0、6週以上=1",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。原著(Arthritis Rheum 2010;62:2569/Ann Rheum Dis 2010;69:1580)の表3。表の記載が不鮮明なため、急性期反応物質は「CRPまたは赤沈の異常」と整理",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hal.univ-brest.fr/hal-01557559/document"
+    }
+   ]
+  },
+  {
+   "item": "大関節・小関節の定義",
+   "target": "関節数の数え方",
+   "value": "大関節=肩・肘・股・膝・足関節。小関節=MCP・PIP・第2〜5 MTP・母指IP・手関節。11関節超の区分では、顎・肩鎖・胸鎖関節など表にない関節も数に含められる(小関節を最低1つ含む)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。原著(Arthritis Rheum 2010;62:2569/Ann Rheum Dis 2010;69:1580)の表3",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hal.univ-brest.fr/hal-01557559/document"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}
