@@ -8,6 +8,9 @@ const errs = [];
 const tdir = "src/content/tests/data";
 const TEST_SLUGS = new Set(fs.existsSync(tdir) ? fs.readdirSync(tdir).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")) : []);
 const SYSTEMS = ["神経", "運動器", "循環器", "呼吸器", "代謝・内分泌・腎・消化", "がん・血液・免疫", "感染症", "小児・先天", "精神", "老年・その他"];
+// 本文の項目は t と s だけにそろえる（過去問ID q は examPoints だけ）
+const claim = (c) => ({ t: c.t, s: c.s });
+const cl = (a) => (a ?? []).map(claim);
 const out = files.map((f) => {
   const d = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
   const id = f.replace(/\.json$/, "");
@@ -31,7 +34,7 @@ const out = files.map((f) => {
   const checkedOn = (d.sources ?? []).map((s) => s.checked).sort().at(-1) ?? "";
   return {
     slug: d.slug, name: d.name, reading: d.reading, aliases: d.aliases ?? [], system: d.system,
-    summary: d.summary, cause: d.cause ?? [], symptoms: d.symptoms ?? [], diagnosis: d.diagnosis ?? [], classification: d.classification ?? [], treatment: d.treatment ?? [], pt: d.pt ?? [], risk: d.risk ?? [], tests: d.tests ?? [],
+    summary: claim(d.summary), cause: cl(d.cause), symptoms: cl(d.symptoms), diagnosis: cl(d.diagnosis), classification: cl(d.classification), treatment: cl(d.treatment), pt: cl(d.pt), risk: cl(d.risk), tests: d.tests ?? [],
     examPoints: (d.examPoints ?? []).map((e) => ({ ...e, q: e.q ?? [] })), confusable: d.confusable ?? [], related: d.related ?? [], ...(d.guide ? { guide: d.guide } : {}),
     sources: d.sources, checkedOn, review: d.review ?? "ai",
   };
@@ -39,4 +42,14 @@ const out = files.map((f) => {
 if (new Set(out.map((d) => d.slug)).size !== out.length) errs.push("slug が重複");
 if (errs.length) { console.error("疾患カードの検証に失敗:\n" + errs.join("\n")); process.exit(1); }
 fs.writeFileSync("src/content/diseases/generated.ts", `// 自動生成（scripts/build-diseases.mjs）。直接は編集しない\nimport type { Disease } from "./types";\nexport const DISEASES: Disease[] = ${JSON.stringify(out, null, 1)};\n`);
+// 一問一答に載せる軽い索引（名前・別名だけ）と、タップ時に1枚ずつ読む public/diseases/<slug>.json。カード本文をクライアントの束に入れない
+const baseOf = (n) => n.replace(/\(.*?\)|（.*?）/g, "").trim();
+const claims = new Map();
+for (const d of out) for (const t of new Set([baseOf(d.name), ...d.aliases])) claims.set(t, [...(claims.get(t) ?? []), d.slug]);
+// 複数のカードが同じ語を別名に持つときは、その語が病名そのもののカードだけに残す
+const index = out.map((d) => ({ slug: d.slug, name: d.name, aliases: d.aliases.filter((a) => a.length >= 2 && (claims.get(a).length === 1 || baseOf(d.name) === a)) }));
+fs.writeFileSync("src/content/diseases/index.ts", `// 自動生成（scripts/build-diseases.mjs）。直接は編集しない\nexport type DiseaseRef = { slug: string; name: string; aliases: string[] };\nexport const DISEASE_INDEX: DiseaseRef[] = ${JSON.stringify(index)};\n`);
+fs.rmSync("public/diseases", { recursive: true, force: true });
+fs.mkdirSync("public/diseases", { recursive: true });
+for (const d of out) fs.writeFileSync(`public/diseases/${d.slug}.json`, JSON.stringify(d));
 console.log(`疾患カード ${out.length} 件`);

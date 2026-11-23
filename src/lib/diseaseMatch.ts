@@ -1,19 +1,18 @@
-import { DISEASES } from "../content/diseases/generated.ts";
-import type { Disease } from "../content/diseases/types.ts";
+import { DISEASE_INDEX, type DiseaseRef } from "../content/diseases/index.ts";
 
 // 問題文・選択肢・解説の中に出てくる疾患を探す。名前（かっこ内の略称と別表記を含む）が、そのまま書かれているものだけ
-const words = (d: Disease) => {
+const words = (d: DiseaseRef) => {
   const base = d.name.replace(/\(.*?\)|（.*?）/g, "").trim();
   const inner = [...d.name.matchAll(/[(（](.+?)[)）]/g)].map((m) => m[1]);
   return [...new Set([base, ...inner, ...d.aliases])].filter(Boolean);
 };
 
-const TERMS = DISEASES.flatMap((d) => words(d).map((term) => ({ term, d }))).sort((a, b) => b.term.length - a.term.length);
+const TERMS = DISEASE_INDEX.flatMap((d) => words(d).map((term) => ({ term, d }))).sort((a, b) => b.term.length - a.term.length);
 const isAscii = (s: string) => /^[\x20-\x7e]+$/.test(s);
 const ALNUM = /[A-Za-z0-9]/;
 
-export function findDiseases(text: string): Disease[] {
-  const hits: { start: number; end: number; d: Disease }[] = [];
+export function findDiseases(text: string): DiseaseRef[] {
+  const hits: { start: number; end: number; d: DiseaseRef }[] = [];
   for (const { term, d } of TERMS) {
     if (term.length < 2) continue;
     let from = 0;

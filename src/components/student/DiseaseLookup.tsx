@@ -1,9 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { findDiseases } from "@/lib/diseaseMatch";
 import type { Disease } from "@/content/diseases/types";
+
+// 開いたカードだけを、1枚ずつ読み込む（全部を画面の束に入れない）
+const cache = new Map<string, Disease>();
 
 const tabs = (d: Disease) =>
   [
@@ -20,8 +23,23 @@ export default function DiseaseLookup({ text }: { text: string }) {
   const diseases = useMemo(() => findDiseases(text), [text]);
   const [openSlug, setOpenSlug] = useState<string | null>(null);
   const [tab, setTab] = useState<string | null>(null);
+  const [card, setCard] = useState<Disease | null>(null);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    setFailed(false);
+    if (!openSlug) { setCard(null); return; }
+    const hit = cache.get(openSlug);
+    if (hit) { setCard(hit); return; }
+    setCard(null);
+    let live = true;
+    fetch(`/diseases/${openSlug}.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<Disease>) : Promise.reject()))
+      .then((c) => { cache.set(openSlug, c); if (live) setCard(c); })
+      .catch(() => { if (live) setFailed(true); });
+    return () => { live = false; };
+  }, [openSlug]);
   if (diseases.length === 0) return null;
-  const d = diseases.find((x) => x.slug === openSlug);
+  const d = card && card.slug === openSlug ? card : null;
 
   return (
     <div className="mt-3 rounded-xl bg-gray-50 p-3">
@@ -41,6 +59,9 @@ export default function DiseaseLookup({ text }: { text: string }) {
           </button>
         ))}
       </div>
+      {openSlug && !d && (
+        <p className="mt-3 text-xs text-gray-500">{failed ? "読み込めませんでした。電波のよいところで、もう一度タップしてください。" : "読み込み中…"}</p>
+      )}
       {d && (
         <div className="mt-3 space-y-3 rounded-lg bg-white p-3 text-sm leading-6 text-gray-900">
           <p>{d.summary.t}</p>
