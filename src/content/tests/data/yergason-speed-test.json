@@ -1,0 +1,73 @@
+{
+ "slug": "yergason-speed-test",
+ "name": "Yergasonテスト・Speedテスト(上腕二頭筋長頭腱炎)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Yergason",
+  "Yergasonテスト",
+  "Yergason test",
+  "Yargason",
+  "Yargason test",
+  "ヤーガソン",
+  "ヤーガソンテスト",
+  "Speed",
+  "Speedテスト",
+  "スピードテスト",
+  "上腕二頭筋腱炎",
+  "上腕二頭筋長頭腱炎",
+  "結節間溝"
+ ],
+ "rows": [
+  {
+   "item": "Yergasonテスト",
+   "target": "上腕二頭筋(長頭)腱炎",
+   "value": "腕を体側につけ、肘を90度に曲げた位置で、検者の抵抗に逆らって前腕を回外させる。陽性=結節間溝(上腕二頭筋腱の溝)に痛みが出る",
+   "exam": "54-am-33(上腕二頭筋腱炎で陽性を呈する検査=Yergason・正答。選択肢Adson・Apley・Finkelstein・Kemp)／53-pm-32(腱板断裂の徒手検査の選択肢に「Yargason test」と綴られ誤答。正答はdrop arm test)／60-pm-27(腰椎椎間板ヘルニアの疼痛誘発テストとして誤答選択肢)",
+   "q": [
+    "54-am-33",
+    "53-pm-32",
+    "60-pm-27"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.aafp.org/pubs/afp/issues/2009/0901/p470.html"
+    }
+   ]
+  },
+  {
+   "item": "Speedテスト",
+   "target": "上腕二頭筋(長頭)腱炎",
+   "value": "肘を伸ばし前腕を回外した姿勢で、検者の抵抗に逆らって肩を前方挙上する。陽性=結節間溝に放散する痛み",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.aafp.org/pubs/afp/issues/2009/0901/p470.html"
+    }
+   ]
+  },
+  {
+   "item": "結節間溝の圧痛",
+   "target": "上腕二頭筋腱炎の身体所見",
+   "value": "最も多い単独所見は結節間溝の圧痛。上腕を外旋すると圧痛点が後外側へ移ることが、二頭筋腱損傷に特異性の高い所見とされる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。国試で出る検査名の対応(二頭筋腱炎=Yergason)を覚えるための補足。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.aafp.org/pubs/afp/issues/2009/0901/p470.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

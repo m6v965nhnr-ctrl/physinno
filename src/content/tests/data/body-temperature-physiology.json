@@ -1,0 +1,106 @@
+{
+ "slug": "body-temperature-physiology",
+ "name": "体温の測定部位・日内変動・基礎体温",
+ "category": "臨床検査",
+ "aliases": [
+  "基礎体温",
+  "腋窩温",
+  "直腸温",
+  "口腔温",
+  "核心温度",
+  "深部体温",
+  "体温調節中枢",
+  "体温の日内変動",
+  "概日リズム",
+  "サーカディアンリズム"
+ ],
+ "rows": [
+  {
+   "item": "体温の日内変動",
+   "target": "体温の生理(概日リズム)",
+   "value": "ヒトの体温は午後〜夕方に最も高く、明け方に最も低くなる概日リズムを示す。ノンレム睡眠時は覚醒時より低下する。女性は排卵後に約0.6℃上昇し、月経開始とともに低下する周期的変動がある。",
+   "exam": "56-pm-66(体温について正しいのを2つ選ぶ。正答=「午前よりも午後にかけて高くなる」)",
+   "q": [
+    "56-pm-66"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://mededucation.hiroshima-u.ac.jp/pdf/download/%E4%BD%93%E6%B8%A9.pdf"
+    }
+   ]
+  },
+  {
+   "item": "測定部位による違い",
+   "target": "体温測定(核心温度との関係)",
+   "value": "臨床的に重要なのは核心温度。体温測定には腋窩温・口腔温・直腸温を用いるが、腋窩温<口腔温<直腸温≒核心温度の関係がある。健常者でも3部位は同じ値にならない。",
+   "exam": "56-pm-66(「直腸温は腋窩温よりも低い」は誤り。直腸温のほうが高い)",
+   "q": [
+    "56-pm-66"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://mededucation.hiroshima-u.ac.jp/pdf/download/%E4%BD%93%E6%B8%A9.pdf"
+    }
+   ]
+  },
+  {
+   "item": "基礎体温",
+   "target": "安静時の体温(排卵・月経周期の把握など)",
+   "value": "基礎体温は安静時の体温で、毎朝ベッドから出る前に測定して記録する。専用体温計は1/10度単位で読める。",
+   "exam": "56-pm-66(正答=「基礎体温は早朝覚醒安静時の体温である」)",
+   "q": [
+    "56-pm-66"
+   ],
+   "note": "確認済み[S2]。英語の患者向け資料(Healthwise)で、日本の学会資料ではない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://myhealth.alberta.ca/Health/pages/conditions.aspx?hwid=stb117006"
+    }
+   ]
+  },
+  {
+   "item": "体温調節中枢",
+   "target": "体温調節の中枢(視床下部)",
+   "value": "体温調節中枢の中心は視床下部の視索前野と前視床下部にある。中枢温度受容器も主に視床下部(視索前野・前視床下部)にあり、温ニューロンと冷ニューロンがある。",
+   "exam": "56-pm-66(「体温調節中枢は小脳にある」は誤り)",
+   "q": [
+    "56-pm-66"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://mededucation.hiroshima-u.ac.jp/pdf/download/%E4%BD%93%E6%B8%A9.pdf"
+    }
+   ]
+  },
+  {
+   "item": "加齢と体温",
+   "target": "高齢者の平熱",
+   "value": "高齢者では、皮下脂肪の減少・代謝の低下・薬剤などの加齢に伴う変化で、基礎の体温が低めになることがある(数値の記載なし)。自分の平熱を把握することが勧められる。",
+   "exam": "56-pm-66(「高齢者は小児よりも高い」は誤り)",
+   "q": [
+    "56-pm-66"
+   ],
+   "note": "要注意[S3]: 一般向けの健康情報で、小児との直接比較は確認できていない。「高齢者は小児より高い」を否定する根拠としては間接的。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.harvardhealth.org/healthy-aging-and-longevity/when-is-body-temperature-too-low"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

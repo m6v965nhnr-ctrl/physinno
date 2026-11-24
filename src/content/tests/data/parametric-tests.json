@@ -1,0 +1,143 @@
+{
+ "slug": "parametric-tests",
+ "name": "t検定・一元配置分散分析(正規分布を仮定する検定)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "t検定",
+  "Paired-t検定",
+  "対応のあるt検定",
+  "Studentのt検定",
+  "Welchのt検定",
+  "Welch検定",
+  "一元配置分散分析",
+  "分散分析",
+  "ANOVA",
+  "パラメトリック検定",
+  "検定の選択",
+  "多重比較"
+ ],
+ "rows": [
+  {
+   "item": "検定の選び方(正規性・対応・群の数)",
+   "target": "2群・3群以上の差の検定",
+   "value": "正規分布あり: 対応なし2群=Student/Welchのt検定、対応なし3群以上=一元配置分散分析、対応あり2群=対応のあるt検定、対応あり3群以上=反復測定分散分析。正規分布なし: 対応なし2群=Wilcoxon順位和検定(Mann-WhitneyのU検定)、対応なし3群以上=Kruskal-Wallis検定、対応あり2群=Wilcoxon符号順位検定、対応あり3群以上=Friedman検定",
+   "exam": "56-pm-22(対応なし・非正規・3群=Kruskal-Wallis)／59-am-21(対応あり・非正規・2群=Wilcoxon符号付順位)／60-am-11(対応あり・正規・2群=Paired-t)／55-pm-21(対応なし・正規・2群=Student)／61-am-28(3群以上の平均値の差=一元配置分散分析)／50-pm-49(3群の平均値の差=分散分析)",
+   "q": [
+    "56-pm-22",
+    "59-am-21",
+    "60-am-11",
+    "55-pm-21",
+    "61-am-28",
+    "50-pm-49"
+   ],
+   "note": "確認済み[S1][S2]。大学の講義資料(福島県立医大・大阪大学)で、表は一致。「対応がある」=同じ人の前後など、データの1行が同一対象にあたる場合[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "対応のあるt検定(Paired-t検定)",
+   "target": "同じ対象の前後比較など、対応がある2群・正規分布",
+   "value": "条件(大阪大学の資料): 対応あり／間隔尺度または比率尺度／データ数11以上／正規分布または仮定できる",
+   "exam": "60-am-11(Parkinson病30名の導入前後の歩行速度、正規分布=Paired-t検定が正答)／59-am-21・56-pm-22(誤答選択肢)",
+   "q": [
+    "60-am-11",
+    "59-am-21",
+    "56-pm-22"
+   ],
+   "note": "確認済み[S2]。データ数の目安(11以上)はこの資料の基準。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Studentのt検定・Welchのt検定",
+   "target": "対応がない正規分布の2群",
+   "value": "条件: 対応なし／間隔尺度または比率尺度／正規分布／等分散を仮定できればStudent、仮定できなければWelch(等分散はF検定で調べる)",
+   "exam": "55-pm-21(対応なし・正規分布の連続変数2群=Studentのt検定が正答)／50-pm-49(Welch検定は誤答選択肢)",
+   "q": [
+    "55-pm-21",
+    "50-pm-49"
+   ],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "一元配置分散分析(ANOVA)",
+   "target": "3群以上の平均値の差(正規分布・対応なし)",
+   "value": "3群以上の全体のばらつきの差を検定する。どの群とどの群に差があるかは分からないため、有意なら多重比較に進む(総当たり: Bonferroni・Tukey-Kramer・Holm など、対照群あり: Dunnett)",
+   "exam": "61-am-28(3群以上の連続変数の平均値の差=正答)／50-pm-49(3群の平均値の差=分散分析が正答)／56-pm-22・59-am-21・60-am-11(誤答選択肢)",
+   "q": [
+    "61-am-28",
+    "50-pm-49",
+    "56-pm-22",
+    "59-am-21",
+    "60-am-11"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    }
+   ]
+  },
+  {
+   "item": "3群以上にt検定を繰り返してはいけない",
+   "target": "多重性(第1種の過誤の増加)",
+   "value": "t検定を繰り返すと全体の有意水準が上がる(5%水準で2回行うと1−0.95²≒0.0975で約10%)。3群以上は分散分析で全体を調べ、そのあと多重比較で群間を調べる",
+   "exam": "50-pm-49(選択肢「t検定」は3群の比較には使えず誤答)",
+   "q": [
+    "50-pm-49"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    }
+   ]
+  },
+  {
+   "item": "反復測定分散分析",
+   "target": "対応あり・正規分布の3群以上",
+   "value": "対応のある3群以上(例:同じ人の介入前・中・後)の正規分布のデータに用いる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

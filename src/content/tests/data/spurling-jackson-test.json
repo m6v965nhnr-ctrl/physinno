@@ -1,0 +1,73 @@
+{
+ "slug": "spurling-jackson-test",
+ "name": "Spurlingテスト・Jacksonテスト(頸椎の神経根症状の誘発)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "スパーリング",
+  "頸椎椎間孔圧迫試験",
+  "頚椎椎間孔圧迫試験",
+  "Maximum Cervical Compression",
+  "頸椎症性神経根症",
+  "頚椎症性神経根症",
+  "頸部神経根症"
+ ],
+ "rows": [
+  {
+   "item": "Spurlingテスト(Maximum Cervical Compression)",
+   "target": "頸椎症性神経根症など、頸部神経根の圧迫",
+   "value": "座位の患者の後ろに立ち、頸椎を側屈・伸展・同側へ回旋させ、少しずつ上から軸圧を加える。陽性=上肢の痛み・しびれ・感覚異常の再現(神経根症候群を示唆)。頸部痛だけが出る場合は局所の頸椎病変を示唆",
+   "exam": "55-pm-32(Spurlingテスト陽性で疑う疾患=頸椎症性神経根症・正答。誤答=環軸関節回旋位固定・腰椎椎間板ヘルニア・腰椎分離症・腰部脊柱管狭窄症)／51-pm-32(頸椎の椎間孔圧迫試験=Spurling・正答。選択肢Adson・Allen・Morley・Wright)／58-am-33(腱板損傷の検査として誤答選択肢)",
+   "q": [
+    "55-pm-32",
+    "51-pm-32",
+    "58-am-33"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.uws.edu/wp-content/uploads/2026/06/Cervical-Orthopedic-Tests.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Spurlingテストの精度と使い方",
+   "target": "診断での位置づけ",
+   "value": "特異度は高く、感度は中等度とされる(系統的レビューの要約)。検者間信頼性は中〜低。他の検査(頸椎牽引テストなど)と組み合わせて判断する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。日本語の解説でも、痛みの再現・増強があれば神経根圧迫の診断を確定しやすいと述べられている[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.uws.edu/wp-content/uploads/2026/06/Cervical-Orthopedic-Tests.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jjsop/47/2/47_11/_article/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "Jacksonテスト(頸椎圧迫テスト)",
+   "target": "頸椎の神経根刺激・椎間関節病変",
+   "value": "座位で、頭部に上から垂直に圧迫を加える。陽性=上肢への放散痛・しびれ(神経根の圧迫を示唆)、または局所の頸部痛(椎間関節・筋の病変を示唆)。Spurlingより特異性は低いとされる",
+   "exam": "58-am-33(腱板損傷の検査として誤答選択肢。腱板損傷の検査ではない)",
+   "q": [
+    "58-am-33"
+   ],
+   "note": "出典[S1]は引用元の記載がない解説ページ。頭位(中間位か後屈か)の記載は資料で分かれるため、手技の細部は教科書で再確認が必要。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://physioassessment.vercel.app/test/jackson-compression-test"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

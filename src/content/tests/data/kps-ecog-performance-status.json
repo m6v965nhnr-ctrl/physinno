@@ -1,0 +1,55 @@
+{
+ "slug": "kps-ecog-performance-status",
+ "name": "活動能力の評価(Karnofsky Performance Status・ECOG PS)",
+ "category": "評価尺度",
+ "aliases": [
+  "KPS",
+  "Karnofsky",
+  "Karnofsky Performance Status",
+  "カルノフスキー",
+  "Performance Status",
+  "パフォーマンスステータス",
+  "ECOG",
+  "活動能力の評価"
+ ],
+ "rows": [
+  {
+   "item": "Karnofsky Performance Status(KPS)",
+   "target": "がん患者の活動能力・全身状態の評価",
+   "value": "100から0までを10点刻みで評価する(点数が高いほど良好)。100=普通の生活・労働が可能／90=特に看護する必要はない／70=労働はできないが家庭での療養が可能／60=日常生活の大部分で介助が必要／40=動けず、適切な医療・介護が必要／30=全く動けず入院が必要／20=入院が必要で重症／10=危篤。",
+   "exam": "59-am-20(乳房温存手術を予定している早期乳癌の周術期理学療法で、活動能力の評価方法として正しいのはKPS。誤答=CFS(cancer fatigue scale)・FACT・PPI・TNM分類)",
+   "q": [
+    "59-am-20"
+   ],
+   "note": "確認済み[S1]。80・50点の文言は資料の表から読み取れないため書いていない。出典は日本緩和医療学会ガイドライン中の抜粋表。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jspm.ne.jp/files/guideline/glhyd_2013/01_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ECOG Performance Status(PS)",
+   "target": "がん患者の全身状態の評価(JCOG日本語訳)",
+   "value": "0=全く問題なく活動できる(発病前と同じ日常生活が制限なく行える)／1=激しい活動は制限されるが歩行可能で軽作業・座っての作業はできる／2=歩行可能で身の回りのことはすべて可能だが作業はできず、日中の50%以上はベッド外で過ごす／3=限られた身の回りのことしかできず、日中の50%以上をベッドか椅子で過ごす／4=全く動けず、身の回りのことは全くできない。",
+   "exam": "出題は直接なし(参考。59-am-20 のKPSと同じ「全身状態の指標」)",
+   "q": [],
+   "note": "確認済み[S1]。パフォーマンスステータスは全身状態の指標の1つで、日常生活の制限の程度を示す[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jcog.jp/assets/C_150_0050.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://ganjoho.jp/public/qa_links/dictionary/dic01/modal/Performance_Status.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

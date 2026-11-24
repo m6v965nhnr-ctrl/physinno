@@ -1,0 +1,84 @@
+{
+ "slug": "spine-provocation-tests",
+ "name": "脊椎の誘発テスト(Spurling・Jackson・Kemp・FNST)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Spurlingテスト",
+  "スパーリングテスト",
+  "Jacksonテスト",
+  "ジャクソンテスト",
+  "Kempテスト",
+  "ケンプテスト",
+  "FNST",
+  "大腿神経伸展テスト",
+  "椎間孔圧迫試験",
+  "椎間孔圧迫テスト",
+  "Femoral nerve stretch test"
+ ],
+ "rows": [
+  {
+   "item": "Spurlingテスト(椎間孔圧迫試験)",
+   "target": "頚椎症性神経根症・頸椎椎間板ヘルニア",
+   "value": "頸椎を少し後屈させた状態で側屈させる。頚椎症性神経根症では患側へ側屈させると椎間孔の狭窄が増強し、患側上肢へ放散痛が出れば陽性。",
+   "exam": "51-pm-32(「頸椎の椎間孔圧迫試験はどれか」の正答=Spurlingテスト。誤答=Adson・Allen・Morley・Wright)",
+   "q": [
+    "51-pm-32"
+   ],
+   "note": "確認済み[S1]。国試では「椎間孔圧迫試験」と呼ばれるテストがSpurlingテストに当たる(資料では「椎間孔狭窄が増強する」と記載)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hama-med.repo.nii.ac.jp/record/2000311/files/%E9%96%A2%E7%AF%80%E5%A4%96%E7%A7%91-41-17.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Jacksonテスト",
+   "target": "頚椎椎間板ヘルニア・頚椎症性神経根症",
+   "value": "頸椎を後屈して軸圧(頭部への圧迫)をかける。上肢への放散痛が見られれば陽性。",
+   "exam": "出題は直接なし(参考。Spurlingテストと対比される)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hama-med.repo.nii.ac.jp/record/2000311/files/%E9%96%A2%E7%AF%80%E5%A4%96%E7%A7%91-41-17.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Kempテスト",
+   "target": "腰部脊柱管狭窄症・腰椎椎間孔狭窄",
+   "value": "立位で肩幅に足を開き、体をやや後方に反らしたまま側屈させる。臀部や下肢への放散痛があれば、同側の腰椎椎間孔狭窄を疑う。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hama-med.repo.nii.ac.jp/record/2000311/files/%E9%96%A2%E7%AF%80%E5%A4%96%E7%A7%91-41-17.pdf"
+    }
+   ]
+  },
+  {
+   "item": "大腿神経伸展テスト(FNST)",
+   "target": "L3・L4神経根障害(腰部脊柱管狭窄症・椎間板ヘルニア)",
+   "value": "腹臥位で下肢を挙上して股関節を伸展させる。大腿前面(大腿神経領域)への放散痛が出れば陽性。",
+   "exam": "出題は直接なし(参考。SLRはL5・S1、FNSTはL3・L4)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hama-med.repo.nii.ac.jp/record/2000311/files/%E9%96%A2%E7%AF%80%E5%A4%96%E7%A7%91-41-17.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

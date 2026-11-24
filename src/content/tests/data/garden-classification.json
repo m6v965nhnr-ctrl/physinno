@@ -1,0 +1,63 @@
+{
+ "slug": "garden-classification",
+ "name": "Garden分類(大腿骨頚部骨折)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "Garden分類",
+  "ガーデン分類",
+  "Garden stage",
+  "大腿骨頚部骨折",
+  "大腿骨頸部骨折"
+ ],
+ "rows": [
+  {
+   "item": "Garden分類 stage I〜IV",
+   "target": "大腿骨頚部骨折の転位の程度(単純X線)",
+   "value": "stage I=不完全骨折／II=完全骨折で転位なし／III=完全骨折で転位あり／IV=完全骨折で転位が高度。I・IIを非転位型、III・IVを転位型とまとめる。",
+   "exam": "58-am-89(「Colles骨折で正しいのはどれか」。誤答=「骨折の分類にはGarden分類が用いられる」。Garden分類は大腿骨頚部骨折の分類で、Colles骨折(橈骨遠位端骨折)のものではない)",
+   "q": [
+    "58-am-89"
+   ],
+   "note": "確認済み[S1](公立病院の総説。ガイドライン本文は、ここでは未確認)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hospital.city.sendai.jp/pdf/p003-008%2029.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Garden分類と治療方針",
+   "target": "手術の選択",
+   "value": "非転位型(I・II)は骨癒合率が高く骨頭壊死の合併率が低いので、内固定材を用いた観血的整復固定術が第一選択。転位型(III・IV)は人工骨頭置換術が推奨される。年齢や全身状態を考慮して個別に選ぶ。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://hospital.city.sendai.jp/pdf/p003-008%2029.pdf"
+    }
+   ]
+  },
+  {
+   "item": "大腿骨頚部(内側)骨折の特徴",
+   "target": "病態",
+   "value": "関節内で折れる内側骨折は血液循環が悪く骨癒合が得にくい。血流障害により、のちに骨頭がつぶれる骨頭壊死の合併に注意する。骨粗鬆症のある高齢者に多い。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/femoral_neck_fracture.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

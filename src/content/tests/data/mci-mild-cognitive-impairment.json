@@ -1,0 +1,73 @@
+{
+ "slug": "mci-mild-cognitive-impairment",
+ "name": "軽度認知障害(MCI)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "MCI",
+  "軽度認知障害",
+  "mild cognitive impairment",
+  "健忘型MCI",
+  "コンバート率"
+ ],
+ "rows": [
+  {
+   "item": "MCIの有病率(65歳以上)",
+   "target": "疫学",
+   "value": "我が国の65歳以上のMCI有病率は15.5%(2022年調査、性年齢調整後、約559万人)。認知症は12.3%(約443万人)で、合わせて約28%。2012年調査ではMCI 13.0%(約400万人)、認知症15.0%(約462万人)。診療ガイドラインでは、研究ごとに異なるが65歳以上で15〜25%、罹患率は20〜50/1,000人年程度と推定される。",
+   "exam": "60-am-26(「我が国の65歳以上の高齢者におけるMCIの有病率で適切なのはどれか」。選択肢5・15・35・55・75%。正答=15%)",
+   "q": [
+    "60-am-26"
+   ],
+   "note": "確認済み[S1][S2]。2040年の推計はMCI約613万人(2022年の有病率が一定と仮定した場合)[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/content/001279920.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.neurology-jp.org/guidelinem/degl/degl_2017_04.pdf"
+    }
+   ]
+  },
+  {
+   "item": "MCIから認知症への移行・正常への回復",
+   "target": "経過",
+   "value": "軽度認知障害から認知症へのコンバートはおよそ5〜15%/年、正常へのリバートはおよそ16〜41%/年と考えられる(研究により幅がある。専門医による追跡のほうが移行率は高い)。5年間の観察で837名のうち352名(42.1%)がAlzheimer型認知症に進んだとする報告もある。",
+   "exam": "49-am-98(Alzheimer型認知症について。誤答=「軽度認知障害の80%はAlzheimer型認知症に移行する」。正答は別の選択肢)",
+   "q": [
+    "49-am-98"
+   ],
+   "note": "確認済み[S1]。MCIの全員が認知症になるわけではなく、正常に戻る人もいる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/degl/degl_2017_04.pdf"
+    }
+   ]
+  },
+  {
+   "item": "MCIの定義と診断",
+   "target": "診断",
+   "value": "認知症とも知的に正常とも言えない中間状態。①もの忘れの訴え ②神経心理検査で年齢に比して記憶障害を確認 ③一般的な認知機能は正常 ④家事や仕事などの日常生活動作(ADL)は概ね正常 ⑤認知症ではない。分類は健忘型(amnestic)か非健忘型か、さらに単一領域か複数領域か。定型のMCI診断法が確立されているとは言い難い。",
+   "exam": "出題は直接なし(参考。60-am-26・49-am-98 の背景)",
+   "q": [],
+   "note": "確認済み[S1][S2]。S1は2010年版ガイドライン。厚生労働省の資料でも「日常生活は自立しているため認知症とは診断されない状態」と定義されている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/degl/sinkei_degl_2010_cqivb-1.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.mhlw.go.jp/content/001279920.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

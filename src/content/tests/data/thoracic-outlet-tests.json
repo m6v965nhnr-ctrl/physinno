@@ -1,0 +1,128 @@
+{
+ "slug": "thoracic-outlet-tests",
+ "name": "胸郭出口症候群の誘発テスト(Adson・Wright・Roos・Eden・Morley)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Adsonテスト",
+  "アドソンテスト",
+  "Wrightテスト",
+  "ライトテスト",
+  "Roosテスト",
+  "ルーステスト",
+  "Edenテスト",
+  "エデンテスト",
+  "Morleyテスト",
+  "モーレーテスト",
+  "モーリーテスト",
+  "胸郭出口症候群",
+  "3分間テスト",
+  "過外転テスト"
+ ],
+ "rows": [
+  {
+   "item": "Adsonテスト",
+   "target": "胸郭出口症候群(斜角筋部での鎖骨下動脈の圧迫)",
+   "value": "座位で患側に顔を向けて首を反らせ(頸部伸展・患側へ回旋)、深呼吸させる。鎖骨下動脈が圧迫され、橈骨動脈の脈が弱くなる、または触れなくなれば陽性。",
+   "exam": "51-pm-32(頸椎の椎間孔圧迫試験を選ぶ問題。Adsonは誤答。正答はSpurling)／54-am-33(上腕二頭筋腱炎で陽性となる検査。Adsonは誤答。正答はYergason)／60-pm-27(腰椎椎間板ヘルニアの疼痛誘発テスト。Adsonは誤答。正答はBragard)",
+   "q": [
+    "51-pm-32",
+    "54-am-33",
+    "60-pm-27"
+   ],
+   "note": "確認済み[S1]。国試ではいずれも「胸郭出口症候群の検査」として誤答側に出る。日本の1982年の比較研究では、陽性率は低いが診断的価値があるとされた[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/thoracic_outlet_syndrome.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/nishiseisai1951/30/3/30_3_448/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "Wrightテスト(過外転テスト)",
+   "target": "胸郭出口症候群(肩の過外転での血管・神経の圧迫)",
+   "value": "座位で両肩を90度外転・90度外旋、肘を90度屈曲させる。橈骨動脈の脈が弱くなる・触れなくなる、または手の血行が失われて白くなれば陽性。",
+   "exam": "51-pm-32(選択肢の誤答の1つ)",
+   "q": [
+    "51-pm-32"
+   ],
+   "note": "確認済み[S1]。健常者の約半数がWright陽性という報告がある[S2]ため、陽性だけでは診断できない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/thoracic_outlet_syndrome.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/nishiseisai1951/30/3/30_3_448/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "Roosテスト(3分間テスト)",
+   "target": "胸郭出口症候群",
+   "value": "Wrightと同じ肢位(両肩90度外転・外旋、肘90度屈曲)で、両手の指を3分間屈伸させる。しびれや前腕のだるさで続けられず、途中で腕を降ろしてしまえば陽性。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。1982年の比較研究では、3分間テスト陽性とMorleyテストでの放散痛が診断価値が最も高いと考えられた[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/thoracic_outlet_syndrome.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/nishiseisai1951/30/3/30_3_448/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "Edenテスト(肋鎖間圧迫テスト)",
+   "target": "胸郭出口症候群(腕神経叢の絞扼による上肢のしびれ)",
+   "value": "座位で胸を張らせ、両肩を後下方に引かせる(両手を後下方へ牽引)。橈骨動脈の脈が弱くなる、または触れなくなれば陽性。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/thoracic_outlet_syndrome.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://hama-med.repo.nii.ac.jp/record/2000311/files/%E9%96%A2%E7%AF%80%E5%A4%96%E7%A7%91-41-17.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Morleyテスト(腕神経叢圧迫テスト)",
+   "target": "胸郭出口症候群(腕神経叢の圧痛・放散痛)",
+   "value": "両腕を体側に置いた姿勢で、検者が鎖骨上窩を30秒間圧迫する。痛みや典型的な知覚異常(放散痛・症状の再現)が出れば陽性。局所の圧痛だけでは陽性としない。",
+   "exam": "51-pm-32(選択肢の誤答の1つ)",
+   "q": [
+    "51-pm-32"
+   ],
+   "note": "要注意[S4]: 手技は理学療法系の解説サイトの記載で、学会資料では確認できていない。放散痛が診断的に有用とされた点は日本の研究[S2]で確認。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.physiotutors.com/ja/wiki/morley-test/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/nishiseisai1951/30/3/30_3_448/_article/-char/en"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

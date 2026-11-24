@@ -1,0 +1,148 @@
+{
+ "slug": "gmfm",
+ "name": "GMFM(粗大運動能力尺度)",
+ "category": "評価尺度",
+ "aliases": [
+  "GMFM",
+  "GMFM-88",
+  "GMFM-66",
+  "粗大運動能力尺度",
+  "粗大運動機能尺度",
+  "Item Map",
+  "アイテムマップ",
+  "GMAE"
+ ],
+ "rows": [
+  {
+   "item": "GMFM-88 の構成と採点",
+   "target": "脳性麻痺児などの粗大運動の評価",
+   "value": "88項目・5領域(A 臥位と寝返り、B 座位、C 四つ這いと膝立ち、D 立位、E 歩行・走行・ジャンプ)。各項目は0〜3の4段階(0=開始しない、1=開始するが10%未満、2=部分的に完了、3=完全に完了)。領域別の%と総合%を出す",
+   "exam": "56-am-31(誤答:「4領域88項目」→正しくは5領域、「各項目0〜4の5段階」→正しくは0〜3の4段階)／54-am-36(誤答:「各項目0〜4の5段階」)",
+   "q": [
+    "56-am-31",
+    "54-am-36"
+   ],
+   "note": "確認済み[S1][S2]。セルフケア(ADL)の領域はない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    },
+    {
+     "label": "S2",
+     "url": "https://canchild.ca/resources/321-gmfm-scoring/"
+    }
+   ]
+  },
+  {
+   "item": "課題の基準年齢",
+   "target": "項目はどの子どもを基準に作られたか",
+   "value": "項目は、定型発達の子どもが5歳までにできる課題で構成されている(健常5歳児が達成可能)",
+   "exam": "54-am-36(正答=健常5歳児であれば達成可能な項目で構成される)／56-am-31(誤答:「健常3歳児が達成可能」)",
+   "q": [
+    "54-am-36",
+    "56-am-31"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    }
+   ]
+  },
+  {
+   "item": "尺度の性質(GMFM-88とGMFM-66)",
+   "target": "順序尺度か間隔尺度か",
+   "value": "GMFM-88は順序尺度。GMFM-66は、Rasch分析で項目を難易度順に並べ、順序データを間隔尺度に変換したもので、66項目。採点にはGMAEソフトが必要で、0〜100点の総合点と95%信頼区間が出る",
+   "exam": "54-am-36(誤答:「GMFM-88は間隔尺度として使用される」)",
+   "q": [
+    "54-am-36"
+   ],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    },
+    {
+     "label": "S2",
+     "url": "https://canchild.ca/resources/321-gmfm-scoring/"
+    }
+   ]
+  },
+  {
+   "item": "Item Map",
+   "target": "項目の難易度を示す図",
+   "value": "項目の難易度の推定値を示す図(項目番号順・難易度順で表示できる)。子どもができた項目、能力水準に近い項目、出現しつつある技能がわかり、GMFM-66のGMAE/GMFM App+で出る。次に取り組む課題や目標を考える材料になる",
+   "exam": "61-pm-36(正答:Item Mapを作成できる)／56-am-31(正答:次に獲得すべき能力をItem Mapで予測・検討できる)／54-am-36(誤答:「Item Mapの使用により認知機能の判定が可能」)",
+   "q": [
+    "61-pm-36",
+    "56-am-31",
+    "54-am-36"
+   ],
+   "note": "確認済み[S2]。出典のItem Mapは運動項目の難易度の情報で、認知機能の判定の記載はない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://canchild.ca/resources/321-gmfm-scoring/"
+    }
+   ]
+  },
+  {
+   "item": "対象",
+   "target": "どんな子どもに使う尺度か",
+   "value": "もとは脳性麻痺児(5か月〜16歳)で妥当性が確認された。その後、ダウン症・後天性脳損傷・骨形成不全・福山型先天性筋ジストロフィー・脊髄性筋萎縮症などでも信頼性・妥当性が報告されている。ほかの集団に使うときは、その集団での確認が必要。GMFM-66の対象は脳性麻痺",
+   "exam": "61-pm-36(誤答:「二分脊椎が対象」「対象年齢0〜18歳」「セルフケアの評価を含む」)",
+   "q": [
+    "61-pm-36"
+   ],
+   "note": "確認済み[S1]。出典の列挙に二分脊椎は含まれない。「0〜18歳」は出典の年齢(5か月〜16歳)と異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    }
+   ]
+  },
+  {
+   "item": "GMFCSとの違い",
+   "target": "「レベルⅠ〜Ⅴの分類」はGMFCS",
+   "value": "GMFCSは脳性麻痺児の運動機能・補助具の必要度を、Ⅰ(軽い)〜Ⅴ(重い)の5段階に分類するシステム。GMFMは変化を測る評価尺度。GMFCSは分類のためのもので、変化の測定には使わない",
+   "exam": "61-pm-36(誤答:「重症度をレベルⅠ〜Ⅴに分類」→これはGMFCS)",
+   "q": [
+    "61-pm-36"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    }
+   ]
+  },
+  {
+   "item": "GMFM-88 と GMFM-66 の使い分け",
+   "target": "どちらを使うか",
+   "value": "GMFM-66はGMFM-88のA〜C領域から22項目を除いており、幼い子どもやGMFCSレベルⅤにはGMFM-88が勧められる。GMFM-66は、検査中に装具・靴・補助具を使えない(GMFM-88は使える)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11540451"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

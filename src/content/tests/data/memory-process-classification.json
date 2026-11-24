@@ -1,0 +1,140 @@
+{
+ "slug": "memory-process-classification",
+ "name": "記憶の過程と分類(記銘・保持・想起/展望記憶/エピソード記憶ほか)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "記憶過程",
+  "記銘",
+  "想起",
+  "展望記憶",
+  "予定記憶",
+  "エピソード記憶",
+  "意味記憶",
+  "手続き記憶",
+  "プライミング",
+  "短期記憶",
+  "長期記憶",
+  "ワーキングメモリー",
+  "作業記憶",
+  "前向性健忘",
+  "逆向性健忘",
+  "顕在記憶",
+  "潜在記憶"
+ ],
+ "rows": [
+  {
+   "item": "記憶の過程(取り込み・保持・取り出し)",
+   "target": "記憶障害の理解",
+   "value": "記憶は「情報の取り込み(記銘)→保持→取り出し(再生・再認=想起)」のいずれの段階でも障害を受ける。大阪府の手引きは記憶障害を、新しい情報を覚え、保持し、必要なときに引き出すことの困難と説明する。",
+   "exam": "56-am-78 正答=記銘・想起(誤答:計画立案・転換・配分)",
+   "q": [
+    "56-am-78"
+   ],
+   "note": "確認済み[S1][S2]。「記憶過程の要素」としての記銘・保持・想起は埼玉県資料の表現による。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.pref.saitama.lg.jp/documents/20853/rikaihen.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.pref.osaka.lg.jp/documents/5405/r6handbook_daiippen.pdf"
+    }
+   ]
+  },
+  {
+   "item": "遂行機能・注意の要素(記憶過程ではない)",
+   "target": "誤答選択肢の整理",
+   "value": "遂行機能には、目標の設定、計画の立案と実行、効果的な行動、自己の行動のモニタリングと客観的評価が含まれる。全般性注意は選択性・持続性・転換性・配分性に分けられる。したがって「計画立案」は遂行機能、「転換」「配分」は注意の要素で、記憶過程(記銘・保持・想起)の要素ではない。",
+   "exam": "56-am-78 誤答選択肢(計画立案・転換・配分)",
+   "q": [
+    "56-am-78"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fukushi.metro.tokyo.lg.jp/documents/d/fukushi/2022handbook-2shou-2"
+    }
+   ]
+  },
+  {
+   "item": "展望記憶(予定記憶)",
+   "target": "未来の予定・約束の記憶",
+   "value": "未来の出来事(約束)を成就するための記憶。例:「明日3時にAさんに会う」なら、その事実を覚え、時刻近くになったら思い起こす必要がある。J-STAGEの総説抄録でも、展望記憶は未来の出来事を意図し自発的に想起するもの、とされる。",
+   "exam": "50-am-79 正答=展望記憶(「30分後にベルが鳴ったら訓練を終了してください」)",
+   "q": [
+    "50-am-79"
+   ],
+   "note": "確認済み[S1][S2]。誤答は意味記憶・手続き記憶・プライミング・エピソード記憶。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fukushi.metro.tokyo.lg.jp/documents/d/fukushi/2022handbook-2shou-2"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/hbfr/39/3/39_320/_article/-char/ja/"
+    }
+   ]
+  },
+  {
+   "item": "エピソード記憶・意味記憶・手続き記憶",
+   "target": "記憶の内容による分類",
+   "value": "エピソード記憶=過去に経験した個人的な出来事の記憶(例:昨日学校で数学を勉強した)／意味記憶=言葉の概念に関する一般知識(例:横断歩道とは何か)／手続き記憶=繰り返しの学習で体得した技術・手順(スポーツや楽器演奏)。",
+   "exam": "50-am-79 誤答選択肢(意味記憶・手続き記憶・エピソード記憶)",
+   "q": [
+    "50-am-79"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fukushi.metro.tokyo.lg.jp/documents/d/fukushi/2022handbook-2shou-2"
+    }
+   ]
+  },
+  {
+   "item": "記憶の分類(保持時間・顕在/潜在)",
+   "target": "分類の全体像",
+   "value": "埼玉県の資料の図:記憶は長期記憶と短期記憶(短期の保持)に分かれ、長期記憶は顕在記憶(エピソード記憶・意味記憶)と潜在記憶(手続き記憶・プライミング)に分かれる。短期記憶は数秒〜1分程度、長期記憶は数分〜数十年に及ぶ(近時記憶=数分〜数か月前、遠隔記憶=何年にもわたる過去)。",
+   "exam": "50-am-79 誤答選択肢(プライミング)",
+   "q": [
+    "50-am-79"
+   ],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.pref.saitama.lg.jp/documents/20853/rikaihen.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.fukushi.metro.tokyo.lg.jp/documents/d/fukushi/2022handbook-2shou-2"
+    }
+   ]
+  },
+  {
+   "item": "前向性健忘・逆向性健忘・ワーキングメモリー",
+   "target": "記憶障害の用語",
+   "value": "前向性健忘=発症・受傷の後の出来事の記憶障害(新しいことの学習が困難)／逆向性健忘=発症・受傷の前の出来事の記憶障害／作業記憶=課題遂行中に情報を一時的に保持し、適宜引き出す記憶。作話=記憶の欠落を事実と異なる内容で埋めて話すこと。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fukushi.metro.tokyo.lg.jp/documents/d/fukushi/2022handbook-2shou-2"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

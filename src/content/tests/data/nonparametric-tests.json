@@ -1,0 +1,131 @@
+{
+ "slug": "nonparametric-tests",
+ "name": "Kruskal-Wallis・Mann-Whitney・Wilcoxon検定(ノンパラメトリック検定)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "Kruskal-Wallis検定",
+  "Kruskal-Wallis",
+  "クラスカル・ウォリス",
+  "Mann-WhitneyのU検定",
+  "Mann-Whitney",
+  "Mann-Whitney U",
+  "U検定",
+  "Wilcoxon符号付順位検定",
+  "Wilcoxonの符号順位検定",
+  "Wilcoxon順位和検定",
+  "Wilcoxonの順位和検定",
+  "Friedman検定",
+  "ノンパラメトリック検定"
+ ],
+ "rows": [
+  {
+   "item": "検定の選び方(正規性・対応・群の数)",
+   "target": "2群・3群以上の差の検定",
+   "value": "正規分布あり: 対応なし2群=Student/Welchのt検定、対応なし3群以上=一元配置分散分析、対応あり2群=対応のあるt検定、対応あり3群以上=反復測定分散分析。正規分布なし: 対応なし2群=Wilcoxon順位和検定(Mann-WhitneyのU検定)、対応なし3群以上=Kruskal-Wallis検定、対応あり2群=Wilcoxon符号順位検定、対応あり3群以上=Friedman検定",
+   "exam": "56-pm-22(対応なし・非正規・3群=Kruskal-Wallis)／59-am-21(対応あり・非正規・2群=Wilcoxon符号付順位)／60-am-11(対応あり・正規・2群=Paired-t)／55-pm-21(対応なし・正規・2群=Student)／61-am-28(3群以上の平均値の差=一元配置分散分析)／50-pm-49(3群の平均値の差=分散分析)",
+   "q": [
+    "56-pm-22",
+    "59-am-21",
+    "60-am-11",
+    "55-pm-21",
+    "61-am-28",
+    "50-pm-49"
+   ],
+   "note": "確認済み[S1][S2]。大学の講義資料(福島県立医大・大阪大学)で、表は一致。「対応がある」=同じ人の前後など、データの1行が同一対象にあたる場合[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Kruskal-Wallis検定",
+   "target": "対応がなく正規分布でない3群以上",
+   "value": "対応なし・正規分布でない・3群以上の差の検定。全体の差だけを調べ、群間の差は多重比較で調べる(総当たり: Steel-Dwass・Games-Howell・Scheffe、対照群あり: Steel)",
+   "exam": "56-pm-22(対応がなく正規分布を示さない連続変数の3群間の差=正答)／59-am-21・60-am-11(誤答選択肢)／55-pm-21(誤答選択肢)",
+   "q": [
+    "56-pm-22",
+    "59-am-21",
+    "60-am-11",
+    "55-pm-21"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Mann-WhitneyのU検定(Wilcoxonの順位和検定)",
+   "target": "対応がなく正規分布でない2群",
+   "value": "対応なし2群のノンパラメトリック検定。名義・順序尺度のデータ、データ数が10以下、または明らかに正規分布でないときに用いる(大阪大学の資料)",
+   "exam": "59-am-21・60-am-11・56-pm-22・61-am-28(いずれも誤答選択肢。対応あり、正規分布、3群、平均値の差の設問のため)",
+   "q": [
+    "59-am-21",
+    "60-am-11",
+    "56-pm-22",
+    "61-am-28"
+   ],
+   "note": "確認済み[S1][S2]。Wilcoxonの順位和検定とMann-WhitneyのU検定は同じ枠に並べられている[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Wilcoxonの符号付順位検定",
+   "target": "対応があり正規分布でない2群",
+   "value": "対応あり2群のノンパラメトリック検定。間隔・比率尺度のデータで、データ数が10以下、または明らかに正規分布でないときに用いる(大阪大学の資料)。正規分布のデータなら対応のあるt検定",
+   "exam": "59-am-21(対応があり正規分布を示さない連続変数の2群間の差=正答)／60-am-11(誤答:データが正規分布のため不適切)",
+   "q": [
+    "59-am-21",
+    "60-am-11"
+   ],
+   "note": "確認済み[S1][S2]。資料の表記は「符号順位(和)検定」で、国試は「符号付順位検定」「符号順位検定」と表記。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.library.osaka-u.ac.jp/doc/LS_20181211_statistics.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Friedman検定",
+   "target": "対応あり・正規分布でない3群以上",
+   "value": "対応のある3群以上でノンパラメトリックのとき用いる(反復測定分散分析のノンパラメトリック側の位置づけ)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

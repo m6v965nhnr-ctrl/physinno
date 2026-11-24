@@ -1,0 +1,95 @@
+{
+ "slug": "nuclear-medicine-neuro",
+ "name": "核医学検査(MIBG心筋シンチグラフィー・DATスキャン・脳血流SPECT)",
+ "category": "臨床検査",
+ "aliases": [
+  "MIBG",
+  "MIBG心筋シンチグラフィー",
+  "MIBG心筋シンチ",
+  "心縦隔比",
+  "心/縦隔比",
+  "H/M比",
+  "SPECT",
+  "脳血流SPECT",
+  "局所脳血流",
+  "DATスキャン",
+  "ドパミントランスポーター",
+  "核医学検査"
+ ],
+ "rows": [
+  {
+   "item": "MIBG心筋シンチグラフィー(心/縦隔比)",
+   "target": "Parkinson病・Lewy小体型認知症と、PSP・MSAなどの鑑別",
+   "value": "心臓の交感神経(節後線維)の分布を画像化する検査。Parkinson病(Lewy小体病)では心筋のMIBG集積が高率に低下し、心/縦隔比(H/M比)が低い。臨床的に鑑別が難しい進行性核上性麻痺(PSP)・多系統萎縮症(MSA)では集積はほとんど低下しない。",
+   "exam": "56-am-89(進行性核上性麻痺について。誤答選択肢「MIBG心筋シンチグラフィーで心/縦隔比が低下する」。正答は「垂直方向の眼球運動障害を呈する」)",
+   "q": [
+    "56-am-89"
+   ],
+   "note": "確認済み[S1]。Lewy小体型認知症でも低下する[S2]。虚血性心疾患・心不全・糖尿病・末梢神経障害や一部の薬剤でも集積が下がりうるため、結果は慎重に解釈する[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.nms.ac.jp/sh/jmanms/pdf/003040167.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5496518/"
+    }
+   ]
+  },
+  {
+   "item": "脳血流SPECT: 後頭葉の血流低下",
+   "target": "Lewy小体型認知症とAlzheimer型認知症の鑑別",
+   "value": "Lewy小体型認知症(や認知機能障害を伴うParkinson病)では後頭葉皮質を中心とした血流低下がみられる。Alzheimer病では後部帯状回や楔前部の血流低下が目立つ。",
+   "exam": "57-am-97(「後頭葉の血流量低下が特徴的なのはどれか」。正答=Lewy小体型認知症。誤答=HIV認知症・血管性認知症・前頭側頭型認知症・Alzheimer型認知症)",
+   "q": [
+    "57-am-97"
+   ],
+   "note": "確認済み[S1][S2]。2017年改訂のDLB診断基準では、SPECT/PETでの後頭葉の活動低下は「支持的」バイオマーカー(診断特異性は指標的より低い)[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.nms.ac.jp/sh/jmanms/pdf/003040167.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5496518/"
+    }
+   ]
+  },
+  {
+   "item": "Lewy小体型認知症(DLB)の診断バイオマーカー(2017年改訂基準)",
+   "target": "DLBの診断",
+   "value": "指標的: ①SPECT/PETで基底核のDAT(ドパミントランスポーター)取り込み低下 ②MIBG心筋シンチの取り込み低下 ③睡眠ポリグラフでREM睡眠時の筋活動低下(REM sleep without atonia)。支持的: CT/MRIで内側側頭葉が比較的保たれる／SPECT/PETで全般的な取り込み低下・後頭葉の活動低下／FDG-PETの帯状回島徴候など。",
+   "exam": "出題は直接なし(参考。56-am-89・57-am-97 の背景)",
+   "q": [],
+   "note": "確認済み[S1]。中核的特徴1つ以上＋指標的バイオマーカー1つ以上でprobable DLB。バイオマーカーのみで認知症があり中核的特徴がなければpossible DLB。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5496518/"
+    }
+   ]
+  },
+  {
+   "item": "DATスキャン(123I-FP-CIT SPECT)",
+   "target": "DLBとAlzheimer病の鑑別",
+   "value": "基底核(線条体)のドパミントランスポーター取り込み低下を示す。DLBとADの鑑別に有用(感度78%・特異度90%)で、Alzheimer病では取り込みは保たれる。PSP・MSA・大脳皮質基底核変性症・前頭側頭型認知症でも取り込みが低下しうるため、これらの除外が必要。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5496518/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

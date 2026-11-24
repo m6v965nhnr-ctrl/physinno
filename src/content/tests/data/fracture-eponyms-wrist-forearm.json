@@ -1,0 +1,117 @@
+{
+ "slug": "fracture-eponyms-wrist-forearm",
+ "name": "骨折の名称と部位(Colles・Smith・Barton・Bennett・Monteggia)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "Colles骨折",
+  "Smith骨折",
+  "Barton骨折",
+  "Bennett骨折",
+  "Monteggia骨折",
+  "コレス骨折",
+  "スミス骨折",
+  "silver fork変形"
+ ],
+ "rows": [
+  {
+   "item": "Colles骨折",
+   "target": "橈骨遠位端骨折(遠位骨片が背側へ転位)",
+   "value": "橈骨遠位端の骨折で、手首側の骨片が手の甲側(背側)へずれる。フォークを伏せたような変形(silver fork変形)。手のひらをついて転倒して起こり、骨粗鬆症のある中高年の女性に多い。正中神経が骨片や腫れで圧迫・損傷されることがあり、母指〜薬指の感覚障害、示指先端のしびれ、つまみ力の低下が出る。",
+   "exam": "58-am-89(正答=「合併症に正中神経損傷がある」。誤答=「成人より小児に多い」「尺骨遠位端の骨折である」「遠位骨片は掌側に転位する」)／49-pm-87(誤答=「Colles骨折 ―― 上腕骨骨幹部」)",
+   "q": [
+    "58-am-89",
+    "49-pm-87"
+   ],
+   "note": "確認済み[S1][S2]。橈骨遠位端骨折の大半は背側転位で特に高齢者に多いとされ、小児に多いとは書かれていない[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/distal_radius_fracture.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-%E5%A4%96%E5%82%B7%E3%81%A8%E4%B8%AD%E6%AF%92/%E9%AA%A8%E6%8A%98/%E6%A9%88%E9%AA%A8%E9%81%A0%E4%BD%8D%E7%AB%AF%E9%AA%A8%E6%8A%98"
+    }
+   ]
+  },
+  {
+   "item": "Smith骨折",
+   "target": "橈骨遠位端骨折(遠位骨片が掌側へ転位)",
+   "value": "橈骨遠位端の骨折で、遠位骨片が掌側(手のひら側)に転位・屈曲する(reverse Colles)。手関節が屈曲した状態で転倒して起こる。Colles骨折より頻度は低い。",
+   "exam": "49-pm-87(正答=「Smith骨折 ―― 橈骨遠位端」)",
+   "q": [
+    "49-pm-87"
+   ],
+   "note": "確認済み[S1][S2][S3]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.joa.or.jp/public/sick/condition/distal_radius_fracture.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/22-%E5%A4%96%E5%82%B7%E3%81%A8%E4%B8%AD%E6%AF%92/%E9%AA%A8%E6%8A%98/%E6%A9%88%E9%AA%A8%E9%81%A0%E4%BD%8D%E7%AB%AF%E9%AA%A8%E6%8A%98"
+    },
+    {
+     "label": "S3",
+     "url": "https://intjem.biomedcentral.com/articles/10.1186/s12245-015-0075-2"
+    }
+   ]
+  },
+  {
+   "item": "Barton骨折",
+   "target": "橈骨遠位端の関節内骨折",
+   "value": "橈骨遠位端の斜めの関節内骨折で、遠位骨片が背側または掌側に転位する(掌側Barton・背側Barton)。不安定で、手術が必要になることが多い。尺骨遠位端の骨折ではない。",
+   "exam": "49-pm-87(誤答=「Barton骨折 ―― 尺骨遠位端」)",
+   "q": [
+    "49-pm-87"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://intjem.biomedcentral.com/articles/10.1186/s12245-015-0075-2"
+    }
+   ]
+  },
+  {
+   "item": "Bennett骨折",
+   "target": "第1中手骨基部の骨折",
+   "value": "第1中手骨(母指)基部の斜めの関節内骨折。第2中手骨ではない。",
+   "exam": "49-pm-87(誤答=「Bennett骨折 ―― 第2中手骨基部」)",
+   "q": [
+    "49-pm-87"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://intjem.biomedcentral.com/articles/10.1186/s12245-015-0075-2"
+    }
+   ]
+  },
+  {
+   "item": "Monteggia骨折",
+   "target": "尺骨近位の骨折＋橈骨頭脱臼",
+   "value": "尺骨近位部の骨折に、近位橈尺関節・腕橈関節の脱臼(橈骨頭脱臼)を伴う脱臼骨折。橈骨骨幹部の骨折ではない。",
+   "exam": "49-pm-87(誤答=「Monteggia骨折 ―― 橈骨骨幹部」)",
+   "q": [
+    "49-pm-87"
+   ],
+   "note": "確認済み[S1]。橈骨の骨折と遠位橈尺関節の脱臼はGaleazzi骨折(別の骨折)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://intjem.biomedcentral.com/articles/10.1186/s12245-015-0075-2"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}

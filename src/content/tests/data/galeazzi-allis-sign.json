@@ -1,0 +1,66 @@
+{
+ "slug": "galeazzi-allis-sign",
+ "name": "Galeazzi徴候(Allis徴候)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Galeazzi徴候",
+  "Galeazzi sign",
+  "Galeazzi test",
+  "Galeazzi テスト",
+  "Allis徴候",
+  "Allis sign",
+  "Allisテスト",
+  "Allis test",
+  "アリス徴候",
+  "ガレアッツィ徴候"
+ ],
+ "rows": [
+  {
+   "item": "Galeazzi(Allis)徴候の方法と所見",
+   "target": "発育性股関節形成不全・股関節脱臼のスクリーニング",
+   "value": "背臥位で股関節と膝関節を屈曲し(MSDマニュアルは90度、足を台に置く)、左右の膝の高さを比べる。患側の膝が低い(大腿が短く見える)=片側の股関節脱臼などを示唆",
+   "exam": "58-pm-9(図の所見から「右股関節脱臼」が正答の設問)／60-am-87(「股関節屈曲拘縮を調べるのは」の誤答選択肢=Allisテスト。屈曲拘縮はThomasテスト)",
+   "q": [
+    "58-pm-9",
+    "60-am-87"
+   ],
+   "note": "確認済み[S1][S2][S3]。Allis徴候とGaleazzi徴候は同じ所見の別名として扱われる[S2]。国試の図は確認できていない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/19-小児科/先天性筋骨格異常/発育性股関節形成不全-ddh"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/2001/0201/p565.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063769/"
+    }
+   ]
+  },
+  {
+   "item": "この徴候の限界",
+   "target": "解釈の注意",
+   "value": "この徴候だけで診断はできない(脱臼に特有の所見はないとされる[S2])。膝の高さの差は下肢長差と関連づけて述べられる[S3]。確定は画像検査(超音波・X線)で行う",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2][S3]。両側例では左右差が出にくい点は、本文で確認できなかったため書かない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/2001/0201/p565.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063769/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-20",
+ "review": "ai"
+}
