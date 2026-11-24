@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
+import { KUCHIKOMI_SITEMAP_CHUNKS } from "@/lib/kuchikomiSitemap";
 
 // 公開ページ（トップ・登録・PT検索とプロフィール・病院ページ・コラム・規約）だけを
 // 検索対象にし、ログインが必要な画面（レビュー投稿・メッセージ等）は除外する
@@ -63,6 +64,6 @@ export default function robots(): MetadataRoute.Robots {
     // shortcut: チャンク数は、facilities/sitemap.tsのMAX_FACILITIESに合わせて固定で書いている。
     // 現在は件数を絞っているため1個(0)のみ。MAX_FACILITIESを増やしたら、ここにも追記する
     // /kuchikomi/sitemap/0〜3.xml: 職場口コミサイト（リハ職の本音）の全施設ページ（種類ごとに4分割。数は kuchikomi/sitemap.ts の CHUNKS に合わせる）
-    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`, ...[0, 1, 2, 3].map((i) => `${SITE_URL}/kuchikomi/sitemap/${i}.xml`)],
+    sitemap: [`${SITE_URL}/sitemap.xml`, `${SITE_URL}/facilities/sitemap/0.xml`, ...Array.from({ length: KUCHIKOMI_SITEMAP_CHUNKS }, (_, i) => i).map((i) => `${SITE_URL}/kuchikomi/sitemap/${i}.xml`)],
   };
 }

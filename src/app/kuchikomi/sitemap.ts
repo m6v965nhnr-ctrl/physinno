@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
 import { supabasePublic } from "@/lib/supabasePublic";
 import { listReviewedHospitals } from "@/lib/kuchikomi";
+import { KUCHIKOMI_SITEMAP_CHUNKS } from "@/lib/kuchikomiSitemap";
 
 // 職場口コミサイト（/kuchikomi）の施設ページのサイトマップ（/kuchikomi/sitemap/0.xml 〜）。
 // 施設ページは、全施設（約14.6万件）が検索の対象（noindex にしない）。1ファイルは5万件までなので、種類ごとに4つに分ける。
@@ -37,7 +38,7 @@ const CHUNKS: Kind[][] = [
 ];
 
 export async function generateSitemaps() {
-  return CHUNKS.map((_, id) => ({ id }));
+  return CHUNKS.slice(0, KUCHIKOMI_SITEMAP_CHUNKS).map((_, id) => ({ id }));
 }
 
 type Row = { id: string; created_at: string | null };

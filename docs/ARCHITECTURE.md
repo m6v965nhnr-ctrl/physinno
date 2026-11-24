@@ -325,3 +325,10 @@
 - ページ: `/columns/tests`（一覧）と `/columns/tests/[slug]`（`components/columns/TestPage.tsx`）。`sitemap.ts` に追加。ゲストにも公開（`PUBLIC_COLUMN_PATH` に `tests`）。疾患カードの `tests`（slug の配列）から、関係する検査へリンク。
 - 国試の記載と現行の資料が食い違う行は `conflict: true`（画面に違いの注意が出る）。
 - 追加の手順: 基準値の表で「確認済み」の行を、`data/<slug>.json` に写す（出典・問題IDつき）→ `npm run verify`。問題IDの形は `52-am-13`。
+
+
+## Vercel 無料枠（Hobby）の運用（2026-11-24 に上限超過で全体停止→対策）
+- 経緯: 2026-11-24、CPU 10h25m/4h・転送18.6GB/10GB・CDNリクエスト170万/100万・デプロイ保管11.9GB/10GB で停止（本番が 402）。原因の本命は、口コミサイト約14.6万ページへのクローラ巡回（11/17にサイトマップで全施設を案内）と、1時間ごとのページ再生成。
+- 対策（コード）: ①口コミ施設ページ `kuchikomi/[id]` の再生成を 1週間（`revalidate = 604800`）、一覧は1日 ②SEO分析ボット（Ahrefs・Semrush 等）を `robots.ts` で拒否 ③口コミのサイトマップは、`src/lib/kuchikomiSitemap.ts` の `KUCHIKOMI_SITEMAP_CHUNKS`（現在1）の数だけ案内。使用量に余裕があれば、1つずつ増やす（最大4）。
+- 対策（Vercelの画面・本人の操作）: Settings → General の「Deployment Retention」を短く（古いデプロイを自動で消す）。Usage（Fluid Active CPU・Fast Origin Transfer・CDN Requests・Deployment Storage）を、週1回見る。使用量が上限の70%を超えたら、サイトマップの数を戻す・巡回を落とす。
+- 注意: iOSアプリは `relight-1wet.vercel.app` を直接開く（`capacitor.config.ts`）ので、ホスティングの引っ越しは、アプリの再審査が要る。
