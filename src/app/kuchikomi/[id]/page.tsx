@@ -15,7 +15,8 @@ import { HospitalInitialProvider } from "@/app/hospitals/[id]/HospitalInitial";
 // 検索から来る人向けの、1施設の口コミページ。画面は、アプリの職場ページ（/hospitals/[id]）と同じ（TOP・口コミ・投稿・質問・採用情報）。
 // ログインなしで読める口コミは新しい3件まで（DB側で絞る）。口コミが1件もない施設は、薄いページが検索に出ないよう、検索の対象外にする（noindex）。
 // 画面の本体はブラウザで組み立てるので、検索エンジン向けに、サーバーでも、口コミの要約・構造化データ・同じ県の施設へのリンクを出す
-export const revalidate = 3600;
+// 14.6万ページを巡回されても、再生成（サーバーのCPU）を週1回に抑える。口コミが増えても、1週間以内には反映される
+export const revalidate = 604800;
 
 type Props = { params: Promise<{ id: string }> };
 

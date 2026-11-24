@@ -5,7 +5,10 @@ import { SITE_URL } from "@/lib/site";
 // 検索対象にし、ログインが必要な画面（レビュー投稿・メッセージ等）は除外する
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
+    rules: [
+      // SEO分析ツール・広告系の巡回は、検索の流入に関係なく、14.6万ページを巡回してCPU・転送量を使うので止める（検索エンジンは対象外）
+      { userAgent: ["AhrefsBot", "SemrushBot", "MJ12bot", "DotBot", "BLEXBot", "DataForSeoBot", "PetalBot", "Bytespider", "MegaIndex", "serpstatbot"], disallow: "/" },
+      {
       userAgent: "*",
       allow: [
         "/$",
@@ -53,7 +56,8 @@ export default function robots(): MetadataRoute.Robots {
         "/notifications",
         "/api",
       ],
-    },
+      },
+    ],
     // /sitemap.xml: 病院・クリニック（facility_category='病院・医療機関'）など。
     // /facilities/sitemap/*.xml: それ以外の施設（介護・訪問・障害福祉など、約13万件。5万URL上限のため分割）
     // shortcut: チャンク数は、facilities/sitemap.tsのMAX_FACILITIESに合わせて固定で書いている。

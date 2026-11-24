@@ -12,7 +12,7 @@ import FacilityPreview from "@/components/kuchikomi/FacilityPreview";
 import FacilityKinds from "@/components/kuchikomi/FacilityKinds";
 import StarRating from "@/components/StarRating";
 
-export const revalidate = 3600;
+export const revalidate = 86400;
 
 const TITLE = "リハ職の本音｜理学療法士・作業療法士・言語聴覚士の職場口コミ・病院の評判";
 // 説明文は、検索結果で切れないよう、約110字までに収める
