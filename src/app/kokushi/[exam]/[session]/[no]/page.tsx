@@ -18,6 +18,11 @@ import AnswerReveal from "./AnswerReveal";
 
 export const revalidate = 86400;
 
+// 「どのIDがあるか」を返す関数を足さないと、再生成(revalidate)の設定があっても、キャッシュされずに毎回サーバーが組み立てる。空を返せば、最初のアクセスで作って、あとはキャッシュを返す
+export function generateStaticParams() {
+  return [];
+}
+
 type Props = { params: Promise<{ exam: string; session: string; no: string }> };
 
 async function load(params: Props["params"]) {

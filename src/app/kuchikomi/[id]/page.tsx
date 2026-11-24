@@ -18,6 +18,11 @@ import { HospitalInitialProvider } from "@/app/hospitals/[id]/HospitalInitial";
 // 14.6万ページを巡回されても、再生成（サーバーのCPU）を月1回に抑える。口コミが増えても、1週間以内には反映される
 export const revalidate = 2592000;
 
+// 「どのIDがあるか」を返す関数を足さないと、再生成(revalidate)の設定があっても、キャッシュされずに毎回サーバーが組み立てる。空を返せば、最初のアクセスで作って、あとはキャッシュを返す
+export function generateStaticParams() {
+  return [];
+}
+
 type Props = { params: Promise<{ id: string }> };
 
 async function getHospital(id: string) {

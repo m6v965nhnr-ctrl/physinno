@@ -336,6 +336,7 @@
 ## Vercel 無料枠（Hobby）の上限と、超過を防ぐ工夫（2026-11-24 に超過で停止 → 2026-11-25 に対策）
 - **何が起きたか**: 2026-11-24 に、Fluid Active CPU（10h25m／上限4h）・Fast Origin Transfer（18.6GB／10GB）・CDN Requests（1.7M／1M）・Deployment Storage（11.9GB／10GB）が無料枠を超え、本番が全ページ 402（`DEPLOYMENT_DISABLED`）で停止。12/24まで止まる設定（Proにすれば即復旧）。
 - **対策（コード）**: ①`/columns/[slug]`（ガイド99本）を、ビルドで作っておく形に（`generateStaticParams`＋`dynamicParams=false`。巡回のたびにサーバーで全記事の本文を読み込んでいた）。②口コミページ `/kuchikomi/[id]` の再生成を、週1回→月1回（`revalidate=2592000`）。③`vercel.json` の `ignoreCommand`（`scripts/vercel-ignore.sh`）で、`docs/`・`*.md` だけの変更ではデプロイを作らない（デプロイの保管容量とビルド回数を減らす。この場合 `deploy:check` は「本番が今のコミット」にならない）。
+- **最大の原因の可能性（2026-11-25に発見・修正）**: `/kuchikomi/[id]`・`/hospitals/[id]`（各約14.6万ページ）、`/kokushi/[exam]`・`/kokushi/[exam]/[session]/[no]`、`/facility-areas/[type]`・`/[type]/[pref]` は、`revalidate` を書いていたのに、`generateStaticParams`（空の配列でよい）がなかったため、**キャッシュされず、リクエストのたびにサーバーで組み立てていた**（`Cache-Control: no-store`）。巡回のたびに関数が動いていた。`generateStaticParams(){return []}` を足し、最初のアクセスで作って以後はキャッシュ（`x-nextjs-cache: HIT`、`s-maxage`）を返す形に。**新しい `[id]` のページを足すときは、`revalidate` と `generateStaticParams` を、必ずセットで書く**（`next build` の後に、`.next/prerender-manifest.json` の `dynamicRoutes` に入っているかで確認できる）。
 - **定期実行（cron）**: 7本・1日1回・各最大60秒。CPUの主因ではない。
 - **疑っているがデータ未確認のもの**: トップ `/` は `searchParams`（UTM）を読むため、毎回サーバーで組み立てる（動的）。14.6万件の口コミ・施設ページへの巡回（検索エンジン・AIボット）。確認は Vercel の Observability（ルート別の Fluid Active CPU・Fast Origin Transfer）で。
 - **ダッシュボードでの設定（コードではできない）**: Deployment Retention（古いデプロイを自動削除して、保管容量を減らす）、Firewall の Bot Protection／AIボットの扱い、使用量の通知。
