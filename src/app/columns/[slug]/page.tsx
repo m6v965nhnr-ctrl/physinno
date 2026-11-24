@@ -8,6 +8,12 @@ import { SITE_NAME } from "@/lib/site";
 
 type Props = { params: Promise<{ slug: string }> };
 
+// ビルドのときに全記事を作っておく（検索・AIの巡回のたびに、サーバーで本文を組み立てない。Vercelの無料枠の超過を防ぐため）
+export const dynamicParams = false;
+export function generateStaticParams() {
+  return COLUMNS.map((c) => ({ slug: c.slug }));
+}
+
 export default async function ColumnDetailPage({ params }: Props) {
   const { slug } = await params;
   const meta = getColumnMeta(slug);

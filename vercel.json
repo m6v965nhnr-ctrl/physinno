@@ -28,5 +28,6 @@
       "path": "/api/cron/community-seminars",
       "schedule": "30 15 * * *"
     }
-  ]
+  ],
+  "ignoreCommand": "bash scripts/vercel-ignore.sh"
 }

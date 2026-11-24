@@ -332,3 +332,12 @@
 - 対策（コード）: ①口コミ施設ページ `kuchikomi/[id]` の再生成を 1週間（`revalidate = 604800`）、一覧は1日 ②SEO分析ボット（Ahrefs・Semrush 等）を `robots.ts` で拒否 ③口コミのサイトマップは、`src/lib/kuchikomiSitemap.ts` の `KUCHIKOMI_SITEMAP_CHUNKS`（現在1）の数だけ案内。使用量に余裕があれば、1つずつ増やす（最大4）。
 - 対策（Vercelの画面・本人の操作）: Settings → General の「Deployment Retention」を短く（古いデプロイを自動で消す）。Usage（Fluid Active CPU・Fast Origin Transfer・CDN Requests・Deployment Storage）を、週1回見る。使用量が上限の70%を超えたら、サイトマップの数を戻す・巡回を落とす。
 - 注意: iOSアプリは `relight-1wet.vercel.app` を直接開く（`capacitor.config.ts`）ので、ホスティングの引っ越しは、アプリの再審査が要る。
+
+## Vercel 無料枠（Hobby）の上限と、超過を防ぐ工夫（2026-11-24 に超過で停止 → 2026-11-25 に対策）
+- **何が起きたか**: 2026-11-24 に、Fluid Active CPU（10h25m／上限4h）・Fast Origin Transfer（18.6GB／10GB）・CDN Requests（1.7M／1M）・Deployment Storage（11.9GB／10GB）が無料枠を超え、本番が全ページ 402（`DEPLOYMENT_DISABLED`）で停止。12/24まで止まる設定（Proにすれば即復旧）。
+- **対策（コード）**: ①`/columns/[slug]`（ガイド99本）を、ビルドで作っておく形に（`generateStaticParams`＋`dynamicParams=false`。巡回のたびにサーバーで全記事の本文を読み込んでいた）。②口コミページ `/kuchikomi/[id]` の再生成を、週1回→月1回（`revalidate=2592000`）。③`vercel.json` の `ignoreCommand`（`scripts/vercel-ignore.sh`）で、`docs/`・`*.md` だけの変更ではデプロイを作らない（デプロイの保管容量とビルド回数を減らす。この場合 `deploy:check` は「本番が今のコミット」にならない）。
+- **定期実行（cron）**: 7本・1日1回・各最大60秒。CPUの主因ではない。
+- **疑っているがデータ未確認のもの**: トップ `/` は `searchParams`（UTM）を読むため、毎回サーバーで組み立てる（動的）。14.6万件の口コミ・施設ページへの巡回（検索エンジン・AIボット）。確認は Vercel の Observability（ルート別の Fluid Active CPU・Fast Origin Transfer）で。
+- **ダッシュボードでの設定（コードではできない）**: Deployment Retention（古いデプロイを自動削除して、保管容量を減らす）、Firewall の Bot Protection／AIボットの扱い、使用量の通知。
+- 数字は、Vercelの画面（Usage）に出た値。上限の定義は変わるので、確認は画面で。
+
