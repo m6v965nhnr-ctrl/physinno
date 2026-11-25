@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" width="680" height="520" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>過敏反応（アレルギー）I〜IV型の表</title><desc>I型は即時型で、IgEが肥満細胞や好塩基球に結合して起こる（アナフィラキシーなど）。II型は細胞表面の抗原に抗体が結合して、補体や細胞が細胞を傷害する（不適合輸血など）。III型は抗原抗体複合体（免疫複合体）が血管や組織に沈着して炎症を起こす（SLE、関節リウマチなど）。IV型は抗体ではなくT細胞が介在する遅延型（ツベルクリン反応、接触皮膚炎など）。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="520" fill="#fff"/>
+<text x="20" y="22" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">過敏反応（Gell-Coombs分類）</text>
+<rect x="20" y="38" width="80" height="28" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="60.0" y="52" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">型</text>
+<rect x="106" y="38" width="300" height="28" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="256.0" y="52" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">仕組み</text>
+<rect x="416" y="38" width="70" height="28" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="451.0" y="52" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">時期</text>
+<rect x="496" y="38" width="164" height="28" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="578.0" y="52" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">例</text>
+<rect x="20" y="76" width="80" height="104" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="60" y="118.0" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">I型</text>
+<text x="60" y="140.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">即時型</text>
+<rect x="106" y="76" width="300" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="116" y="100" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">IgEが肥満細胞・好塩基球に</text>
+<text x="116" y="122" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">結合している所に抗原が結合し、</text>
+<text x="116" y="144" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">ヒスタミンなどが放出される</text>
+<rect x="416" y="76" width="70" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="451" y="128.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">1時間未満</text>
+<rect x="496" y="76" width="164" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="504" y="100" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">アナフィラキシー</text>
+<text x="504" y="122" text-anchor="start" font-size="11.5" fill="#2C2C2A" dominant-baseline="central">アレルギー性鼻炎・喘息</text>
+<text x="504" y="144" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">蕁麻疹</text>
+<rect x="20" y="188" width="80" height="104" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="60" y="230.0" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">II型</text>
+<text x="60" y="252.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">細胞傷害型</text>
+<rect x="106" y="188" width="300" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="116" y="212" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">細胞表面の抗原に抗体が結合し、</text>
+<text x="116" y="234" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">補体やNK細胞・好酸球・</text>
+<text x="116" y="256" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">マクロファージが細胞を傷害する</text>
+<rect x="416" y="188" width="70" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="451" y="240.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">—</text>
+<rect x="496" y="188" width="164" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="504" y="212" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">不適合輸血</text>
+<text x="504" y="234" text-anchor="start" font-size="11.5" fill="#2C2C2A" dominant-baseline="central">Coombs陽性溶血性貧血</text>
+<text x="504" y="256" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">橋本病</text>
+<rect x="20" y="300" width="80" height="104" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="60" y="342.0" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">III型</text>
+<text x="60" y="364.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">免疫複合体型</text>
+<rect x="106" y="300" width="300" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="116" y="324" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">抗原抗体複合体が血管や組織に</text>
+<text x="116" y="346" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">沈着し、補体の活性化などで</text>
+<text x="116" y="368" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">炎症を起こす</text>
+<rect x="416" y="300" width="70" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="451" y="343.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">抗原曝露から</text>
+<text x="451" y="361.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">4〜10日</text>
+<rect x="496" y="300" width="164" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="504" y="324" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血清病</text>
+<text x="504" y="346" text-anchor="start" font-size="11.5" fill="#2C2C2A" dominant-baseline="central">全身性エリテマトーデス</text>
+<text x="504" y="368" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">関節リウマチ</text>
+<rect x="20" y="412" width="80" height="104" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="60" y="454.0" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">IV型</text>
+<text x="60" y="476.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">遅延型</text>
+<rect x="106" y="412" width="300" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="116" y="436" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">抗体は関与せず、</text>
+<text x="116" y="458" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">T細胞が介在する</text>
+<text x="116" y="480" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（サイトカインでマクロファージを動員）</text>
+<rect x="416" y="412" width="70" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="451" y="464.0" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">24〜72時間</text>
+<rect x="496" y="412" width="164" height="104" rx="8" fill="#fff" stroke="#B4B2A9" stroke-width="1.2" />
+<text x="504" y="436" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">ツベルクリン反応</text>
+<text x="504" y="458" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">接触皮膚炎</text>
+<text x="504" y="480" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">移植片の拒絶</text>
+<text x="20" y="534" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">I〜IIIは抗体（IgE・IgG）が関係し、IVはT細胞が関係する。I型は自己免疫疾患には関与しない。</text>
+<text x="20" y="554" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。1つの病気が複数の型にまたがることもある。</text>
+</svg>

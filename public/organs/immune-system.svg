@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>免疫の全体像（自然免疫と獲得免疫）</title><desc>病原体が侵入すると、まず皮膚や粘膜の障壁が防ぎ、次に自然免疫（食細胞、NK細胞、補体、炎症）がすぐに働く。樹状細胞やマクロファージが抗原を提示すると、獲得免疫が始まる。獲得免疫には、B細胞が形質細胞になって抗体をつくる液性免疫と、ヘルパーT細胞・細胞傷害性T細胞・制御性T細胞による細胞性免疫がある。ヘルパーT細胞はB細胞を助ける。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="600" fill="#fff"/>
+<rect x="240" y="14" width="200" height="32" rx="8" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" />
+<text x="340.0" y="30.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">病原体の侵入</text>
+<path d="M340 48 L340 66" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="20" y="68" width="640" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340.0" y="88.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">障壁：皮膚・粘膜（唾液のリゾチーム、胃酸、粘液と線毛など）</text>
+<path d="M160 110 L160 138" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M520 110 L520 138" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="20" y="140" width="290" height="320" rx="12" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="162" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">自然免疫</text>
+<text x="165" y="182" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">すぐに働く・特異性は低い・事前曝露が不要</text>
+<rect x="34" y="198" width="262" height="48" rx="8" fill="#fff" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="214" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">食細胞</text>
+<text x="165" y="232" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">好中球・単球・マクロファージ</text>
+<rect x="34" y="250" width="262" height="48" rx="8" fill="#fff" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="266" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">NK細胞</text>
+<text x="165" y="284" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">ウイルス感染細胞を殺傷</text>
+<rect x="34" y="302" width="262" height="48" rx="8" fill="#fff" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="318" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">好酸球・好塩基球・肥満細胞</text>
+<text x="165" y="336" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">炎症のメディエーターを放出</text>
+<rect x="34" y="354" width="262" height="48" rx="8" fill="#fff" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="370" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">補体・サイトカイン・CRP</text>
+<text x="165" y="388" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">オプソニン化、細胞の動員</text>
+<rect x="34" y="406" width="262" height="48" rx="8" fill="#fff" stroke="#185FA5" stroke-width="1.2" />
+<text x="165" y="422" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">炎症</text>
+<text x="165" y="440" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">発赤・熱感・腫脹・疼痛</text>
+<rect x="370" y="140" width="290" height="320" rx="12" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="515" y="162" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">獲得免疫</text>
+<text x="515" y="182" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">時間がかかる・抗原特異的・記憶あり</text>
+<text x="436" y="206" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞性免疫</text>
+<text x="594" y="206" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">液性免疫</text>
+<rect x="376.0" y="222" width="120" height="34" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="436" y="239.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">ヘルパーT細胞</text>
+<rect x="376.0" y="290" width="120" height="34" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="436" y="307.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">細胞傷害性T細胞</text>
+<rect x="376.0" y="358" width="120" height="34" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="436" y="375.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">制御性T細胞</text>
+<text x="436" y="268" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">（CD4）</text>
+<text x="436" y="336" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">（CD8）</text>
+<text x="436" y="404" text-anchor="middle" font-size="10" fill="#2C2C2A" dominant-baseline="central">他のT細胞の応答を抑える</text>
+<rect x="534.0" y="222" width="120" height="34" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="594" y="239.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">B細胞</text>
+<rect x="534.0" y="290" width="120" height="34" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="594" y="307.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">形質細胞</text>
+<rect x="534.0" y="358" width="120" height="64" rx="8" fill="#fff" stroke="#3B6D11" stroke-width="1.2" />
+<text x="594" y="390.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central"></text>
+<text x="594" y="375" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抗体</text>
+<text x="594" y="392" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">IgM・IgG・IgA</text>
+<text x="594" y="407" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">IgE・IgD</text>
+<path d="M594 258 L594 288" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M594 326 L594 356" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M498 244 L532 244" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="515" y="230" text-anchor="middle" font-size="10" fill="#2C2C2A" dominant-baseline="central">助ける</text>
+<path d="M298 224 L374 236" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="336" y="208" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抗原提示</text>
+<text x="20" y="486" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">抗原提示細胞：樹状細胞・マクロファージ・B細胞（MHCクラスIIでヘルパーT細胞に提示）。</text>
+<text x="20" y="506" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">細胞傷害性T細胞には、MHCクラスIにのせた細胞内の抗原（ウイルスなど）が提示される。</text>
+<text x="20" y="526" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">B細胞は骨髄、T細胞は胸腺で成熟し、脾臓やリンパ節などで応答を始める。</text>
+<text x="20" y="556" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。補体・サイトカインは自然免疫と獲得免疫の両方にかかわる。</text>
+</svg>

@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="680" height="580" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>止血の3段階と、線溶・抗凝固のはたらき</title><desc>止血は、血管のれん縮、血小板血栓、凝固の3段階で進む。できた凝血塊は、プラスミノゲンがプラスミンになって分解される（線溶）。体内の抗凝固因子にはアンチトロンビン、プロテインC系、TFPIがある。薬では、ヘパリンがアンチトロンビンの作用を助け、ワルファリンはビタミンKの働きを妨げ、アスピリンは血小板の凝集を抑える。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="580" fill="#fff"/>
+<text x="20" y="22" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">止血の3段階</text>
+<rect x="20" y="38" width="200" height="112" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="30" y="67.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">① 血管れん縮</text>
+<text x="30" y="85.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">血管の平滑筋が収縮する</text>
+<text x="30" y="103.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">エンドセリンなどが関与</text>
+<text x="30" y="121.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">最長30分ほど続く</text>
+<rect x="240" y="38" width="200" height="112" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="250" y="67.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">② 血小板血栓</text>
+<text x="250" y="85.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血小板が露出したコラーゲンに</text>
+<text x="250" y="103.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">付着・凝集する</text>
+<text x="250" y="121.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（von Willebrand因子が補助）</text>
+<rect x="460" y="38" width="200" height="112" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="470" y="67.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">③ 凝固</text>
+<text x="470" y="85.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">凝固因子が次々に活性化</text>
+<text x="470" y="103.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">フィブリンの網ができて</text>
+<text x="470" y="121.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血球が絡み、凝血塊になる</text>
+<path d="M222 94 L238 94" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M442 94 L458 94" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="20" y="184" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">できた凝血塊を除く：線溶</text>
+<rect x="20" y="200" width="640" height="56" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="34" y="228" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">プラスミノゲン</text>
+<path d="M148 228 L206 228" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="176" y="214" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">t-PAなど</text>
+<text x="214" y="228" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">プラスミン</text>
+<path d="M292 228 L350 228" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="358" y="228" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">フィブリンを分解して凝血塊を溶かす</text>
+<text x="20" y="290" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血液が固まりすぎないようにする仕組みと薬</text>
+<rect x="20" y="306" width="320" height="168" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="30" y="345.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">体内の抗凝固因子</text>
+<text x="30" y="363.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">アンチトロンビン：X因子を不活化し、</text>
+<text x="30" y="381.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">　プロトロンビン→トロンビンを抑える</text>
+<text x="30" y="399.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">プロテインC系：内因系の因子を不活化</text>
+<text x="30" y="417.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">TFPI：VII因子の活性化を抑える</text>
+<text x="30" y="435.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（好塩基球はヘパリンも放出する）</text>
+<rect x="360" y="306" width="300" height="168" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="370" y="345.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抗凝固薬・抗血小板薬</text>
+<text x="370" y="363.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">ヘパリン：アンチトロンビンの作用を促す</text>
+<text x="370" y="381.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">　（未分画ヘパリンの検査はAPTT）</text>
+<text x="370" y="399.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">ワルファリン：ビタミンKの働きを妨げる</text>
+<text x="370" y="417.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">　（検査はPT-INR）</text>
+<text x="370" y="435.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">アスピリン：血小板の凝集を抑える</text>
+<text x="20" y="510" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血栓溶解薬のt-PAは、プラスミノゲンからプラスミンへの変換を促す酵素。</text>
+<text x="20" y="532" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。薬の使い方・用量などは扱っていません。</text>
+<text x="20" y="554" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">肝臓でつくられる凝固因子のうち、II・VII・IX・Xの産生にはビタミンKが必要。</text>
+</svg>

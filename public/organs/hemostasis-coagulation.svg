@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 740" width="680" height="740" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>血液凝固のカスケード（簡略図）</title><desc>内因系は、血液が異物面などに触れて第XII因子が活性化され、XI、IXと進み、VIIIとIXの複合体が第X因子を活性化する。外因系は、損傷した組織の組織因子（第III因子）とカルシウムイオン、第VII因子の複合体が第X因子を活性化する。両者は共通系に合流し、活性化された第X因子がプロトロンビン（II）をトロンビンに変え、トロンビンがフィブリノゲン（I）をフィブリンに変え、第XIII因子が安定化する。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="740" fill="#fff"/>
+<text x="140" y="24" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内因系</text>
+<text x="140" y="42" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（血液の中で始まる）</text>
+<text x="540" y="24" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外因系</text>
+<text x="540" y="42" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（組織の損傷で始まる）</text>
+<rect x="25.0" y="60" width="230" height="40" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="140" y="80.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">異物面・陰性荷電物質に接触</text>
+<rect x="425.0" y="60" width="230" height="40" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="540" y="80.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">組織因子（III）が血液に触れる</text>
+<path d="M140 102 L140 128" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M540 102 L540 128" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="85.0" y="130" width="110" height="36" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="140" y="148.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">XII 因子</text>
+<rect x="455.0" y="130" width="170" height="36" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="540" y="148.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">VII 因子</text>
+<path d="M140 168 L140 194" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="85.0" y="196" width="110" height="36" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="140" y="214.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">XI 因子</text>
+<path d="M140 234 L140 260" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="85.0" y="262" width="110" height="36" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="140" y="280.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">IX 因子</text>
+<path d="M140 300 L140 326" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="40.0" y="328" width="200" height="44" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="140" y="342.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">VIII ＋ IX</text>
+<text x="140" y="358.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">酵素複合体</text>
+<path d="M540 168 L540 194" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="425.0" y="196" width="230" height="44" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="540" y="210.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">組織因子 ＋ VII ＋ Ca²⁺</text>
+<text x="540" y="226.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">酵素複合体</text>
+<text x="20" y="392" text-anchor="start" font-size="12" fill="#185FA5" dominant-baseline="central">APTTは内因系を反映</text>
+<text x="670" y="392" text-anchor="end" font-size="12" fill="#3B6D11" dominant-baseline="central">PTは外因系を反映</text>
+<rect x="255.0" y="430" width="170" height="40" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="340" y="450.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">X 因子を活性化</text>
+<path d="M140 374 Q 140 440 254 450" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M540 242 Q 540 450 426 450" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="340" y="412" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">共通系</text>
+<rect x="215.0" y="500" width="250" height="40" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="340" y="520.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">プロトロンビン（II）→ トロンビン</text>
+<path d="M340 472 L340 498" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="215.0" y="566" width="250" height="40" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="340" y="586.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">フィブリノゲン（I）→ フィブリン</text>
+<path d="M340 542 L340 564" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="215.0" y="630" width="250" height="40" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="340" y="650.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">XIII 因子で安定化 → 凝血塊</text>
+<path d="M340 608 L340 628" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="20" y="696" width="20" height="14" rx="3" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<text x="48" y="703" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">肝臓でつくるのにビタミンKが必要な因子（II・VII・IX・X）</text>
+<text x="20" y="724" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">Ca²⁺（IV因子）は全過程に必要。模式図で、V因子などは省略した。</text>
+</svg>

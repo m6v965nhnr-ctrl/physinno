@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>血液の成分（遠心した血液と血漿の成分）</title><desc>遠心した血液は、上から血漿、バフィーコート（白血球と血小板）、赤血球の3層に分かれ、赤血球が占める割合がヘマトクリットである。血漿は約92%が水で、溶けている物質の大半は蛋白質（アルブミン、グロブリン、フィブリノゲン）。血球は赤血球・白血球・血小板。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker><clipPath id="tb"><path d="M56 58 L56 324 Q56 352 93.0 352 Q130 352 130 324 L130 58 Z"/></clipPath></defs>
+<rect width="680" height="560" fill="#fff"/>
+<g clip-path="url(#tb)">
+<rect x="56" y="64" width="74" height="150" fill="#FAC775" fill-opacity="0.55"/>
+<rect x="56" y="214" width="74" height="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8"/>
+<rect x="56" y="224" width="74" height="130" fill="#E24B4A"/>
+</g>
+<path d="M56 58 L56 324 Q56 352 93.0 352 Q130 352 130 324 L130 58" fill="none" stroke="#2C2C2A" stroke-width="1.6"/>
+<text x="93.0" y="42" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">遠心した血液</text>
+<line x1="136" y1="139.0" x2="176" y2="139.0" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="184" y="130.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血漿</text>
+<text x="184" y="148.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（淡黄色の液体）</text>
+<line x1="136" y1="219.0" x2="176" y2="241.0" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="184" y="232.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">バフィーコート</text>
+<text x="184" y="250.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">白血球と血小板</text>
+<text x="184" y="266.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（通常は1%未満）</text>
+<line x1="136" y1="284.0" x2="176" y2="314.0" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="184" y="305.0" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">赤血球</text>
+<text x="184" y="323.0" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">この部分の割合＝ヘマトクリット</text>
+<path d="M44 224 L36 224 L36 344 L44 344" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<text x="30" y="284.0" text-anchor="end" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Ht</text>
+<text x="410" y="48" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血漿の成分</text>
+<rect x="410" y="70" width="16" height="16" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="434" y="78" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">水</text>
+<text x="660" y="78" text-anchor="end" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">約92%</text>
+<rect x="410" y="96" width="16" height="16" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<text x="434" y="104" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">蛋白質</text>
+<text x="660" y="104" text-anchor="end" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">約7%</text>
+<rect x="410" y="122" width="16" height="16" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="434" y="130" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">その他（電解質・栄養素など）</text>
+<text x="660" y="130" text-anchor="end" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">約1%</text>
+<text x="410" y="152" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">血漿の蛋白質は主に次の3つ</text>
+<rect x="410" y="172" width="250" height="60" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="420" y="186" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">アルブミン</text>
+<text x="420" y="206" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">肝臓でつくる。脂肪酸やホルモンを運ぶ。</text>
+<text x="420" y="224" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血液の浸透圧への寄与が最も大きい</text>
+<rect x="410" y="240" width="250" height="60" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="420" y="254" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">グロブリン</text>
+<text x="420" y="274" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">α・β：鉄や脂質などを運ぶ</text>
+<text x="420" y="292" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">γ：免疫グロブリン（抗体）</text>
+<rect x="410" y="308" width="250" height="42" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="420" y="322" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">フィブリノゲン</text>
+<text x="420" y="342" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">肝臓でつくる。血液凝固に必須</text>
+<text x="20" y="390" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血球（血液の細胞成分）</text>
+<rect x="20" y="406" width="200" height="58" rx="8" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" />
+<text x="32" y="426" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">赤血球</text>
+<text x="32" y="448" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">酸素を運ぶ</text>
+<rect x="235" y="406" width="200" height="58" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="247" y="426" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">白血球</text>
+<text x="247" y="448" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">からだを守る</text>
+<rect x="450" y="406" width="200" height="58" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="462" y="426" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血小板</text>
+<text x="462" y="448" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">止血にはたらく</text>
+<text x="20" y="494" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">血清は、血漿から凝固因子を除いたもの。Htは、血液に占める赤血球の割合（ヘマトクリット）。</text>
+<text x="20" y="514" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。層の厚さは実際の割合を示すものではありません（バフィーコートは実際にはごく薄い）。</text>
+</svg>

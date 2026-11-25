@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>血球の形と大きさ（模式図）</title><desc>赤血球、好中球、好酸球、好塩基球、単球、リンパ球、血小板を、直径の目安に比例した大きさで並べた模式図。赤血球は核のない両面凹円板で直径約7〜8マイクロメートル。好中球と好酸球は10〜12、好塩基球は8〜10、単球は12〜20、小型のリンパ球は6〜9、血小板は2〜4マイクロメートル。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="450" fill="#fff"/>
+<circle cx="70" cy="130" r="22.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<circle cx="70" cy="130" r="9.4" fill="#FBE6DE" stroke="none"/>
+<circle cx="165" cy="130" r="33.0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<circle cx="165.0" cy="116.1" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="177.0" cy="136.9" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="153.0" cy="136.9" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="156.0" cy="122.8" r="1.2" fill="#B8A9D9"/>
+<circle cx="172.2" cy="119.2" r="1.2" fill="#B8A9D9"/>
+<circle cx="177.6" cy="135.4" r="1.2" fill="#B8A9D9"/>
+<circle cx="152.4" cy="139.0" r="1.2" fill="#B8A9D9"/>
+<circle cx="165.0" cy="144.4" r="1.2" fill="#B8A9D9"/>
+<circle cx="162.3" cy="131.8" r="1.2" fill="#B8A9D9"/>
+<circle cx="181.2" cy="126.4" r="1.2" fill="#B8A9D9"/>
+<circle cx="260" cy="130" r="33.0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<circle cx="246.1" cy="130.0" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="273.9" cy="130.0" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="261.7" cy="152.5" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="244.0" cy="147.1" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="248.9" cy="118.8" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="286.6" cy="132.2" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="258.9" cy="148.1" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="281.5" cy="129.4" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="271.2" cy="111.5" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="249.1" cy="117.0" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="242.0" cy="109.6" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="234.9" cy="126.3" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="252.5" cy="116.1" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="261.2" cy="106.8" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="255.2" cy="144.5" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="274.3" cy="113.9" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="254.7" cy="103.2" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="253.8" cy="102.8" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="239.3" cy="146.1" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="233.6" cy="139.6" r="2" fill="#993C1D" opacity="0.85"/>
+<circle cx="246.1" cy="130.0" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="273.9" cy="130.0" r="9.2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="350" cy="130" r="27.0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<circle cx="355.2" cy="125.0" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="356.2" cy="137.1" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="363.1" cy="127.1" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="342.4" cy="122.2" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="337.5" cy="129.4" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="340.4" cy="143.0" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="331.0" cy="118.9" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="340.7" cy="109.6" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="364.6" cy="111.5" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="346.0" cy="122.6" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="364.8" cy="112.3" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="363.1" cy="121.1" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="347.9" cy="121.0" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="357.8" cy="116.1" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="348.6" cy="136.4" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="364.3" cy="111.3" r="2.6" fill="#185FA5" opacity="0.85"/>
+<circle cx="450" cy="130" r="48.0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<path d="M438.0 103.6 A26.4 26.4 0 1 1 438.0 156.4" fill="none" stroke="#534AB7" stroke-width="26.0" stroke-linecap="round"/><path d="M438.0 103.6 A26.4 26.4 0 1 1 438.0 156.4" fill="none" stroke="#CECBF6" stroke-width="24.0" stroke-linecap="round"/>
+<circle cx="548" cy="130" r="22.5" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<circle cx="548" cy="130" r="18.0" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<circle cx="625" cy="130" r="9.0" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<text x="70" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">赤血球</text>
+<text x="70" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">7〜8 μm</text>
+<text x="70" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核なし</text>
+<text x="70" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">中央がくぼむ円板</text>
+<text x="165" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">好中球</text>
+<text x="165" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">10〜12 μm</text>
+<text x="165" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核は2〜5葉</text>
+<text x="165" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">顆粒は淡い紫</text>
+<text x="260" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">好酸球</text>
+<text x="260" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">10〜12 μm</text>
+<text x="260" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核は2〜3葉</text>
+<text x="260" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">顆粒は赤橙色</text>
+<text x="350" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">好塩基球</text>
+<text x="350" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">8〜10 μm</text>
+<text x="350" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">顆粒は濃青〜紫</text>
+<text x="350" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核は見えにくい</text>
+<text x="450" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">単球</text>
+<text x="450" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">12〜20 μm</text>
+<text x="450" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核はくぼみ・馬蹄形</text>
+<text x="450" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">白血球で大きい方</text>
+<text x="548" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">リンパ球</text>
+<text x="548" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">6〜9 μm</text>
+<text x="548" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">小型の例</text>
+<text x="548" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核が大きい</text>
+<text x="625" y="235" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血小板</text>
+<text x="625" y="255" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">2〜4 μm</text>
+<text x="625" y="278" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">核なし</text>
+<text x="625" y="296" text-anchor="middle" font-size="11" fill="#2C2C2A" dominant-baseline="central">巨核球の断片</text>
+<line x1="20" y1="385" x2="80.0" y2="385" stroke="#2C2C2A" stroke-width="2"/>
+<text x="90.0" y="385" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">10 μm</text>
+<text x="20" y="415" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">直径は教科書（OpenStax）の値。円の大きさは直径に比例（1 μm＝6 px）。</text>
+<text x="20" y="435" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。核の形や顆粒の色は染色標本での見え方の目安で、実物とは異なります。</text>
+<text x="20" y="34" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血球の大きさの比較（直径に比例）</text>
+</svg>

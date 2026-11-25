@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>新生児溶血性疾患（Rh不適合妊娠）の流れ</title><desc>Rh陰性の母親がRh陽性の子を出産するとき、胎児のRh陽性赤血球が母体に入り、母体が抗Rh抗体をつくる（感作）。次にRh陽性の子を妊娠すると、抗Rh抗体（IgG）が胎盤を通って胎児に入り、胎児の赤血球を凝集・溶血させ、貧血をきたす。予防には母親に抗Rh免疫グロブリンを投与する。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="560" fill="#fff"/>
+<text x="20" y="24" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Rh陰性の母親とRh陽性の子</text>
+<rect x="20" y="44" width="190" height="120" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="115.0" y="77.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">① 1回目の妊娠・出産</text>
+<text x="115.0" y="95.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">出産のときに胎児のRh陽性</text>
+<text x="115.0" y="113.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">赤血球が母体の血液に入る</text>
+<text x="115.0" y="131.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（問題は起きにくい）</text>
+<rect x="245" y="44" width="190" height="120" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="340.0" y="77.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">② 感作</text>
+<text x="340.0" y="95.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">母体が抗Rh抗体を</text>
+<text x="340.0" y="113.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">つくる（抗体はもともと</text>
+<text x="340.0" y="131.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">なく、抗原にふれてできる）</text>
+<rect x="470" y="44" width="190" height="120" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="565.0" y="77.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">③ 2回目以降の妊娠</text>
+<text x="565.0" y="95.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">胎児がRh陽性だと、抗Rh</text>
+<text x="565.0" y="113.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">抗体（IgG）が胎盤を通って</text>
+<text x="565.0" y="131.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">胎児に入る</text>
+<path d="M212 104 L243 104" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M437 104 L468 104" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M565 166 L565 214" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="400" y="216" width="260" height="84" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="530.0" y="231.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胎児の赤血球が凝集・溶血</text>
+<text x="530.0" y="249.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">貧血をきたす</text>
+<text x="530.0" y="267.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">重症だと胎児が子宮内や</text>
+<text x="530.0" y="285.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">生後まもなく死亡することがある</text>
+<text x="20" y="214" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">新生児溶血性疾患</text>
+<text x="20" y="238" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">（胎児赤芽球症）</text>
+<rect x="20" y="330" width="640" height="86" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="34" y="352" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">予防：抗Rh免疫グロブリン</text>
+<text x="34" y="376" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">Rh陰性の母親に抗Rh抗体を投与し、胎児のRh陽性赤血球を壊して、</text>
+<text x="34" y="394" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">母親が抗体をつくる（感作される）のを防ぐ。</text>
+<text x="20" y="448" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">模式図。時期・投与量などの数字は扱っていません。</text>
+</svg>
