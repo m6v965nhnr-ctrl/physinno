@@ -94,7 +94,7 @@ export default function CodesPage() {
         <section className="space-y-2 rounded-2xl bg-white p-4 shadow-sm" aria-labelledby="c-school">
           <h2 id="c-school" className="text-sm font-semibold">① 学校コード</h2>
           {school ? (
-            <p className="text-sm text-gray-700">🏫 <b>{school.name}</b> に、{school.role === "teacher" ? "先生" : "学生"}として所属しています。<Link href="/school" className="ml-1 text-xs text-gray-500 underline">変更・外れる</Link></p>
+            <p className="text-sm text-gray-700">🏫 <b>学校コードを登録済み</b>です（{school.role === "teacher" ? "先生" : "学生"}として所属）。<Link href="/school" className="ml-1 text-xs text-gray-500 underline">変更・外れる</Link></p>
           ) : (
             <>
               <input value={schoolCode} onChange={(e) => setSchoolCode(e.target.value.toUpperCase().replace(/\s/g, "").slice(0, 8))} placeholder="学校コード（8文字）" aria-label="学校コード" autoCapitalize="characters" className={INPUT_CLASS} />

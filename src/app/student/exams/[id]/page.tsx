@@ -197,7 +197,7 @@ export default function ExamSubjectPage() {
           </Link>
           <h1 className="mt-2 text-xl font-semibold tracking-tight">{subject.name}</h1>
           <p className="mt-1 text-xs text-gray-500">
-            {subject.school_name}・{subject.grade}年生・{TERM_LABEL[subject.term]}
+            {subject.grade}年生・{TERM_LABEL[subject.term]}
           </p>
         </div>
       </header>

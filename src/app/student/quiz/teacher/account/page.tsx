@@ -57,7 +57,7 @@ function AccountBody({ accountType }: { accountType: string }) {
         <p>{status ? STATUS_LABEL[status] : "…"}</p>
         <p className="pt-1 text-xs text-gray-400">所属している学校</p>
         <p>
-          {access ? (access.school ? `${access.school.name}${access.school.active ? "" : "（いまは利用できません）"}` : "なし") : "…"}{" "}
+          {access ? (access.school ? `学校コードを登録済み${access.school.active ? "" : "（いまは利用できません）"}` : "なし") : "…"}{" "}
           <Link href="/school" className="ml-1 text-xs text-sky-700 underline">
             学校コード
           </Link>

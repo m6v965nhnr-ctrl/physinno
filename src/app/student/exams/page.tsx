@@ -111,7 +111,7 @@ export default function ExamsPage() {
         ) : (
           <>
             <p className="text-sm text-gray-700">
-              <span className="font-semibold">{school.name}</span> の勉強方法
+              <span className="font-semibold">あなたの学科</span> の勉強方法
             </p>
 
             <fieldset className="mt-3">
