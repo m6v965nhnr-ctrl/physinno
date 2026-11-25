@@ -1,0 +1,188 @@
+{
+ "slug": "updrs",
+ "name": "UPDRS(MDS-UPDRS)",
+ "category": "評価尺度",
+ "aliases": [
+  "UPDRS",
+  "MDS-UPDRS",
+  "Unified Parkinson's Disease Rating Scale",
+  "パーキンソン病統一スケール",
+  "パーキンソン病統一評価尺度"
+ ],
+ "rows": [
+  {
+   "item": "UPDRS(MDS-UPDRS)の構成と対象",
+   "target": "Parkinson病の症状・日常生活・運動合併症の包括的評価",
+   "value": "4部構成。Part I=非運動症状の日常生活(13項目)、Part II=運動症状の日常生活(13項目)、Part III=運動検査(評価者が診察で採点。18項目・33採点)、Part IV=運動合併症(6項目)。計65採点。各項目は0=正常、1=わずか、2=軽度、3=中等度、4=重度の5段階。従来版UPDRSは55項目。",
+   "exam": "58-am-32(脊髄小脳変性症の運動失調の評価はSARAが正答。UPDRSは誤答選択肢=Parkinson病の尺度)／59-am-91(脳卒中患者の身体機能評価はNIHSS・SIASが正答。UPDRSは誤答選択肢)／60-am-12(片麻痺の通所者の転倒リスク評価はTUGが正答。UPDRSは誤答選択肢)",
+   "q": [
+    "58-am-32",
+    "59-am-91",
+    "60-am-12"
+   ],
+   "note": "確認済み[S1][S2]。日本語名「パーキンソン病統一スケール」は検索用の別名で、本資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Part III 固縮(項目3.3)",
+   "target": "運動検査(Part III)の代表項目",
+   "value": "頸部と4肢を別々に、力を抜かせて他動的にゆっくり関節を動かして評価(上肢は手首と肘、下肢は股と膝を同時に)。0=固縮なし／1=対側の活性化動作(指タッピング・手の開閉・踵タッピングなど)をしたときだけ検出／2=活性化動作なしで検出、全可動域は容易に得られる／3=全可動域は努力して得られる／4=全可動域が得られない。",
+   "exam": "60-am-29(UPDRS Version 3.0の運動能力検査の項目はどれか。正答=固縮。誤答=嚥下・転倒・寝返り・歩行中のすくみ)",
+   "q": [
+    "60-am-29"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Part II 日常生活の項目(嚥下・寝返り・すくみ・転倒)",
+   "target": "運動症状が日常生活に与える影響(患者・介護者の自己記入が中心)",
+   "value": "Part IIの13項目は、発語・唾液とよだれ・咀嚼と嚥下(2.3)・食事動作・着衣・清潔・書字・趣味や活動・寝返り(2.9)・振戦・ベッド/車/深い椅子からの立ち上がり・歩行とバランス(2.12)・すくみ(2.13)。「転倒」は従来版にあった項目だが、MDS版では日常体験の項目に入れず、診察(Part III)側で扱うとされる。",
+   "exam": "60-am-29(誤答選択肢の嚥下・寝返り・歩行中のすくみ・転倒は、いずれもPart III運動検査の項目ではないという扱い)／60-am-12(転倒リスク評価としてUPDRSは不適切=誤答)",
+   "q": [
+    "60-am-29",
+    "60-am-12"
+   ],
+   "note": "確認済み[S1][S2]。食い違い: 「歩行中のすくみ」は、Part IIの2.13(日常生活のすくみ)だけでなく、Part IIIにも3.11「歩行のすくみ(freezing of gait)」の運動検査項目がある。国試の正答は固縮で、すくみを誤答とした扱いは、選択肢の言い回しがPart IIの2.13を指す前提と考えられる(推測)。Part III 3.12(姿勢の安定性)が転倒に関わる診察項目。",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Part III 運動検査の項目一覧",
+   "target": "診察で採点する運動症状(Parkinson病の運動検査)",
+   "value": "3.1 発語／3.2 表情／3.3 固縮／3.4 指タップ／3.5 手の運動／3.6 手の回内・回外／3.7 つま先タップ／3.8 下肢の敏捷性／3.9 椅子からの立ち上がり／3.10 歩行／3.11 歩行のすくみ／3.12 姿勢の安定性／3.13 姿勢／3.14 動作全体の自発性(身体の動作緩慢)／3.15 手の姿勢時振戦／3.16 手の動作時振戦／3.17 安静時振戦の振幅／3.18 安静時振戦の持続性。感覚を診る検査項目はない。",
+   "exam": "54-am-35(UPDRSの評価項目でないものは、感覚が正答。誤答選択肢の姿勢・歩行はPart IIIに含まれる側)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "確認済み[S1]。「感覚」の扱いは下の行を参照。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    }
+   ]
+  },
+  {
+   "item": "歩行(Part III 3.10)",
+   "target": "歩行障害の重症度",
+   "value": "少なくとも10 m歩いて折り返す。歩幅・速さ・足の挙上・踵接地・方向転換・腕振りをみる(すくみは別項目)。0=問題なし／1=自立歩行、軽い障害／2=自立歩行だが著しい障害／3=安全な歩行に杖や歩行器が必要(人の介助は不要)／4=全く歩けない、または他者の介助が必要。",
+   "exam": "54-am-35(誤答選択肢=歩行。UPDRSの評価項目に含まれる)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    }
+   ]
+  },
+  {
+   "item": "姿勢の安定性(Part III 3.12)・姿勢(3.13)",
+   "target": "姿勢反射障害(後方突進)の評価",
+   "value": "3.12は、立位の患者の肩を後ろから急に強く引き(1回目は説明用で採点しない)、後ろへのステップ数をみる。0=1〜2歩で回復／1=3〜5歩、自力で回復／2=5歩超、自力で回復／3=姿勢反応がなく、検者が支えないと倒れる／4=非常に不安定で、軽く引くだけで、または自然にバランスを崩す。2歩までは正常。3.13は立位姿勢の観察。",
+   "exam": "54-am-35(誤答選択肢=姿勢。UPDRSの評価項目に含まれる)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ジスキネジア(Part IV 4.1・4.2)",
+   "target": "運動合併症(ジスキネジア)の評価",
+   "value": "4.1=起きている時間のうちジスキネジアのある割合。0=なし／1=25%以下／2=26〜50%／3=51〜75%／4=75%超。4.2=ジスキネジアが日常の活動・対人場面に与える影響。Part IVはほかにOFF状態の時間・症状変動の影響と複雑さ・OFF期の有痛性ジストニアを含む(計6項目)。",
+   "exam": "54-am-35(誤答選択肢=ジスキネジア。UPDRSの評価項目に含まれる)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    }
+   ]
+  },
+  {
+   "item": "知的機能(Part I 1.1 認知障害)",
+   "target": "Parkinson病の認知機能面の評価",
+   "value": "Part Iの項目1.1「認知障害(Cognitive impairment)」。従来版UPDRSの「知的機能の障害(Intellectual impairment)」に対応する。ほかにPart Iには幻覚・精神症状、抑うつ、不安、アパシー、睡眠、日中の過眠、疲労などの項目がある。",
+   "exam": "54-am-35(誤答選択肢=知的機能。UPDRSの評価項目に含まれる)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "確認済み[S1][S2]。採点の基準文は読んでいない(項目の存在と対応関係のみ確認)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+    }
+   ]
+  },
+  {
+   "item": "感覚(国試で「評価項目でない」とされた点)",
+   "target": "UPDRSの評価項目に含まれないもの",
+   "value": "運動検査(Part III)に感覚を診る項目はない。一方でPart Iの1.9「痛みとその他の感覚」は、患者が報告する症状の項目(従来版では「感覚の訴え(Sensory complaints related to parkinsonism)」)として存在する。",
+   "exam": "54-am-35(UPDRSの評価項目でないものはどれか。正答=感覚。誤答選択肢=姿勢・歩行・知的機能・ジスキネジア)",
+   "q": [
+    "54-am-35"
+   ],
+   "note": "食い違い: 資料では、感覚検査はないが、患者報告の「痛みとその他の感覚」の項目は存在する[S1][S2]。国試の「感覚」は感覚検査(客観的な診察項目)を指すと考えられる(推測)。",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

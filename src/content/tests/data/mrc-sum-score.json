@@ -1,0 +1,121 @@
+{
+ "slug": "mrc-sum-score",
+ "name": "MRC sum score(ICU-AW)",
+ "category": "評価尺度",
+ "aliases": [
+  "MRC sum score",
+  "MRC sum-score",
+  "MRCスコア",
+  "MRC sum",
+  "Medical Research Council",
+  "ICU-AW",
+  "ICU獲得性筋力低下",
+  "集中治療室獲得性筋力低下",
+  "ICU-acquired weakness"
+ ],
+ "rows": [
+  {
+   "item": "MRC sum score の求め方",
+   "target": "ICU-AW(ICU獲得性筋力低下)の評価",
+   "value": "左右の上下肢6筋群=12か所(肩・腕の外転/肘(前腕)屈曲/手関節伸展/股関節屈曲/膝伸展/足関節背屈)を徒手筋力テストで評価し、合計0〜60点(満点60点)",
+   "exam": "60-am-37(正答:MRC sum scoreで評価できるのはICU-AW。誤答=意識障害・嚥下障害・HAD・抑うつ)／59-pm-42(問題文:MRC sum scoreによるICU-AWの判定)",
+   "q": [
+    "60-am-37",
+    "59-pm-42"
+   ],
+   "note": "確認済み[S1][S2]。各筋0〜5点は徒手筋力テストの段階(12筋×5=60点)。筋群の呼び方は資料により「肘屈曲/前腕屈曲」など差がある",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "ICU-AW の判定基準(カットオフ)",
+   "target": "ICU-AWの疑い",
+   "value": "合計が60点満点中48点未満、または検査可能な筋の平均が4点未満で、重症患者に急性に生じた四肢の筋力低下。24時間以上あけて2回以上測定する",
+   "exam": "59-pm-42(正答:両側合計48点未満／平均4点未満。誤答=すべて同一の背臥位で測定する・ICU入室時の検査で判定する・握力20 kg未満)",
+   "q": [
+    "59-pm-42"
+   ],
+   "note": "確認済み[S1][S2]。48点÷12筋=平均4点。「同一の背臥位で測定」が誤りとされる理由は、今回の資料では確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "測定できる状態(覚醒・協力)",
+   "target": "いつ測れるか",
+   "value": "患者が覚醒し、十分な協力と理解が得られる必要がある。せん妄などの意識障害があると評価が難しい。鎮静・せん妄・昏睡中は早期の筋力評価の妨げになる",
+   "exam": "59-pm-42(誤答:「ICU入室時の検査で判定する」)／60-am-37(誤答:意識障害は評価対象ではない)",
+   "q": [
+    "59-pm-42",
+    "60-am-37"
+   ],
+   "note": "確認済み[S1][S2]。MRC sum scoreは意識や嚥下ではなく、筋力(ICU-AW)を見る指標",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+    },
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+    }
+   ]
+  },
+  {
+   "item": "ICU-AW と判断する前の鑑別",
+   "target": "他の筋力低下の原因を除く",
+   "value": "重症病態以外に筋力低下をきたす疾患を確認する(ギラン・バレー症候群・重症筋無力症・ALSなどの神経筋疾患、頸髄・脳幹疾患、甲状腺疾患などの内分泌疾患、低カリウム血症・高マグネシウム血症などの電解質異常)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。[S1]も、重症病態以外にもっともらしい原因がないことを診断の条件としている",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+    },
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+    }
+   ]
+  },
+  {
+   "item": "握力によるICU-AWの目安",
+   "target": "MRCとは別の指標",
+   "value": "握力計での目安は男性11 kg未満・女性7 kg未満(文献値)。MRC sum scoreでは、60点満点中48点未満=ICU-AW(有意な筋力低下)、36点未満=重度の筋力低下の目安",
+   "exam": "59-pm-42(誤答:「握力が20 kg未満である」はMRC sum scoreの判定条件ではない)",
+   "q": [
+    "59-pm-42"
+   ],
+   "note": "確認済み[S1]。[S1]は重度の目安を「36/48」と書くが、60点満点の誤記と思われる。国試の選択肢の20 kgは、この文献の値と一致しない。握力はMRC sum scoreの判定基準ではない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

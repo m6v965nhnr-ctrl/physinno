@@ -1,0 +1,71 @@
+{
+ "slug": "neo-pi-r",
+ "name": "NEO-PI-R(Revised NEO Personality Inventory)",
+ "category": "評価尺度",
+ "aliases": [
+  "NEO-PI-R",
+  "NEO-PI",
+  "Revised NEO Personality Inventory",
+  "NEO人格検査",
+  "ビッグファイブ",
+  "Big Five",
+  "5因子モデル",
+  "五因子モデル"
+ ],
+ "rows": [
+  {
+   "item": "NEO-PI-R の構成",
+   "target": "性格(5因子)の質問紙検査",
+   "value": "英語版は240項目。5つの領域(ドメイン)のそれぞれに6つの下位尺度(facet)があり、計30下位尺度",
+   "exam": "56-am-79(誤答:「イラスト風に描かれた人物のセリフを書き込む」心理検査の正答はP-Fスタディ)／58-am-99(誤答:統合失調症の健康関連QOLの測定に使えるのはSF-36。NEO-PI-Rは性格検査でQOL尺度ではない)",
+   "q": [
+    "56-am-79",
+    "58-am-99"
+   ],
+   "note": "確認済み[S1]=240項目、[S2]=1領域あたり6 facet(合計30は計算値)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9614413/"
+    }
+   ]
+  },
+  {
+   "item": "5つの領域(ビッグファイブ)",
+   "target": "測る性格の側面",
+   "value": "神経症傾向・外向性・開放性(開かれていること)・調和性・誠実性(日本語版の資料では「良心性」とも表記)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。開放性・誠実性などは資料により訳語が異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+    }
+   ]
+  },
+  {
+   "item": "日本語版の標準化",
+   "target": "日本人への適用",
+   "value": "英語版を2名が日本語に翻訳し、日本在住のアメリカ人が逆翻訳して作成。大学生200名での信頼性(クロンバックα)は、神経症傾向.926・外向性.882・開放性.859・調和性.831・誠実性.915。著者らは、基本的に日本人にも適用できるとした",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。これは科研費課題の報告で、現在の市販版の標準化とは別",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

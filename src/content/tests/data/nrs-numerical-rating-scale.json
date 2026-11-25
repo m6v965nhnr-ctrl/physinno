@@ -1,0 +1,147 @@
+{
+ "slug": "nrs-numerical-rating-scale",
+ "name": "NRS(数値評価スケール)",
+ "category": "評価尺度",
+ "aliases": [
+  "NRS",
+  "Numerical Rating Scale",
+  "Numeric Rating Scale",
+  "numerical rating scale",
+  "数値評価スケール",
+  "数値的評価スケール",
+  "数値評価尺度"
+ ],
+ "rows": [
+  {
+   "item": "NRS とは(0〜10の11段階)",
+   "target": "痛みの強さの自己評価",
+   "value": "痛みを0〜10の11段階に分け、痛みが全くないのを0、考えられるなかで最悪の痛みを10として、点数を答えてもらう。評価するのは痛みの強さ",
+   "exam": "54-pm-27(正答は「順序尺度である」。誤答=「10段階で評価する」[0〜10の11段階]・「疼痛の性質を評価する」[強さを評価])／58-pm-50(正答:NRS=疼痛)／57-pm-35(正答:face scaleとNRSが疼痛検査)",
+   "q": [
+    "54-pm-27",
+    "58-pm-50",
+    "57-pm-35"
+   ],
+   "note": "確認済み[S1]。「性質」ではなく強度を見る点が誤答の根拠",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "尺度水準:順序尺度",
+   "target": "データの扱い",
+   "value": "NRSの得点は順序のある区分で、各区分の幅は等しくない。間隔尺度としての性質は疑わしく、順序尺度として扱う",
+   "exam": "54-pm-27(正答:「順序尺度である」)",
+   "q": [
+    "54-pm-27"
+   ],
+   "note": "確認済み[S2]。術後疼痛の大規模登録データ(34万件超)の解析。尺度水準の一般論は「尺度水準」のカードも参照",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/37851363/"
+    }
+   ]
+  },
+  {
+   "item": "疼痛強度の目安(軽度・中等度・高度)",
+   "target": "がん疼痛ガイドラインでの区分",
+   "value": "NRS 1〜3=軽度、4〜6=中等度、7〜10=高度(専門家の合意による便宜的な区分。統一された見解はない)",
+   "exam": "61-am-20(TKA術後3日・体動時NRS 6点=問題文の数値。この区分では中等度に当たる)",
+   "q": [
+    "61-am-20"
+   ],
+   "note": "確認済み[S1]。区分はがん疼痛のガイドライン上の便宜的な定めで、国試問題は数値を示しただけ",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "離床の開始基準(ICU・急性期)",
+   "target": "積極的な離床・運動の開始",
+   "value": "自己申告できる場合 NRS≦3 またはVAS≦3。申告できない場合は BPS≦5 またはCPOT≦2",
+   "exam": "60-pm-10(誤答:「疼痛がNRS 8である」。正答は平均動脈圧80 mmHg)",
+   "q": [
+    "60-pm-10"
+   ],
+   "note": "確認済み[S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+    }
+   ]
+  },
+  {
+   "item": "他の疼痛尺度との違い(VAS・VRS・FPS)",
+   "target": "尺度の使い分け",
+   "value": "VAS=100 mmの線上に印をつける。VRS=痛みの強さを表す言葉を選ぶ。FPS(顔の表情)=現在の痛みに合う顔を選び、3歳以上の小児の自己評価で有用性が報告。これらのうち一般にはNRSが推奨される",
+   "exam": "57-pm-35(正答:face scaleとNRS。GCS・mRS・MTSは疼痛の検査ではない)",
+   "q": [
+    "57-pm-35"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "小児での使用",
+   "target": "幼児にNRSを使えるか",
+   "value": "NRSは数の概念の理解が必要。小児の慢性疼痛では8歳以上での使用が検討できる目安とされ、年少児は乖離が大きい。幼い小児にはフェイススケールが使われる",
+   "exam": "54-pm-27(誤答:「幼児の疼痛評価に使用される」)",
+   "q": [
+    "54-pm-27"
+   ],
+   "note": "確認済み[S4](8歳以上の目安)、[S1](FPSは3歳以上)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4158959"
+    },
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "患者間の比較",
+   "target": "同じ点数の意味",
+   "value": "疼痛強度のカットオフには統一した見解がなく、同じNRSの点数でも追加の鎮痛を希望するかは患者で異なる。自己申告の主観的評価で、患者間の比較には向かない",
+   "exam": "54-pm-27(誤答:「患者間の比較に有効である」)",
+   "q": [
+    "54-pm-27"
+   ],
+   "note": "確認済み[S5](NRS 5〜10と答えた患者の19%が追加のオピオイドを希望しなかった報告)、[S1]。「向かない」は資料の記述から導いた学習用の要約",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9074792"
+    },
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

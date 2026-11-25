@@ -1,0 +1,66 @@
+{
+ "slug": "double-product",
+ "name": "二重積(ダブルプロダクト)",
+ "category": "リスク管理",
+ "aliases": [
+  "二重積",
+  "ダブルプロダクト",
+  "Double Product",
+  "double product",
+  "心仕事量",
+  "心臓二重積"
+ ],
+ "rows": [
+  {
+   "item": "二重積の定義",
+   "target": "運動時の心臓の仕事量・心筋酸素需要の指標",
+   "value": "二重積(DP)=心拍数 × 収縮期血圧。規定因子は心拍数と収縮期血圧の2つ",
+   "exam": "59-pm-36(2つ選ぶ。正答:心拍数・収縮期血圧。誤答:呼吸数・一回拍出量・動静脈酸素較差)",
+   "q": [
+    "59-pm-36"
+   ],
+   "note": "確認済み[S1]。診療ガイドラインでDPを「収縮期血圧と心拍数の積」と説明。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2018/11/JCS2018_kimura.pdf"
+    }
+   ]
+  },
+  {
+   "item": "二重積の意味",
+   "target": "心筋酸素消費量との関係",
+   "value": "DPは心筋の酸素消費量と強い相関(報告値 r=0.90)があり、運動中の心臓の仕事量を間接的に推測する指標として使われてきた",
+   "exam": "59-pm-36(二重積が何を反映するかの前提知識)",
+   "q": [
+    "59-pm-36"
+   ],
+   "note": "確認済み[S1]。呼吸数・一回拍出量・動静脈酸素較差は、資料の二重積の定義に含まれない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://air.repo.nii.ac.jp/record/1447/files/mom1.pdf"
+    }
+   ]
+  },
+  {
+   "item": "運動療法による二重積の変化",
+   "target": "運動療法の身体的効果",
+   "value": "運動療法の効果として、最大下の同一負荷強度での心仕事量(心臓二重積)が減少する(ガイドラインの推奨ランクA)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。2012年改訂版。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.jacr.jp/pdf/JCS2012_nohara_d_2015.01.14.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

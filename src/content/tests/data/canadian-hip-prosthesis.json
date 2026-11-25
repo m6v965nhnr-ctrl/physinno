@@ -1,0 +1,101 @@
+{
+ "slug": "canadian-hip-prosthesis",
+ "name": "カナダ式股義足(股関節離断用義足)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "カナダ式股義足",
+  "カナダ式",
+  "股義足",
+  "股関節離断",
+  "股離断",
+  "股継手",
+  "股屈曲制限バンド",
+  "ヒップディスアーティキュレーション"
+ ],
+ "rows": [
+  {
+   "item": "股継手の位置と角度",
+   "target": "カナダ式股義足の構造(安定性)",
+   "value": "股継手はソケットの前下方に取り付ける(固定式・遊動式がある)。正常な股関節軸に対して45°前下方に付けると、立位で義足に体重をかけるだけで股継手を伸展させる力が働き、安定する。",
+   "exam": "50-pm-37(誤答:「股継手を正常股関節軸より45°前上方につける」→前下方が正しい)",
+   "q": [
+    "50-pm-37"
+   ],
+   "note": "確認済み[S1][S2][S3]。角度は国試解説サイト[S1]と義肢装具士向けサイト[S2](片側骨盤切除用の記載)で一致。国試の正答と一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S2",
+     "url": "https://postudent.com/hip_prosthesis/4/"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+    }
+   ]
+  },
+  {
+   "item": "ソケットの形と固定・懸垂",
+   "target": "カナダ式股義足のソケット",
+   "value": "断端から骨盤までのヒップ全体を包み、義足の安定と懸垂を図る(骨盤全体をソケットで固定するので自己懸垂力がある)。国試の解説では、固定は両側腸骨稜上部と坐骨の3点、懸垂は切断対側の腸骨稜で行うとされる。",
+   "exam": "50-pm-37(正答側の選択肢:ソケットの固定を両側腸骨稜の上部と坐骨の3点で行う／ソケットの懸垂を切断対側の腸骨稜で行う)",
+   "q": [
+    "50-pm-37"
+   ],
+   "note": "確認済み[S1][S3]。3点固定・対側腸骨稜の懸垂は国試解説サイト[S1]の記載で、公的資料[S3]では「骨盤を包み、安定と懸垂」までを確認した。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+    }
+   ]
+  },
+  {
+   "item": "荷重線(ベンチアライメント)",
+   "target": "殻構造の股義足のアライメント",
+   "value": "矢状面で、股継手と膝継手を通る直線が踵の後方25〜40mmに落ちる。膝継手中心を通る垂直線は、トゥブレークと踵を結ぶ線の中間を通る。前額面では左右の機械軸が正中線に対して対称。",
+   "exam": "50-pm-37(正答側の選択肢:股継手と膝継手を通る線が踵の25〜40mm後方を通る)",
+   "q": [
+    "50-pm-37"
+   ],
+   "note": "確認済み[S1][S2]。国試の記述と一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S2",
+     "url": "https://postudent.com/hip_prosthesis/4/"
+    }
+   ]
+  },
+  {
+   "item": "適応・膝継手",
+   "target": "カナダ式股義足の使われ方",
+   "value": "適応は股関節離断。膝継手の基本構造は大腿義足と同じだが、安定性の高いものが使われる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。「股屈曲制限バンド」の記載は、確認できた資料がないため載せていない(国試[50-pm-37]では正しい選択肢として出た)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

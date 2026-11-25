@@ -1,0 +1,60 @@
+{
+ "slug": "raven-cpm",
+ "name": "Raven色彩マトリックス検査(RCPM)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "RCPM",
+  "Raven色彩マトリックス検査",
+  "Raven色彩マトリックス",
+  "レーヴン色彩マトリックス検査",
+  "レーヴン色彩マトリックス",
+  "Raven's colored progressive matrices",
+  "Raven's coloured progressive matrices",
+  "colored progressive matrices",
+  "coloured progressive matrices",
+  "Raven色彩"
+ ],
+ "rows": [
+  {
+   "item": "RCPMの概要",
+   "target": "非言語性の知能(論理的思考・類推)の検査",
+   "value": "言葉を使わず図形で考える非言語性の検査。A・Ab・Bの3セット(各12問)計36問で、制限時間なし、個別でも集団でも約15〜30分。結果は1つの素点で、基準データに基づくパーセンタイルに換算する。対象は5〜11歳の子ども、高齢者、知的・身体的な障害のある人。",
+   "exam": "51-am-80(『遅延再生を含まない』検査として正答: RCPM。他の選択肢のRBMT・MMSE・HDS-R・RAVLTは遅延再生を含む検査として出題)／50-pm-80(図に示す課題を用いる検査の問いで、RCPMは誤答選択肢)",
+   "q": [
+    "51-am-80",
+    "50-pm-80"
+   ],
+   "note": "確認済み[S1](構成・対象・時間)。『遅延再生を含まない』は、36問の図形課題のみという構成からの整理で、出典に『遅延再生なし』の明記はない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.pearsonassessments.com/store/en/usd/p/100000098.html"
+    }
+   ]
+  },
+  {
+   "item": "注意障害の検査ではない",
+   "target": "RCPMと注意・遂行機能・記憶の検査の区別",
+   "value": "高次脳機能障害の診断基準ガイドラインが注意障害の参考検査として挙げるのは、抹消・検出課題、Stroop test、心的統制課題、Continuous Performance Testなど。Raven色彩マトリックス検査は注意の検査ではなく、推理・類推をみる知能検査の側。",
+   "exam": "57-am-28(『注意障害の検査はどれか』で、RCPMは誤答選択肢。正答はTMT)",
+   "q": [
+    "57-am-28"
+   ],
+   "note": "確認済み[S1][S2]。ガイドラインの注意障害の例示にRCPMが含まれないことを確認(記載がない=注意の検査として扱われていない)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.pearsonassessments.com/store/en/usd/p/100000098.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

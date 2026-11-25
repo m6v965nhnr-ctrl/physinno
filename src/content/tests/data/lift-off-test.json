@@ -1,0 +1,83 @@
+{
+ "slug": "lift-off-test",
+ "name": "Lift-offテスト(Gerber)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Lift-offテスト",
+  "Lift-off test",
+  "lift-off sign",
+  "リフトオフテスト",
+  "リフトオフ",
+  "Gerberテスト",
+  "Gerber test",
+  "肩甲下筋テスト",
+  "手背を腰部"
+ ],
+ "rows": [
+  {
+   "item": "Lift-offテストの手技と陽性",
+   "target": "肩甲下筋(肩関節内旋筋)の機能・断裂",
+   "value": "手背を腰部(腰椎の中ほど)に当てた位置から、手を背中から後方へ離すように自分で持ち上げさせる。離せない、離した位置を保てない(支えを外すと戻る=lag)、肘や肩の伸展で代償する場合を陽性とし、肩甲下筋の断裂や著しい筋力低下を示唆する。前提として、手が腰まで届く十分な他動の内旋ができることを確認する(できないと偽陽性になる)",
+   "exam": "54-pm-5(正答: 肩甲下筋。20歳男性、肩の疼痛。図の肢位から手背を腰部から離すよう指示したが離せなかった。誤答: 棘下筋・棘上筋・小円筋・上腕二頭筋。図は未確認)",
+   "q": [
+    "54-pm-5"
+   ],
+   "note": "確認済み[S1][S2]。国試の「手背を腰部から離せない」は陽性所見に一致",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12127584/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+    }
+   ]
+  },
+  {
+   "item": "原法と位置づけ",
+   "target": "検査の成り立ち",
+   "value": "Gerberらが1991年に、肩甲下筋腱の孤立性断裂16例の報告の中で示した簡便な手技で、臨床的に意味のある断裂を診断または除外できるとした(内旋筋力の低下・外旋の増加も所見)。肩甲下筋の完全性をみるために最初に考案された検査で、のちに internal rotation lag sign、belly-press test(変法がNapoleon test)、belly-off sign、bear-hug test が報告された",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3][S4]。確定診断には超音波・MRIなどの画像を用いる(原著)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/1670434/"
+    },
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822023/"
+    }
+   ]
+  },
+  {
+   "item": "診断精度(特異度は高いが感度は低い)",
+   "target": "結果の読み方",
+   "value": "メタ解析(13研究)では、bear-hug・belly-press・internal rotation lag sign・lift-offの4検査はいずれもまとめた特異度が0.90超、感度は0.60未満で、どれも単独では肩甲下筋断裂の診断に十分とはいえない。陽性は断裂の確認に役立つが、陰性でも否定できない。感度の報告は研究で幅があり、18〜35%とする報告から、前向き144例の研究での77.4%まである",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2][S4][S1]。研究ごとの対象・基準(関節鏡・超音波・MRI)や部分断裂か全層断裂かで値が変わる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822023/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+    },
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12127584/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

@@ -1,0 +1,120 @@
+{
+ "slug": "myerson-sign",
+ "name": "Myerson徴候(眉間反射)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Myerson徴候",
+  "Myerson's sign",
+  "Myerson sign",
+  "マイヤーソン徴候",
+  "眉間反射",
+  "眉間叩打",
+  "眉間を叩く",
+  "glabellar tap",
+  "glabellar reflex",
+  "glabellar tap sign"
+ ],
+ "rows": [
+  {
+   "item": "Myerson徴候(眉間反射)の見方",
+   "target": "前頭葉解放徴候・パーキンソニズムの所見",
+   "value": "眉間(両眉のあいだ)を指で繰り返し軽く叩く。正常では最初の数回は瞬目するが、叩き続けると慣れ(habituation)が生じて瞬目が止まる。叩くたびに瞬目が続いて止まらないのがMyerson徴候で異常所見。研究の一例では、約2回/秒で21回叩き、瞬目3回以下を正常・4回以上を異常とした(判定回数は文献により異なる)。",
+   "exam": "49-pm-89(正答: Parkinson病の症状・徴候として正しいのはMyerson徴候。誤答: 企図振戦・アテトーゼ・ミオクロニー発作・折りたたみナイフ現象)",
+   "q": [
+    "49-pm-89"
+   ],
+   "note": "確認済み[S1][S2]。判定の叩打回数は研究ごとの設定。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://en.wikipedia.org/wiki/Glabellar_reflex"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8536581/"
+    }
+   ]
+  },
+  {
+   "item": "Parkinson病での出現",
+   "target": "Parkinson病の補助的な所見",
+   "value": "Parkinson病患者25人と健常者25人を比べた研究では、snout反射や眉間反射(glabellar tap)などが患者で明らかに多く、原始反射は診断の助けになりうると結論された。別の研究でも、眉間反射はパーキンソン症候群で比較的出やすい(感度が比較的高い)所見とされた。",
+   "exam": "49-pm-89(正答)。60-pm-90(誤答選択肢: 腰椎椎間板ヘルニアでMyerson徴候は陽性、は誤り=別行)",
+   "q": [
+    "49-pm-89"
+   ],
+   "note": "確認済み[S3][S4]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/8270937/"
+    },
+    {
+     "label": "S4",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/15452308/"
+    }
+   ]
+  },
+  {
+   "item": "特異性・精度の限界",
+   "target": "鑑別診断での使い方",
+   "value": "Parkinson病・進行性核上性麻痺・多系統萎縮症の間で眉間反射の出現頻度に有意差はなく、疾患を区別する力(特異性)は乏しい。Parkinson病と本態性振戦を比べた研究では感度78.3%・特異度36.2%で、時間が経つと20%の患者で異常から正常に変わった。臨床では補助的な所見として扱う。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2][S4][S5]。精度の数値は1つの研究の結果。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8536581/"
+    },
+    {
+     "label": "S4",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/15452308/"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/60/12/60_cn-001459/_html/-char/ja"
+    }
+   ]
+  },
+  {
+   "item": "腰椎椎間板ヘルニアの診察所見",
+   "target": "腰椎椎間板ヘルニアの身体所見(Myerson徴候は含まれない)",
+   "value": "診療ガイドラインが示す診察は、体幹前屈制限・tight hamstrings・疼痛性側弯、神経学的所見(感覚障害の範囲、下肢への放散痛、筋力低下、深部腱反射)、下肢伸展挙上テスト(SLRT)・交差SLRT・大腿神経伸展テストなど。眉間反射(Myerson徴候)は挙げられていない。",
+   "exam": "60-pm-90(誤答選択肢: 腰椎椎間板ヘルニアでMyerson徴候は陽性である。正答は「脱出髄核は吸収されることがある」)",
+   "q": [
+    "60-pm-90"
+   ],
+   "note": "確認済み[S6]。ガイドライン本文にMyerson徴候の記載がないことを確認(記載なし=陽性所見として扱われていない)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://minds.jcqhc.or.jp/common/summary/pdf/c00645.pdf"
+    }
+   ]
+  },
+  {
+   "item": "同問の他の選択肢(腰椎椎間板ヘルニアの基本)",
+   "target": "60-pm-90 の正誤の根拠",
+   "value": "有病率は約1%(「約15%」は誤り)。20〜40歳代の男性に多く、小児・高齢者では少ない(「小児期に多い」は誤り)。症候性ヘルニアの60%以上で画像上の退縮があり、sequestration型・extrusion型は吸収されやすい(「吸収されることがある」が正しい)。症状に膀胱直腸障害が挙がり、「生じない」は誤り。",
+   "exam": "60-pm-90(正答: 脱出髄核は吸収されることがある。誤答: 小児期に多い・膀胱直腸障害は生じない・人口の約15%)",
+   "q": [
+    "60-pm-90"
+   ],
+   "note": "確認済み[S6]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S6",
+     "url": "https://minds.jcqhc.or.jp/common/summary/pdf/c00645.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

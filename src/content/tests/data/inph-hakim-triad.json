@@ -1,0 +1,135 @@
+{
+ "slug": "inph-hakim-triad",
+ "name": "特発性正常圧水頭症(iNPH)・Hakim三徴",
+ "category": "診断基準・分類",
+ "aliases": [
+  "iNPH",
+  "NPH",
+  "正常圧水頭症",
+  "特発性正常圧水頭症",
+  "Hakim三徴",
+  "Hakim",
+  "Evans index",
+  "DESH",
+  "タップテスト",
+  "髄液排除試験",
+  "腰椎-腹腔シャント",
+  "脳室-腹腔シャント"
+ ],
+ "rows": [
+  {
+   "item": "三徴(歩行障害・認知障害・排尿障害)",
+   "target": "特発性正常圧水頭症の主症状",
+   "value": "先行疾患なく脳室拡大が生じ、髄液圧は正常で、認知障害・歩行障害・排尿障害の3つが緩徐に進行する",
+   "exam": "59-pm-5(自発性低下・行動異常・頻回な転倒に加え、考えられる特徴的な症状=排尿障害が正答)／51-pm-99(みられる所見=脳室拡大・小刻み歩行・自発性低下。腰椎-腹腔シャント術)",
+   "q": [
+    "59-pm-5",
+    "51-pm-99"
+   ],
+   "note": "確認済み[S1]。三徴=歩行・認知・排尿の障害",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "三徴それぞれの特徴",
+   "target": "症状の見分け方",
+   "value": "歩行=歩幅が小さい・すり足・開脚(外股)・すくみ足・方向転換で不安定・転倒しやすい／認知=精神運動速度の低下・注意障害・無為(アパシー)など前頭葉機能障害が目立ち、記憶障害は比較的軽い／排尿=過活動膀胱(頻尿から切迫性尿失禁)",
+   "exam": "59-pm-5(自発性低下=アパシー、頻回な転倒=歩行障害に当たり、残る排尿障害が正答)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "髄液所見(圧・細胞数・蛋白)",
+   "target": "iNPHの髄液",
+   "value": "髄液圧は正常(20cmH2O以下)。細胞数・蛋白も正常。probable iNPHの条件に含まれる",
+   "exam": "51-pm-99(特発性正常圧水頭症で誤り=髄液で細胞増加が正答)",
+   "q": [
+    "51-pm-99"
+   ],
+   "note": "確認済み[S1]。細胞数は正常なので『細胞増加』は誤り",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "診断の段階(suspected・possible・probable・definite)",
+   "target": "診療ガイドライン第3版の診断分類",
+   "value": "possible=60歳以上・脳室拡大(Evans index>0.3)・三徴のうち1つ以上があり、他疾患で説明できず、水頭症の明らかな先行疾患がない／probable=さらにDESH所見+歩行障害+髄液圧・性状が正常、またはタップテストで三徴が改善／definite=シャント術後に三徴が客観的に改善",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "画像所見(Evans index・DESH)",
+   "target": "iNPHの画像診断",
+   "value": "Evans index=両側側脳室前角間最大幅÷同一断面の頭蓋内腔横径。0.3を超えると脳室拡大。DESH=脳室拡大+シルビウス裂の拡大+高位円蓋部・正中部のくも膜下腔の狭小化(脳梁角が90度以下に鋭角化)",
+   "exam": "51-pm-99(みられる所見として脳室拡大)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "タップテスト(髄液排除試験)",
+   "target": "シャント術の適応判断",
+   "value": "腰椎穿刺で髄液を30〜50mL排除し、前後で三徴を評価して改善を確認する。改善の目安=TUG・10m歩行の所要時間10%以上短縮、MMSE 3点以上、FAB 2点以上、iNPHGS 1以上、mRS 1以上の改善",
+   "exam": "出題は直接なし(参考。腰椎穿刺で髄液を排出して歩行が改善する状態=正常圧水頭症)",
+   "q": [],
+   "note": "確認済み[S1]。タップ陰性でもシャント後に改善する場合があるとされる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  },
+  {
+   "item": "シャント術と認知機能の改善",
+   "target": "手術で改善しうる認知障害",
+   "value": "適切にシャント手術を行うと80%でADLが改善し、46%で他覚的な認知障害が消失すると報告される。術式にはLP(腰部くも膜下腔-腹腔)・VP(脳室-腹腔)・VA(脳室-心房)シャントがある",
+   "exam": "51-am-92(脳外科的手術で認知機能が改善しうる疾患=慢性硬膜下血腫・正常圧水頭症が正答)",
+   "q": [
+    "51-am-92"
+   ],
+   "note": "確認済み[S1](正常圧水頭症の部分のみ。慢性硬膜下血腫はこの資料では確認していない)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

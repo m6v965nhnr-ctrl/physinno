@@ -1,0 +1,148 @@
+{
+ "slug": "baum-test",
+ "name": "バウムテスト",
+ "category": "臨床検査",
+ "aliases": [
+  "バウム・テスト",
+  "Baum test",
+  "樹木画",
+  "樹木画テスト",
+  "実のなる木",
+  "コッホ",
+  "描画法",
+  "投影描画法",
+  "Picture-Frustration Study",
+  "Sentence Completion Test",
+  "NEO Personality Inventory",
+  "質問紙法",
+  "投影法",
+  "投映法"
+ ],
+ "rows": [
+  {
+   "item": "バウムテスト(樹木画)",
+   "target": "描画による投影法の人格検査",
+   "value": "「実のなる木を1本描いてください」という教示で木の絵を自由に描かせる描画法(投影法)。A4用紙・濃い鉛筆・消しゴムを使い、全体の印象・根/幹/樹冠/枝葉の形態分析、筆圧などの動態分析、紙面上の位置の空間分析を行う。質問紙法ではない。",
+   "exam": "56-am-79(誤答選択肢: 「イラスト風の人物のセリフを書き込む」検査ではない)／57-am-35・57-am-81(誤答選択肢: バウムテスト・Rorschachは投影法。質問紙法ではない)／59-am-78(誤答選択肢: 描画法)／第49回に「1本の実のなる木を描いてください」の指示(問題IDは未確認)",
+   "q": [
+    "56-am-79",
+    "57-am-35",
+    "57-am-81",
+    "59-am-78"
+   ],
+   "note": "確認済み[S1][S2]。考案年は資料により1945年・1949年と食い違うため、年は覚えなくてよい。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+    }
+   ]
+  },
+  {
+   "item": "P-Fスタディ(絵画欲求不満テスト)",
+   "target": "漫画風の場面で人物のセリフを書き込む検査",
+   "value": "日常のかるい欲求不満場面24場面。漫画風の絵で、左の人物のことばに対する右の人物の返答を書き込ませる。顔や表情は省かれている。投影法の一種(制限のある準投影法とも呼ばれる)。",
+   "exam": "56-am-79(正答=P-Fスタディ。問題文「イラスト風に描かれた人物のセリフを書き込む形式の心理検査」)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S3][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+    }
+   ]
+  },
+  {
+   "item": "SCT(文章完成法)",
+   "target": "未完成の文の続きを書く投影法",
+   "value": "あらかじめ書かれた未完成の刺激文の続きを、思い浮かぶままに自由に書かせる。自己概念・対人関係・家族関係などが現れると考える。投影法の中では比較的意識に近いレベルで、集団でも実施できる。",
+   "exam": "56-am-79(誤答選択肢: 人物のセリフを書き込む検査ではなく、文章の続きを書く検査)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    }
+   ]
+  },
+  {
+   "item": "MPI(モーズレイ性格検査)",
+   "target": "Eysenckの質問紙法の性格検査",
+   "value": "Eysenckが作った質問紙法。下位尺度は社会的外向性(E)と神経症的傾向(N)で、各24項目。回答の妥当性をみる虚偽性尺度(L)もある。",
+   "exam": "56-am-79(誤答選択肢: 質問紙法であり、セリフを書き込む形式ではない)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    }
+   ]
+  },
+  {
+   "item": "NEO-PI-R(改訂版NEO人格目録)",
+   "target": "5因子モデルの質問紙法の性格検査",
+   "value": "Costa & McCraeが作った240項目の質問紙。5因子(神経症傾向・外向性・開放性・調和性・誠実性)について、各6つの側面を測る。日本版もあり、短縮版のNEO-FFIは60項目。",
+   "exam": "56-am-79(誤答選択肢: 質問紙法であり、セリフを書き込む形式ではない)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S4]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+    }
+   ]
+  },
+  {
+   "item": "投影法と質問紙法の区別",
+   "target": "人格検査の分類",
+   "value": "質問紙法: 「はい・いいえ」などで自己評定させ、意識的・自己概念的な水準をとらえる(MPI・MMPI・YG・NEO-PI-R)。投影法: あいまいな刺激への自由な反応から、より深い特徴をとらえる(Rorschach・TAT・SCT・P-Fスタディ・バウムテスト)。",
+   "exam": "57-am-35・57-am-81(バウムテスト・Rorschachは投影法。質問紙法の選択肢としては誤り)／59-am-78(描画法の選択肢)",
+   "q": [
+    "57-am-35",
+    "57-am-81",
+    "59-am-78"
+   ],
+   "note": "確認済み[S1][S2]。NEO-PI-Rが質問紙法である点は[S4]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+    },
+    {
+     "label": "S4",
+     "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

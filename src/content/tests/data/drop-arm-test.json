@@ -1,0 +1,88 @@
+{
+ "slug": "drop-arm-test",
+ "name": "Drop armテスト",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Drop armテスト",
+  "drop armテスト",
+  "drop arm テスト",
+  "drop arm test",
+  "Drop arm sign",
+  "drop arm sign",
+  "ドロップアーム",
+  "ドロップアームテスト",
+  "ドロップアームサイン"
+ ],
+ "rows": [
+  {
+   "item": "Drop armテスト(手技と陽性)",
+   "target": "肩腱板断裂(とくに棘上筋)の徒手検査",
+   "value": "肘を伸ばした腕を、検者が他動的に90°外転させ(外旋位で肘を支える)、支えを外して、ゆっくり下ろすよう指示する。腕を保てず突然落ちる・ゆっくり下ろせない場合、または下ろすときの痛みがある場合を陽性とする。腱板断裂を疑う。下ろすときの痛みは、棘上筋の完全断裂を示唆することがある。",
+   "exam": "58-am-33(「腱板損傷の検査で正しいのは」の正答。誤答はChair・Jackson・Spurling・Thomsen)／55-pm-86(「肩腱板断裂で陽性となるのは」の正答。誤答はAdson・Finkelstein・Phalen・Thomsen)／53-pm-32(「腱板断裂損傷の徒手検査で陽性となる可能性が最も高いのは」の正答。誤答はanterior apprehension・Morley・Thompson・「Yargason」(=Yergasonの誤記))",
+   "q": [
+    "58-am-33",
+    "55-pm-86",
+    "53-pm-32"
+   ],
+   "note": "確認済み[S1]。国試の正答(腱板断裂で陽性)と一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+    }
+   ]
+  },
+  {
+   "item": "Drop armテストの診断精度と限界",
+   "target": "陰性でも腱板断裂は否定できない",
+   "value": "特異度は高いが、感度は低い。メタ解析では診断オッズ比1.45で、単独では診断的な有意差に達しなかったとする報告もある。腱板断裂の確定には、外旋ラグサイン(90°で特異度0.99・診断オッズ比12.70)など別の所見や画像を組み合わせる。単独で決められる検査はなく、複数の検査を組み合わせると診断精度が上がる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。資料間で、Drop armの「特異度が高い」(一般的評価)と「メタ解析で有意でない」という見方に幅がある。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13096753/"
+    }
+   ]
+  },
+  {
+   "item": "Drop armテストが陽性になる割合(MRIでの断裂の程度別)",
+   "target": "完全断裂と部分断裂での違い",
+   "value": "162例(MRIで完全断裂125例・部分断裂37例)で、Drop armテスト陽性は完全断裂で81例(64.8%)、部分断裂で14例(37.8%)。完全断裂で陽性が多い(p=0.003)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。MRI所見との比較で、手術所見との感度・特異度ではない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12009592/"
+    }
+   ]
+  },
+  {
+   "item": "腱板のほかの徒手検査(比較)",
+   "target": "どの腱の検査かの整理",
+   "value": "Jobe(empty can)テスト=棘上筋。抵抗に対する脱力で陽性。Lift-offテスト=肩甲下筋。特異度は90%超と高いが感度は18〜35%と低く、陽性なら確認に使い、陰性で除外はできない。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

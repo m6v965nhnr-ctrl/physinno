@@ -1,0 +1,55 @@
+{
+ "slug": "drehmann-sign",
+ "name": "Drehmann徴候",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Drehmann徴候",
+  "Drehmann sign",
+  "Drehmann",
+  "ドレーマン",
+  "ドレーマン徴候",
+  "大腿骨頭すべり症",
+  "SCFE",
+  "slipped capital femoral epiphysis"
+ ],
+ "rows": [
+  {
+   "item": "Drehmann徴候",
+   "target": "大腿骨頭すべり症(slipped capital femoral epiphysis:SCFE)",
+   "value": "股関節を他動的に屈曲していくと、屈曲に伴って、その股関節が不随意に外転・外旋すれば陽性。患側の股関節で起きる。SCFEで認められる特異的な所見の1つ。",
+   "exam": "57-am-31(右大腿骨頭すべり症でDrehmann徴候陽性。背臥位で右下肢を他動的に屈曲したときの関節運動の正答=右股関節が外転・外旋(選択肢3)。誤答:左股関節が屈曲・外旋/左股関節が内転・外旋/右股関節が外転・内旋/右股関節が内転・内旋)",
+   "q": [
+    "57-am-31"
+   ],
+   "note": "確認済み[S1][S2]。屈曲に伴う「外旋」は両資料で共通。外転も伴うとするのは[S1]。国試の正答(外転・外旋)と一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8702267/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11533300/"
+    }
+   ]
+  },
+  {
+   "item": "大腿骨頭すべり症の診察所見",
+   "target": "Drehmann徴候以外の身体所見・症状",
+   "value": "股関節の可動域制限(とくに内旋・屈曲・外転)。患肢は外旋位をとり、短縮することがある。膝・大腿・鼠径部の断続的な痛みや、患肢で体重をかけにくいことが多く、痛みの部位が膝などで紛らわしいことがある。診断には診察が重要とされる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。資料はドイツ語の論文で、Drehmann徴候は項目名のみ触れられ、手技の説明は[S1][S2]から。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10781806/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

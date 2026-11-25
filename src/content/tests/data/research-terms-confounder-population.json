@@ -1,0 +1,132 @@
+{
+ "slug": "research-terms-confounder-population",
+ "name": "研究用語(交絡因子・母集団・標本・無作為抽出)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "交絡因子",
+  "中間因子",
+  "母集団",
+  "標本調査",
+  "標本抽出",
+  "無作為抽出",
+  "標本誤差",
+  "非標本誤差",
+  "多変量解析",
+  "研究に関する用語"
+ ],
+ "rows": [
+  {
+   "item": "交絡因子",
+   "target": "要因(曝露)と結果の関連をゆがめる第3の因子",
+   "value": "要因と結果の関係に影響して、見かけの関連をゆがめる(かく乱する)他の因子。成立の3条件=①結果(疾病)発生の危険因子である ②要因(曝露)と関係がある ③要因と結果の中間因子ではない",
+   "exam": "53-am-21(正答選択肢:「交絡因子=2つの要因の関連をかく乱する他の因子」)",
+   "q": [
+    "53-am-21"
+   ],
+   "note": "確認済み[S1]。国試の説明と一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+    }
+   ]
+  },
+  {
+   "item": "交絡因子の調整",
+   "target": "交絡の影響を除いて関連を見る方法",
+   "value": "多変量解析で、交絡因子の影響を除いたうえで要因と結果の関連を調べる。デザイン段階で調整しきれない因子を解析モデルに入れる、という位置づけ",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。層別化・マッチングなど他の方法は、この資料では確認していない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+    }
+   ]
+  },
+  {
+   "item": "交絡因子と中間因子の区別",
+   "target": "調整してよい因子かの見極め",
+   "value": "要因と結果の間の経路上にある因子(要因が中間因子を介して結果の原因になる)は、交絡因子ではない。見極めは重要だが難しく、過去の文献や生理学的・生化学的な機序から判断する",
+   "exam": "出題は直接なし(参考。交絡の条件③に対応)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+    }
+   ]
+  },
+  {
+   "item": "母集団",
+   "target": "調べたい対象の全体",
+   "value": "標本調査で、調べる対象とされている元の集団全体。標本調査の目的は、標本から母集団の状況をできるだけ正確に推計すること",
+   "exam": "53-am-21(誤答選択肢:「母集団=実際の研究の対象となるもの」。実際に調べる対象として取り出されるのは標本)",
+   "q": [
+    "53-am-21"
+   ],
+   "note": "確認済み[S2]。総務省統計局の資料は標本調査の説明で、研究デザイン全般の定義ではないが、母集団と標本の関係は同じ。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "標本(サンプル)",
+   "target": "母集団から取り出して実際に調べる一部",
+   "value": "対象のすべてを調べず、一部だけを取り出して調査するのが標本調査で、取り出されたものを標本という。母集団のよい縮図となるように抽出することが重要",
+   "exam": "53-am-21(「実際の研究の対象」は標本に当たる、という切り分けで母集団の選択肢が誤り)",
+   "q": [
+    "53-am-21"
+   ],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "無作為抽出(ランダムサンプリング)",
+   "target": "標本の選び方",
+   "value": "選ぶ際の恣意性をなくし、完全に確率的に母集団から標本を選ぶ方法",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "標本誤差と非標本誤差",
+   "target": "調査結果が真の値とずれる原因",
+   "value": "標本誤差=全数調査でなく標本調査をしたことで生じる誤差。非標本誤差=それ以外の誤差(誤回答・未回答など)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

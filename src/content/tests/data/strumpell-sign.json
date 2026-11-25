@@ -1,0 +1,89 @@
+{
+ "slug": "strumpell-sign",
+ "name": "Strümpell現象(脛骨筋現象)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Strümpell現象",
+  "Strumpell現象",
+  "Strümpell",
+  "Strumpell",
+  "ストリュンペル現象",
+  "ストリュンペル",
+  "シュトリュンペル現象",
+  "シュトリュンペル",
+  "脛骨筋現象",
+  "脛骨筋徴候",
+  "脛骨現象",
+  "tibialis sign",
+  "tibialis phenomenon"
+ ],
+ "rows": [
+  {
+   "item": "Strümpell現象の誘発と反応",
+   "target": "錐体路障害(片麻痺)でみられる下肢の連合反応",
+   "value": "麻痺側の股関節と膝関節を随意的に曲げると、足関節が不随意に背屈し、内反する(母趾や全趾の背屈を伴うこともある)。抵抗をかけて動かすと強まる。正常では、股・膝を強く曲げると足は底屈する",
+   "exam": "52-pm-48(正答: 足関節背屈。端座位で一側の股関節屈曲に抵抗をかけたとき。誤答: 股関節外旋・膝関節屈曲・膝関節伸展・足関節底屈)",
+   "q": [
+    "52-pm-48"
+   ],
+   "note": "確認済み[S1]。設問は股関節屈曲に抵抗をかける形で、資料の「股・膝の屈曲」とは動かす関節の書き方が少し違うが、反応(足関節背屈)は一致",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neupsykey.com/associated-movements-4/"
+    },
+    {
+     "label": "S3",
+     "url": "https://kotobank.jp/word/%E3%82%B7%E3%83%A5%E3%83%88%E3%83%AA%E3%83%A5%E3%83%B3%E3%83%9A%E3%83%AB%E7%8F%BE%E8%B1%A1-789105"
+    }
+   ]
+  },
+  {
+   "item": "資料による記述の違い",
+   "target": "反応の書き方",
+   "value": "反応の書き方は資料で異なる。教科書の章: 足関節の背屈と内反(母趾・全趾の背屈を伴うことも)。辞典: 伸ばした下肢を抵抗に逆らって曲げると足が背屈・内転。歴史的論文の紹介: 膝を曲げると母趾の背屈と足の回外。いずれも足(足関節)の背屈が中心",
+   "exam": "出題は背屈のみ(52-pm-48)。内反・内転・回外を問う出題の記録はなし",
+   "q": [
+    "52-pm-48"
+   ],
+   "note": "確認済み[S1][S2][S3]。学習用には「股・膝の屈曲に伴う足関節背屈」を基本に覚え、内反・内転・回外は資料で表現が違うと理解しておく",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neupsykey.com/associated-movements-4/"
+    },
+    {
+     "label": "S2",
+     "url": "https://karger.com/article/FullText/329270"
+    },
+    {
+     "label": "S3",
+     "url": "https://kotobank.jp/word/%E3%82%B7%E3%83%A5%E3%83%88%E3%83%AA%E3%83%A5%E3%83%B3%E3%83%9A%E3%83%AB%E7%8F%BE%E8%B1%A1-789105"
+    }
+   ]
+  },
+  {
+   "item": "徴候の意味",
+   "target": "何を示すか",
+   "value": "錐体路(皮質脊髄路)の障害による下肢の麻痺を示す徴候。Strümpellが1901年の論文で詳しく記載し、現在はStrümpell's signとも呼ばれる。同じ論文でStrümpellは、錐体路障害による抑制の欠如から起こる筋の共同現象として、上肢の回内現象(pronation phenomenon)も論じた",
+   "exam": "出題は直接なし(参考)。52-pm-48は、この現象が出現したことを歩行動作の練習に役立てる、という場面",
+   "q": [],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://neupsykey.com/associated-movements-4/"
+    },
+    {
+     "label": "S2",
+     "url": "https://karger.com/article/FullText/329270"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

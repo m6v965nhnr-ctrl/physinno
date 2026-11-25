@@ -1,0 +1,114 @@
+{
+ "slug": "pedi",
+ "name": "PEDI(Pediatric Evaluation of Disability Inventory)",
+ "category": "評価尺度",
+ "aliases": [
+  "PEDI",
+  "Pediatric Evaluation of Disability Inventory"
+ ],
+ "rows": [
+  {
+   "item": "PEDI の3つの部分",
+   "target": "構成",
+   "value": "Part I 機能的スキル=197項目(セルフケア73・移動59・社会的機能65)、各項目0(できない)/1(できる)の2段階。Part II 介助者による援助=20項目(セルフケア8・移動7・社会的機能5)、0〜5。Part III 調整=同じ20項目で、必要な環境・用具の調整をN(なし)/C(子ども向け)/R(リハビリ用具)/E(大がかりな調整)で評価",
+   "exam": "57-pm-29(正答:補装具の使用頻度を評価できる=調整の尺度。誤答=「機能的スキルは0〜3の4段階」[実際は0/1の2段階])／49-pm-47(正答:補助具の使用状況・介護者による援助の状態を評価できる)",
+   "q": [
+    "57-pm-29",
+    "49-pm-47"
+   ],
+   "note": "確認済み[S1](項目数と採点)、[S3](73・59・65項目)。国試は「使用頻度」「使用状況」と書くが、資料では調整=必要な用具・環境調整の区分で、「頻度」の語は確認できていない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+    },
+    {
+     "label": "S3",
+     "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+    }
+   ]
+  },
+  {
+   "item": "評価するもの:能力と実行状況",
+   "target": "何を測るか",
+   "value": "機能的活動における、能力(機能的スキル=特定の生活動作ができる/できない)と、パフォーマンス(それに必要な介助の程度=介助者支援)の両方を評価する。健常児のデータにもとづく尺度化スコアで、年齢とは無関係に同じ尺度上で比較できる",
+   "exam": "49-pm-47(正答:特定のことができる能力を評価する／介護者による援助の状態を評価できる／正常発達からの偏差を評価できる)／第50回(正答:機能的スキルを測定する)",
+   "q": [
+    "49-pm-47"
+   ],
+   "note": "確認済み[S3]。「正常発達からの偏差」の語は資料では直接確認できていない(健常児データとの比較は[S3])",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+    }
+   ]
+  },
+  {
+   "item": "対象年齢",
+   "target": "いつから使えるか",
+   "value": "原版は6か月〜7歳半の子どもが対象",
+   "exam": "49-pm-47(誤答:「4か月児から評価の対象になる」)／57-pm-29(誤答:「出生直後から使用可能である」)",
+   "q": [
+    "49-pm-47",
+    "57-pm-29"
+   ],
+   "note": "確認済み[S2]。[S1]は0〜8歳、[S4]は6か月〜7歳と書き、資料により幅が異なる",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3631526"
+    },
+    {
+     "label": "S1",
+     "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+    },
+    {
+     "label": "S4",
+     "url": "https://www.apta.org/patient-care/evidence-based-practice-resources/test-measures/pediatric-evaluation-of-disability-inventory-pedi"
+    }
+   ]
+  },
+  {
+   "item": "対象となる子ども",
+   "target": "疾患",
+   "value": "脳性麻痺、二分脊椎、ダウン症候群、発達障害などの子どもに使われている。日本でも脳性麻痺児790名のPEDIデータが報告されている",
+   "exam": "57-pm-29(誤答:「二分脊椎は対象にならない」)／第50回(誤答:「脳性麻痺は対象にならない」)",
+   "q": [
+    "57-pm-29"
+   ],
+   "note": "確認済み[S4](二分脊椎ほか)、[S3](脳性麻痺児790名)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.apta.org/patient-care/evidence-based-practice-resources/test-measures/pediatric-evaluation-of-disability-inventory-pedi"
+    },
+    {
+     "label": "S3",
+     "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+    }
+   ]
+  },
+  {
+   "item": "評価の方法",
+   "target": "誰がどう評価するか",
+   "value": "保護者への構造化面接、観察、専門職の判断のいずれか、またはその組み合わせで行う。実施時間は資料で31〜60分(慣れた者は20〜30分とされる)",
+   "exam": "第50回(誤答:「評価に要する時間はWeeFIMより短い」)",
+   "q": [],
+   "note": "確認済み[S1]。WeeFIMとの時間比較は資料では確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

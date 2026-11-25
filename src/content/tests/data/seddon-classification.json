@@ -1,0 +1,98 @@
+{
+ "slug": "seddon-classification",
+ "name": "Seddon分類(末梢神経損傷)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "Seddon分類",
+  "Seddon",
+  "Sunderland分類",
+  "neurapraxia",
+  "ニューラプラキシア",
+  "axonotmesis",
+  "アクソノトメーシス",
+  "neurotmesis",
+  "ニューロトメーシス",
+  "末梢神経損傷",
+  "Waller変性",
+  "ワーラー変性",
+  "Wallerian degeneration"
+ ],
+ "rows": [
+  {
+   "item": "neurapraxia(ニューラプラキシア)",
+   "target": "最も軽い末梢神経損傷",
+   "value": "髄鞘の障害(局所の脱髄・虚血)による一過性の伝導ブロック。軸索の連続性は保たれ、Waller変性は起こらない。損傷部で伝導が途絶え、末梢側の伝導は正常。外科的処置なしで、髄鞘の回復とともに数週〜数か月(約12週以内の報告)で完全に回復する。Tinel徴候は出ない",
+   "exam": "52-pm-35(最も予後良好=ニューラプラキシアが正答)",
+   "q": [
+    "52-pm-35"
+   ],
+   "note": "確認済み[S1][S2]。回復期間は資料により『数時間〜数か月』『12週以内』と幅がある",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4045362/"
+    }
+   ]
+  },
+  {
+   "item": "axonotmesis(アクソノトメーシス)",
+   "target": "軸索損傷(結合組織は残る)",
+   "value": "軸索と髄鞘が断裂するが、神経周膜・上膜など外側の結合組織は保たれる。損傷部より遠位でWaller変性が起こる。近位の軸索が再生して標的に達すれば回復しうる。自然回復はneurapraxiaより遅い(Sunderland II〜IVにまたがり、III・IVでは手術を要することがある)",
+   "exam": "52-pm-35(誤答選択肢=アクソノトメーシス、Waller変性)",
+   "q": [
+    "52-pm-35"
+   ],
+   "note": "確認済み[S1]。Waller変性は損傷後に遠位の神経で起こる変化で、neurapraxiaでは起こらない。『神経根引き抜き損傷』は資料で分類を確認していない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+    }
+   ]
+  },
+  {
+   "item": "neurotmesis(ニューロトメーシス)",
+   "target": "最重症(完全断裂)",
+   "value": "軸索とすべての結合組織が完全に断裂した状態。自然回復は期待できず、手術(修復)が必要。放置すると機能しない神経腫ができうる",
+   "exam": "52-pm-35(誤答選択肢=ニューロトメーシス)",
+   "q": [
+    "52-pm-35"
+   ],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4045362/"
+    }
+   ]
+  },
+  {
+   "item": "Seddon分類とSunderland分類の対応",
+   "target": "障害の深さと回復の見込み",
+   "value": "neurapraxia=Sunderland I(髄鞘のみ、自然回復あり)／axonotmesis=II(軸索まで、遅れて回復)・III(神経内膜まで、回復は不確実で手術を要することも)・IV(神経周膜まで、自然回復は非常に難しく手術が必要)／neurotmesis=V(上膜まで全断裂、手術が必要)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。Seddon分類は1943年に提唱された3区分",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

@@ -1,0 +1,104 @@
+{
+ "slug": "ptb-offloading-orthosis",
+ "name": "PTB式免荷装具(膝蓋腱支持式)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "PTB式免荷装具",
+  "PTB免荷装具",
+  "PTB装具",
+  "膝蓋腱支持式",
+  "膝蓋腱荷重",
+  "歩行あぶみ",
+  "パッテン底",
+  "免荷装具",
+  "PTB式"
+ ],
+ "rows": [
+  {
+   "item": "歩行あぶみ(パッテン底)の位置",
+   "target": "PTB式免荷装具の構造(立位・歩行の安定)",
+   "value": "歩行あぶみは舟状骨の真下(下腿長軸よりやや前方)に置く。体重心線にほぼ重なる位置で接地して、立位・歩行を安定させる。",
+   "exam": "50-pm-38(正答:歩行あぶみ(パッテン底)は舟状骨の真下に置く)",
+   "q": [
+    "50-pm-38"
+   ],
+   "note": "確認済み[S1](国試解説サイト)。国試の正答と一致。公的資料では位置を確認できなかった。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    }
+   ]
+  },
+  {
+   "item": "荷重する部位と避ける部位",
+   "target": "PTB式の荷重の考え方",
+   "value": "荷重するのは膝蓋靭帯(膝蓋腱)部と脛骨内側顆部。膝蓋骨そのものは荷重部位ではない。荷重を避ける(除圧する)のは、脛骨粗面・脛骨稜・脛骨顆部の前面・腓骨頭・ハムストリングスの走行部。",
+   "exam": "50-pm-38(誤答:「ハムストリングスを圧迫するように装着する」「膝蓋骨は荷重部位である」)",
+   "q": [
+    "50-pm-38"
+   ],
+   "note": "確認済み[S1][S2]。国試解説サイトとリハビリ病院の解説で一致。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+    }
+   ]
+  },
+  {
+   "item": "膝関節の扱い",
+   "target": "PTB式免荷装具と膝",
+   "value": "膝関節は固定されず、動かせる(膝蓋腱部で体重を支え、膝から下を宙に浮かせる)。",
+   "exam": "50-pm-38(誤答:「膝関節は固定される」)",
+   "q": [
+    "50-pm-38"
+   ],
+   "note": "確認済み[S1](国試解説サイト)。病院資料[S2]では膝の可動の記載は確認できなかった。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+    }
+   ]
+  },
+  {
+   "item": "適応(骨折部位・免荷の程度)",
+   "target": "PTB式免荷装具を使う場面",
+   "value": "主に下腿骨(脛腓骨)や足根骨など、膝から下の骨折に使う。膝蓋骨まわりで体重を支え、足部は宙に浮く。完全免荷にも部分荷重にもでき、早くから患部に荷重をかけられる。使用は医師が決める。",
+   "exam": "50-pm-38(誤答:「脛骨高原骨折で適応となる」。国試の解説では除圧部位と骨折部位が重なるため適応外とされる)",
+   "q": [
+    "50-pm-38"
+   ],
+   "note": "食い違いあり。国試解説サイト[S1]は脛骨高原骨折を適応外とする。一方、リハビリ病院の解説[S2]は脛骨高原骨折にも処方されるとする。学習では国試の正答(脛骨高原骨折は選ばない)に従い、実際の適応は医師の判断。下腿骨骨折が主な適応であることは[S3]で確認。",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jssd/63/0/63_238/_pdf/-char/ja"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

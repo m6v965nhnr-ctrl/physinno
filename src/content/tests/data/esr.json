@@ -1,0 +1,97 @@
+{
+ "slug": "esr",
+ "name": "赤血球沈降速度(赤沈・ESR)",
+ "category": "臨床検査",
+ "aliases": [
+  "赤血球沈降速度",
+  "赤沈",
+  "血沈",
+  "ESR",
+  "Westergren法",
+  "ウェスターグレン法"
+ ],
+ "rows": [
+  {
+   "item": "赤沈が低下する(遅くなる)病態",
+   "target": "赤沈の低下",
+   "value": "多血症(赤血球が多すぎる)、低フィブリノゲン血症、著明な白血球増多、鎌状赤血球症など赤血球の形の異常、高粘稠度をきたす異常蛋白血症など。DICも低下の原因に挙げる資料があり、DICの急速に進むタイプではフィブリノゲンが急激に低下する。",
+   "exam": "51-am-85「赤血球沈降速度が低下するのはどれか」の正答=播種性血管内凝固症候群(DIC)(選択肢: 貧血・肝硬変・悪性腫瘍・細菌感染・DIC)。",
+   "q": [
+    "51-am-85"
+   ],
+   "note": "一部確認。AAFP[S2]は低フィブリノゲン血症などで低下と記し、DICの語は出ない。DICの記載は[S3](Wiki型の救急医学リファレンス)で、フィブリノゲン低下は[S4]。DICで下がる理由はフィブリノゲン低下からの学習用の整理。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://wikem.org/wiki/ESR/ja"
+    },
+    {
+     "label": "S4",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/11-血液学および腫瘍学/凝固障害/播種性血管内凝固症候群-dic"
+    }
+   ]
+  },
+  {
+   "item": "赤沈が亢進する(速くなる)病態",
+   "target": "赤沈の亢進",
+   "value": "貧血、感染症、炎症、悪性腫瘍、フィブリノゲンが増える状態(妊娠・糖尿病・腎不全・心疾患・膠原病など)。高齢・女性でも高め。貧血では赤血球の密度が下がり、凝集塊が速く沈む。",
+   "exam": "51-am-85 の誤答(赤沈が亢進する側)=貧血・悪性腫瘍・細菌感染。肝硬変も誤答だが、赤沈の向きは資料で確認できなかった。",
+   "q": [
+    "51-am-85"
+   ],
+   "note": "確認済み[S2]。肝硬変と赤沈の関係は[S2][S3]に記載がなく、このカードでは判断しない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://wikem.org/wiki/ESR/ja"
+    }
+   ]
+  },
+  {
+   "item": "赤沈のしくみと測定法",
+   "target": "測定の原理",
+   "value": "抗凝固した血液を縦の管に立て、1時間に赤血球が沈んだ距離(mm)を測る。主な決め手はフィブリノゲンで、血中のフィブリノゲン量と赤沈は直接相関する。Westergren法が標準的に使われる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+    }
+   ]
+  },
+  {
+   "item": "赤沈の基準値",
+   "target": "基準範囲",
+   "value": "施設の例(京都大学病院検査部): 男性2〜10 mm/時、女性3〜15 mm/時。AAFPの上限の目安: 50歳未満は男15・女20 mm/時、50歳以上は男20・女30 mm/時。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。基準は施設・方法・年齢で異なるため、各施設の値で読む。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://clinlab.kuhp.kyoto-u.ac.jp/wp-content/uploads/2024/10/kensa_setumei_ketueki.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

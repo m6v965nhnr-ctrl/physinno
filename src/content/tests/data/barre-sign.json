@@ -1,0 +1,109 @@
+{
+ "slug": "barre-sign",
+ "name": "Barré徴候(上肢・下肢)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Barré徴候",
+  "Barré 徴候",
+  "Barré sign",
+  "Barré test",
+  "Barréテスト",
+  "Barré試験",
+  "バレー徴候",
+  "上肢Barré",
+  "上肢Barré徴候",
+  "上肢バレー徴候",
+  "下肢Barré",
+  "下肢Barré徴候",
+  "下肢バレー徴候",
+  "Mingazzini",
+  "Mingazzini徴候",
+  "ミンガッツィーニ",
+  "上肢挙上試験",
+  "pronator drift"
+ ],
+ "rows": [
+  {
+   "item": "上肢Barré徴候(Mingazziniの上肢挙上試験)",
+   "target": "上肢の軽い運動麻痺(錐体路の障害)を見つける",
+   "value": "両腕を前に伸ばして手のひらを上に向け、指をそろえ、閉眼で保持させる。上肢の下降・前腕の回内・肘の屈曲があるかを見て、上肢が回内しながら下がれば陽性(日本神経学会の手引き)。麻痺側の腕は、下がるだけでなく、肘などが軽く曲がることもある。なお、tPA治療の判定の際は手のひらを下に向けて行うとされる。",
+   "exam": "60-pm-82(「深部感覚障害で陽性となるのは」の誤答選択肢。正答はRomberg徴候。ほかの誤答はKernig・Lasègue・カーテン徴候)／61-am-16(多発性硬化症の電撃痛の問題で、Barré徴候は誤答。正答はLhermitte徴候)／55-am-17(Uhthoff徴候の設問で、Barré徴候は誤答選択肢)",
+   "q": [
+    "60-pm-82",
+    "61-am-16",
+    "55-am-17"
+   ],
+   "note": "確認済み[S1][S2]。Barré徴候は運動麻痺を見る検査で、深部感覚障害を見る検査ではない。Guillain-Barré症候群とは別のもの(名前に「Barré」が入るだけ。疾患名と検査名を混同しない)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+    }
+   ]
+  },
+  {
+   "item": "下肢Barré徴候",
+   "target": "下肢の軽い運動麻痺(錐体路の障害)を見つける",
+   "value": "腹臥位で両膝を90°屈曲させ、両足が接しないようにその肢位を保たせる。下腿が下降したら陽性。腹臥位が難しい場合もあり、必須の検査ではない(日本神経学会の手引き)。Barréが1919年に報告した方法で、麻痺側の下肢が下がる。膝などの痛みで関節が動かしにくいと偽陽性になりうる。",
+   "exam": "出題は直接なし(参考。出題は上肢側の名称や、感覚障害との区別で問われている)",
+   "q": [],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+    }
+   ]
+  },
+  {
+   "item": "Mingazzini徴候(下肢)",
+   "target": "下肢の軽い運動麻痺を見つける",
+   "value": "仰臥位で股関節を約90°屈曲し、下腿をベッドと水平に保たせる。下腿が下降したら陽性(日本神経学会の手引き)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。上肢の挙上試験・下肢の試験ともMingazziniが1913年に報告し、Barréが後に詳しく紹介した。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/55/7/55_cn-000693/_article"
+    }
+   ]
+  },
+  {
+   "item": "名前の由来(BarréとMingazzini)",
+   "target": "日本でBarré試験と呼ばれる検査の成り立ち",
+   "value": "上肢・下肢のドリフト試験はMingazziniが1913年に報告。Barréは1919年に腹臥位の下肢の試験を報告し、1937年にMingazziniの上肢・下肢の試験を、自分の患者の写真つきで紹介した。Barréが原著を引用しなかったため、日本では「上肢Barré試験」の呼び名・手技の記載がばらつき、日本神経学会の手引きでは「Mingazziniの上肢挙上試験」と併記される。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/55/7/55_cn-000693/_article"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

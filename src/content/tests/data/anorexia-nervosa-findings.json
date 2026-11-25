@@ -1,0 +1,140 @@
+{
+ "slug": "anorexia-nervosa-findings",
+ "name": "神経性やせ症(神経性無食欲症)の身体・検査所見",
+ "category": "臨床検査",
+ "aliases": [
+  "神経性無食欲症",
+  "神経性やせ症",
+  "神経性食欲不振症",
+  "拒食症",
+  "摂食障害",
+  "リフィーディング症候群",
+  "再栄養症候群"
+ ],
+ "rows": [
+  {
+   "item": "血液検査の所見",
+   "target": "神経性やせ症を疑う検査異常",
+   "value": "総コレステロール高値(高コレステロール血症)、低血糖(グルコース低下)、低カリウム・低ナトリウム、低リン・低マグネシウム、AST・ALT上昇(飢餓による)、白血球・血小板減少と貧血、甲状腺ホルモン(T3・T4)低下、コルチゾール上昇。嘔吐がある人ではアミラーゼ(唾液腺型)が上がる。",
+   "exam": "58-pm-100(神経性無食欲症で生じやすいのはどれか。正答は高コレステロール血症。誤答は頻脈・高血圧・高血糖・高リン血症)",
+   "q": [
+    "58-pm-100"
+   ],
+   "note": "確認済み[S1][S2][S3]。MSDマニュアルは、血液検査の異常は出てもごく軽度としている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+    }
+   ]
+  },
+  {
+   "item": "循環器・全身の所見",
+   "target": "低栄養による身体の変化",
+   "value": "徐脈(60/分未満)、低血圧(収縮期90 mmHg未満)、起立性低血圧、低体温(36℃以下)。心電図は徐脈・QT延長・不整脈・房室ブロックなど、心エコーは心嚢液貯留・僧帽弁逸脱、胸部X線は心胸郭比の低下。うぶ毛の密生、浮腫、便秘、女性では無月経もみられる。",
+   "exam": "58-pm-100(誤答選択肢の頻脈・高血圧は逆で、徐脈・低血圧が一般的)",
+   "q": [
+    "58-pm-100"
+   ],
+   "note": "確認済み[S1][S2][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+    }
+   ]
+  },
+  {
+   "item": "低血糖",
+   "target": "飢餓による代謝の変化",
+   "value": "肝臓のグリコーゲンの蓄えが少ないため、低血糖を起こしやすい。血糖60 mg/dL未満で意識障害や低体温などの症状があれば、ブドウ糖の静脈内投与の対象になる。",
+   "exam": "58-pm-100(誤答選択肢の高血糖は逆で、低血糖が起こりやすい)",
+   "q": [
+    "58-pm-100"
+   ],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+    }
+   ]
+  },
+  {
+   "item": "低リン血症と再栄養",
+   "target": "リフィーディング症候群に関わる所見",
+   "value": "栄養不良では血清リンが低下する。再栄養の過程では、インスリン増加に伴いリンやカリウムが細胞内に取り込まれ、さらに低下する。血清リン1.0 mg/dL未満で意識障害・心不全・けいれんなど重い症状が出て、死因になりうる。",
+   "exam": "58-pm-100(誤答選択肢の高リン血症は逆で、低リン血症が問題になる)",
+   "q": [
+    "58-pm-100"
+   ],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+    }
+   ]
+  },
+  {
+   "item": "入院を考える目安",
+   "target": "身体的緊急時の指針",
+   "value": "入院適応の項目に、低血糖、電解質異常(特に緊急はK 2.5 mEq/L未満・P 2 mg/dL未満)、心電図異常(QT延長・徐脈。心拍数40未満や不整脈は緊急)、低血圧(90/60 mmHg未満は緊急)、低体温(35℃未満は緊急)などがある。低カリウム血症は3.0 mEq/L未満で入院が好ましい。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。小児・成人の個別の判断は主治医による。学習用の要約。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    }
+   ]
+  },
+  {
+   "item": "内分泌・骨の変化",
+   "target": "長期の低栄養の影響",
+   "value": "性腺ホルモンの低下、T3・T4の軽度低下、コルチゾール分泌の増加、骨密度の低下がみられる。月経は多くの女性で止まるが、現在の診断基準には含まれない。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

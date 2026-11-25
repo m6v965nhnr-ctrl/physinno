@@ -1,0 +1,93 @@
+{
+ "slug": "finkelstein-eichhoff",
+ "name": "Finkelsteinテスト・Eichhoffテスト(de Quervain病)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Finkelstein",
+  "Finkelsteinテスト",
+  "Finkelstein test",
+  "フィンケルシュタイン",
+  "Eichhoff",
+  "Eichhoffテスト",
+  "Eichhoff test",
+  "アイヒホフ",
+  "アイヒホッフ",
+  "de Quervain病",
+  "de Quervain",
+  "ドゥケルバン病",
+  "ドゥケルバン症候群",
+  "ドケルバン病",
+  "橈骨茎状突起部狭窄性腱鞘炎"
+ ],
+ "rows": [
+  {
+   "item": "Finkelsteinテスト(de Quervain病の疼痛誘発)",
+   "target": "de Quervain病(第1伸筋腱区画の腱鞘炎)",
+   "value": "検者が患者の母指を持って手掌側へ曲げ、手関節を尺側へ他動的に曲げる(尺屈)。橈骨茎状突起の近く、第1区画の腱鞘部に強い痛みが出れば陽性で、de Quervain病が強く疑われる。",
+   "exam": "54-am-33(上腕二頭筋腱炎で陽性になる検査の誤答選択肢。正答はYergason)／55-pm-86(肩腱板断裂で陽性になる検査の誤答選択肢。正答はdrop arm)／57-pm-33(Parkinson病の評価の誤答選択肢。正答はWestphal現象)／49回(「後骨間神経麻痺―Finkelsteinテスト」は誤り。Finkelsteinはde Quervain病の検査)",
+   "q": [
+    "54-am-33",
+    "55-pm-86",
+    "57-pm-33"
+   ],
+   "note": "確認済み[S1][S2]。資料間で手技の書き方が違う。MSDマニュアル日本語版は「母指を手掌側に曲げて他の指で包み(握り込み)、手関節を尺屈」と書くが、この「母指を握り込む」方法は文献ではEichhoffテストとされ、Finkelsteinの原法は検者が母指をつかんで行う方法とされる[S2][S4]。国試では「de Quervain病の検査」として問われる(他の疾患の選択肢は誤り)。",
+   "conflict": true,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/ドゥケルバン症候群"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6103758"
+    },
+    {
+     "label": "S4",
+     "url": "https://en.wikipedia.org/wiki/Eichoff_maneuver"
+    }
+   ]
+  },
+  {
+   "item": "Eichhoffテスト(Finkelsteinテストとの違い)",
+   "target": "de Quervain病(母指を握り込む方法)",
+   "value": "患者が母指を手のひらの中に入れて他の指で握り込み、検者が手全体を尺側へ他動的に曲げる(尺屈)。母指を検者がつかむFinkelsteinテストとは手順が違う。無症状の36人(72手関節)では、Eichhoffで偽陽性が8手関節(5人)、Finkelsteinは0で、特異度は89%対100%だった(痛みの強さもEichhoffが強い)。",
+   "exam": "60-pm-27(腰椎椎間板ヘルニアの疼痛誘発テストを問う問題で、Eichhoffテストは誤答選択肢。選択肢はAdson・Bragard・Eichhoff・Thomsen・Yergasonで、正答はBragard)",
+   "q": [
+    "60-pm-27"
+   ],
+   "note": "確認済み[S2][S4]。Eichhoffはde Quervain病の検査で、腰椎椎間板ヘルニアの検査ではない。同じ問題の他の選択肢は、Adson=胸郭出口症候群、Thomsen=上腕骨外側上顆炎、Yergason=上腕二頭筋腱炎の検査(別のカード参照)。[S2]は症状のある人を含めておらず、感度は比べていない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6103758"
+    },
+    {
+     "label": "S4",
+     "url": "https://en.wikipedia.org/wiki/Eichoff_maneuver"
+    }
+   ]
+  },
+  {
+   "item": "de Quervain病とは",
+   "target": "病態の理解",
+   "value": "手首の親指側にある第1伸筋腱区画(短母指伸筋腱と長母指外転筋腱)の狭窄性腱鞘炎。手首と母指のうずく痛みが動かすと悪化し、橈骨茎状突起のすぐ近く(近位)に圧痛が出る。現在は短母指伸筋腱の腱鞘炎が主体と考えられている。",
+   "exam": "出題は直接なし(Finkelsteinテストの対象疾患として、上の行の問題で間接的に問われる)",
+   "q": [],
+   "note": "確認済み[S1][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/ドゥケルバン症候群"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jmedj.co.jp/cdn/shop/files/978-4-7849-0511-9.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

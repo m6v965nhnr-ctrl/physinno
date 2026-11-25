@@ -1,0 +1,89 @@
+{
+ "slug": "fact-g",
+ "name": "FACT(Functional Assessment of Cancer Therapy)",
+ "category": "評価尺度",
+ "aliases": [
+  "FACT-G",
+  "Functional Assessment of Cancer Therapy",
+  "FACT-B",
+  "FACT-F",
+  "がん患者のQOL尺度",
+  "がん治療の機能評価",
+  "FACT-G7",
+  "FACT-8D"
+ ],
+ "rows": [
+  {
+   "item": "FACT-G(がん一般用QOL尺度)",
+   "target": "がん患者の健康関連QOL",
+   "value": "27項目・4領域(身体面7、社会/家族面7、心理面6、機能面7)。各項目0(全くない)〜4(非常にある)の5段階で、合計0〜108点、高いほどQOLが良い",
+   "exam": "59-am-20(誤答選択肢:FACT。問いは乳癌周術期の「活動能力の評価方法」で、正答はKPS。FACTはQOL尺度で活動能力の評価ではない)",
+   "q": [
+    "59-am-20"
+   ],
+   "note": "確認済み[S1][S2][S3]。27項目・4領域・0〜4はS1、各領域の項目数はS2(日本語版の資料)、合計0〜108点はS3。想起期間は本文で確認できていないため載せない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://qol.thoracic.org/sections/instruments/fj/pages/fact-g.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jmari.med.or.jp/download/WP056.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10448388/"
+    }
+   ]
+  },
+  {
+   "item": "FACTの追加尺度(がん種・症状別)",
+   "target": "FACT-Gに足して使う尺度",
+   "value": "FACT-G に疾患・症状ごとの追加項目を足して使う。例: FACT-B(乳癌用)=FACT-G+乳癌特異面9項目、FACT-F(疲労用)、FACT-O(卵巣癌用)、FACT-Cx(子宮頸癌用)、FACT-P(前立腺癌用)など",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。2001年時点の日医総研の資料で、日本語版の整備状況の記載。現在の状況は未確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jmari.med.or.jp/download/WP056.pdf"
+    }
+   ]
+  },
+  {
+   "item": "FACT-G7(簡易版)",
+   "target": "短時間でQOLを見る",
+   "value": "FACT-Gの優先度の高い7項目の簡易版。身体面(疲労・痛み・吐き気)、心理面(病状悪化への心配)、機能面(人生を楽しめること・現在のQOLへの満足・睡眠)から選ばれ、合計0〜28点で高いほど良好",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10448388/"
+    }
+   ]
+  },
+  {
+   "item": "FACT-8D",
+   "target": "QALY算出用の選好に基づく尺度",
+   "value": "FACT-Gの27項目のうち9項目を使い、8つの領域(吐き気・痛み・疲労・睡眠・仕事・心配・悲しみ・家族や友人の支え)から健康効用値を算出する",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S4]。日本の効用値の報告(Health Qual Life Outcomes 2025)",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12574001/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

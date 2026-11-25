@@ -1,0 +1,78 @@
+{
+ "slug": "hhd-torque",
+ "name": "ハンドヘルドダイナモメーター(HHD)とトルクの計算",
+ "category": "検査法・徴候",
+ "aliases": [
+  "ハンドヘルドダイナモメーター",
+  "ハンドヘルドダイナモメータ",
+  "ハンドヘルドダイナモ",
+  "HHD",
+  "hand-held dynamometer",
+  "handheld dynamometer",
+  "徒手筋力計",
+  "筋力測定器",
+  "膝関節伸展トルク",
+  "膝伸展トルク",
+  "膝関節伸展等尺性筋力",
+  "等尺性膝伸展筋力",
+  "モーメントアーム",
+  "レバーアーム"
+ ],
+ "rows": [
+  {
+   "item": "トルクの計算(力×腕の長さ)",
+   "target": "測定した筋力(kgf)から関節トルク(Nm)を求める",
+   "value": "トルク(Nm)=力(N)×回転中心から力を測る点までの距離(m)。HHDでは、膝関節の外側裂隙(関節中心)からセンサー中央までの距離を測ってトルクを出す。力は kgf を N に直し(×9.8)、距離は cm を m に直して掛ける",
+   "exam": "55-pm-4(正答: 約68.6 Nm。筋力測定器で膝関節伸展等尺性筋力28 kgf。図のb=25 cmを腕の長さとして 28×9.8×0.25≒68.6 Nm。a=33 cmは使わない。誤答: 約6.9・17.2・34.5・51.8 Nm)",
+   "q": [
+    "55-pm-4"
+   ],
+   "note": "確認済み[S1][S2]。この設問の図(a・bの位置)は確認していないため、「bを腕の長さに使う」は入力の解析記録による",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7032982/"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8"
+    }
+   ]
+  },
+  {
+   "item": "単位の換算(kgfとN)",
+   "target": "計算の途中の換算",
+   "value": "1 kgf=9.80665 N(厳密な値)。国試の計算では約9.8を使う。28 kgf≒274 N",
+   "exam": "55-pm-4(28 kgf×9.8を計算に使う)",
+   "q": [
+    "55-pm-4"
+   ],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8"
+    }
+   ]
+  },
+  {
+   "item": "HHDによる膝伸展等尺性筋力の測定例",
+   "target": "測定方法の一例(標準手順ではない)",
+   "value": "座位で、測定側の大腿の下にタオルを入れて水平に保ち、膝関節90°屈曲、非測定側のつま先は床か台につける。上肢はベッドで体を支える。センサーを下腿遠位の前面に、下端を足首(果)の直上にして面ファスナーで固定し、固定ベルトで支柱とつなぐ。最大努力を5秒間(3秒で最大に達する)行い、30秒以上あけて複数回測定し最高値を採る。この方法のHHDは等速性装置との比較で、男性で妥当性・信頼性が高いと考えられた(女性は更なる研究が必要)",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。大学生42名の研究1件の方法で、膝伸展の測定条件は研究ごとに統一されていない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7032982/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

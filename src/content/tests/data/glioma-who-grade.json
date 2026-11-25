@@ -1,0 +1,74 @@
+{
+ "slug": "glioma-who-grade",
+ "name": "脳腫瘍のWHOグレード(神経膠腫・膠芽腫)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "神経膠芽腫",
+  "膠芽腫",
+  "glioblastoma",
+  "GBM",
+  "神経膠腫",
+  "グリオーマ",
+  "glioma",
+  "WHO grade",
+  "WHOグレード",
+  "脳腫瘍の悪性度"
+ ],
+ "rows": [
+  {
+   "item": "膠芽腫(glioblastoma)のグレード",
+   "target": "成人型びまん性膠腫のうち最も悪性",
+   "value": "膠芽腫はIDH野生型の成人型びまん性膠腫で、WHOグレード4",
+   "exam": "52-am-75(悪性度が最も高い=神経膠芽腫が正答。誤答=海綿状血管腫・下垂体腺腫・神経鞘腫・髄膜腫)",
+   "q": [
+    "52-am-75"
+   ],
+   "note": "確認済み[S1]。誤答の4つの腫瘍のグレードは、本文で確認できなかったためこのカードには載せない",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+    }
+   ]
+  },
+  {
+   "item": "WHOグレード1〜4の意味",
+   "target": "脳腫瘍の悪性度の目安",
+   "value": "脳腫瘍にはTNM分類のようなステージがなく、グレード1〜4で分類する。数字が大きいほど悪性度が高い。グレード1は、手術で全部取れれば再発のおそれがほとんどない良性腫瘍。グレード2〜4は上がるほど増殖が速い。グレードは摘出組織の病理と遺伝子検査で判定する",
+   "exam": "52-am-75(悪性度の比較)",
+   "q": [
+    "52-am-75"
+   ],
+   "note": "確認済み[S1][S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://ganjoho.jp/public/cancer/brain_tumor/treatment.html"
+    }
+   ]
+  },
+  {
+   "item": "成人型びまん性膠腫のグレード(2021年WHO分類)",
+   "target": "星細胞腫・乏突起膠腫・膠芽腫の区別",
+   "value": "乏突起膠腫(IDH変異+1p/19q共欠失)=グレード2・3／星細胞腫(IDH変異、共欠失なし)=グレード2・3・4／膠芽腫(IDH野生型)=グレード4。2021年分類では『退形成性』の語は使わない。乏突起膠腫は星細胞腫より一般に悪性度が低い",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。2021年のWHO分類(第5版)に基づく",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

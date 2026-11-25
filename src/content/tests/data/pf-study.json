@@ -1,0 +1,104 @@
+{
+ "slug": "pf-study",
+ "name": "P-Fスタディ(絵画欲求不満テスト)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "P-Fスタディ",
+  "PFスタディ",
+  "P-F study",
+  "PF study",
+  "Picture Frustration Study",
+  "絵画欲求不満テスト",
+  "絵画欲求不満",
+  "Rosenzweig",
+  "ローゼンツァイク"
+ ],
+ "rows": [
+  {
+   "item": "P-Fスタディの内容",
+   "target": "欲求不満場面での反応をみる人格検査",
+   "value": "日常でだれもが経験する軽い欲求不満の場面24場面を、漫画風の絵で示す。左側の人物のせりふが刺激として書かれ、受検者は右側の人物がどう答えるかという言語反応を書き込む。人物の表情は省略されている。反応を決まった枠組みで採点できるため、制限のある『準投映法』ともいわれる。",
+   "exam": "56-am-79(正答: イラスト風に描かれた人物のセリフを書き込む心理検査=P-Fスタディ)／59-am-78(選択肢のみ。インクのシミの図版を順に示す検査の正答はRorschachテスト)／54-am-81(選択肢のみ。検査の一部が示された問いの正答はSCT)／55-pm-81(誤答の組合せ: P-Fスタディ―認知症介護負担度)",
+   "q": [
+    "56-am-79",
+    "59-am-78",
+    "54-am-81",
+    "55-pm-81"
+   ],
+   "note": "確認済み[S1]。投映法に分類する資料も準投映法とする資料もあり、国試では他の投映法・質問紙法との区別で問われている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://u-ryukyu.repo.nii.ac.jp/record/2003932/files/No21p043.pdf"
+    }
+   ]
+  },
+  {
+   "item": "アグレッションの方向(3つ)",
+   "target": "反応が誰に向かうかの分類",
+   "value": "他責(攻撃や責任を他人・環境に向ける)、自責(責任を自分に帰する)、無責(誰にも責任はない、不可避の事態と考える)の3方向。以前は外罰・内罰・無罰と呼ばれていた。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://u-ryukyu.repo.nii.ac.jp/record/2003932/files/No21p043.pdf"
+    }
+   ]
+  },
+  {
+   "item": "アグレッションの型(3つ)と評点因子",
+   "target": "反応がどう展開するかの分類",
+   "value": "障害優位(O-D: 欲求不満を起こした障害を指摘したり軽視したりして、失望・不満を表す)、自我防衛(E-D: 自我を守るための反応。他者への非難や自己非難、責任の否認など)、欲求固執(N-P: 欲求不満を解決しようと問題解決を求め続ける反応)の3型。方向3×型3の9つの評点因子(E′・E・e、I′・I・i、M′・M・m)に、特殊な2つを加えた11因子で採点し、集団順応度(GCR)や反応転移も参考にする。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。型の説明は[S1]の表の要約。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+    }
+   ]
+  },
+  {
+   "item": "他の心理検査との区別",
+   "target": "選択肢の検査の特徴",
+   "value": "SCT(文章完成法)は未完成の文の続きを自由に書く投影法で、比較的意識に近い。バウムテストは『実のなる木を1本描く』描画の投影法。MPI(モーズレイ性格検査)はEysenckの質問紙で、外向性(E)と神経症的傾向(N)と虚偽性(L)をみる。NEO-PI-Rは240項目の質問紙で、神経症傾向・外向性・開放性・調和性・誠実性の5因子を各6側面で測る。",
+   "exam": "56-am-79(誤答選択肢: SCT=文章完成法、バウムテスト=樹木画、MPI、NEO-PI-R。人物のセリフを書き込むのはP-Fスタディ)／49-pm-80(『1本の実のなる木を描く』検査の正答はバウムテスト)",
+   "q": [
+    "56-am-79",
+    "49-pm-80"
+   ],
+   "note": "確認済み[S1](SCT・バウムテスト)[S2](MPI)[S3](NEO-PI-R)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2025/08/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

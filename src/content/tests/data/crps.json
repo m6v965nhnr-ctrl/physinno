@@ -1,0 +1,165 @@
+{
+ "slug": "crps",
+ "name": "複合性局所疼痛症候群(CRPS)・肩手症候群",
+ "category": "診断基準・分類",
+ "aliases": [
+  "CRPS",
+  "複合性局所疼痛症候群",
+  "肩手症候群",
+  "反射性交感神経性ジストロフィー",
+  "RSD",
+  "カウザルギー",
+  "Sudeck骨萎縮",
+  "ズデック骨萎縮",
+  "Sudeck萎縮",
+  "CRPS type I",
+  "CRPS type II",
+  "complex regional pain syndrome"
+ ],
+ "rows": [
+  {
+   "item": "CRPS type I と type II の区別",
+   "target": "CRPSの分類(神経損傷の有無)",
+   "value": "神経損傷が明らかでないもの=type I(従来の反射性交感神経性ジストロフィー)／末梢神経損傷が明らかなもの=type II(従来のカウザルギー)。肩手症候群・RSD・カウザルギーなどの呼び名は、国際疼痛学会が複合性局所疼痛症候群(CRPS)に統一した",
+   "exam": "58-pm-89(type Iに分類されるものを2つ。正答=肩手症候群・Sudeck骨萎縮／誤答=幻肢痛・視床痛・帯状疱疹後神経痛)／56-pm-25(正答=type IIは末梢神経損傷を伴う〈伝導検査異常〉)／第51回(CRPSに関連=Sudeck骨萎縮が正答。誤答=Dupuytren拘縮・Volkmann拘縮・無腐性壊死・異所性骨化)",
+   "q": [
+    "58-pm-89",
+    "56-pm-25"
+   ],
+   "note": "確認済み[S1][S3]。両型の区別は臨床的意義が乏しいとする記載もある[S3]。Sudeck骨萎縮がtype Iにのみ当たるかは資料で断定できず、国試の整理(type I)に従った",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+    }
+   ]
+  },
+  {
+   "item": "CRPSの症状の特徴(痛覚過敏・アロディニア・浮腫・発汗・皮膚温)",
+   "target": "CRPSにみられる症状と、合致しない所見",
+   "value": "疼痛=灼熱痛・アロディニア・痛覚過敏／腫脹=浮腫／自律神経症状=皮膚温・皮膚色調の変化(上昇も低下もある)・発汗異常／運動障害=筋力低下・関節拘縮・振戦・ジストニア／その他=毛・爪の成長障害、皮膚萎縮。痛みは原因の傷害に不釣り合いに強い。痛覚鈍麻は症状として挙がっていない",
+   "exam": "52-am-11(正答=痛覚鈍麻は合致しない／誤答=浮腫・発汗異常・アロディニア・皮膚温の変化)／56-pm-25(誤答=痛覚過敏・発汗異常・皮膚温異常は両型にみられる)",
+   "q": [
+    "52-am-11",
+    "56-pm-25"
+   ],
+   "note": "確認済み[S3][S5]。痛覚鈍麻が『ない』ことは、資料の症状表に載っていないことからの判断",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/疼痛/複合性局所疼痛症候群-crps"
+    }
+   ]
+  },
+  {
+   "item": "脳卒中後の肩手症候群(発症しやすい人・時期・症状)",
+   "target": "脳卒中後のCRPS(患側上肢)",
+   "value": "症状=患側の手指・手背を中心に痛み・腫れ・熱感・色調変化。発症は脳卒中後おおむね2週〜3か月との報告。リスク=肩関節亜脱臼・痙縮・Brunnstrom手指ステージが低い(麻痺が重い)・Barthel indexが低い・女性・左片麻痺(メタ解析)",
+   "exam": "第49回(49-pm-25。正答=麻痺が重度の場合に発症しやすい／誤答=患側の手に冷感・星状神経節ブロックは無効・発症後3週以内に生じやすい・自動的ROM運動は症状を悪化)",
+   "q": [
+    "49-pm-25"
+   ],
+   "note": "確認済み[S2][S6]。『冷感』は誤り(熱感が記載)。『3週以内に生じやすい』『自動ROM運動で悪化』は、本文で裏づけを確認できなかった",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jnkm/5/1/5_09/_article/-char/en"
+    },
+    {
+     "label": "S6",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8622266/"
+    }
+   ]
+  },
+  {
+   "item": "星状神経節ブロック・交感神経ブロック",
+   "target": "CRPSの治療(神経ブロック)",
+   "value": "星状神経節ブロックは発症早期の上肢CRPSに有効とする報告がある。胸部交感神経節ブロックは上肢CRPSに有効で早期施行が推奨。グアネチジンなどの交感神経遮断薬の投与は有効でない",
+   "exam": "49-pm-25(誤答選択肢『星状神経節ブロックは無効』)",
+   "q": [
+    "49-pm-25"
+   ],
+   "note": "確認済み[S1]。ただし脳卒中後の肩手症候群では『確立した治療はなく、星状神経節ブロックなども十分な効果は得られていない』との記載もある[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.jstage.jst.go.jp/article/jnkm/5/1/5_09/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "骨萎縮(Sudeck骨萎縮)・X線所見",
+   "target": "CRPSの骨病変",
+   "value": "単純X線の骨萎縮像は、CRPSの他覚的所見として有用。組織損傷後の骨病変として、Sudeck骨萎縮が歴史的に知られる。骨萎縮・脱灰は外傷後の非CRPS患者にもみられ、単独では非特異的",
+   "exam": "58-pm-89(正答の1つ=Sudeck骨萎縮)／56-pm-25(誤答=骨萎縮は両型にみられる)／第51回(Sudeck骨萎縮が正答)",
+   "q": [
+    "58-pm-89",
+    "56-pm-25"
+   ],
+   "note": "確認済み[S3][S4][S5]。骨萎縮が両型に等しくみられるかは、資料で直接は確認できなかった",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+    },
+    {
+     "label": "S4",
+     "url": "https://www.jstage.jst.go.jp/article/jjspc1994/10/2/10_2_127/_article/-char/ja/"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/疼痛/複合性局所疼痛症候群-crps"
+    }
+   ]
+  },
+  {
+   "item": "2008年 厚生労働省研究班の判定指標(臨床用)",
+   "target": "CRPSのスクリーニング(診断基準ではない)",
+   "value": "病期のいずれかで自覚症状5項目中2項目以上、かつ診察時の他覚所見5項目中2項目以上。項目=皮膚・爪・毛の萎縮性変化／関節可動域制限／痛み(持続性・不釣合い)または知覚過敏(他覚はアロディニア・痛覚過敏)／発汗の亢進・低下／浮腫。研究用は各3項目以上。臨床用の感度82.6%・特異度78.8%",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。診断基準・重症度判定ではなく、治療方針決定や専門施設への紹介判断が目的",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+    }
+   ]
+  },
+  {
+   "item": "1994年 IASPの診断基準",
+   "target": "CRPSの診断(国際疼痛学会)",
+   "value": "(1)原因の傷害と不釣り合いな強い持続痛・アロディニア・痛覚過敏、(2)病期のいずれかで疼痛部位に浮腫・皮膚血流の変化・発汗異常のいずれか、(3)症状を説明できる他の原因がない",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。特異度が低いため、運動機能などを加えたBudapest基準が評価されている",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

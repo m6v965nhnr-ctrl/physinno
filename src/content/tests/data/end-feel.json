@@ -1,0 +1,126 @@
+{
+ "slug": "end-feel",
+ "name": "最終域感(エンドフィール)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "最終域感",
+  "エンドフィール",
+  "end feel",
+  "end-feel",
+  "軟部組織性",
+  "軟部組織の接近",
+  "靱帯性",
+  "関節包性",
+  "筋スパズム性",
+  "結合組織性",
+  "軟部組織の伸張"
+ ],
+ "rows": [
+  {
+   "item": "軟部組織性(軟部組織の接近) 膝関節屈曲",
+   "target": "正常な膝屈曲の最終域感",
+   "value": "膝屈曲の正常な最終域感は軟部組織性(ふくらはぎと太ももの軟部組織が接触して止まる。軟らかく沈み込むような止まり方)。肘関節屈曲も同じ型の例。",
+   "exam": "53-am-72(正常な膝屈曲の最終域感。正答=軟部組織性。選択肢は虚性・筋性・骨性・靱帯性・軟部組織性)／52-am-28(正答=軟部組織の接近―膝関節屈曲)",
+   "q": [
+    "53-am-72",
+    "52-am-28"
+   ],
+   "note": "確認済み[S1][S2][S3]。選択肢の「筋性」「靱帯性」は資料により呼び方が異なる(下の行を参照)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+    },
+    {
+     "label": "S3",
+     "url": "https://book.physiotutors.com/content/knee-assessment/basic-assessment-of-the-knee/passive-range-of-motion-prom-of-the-knee/"
+    }
+   ]
+  },
+  {
+   "item": "骨性(bone to bone) 肘関節伸展",
+   "target": "骨同士がぶつかる最終域感",
+   "value": "硬く、急に止まる(痛みを伴わない)。代表例は肘関節伸展(肘頭が肘頭窩に当たる)。",
+   "exam": "52-am-28(誤答選択肢: 筋の伸張感―肘関節伸展、骨性―手指MP関節伸展。肘伸展は骨性であり、MP伸展は骨性ではない)",
+   "q": [
+    "52-am-28"
+   ],
+   "note": "確認済み[S1][S2]。MP関節伸展は下の「結合組織性」の例として挙げられている[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+    }
+   ]
+  },
+  {
+   "item": "結合組織性(組織の伸張・firm) 関節包・靱帯",
+   "target": "関節包や靱帯が伸ばされて止まる最終域感",
+   "value": "硬いが弾力があり、徐々に止まる。例: 肩関節外旋、手関節背屈、股関節伸展(S1)。英語資料では肩外旋・膝伸展・MP関節伸展を例に挙げる(S2)。",
+   "exam": "52-am-28(誤答選択肢: 骨性―手指MP関節伸展、靱帯の伸張―SLR、関節包の伸張―前腕回外。SLRや前腕回外の最終域感は資料で個別に確認できていない)",
+   "q": [
+    "52-am-28"
+   ],
+   "note": "確認済み[S1][S2]。日本の資料では「結合組織性」、国試の選択肢では「靱帯性」「関節包の伸張」と書かれ、呼び名が揃わない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+    }
+   ]
+  },
+  {
+   "item": "異常な最終域感(虚性・筋スパズム性・関節包性・ばね様)",
+   "target": "病的な最終域感の種類と意味",
+   "value": "虚性(empty): 抵抗を感じる前に強い痛みで運動を拒む／筋スパズム性: 可動域の途中で急に止まる(防御性収縮)／関節包性: 硬く止まる(関節包の短縮・線維化、凍結肩など)／ばね様: 弾力のある抵抗で跳ね返される(関節内遊離体・半月板損傷など)。",
+   "exam": "53-am-72(誤答選択肢に虚性・筋性が含まれる。正常な膝屈曲の最終域感としては不適)",
+   "q": [
+    "53-am-72"
+   ],
+   "note": "確認済み[S1]。英語資料(S2)では異常を hard/soft/firm/empty で分けており、分類は資料により異なる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+    }
+   ]
+  },
+  {
+   "item": "最終域感の見方と使い道",
+   "target": "可動域制限の原因の推定",
+   "value": "他動運動の最終域で検者の手に伝わる「動きの止まり方」。角度だけでなく止まり方の質も合わせて評価し、可動域制限の原因(制限因子)を推定する。正常な関節でも本来と違う質・タイミングで出れば異常と判定する。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。大学の公開講義資料にもとづく。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

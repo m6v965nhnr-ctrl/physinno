@@ -1,0 +1,57 @@
+{
+ "slug": "mpi-maudsley",
+ "name": "モーズレイ性格検査(MPI)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "MPI",
+  "モーズレイ性格検査",
+  "モーズレー性格検査",
+  "Maudsley Personality Inventory"
+ ],
+ "rows": [
+  {
+   "item": "MPI(モーズレイ性格検査)の構成",
+   "target": "人格(パーソナリティ)の質問紙検査",
+   "value": "Eysenckが作成した人格質問紙検査。下位尺度は、外向性(E)と神経症的傾向(N)の2つと、回答の妥当性を見る虚偽(L)尺度。E・Nは各24項目で、施行しやすく短時間で回答できる。日本版(1970年に岩原らが作成)は「はい・いいえ」式で80項目(E 24・N 24・L 20・ダミー12)、満点はE 48・N 48・L 40、所要は約10分。",
+   "exam": "56-am-79(「イラスト風に描かれた人物のセリフを書き込む」形式の心理検査を問う問題で、モーズレイ性格検査〈MPI〉は誤答選択肢。正答はP-Fスタディ。他の誤答はSCT・バウムテスト・NEO-PI-R)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S1][S2][S3]。[S2]は日本版の使用報告で、項目数の内訳は[S2]による。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5559986/"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.jstage.jst.go.jp/article/psycholres1954/12/4/12_4_176/_article/-char/en"
+    }
+   ]
+  },
+  {
+   "item": "MPIは質問紙法(投影法ではない)",
+   "target": "検査の種類の見分け",
+   "value": "あらかじめ決まった質問に自分で答える質問紙法の人格検査。人物のセリフを書き込むP-Fスタディ、文章の続きを書くSCT、木を描くバウムテストは、投影法で別の種類(別のカード参照)。",
+   "exam": "56-am-79(「人物のセリフを書き込む」に当てはまるのはP-Fスタディで、MPIは質問紙のため誤り)",
+   "q": [
+    "56-am-79"
+   ],
+   "note": "確認済み[S1]。質問紙法の例としてMPI・MMPI・YG性格検査、投影法の例としてSCT・バウムテスト・TAT・Rorschachが同じ資料に挙げられている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

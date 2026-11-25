@@ -1,0 +1,104 @@
+{
+ "slug": "rey-osterrieth-complex-figure",
+ "name": "Rey-Osterrieth複雑図形検査(ROCFT)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "ROCFT",
+  "ROCF",
+  "Rey-Osterrieth複雑図形",
+  "Rey-Osterrieth複雑図形検査",
+  "Rey-Osterrieth complex figure test",
+  "Rey-Osterrieth complex figure",
+  "Rey Osterrieth complex figure",
+  "Rey複雑図形検査",
+  "Rey複雑図形",
+  "Reyの複雑図形検査",
+  "Reyの複雑図形",
+  "複雑図形検査",
+  "Rey's complex figure"
+ ],
+ "rows": [
+  {
+   "item": "課題の内容と測るもの",
+   "target": "視空間構成と視覚記憶の検査",
+   "value": "34本の線分と円の中の3つの点からなる無意味で複雑な図形を、まず見ながら模写させる。続いて、一定時間(最も一般的なのは3分)をおいて見ずに思い出して描かせる(再生)。視空間の知覚・構成機能と、非言語性(視覚性)の記憶を測る。",
+   "exam": "50-pm-80(図に示す課題を用いる検査として正答: Rey-Osterrieth複雑図形検査)／59-am-9(脳挫傷後の人格・行動変化の症例で最優先の検査の問いで、Rey複雑図形検査は誤答選択肢。正答はFAB)",
+   "q": [
+    "50-pm-80",
+    "59-am-9"
+   ],
+   "note": "確認済み[S1][S2]。再生までの間隔は研究により3分・30分などがある。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.ed.ehime-u.ac.jp/~kiyou/2008/pdf/09.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+    }
+   ]
+  },
+  {
+   "item": "採点(Osterrieth法)",
+   "target": "模写・再生の得点化",
+   "value": "図形を18の部位に分け、各部位を最大2点で採点して合計36点とするのが一般的。正確な形で正確な位置=2点、形は正確だが位置が不正確、または位置は正確だが形が不正確=1点、形も位置も不正確だが何を描いたか分かる=0.5点、描かれていない=0点。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.ed.ehime-u.ac.jp/~kiyou/2008/pdf/09.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+    }
+   ]
+  },
+  {
+   "item": "前向健忘の検査としての位置づけ",
+   "target": "記憶障害の評価での分類",
+   "value": "診断基準ガイドラインは、前向健忘の参考検査の『視覚学習課題』として、Rey-Osterrieth複雑図形検査やベントン視覚記銘検査を挙げている。言語性の記憶をみる単語リスト学習課題(RAVLTなど)とは別の領域。",
+   "exam": "59-am-9(誤答選択肢。視空間認知・視覚記憶の検査であり、この症例の最優先ではない)",
+   "q": [
+    "59-am-9"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+    }
+   ]
+  },
+  {
+   "item": "注意障害・遂行機能障害の検査ではない",
+   "target": "ROCFTと他の高次脳機能検査の区別",
+   "value": "ガイドラインの注意障害の例示は抹消・検出課題、Stroop test、心的統制課題、CPT、遂行機能障害の評価法の例示はBADSなどで、Rey-Osterrieth複雑図形検査は含まれない。模写・再生には計画や組織化の要素も関わるとされるが、国試では注意や遂行機能の検査としては誤りとされた。",
+   "exam": "57-am-28(『注意障害の検査はどれか』で誤答選択肢。正答はTMT)／55-pm-29(『遂行機能障害の診断に用いる検査』でReyの複雑図形検査は誤答選択肢。正答はWCST)",
+   "q": [
+    "57-am-28",
+    "55-pm-29"
+   ],
+   "note": "確認済み[S1][S2]。ガイドラインの例示に含まれないことの確認(記載がない=検査の目的としては扱われていない)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

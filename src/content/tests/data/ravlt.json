@@ -1,0 +1,74 @@
+{
+ "slug": "ravlt",
+ "name": "Rey聴覚性言語学習検査(RAVLT)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "RAVLT",
+  "Rey Auditory Verbal Learning Test",
+  "Rey auditory verbal learning test",
+  "Rey聴覚性言語学習検査",
+  "Rey聴覚的言語学習テスト",
+  "Rey聴覚言語性学習検査",
+  "聴覚性言語学習検査",
+  "単語リスト学習課題",
+  "単語リスト学習"
+ ],
+ "rows": [
+  {
+   "item": "RAVLTの手順",
+   "target": "言語性(聴覚性)の学習・記憶の検査",
+   "value": "意味のつながりのない15語のリストA を読み上げ、そのつど自由再生させる(5回)。次に別の15語のリストB を1回提示して再生させ、その直後にリストA をもう一度再生させる。約20分後にリストA を遅延再生し、最後にA の15語をB の語や関連語を含む50語の中から選ぶ再認を行う。",
+   "exam": "51-am-80(『遅延再生を含まないのはどれか』で、RAVLTは遅延再生を含むので誤答選択肢。正答はRCPM)／50-pm-80(図に示す課題を用いる検査の問いで、RAVLTは誤答選択肢。正答はRey-Osterrieth複雑図形検査)",
+   "q": [
+    "51-am-80",
+    "50-pm-80"
+   ],
+   "note": "確認済み[S1]。遅延再生までの時間は報告により20〜30分と幅がある(S1は20分)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5226952"
+    }
+   ]
+  },
+  {
+   "item": "前向健忘の評価での位置づけ",
+   "target": "高次脳機能障害の記憶障害(前向健忘)の参考検査",
+   "value": "国立障害者リハビリテーションセンターの診断基準ガイドラインは、前向健忘の参考検査として、ウェクスラー記憶検査、対語記銘課題(三宅式など)、単語リスト学習課題(Rey聴覚的言語学習テストなど)、視覚学習課題(Rey-Osterrieth複雑図形検査・ベントン視覚記銘検査など)を挙げている。RAVLTは『単語リスト学習課題』にあたる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+    }
+   ]
+  },
+  {
+   "item": "日常記憶の検査との違い",
+   "target": "RAVLTとRBMTの使い分け",
+   "value": "RAVLTは単語リストの学習・再生を調べる検査で、日常生活で必要な記憶を直接試す検査ではない。日常生活場面の記憶障害の検出に適するのはリバーミード行動記憶検査(RBMT。別カード参照)。",
+   "exam": "59-pm-81(日常生活場面で必要な記憶の障害の検出に最も適した検査は? RAVLTは誤答選択肢。正答はRBMT)",
+   "q": [
+    "59-pm-81"
+   ],
+   "note": "RBMTが日常記憶の検査であるという側は既存カードrbmtに記載。RAVLTが単語リスト学習課題である点は[S1][S2]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5226952"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

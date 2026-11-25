@@ -1,0 +1,96 @@
+{
+ "slug": "cancer-fatigue-scale",
+ "name": "Cancer Fatigue Scale(CFS)",
+ "category": "評価尺度",
+ "aliases": [
+  "Cancer Fatigue Scale",
+  "cancer fatigue scale",
+  "がん倦怠感尺度",
+  "がん関連疲労",
+  "がん患者の倦怠感",
+  "倦怠感の評価",
+  "Brief Fatigue Inventory",
+  "簡易倦怠感尺度"
+ ],
+ "rows": [
+  {
+   "item": "CFSの概要",
+   "target": "がん患者の多次元的な倦怠感(だるさ)の評価",
+   "value": "自己記入式の質問票。15項目、1(いいえ)〜5(とても)の5段階で、約2分で記入できる。身体的・精神的・認知的の3つの次元の倦怠感を評価する",
+   "exam": "59-am-20(誤答選択肢:CFS。問いは乳癌周術期の「活動能力の評価方法」で、正答はKPS。CFSは倦怠感の評価で活動能力の評価ではない)",
+   "q": [
+    "59-am-20"
+   ],
+   "note": "確認済み[S1]。国立がんセンター(現・国立がん研究センター)精神腫瘍学研究部の資料。活動能力の評価(KPS・ECOG PS)は別カード",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+    }
+   ]
+  },
+  {
+   "item": "開発と信頼性・妥当性",
+   "target": "原著",
+   "value": "奥山らが日本で開発(2000年)。因子分析で15項目・3下位尺度(身体・精神・認知)に整理し、307名のがん患者で検証した。全15項目の内的整合性(クロンバックα)0.88、倦怠感のVASとの相関 r=0.67、再テスト信頼性は平均 r=0.69",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。PubMedの要旨で確認",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10687321/"
+    }
+   ]
+  },
+  {
+   "item": "倦怠感の定義と頻度",
+   "target": "CFSが測る症状",
+   "value": "倦怠感は、身体的・精神的な消耗を含む衰弱として特徴づけられる主観的な症状。終末期に限らず経過のあらゆる時期や、手術・化学療法・放射線療法・造血幹細胞移植に伴って現れ、頻度は30〜80%とされる",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+    }
+   ]
+  },
+  {
+   "item": "使用時の注意",
+   "target": "自己記入式の限界",
+   "value": "全身状態が重い場合や、せん妄・認知症などの認知障害で回答の信頼性に問題がある場合がある。質問票の内容や状況によっては患者がストレスを感じることもあり、身体的・心理的な状態への配慮が要る",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Brief Fatigue Inventory(BFI)との違い",
+   "target": "がんの倦怠感の別の尺度",
+   "value": "BFIは米国のCleelandらが開発した簡便な質問票。10項目(倦怠感の有無1・強さ3・生活への支障6)で、「この24時間の」状態を答える。9つの0〜10の数値評価の平均を総合的倦怠感スコアとし、著者らは1〜3を軽症、4〜6を中等症、7〜10を重症と定義するのが適切とした。CFSは日本で開発され、3次元を評価できる点が特徴",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。国立がん研究センターの日本語版BFIの説明資料",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/BFI.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

@@ -1,0 +1,117 @@
+{
+ "slug": "trunk-orthosis",
+ "name": "体幹装具の種類と制限する動き(Jewett・Knight・Williams・Taylor)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "体幹装具",
+  "脊椎装具",
+  "Jewett型",
+  "Jewett",
+  "ジュエット型",
+  "ジュウェット",
+  "Knight型",
+  "Knight",
+  "ナイト型",
+  "Williams型",
+  "Williams",
+  "ウィリアムス型",
+  "ウイリアムス型",
+  "Taylor型",
+  "Taylor",
+  "テイラー型",
+  "Steindler",
+  "スタインドラー型",
+  "腰仙椎装具",
+  "胸腰仙椎装具",
+  "ダーメンコルセット"
+ ],
+ "rows": [
+  {
+   "item": "Jewett型(ジュエット型)",
+   "target": "胸腰椎の前屈を制限する装具",
+   "value": "胸骨パッド・恥骨パッド・後方パッドの3点固定。前方から胸骨部と恥骨上部、後方から胸腰椎部に力を加えて前屈を制限し、後屈は可能。後彎の矯正を図る。",
+   "exam": "49-am-40(誤答:「Jewett型装具は体幹後屈の制限を目的とする」→前屈の制限が正しい)",
+   "q": [
+    "49-am-40"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Knight型(ナイト型)",
+   "target": "腰椎の動きを制限する腰椎装具",
+   "value": "強固な後方支柱2本・側方支柱・骨盤帯・胸椎バンドからなる逆T字型の構造。腰椎の伸展・屈曲・側屈・回旋を制限し、腹圧で体重を支え、腰椎前彎を軽減する。前部は軟性なので半硬性装具ともいう。",
+   "exam": "49-am-40(正答:Knight型装具は腰椎後屈(伸展)の制限を目的とする)",
+   "q": [
+    "49-am-40"
+   ],
+   "note": "確認済み[S1]。国試の正答と矛盾しない(伸展の制限を含む)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Williams型(ウィリアムス型)",
+   "target": "腰椎前彎を伴う疾患・脊椎分離症などに用いる腰椎装具",
+   "value": "骨盤帯・胸椎バンド・側方支柱・後側方支柱からなる。後屈と側屈を制限し、前屈は可能にする(Knight型・Jewett型と逆の発想)。",
+   "exam": "49-am-40(誤答:「Williams型装具は体幹前屈の制限を目的とする」→後屈と側屈の制限が正しい)",
+   "q": [
+    "49-am-40"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+    }
+   ]
+  },
+  {
+   "item": "Taylor型(テイラー型)・Knight-Taylor型・Steindler型",
+   "target": "胸椎・胸腰椎を支持する装具",
+   "value": "Taylor型:上部腰椎から胸椎部を支持。後方に金属支柱があり、肩を固定する紐をつけ、前面は軟性。前屈と後屈を制限。Knight-Taylor型:Knight型の後方支柱を上へ伸ばし、前屈・後屈・側屈を制限。Steindler型:金属枠の硬性装具で胸椎装具の中で最も固定力が強く、前屈・後屈・側屈・回旋を制限。",
+   "exam": "49-am-40(誤答:「Taylor型装具は頸椎から仙椎までの可動域を制限する」→上部腰椎から胸椎の支持で、頸椎は含まれない)",
+   "q": [
+    "49-am-40"
+   ],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+    }
+   ]
+  },
+  {
+   "item": "軟性体幹装具(コルセット)の働き",
+   "target": "軟性装具の基本",
+   "value": "主に布製で体幹の輪郭に合わせて作る(一般にコルセット)。腹腔内圧(腹圧)を上げて、椎体と椎間板への負荷を減らす役割をもつ。",
+   "exam": "49-am-40(選択肢にダーメンコルセットが出たが、下端の位置についての記述は資料で未確認)",
+   "q": [
+    "49-am-40"
+   ],
+   "note": "確認済み[S1]。ダーメンコルセットの下端の位置は、確認できた資料がないため載せていない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

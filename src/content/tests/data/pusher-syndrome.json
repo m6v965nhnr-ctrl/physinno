@@ -1,0 +1,156 @@
+{
+ "slug": "pusher-syndrome",
+ "name": "Pusher現象(SCP)",
+ "category": "検査法・徴候",
+ "aliases": [
+  "Pusher現象",
+  "pusher",
+  "プッシャー現象",
+  "プッシャー症候群",
+  "押す人症候群",
+  "pusher syndrome",
+  "pusher behavior",
+  "pusher behaviour",
+  "contraversive pushing",
+  "Scale for Contraversive Pushing",
+  "SCP",
+  "Burke Lateropulsion Scale",
+  "lateropulsion"
+ ],
+ "rows": [
+  {
+   "item": "Pusher現象の特徴",
+   "target": "脳卒中後の姿勢異常(非麻痺側で押して麻痺側へ傾く)",
+   "value": "脳卒中後に、非麻痺側の上下肢で床や周囲を押して麻痺側へ体を傾け、支えなしでは麻痺側へ倒れてしまう。さらに、傾いた体を他人が正中・垂直へ戻そうとすると抵抗する。つまり身体軸は『麻痺側』に傾く。",
+   "exam": "57-am-40(「身体軸が非麻痺側に傾斜する」が誤りの記述=正答。正しくは麻痺側へ傾斜)／56-am-9(L-dopa服用後に突然動けなくなる現象の問いで、pusher現象は誤答選択肢。正答はon-off現象)",
+   "q": [
+    "57-am-40",
+    "56-am-9"
+   ],
+   "note": "確認済み[S1][S2][S5]。56-am-9のon-off現象側の確認は本カードでは行っていない(既存カードparkinson-signs-motor-complications参照)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1579228"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/11087771/"
+    },
+    {
+     "label": "S5",
+     "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+    }
+   ]
+  },
+  {
+   "item": "垂直判断との関係",
+   "target": "Pusher現象の機序",
+   "value": "Pusher患者は、自分の体が非麻痺側へ約18度傾いた状態を『まっすぐ(垂直)』と感じる(自覚的姿勢垂直SPVの異常)。一方、自覚的視覚垂直(SVV)は障害されない。重力に対する身体の向きを感じ取る別の系の障害と考えられている。",
+   "exam": "57-am-40(正しい記述として出題: 垂直判断の障害が関係する。この問いの誤りは「非麻痺側に傾斜」)",
+   "q": [
+    "57-am-40"
+   ],
+   "note": "確認済み[S2]。垂直判断のうち問題になるのは姿勢の垂直(SPV)で、視覚的垂直は保たれるという報告。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/11087771/"
+    }
+   ]
+  },
+  {
+   "item": "好発側(右半球・左半球)",
+   "target": "Pusher現象の頻度と経過",
+   "value": "急性期脳卒中1660人の調査で、pusher行動は9.4%にみられた。右大脳半球損傷で17.4%、左半球損傷で9.5%と右に多く(リスク比1.83)、回復も右半球損傷のほうが遅かった。",
+   "exam": "57-am-40(正しい記述として出題: 右半球損傷に多い)",
+   "q": [
+    "57-am-40"
+   ],
+   "note": "確認済み[S3]。別の105人の研究[S4]では損傷側による頻度差はなかったと報告されており、研究により結果が違う。国試は右半球に多い側の記述。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/22382159/"
+    },
+    {
+     "label": "S4",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/18617579/"
+    }
+   ]
+  },
+  {
+   "item": "SCPの構成と診断",
+   "target": "Scale for Contraversive Pushing(SCP)",
+   "value": "座位と立位で、(1)自発的な姿勢の対称性、(2)非麻痺側の腕・脚を外転・伸展して押す力を強めるか、(3)他動的に姿勢を直されることへの抵抗、の3つをみる。原法では3つすべてがあり、姿勢と外転・伸展は座位+立位の合計が1以上(各最大2)、かつ抵抗がある場合にpusher現象と診断する。",
+   "exam": "60-am-10(誤答選択肢: pusherの評価としてSCP。右脳出血の症例で最優先は線分抹消試験。症例が正中位修正に抵抗しないためSCPの優先度は低い)",
+   "q": [
+    "60-am-10"
+   ],
+   "note": "確認済み[S1]。SCPの項目と原法の診断規則は[S1]の記載による。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1579228"
+    }
+   ]
+  },
+  {
+   "item": "SCPのカットオフ(Baccini)",
+   "target": "SCPで何点以上をpusherとするか",
+   "value": "脳卒中直後105人で3つの基準を比較。合計点>0(Crit_1)は臨床診断との一致が低く(κ=.212)、各セクションの下位得点がいずれも>0(Crit_2)が最も一致し(κ=.933)、各セクション≧1(Crit_3)は一致はやや低い(κ=.754)が偽陽性がなかった。目的に応じて基準を選ぶとよいとされた。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S4]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/18617579/"
+    }
+   ]
+  },
+  {
+   "item": "評価法の種類",
+   "target": "Pusher現象の評価表",
+   "value": "臨床で使われる評価表は4種類: 最初に発表された『Pusher評価チャート』、現在最も広く使われるSCP、最も細かい段階付けができるBurke Lateropulsion Scale(BLS)、4段階で最も簡便なFour-Point Pusher Score。SCPとBLSの比較では138評価中31で分類が食い違い、すべてBLSで陽性・SCPで陰性で、BLSは立位・歩行での軽いpusherを拾いやすい可能性がある。",
+   "exam": "60-am-10(SCPは誤答選択肢)",
+   "q": [
+    "60-am-10"
+   ],
+   "note": "確認済み[S5][S6]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+    },
+    {
+     "label": "S6",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/24459174/"
+    }
+   ]
+  },
+  {
+   "item": "治療の考え方",
+   "target": "Pusher現象へのアプローチ",
+   "value": "現時点でpusher現象を確実に改善させる確立した方法はないとされる。動作練習では、安定した端座位を獲得してから、逆方向連鎖化による起き上がり練習など、誤りを避ける学習(無誤学習)を取り入れる方法が紹介されている。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S5](特集記事の要約)。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S5",
+     "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

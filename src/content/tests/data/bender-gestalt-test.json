@@ -1,0 +1,50 @@
+{
+ "slug": "bender-gestalt-test",
+ "name": "Bender Gestalt test(BGT)",
+ "category": "評価尺度",
+ "aliases": [
+  "Bender Gestalt",
+  "Bender gestalt test",
+  "Bender-Gestalt",
+  "BGT",
+  "ベンダー・ゲシュタルト",
+  "ベンダーゲシュタルト",
+  "視覚運動ゲシュタルト"
+ ],
+ "rows": [
+  {
+   "item": "Bender Gestalt test(BGT)の課題",
+   "target": "視覚運動機能・視知覚・認知の評価",
+   "value": "9つの幾何学図形を、白紙に1つずつ模写させる(運動反応の正確さ・協調性を見る)。1938年にBenderが発表した。図形は、Wertheimerが1923年にゲシュタルト知覚を示すために作った30図形から選ばれた。",
+   "exam": "50-pm-80(図形を使う課題の検査名を選ぶ問題で、Bender gestalt testは誤答選択肢。正答はRey-Osterrieth complex figure test(選択肢4)。ほかの誤答はRavenの色彩マトリックス・Rey聴覚性言語学習検査・Stroopテスト)",
+   "q": [
+    "50-pm-80"
+   ],
+   "note": "確認済み[S1]。9つの図形の模写という点で、1つの複雑な図形を模写して再生するRey-Osterrieth複雑図形検査と区別する。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12022457/"
+    }
+   ]
+  },
+  {
+   "item": "Bender Gestalt testの採点・使われ方・限界",
+   "target": "年齢・疾患との関係と、検査の限界",
+   "value": "Koppitzの採点法(1964)では、図形の誤りに点がつき、年齢とともに得点が減って12歳ごろにほぼ0になる(子どもの視覚運動発達の目安)。認知症・アルツハイマー病などの神経変性疾患の診断に有用とする報告があり、脳卒中や頭部外傷後にも使われる。一方、感度・特異度の結果は一定せず、解釈が主観的で、文化・教育・年齢の影響を受ける。軽い認知障害には鈍いとされ、ほかの検査と併用することが勧められる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。系統的レビューに基づく要約。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12022457/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

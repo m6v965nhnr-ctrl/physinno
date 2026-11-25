@@ -1,0 +1,85 @@
+{
+ "slug": "ppi-palliative-prognostic-index",
+ "name": "Palliative Prognostic Index",
+ "category": "評価尺度",
+ "aliases": [
+  "Palliative Prognostic Index",
+  "palliative prognostic index",
+  "PPI〈palliative prognostic index〉",
+  "パリアティブ・プログノスティック・インデックス"
+ ],
+ "rows": [
+  {
+   "item": "PPI の目的と対象",
+   "target": "予後予測(活動能力の評価ではない)",
+   "value": "終末期がん患者の予後予測。評価者は医療者、場面は緩和ケア病棟。PPS・経口摂取・浮腫・安静時の呼吸困難・せん妄の5項目から得点を出す(Morita 1999)",
+   "exam": "59-am-20(乳房温存手術予定の早期乳癌の周術期PTで、活動能力の評価方法として正しいのはKPS。PPI〈palliative prognostic index〉は誤答=予後予測の指標)",
+   "q": [
+    "59-am-20"
+   ],
+   "note": "確認済み[S3][S2]。国試では「活動能力の評価」に当たらない選択肢",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://plaza.umin.ac.jp/~pcpkg/ppi.html"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+    }
+   ]
+  },
+  {
+   "item": "PPI の5項目と配点",
+   "target": "合計点の出し方",
+   "value": "PPS 10〜20=4.0、30〜50=2.5、60以上=0。経口摂取 著明に減少(数口以下)=2.5、中程度に減少=1.0、正常=0。浮腫あり=1.0。安静時の呼吸困難あり=3.5。せん妄あり=4.0(薬物単独・臓器障害に伴わないものは含めない)。該当点を合計",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。消化管閉塞で高カロリー輸液を受けている場合、経口摂取は「正常」とする",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/glhyd_2013/01_02.pdf"
+    }
+   ]
+  },
+  {
+   "item": "PPI のカットオフ",
+   "target": "生存期間の予測",
+   "value": "合計が6より大きい=3週以内に死亡する確率が感度80%・特異度85%(陽性反応適中度71%・陰性反応適中度90%)。原著では4より大きい=6週生存予測が感度80%・特異度77%",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1][S2]。資料により「6以上」「6.5以上」と書かれることがあり、原著・ガイドラインは「6より大きい」",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://jspm.ne.jp/files/guideline/glhyd_2013/01_02.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+    }
+   ]
+  },
+  {
+   "item": "PPI の3群(原著)",
+   "target": "予後の群分け",
+   "value": "検証群で、A群(PPI≦2.0)・B群(2.0<PPI≦4.0)・C群(PPI>4.0)に分けると、A群>B群>C群の順に生存期間が長かった",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

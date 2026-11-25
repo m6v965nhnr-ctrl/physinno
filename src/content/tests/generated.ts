@@ -280,6 +280,82 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "allen-test",
+  "name": "Allenテスト",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Allenテスト",
+   "Allen テスト",
+   "Allen test",
+   "Allen's test",
+   "アレンテスト",
+   "アレン試験",
+   "Modified Allen test",
+   "改良Allenテスト"
+  ],
+  "rows": [
+   {
+    "item": "Allenテスト(手の側副血行・橈骨動脈と尺骨動脈の開存)",
+    "target": "動脈穿刺・採血・動脈ライン留置や橈骨動脈採取の前に、手の二重の血流(橈骨動脈と尺骨動脈)が保たれているかを見る",
+    "value": "手を何度か握らせて血を絞った状態で、橈骨動脈と尺骨動脈の両方を圧迫して手を蒼白にする。次に片方の圧迫だけを離し、もう一方は圧迫したまま手の色の戻りを見る。約10秒以内に色が戻れば、離した側の動脈から十分に血流が来ていて側副血行が良好と読む。尺骨側を離して見る標準法と、橈骨側を離して見る逆向きの方法があり、両方向で行う考え方もある。",
+    "exam": "51-pm-32(「頸椎の椎間孔圧迫試験」を選ぶ問題で、Allenテストは誤答選択肢。正答はSpurlingテスト。誤答にはほかにAdson・Morley・Wright)",
+    "q": [
+     "51-pm-32"
+    ],
+    "note": "確認済み[S1][S2]。色の戻りの秒数は資料や研究で違い(Taberは約10秒、研究では3〜6秒などのカットオフが検討された[S3])、1つの値に決まっていない。1929年にAllenが、尺骨動脈の閉塞性血栓血管炎の診断に用いたのが始まり[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.tabers.com/tabersonline/pview/Tabers-Dictionary/765380/all/Allen%20test"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4632347/"
+     }
+    ]
+   },
+   {
+    "item": "Allenテスト(胸郭出口症候群の誘発テストとしての意味)",
+    "target": "小胸筋の緊張による胸郭出口部の圧迫(腕神経叢・血管)を見る誘発テスト",
+    "value": "座位で、検査する側の肩を90°外転・肘を90°屈曲し、橈骨動脈の脈を触れながら、上腕を外旋させ、同時に頭を反対側へ回旋させる。脈が弱くなる、または消えれば、小胸筋による神経血管束の圧迫を疑う。偽陽性が多い検査とされる。",
+    "exam": "51-pm-32(選択肢Adson・Allen・Morley・Wrightはどれも胸郭出口症候群の誘発テストの名前として並ぶ。問われたのは頸椎の椎間孔圧迫試験=Spurlingなので、いずれも誤答)",
+    "q": [
+     "51-pm-32"
+    ],
+    "note": "確認済み[S1]。日本整形外科学会の患者向け解説(胸郭出口症候群)にはAdson・Wright・Roos・Edenが載るがAllenは載っていない。1つの名前が「手の血流のテスト」と「胸郭出口の誘発テスト」の2つの意味で使われる点に注意。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.tabers.com/tabersonline/pview/Tabers-Dictionary/765380/all/Allen%20test"
+     }
+    ]
+   },
+   {
+    "item": "Allenテストの診断精度(冠動脈バイパス用の橈骨動脈採取前)",
+    "target": "手の血流の評価として、どこまで信頼できるか",
+    "value": "ドプラ超音波を基準にした93手の研究では、色の戻り6秒をカットオフにすると感度54.5%・特異度91.7%・正確度78.5%。3秒だと感度100%だが特異度27%。著者は、どのカットオフでも判別検査として十分ではなく、ドプラ超音波などより客観的な検査に置き換えるべきと結論した。別の145例の研究では、感度73.2%・特異度97.1%で、「手の循環のスクリーニングとして妥当。陰性なら橈骨動脈の採取は安全、陽性ならさらに調べる」と評価された。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3][S4]。研究により結論が分かれる。単独で採取の可否を決めず、必要に応じて超音波などと併せる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11081899/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17889550/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "als-niv",
   "name": "ALSのNPPV導入基準",
   "category": "臨床検査",
@@ -308,6 +384,146 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "anorexia-nervosa-findings",
+  "name": "神経性やせ症(神経性無食欲症)の身体・検査所見",
+  "category": "臨床検査",
+  "aliases": [
+   "神経性無食欲症",
+   "神経性やせ症",
+   "神経性食欲不振症",
+   "拒食症",
+   "摂食障害",
+   "リフィーディング症候群",
+   "再栄養症候群"
+  ],
+  "rows": [
+   {
+    "item": "血液検査の所見",
+    "target": "神経性やせ症を疑う検査異常",
+    "value": "総コレステロール高値(高コレステロール血症)、低血糖(グルコース低下)、低カリウム・低ナトリウム、低リン・低マグネシウム、AST・ALT上昇(飢餓による)、白血球・血小板減少と貧血、甲状腺ホルモン(T3・T4)低下、コルチゾール上昇。嘔吐がある人ではアミラーゼ(唾液腺型)が上がる。",
+    "exam": "58-pm-100(神経性無食欲症で生じやすいのはどれか。正答は高コレステロール血症。誤答は頻脈・高血圧・高血糖・高リン血症)",
+    "q": [
+     "58-pm-100"
+    ],
+    "note": "確認済み[S1][S2][S3]。MSDマニュアルは、血液検査の異常は出てもごく軽度としている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+     }
+    ]
+   },
+   {
+    "item": "循環器・全身の所見",
+    "target": "低栄養による身体の変化",
+    "value": "徐脈(60/分未満)、低血圧(収縮期90 mmHg未満)、起立性低血圧、低体温(36℃以下)。心電図は徐脈・QT延長・不整脈・房室ブロックなど、心エコーは心嚢液貯留・僧帽弁逸脱、胸部X線は心胸郭比の低下。うぶ毛の密生、浮腫、便秘、女性では無月経もみられる。",
+    "exam": "58-pm-100(誤答選択肢の頻脈・高血圧は逆で、徐脈・低血圧が一般的)",
+    "q": [
+     "58-pm-100"
+    ],
+    "note": "確認済み[S1][S2][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+     }
+    ]
+   },
+   {
+    "item": "低血糖",
+    "target": "飢餓による代謝の変化",
+    "value": "肝臓のグリコーゲンの蓄えが少ないため、低血糖を起こしやすい。血糖60 mg/dL未満で意識障害や低体温などの症状があれば、ブドウ糖の静脈内投与の対象になる。",
+    "exam": "58-pm-100(誤答選択肢の高血糖は逆で、低血糖が起こりやすい)",
+    "q": [
+     "58-pm-100"
+    ],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+     }
+    ]
+   },
+   {
+    "item": "低リン血症と再栄養",
+    "target": "リフィーディング症候群に関わる所見",
+    "value": "栄養不良では血清リンが低下する。再栄養の過程では、インスリン増加に伴いリンやカリウムが細胞内に取り込まれ、さらに低下する。血清リン1.0 mg/dL未満で意識障害・心不全・けいれんなど重い症状が出て、死因になりうる。",
+    "exam": "58-pm-100(誤答選択肢の高リン血症は逆で、低リン血症が問題になる)",
+    "q": [
+     "58-pm-100"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/2014/143011/201410001A_upload/201410001A0017.pdf"
+     }
+    ]
+   },
+   {
+    "item": "入院を考える目安",
+    "target": "身体的緊急時の指針",
+    "value": "入院適応の項目に、低血糖、電解質異常(特に緊急はK 2.5 mEq/L未満・P 2 mg/dL未満)、心電図異常(QT延長・徐脈。心拍数40未満や不整脈は緊急)、低血圧(90/60 mmHg未満は緊急)、低体温(35℃未満は緊急)などがある。低カリウム血症は3.0 mEq/L未満で入院が好ましい。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。小児・成人の個別の判断は主治医による。学習用の要約。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     }
+    ]
+   },
+   {
+    "item": "内分泌・骨の変化",
+    "target": "長期の低栄養の影響",
+    "value": "性腺ホルモンの低下、T3・T4の軽度低下、コルチゾール分泌の増加、骨密度の低下がみられる。月経は多くの女性で止まるが、現在の診断基準には含まれない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/08-%E7%B2%BE%E7%A5%9E%E7%96%BE%E6%82%A3/%E6%91%82%E9%A3%9F%E7%97%87%E7%BE%A4/%E7%A5%9E%E7%B5%8C%E6%80%A7%E3%82%84%E3%81%9B%E7%97%87"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -1031,6 +1247,115 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "barre-sign",
+  "name": "Barré徴候(上肢・下肢)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Barré徴候",
+   "Barré 徴候",
+   "Barré sign",
+   "Barré test",
+   "Barréテスト",
+   "Barré試験",
+   "バレー徴候",
+   "上肢Barré",
+   "上肢Barré徴候",
+   "上肢バレー徴候",
+   "下肢Barré",
+   "下肢Barré徴候",
+   "下肢バレー徴候",
+   "Mingazzini",
+   "Mingazzini徴候",
+   "ミンガッツィーニ",
+   "上肢挙上試験",
+   "pronator drift"
+  ],
+  "rows": [
+   {
+    "item": "上肢Barré徴候(Mingazziniの上肢挙上試験)",
+    "target": "上肢の軽い運動麻痺(錐体路の障害)を見つける",
+    "value": "両腕を前に伸ばして手のひらを上に向け、指をそろえ、閉眼で保持させる。上肢の下降・前腕の回内・肘の屈曲があるかを見て、上肢が回内しながら下がれば陽性(日本神経学会の手引き)。麻痺側の腕は、下がるだけでなく、肘などが軽く曲がることもある。なお、tPA治療の判定の際は手のひらを下に向けて行うとされる。",
+    "exam": "60-pm-82(「深部感覚障害で陽性となるのは」の誤答選択肢。正答はRomberg徴候。ほかの誤答はKernig・Lasègue・カーテン徴候)／61-am-16(多発性硬化症の電撃痛の問題で、Barré徴候は誤答。正答はLhermitte徴候)／55-am-17(Uhthoff徴候の設問で、Barré徴候は誤答選択肢)",
+    "q": [
+     "60-pm-82",
+     "61-am-16",
+     "55-am-17"
+    ],
+    "note": "確認済み[S1][S2]。Barré徴候は運動麻痺を見る検査で、深部感覚障害を見る検査ではない。Guillain-Barré症候群とは別のもの(名前に「Barré」が入るだけ。疾患名と検査名を混同しない)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+     }
+    ]
+   },
+   {
+    "item": "下肢Barré徴候",
+    "target": "下肢の軽い運動麻痺(錐体路の障害)を見つける",
+    "value": "腹臥位で両膝を90°屈曲させ、両足が接しないようにその肢位を保たせる。下腿が下降したら陽性。腹臥位が難しい場合もあり、必須の検査ではない(日本神経学会の手引き)。Barréが1919年に報告した方法で、麻痺側の下肢が下がる。膝などの痛みで関節が動かしにくいと偽陽性になりうる。",
+    "exam": "出題は直接なし(参考。出題は上肢側の名称や、感覚障害との区別で問われている)",
+    "q": [],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+     }
+    ]
+   },
+   {
+    "item": "Mingazzini徴候(下肢)",
+    "target": "下肢の軽い運動麻痺を見つける",
+    "value": "仰臥位で股関節を約90°屈曲し、下腿をベッドと水平に保たせる。下腿が下降したら陽性(日本神経学会の手引き)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。上肢の挙上試験・下肢の試験ともMingazziniが1913年に報告し、Barréが後に詳しく紹介した。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.neurology-jp.org/news/news_20080715_01.html"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/55/7/55_cn-000693/_article"
+     }
+    ]
+   },
+   {
+    "item": "名前の由来(BarréとMingazzini)",
+    "target": "日本でBarré試験と呼ばれる検査の成り立ち",
+    "value": "上肢・下肢のドリフト試験はMingazziniが1913年に報告。Barréは1919年に腹臥位の下肢の試験を報告し、1937年にMingazziniの上肢・下肢の試験を、自分の患者の写真つきで紹介した。Barréが原著を引用しなかったため、日本では「上肢Barré試験」の呼び名・手技の記載がばらつき、日本神経学会の手引きでは「Mingazziniの上肢挙上試験」と併記される。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5878183/"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/55/7/55_cn-000693/_article"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "barthel-index",
   "name": "Barthel Index(BI)",
   "category": "評価尺度",
@@ -1360,6 +1685,308 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "baum-test",
+  "name": "バウムテスト",
+  "category": "臨床検査",
+  "aliases": [
+   "バウム・テスト",
+   "Baum test",
+   "樹木画",
+   "樹木画テスト",
+   "実のなる木",
+   "コッホ",
+   "描画法",
+   "投影描画法",
+   "Picture-Frustration Study",
+   "Sentence Completion Test",
+   "NEO Personality Inventory",
+   "質問紙法",
+   "投影法",
+   "投映法"
+  ],
+  "rows": [
+   {
+    "item": "バウムテスト(樹木画)",
+    "target": "描画による投影法の人格検査",
+    "value": "「実のなる木を1本描いてください」という教示で木の絵を自由に描かせる描画法(投影法)。A4用紙・濃い鉛筆・消しゴムを使い、全体の印象・根/幹/樹冠/枝葉の形態分析、筆圧などの動態分析、紙面上の位置の空間分析を行う。質問紙法ではない。",
+    "exam": "56-am-79(誤答選択肢: 「イラスト風の人物のセリフを書き込む」検査ではない)／57-am-35・57-am-81(誤答選択肢: バウムテスト・Rorschachは投影法。質問紙法ではない)／59-am-78(誤答選択肢: 描画法)／第49回に「1本の実のなる木を描いてください」の指示(問題IDは未確認)",
+    "q": [
+     "56-am-79",
+     "57-am-35",
+     "57-am-81",
+     "59-am-78"
+    ],
+    "note": "確認済み[S1][S2]。考案年は資料により1945年・1949年と食い違うため、年は覚えなくてよい。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+     }
+    ]
+   },
+   {
+    "item": "P-Fスタディ(絵画欲求不満テスト)",
+    "target": "漫画風の場面で人物のセリフを書き込む検査",
+    "value": "日常のかるい欲求不満場面24場面。漫画風の絵で、左の人物のことばに対する右の人物の返答を書き込ませる。顔や表情は省かれている。投影法の一種(制限のある準投影法とも呼ばれる)。",
+    "exam": "56-am-79(正答=P-Fスタディ。問題文「イラスト風に描かれた人物のセリフを書き込む形式の心理検査」)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S3][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+     }
+    ]
+   },
+   {
+    "item": "SCT(文章完成法)",
+    "target": "未完成の文の続きを書く投影法",
+    "value": "あらかじめ書かれた未完成の刺激文の続きを、思い浮かぶままに自由に書かせる。自己概念・対人関係・家族関係などが現れると考える。投影法の中では比較的意識に近いレベルで、集団でも実施できる。",
+    "exam": "56-am-79(誤答選択肢: 人物のセリフを書き込む検査ではなく、文章の続きを書く検査)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     }
+    ]
+   },
+   {
+    "item": "MPI(モーズレイ性格検査)",
+    "target": "Eysenckの質問紙法の性格検査",
+    "value": "Eysenckが作った質問紙法。下位尺度は社会的外向性(E)と神経症的傾向(N)で、各24項目。回答の妥当性をみる虚偽性尺度(L)もある。",
+    "exam": "56-am-79(誤答選択肢: 質問紙法であり、セリフを書き込む形式ではない)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     }
+    ]
+   },
+   {
+    "item": "NEO-PI-R(改訂版NEO人格目録)",
+    "target": "5因子モデルの質問紙法の性格検査",
+    "value": "Costa & McCraeが作った240項目の質問紙。5因子(神経症傾向・外向性・開放性・調和性・誠実性)について、各6つの側面を測る。日本版もあり、短縮版のNEO-FFIは60項目。",
+    "exam": "56-am-79(誤答選択肢: 質問紙法であり、セリフを書き込む形式ではない)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S4]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+     }
+    ]
+   },
+   {
+    "item": "投影法と質問紙法の区別",
+    "target": "人格検査の分類",
+    "value": "質問紙法: 「はい・いいえ」などで自己評定させ、意識的・自己概念的な水準をとらえる(MPI・MMPI・YG・NEO-PI-R)。投影法: あいまいな刺激への自由な反応から、より深い特徴をとらえる(Rorschach・TAT・SCT・P-Fスタディ・バウムテスト)。",
+    "exam": "57-am-35・57-am-81(バウムテスト・Rorschachは投影法。質問紙法の選択肢としては誤り)／59-am-78(描画法の選択肢)",
+    "q": [
+     "57-am-35",
+     "57-am-81",
+     "59-am-78"
+    ],
+    "note": "確認済み[S1][S2]。NEO-PI-Rが質問紙法である点は[S4]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.tokyomirai.ac.jp/info/research/bulletin/pdf/05/fukawa.pdf"
+     },
+     {
+      "label": "S4",
+      "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "bedrest-muscle-weakness",
+  "name": "臥床による筋力低下・筋萎縮",
+  "category": "リスク管理",
+  "aliases": [
+   "臥床による筋力低下",
+   "臥床による筋",
+   "筋力低下率",
+   "廃用性筋萎縮",
+   "廃用性筋力低下",
+   "臥床と筋力"
+  ],
+  "rows": [
+   {
+    "item": "筋力低下の部位差",
+    "target": "臥床で上肢と下肢のどちらの筋力が落ちやすいか",
+    "value": "上肢より下肢の筋力低下が大きい。2〜3週の臥床後、最大筋力の低下は肘より膝で大きく、膝では屈曲より伸展の低下率が大きかった。先行研究(Deitrick 1948、6〜7週臥床)では、足関節背屈13.3%・底屈20.8%に対し肘関節屈曲は6.6%",
+    "exam": "49-am-83(正答:上肢筋に比べ下肢筋で筋力低下が大きい)",
+    "q": [
+     "49-am-83"
+    ],
+    "note": "確認済み[S1]。誤答の「手内筋は数日で著明な筋力低下」「筋細胞膜のアセチルコリン感受性の増強」は資料で確認できず。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrm1964/30/1/30_1_63/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "筋力低下の速さ(率)",
+    "target": "臥床中の筋力低下の目安",
+    "value": "安静臥床のままでは、初期に約1〜3%/日、10〜15%/週の割合で筋力が低下し、3〜5週間で約50%に低下すると言われている。24時間の安静臥床でも筋力が1〜2%低下するという報告もある",
+    "exam": "49-am-83(誤答:下肢筋では1週間に50%の筋力低下=実際は1週で約10〜15%、50%は3〜5週)",
+    "q": [
+     "49-am-83"
+    ],
+    "note": "確認済み[S1][S2]。「と言われている」という概数。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "筋の太さ(筋厚)",
+    "target": "臥床後の筋の太さ",
+    "value": "2〜3週の臥床後、超音波で測った筋厚は被検筋のいずれも平均で減少した(7例)。減少率は大腿直筋が最大23.4%、外側広筋が最小4.2%",
+    "exam": "49-am-83(誤答:最大筋腹の太さは保たれる=実際は減少する)",
+    "q": [
+     "49-am-83"
+    ],
+    "note": "確認済み[S1]。個々には増加した例もあり、筋力低下率と筋厚減少率に有意な相関はなかった。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrm1964/30/1/30_1_63/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "筋力を維持するのに必要な負荷",
+    "target": "廃用予防の運動の強さ",
+    "value": "毎日数秒間、最大張力の20〜30%の筋収縮を行えば筋力の維持が可能。30%を超える負荷で筋力は増大し、20%未満では維持できない",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   },
+   {
+    "item": "抗重力筋に強い",
+    "target": "筋萎縮が強く出る筋",
+    "value": "姿勢の保持と歩行に関係する抗重力筋に強く起こりやすい(下肢・体幹の筋)",
+    "exam": "54-am-49(誤答選択肢:筋萎縮は上肢に強くみられる)",
+    "q": [
+     "54-am-49"
+    ],
+    "note": "確認済み[S1]。「下肢・体幹」は抗重力筋の例としての整理。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "bender-gestalt-test",
+  "name": "Bender Gestalt test(BGT)",
+  "category": "評価尺度",
+  "aliases": [
+   "Bender Gestalt",
+   "Bender gestalt test",
+   "Bender-Gestalt",
+   "BGT",
+   "ベンダー・ゲシュタルト",
+   "ベンダーゲシュタルト",
+   "視覚運動ゲシュタルト"
+  ],
+  "rows": [
+   {
+    "item": "Bender Gestalt test(BGT)の課題",
+    "target": "視覚運動機能・視知覚・認知の評価",
+    "value": "9つの幾何学図形を、白紙に1つずつ模写させる(運動反応の正確さ・協調性を見る)。1938年にBenderが発表した。図形は、Wertheimerが1923年にゲシュタルト知覚を示すために作った30図形から選ばれた。",
+    "exam": "50-pm-80(図形を使う課題の検査名を選ぶ問題で、Bender gestalt testは誤答選択肢。正答はRey-Osterrieth complex figure test(選択肢4)。ほかの誤答はRavenの色彩マトリックス・Rey聴覚性言語学習検査・Stroopテスト)",
+    "q": [
+     "50-pm-80"
+    ],
+    "note": "確認済み[S1]。9つの図形の模写という点で、1つの複雑な図形を模写して再生するRey-Osterrieth複雑図形検査と区別する。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12022457/"
+     }
+    ]
+   },
+   {
+    "item": "Bender Gestalt testの採点・使われ方・限界",
+    "target": "年齢・疾患との関係と、検査の限界",
+    "value": "Koppitzの採点法(1964)では、図形の誤りに点がつき、年齢とともに得点が減って12歳ごろにほぼ0になる(子どもの視覚運動発達の目安)。認知症・アルツハイマー病などの神経変性疾患の診断に有用とする報告があり、脳卒中や頭部外傷後にも使われる。一方、感度・特異度の結果は一定せず、解釈が主観的で、文化・教育・年齢の影響を受ける。軽い認知障害には鈍いとされ、ほかの検査と併用することが勧められる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。系統的レビューに基づく要約。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12022457/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -2413,6 +3040,88 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "bragard-test",
+  "name": "Bragardテスト",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Bragardテスト",
+   "Bragard徴候",
+   "Bragard test",
+   "Bragard sign",
+   "Bragard",
+   "ブラガード",
+   "ブラガードテスト",
+   "ブラガード徴候"
+  ],
+  "rows": [
+   {
+    "item": "Bragardテスト(SLRに足関節の背屈を加える)",
+    "target": "腰椎椎間板ヘルニアなどの坐骨神経・神経根の症状を誘発する(疼痛誘発テスト)",
+    "value": "SLR(下肢伸展挙上)の最後に足関節の背屈を加える。背屈で、いつもの放散痛(神経根痛)が再現・増強すれば陽性。背屈を加えると、SLRで陽性になる角度が小さくなり、神経由来の症状と筋骨格由来の症状を見分ける手がかりになる。",
+    "exam": "60-pm-27(「腰椎椎間板ヘルニアの疼痛誘発テストはどれか」の正答。誤答はAdson・Eichhoff・Thomsen・Yergason)／50-am-32(「股関節に屈曲拘縮がある場合に陽性」の誤答選択肢。正答はThomasテスト)",
+    "q": [
+     "60-pm-27",
+     "50-am-32"
+    ],
+    "note": "確認済み[S1]。手順の定義(背屈を加えるときの角度や進め方)は一定せず、70°を超えて行ってよいかも不明とされる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7992338"
+     }
+    ]
+   },
+   {
+    "item": "SLRの陽性の目安(Bragardの前提)",
+    "target": "SLRが陽性かどうかの判定",
+    "value": "SLRは、股関節屈曲30〜70°の間に、坐骨神経の走行に沿って膝より下へ放散する痛みが出れば陽性とされる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。Lasègue徴候(SLR)そのものは別カードにまとめてある。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7992338"
+     }
+    ]
+   },
+   {
+    "item": "足関節背屈などを加えた「拡張SLR」",
+    "target": "神経由来の症状かどうかの見分け",
+    "value": "SLRで症状が出る角度で、足関節背屈(坐骨神経への張力)か股関節内旋(腰仙部神経根への張力)を加え、症状が増強したら神経由来と判断する(拡張SLR)。40人(坐骨神経痛20人・対照20人)の研究で、2人の検者の一致は高かった(κ=0.85)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。信頼性の研究で、診断精度の研究ではない(基準となる検査なし)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7992338"
+     }
+    ]
+   },
+   {
+    "item": "修正Bragardテストの診断精度",
+    "target": "電気診断で確認された腰仙部神経根障害に対する成績",
+    "value": "506例の疑い例のうち、電気診断で神経根障害が確認された312例で、修正Bragardテストの感度69.3%・特異度67.42%・陽性的中率73.15%・陰性的中率63.16%(陽性尤度比2.13・陰性尤度比0.46)。SLR陰性だった114例のうち79例でBragardは陽性だった。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。成績は中等度で、SLRが陰性のときの補助として有用かもしれない、という位置づけ。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5883635"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "breathing-observation",
   "name": "呼吸の視診・努力性呼吸(呼吸補助筋・吸気時の陥凹・異常呼吸パターン)",
   "category": "検査法・徴候",
@@ -2532,6 +3241,129 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "bruce-protocol",
+  "name": "Bruce法(多段階運動負荷試験)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Bruce法",
+   "ブルース法",
+   "多段階運動負荷試験",
+   "多段階負荷試験",
+   "トレッドミル負荷試験",
+   "トレッドミル運動負荷試験",
+   "ランプ負荷法",
+   "シャトルウォーキングテスト"
+  ],
+  "rows": [
+   {
+    "item": "Bruce法の概要",
+    "target": "運動負荷量を段階的に増やす負荷試験",
+    "value": "トレッドミルの速度と傾斜を約3分ごとに段階的に上げていく多段階の運動負荷試験(最も頻用されるプロトコル)。年齢別の最大予測心拍数の85%(目標心拍数)に達するか、症状が出るまで行う",
+    "exam": "50-pm-46(正答:Bruce法=運動負荷量を段階的に増加させる評価法。誤答:踏み台昇降テスト・12分間歩行テスト・ハンドグリップテスト・マスターシングルテスト)／54-am-23(誤答選択肢:Bruce法=多段階であり、設問の「固定負荷」ではない)",
+    "q": [
+     "50-pm-46",
+     "54-am-23"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/04-心血管疾患/心血管系に関する検査および手技/負荷試験"
+     },
+     {
+      "label": "S2",
+      "url": "https://kasumigaura.hosp.go.jp/files/000218709.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Bruce法の段階(標準法)",
+    "target": "7段階・各3分のトレッドミル",
+    "value": "各段階3分。段階1:1.7mph(2.7km/h)・傾斜10%／2:2.5mph(4.0km/h)・12%／3:3.4mph(5.5km/h)・14%／4:4.2mph(6.8km/h)・16%／5:5.0mph(8.0km/h)・18%／6:5.5mph(8.9km/h)・20%／7:6.0mph(9.7km/h)・22%",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "二次資料[S1]の表(ACSM・AHA 2013を引用)。国試で数値は問われていない。METsは資料ごとに値が異なるため載せない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://en.wikipedia.org/wiki/Bruce_protocol"
+     }
+    ]
+   },
+   {
+    "item": "運動負荷試験の目的",
+    "target": "Bruce法などの運動負荷(トレッドミル)",
+    "value": "運動で心筋酸素需要を増やして虚血を誘発する。薬物負荷よりも運動負荷のほうが望ましいとされる",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/04-心血管疾患/心血管系に関する検査および手技/負荷試験"
+     }
+    ]
+   },
+   {
+    "item": "マスター2階段試験",
+    "target": "Bruce法とは別の負荷試験",
+    "value": "マスター2階段試験は、負荷量が少なく感度が低い・運動中の心電図モニターができない、が問題点。一方で多人数を短時間で行えるため総合検診では行われる。Bruce法のようなトレッドミルや自転車エルゴメータの多段階負荷試験とは別に扱われている",
+    "exam": "50-pm-46(誤答選択肢:マスターシングルテスト)／54-am-23(正答:マスターシングルテスト=固定負荷)",
+    "q": [
+     "50-pm-46",
+     "54-am-23"
+    ],
+    "note": "確認済み[S1]。資料に「固定負荷」という語は出てこないため、固定負荷との対応は設問側の整理。マスターシングルテストはマスター2階段試験の一種として整理される(本文での直接記載は未確認)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjcdp1974/29/1/29_1_39/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "運動負荷試験の方法(3種)",
+    "target": "心血管疾患の運動負荷試験の方法",
+    "value": "マスター2階段試験、自転車エルゴメータ、トレッドミルの3つ。医療機関での冠動脈疾患の診断にはトレッドミルが主に使われるようになっている。スクリーニング用にBruce法の第1段階を省略して第2段階から始める方法も提案されている",
+    "exam": "50-pm-46(選択肢の比較)",
+    "q": [
+     "50-pm-46"
+    ],
+    "note": "確認済み[S1]。1994年の解説。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjcdp1974/29/1/29_1_39/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "ランプ負荷・シャトルウォーキング",
+    "target": "漸増負荷の運動耐容能評価",
+    "value": "ランプ負荷=直線的に漸増するトレッドミルなどの負荷(CPXで用いる)。シャトルウォーキング試験=多段階漸増の最大運動負荷試験。6分間歩行試験=6分間歩行距離を測る最大運動負荷試験",
+    "exam": "54-am-23(誤答選択肢:ランプ負荷法・シャトルウォーキングテスト・6分間歩行テスト)",
+    "q": [
+     "54-am-23"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -2771,6 +3603,203 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "canadian-hip-prosthesis",
+  "name": "カナダ式股義足(股関節離断用義足)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "カナダ式股義足",
+   "カナダ式",
+   "股義足",
+   "股関節離断",
+   "股離断",
+   "股継手",
+   "股屈曲制限バンド",
+   "ヒップディスアーティキュレーション"
+  ],
+  "rows": [
+   {
+    "item": "股継手の位置と角度",
+    "target": "カナダ式股義足の構造(安定性)",
+    "value": "股継手はソケットの前下方に取り付ける(固定式・遊動式がある)。正常な股関節軸に対して45°前下方に付けると、立位で義足に体重をかけるだけで股継手を伸展させる力が働き、安定する。",
+    "exam": "50-pm-37(誤答:「股継手を正常股関節軸より45°前上方につける」→前下方が正しい)",
+    "q": [
+     "50-pm-37"
+    ],
+    "note": "確認済み[S1][S2][S3]。角度は国試解説サイト[S1]と義肢装具士向けサイト[S2](片側骨盤切除用の記載)で一致。国試の正答と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S2",
+      "url": "https://postudent.com/hip_prosthesis/4/"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+     }
+    ]
+   },
+   {
+    "item": "ソケットの形と固定・懸垂",
+    "target": "カナダ式股義足のソケット",
+    "value": "断端から骨盤までのヒップ全体を包み、義足の安定と懸垂を図る(骨盤全体をソケットで固定するので自己懸垂力がある)。国試の解説では、固定は両側腸骨稜上部と坐骨の3点、懸垂は切断対側の腸骨稜で行うとされる。",
+    "exam": "50-pm-37(正答側の選択肢:ソケットの固定を両側腸骨稜の上部と坐骨の3点で行う／ソケットの懸垂を切断対側の腸骨稜で行う)",
+    "q": [
+     "50-pm-37"
+    ],
+    "note": "確認済み[S1][S3]。3点固定・対側腸骨稜の懸垂は国試解説サイト[S1]の記載で、公的資料[S3]では「骨盤を包み、安定と懸垂」までを確認した。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+     }
+    ]
+   },
+   {
+    "item": "荷重線(ベンチアライメント)",
+    "target": "殻構造の股義足のアライメント",
+    "value": "矢状面で、股継手と膝継手を通る直線が踵の後方25〜40mmに落ちる。膝継手中心を通る垂直線は、トゥブレークと踵を結ぶ線の中間を通る。前額面では左右の機械軸が正中線に対して対称。",
+    "exam": "50-pm-37(正答側の選択肢:股継手と膝継手を通る線が踵の25〜40mm後方を通る)",
+    "q": [
+     "50-pm-37"
+    ],
+    "note": "確認済み[S1][S2]。国試の記述と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S2",
+      "url": "https://postudent.com/hip_prosthesis/4/"
+     }
+    ]
+   },
+   {
+    "item": "適応・膝継手",
+    "target": "カナダ式股義足の使われ方",
+    "value": "適応は股関節離断。膝継手の基本構造は大腿義足と同じだが、安定性の高いものが使われる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。「股屈曲制限バンド」の記載は、確認できた資料がないため載せていない(国試[50-pm-37]では正しい選択肢として出た)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "cancer-fatigue-scale",
+  "name": "Cancer Fatigue Scale(CFS)",
+  "category": "評価尺度",
+  "aliases": [
+   "Cancer Fatigue Scale",
+   "cancer fatigue scale",
+   "がん倦怠感尺度",
+   "がん関連疲労",
+   "がん患者の倦怠感",
+   "倦怠感の評価",
+   "Brief Fatigue Inventory",
+   "簡易倦怠感尺度"
+  ],
+  "rows": [
+   {
+    "item": "CFSの概要",
+    "target": "がん患者の多次元的な倦怠感(だるさ)の評価",
+    "value": "自己記入式の質問票。15項目、1(いいえ)〜5(とても)の5段階で、約2分で記入できる。身体的・精神的・認知的の3つの次元の倦怠感を評価する",
+    "exam": "59-am-20(誤答選択肢:CFS。問いは乳癌周術期の「活動能力の評価方法」で、正答はKPS。CFSは倦怠感の評価で活動能力の評価ではない)",
+    "q": [
+     "59-am-20"
+    ],
+    "note": "確認済み[S1]。国立がんセンター(現・国立がん研究センター)精神腫瘍学研究部の資料。活動能力の評価(KPS・ECOG PS)は別カード",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+     }
+    ]
+   },
+   {
+    "item": "開発と信頼性・妥当性",
+    "target": "原著",
+    "value": "奥山らが日本で開発(2000年)。因子分析で15項目・3下位尺度(身体・精神・認知)に整理し、307名のがん患者で検証した。全15項目の内的整合性(クロンバックα)0.88、倦怠感のVASとの相関 r=0.67、再テスト信頼性は平均 r=0.69",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。PubMedの要旨で確認",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10687321/"
+     }
+    ]
+   },
+   {
+    "item": "倦怠感の定義と頻度",
+    "target": "CFSが測る症状",
+    "value": "倦怠感は、身体的・精神的な消耗を含む衰弱として特徴づけられる主観的な症状。終末期に限らず経過のあらゆる時期や、手術・化学療法・放射線療法・造血幹細胞移植に伴って現れ、頻度は30〜80%とされる",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+     }
+    ]
+   },
+   {
+    "item": "使用時の注意",
+    "target": "自己記入式の限界",
+    "value": "全身状態が重い場合や、せん妄・認知症などの認知障害で回答の信頼性に問題がある場合がある。質問票の内容や状況によっては患者がストレスを感じることもあり、身体的・心理的な状態への配慮が要る",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/CDS_CFS_info.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Brief Fatigue Inventory(BFI)との違い",
+    "target": "がんの倦怠感の別の尺度",
+    "value": "BFIは米国のCleelandらが開発した簡便な質問票。10項目(倦怠感の有無1・強さ3・生活への支障6)で、「この24時間の」状態を答える。9つの0〜10の数値評価の平均を総合的倦怠感スコアとし、著者らは1〜3を軽症、4〜6を中等症、7〜10を重症と定義するのが適切とした。CFSは日本で開発され、3次元を評価できる点が特徴",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。国立がん研究センターの日本語版BFIの説明資料",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pod.ncc.go.jp/jp/epoc/division/psycho_oncology/kashiwa/020/030/BFI.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "cancer-rehab-risk",
   "name": "がん患者のリハビリテーションのリスク管理(骨髄抑制・中止基準)",
   "category": "リスク管理",
@@ -2835,6 +3864,107 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "cardiothoracic-ratio",
+  "name": "心胸郭比(CTR)",
+  "category": "臨床検査",
+  "aliases": [
+   "心胸郭比",
+   "心胸比",
+   "CTR",
+   "心拡大",
+   "Cardiothoracic ratio"
+  ],
+  "rows": [
+   {
+    "item": "うっ血性心不全と心胸郭比",
+    "target": "胸部X線での心拡大の判定",
+    "value": "うっ血性心不全では胸部X線で心拡大や肺うっ血がみられる。心拡大の目安は、後前方向(PA)撮影で心胸郭比0.5(50%)以上。",
+    "exam": "52-am-36(うっ血性心不全でみられるのはどれか。正答は咳嗽。誤答選択肢の「心胸郭比40%」は50%未満で、心拡大の基準を満たさない)",
+    "q": [
+     "52-am-36"
+    ],
+    "note": "確認済み[S1][S2]。50%は目安で、撮影条件や体格で変わる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/topics/2006/11/dl/tp1122-1k05.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+     }
+    ]
+   },
+   {
+    "item": "心胸郭比の測り方",
+    "target": "定義",
+    "value": "胸部X線正面像で、心臓の最大横径を胸郭の最大内横径で割った値(心臓の幅/肺の幅の割合)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2023/10/nochioka_press.pdf"
+     }
+    ]
+   },
+   {
+    "item": "撮影条件による違い",
+    "target": "PA像とAP像",
+    "value": "測定は後前方向(PA)撮影が望ましい。前後方向(AP)撮影では心陰影が大きく写り、比が大きくなりやすい。呼吸の状態や患者の回旋でも値は変わる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+     }
+    ]
+   },
+   {
+    "item": "経時変化と心不全の発症",
+    "target": "心不全の発症予測(研究)",
+    "value": "東北大学の研究(ステージB心不全の登録患者5,126名)では、登録時の心胸郭比が53%を超え、かつ年に0.5%ずつ上昇する人が、後に心不全を発症しやすかった。発症しなかった群は平均50%で、年0.1%程度の増加。心胸郭比と心エコーの左室拡張末期径との相関は低い。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。1回の値より、年単位の変化を見る研究結果。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2023/10/nochioka_press.pdf"
+     }
+    ]
+   },
+   {
+    "item": "心胸郭比が小さくなる例(神経性やせ症)",
+    "target": "低栄養での心臓の変化",
+    "value": "神経性やせ症の胸部X線所見として、心胸郭比の低下がある(心エコーでは心嚢液貯留・僧帽弁逸脱など)。",
+    "exam": "出題は直接なし(参考。58-pm-100は神経性やせ症の検査所見の設問)",
+    "q": [],
+    "note": "確認済み[S4]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "categorical-survival-tests",
   "name": "カイ二乗検定・Fisherの正確確率検定・log-rank検定",
   "category": "診断基準・分類",
@@ -2893,6 +4023,107 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "center-of-pressure-sway",
+  "name": "重心動揺検査(足圧中心の動揺・開眼/閉眼・前後/左右)",
+  "category": "臨床検査",
+  "aliases": [
+   "重心動揺検査",
+   "重心動揺計",
+   "重心動揺",
+   "身体動揺",
+   "動揺面積",
+   "外周面積",
+   "総軌跡長",
+   "単位軌跡長",
+   "実効値面積",
+   "ロンベルグ率",
+   "スタビロメトリー",
+   "足圧中心",
+   "開脚立位",
+   "静止立位"
+  ],
+  "rows": [
+   {
+    "item": "前後方向と左右方向の動揺の大きさ",
+    "target": "静止立位での動揺の方向差",
+    "value": "健常成人14名(ロンベルグ立位)では、総移動距離は開眼・閉眼とも前後方向(Y軸)が左右方向(X軸)より長く(開眼 前後50.9cm・左右47.2cm、閉眼 前後58.5cm・左右53.2cm)、平均速度も前後が左右より有意に大きい。開脚立位では閉脚より左右が安定するため、前後方向の単位軌跡長が増えると推察されている。",
+    "exam": "52-pm-74(誤答:「重心動揺は左右より前後方向が小さい」→前後方向のほうが大きい。正答は「腓腹筋は持続的に活動している」)",
+    "q": [
+     "52-pm-74"
+    ],
+    "note": "確認済み[S1][S2]。国試の判定(前後が小さいは誤り)と矛盾しない。数値は機種・条件で変わるため、他の研究の値と直接比べない。加齢では左右方向の動揺が増えるとする報告もある[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nagasaki-u.repo.nii.ac.jp/record/19124/files/iryou03_00_14_t.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://nagasaki-u.repo.nii.ac.jp/record/19052/files/igaku17_02_07_t.pdf"
+     }
+    ]
+   },
+   {
+    "item": "開眼と閉眼の違い",
+    "target": "視覚の影響(ロンベルグ立位)",
+    "value": "閉眼で動揺は増える。健常成人14名で、軌跡面積は開眼2.19±0.71cm²→閉眼3.12±1.55cm²(5%水準で有意に増加)、総移動距離も開眼より閉眼で長い(1%水準で有意)。開眼と閉眼の差を見る指標としてロンベルグ率(外周面積・総軌跡長)が使われる。",
+    "exam": "49-am-73(誤答:「重心動揺は閉眼で減少する」→閉眼で増加)",
+    "q": [
+     "49-am-73"
+    ],
+    "note": "確認済み[S1][S3]。若年健常者14名の報告で、範囲は限られる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nagasaki-u.repo.nii.ac.jp/record/19124/files/iryou03_00_14_t.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jser/80/3/80_167/_article/-char/ja"
+     }
+    ]
+   },
+   {
+    "item": "加齢による変化",
+    "target": "年齢と動揺面積・動揺距離",
+    "value": "動揺面積は6〜20代で年齢とともに減り、20代で最も安定し、50代まで少しずつ増え、それ以降は急に増える(臼井の報告を[S2]が引用)。60歳以上では動揺距離が延び、左右方向の動揺が増える傾向がある。中高年(平均63.6歳)は若年者より前後方向の単位軌跡長が大きかった(開脚立位・30秒)。",
+    "exam": "49-am-73(誤答:「年齢で変化しない」)",
+    "q": [
+     "49-am-73"
+    ],
+    "note": "確認済み[S2](加齢の経過は他の報告の引用であり、二次的な確認)。第51回で出題された「老年期には加齢に伴い面積が増大する(正)」とも矛盾しない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://nagasaki-u.repo.nii.ac.jp/record/19052/files/igaku17_02_07_t.pdf"
+     }
+    ]
+   },
+   {
+    "item": "解析項目と測定条件・基準値案(100Hz)",
+    "target": "重心動揺検査の解析項目",
+    "value": "解析項目:外周面積・実効値面積・矩形面積・総軌跡長・単位軌跡長・単位面積軌跡長・動揺中心変位(左右・前後)・ロンベルグ率(外周面積・総軌跡長)の10項目。開眼60秒の後に閉眼60秒を測定。健常365名(20代〜80歳以上)の基準値案は「平均±2SD」と「5・95パーセンタイル」を併用する案で、男女共通で使える可能性があるとされた。",
+    "exam": "49-pm-48(静止立位の身体動揺面積:値の大小と良否に関する選択肢)",
+    "q": [
+     "49-pm-48"
+    ],
+    "note": "確認済み[S3]。基準値は機種・サンプリング周波数に依存する「案」で、診断の閾値ではない。面積が大きいほど不良かどうかの記述は確認できた資料に直接なく、載せていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jser/80/3/80_167/_article/-char/ja"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "cerebellar-ataxia",
   "name": "小脳性運動失調の症候と協調性検査(SARA)",
   "category": "検査法・徴候",
@@ -2913,7 +4144,9 @@ export const TESTS: TestCard[] = [
    "前腕回内外試験",
    "注視方向性眼振",
    "断綴性発語",
-   "筋緊張低下"
+   "筋緊張低下",
+   "小脳半球梗塞",
+   "小脳梗塞"
   ],
   "rows": [
    {
@@ -3082,7 +4315,9 @@ export const TESTS: TestCard[] = [
    "蜂巣肺",
    "すりガラス陰影",
    "間質性肺炎",
-   "間質性肺疾患"
+   "間質性肺疾患",
+   "エックス線単純写真",
+   "冠状断CT"
   ],
   "rows": [
    {
@@ -3475,6 +4710,171 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "crps",
+  "name": "複合性局所疼痛症候群(CRPS)・肩手症候群",
+  "category": "診断基準・分類",
+  "aliases": [
+   "CRPS",
+   "複合性局所疼痛症候群",
+   "肩手症候群",
+   "反射性交感神経性ジストロフィー",
+   "RSD",
+   "カウザルギー",
+   "Sudeck骨萎縮",
+   "ズデック骨萎縮",
+   "Sudeck萎縮",
+   "CRPS type I",
+   "CRPS type II",
+   "complex regional pain syndrome"
+  ],
+  "rows": [
+   {
+    "item": "CRPS type I と type II の区別",
+    "target": "CRPSの分類(神経損傷の有無)",
+    "value": "神経損傷が明らかでないもの=type I(従来の反射性交感神経性ジストロフィー)／末梢神経損傷が明らかなもの=type II(従来のカウザルギー)。肩手症候群・RSD・カウザルギーなどの呼び名は、国際疼痛学会が複合性局所疼痛症候群(CRPS)に統一した",
+    "exam": "58-pm-89(type Iに分類されるものを2つ。正答=肩手症候群・Sudeck骨萎縮／誤答=幻肢痛・視床痛・帯状疱疹後神経痛)／56-pm-25(正答=type IIは末梢神経損傷を伴う〈伝導検査異常〉)／第51回(CRPSに関連=Sudeck骨萎縮が正答。誤答=Dupuytren拘縮・Volkmann拘縮・無腐性壊死・異所性骨化)",
+    "q": [
+     "58-pm-89",
+     "56-pm-25"
+    ],
+    "note": "確認済み[S1][S3]。両型の区別は臨床的意義が乏しいとする記載もある[S3]。Sudeck骨萎縮がtype Iにのみ当たるかは資料で断定できず、国試の整理(type I)に従った",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "CRPSの症状の特徴(痛覚過敏・アロディニア・浮腫・発汗・皮膚温)",
+    "target": "CRPSにみられる症状と、合致しない所見",
+    "value": "疼痛=灼熱痛・アロディニア・痛覚過敏／腫脹=浮腫／自律神経症状=皮膚温・皮膚色調の変化(上昇も低下もある)・発汗異常／運動障害=筋力低下・関節拘縮・振戦・ジストニア／その他=毛・爪の成長障害、皮膚萎縮。痛みは原因の傷害に不釣り合いに強い。痛覚鈍麻は症状として挙がっていない",
+    "exam": "52-am-11(正答=痛覚鈍麻は合致しない／誤答=浮腫・発汗異常・アロディニア・皮膚温の変化)／56-pm-25(誤答=痛覚過敏・発汗異常・皮膚温異常は両型にみられる)",
+    "q": [
+     "52-am-11",
+     "56-pm-25"
+    ],
+    "note": "確認済み[S3][S5]。痛覚鈍麻が『ない』ことは、資料の症状表に載っていないことからの判断",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+     },
+     {
+      "label": "S5",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/疼痛/複合性局所疼痛症候群-crps"
+     }
+    ]
+   },
+   {
+    "item": "脳卒中後の肩手症候群(発症しやすい人・時期・症状)",
+    "target": "脳卒中後のCRPS(患側上肢)",
+    "value": "症状=患側の手指・手背を中心に痛み・腫れ・熱感・色調変化。発症は脳卒中後おおむね2週〜3か月との報告。リスク=肩関節亜脱臼・痙縮・Brunnstrom手指ステージが低い(麻痺が重い)・Barthel indexが低い・女性・左片麻痺(メタ解析)",
+    "exam": "第49回(49-pm-25。正答=麻痺が重度の場合に発症しやすい／誤答=患側の手に冷感・星状神経節ブロックは無効・発症後3週以内に生じやすい・自動的ROM運動は症状を悪化)",
+    "q": [
+     "49-pm-25"
+    ],
+    "note": "確認済み[S2][S6]。『冷感』は誤り(熱感が記載)。『3週以内に生じやすい』『自動ROM運動で悪化』は、本文で裏づけを確認できなかった",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jnkm/5/1/5_09/_article/-char/en"
+     },
+     {
+      "label": "S6",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8622266/"
+     }
+    ]
+   },
+   {
+    "item": "星状神経節ブロック・交感神経ブロック",
+    "target": "CRPSの治療(神経ブロック)",
+    "value": "星状神経節ブロックは発症早期の上肢CRPSに有効とする報告がある。胸部交感神経節ブロックは上肢CRPSに有効で早期施行が推奨。グアネチジンなどの交感神経遮断薬の投与は有効でない",
+    "exam": "49-pm-25(誤答選択肢『星状神経節ブロックは無効』)",
+    "q": [
+     "49-pm-25"
+    ],
+    "note": "確認済み[S1]。ただし脳卒中後の肩手症候群では『確立した治療はなく、星状神経節ブロックなども十分な効果は得られていない』との記載もある[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jnkm/5/1/5_09/_article/-char/en"
+     }
+    ]
+   },
+   {
+    "item": "骨萎縮(Sudeck骨萎縮)・X線所見",
+    "target": "CRPSの骨病変",
+    "value": "単純X線の骨萎縮像は、CRPSの他覚的所見として有用。組織損傷後の骨病変として、Sudeck骨萎縮が歴史的に知られる。骨萎縮・脱灰は外傷後の非CRPS患者にもみられ、単独では非特異的",
+    "exam": "58-pm-89(正答の1つ=Sudeck骨萎縮)／56-pm-25(誤答=骨萎縮は両型にみられる)／第51回(Sudeck骨萎縮が正答)",
+    "q": [
+     "58-pm-89",
+     "56-pm-25"
+    ],
+    "note": "確認済み[S3][S4][S5]。骨萎縮が両型に等しくみられるかは、資料で直接は確認できなかった",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/53/8/53_610/_pdf"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.jstage.jst.go.jp/article/jjspc1994/10/2/10_2_127/_article/-char/ja/"
+     },
+     {
+      "label": "S5",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/疼痛/複合性局所疼痛症候群-crps"
+     }
+    ]
+   },
+   {
+    "item": "2008年 厚生労働省研究班の判定指標(臨床用)",
+    "target": "CRPSのスクリーニング(診断基準ではない)",
+    "value": "病期のいずれかで自覚症状5項目中2項目以上、かつ診察時の他覚所見5項目中2項目以上。項目=皮膚・爪・毛の萎縮性変化／関節可動域制限／痛み(持続性・不釣合い)または知覚過敏(他覚はアロディニア・痛覚過敏)／発汗の亢進・低下／浮腫。研究用は各3項目以上。臨床用の感度82.6%・特異度78.8%",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。診断基準・重症度判定ではなく、治療方針決定や専門施設への紹介判断が目的",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+     }
+    ]
+   },
+   {
+    "item": "1994年 IASPの診断基準",
+    "target": "CRPSの診断(国際疼痛学会)",
+    "value": "(1)原因の傷害と不釣り合いな強い持続痛・アロディニア・痛覚過敏、(2)病期のいずれかで疼痛部位に浮腫・皮膚血流の変化・発汗異常のいずれか、(3)症状を説明できる他の原因がない",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。特異度が低いため、運動機能などを加えたBudapest基準が評価されている",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspc.gr.jp/Contents/public/pdf/shishin/6-12.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -3954,6 +5354,132 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "descriptive-statistics",
+  "name": "代表値と散布度(平均値・中央値・最頻値・分散・標準偏差)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "代表値",
+   "散布度",
+   "平均値",
+   "中央値",
+   "最頻値",
+   "標準偏差",
+   "外れ値",
+   "記述統計",
+   "算術平均"
+  ],
+  "rows": [
+   {
+    "item": "極端な値(外れ値)を除いたときの変化",
+    "target": "外れ値が各統計量に与える影響",
+    "value": "極端に小さい値を除くと平均値は大きくなる(外れ値は平均値を引き寄せる)。最大値は変わらず、最頻値は通常変わらない。ばらつきを表す分散・標準偏差は、平均から離れた値がなくなるので小さくなる",
+    "exam": "53-pm-21(標本Aの極端に小さい誤記入値を除いた標本Bで、標本Aより大きい統計量=平均値(正答)。誤答:分散・最大値・最頻値・標準偏差)",
+    "q": [
+     "53-pm-21"
+    ],
+    "note": "確認済み[S1][S2]。外れ値が平均値を引き上げる例は[S1]、標準偏差・分散の定義は[S2]。「分散・標準偏差が小さくなる」は[S2]の定義(平均からのずれの二乗の平均)から導いた説明。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pref.niigata.lg.jp/uploaded/life/797712_2538664_misc.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "平均値",
+    "target": "データ全体の代表値",
+    "value": "データの合計をデータの数で割った値(算術平均・単純平均)。すべての値を使うので、全データを踏まえた特徴がわかる一方、外れ値の影響を受ける",
+    "exam": "53-pm-21(外れ値除去で大きくなる統計量の正答)",
+    "q": [
+     "53-pm-21"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pref.niigata.lg.jp/uploaded/life/797712_2538664_misc.pdf"
+     }
+    ]
+   },
+   {
+    "item": "中央値",
+    "target": "データを順に並べた真ん中の値",
+    "value": "小さい(大きい)順に並べて、ちょうど中央に位置する値。データ数が偶数なら中央2つを足して2で割る。極端な値がある場合は、平均値より実情に近いことがある",
+    "exam": "出題は直接なし(53-pm-21の問題文に「中央値」が出る)",
+    "q": [],
+    "note": "確認済み[S1]。資料の例(5人の年収で、1人だけ極端に高い)では、平均値より中央値の方が他の4人に近い。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pref.niigata.lg.jp/uploaded/life/797712_2538664_misc.pdf"
+     }
+    ]
+   },
+   {
+    "item": "最頻値",
+    "target": "最も多く現れる値",
+    "value": "データの中で最も頻繁に出現する値。ヒストグラムでは最も棒が高いところ",
+    "exam": "53-pm-21(誤答選択肢。外れ値を1つ除いても最頻値は通常変わらない)",
+    "q": [
+     "53-pm-21"
+    ],
+    "note": "確認済み[S1][S2]。「除いても変わらない」は定義からの説明。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pref.niigata.lg.jp/uploaded/life/797712_2538664_misc.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "代表値の選び方",
+    "target": "どの代表値を使うか",
+    "value": "①平均値と中央値を比べ、大きくずれなければ平均値 ②ずれが大きければ中央値と最頻値を比べて適切な方を選ぶ ③どれも一長一短なら代表値を使わない選択もある。外れ値がある場合や分布が偏っている場合は選択を検討する",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pref.niigata.lg.jp/uploaded/life/797712_2538664_misc.pdf"
+     }
+    ]
+   },
+   {
+    "item": "分散と標準偏差(散布度)",
+    "target": "データの散らばり具合",
+    "value": "分散=各値と平均値との差の二乗の平均。標準偏差=分散の平方根(分散は標準偏差の2乗)。どちらも大きいほどデータが散らばっている",
+    "exam": "53-pm-21(誤答選択肢。外れ値を除くと小さくなる側なので、「大きくなる統計量」には当たらない)",
+    "q": [
+     "53-pm-21"
+    ],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "development-milestones",
   "name": "運動・言語発達の目安",
   "category": "検査法・徴候",
@@ -4409,6 +5935,326 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "disability-acceptance-stages",
+  "name": "障害受容の5段階(上田)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "障害受容",
+   "障害の受容",
+   "障害受容の過程",
+   "受容過程",
+   "ショック期",
+   "否認期",
+   "混乱期",
+   "解決への努力期",
+   "受容期",
+   "価値転換",
+   "段階論"
+  ],
+  "rows": [
+   {
+    "item": "上田の障害受容の5段階(順序)",
+    "target": "障害を負った後の心理過程の段階",
+    "value": "ショック期 → 否認期 → 混乱期 → 解決への努力期 → 受容期 の順。2番目は否認期",
+    "exam": "56-pm-79(正答:否認期。「障害受容に至る5つの過程で一般的に2番目に現れるのはどれか」。選択肢:混乱期・受容期・否認期・ショック期・解決への努力期)",
+    "q": [
+     "56-pm-79"
+    ],
+    "note": "確認済み[S1]。2024年の大学紀要の総説が、上田(1983)の受容過程として5つの時期名を挙げている。なお同総説の本文には段階数を「6段階」と書く誤記があるが、列挙された名称は5つ",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://da.lib.kobe-u.ac.jp/da/kernel/0100491705/0100491705.pdf"
+     }
+    ]
+   },
+   {
+    "item": "受容期の位置づけ(価値転換)",
+    "target": "上田の定義",
+    "value": "上田は障害受容を、あきらめでも居直りでもなく、障害に対する価値観(感)の転換とした。障害があっても人間としての価値は下がらないと認識し、恥や劣等感を乗り越えて積極的な生活態度に転じること。価値転換の完成を「受容期」とし、そこに至るには「解決への努力期」で、本人や家族だけに価値転換を求めず、支援者自身も価値転換することが必要とされた",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://da.lib.kobe-u.ac.jp/da/kernel/0100491705/0100491705.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Cohn(1961)・Fink(1967)の段階論",
+    "target": "海外の段階モデル(混同注意)",
+    "value": "Cohn は「ショック・回復への期待・悲哀・防衛・適応」の5段階、Fink は危機理論に基づき「ショック・防衛的退行・自認とストレスの再起・適応と変化」の4段階とされる",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。上田の5段階の時期名とは別",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://da.lib.kobe-u.ac.jp/da/kernel/0100491705/0100491705.pdf"
+     }
+    ]
+   },
+   {
+    "item": "段階は一直線に進むとは限らない",
+    "target": "臨床での注意",
+    "value": "上田の受容過程をもとに脳卒中患者97名で調べた研究では、段階の通りに進むとは限らず、多くの患者が経験する段階とそうでない段階があり、行き戻りする人や途中の段階を飛ばす人もいた",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。総説が紹介する研究(岡本ら)の結果",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://da.lib.kobe-u.ac.jp/da/kernel/0100491705/0100491705.pdf"
+     }
+    ]
+   },
+   {
+    "item": "悲嘆の5段階(否認・怒り・取引・抑うつ・受容)",
+    "target": "別のモデル(混同注意)",
+    "value": "脳卒中患者は障害とともに生きることを受け入れるまでに、一般に否認・怒り・取引・抑うつ・受容の悲嘆の5段階を経るとされる。長寿科学振興財団の解説も、否認→怒り→逃避反応(取引)→受容の流れで説明している。「ショック期・混乱期・解決への努力期」の名称は上田の5段階",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S3]。国試56-pm-79の選択肢は上田の5段階の名称",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/50/12/50_951/_article/-char/ja"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.tyojyu.or.jp/net/byouki/rehabilitation/shougai-juyou.html"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "disuse-syndrome-bedrest",
+  "name": "廃用症候群・長期臥床の影響",
+  "category": "リスク管理",
+  "aliases": [
+   "廃用症候群",
+   "廃用症候群の症状",
+   "長期臥床",
+   "長期の安静臥床",
+   "長期間の安静臥床",
+   "安静臥床",
+   "臥床の影響",
+   "デコンディショニング",
+   "脱調節",
+   "deconditioning",
+   "安静時心拍数",
+   "尿中カルシウム"
+  ],
+  "rows": [
+   {
+    "item": "安静時心拍数(臥床で増加)",
+    "target": "長期臥床・廃用で安静時心拍数はどうなるか",
+    "value": "安静時心拍数は低下しない(増加するとされる)。2〜3週の臥床後に安静時心拍数・収縮期血圧は増加傾向(女性7例・有意差なし)。機序として、臥床で減る1回心拍出量を心拍数の増加で代償するという説明がある(Saltin 1968)",
+    "exam": "53-pm-84(正答:心拍数=低下しないもの。誤答:筋力・肺活量・身体活動性・胃腸管運動=いずれも低下)／54-pm-84(誤答:安静時心拍数の減少)／59-pm-83(誤答:安静時心拍数の低下)",
+    "q": [
+     "53-pm-84",
+     "54-pm-84",
+     "59-pm-83"
+    ],
+    "note": "確認済み[S1]。小規模研究で有意差は出ていない点に注意。下の行も参照。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrm1964/30/1/30_1_63/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "安静時心拍数:資料間の不一致",
+    "target": "資料による記載の違い",
+    "value": "梅本ら(2025)の図6「安静臥床による身体機能低下」は、0〜3日の欄で安静時心拍数を「減少」に分類している。上の行の報告(増加傾向)および国試の扱い(低下しない)とは逆",
+    "exam": "53-pm-84・54-pm-84・59-pm-83と同じ論点",
+    "q": [],
+    "note": "臥床初期か長期か、研究対象で結果が異なる可能性がある。国試では「臥床で安静時心拍数が減る」を誤りとして出題されている。出典の図は[S1]。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "筋力低下・筋萎縮",
+    "target": "廃用で筋はどうなるか",
+    "value": "筋蛋白の合成低下・分解亢進で起こり、姿勢保持と歩行に関わる抗重力筋に強く起こりやすい。安静臥床のままでは初期に約1〜3%/日、10〜15%/週の低下。詳しくは「臥床による筋力低下・筋萎縮」カード",
+    "exam": "53-pm-84(誤答:筋力=低下する)／54-am-49(誤答選択肢:筋萎縮は上肢に強くみられる。実際は抗重力筋・下肢に強い。ほかの選択肢は未確認)",
+    "q": [
+     "53-pm-84",
+     "54-am-49"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   },
+   {
+    "item": "循環器(循環血液量・静脈還流・起立性低血圧・静脈血栓)",
+    "target": "廃用・臥床の循環器への影響",
+    "value": "循環血液量(血漿量)の低下・血管運動調節障害・心筋機能低下→起立性低血圧(めまい・失神)。下肢筋のポンプ作用の減少→血流停滞と凝固能亢進→静脈血栓。臥床による心血管機能の低下は心筋の廃用・循環血漿量の減少・静脈還流の障害による。24時間の安静臥床でも血漿量が5〜10%低下するという報告がある",
+    "exam": "54-pm-84(正答:循環血液量の減少)／59-pm-83(正答:深部静脈血栓)／56-pm-46(正答:起立性低血圧がみられる)／51-am-82(誤答選択肢:静脈還流量=上昇しない)",
+    "q": [
+     "54-pm-84",
+     "59-pm-83",
+     "56-pm-46",
+     "51-am-82"
+    ],
+    "note": "確認済み[S1][S2][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jjrm1964/30/1/30_1_63/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "呼吸器",
+    "target": "廃用・臥床の呼吸器への影響",
+    "value": "呼吸筋の筋力低下・胸郭可動域制限により、一回換気量・分時換気量・肺活量・機能的残気量が低下する。背臥位が続くと気管支に粘液がたまり、線毛の浄化機能が損なわれて(沈下性)肺炎の素地になる",
+    "exam": "53-pm-84(誤答:肺活量=低下する)／54-pm-84(誤答:1回換気量の増加・予備呼気量の増加)",
+    "q": [
+     "53-pm-84",
+     "54-pm-84"
+    ],
+    "note": "確認済み[S1]。予備呼気量そのものの記載は確認できず(機能的残気量の低下の記載)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   },
+   {
+    "item": "骨・カルシウム代謝",
+    "target": "臥床で骨・尿中カルシウムはどうなるか",
+    "value": "不動で骨吸収が亢進し骨萎縮(続発性骨粗鬆症)、骨量減少により高Ca血症・高Ca尿症となり尿路結石ができやすい。尿中カルシウム排泄能力は臥床15日以上で増加、骨密度は減少",
+    "exam": "51-am-82(正答:尿中カルシウム=上昇)／59-pm-83(誤答:低カルシウム血症。実際は高Ca血症側)／60-am-83(誤答選択肢:骨密度=減少する)",
+    "q": [
+     "51-am-82",
+     "59-pm-83",
+     "60-am-83"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "耐糖能・免疫",
+    "target": "臥床で耐糖能・免疫能はどうなるか",
+    "value": "梅本ら(2025)の図では、臥床0〜3日で耐糖能が減少、8〜14日で白血球の貪食能が減少に分類されている",
+    "exam": "51-am-82(誤答選択肢:免疫能・耐糖能=上昇しない(低下側))",
+    "q": [
+     "51-am-82"
+    ],
+    "note": "確認済み[S1](図の記載)。免疫能全般ではなく「白血球貪食能」の記載。クレアチニン・クリアランスは確認できず。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "消化器",
+    "target": "臥床で胃腸の動きはどうなるか",
+    "value": "不動で交感神経系が亢進し、腸管蠕動運動が低下する。食物の通過時間延長が食欲低下・食事量減少・便秘・低栄養につながる。胃液分泌も臥床0〜3日で減少に分類されている",
+    "exam": "53-pm-84(誤答:胃腸管運動=低下する)／60-am-83(誤答選択肢:腸管蠕動運動=増加しない)",
+    "q": [
+     "53-pm-84",
+     "60-am-83"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/62/5/62_62.474/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "精神神経系",
+    "target": "臥床・不動の精神神経面への影響",
+    "value": "身体活動量の低下と感覚入力の減少により、意欲・集中力の低下、感情鈍麻、うつ、知的機能の減衰、見当識・睡眠覚醒リズムの障害が起こる",
+    "exam": "54-pm-84(正答:記銘力の低下)",
+    "q": [
+     "54-pm-84"
+    ],
+    "note": "確認済み[S1]。「記銘力」という語は資料にはなく、知的機能の減衰として整理。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   },
+   {
+    "item": "廃用症候群の定義",
+    "target": "廃用症候群とは",
+    "value": "身体の不活動状態により生ずる二次的障害。不動・低運動・臥床に起因する全身の諸症状の総称で、筋骨格系・循環呼吸器系・内分泌代謝系・精神神経系など多臓器に現れ、日常生活自立度を低下させる。各臓器の機能低下が悪循環をつくる",
+    "exam": "53-pm-84(誤答選択肢:身体活動性=低下する)",
+    "q": [
+     "53-pm-84"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.hokeniryo.metro.tokyo.lg.jp/documents/d/hokeniryo/siryou162"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "dmd-stage",
   "name": "筋ジストロフィーの機能障害度",
   "category": "評価尺度",
@@ -4436,6 +6282,215 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "double-product",
+  "name": "二重積(ダブルプロダクト)",
+  "category": "リスク管理",
+  "aliases": [
+   "二重積",
+   "ダブルプロダクト",
+   "Double Product",
+   "double product",
+   "心仕事量",
+   "心臓二重積"
+  ],
+  "rows": [
+   {
+    "item": "二重積の定義",
+    "target": "運動時の心臓の仕事量・心筋酸素需要の指標",
+    "value": "二重積(DP)=心拍数 × 収縮期血圧。規定因子は心拍数と収縮期血圧の2つ",
+    "exam": "59-pm-36(2つ選ぶ。正答:心拍数・収縮期血圧。誤答:呼吸数・一回拍出量・動静脈酸素較差)",
+    "q": [
+     "59-pm-36"
+    ],
+    "note": "確認済み[S1]。診療ガイドラインでDPを「収縮期血圧と心拍数の積」と説明。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2018/11/JCS2018_kimura.pdf"
+     }
+    ]
+   },
+   {
+    "item": "二重積の意味",
+    "target": "心筋酸素消費量との関係",
+    "value": "DPは心筋の酸素消費量と強い相関(報告値 r=0.90)があり、運動中の心臓の仕事量を間接的に推測する指標として使われてきた",
+    "exam": "59-pm-36(二重積が何を反映するかの前提知識)",
+    "q": [
+     "59-pm-36"
+    ],
+    "note": "確認済み[S1]。呼吸数・一回拍出量・動静脈酸素較差は、資料の二重積の定義に含まれない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://air.repo.nii.ac.jp/record/1447/files/mom1.pdf"
+     }
+    ]
+   },
+   {
+    "item": "運動療法による二重積の変化",
+    "target": "運動療法の身体的効果",
+    "value": "運動療法の効果として、最大下の同一負荷強度での心仕事量(心臓二重積)が減少する(ガイドラインの推奨ランクA)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。2012年改訂版。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jacr.jp/pdf/JCS2012_nohara_d_2015.01.14.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "drehmann-sign",
+  "name": "Drehmann徴候",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Drehmann徴候",
+   "Drehmann sign",
+   "Drehmann",
+   "ドレーマン",
+   "ドレーマン徴候",
+   "大腿骨頭すべり症",
+   "SCFE",
+   "slipped capital femoral epiphysis"
+  ],
+  "rows": [
+   {
+    "item": "Drehmann徴候",
+    "target": "大腿骨頭すべり症(slipped capital femoral epiphysis:SCFE)",
+    "value": "股関節を他動的に屈曲していくと、屈曲に伴って、その股関節が不随意に外転・外旋すれば陽性。患側の股関節で起きる。SCFEで認められる特異的な所見の1つ。",
+    "exam": "57-am-31(右大腿骨頭すべり症でDrehmann徴候陽性。背臥位で右下肢を他動的に屈曲したときの関節運動の正答=右股関節が外転・外旋(選択肢3)。誤答:左股関節が屈曲・外旋/左股関節が内転・外旋/右股関節が外転・内旋/右股関節が内転・内旋)",
+    "q": [
+     "57-am-31"
+    ],
+    "note": "確認済み[S1][S2]。屈曲に伴う「外旋」は両資料で共通。外転も伴うとするのは[S1]。国試の正答(外転・外旋)と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8702267/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11533300/"
+     }
+    ]
+   },
+   {
+    "item": "大腿骨頭すべり症の診察所見",
+    "target": "Drehmann徴候以外の身体所見・症状",
+    "value": "股関節の可動域制限(とくに内旋・屈曲・外転)。患肢は外旋位をとり、短縮することがある。膝・大腿・鼠径部の断続的な痛みや、患肢で体重をかけにくいことが多く、痛みの部位が膝などで紛らわしいことがある。診断には診察が重要とされる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。資料はドイツ語の論文で、Drehmann徴候は項目名のみ触れられ、手技の説明は[S1][S2]から。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10781806/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "drop-arm-test",
+  "name": "Drop armテスト",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Drop armテスト",
+   "drop armテスト",
+   "drop arm テスト",
+   "drop arm test",
+   "Drop arm sign",
+   "drop arm sign",
+   "ドロップアーム",
+   "ドロップアームテスト",
+   "ドロップアームサイン"
+  ],
+  "rows": [
+   {
+    "item": "Drop armテスト(手技と陽性)",
+    "target": "肩腱板断裂(とくに棘上筋)の徒手検査",
+    "value": "肘を伸ばした腕を、検者が他動的に90°外転させ(外旋位で肘を支える)、支えを外して、ゆっくり下ろすよう指示する。腕を保てず突然落ちる・ゆっくり下ろせない場合、または下ろすときの痛みがある場合を陽性とする。腱板断裂を疑う。下ろすときの痛みは、棘上筋の完全断裂を示唆することがある。",
+    "exam": "58-am-33(「腱板損傷の検査で正しいのは」の正答。誤答はChair・Jackson・Spurling・Thomsen)／55-pm-86(「肩腱板断裂で陽性となるのは」の正答。誤答はAdson・Finkelstein・Phalen・Thomsen)／53-pm-32(「腱板断裂損傷の徒手検査で陽性となる可能性が最も高いのは」の正答。誤答はanterior apprehension・Morley・Thompson・「Yargason」(=Yergasonの誤記))",
+    "q": [
+     "58-am-33",
+     "55-pm-86",
+     "53-pm-32"
+    ],
+    "note": "確認済み[S1]。国試の正答(腱板断裂で陽性)と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+     }
+    ]
+   },
+   {
+    "item": "Drop armテストの診断精度と限界",
+    "target": "陰性でも腱板断裂は否定できない",
+    "value": "特異度は高いが、感度は低い。メタ解析では診断オッズ比1.45で、単独では診断的な有意差に達しなかったとする報告もある。腱板断裂の確定には、外旋ラグサイン(90°で特異度0.99・診断オッズ比12.70)など別の所見や画像を組み合わせる。単独で決められる検査はなく、複数の検査を組み合わせると診断精度が上がる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。資料間で、Drop armの「特異度が高い」(一般的評価)と「メタ解析で有意でない」という見方に幅がある。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13096753/"
+     }
+    ]
+   },
+   {
+    "item": "Drop armテストが陽性になる割合(MRIでの断裂の程度別)",
+    "target": "完全断裂と部分断裂での違い",
+    "value": "162例(MRIで完全断裂125例・部分断裂37例)で、Drop armテスト陽性は完全断裂で81例(64.8%)、部分断裂で14例(37.8%)。完全断裂で陽性が多い(p=0.003)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。MRI所見との比較で、手術所見との感度・特異度ではない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12009592/"
+     }
+    ]
+   },
+   {
+    "item": "腱板のほかの徒手検査(比較)",
+    "target": "どの腱の検査かの整理",
+    "value": "Jobe(empty can)テスト=棘上筋。抵抗に対する脱力で陽性。Lift-offテスト=肩甲下筋。特異度は90%超と高いが感度は18〜35%と低く、陽性なら確認に使い、陰性で除外はできない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -5160,6 +7215,355 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "elbow-ocd",
+  "name": "肘離断性骨軟骨炎(上腕骨小頭OCD・外側型野球肘)",
+  "category": "臨床検査",
+  "aliases": [
+   "離断性骨軟骨炎",
+   "上腕骨小頭離断性骨軟骨炎",
+   "野球肘",
+   "外側型野球肘",
+   "野球肘検診",
+   "OCD",
+   "関節ねずみ",
+   "関節内遊離体"
+  ],
+  "rows": [
+   {
+    "item": "学童期の野球選手での有病率",
+    "target": "検診での発見頻度",
+    "value": "検診で見つかる頻度は数%。山梨の検診は小学4〜6年生(希望した中学1年生を含む)297名中8名で約2.7%。千葉の検診で上腕骨小頭に不整を認めた割合は小学生1.7%・中学生2.7%。",
+    "exam": "60-am-89「肘離断性骨軟骨炎で誤っているのはどれか」の正答(=誤りの記述)=「学童期の野球選手の有病率は20〜30%である」。",
+    "q": [
+     "60-am-89"
+    ],
+    "note": "確認済み[S2][S3]。資料の約2〜3%に対し、20〜30%は一桁大きい。検診の対象や基準で数字は変わる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/rika/33/6/33_969/_pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jossm/41/1/41_34/_article/-char/ja/"
+     }
+    ]
+   },
+   {
+    "item": "超音波検査の役割",
+    "target": "初期の診断",
+    "value": "OCDの初期は症状に乏しい。超音波(ポータブルエコー)は、X線で見つからない早期病変や、軟骨層だけの遊離も描出できる。野球肘検診では、理学所見とポータブルエコーの両方が使われる。",
+    "exam": "60-am-89 の選択肢「超音波画像は初期診断に有用である」は正しい記述(正答ではない)。",
+    "q": [
+     "60-am-89"
+    ],
+    "note": "確認済み[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/rika/33/6/33_969/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "好発年齢・スポーツ",
+    "target": "誰に起こるか",
+    "value": "外側型野球肘の症状は離断性骨軟骨炎によるものが多く、10代前半で発症し、投手に多いが野手にも生じる。成長期の関節軟骨に強い負荷が続くと起こり、投げすぎが原因。初期は11歳(小学5年生)前後で発症しやすいとされる。",
+    "exam": "60-am-89 の選択肢「10〜20代に多い」「投球を伴うスポーツで多い」はどちらも正しい記述(正答ではない)。",
+    "q": [
+     "60-am-89"
+    ],
+    "note": "確認済み[S1][S2]。資料の「10代前半」に対し、選択肢の「10〜20代」はより広い表現で、国試は正しい記述として扱っている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jsoa.or.jp/content/images/2023/05/vol.11_%E9%87%8E%E7%90%83%E8%82%98%E3%83%BB%E3%83%86%E3%83%8B%E3%82%B9%E8%82%98%E3%83%BB%E3%82%B4%E3%83%AB%E3%83%95%E8%82%98.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/rika/33/6/33_969/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "治療の方針",
+    "target": "保存療法と手術",
+    "value": "野球肘では、投球の制限など保存療法をしっかり行う。3〜6か月程度の保存療法に反応しない場合は手術を考慮する。遊離する前ならスクリューや骨釘で固定、遊離が生じたら関節鏡視下の遊離体摘出か骨軟骨柱の移植を行う。",
+    "exam": "60-am-89 の選択肢「初期では保存療法が第一選択である」は正しい記述(正答ではない)。",
+    "q": [
+     "60-am-89"
+    ],
+    "note": "確認済み[S1]。出典は「初期」の定義を書いておらず、野球肘全体の保存療法の方針として確認した。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jsoa.or.jp/content/images/2023/05/vol.11_%E9%87%8E%E7%90%83%E8%82%98%E3%83%BB%E3%83%86%E3%83%8B%E3%82%B9%E8%82%98%E3%83%BB%E3%82%B4%E3%83%AB%E3%83%95%E8%82%98.pdf"
+     }
+    ]
+   },
+   {
+    "item": "X線所見・症状",
+    "target": "進行した時期の所見",
+    "value": "軟骨に亀裂が生じたまま競技を続けると軟骨がはがれ、関節内遊離体(関節ねずみ)ができる。疼痛や、遊離体の挟まりによるロッキングを生じる。関節内遊離体はX線で確認できる場合が多い。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jsoa.or.jp/content/images/2023/05/vol.11_%E9%87%8E%E7%90%83%E8%82%98%E3%83%BB%E3%83%86%E3%83%8B%E3%82%B9%E8%82%98%E3%83%BB%E3%82%B4%E3%83%AB%E3%83%95%E8%82%98.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "ely-test",
+  "name": "Elyテスト(大腿直筋の短縮)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Ely",
+   "Elyテスト",
+   "Ely test",
+   "Ely's test",
+   "Elyのテスト",
+   "エリーテスト",
+   "Duncan-Ely",
+   "尻上がり現象",
+   "腹臥位で膝関節を屈曲"
+  ],
+  "rows": [
+   {
+    "item": "Elyテスト(方法と陽性所見)",
+    "target": "大腿直筋の短縮(柔軟性低下)",
+    "value": "腹臥位で、検者が患者の膝を他動的に最大まで曲げる(踵を殿部へ近づける)。膝を曲げる途中で患者が股関節を自然に曲げてしまう(骨盤・殿部が台から持ち上がる)か、痛みが出れば陽性で、大腿直筋が短縮していると判断する。",
+    "exam": "61-pm-4(腹臥位で膝関節を屈曲させたところ、図のような現象が見られた。短縮が疑われる筋は=大腿直筋(正答)。誤答は大殿筋・腸腰筋・梨状筋・大腿二頭筋。図は、検者が膝を曲げると殿部が持ち上がる場面)",
+    "q": [
+     "61-pm-4"
+    ],
+    "note": "確認済み[S1][S2]。[S2]は、骨盤の持ち上がり(hip hiking)や骨盤前傾を代償動作とみなし、ベルトで骨盤を抑えて測っている。大腿直筋が短いと膝を曲げる動きに骨盤が引かれて殿部が上がる、と理解する。61-pm-4の図は問題画像で確認。Thomasテストとの関係はthomas-testのカードも参照。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.physiotutors.com/ja/wiki/elys-test/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7575148/"
+     }
+    ]
+   },
+   {
+    "item": "大腿直筋の走行(なぜ膝を曲げると見えるか)",
+    "target": "解剖の理解",
+    "value": "大腿直筋は下前腸骨棘(AIIS)から脛骨粗面まで走り、股関節と膝関節の両方をまたぐ筋。そのため短縮していると、膝を曲げたときに股関節側へ引かれて骨盤が動く。",
+    "exam": "61-pm-4(大腿直筋が正答。腸腰筋・大殿筋・梨状筋は股関節だけをまたぎ、大腿二頭筋は膝の屈筋で、この現象の説明に合わない選択肢)",
+    "q": [
+     "61-pm-4"
+    ],
+    "note": "確認済み[S1](走行)。選択肢ごとの説明(股関節だけをまたぐ等)は、筋の付着からの整理で、資料に書かれた文ではない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.physiotutors.com/ja/wiki/elys-test/"
+     }
+    ]
+   },
+   {
+    "item": "Elyテストは半月板の検査ではない",
+    "target": "検査の取り違えを防ぐ",
+    "value": "Elyテストは大腿直筋の長さ(膝を曲げる方向の柔軟性)を見る筋長テスト。半月板損傷の検査は、ApleyテストやMcMurrayテストなど別のテスト(別のカード参照)。",
+    "exam": "61-am-30(半月板損傷の診断に有用なテストを2つ選ぶ問題で、Elyテストは誤答選択肢。正答はApleyテストとMcMurrayテスト。他の誤答はLachman・Patrick)",
+    "q": [
+     "61-am-30"
+    ],
+    "note": "確認済み[S1][S2]。正答の2つは過去問の公式正答による。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.physiotutors.com/ja/wiki/elys-test/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7575148/"
+     }
+    ]
+   },
+   {
+    "item": "Elyテストの角度の測り方と信頼性",
+    "target": "測定・再現性",
+    "value": "骨盤をベルトで台に固定し、膝の屈曲角度を角度計(ゴニオメーター)で測る方法では、検者内ICC 0.900・検者間ICC 0.914(良好〜優秀)。真の変化とみなせる最小変化量は約8度。骨盤固定をしない先行研究(Peeler 2008)では、陽性・陰性の一致度はκ=0.52(検者内)・0.46(検者間)、角度のICCは0.69・0.66で、中等度にとどまった。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S3]。無症状の成人71人(平均24.6歳)での値。骨盤の代償動作を抑えると再現性が上がる、という結果。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7575148/"
+     },
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18186129/"
+     }
+    ]
+   },
+   {
+    "item": "同じ肢位(腹臥位・膝屈曲)で行う関連テスト",
+    "target": "他のテストとの区別",
+    "value": "同じような手順(または少し変えた手順)で、仙腸関節の機能障害(Yeomanテスト)、大腿神経の伸張(Nachlasテスト)、大腿直筋の痙縮(Duncan-Elyテスト)も調べられる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。Elyテスト自体は筋の長さの検査。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7575148/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "end-feel",
+  "name": "最終域感(エンドフィール)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "最終域感",
+   "エンドフィール",
+   "end feel",
+   "end-feel",
+   "軟部組織性",
+   "軟部組織の接近",
+   "靱帯性",
+   "関節包性",
+   "筋スパズム性",
+   "結合組織性",
+   "軟部組織の伸張"
+  ],
+  "rows": [
+   {
+    "item": "軟部組織性(軟部組織の接近) 膝関節屈曲",
+    "target": "正常な膝屈曲の最終域感",
+    "value": "膝屈曲の正常な最終域感は軟部組織性(ふくらはぎと太ももの軟部組織が接触して止まる。軟らかく沈み込むような止まり方)。肘関節屈曲も同じ型の例。",
+    "exam": "53-am-72(正常な膝屈曲の最終域感。正答=軟部組織性。選択肢は虚性・筋性・骨性・靱帯性・軟部組織性)／52-am-28(正答=軟部組織の接近―膝関節屈曲)",
+    "q": [
+     "53-am-72",
+     "52-am-28"
+    ],
+    "note": "確認済み[S1][S2][S3]。選択肢の「筋性」「靱帯性」は資料により呼び方が異なる(下の行を参照)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+     },
+     {
+      "label": "S3",
+      "url": "https://book.physiotutors.com/content/knee-assessment/basic-assessment-of-the-knee/passive-range-of-motion-prom-of-the-knee/"
+     }
+    ]
+   },
+   {
+    "item": "骨性(bone to bone) 肘関節伸展",
+    "target": "骨同士がぶつかる最終域感",
+    "value": "硬く、急に止まる(痛みを伴わない)。代表例は肘関節伸展(肘頭が肘頭窩に当たる)。",
+    "exam": "52-am-28(誤答選択肢: 筋の伸張感―肘関節伸展、骨性―手指MP関節伸展。肘伸展は骨性であり、MP伸展は骨性ではない)",
+    "q": [
+     "52-am-28"
+    ],
+    "note": "確認済み[S1][S2]。MP関節伸展は下の「結合組織性」の例として挙げられている[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+     }
+    ]
+   },
+   {
+    "item": "結合組織性(組織の伸張・firm) 関節包・靱帯",
+    "target": "関節包や靱帯が伸ばされて止まる最終域感",
+    "value": "硬いが弾力があり、徐々に止まる。例: 肩関節外旋、手関節背屈、股関節伸展(S1)。英語資料では肩外旋・膝伸展・MP関節伸展を例に挙げる(S2)。",
+    "exam": "52-am-28(誤答選択肢: 骨性―手指MP関節伸展、靱帯の伸張―SLR、関節包の伸張―前腕回外。SLRや前腕回外の最終域感は資料で個別に確認できていない)",
+    "q": [
+     "52-am-28"
+    ],
+    "note": "確認済み[S1][S2]。日本の資料では「結合組織性」、国試の選択肢では「靱帯性」「関節包の伸張」と書かれ、呼び名が揃わない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+     }
+    ]
+   },
+   {
+    "item": "異常な最終域感(虚性・筋スパズム性・関節包性・ばね様)",
+    "target": "病的な最終域感の種類と意味",
+    "value": "虚性(empty): 抵抗を感じる前に強い痛みで運動を拒む／筋スパズム性: 可動域の途中で急に止まる(防御性収縮)／関節包性: 硬く止まる(関節包の短縮・線維化、凍結肩など)／ばね様: 弾力のある抵抗で跳ね返される(関節内遊離体・半月板損傷など)。",
+    "exam": "53-am-72(誤答選択肢に虚性・筋性が含まれる。正常な膝屈曲の最終域感としては不適)",
+    "q": [
+     "53-am-72"
+    ],
+    "note": "確認済み[S1]。英語資料(S2)では異常を hard/soft/firm/empty で分けており、分類は資料により異なる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://sites.google.com/my.shu.ac.uk/anatomyforphysios/anatomy/joints/2c-joint-end-feels"
+     }
+    ]
+   },
+   {
+    "item": "最終域感の見方と使い道",
+    "target": "可動域制限の原因の推定",
+    "value": "他動運動の最終域で検者の手に伝わる「動きの止まり方」。角度だけでなく止まり方の質も合わせて評価し、可動域制限の原因(制限因子)を推定する。正常な関節でも本来と違う質・タイミングで出れば異常と判定する。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。大学の公開講義資料にもとづく。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.un.shijonawate-gakuen.ac.jp/feature/file/open-resource_ot01.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "endurance-training-effects",
   "name": "全身持久力トレーニングの効果",
   "category": "リスク管理",
@@ -5677,6 +8081,103 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "esr",
+  "name": "赤血球沈降速度(赤沈・ESR)",
+  "category": "臨床検査",
+  "aliases": [
+   "赤血球沈降速度",
+   "赤沈",
+   "血沈",
+   "ESR",
+   "Westergren法",
+   "ウェスターグレン法"
+  ],
+  "rows": [
+   {
+    "item": "赤沈が低下する(遅くなる)病態",
+    "target": "赤沈の低下",
+    "value": "多血症(赤血球が多すぎる)、低フィブリノゲン血症、著明な白血球増多、鎌状赤血球症など赤血球の形の異常、高粘稠度をきたす異常蛋白血症など。DICも低下の原因に挙げる資料があり、DICの急速に進むタイプではフィブリノゲンが急激に低下する。",
+    "exam": "51-am-85「赤血球沈降速度が低下するのはどれか」の正答=播種性血管内凝固症候群(DIC)(選択肢: 貧血・肝硬変・悪性腫瘍・細菌感染・DIC)。",
+    "q": [
+     "51-am-85"
+    ],
+    "note": "一部確認。AAFP[S2]は低フィブリノゲン血症などで低下と記し、DICの語は出ない。DICの記載は[S3](Wiki型の救急医学リファレンス)で、フィブリノゲン低下は[S4]。DICで下がる理由はフィブリノゲン低下からの学習用の整理。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+     },
+     {
+      "label": "S3",
+      "url": "https://wikem.org/wiki/ESR/ja"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/11-血液学および腫瘍学/凝固障害/播種性血管内凝固症候群-dic"
+     }
+    ]
+   },
+   {
+    "item": "赤沈が亢進する(速くなる)病態",
+    "target": "赤沈の亢進",
+    "value": "貧血、感染症、炎症、悪性腫瘍、フィブリノゲンが増える状態(妊娠・糖尿病・腎不全・心疾患・膠原病など)。高齢・女性でも高め。貧血では赤血球の密度が下がり、凝集塊が速く沈む。",
+    "exam": "51-am-85 の誤答(赤沈が亢進する側)=貧血・悪性腫瘍・細菌感染。肝硬変も誤答だが、赤沈の向きは資料で確認できなかった。",
+    "q": [
+     "51-am-85"
+    ],
+    "note": "確認済み[S2]。肝硬変と赤沈の関係は[S2][S3]に記載がなく、このカードでは判断しない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+     },
+     {
+      "label": "S3",
+      "url": "https://wikem.org/wiki/ESR/ja"
+     }
+    ]
+   },
+   {
+    "item": "赤沈のしくみと測定法",
+    "target": "測定の原理",
+    "value": "抗凝固した血液を縦の管に立て、1時間に赤血球が沈んだ距離(mm)を測る。主な決め手はフィブリノゲンで、血中のフィブリノゲン量と赤沈は直接相関する。Westergren法が標準的に使われる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+     }
+    ]
+   },
+   {
+    "item": "赤沈の基準値",
+    "target": "基準範囲",
+    "value": "施設の例(京都大学病院検査部): 男性2〜10 mm/時、女性3〜15 mm/時。AAFPの上限の目安: 50歳未満は男15・女20 mm/時、50歳以上は男20・女30 mm/時。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。基準は施設・方法・年齢で異なるため、各施設の値で読む。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://clinlab.kuhp.kyoto-u.ac.jp/wp-content/uploads/2024/10/kensa_setumei_ketueki.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.aafp.org/pubs/afp/issues/1999/1001/p1443.html"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -6229,6 +8730,166 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "exercise-test-types",
+  "name": "運動負荷試験の方式(マスター二階段・踏み台昇降・ハンドグリップ)",
+  "category": "臨床検査",
+  "aliases": [
+   "マスターシングルテスト",
+   "マスターシングル",
+   "マスター2階段試験",
+   "マスターダブル",
+   "踏み台昇降テスト",
+   "踏み台昇降",
+   "ハーバードステップテスト",
+   "Harvard step test",
+   "ハンドグリップテスト",
+   "ハンドグリップ",
+   "Bruceプロトコル",
+   "運動負荷心電図",
+   "運動負荷試験"
+  ],
+  "rows": [
+   {
+    "item": "Bruce法(段階的に負荷を増やす方式)",
+    "target": "運動負荷量を段階的に増加させる評価法",
+    "value": "トレッドミルの速度と傾斜を、約3分ごとに上げていく多段階の漸増負荷(Bruceプロトコルは最も頻用される)。目標は年齢別の予測最大心拍数の85%、または症状が出るまで。",
+    "exam": "50-pm-46(運動負荷量を段階的に増加させる評価法はどれか。正答=Bruce法。誤答選択肢=踏み台昇降テスト・12分間歩行テスト・ハンドグリップテスト・マスターシングルテスト)",
+    "q": [
+     "50-pm-46"
+    ],
+    "note": "確認済み[S1]。各段階の速度・傾斜の数値は[S1]に記載がなく、書いていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/04-%E5%BF%83%E8%A1%80%E7%AE%A1%E7%96%BE%E6%82%A3/%E5%BF%83%E8%A1%80%E7%AE%A1%E7%B3%BB%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%A4%9C%E6%9F%BB%E3%81%8A%E3%82%88%E3%81%B3%E6%89%8B%E6%8A%80/%E8%B2%A0%E8%8D%B7%E8%A9%A6%E9%A8%93"
+     }
+    ]
+   },
+   {
+    "item": "マスター二階段試験(マスターシングルテスト)",
+    "target": "運動負荷心電図(虚血・不整脈の判定)。固定負荷の方式",
+    "value": "高さ23 cmの二段の階段を、ステップ音に合わせて往復(昇降)し、前後の心電図を記録する。回数や時間は、症状・年齢・体重・性別で変える。負荷は段階的に増やさず、決めた量を一度に行う(単一段階の固定負荷)。",
+    "exam": "50-pm-46(誤答選択肢=マスターシングルテスト。段階的増加ではない)／58-am-19(NYHA III・僧帽弁形成術後の退院時の運動機能評価で、誤答選択肢。正答は6分間歩行テスト)",
+    "q": [
+     "50-pm-46",
+     "58-am-19"
+    ],
+    "note": "確認済み[S2][S3]。「固定(単一段階)負荷」の分類は[S3](看護学習サイト)の記述。学会資料では未確認。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://tokyo-hp.hosp.go.jp/bumon/kensa/pdf/fuka.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.kango-roo.com/learning/1502/"
+     }
+    ]
+   },
+   {
+    "item": "マスター試験のシングル・ダブル・トリプル",
+    "target": "マスター二階段試験の負荷量の違い",
+    "value": "シングル=年齢・性別・体重から決めた昇降回数を1分30秒で行う。ダブル=回数を2倍にして3分、トリプル=3倍にして4分30秒。運動後は直ちに仰臥位で心電図を記録し、直後・3分後・5分後(必要に応じ10分後)にも記録する。運動中は心電図をモニターしないので、胸痛などがあれば中止する。",
+    "exam": "出題は直接なし(参考)。選択肢「マスターシングルテスト」の意味を確かめる行",
+    "q": [],
+    "note": "確認済み[S3]。看護学習サイトの記述で、学会資料では回数の表などを確認していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.kango-roo.com/learning/1502/"
+     }
+    ]
+   },
+   {
+    "item": "踏み台昇降テスト",
+    "target": "全身持久力の評価(一定負荷の方式)",
+    "value": "健康長寿ネットの方式: 踏み台の高さは男性40 cm・女性35 cm。1分間に30回(2秒に1回)のペースで3分間昇降する。運動終了後の1〜1分30秒、2〜2分30秒、3〜3分30秒に、座位で心拍数を測る。得点=(180[秒]÷3回分の心拍数の和×2)×100。同じ昇降を繰り返す一定の負荷で行う。",
+    "exam": "50-pm-46(誤答選択肢=踏み台昇降テスト。段階的に負荷を増やす方式ではない)",
+    "q": [
+     "50-pm-46"
+    ],
+    "note": "確認済み[S4]。踏み台の高さ・時間はテストにより異なる(下の行を参照)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.tyojyu.or.jp/net/kenkou-tyoju/tairyoku-kiki/fumidai.html"
+     }
+    ]
+   },
+   {
+    "item": "ハーバードステップテスト(原法)との違い",
+    "target": "踏み台昇降テストの由来・条件の違い",
+    "value": "日本の踏み台昇降テストは、ハーバード大学のステップテストを日本人向けに改変したもの。時間は5分から3分に短縮され、台の高さは20インチ(50.8 cm)から男性40 cm・女性35 cmに変更されている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]。海外の記載では原法の台は男性50.8 cm・女性40 cmなど資料により異なる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.tyojyu.or.jp/net/kenkou-tyoju/tairyoku-kiki/fumidai.html"
+     }
+    ]
+   },
+   {
+    "item": "ハンドグリップ(等尺性運動)の負荷",
+    "target": "等尺性運動の循環器反応(血圧上昇)をみる負荷",
+    "value": "握力計を一定の力で握り続ける等尺性運動。研究で多い方法は、最大随意収縮(MVC)の30%で2分間の収縮を4セット。急性反応として血圧が上がり、握る強さが大きいほど上昇が大きい(統合値: 収縮期+33.4 mmHg・拡張期+25.1 mmHg。≦30% MVCで+27.5/+20.1、30超〜60% MVCで+40.7/+31.9 mmHg)。膝伸展やデッドリフトなど大きな筋群を使う等尺性運動の方が、さらに血圧反応が大きい。",
+    "exam": "50-pm-46(誤答選択肢=ハンドグリップテスト。等尺性の負荷で、段階的に増やす評価法ではない)／58-am-19(誤答選択肢。退院時の運動機能評価には不適。正答は6分間歩行テスト)",
+    "q": [
+     "50-pm-46",
+     "58-am-19"
+    ],
+    "note": "確認済み[S5](等尺性運動のメタ解析。数値は研究の統合値で、診断用の標準手順ではない)。「ハンドグリップテスト」を運動負荷試験として行う標準的な手順は、今回の資料では確認できなかったため書いていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11273125"
+     }
+    ]
+   },
+   {
+    "item": "退院時の運動耐容能の評価(6分間歩行試験)",
+    "target": "心疾患患者の運動機能・運動耐容能の評価",
+    "value": "6分間歩行試験は、6分間歩行距離(6MWD)を測る運動耐容能の評価法。心肺運動負荷試験のpeak VO2との相関が高く、予後の推定にも使われる。弱点は、施設間の比較が難しいこと、実施方法の影響を受けること、繰り返すと成績が上がること。",
+    "exam": "58-am-19(NYHA III・僧帽弁閉鎖不全症の術後、退院時の運動機能評価。正答=6分間歩行テスト。誤答=クリニカルシナリオ分類・マスターシングルテスト・Nohria-Stevenson分類・ハンドグリップテスト)",
+    "q": [
+     "58-am-19"
+    ],
+    "note": "確認済み[S6]。クリニカルシナリオ・Nohria-Stevenson分類は急性心不全の病態分類で、運動機能評価ではない点は[S6]で未確認(国試の解答の整理)。6MWTの手順は既存の「6分間歩行テスト(6MWT)」カードを参照。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S6",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+     }
+    ]
+   },
+   {
+    "item": "運動負荷試験(運動負荷心電図)の位置づけとマスターシングル試験",
+    "target": "運動負荷心電図の目的、心臓リハでの使われ方",
+    "value": "運動負荷試験(いわゆる運動負荷心電図)は、呼気ガス分析を併用しない運動負荷試験で、運動による心拍数・血圧の反応の評価や、虚血の心電図診断に使う。心筋梗塞の心臓リハのクリティカルパス例では、心臓リハビリ室での運動療法の段階に「非エントリー例ではマスターシングル試験またはシャワー浴負荷試験」と書かれている(「非エントリー例」の意味は本文で確認していない)。",
+    "exam": "出題は直接なし(参考。58-am-19・50-pm-46のマスターシングルテストの位置づけ)",
+    "q": [],
+    "note": "確認済み[S6]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S6",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "facial-palsy",
   "name": "顔面神経麻痺の症候・評価(柳原法・House-Brackmann法)",
   "category": "検査法・徴候",
@@ -6344,6 +9005,95 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "fact-g",
+  "name": "FACT(Functional Assessment of Cancer Therapy)",
+  "category": "評価尺度",
+  "aliases": [
+   "FACT-G",
+   "Functional Assessment of Cancer Therapy",
+   "FACT-B",
+   "FACT-F",
+   "がん患者のQOL尺度",
+   "がん治療の機能評価",
+   "FACT-G7",
+   "FACT-8D"
+  ],
+  "rows": [
+   {
+    "item": "FACT-G(がん一般用QOL尺度)",
+    "target": "がん患者の健康関連QOL",
+    "value": "27項目・4領域(身体面7、社会/家族面7、心理面6、機能面7)。各項目0(全くない)〜4(非常にある)の5段階で、合計0〜108点、高いほどQOLが良い",
+    "exam": "59-am-20(誤答選択肢:FACT。問いは乳癌周術期の「活動能力の評価方法」で、正答はKPS。FACTはQOL尺度で活動能力の評価ではない)",
+    "q": [
+     "59-am-20"
+    ],
+    "note": "確認済み[S1][S2][S3]。27項目・4領域・0〜4はS1、各領域の項目数はS2(日本語版の資料)、合計0〜108点はS3。想起期間は本文で確認できていないため載せない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://qol.thoracic.org/sections/instruments/fj/pages/fact-g.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jmari.med.or.jp/download/WP056.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10448388/"
+     }
+    ]
+   },
+   {
+    "item": "FACTの追加尺度(がん種・症状別)",
+    "target": "FACT-Gに足して使う尺度",
+    "value": "FACT-G に疾患・症状ごとの追加項目を足して使う。例: FACT-B(乳癌用)=FACT-G+乳癌特異面9項目、FACT-F(疲労用)、FACT-O(卵巣癌用)、FACT-Cx(子宮頸癌用)、FACT-P(前立腺癌用)など",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。2001年時点の日医総研の資料で、日本語版の整備状況の記載。現在の状況は未確認",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jmari.med.or.jp/download/WP056.pdf"
+     }
+    ]
+   },
+   {
+    "item": "FACT-G7(簡易版)",
+    "target": "短時間でQOLを見る",
+    "value": "FACT-Gの優先度の高い7項目の簡易版。身体面(疲労・痛み・吐き気)、心理面(病状悪化への心配)、機能面(人生を楽しめること・現在のQOLへの満足・睡眠)から選ばれ、合計0〜28点で高いほど良好",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10448388/"
+     }
+    ]
+   },
+   {
+    "item": "FACT-8D",
+    "target": "QALY算出用の選好に基づく尺度",
+    "value": "FACT-Gの27項目のうち9項目を使い、8つの領域(吐き気・痛み・疲労・睡眠・仕事・心配・悲しみ・家族や友人の支え)から健康効用値を算出する",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]。日本の効用値の報告(Health Qual Life Outcomes 2025)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12574001/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -6490,6 +9240,102 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "fecal-occult-blood-test",
+  "name": "便潜血検査(免疫法)",
+  "category": "臨床検査",
+  "aliases": [
+   "便潜血",
+   "便潜血検査",
+   "免疫学的便潜血検査",
+   "便潜血反応",
+   "FIT",
+   "FOBT",
+   "大腸がん検診",
+   "大腸癌検診"
+  ],
+  "rows": [
+   {
+    "item": "便潜血検査と大腸癌の発見",
+    "target": "大腸癌の検診・発見の入口",
+    "value": "免疫法は、抗ヒトヘモグロビン抗体で便に混じったヒトの血液(Hb)だけを検出する。陽性(要精検)になったら、精密検査として全大腸内視鏡検査を行う(精密検査の主要な方法)。",
+    "exam": "50-am-94(大腸癌について誤っているのはどれか。便潜血陽性が診断上重要な所見である、は正しい内容の選択肢。正答は「転移は肺転移が最も多い」)",
+    "q": [
+     "50-am-94"
+    ],
+    "note": "確認済み[S1]。国試では便潜血陽性を重要な所見として扱う。ガイドライン上は検診(スクリーニング)の検査で、陽性は癌の確定ではなく精密検査が必要という位置づけ。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://canscreen.ncc.go.jp/guideline/colon_guideline2024.pdf"
+     }
+    ]
+   },
+   {
+    "item": "化学法と免疫法の違い",
+    "target": "検査の特徴",
+    "value": "化学法は精度を保つため食事制限・薬剤制限が必要。免疫法はヒトHbに特異的で、食事・薬剤の制限が不要。感度は化学法より高いか同等で、特異度は化学法と差がない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://canscreen.ncc.go.jp/guideline/colon_guideline2024.pdf"
+     }
+    ]
+   },
+   {
+    "item": "検診としての推奨と対象",
+    "target": "対策型・任意型の大腸がん検診",
+    "value": "推奨グレードA(対策型・任意型ともに実施を推奨)。開始は40歳(45歳・50歳も許容)、終了は74歳が望ましい。採便は1回法でも2回法でも可。検診間隔は1年から2年にすることも可能。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。採便回数は1回でも2回でもよいとされる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://canscreen.ncc.go.jp/guideline/colon_guideline2024.pdf"
+     }
+    ]
+   },
+   {
+    "item": "カットオフ値と要精検率",
+    "target": "免疫法の運用",
+    "value": "免疫法は便中Hbを定量して陽性・陰性を分ける。単位は便1gあたりのHb量(μg/g)。2018年度の全国集計ではカットオフ20〜30μg/g未満の設定が最多(37.9%)。事業評価の目安として、40〜74歳の陽性率(要精検率)は7%以下。メーカーごとのカットオフは直接比べられない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://canscreen.ncc.go.jp/guideline/colon_guideline2024.pdf"
+     }
+    ]
+   },
+   {
+    "item": "感度の目安(大腸がん)",
+    "target": "見逃しの程度",
+    "value": "免疫法による大腸がんの感度は、近位結腸で約0.67、遠位結腸で約0.72と同程度。進行性腫瘍(AN)の感度は大腸がんよりずっと低く、近位結腸で0.25、遠位結腸で0.38。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。感度は検査1回あたりの研究の統合値。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://canscreen.ncc.go.jp/guideline/colon_guideline2024.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "fim",
   "name": "機能的自立度評価法(FIM)",
   "category": "評価尺度",
@@ -6609,6 +9455,99 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "finkelstein-eichhoff",
+  "name": "Finkelsteinテスト・Eichhoffテスト(de Quervain病)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Finkelstein",
+   "Finkelsteinテスト",
+   "Finkelstein test",
+   "フィンケルシュタイン",
+   "Eichhoff",
+   "Eichhoffテスト",
+   "Eichhoff test",
+   "アイヒホフ",
+   "アイヒホッフ",
+   "de Quervain病",
+   "de Quervain",
+   "ドゥケルバン病",
+   "ドゥケルバン症候群",
+   "ドケルバン病",
+   "橈骨茎状突起部狭窄性腱鞘炎"
+  ],
+  "rows": [
+   {
+    "item": "Finkelsteinテスト(de Quervain病の疼痛誘発)",
+    "target": "de Quervain病(第1伸筋腱区画の腱鞘炎)",
+    "value": "検者が患者の母指を持って手掌側へ曲げ、手関節を尺側へ他動的に曲げる(尺屈)。橈骨茎状突起の近く、第1区画の腱鞘部に強い痛みが出れば陽性で、de Quervain病が強く疑われる。",
+    "exam": "54-am-33(上腕二頭筋腱炎で陽性になる検査の誤答選択肢。正答はYergason)／55-pm-86(肩腱板断裂で陽性になる検査の誤答選択肢。正答はdrop arm)／57-pm-33(Parkinson病の評価の誤答選択肢。正答はWestphal現象)／49回(「後骨間神経麻痺―Finkelsteinテスト」は誤り。Finkelsteinはde Quervain病の検査)",
+    "q": [
+     "54-am-33",
+     "55-pm-86",
+     "57-pm-33"
+    ],
+    "note": "確認済み[S1][S2]。資料間で手技の書き方が違う。MSDマニュアル日本語版は「母指を手掌側に曲げて他の指で包み(握り込み)、手関節を尺屈」と書くが、この「母指を握り込む」方法は文献ではEichhoffテストとされ、Finkelsteinの原法は検者が母指をつかんで行う方法とされる[S2][S4]。国試では「de Quervain病の検査」として問われる(他の疾患の選択肢は誤り)。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/ドゥケルバン症候群"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6103758"
+     },
+     {
+      "label": "S4",
+      "url": "https://en.wikipedia.org/wiki/Eichoff_maneuver"
+     }
+    ]
+   },
+   {
+    "item": "Eichhoffテスト(Finkelsteinテストとの違い)",
+    "target": "de Quervain病(母指を握り込む方法)",
+    "value": "患者が母指を手のひらの中に入れて他の指で握り込み、検者が手全体を尺側へ他動的に曲げる(尺屈)。母指を検者がつかむFinkelsteinテストとは手順が違う。無症状の36人(72手関節)では、Eichhoffで偽陽性が8手関節(5人)、Finkelsteinは0で、特異度は89%対100%だった(痛みの強さもEichhoffが強い)。",
+    "exam": "60-pm-27(腰椎椎間板ヘルニアの疼痛誘発テストを問う問題で、Eichhoffテストは誤答選択肢。選択肢はAdson・Bragard・Eichhoff・Thomsen・Yergasonで、正答はBragard)",
+    "q": [
+     "60-pm-27"
+    ],
+    "note": "確認済み[S2][S4]。Eichhoffはde Quervain病の検査で、腰椎椎間板ヘルニアの検査ではない。同じ問題の他の選択肢は、Adson=胸郭出口症候群、Thomsen=上腕骨外側上顆炎、Yergason=上腕二頭筋腱炎の検査(別のカード参照)。[S2]は症状のある人を含めておらず、感度は比べていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6103758"
+     },
+     {
+      "label": "S4",
+      "url": "https://en.wikipedia.org/wiki/Eichoff_maneuver"
+     }
+    ]
+   },
+   {
+    "item": "de Quervain病とは",
+    "target": "病態の理解",
+    "value": "手首の親指側にある第1伸筋腱区画(短母指伸筋腱と長母指外転筋腱)の狭窄性腱鞘炎。手首と母指のうずく痛みが動かすと悪化し、橈骨茎状突起のすぐ近く(近位)に圧痛が出る。現在は短母指伸筋腱の腱鞘炎が主体と考えられている。",
+    "exam": "出題は直接なし(Finkelsteinテストの対象疾患として、上の行の問題で間接的に問われる)",
+    "q": [],
+    "note": "確認済み[S1][S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/ドゥケルバン症候群"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jmedj.co.jp/cdn/shop/files/978-4-7849-0511-9.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -6955,6 +9894,135 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "ftld-pick-disease",
+  "name": "前頭側頭葉変性症(Pick病・前頭側頭型認知症)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "Pick病",
+   "ピック病",
+   "前頭側頭型認知症",
+   "前頭側頭葉変性症",
+   "前頭側頭葉型認知症",
+   "行動異常型前頭側頭型認知症",
+   "限局性の大脳皮質の萎縮",
+   "意味性認知症",
+   "常同行動",
+   "FTD"
+  ],
+  "rows": [
+   {
+    "item": "Pick病と前頭側頭型認知症",
+    "target": "前頭葉・側頭葉が萎縮する認知症",
+    "value": "Pick病は、特定のタイプの前頭側頭型認知症にみられる脳の変化を指す用語で、重度の萎縮・神経細胞の喪失・ピック細胞(異常な細胞)が特徴。前頭葉と側頭葉が萎縮し、神経細胞が失われる。前頭側頭葉変性症は主として初老期に発症し、人格変化・行動障害・失語などがゆっくり進む。",
+    "exam": "54-pm-35「前頭葉と側頭葉に限局性の大脳皮質の萎縮を認める疾患」の正答=Pick病(誤答: Alzheimer型認知症・正常圧水頭症・脳血管性認知症・Lewy小体型認知症)。",
+    "q": [
+     "54-pm-35"
+    ],
+    "note": "確認済み[S2][S1]。難病の概要[S1]に「Pick病」の語は出ず、Pick病との関係は[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/home/09-脳-脊髄-末梢神経の病気/せん妄と認知症/前頭側頭型認知症"
+     },
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     }
+    ]
+   },
+   {
+    "item": "(行動異常型)前頭側頭型認知症の画像所見",
+    "target": "CT/MRIとSPECT/PET",
+    "value": "CT/MRIで両側性の前頭葉・側頭葉前部の境界明瞭な萎縮(前頭葉白質病変を伴うこともある)。SPECT/PETで同じ部位の血流(代謝)低下。",
+    "exam": "54-pm-35 の正答Pick病(前頭側頭型認知症)の画像の特徴。",
+    "q": [
+     "54-pm-35"
+    ],
+    "note": "確認済み[S1]。CT・MRIでは、かなり進行するまで特徴的な変化が見えないことがある[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/home/09-脳-脊髄-末梢神経の病気/せん妄と認知症/前頭側頭型認知症"
+     }
+    ]
+   },
+   {
+    "item": "他の認知症との画像の違い",
+    "target": "鑑別(誤答選択肢の画像)",
+    "value": "Alzheimer病: 嗅内野・海馬の萎縮、側頭頭頂葉外側部の萎縮。SPECT/PETは後部帯状回・楔前部・側頭頭頂葉外側の血流(代謝)低下。Lewy小体型認知症: CT/MRIで特異的所見なし。SPECT/PETは後頭葉の血流(代謝)低下、線条体ドパミントランスポーターの取り込み低下、MIBG心筋シンチの取り込み低下。血管性認知症: 梗塞(主幹動脈領域・連合野・境界域)や小血管病変(多発ラクナ・広範な白質病変)。",
+    "exam": "54-pm-35 の誤答選択肢(Alzheimer型認知症・脳血管性認知症・Lewy小体型認知症)の特徴。正常圧水頭症は誤答の1つだが、資料に記載がなくこのカードでは扱わない。",
+    "q": [
+     "54-pm-35"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     }
+    ]
+   },
+   {
+    "item": "前頭側頭型認知症の行動障害",
+    "target": "症状の特徴",
+    "value": "常同行動(毎日同じコースの散歩・時刻表的な生活)、脱抑制・反社会的行動(万引き・盗食など)、注意の転導性の亢進、被影響性の亢進(模倣・強迫的言語応答)、食行動の変化(過食・濃い味や甘い物を好む)、自発性の低下、共感の困難。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     }
+    ]
+   },
+   {
+    "item": "発症年齢・経過・治療",
+    "target": "発症時期と予後の目安",
+    "value": "主として初老期に発症。指定難病の診断基準では、発症が65歳以下を対象とし、70歳以上の発症はまれとする。典型例は65歳以下で発症とするマニュアルもある。根本的な治療薬は未確立で、SSRIなどの抗うつ薬が行動異常の緩和に有効との報告がある。発症からの平均寿命は行動障害型で約6〜9年、意味性失語型で約12年。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/home/09-脳-脊髄-末梢神経の病気/せん妄と認知症/前頭側頭型認知症"
+     }
+    ]
+   },
+   {
+    "item": "意味性認知症",
+    "target": "側頭葉前部の萎縮と言語障害",
+    "value": "CT/MRIで非対称性の側頭葉前部の萎縮。診断基準の中核症状は物品呼称の障害と単語理解の障害。語義失語(単語レベルでは復唱が良好でも物の名前が言えない)がみられる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10905000/001174064.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -7430,6 +10498,100 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "gbs-hughes-egos",
+  "name": "Guillain-Barré症候群の機能グレード(Hughes)と予後スコア(EGOS)",
+  "category": "評価尺度",
+  "aliases": [
+   "Guillain-Barré障害スコア",
+   "Guillain-Barré 障害スコア",
+   "GBS障害スコア",
+   "GBS disability score",
+   "GBS disability scale",
+   "Hughes",
+   "Hughesの機能グレード",
+   "Hughes機能グレード",
+   "Hughes functional grade",
+   "Hughes functional grading scale",
+   "機能グレード尺度",
+   "EGOS",
+   "Erasmus GBS Outcome Score",
+   "Erasmus GBS Outcome Scale",
+   "ギラン・バレー症候群の予後予測"
+  ],
+  "rows": [
+   {
+    "item": "EGOS(Erasmus GBS Outcome Scale)",
+    "target": "発症6か月後に介助なしで歩けない確率の予測",
+    "value": "3項目の合計(1〜7点)。(1)発症年齢:>60歳=1、41〜60歳=0.5、≦40歳=0。(2)発症前4週以内の下痢:なし=0、あり=1。(3)入院2週後のHughes機能グレード:0または1=1、2=2、3=3、4=4、5=5。合計点が高いほど6か月後の歩行不能の確率が高く、1〜83%の範囲で予測できる。EGOSスコア3以下では5%以下、7では約83%。",
+    "exam": "54-am-2(32歳=0点、先行する下痢あり=1点、入院2週後の障害スコア5(人工呼吸管理)=5点で合計6点。6か月後に歩行不可能な確率は、問題のグラフから60%が正答(選択肢3)。誤答は20・30・80・90%)",
+    "q": [
+     "54-am-2"
+    ],
+    "note": "確認済み[S3][S5]。スコア3以下・7の確率は日本のガイドライン本文にあるが、合計6点の確率の数値は本文にはなく、国試では問題のグラフから読む。EGOSは欧米の研究から作られ、日本でそのまま通用するかは今後の検証が望まれるとガイドラインに書かれている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_04.pdf"
+     },
+     {
+      "label": "S5",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/17537676/"
+     }
+    ]
+   },
+   {
+    "item": "Hughesの機能グレード尺度(FG、GBS障害スコア)",
+    "target": "ギラン・バレー症候群の重症度・経過の評価",
+    "value": "FG0=正常/FG1=軽微な神経症候あり/FG2=歩行器などの支えなしで5m歩行可/FG3=歩行器や支えがあれば5m歩行可/FG4=ベッド上か車椅子に限られる(支えがあっても5m歩けない)/FG5=補助換気(人工呼吸)が必要/FG6=死亡。",
+    "exam": "54-am-2(問題文の「障害スコアが5(人工呼吸管理)」=FG5。この値がEGOSの3項目の1つになる)",
+    "q": [
+     "54-am-2"
+    ],
+    "note": "確認済み[S1]。国試の「Guillain-Barré障害スコア」は、このHughesの機能グレード(障害スコア)のこと。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_01.pdf"
+     }
+    ]
+   },
+   {
+    "item": "FGと治療の目安",
+    "target": "免疫療法・血漿浄化療法を行うかの判断に使われる",
+    "value": "血漿浄化療法(単純血漿交換など)の保険適用は、FG4以上の場合に限られる。IVIgは急性増悪期で歩行が難しい重症例に適応される。発症4週以降の回復期でも、無治療でFG3以上なら積極的な免疫調整療法が考慮されるが、その場合はGBSの診断やCIDPなどとの鑑別を見直す。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_05.pdf"
+     }
+    ]
+   },
+   {
+    "item": "GBSの自然経過(FGで見たもの)",
+    "target": "症状のピークと回復の時期",
+    "value": "1983〜84年の英国の調査で、症状のピークは発症7日以内に34%、14日以内に70%、21日以内に84%。4週ごろまで進行性に悪化し、その後3〜12か月で徐々に回復する。12か月後は67%が完全回復(FG0)、20%が後遺症を残し(FG1〜4)、13%が死亡(FG6)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。血漿交換・IVIg普及前の古い調査に基づく数字。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_02.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "gbs-rehab",
   "name": "ギラン・バレー症候群(GBS)のリハビリテーション",
   "category": "リスク管理",
@@ -7580,6 +10742,80 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "glioma-who-grade",
+  "name": "脳腫瘍のWHOグレード(神経膠腫・膠芽腫)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "神経膠芽腫",
+   "膠芽腫",
+   "glioblastoma",
+   "GBM",
+   "神経膠腫",
+   "グリオーマ",
+   "glioma",
+   "WHO grade",
+   "WHOグレード",
+   "脳腫瘍の悪性度"
+  ],
+  "rows": [
+   {
+    "item": "膠芽腫(glioblastoma)のグレード",
+    "target": "成人型びまん性膠腫のうち最も悪性",
+    "value": "膠芽腫はIDH野生型の成人型びまん性膠腫で、WHOグレード4",
+    "exam": "52-am-75(悪性度が最も高い=神経膠芽腫が正答。誤答=海綿状血管腫・下垂体腺腫・神経鞘腫・髄膜腫)",
+    "q": [
+     "52-am-75"
+    ],
+    "note": "確認済み[S1]。誤答の4つの腫瘍のグレードは、本文で確認できなかったためこのカードには載せない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+     }
+    ]
+   },
+   {
+    "item": "WHOグレード1〜4の意味",
+    "target": "脳腫瘍の悪性度の目安",
+    "value": "脳腫瘍にはTNM分類のようなステージがなく、グレード1〜4で分類する。数字が大きいほど悪性度が高い。グレード1は、手術で全部取れれば再発のおそれがほとんどない良性腫瘍。グレード2〜4は上がるほど増殖が速い。グレードは摘出組織の病理と遺伝子検査で判定する",
+    "exam": "52-am-75(悪性度の比較)",
+    "q": [
+     "52-am-75"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://ganjoho.jp/public/cancer/brain_tumor/treatment.html"
+     }
+    ]
+   },
+   {
+    "item": "成人型びまん性膠腫のグレード(2021年WHO分類)",
+    "target": "星細胞腫・乏突起膠腫・膠芽腫の区別",
+    "value": "乏突起膠腫(IDH変異+1p/19q共欠失)=グレード2・3／星細胞腫(IDH変異、共欠失なし)=グレード2・3・4／膠芽腫(IDH野生型)=グレード4。2021年分類では『退形成性』の語は使わない。乏突起膠腫は星細胞腫より一般に悪性度が低い",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。2021年のWHO分類(第5版)に基づく",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://ganjoho.jp/public/cancer/glioma/treatment.html"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -8563,6 +11799,84 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "hhd-torque",
+  "name": "ハンドヘルドダイナモメーター(HHD)とトルクの計算",
+  "category": "検査法・徴候",
+  "aliases": [
+   "ハンドヘルドダイナモメーター",
+   "ハンドヘルドダイナモメータ",
+   "ハンドヘルドダイナモ",
+   "HHD",
+   "hand-held dynamometer",
+   "handheld dynamometer",
+   "徒手筋力計",
+   "筋力測定器",
+   "膝関節伸展トルク",
+   "膝伸展トルク",
+   "膝関節伸展等尺性筋力",
+   "等尺性膝伸展筋力",
+   "モーメントアーム",
+   "レバーアーム"
+  ],
+  "rows": [
+   {
+    "item": "トルクの計算(力×腕の長さ)",
+    "target": "測定した筋力(kgf)から関節トルク(Nm)を求める",
+    "value": "トルク(Nm)=力(N)×回転中心から力を測る点までの距離(m)。HHDでは、膝関節の外側裂隙(関節中心)からセンサー中央までの距離を測ってトルクを出す。力は kgf を N に直し(×9.8)、距離は cm を m に直して掛ける",
+    "exam": "55-pm-4(正答: 約68.6 Nm。筋力測定器で膝関節伸展等尺性筋力28 kgf。図のb=25 cmを腕の長さとして 28×9.8×0.25≒68.6 Nm。a=33 cmは使わない。誤答: 約6.9・17.2・34.5・51.8 Nm)",
+    "q": [
+     "55-pm-4"
+    ],
+    "note": "確認済み[S1][S2]。この設問の図(a・bの位置)は確認していないため、「bを腕の長さに使う」は入力の解析記録による",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7032982/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8"
+     }
+    ]
+   },
+   {
+    "item": "単位の換算(kgfとN)",
+    "target": "計算の途中の換算",
+    "value": "1 kgf=9.80665 N(厳密な値)。国試の計算では約9.8を使う。28 kgf≒274 N",
+    "exam": "55-pm-4(28 kgf×9.8を計算に使う)",
+    "q": [
+     "55-pm-4"
+    ],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.nist.gov/pml/special-publication-811/nist-guide-si-appendix-b-conversion-factors/nist-guide-si-appendix-b8"
+     }
+    ]
+   },
+   {
+    "item": "HHDによる膝伸展等尺性筋力の測定例",
+    "target": "測定方法の一例(標準手順ではない)",
+    "value": "座位で、測定側の大腿の下にタオルを入れて水平に保ち、膝関節90°屈曲、非測定側のつま先は床か台につける。上肢はベッドで体を支える。センサーを下腿遠位の前面に、下端を足首(果)の直上にして面ファスナーで固定し、固定ベルトで支柱とつなぐ。最大努力を5秒間(3秒で最大に達する)行い、30秒以上あけて複数回測定し最高値を採る。この方法のHHDは等速性装置との比較で、男性で妥当性・信頼性が高いと考えられた(女性は更なる研究が必要)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。大学生42名の研究1件の方法で、膝伸展の測定条件は研究ごとに統一されていない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7032982/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "higher-brain-signs",
   "name": "高次脳機能障害の主要症候(半側空間無視・Gerstmann・純粋失読・診断基準)",
   "category": "検査法・徴候",
@@ -9362,6 +12676,128 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "icu-severe-nmes",
+  "name": "重症期の運動療法(神経筋電気刺激・昇圧剤使用中)",
+  "category": "リスク管理",
+  "aliases": [
+   "神経筋電気刺激",
+   "NMES",
+   "電気刺激療法",
+   "昇圧剤",
+   "昇圧薬",
+   "強心昇圧薬",
+   "循環作動薬",
+   "血管作動薬",
+   "人工呼吸管理中",
+   "ICU獲得筋力低下",
+   "重症患者のリハビリテーション"
+  ],
+  "rows": [
+   {
+    "item": "人工呼吸管理・高用量昇圧剤中の選択(NMES)",
+    "target": "能動的な運動が難しい重症期の筋力低下予防",
+    "value": "積極的な早期リハビリテーションが適応できない患者では、神経筋電気刺激療法(NMES)などの手段も考慮する。NMESは急性期でも安全に使用可能で、敗血症性ショック急性期の患者でも代謝を悪化させなかったとの報告がある",
+    "exam": "61-am-9(食道癌術後・挿管人工呼吸管理中・高用量昇圧剤。正答:下肢筋に対する神経筋電気刺激。誤答:能動的座位練習・呼吸筋トレーニング・非上肢支持持久性運動・股関節伸展の関節可動域運動)",
+    "q": [
+     "61-am-9"
+    ],
+    "note": "確認済み[S1]。過度に早期の積極的リハビリテーションは有害になりうる、という文脈での記載。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/61/6/61_61.452/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "積極的な運動を原則行わない状態",
+    "target": "ICUで早期離床・積極運動を控える場合",
+    "value": "強心昇圧薬を大量に投与しても血圧が低すぎる場合／不安定な循環動態でIABPなどの補助循環を必要とする場合／体位を変えただけで血圧が大きく変動する場合、などでは早期離床や早期からの積極的な運動を原則行わない",
+    "exam": "61-am-9(高用量昇圧剤使用中のため、能動的座位練習・持久性運動などの能動的・積極的な運動は不適、という整理)",
+    "q": [
+     "61-am-9"
+    ],
+    "note": "確認済み[S1]。選択肢ごとの適否は設問側の整理で、資料は一般原則。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+     }
+    ]
+   },
+   {
+    "item": "昇圧剤の用量の目安",
+    "target": "運動・離床の可否に関わる用量",
+    "value": "治療の安全基準(絶対禁忌・レベル1)に「高容量の強心薬:ドパミン>10μg/kg/min、ノルアドレナリン>0.1μg/kg/min」。McWilliamsらの端座位基準では、ノルアドレナリン>0.2μg/kg/minで除外、0.1〜0.2μg/kg/minで制限。離床の開始基準には「ドパミンやノルアドレナリンの投与量が24時間以内に増量されていない」",
+    "exam": "61-am-9(昇圧剤使用中の運動療法の選択の背景)",
+    "q": [
+     "61-am-9"
+    ],
+    "note": "確認済み[S1]。数値は各基準の目安で、実臨床では医師の判断による。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+     }
+    ]
+   },
+   {
+    "item": "低用量の循環作動薬での運動",
+    "target": "自動運動の安全性",
+    "value": "Hodgsonらのエキスパートコンセンサス(2014)では、低用量の循環作動薬投与で血圧が保てる場合は自動運動による有害事象の発生は低い。ECMOやIABP管理中でも、ベッド上の運動に限れば有害事象の発生は低いとされる",
+    "exam": "61-am-9(高用量=低用量の場合と区別)",
+    "q": [
+     "61-am-9"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+     }
+    ]
+   },
+   {
+    "item": "J-ReCIP 2023(NMES)",
+    "target": "日本の重症患者リハビリテーション診療ガイドライン",
+    "value": "ICU成人に対する神経電気刺激(神経筋電気刺激)は「弱く推奨」、エビデンスの確実性は「中」",
+    "exam": "61-am-9(正答:神経筋電気刺激)",
+    "q": [
+     "61-am-9"
+    ],
+    "note": "確認済み[S1]。2023年版のCQ-3(NMESまたは床上エルゴメーター)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jjrmc/61/6/61_61.444/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "JSICMエキスパートコンセンサス2017(電気刺激)",
+    "target": "筋力低下の予防効果の評価",
+    "value": "集中治療領域での電気刺激療法は、筋力低下を予防するエビデンスが十分でない(安全性・実施可能性は報告されている)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "2017年版は「エビデンス不十分」、2023年版(J-ReCIP)は「弱く推奨」と推奨が異なる。新しい2023年版を優先して学ぶ。[S1]",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "infection-precautions",
   "name": "感染予防策(標準予防策・感染経路別予防策)",
   "category": "リスク管理",
@@ -9587,6 +13023,141 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "inph-hakim-triad",
+  "name": "特発性正常圧水頭症(iNPH)・Hakim三徴",
+  "category": "診断基準・分類",
+  "aliases": [
+   "iNPH",
+   "NPH",
+   "正常圧水頭症",
+   "特発性正常圧水頭症",
+   "Hakim三徴",
+   "Hakim",
+   "Evans index",
+   "DESH",
+   "タップテスト",
+   "髄液排除試験",
+   "腰椎-腹腔シャント",
+   "脳室-腹腔シャント"
+  ],
+  "rows": [
+   {
+    "item": "三徴(歩行障害・認知障害・排尿障害)",
+    "target": "特発性正常圧水頭症の主症状",
+    "value": "先行疾患なく脳室拡大が生じ、髄液圧は正常で、認知障害・歩行障害・排尿障害の3つが緩徐に進行する",
+    "exam": "59-pm-5(自発性低下・行動異常・頻回な転倒に加え、考えられる特徴的な症状=排尿障害が正答)／51-pm-99(みられる所見=脳室拡大・小刻み歩行・自発性低下。腰椎-腹腔シャント術)",
+    "q": [
+     "59-pm-5",
+     "51-pm-99"
+    ],
+    "note": "確認済み[S1]。三徴=歩行・認知・排尿の障害",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "三徴それぞれの特徴",
+    "target": "症状の見分け方",
+    "value": "歩行=歩幅が小さい・すり足・開脚(外股)・すくみ足・方向転換で不安定・転倒しやすい／認知=精神運動速度の低下・注意障害・無為(アパシー)など前頭葉機能障害が目立ち、記憶障害は比較的軽い／排尿=過活動膀胱(頻尿から切迫性尿失禁)",
+    "exam": "59-pm-5(自発性低下=アパシー、頻回な転倒=歩行障害に当たり、残る排尿障害が正答)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "髄液所見(圧・細胞数・蛋白)",
+    "target": "iNPHの髄液",
+    "value": "髄液圧は正常(20cmH2O以下)。細胞数・蛋白も正常。probable iNPHの条件に含まれる",
+    "exam": "51-pm-99(特発性正常圧水頭症で誤り=髄液で細胞増加が正答)",
+    "q": [
+     "51-pm-99"
+    ],
+    "note": "確認済み[S1]。細胞数は正常なので『細胞増加』は誤り",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "診断の段階(suspected・possible・probable・definite)",
+    "target": "診療ガイドライン第3版の診断分類",
+    "value": "possible=60歳以上・脳室拡大(Evans index>0.3)・三徴のうち1つ以上があり、他疾患で説明できず、水頭症の明らかな先行疾患がない／probable=さらにDESH所見+歩行障害+髄液圧・性状が正常、またはタップテストで三徴が改善／definite=シャント術後に三徴が客観的に改善",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "画像所見(Evans index・DESH)",
+    "target": "iNPHの画像診断",
+    "value": "Evans index=両側側脳室前角間最大幅÷同一断面の頭蓋内腔横径。0.3を超えると脳室拡大。DESH=脳室拡大+シルビウス裂の拡大+高位円蓋部・正中部のくも膜下腔の狭小化(脳梁角が90度以下に鋭角化)",
+    "exam": "51-pm-99(みられる所見として脳室拡大)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "タップテスト(髄液排除試験)",
+    "target": "シャント術の適応判断",
+    "value": "腰椎穿刺で髄液を30〜50mL排除し、前後で三徴を評価して改善を確認する。改善の目安=TUG・10m歩行の所要時間10%以上短縮、MMSE 3点以上、FAB 2点以上、iNPHGS 1以上、mRS 1以上の改善",
+    "exam": "出題は直接なし(参考。腰椎穿刺で髄液を排出して歩行が改善する状態=正常圧水頭症)",
+    "q": [],
+    "note": "確認済み[S1]。タップ陰性でもシャント後に改善する場合があるとされる",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   },
+   {
+    "item": "シャント術と認知機能の改善",
+    "target": "手術で改善しうる認知障害",
+    "value": "適切にシャント手術を行うと80%でADLが改善し、46%で他覚的な認知障害が消失すると報告される。術式にはLP(腰部くも膜下腔-腹腔)・VP(脳室-腹腔)・VA(脳室-心房)シャントがある",
+    "exam": "51-am-92(脳外科的手術で認知機能が改善しうる疾患=慢性硬膜下血腫・正常圧水頭症が正答)",
+    "q": [
+     "51-am-92"
+    ],
+    "note": "確認済み[S1](正常圧水頭症の部分のみ。慢性硬膜下血腫はこの資料では確認していない)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jnph.umin.jp/file/guideline20250717.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -10003,6 +13574,121 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "jddst-r-denver",
+  "name": "JDDST-R・DDST(デンバー式発達スクリーニング検査)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "JDDST-R",
+   "JDDST",
+   "DDST",
+   "DDST-Ⅱ",
+   "DDST-II",
+   "DDSTⅡ",
+   "DDST Ⅱ",
+   "Denver II",
+   "デンバー式発達スクリーニング検査",
+   "デンバー発達判定法",
+   "改訂日本版デンバー式",
+   "J-Denver II",
+   "デンバーⅡ",
+   "デンバーII"
+  ],
+  "rows": [
+   {
+    "item": "発達スクリーニング検査であること(知能検査ではない)",
+    "target": "検査の種類の見分け",
+    "value": "DDST系は、乳幼児の発達の遅れや偏りをふるい分ける(スクリーニング)検査。原版DDSTの結果は、デンバー市の乳幼児の標準的発達に基づく基準で「異常・疑問・正常」に判定する。日本版のDenver II(J-Denver II)は、遅れの疑いは分かるが、どの領域が遅れているかまでは特定できない。",
+    "exam": "53-pm-85(知能検査はどれか。正答=WISC-Ⅲ。JDDST-Rは誤答選択肢で、発達のスクリーニング検査)／57-pm-85(発達評価はどれか。正答=DDST Ⅱ。WAIS-Ⅲ・WISC-Ⅲ・K-ABC Ⅱ・WPPSI-Ⅱは誤答)",
+    "q": [
+     "53-pm-85",
+     "57-pm-85"
+    ],
+    "note": "確認済み[S1][S2]。[S1]は原版DDST、[S2]は日本版Denver IIの記載。JDDST-R(改訂日本版)そのものの手引き・月齢表は入手できなかった。本カードは、日本版Denver II(J-Denver II)・米国版Denver IIの公開資料で確認できた範囲に限る。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.niph.go.jp/wadai/mhlw/1976/s5105004.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6899956/"
+     }
+    ]
+   },
+   {
+    "item": "構成と通過率の区分(25・50・75・90%)",
+    "target": "結果の読み方",
+    "value": "4つの領域(個人-社会・言語・微細運動-適応・粗大運動)。各項目について、その課題を子どもの25%・50%・75%・90%ができる月齢を標準枠として示す。90%の子どもができる課題ができない=「遅れ(delay)」、75〜90%の子どもができる課題ができない=「注意(caution)」。遅れが1つ以上、または注意が2つ以上で、発達の遅れの疑い(スクリーニング陽性)。",
+    "exam": "59-am-83(JDDST-Rで「母指と示指によるつまみ動作」の通過率75%が含まれる時期はどれか。選択肢は3〜4・6〜7・9〜10・12〜13・15〜16か月で、公式正答は12〜13か月。この月齢はJDDST-R原典の表で確かめられていない)",
+    "q": [
+     "59-am-83"
+    ],
+    "note": "確認済み[S2](J-Denver IIの構成と判定)。「注意」「遅れ」の判定のしかたはJDDST-Rでは別の書き方の可能性があり、JDDST-Rの項目別の月齢(つまみ動作の75%など)は資料で確認できていない。JDDST-R(改訂日本版)そのものの手引き・月齢表は入手できなかった。本カードは、日本版Denver II(J-Denver II)・米国版Denver IIの公開資料で確認できた範囲に限る。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6899956/"
+     }
+    ]
+   },
+   {
+    "item": "乳児期の発達のマイルストン(Denver IIで90%以上ができる月齢)",
+    "target": "月齢の目安",
+    "value": "個人-社会: 0か月 顔を見つめる→3か月 笑いかける→4か月 手をみつめる→6か月 玩具をとる→8か月 自分で食べる→12か月 拍手をまねる・欲しいものを示す・バイバイ。微細運動-適応: 4か月 ガラガラを握る・両手を合わす→5か月 物に手を伸ばす→10か月 親指を使ってつかむ。言語: 8か月 パ・ダ・マなどをいう→10か月 喃語→12か月 意味なく「パパ」「ママ」。粗大運動: 3か月 首がすわる→6か月 寝返り→8か月 座れる(5秒以上)→10か月 つかまり立ち・一人ですわる→11か月 つかまって立ち上がる。",
+    "exam": "54-am-86(JDDST-Rの個人-社会領域で最も早く可能になるのはどれか。正答=ビスケットを自分で食べる。誤答=手を洗ってふく・簡単なお手伝い・コップから飲む・上着などを脱ぐ)",
+    "q": [
+     "54-am-86"
+    ],
+    "note": "確認済み[S3]。これは米国版Denver IIで90%以上ができる月齢を使った健診マニュアルの表で、JDDST-Rの数値ではない。国試の正答は公式正答表による。ただし「自分で食べる」が乳児期の早い項目(8か月)である点は、国試の正答と同じ向き。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.cfa.go.jp/assets/contents/node/basic_page/field_ref_resources/0b505d2e-87a3-488b-a78c-46a38fbcf38b/94412340/20250722_policies_boshihoken_manuals-etc_19.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Denver II の改訂(米国版・1992年)",
+    "target": "検査の成り立ち",
+    "value": "旧版DDSTから改訂され、125項目になった。言語項目が86%増え、構音の項目が加わり、新しい年齢の目盛り、より軽い遅れを見つける新しい判定区分(注意)、行動評価尺度が加わった。項目は、実施・採点のしやすさや再現性などに加え、「90%の子どもができる年齢が段階的に進むこと」を条件に選ばれた。",
+    "exam": "出題は直接なし(参考。57-pm-85のDDST Ⅱはこの改訂版)",
+    "q": [],
+    "note": "確認済み[S4]。125項目は米国版Denver IIの数で、JDDST-Rの項目数とは別。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1370185/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6899956/"
+     }
+    ]
+   },
+   {
+    "item": "日本版Denver II(J-Denver II)",
+    "target": "日本での標準化",
+    "value": "原版Denver IIの項目のうち、日本の文化に合わない3項目を除き、日本の子ども1,819人で再標準化した。判定基準は原版と同じ。英語版の基準では、発達が遅れている子どもを多めに見積もる可能性が指摘されている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。JDDST-R(1980年代の改訂日本版)とJ-Denver IIは別の版。JDDST-R(改訂日本版)そのものの手引き・月齢表は入手できなかった。本カードは、日本版Denver II(J-Denver II)・米国版Denver IIの公開資料で確認できた範囲に限る。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6899956/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "joint-position-sense",
   "name": "関節位置覚の検査法(模倣法・再現法・母指探し試験)",
   "category": "検査法・徴候",
@@ -10076,6 +13762,188 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "kafo-checkout",
+  "name": "長下肢装具の適合判定(チェックアウト)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "長下肢装具",
+   "両側支柱付長下肢装具",
+   "骨盤帯付長下肢装具",
+   "下肢装具の適合",
+   "装具の適合判定",
+   "チェックアウト",
+   "下腿半月",
+   "大腿半月",
+   "大腿カフ",
+   "外側支柱",
+   "内側支柱",
+   "膝継手軸",
+   "足継手軸",
+   "股継手軸",
+   "KAFO",
+   "LLB"
+  ],
+  "rows": [
+   {
+    "item": "下腿半月(下腿カフ)上縁の高さ",
+    "target": "長下肢装具の適合判定(下腿部)",
+    "value": "上縁は腓骨頭下端から2〜3cm下。腓骨頭の下を浅く走る腓骨神経をカフで圧迫しないため。",
+    "exam": "49-pm-40(正答:下腿半月上縁は腓骨頭から2〜3cm下方)／61-am-24(誤答:腓骨頭から5〜6cm下)／52-pm-30(誤答:腓骨頭下端の直下)／51-pm-41(誤答:下半月は腓骨頭上端)",
+    "q": [
+     "49-pm-40",
+     "51-pm-41",
+     "52-pm-30",
+     "61-am-24"
+    ],
+    "note": "確認済み[S1][S2](国試解説サイト。公的資料では数値を未確認)。国試の正答(49-pm-40)と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nazenani-sougu.com/kokushi/pt53-am13/"
+     },
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "大腿近位の支柱・カフ上縁の高さ(外側・内側)",
+    "target": "長下肢装具の適合判定(大腿部・装具の全長)",
+    "value": "外側:大転子下端から2〜3cm下。内側:会陰部から2〜3cm下。大転子や会陰部に支柱・カフが食い込まないための設定。",
+    "exam": "49-pm-40(正答:内側支柱は会陰部から2〜3cm下。誤答:外側支柱は上前腸骨棘から2〜3cm下)／61-am-24(誤答:外側支柱の高さは大転子)",
+    "q": [
+     "49-pm-40",
+     "61-am-24"
+    ],
+    "note": "確認済み[S1][S2](国試解説サイト)。国試の正答(49-pm-40)と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nazenani-sougu.com/kokushi/pt53-am13/"
+     },
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "大腿遠位カフと下腿カフの位置関係",
+    "target": "長下肢装具の適合判定(カフの位置)",
+    "value": "大腿遠位カフの位置は下腿カフで決まる。下腿カフ上縁と大腿遠位カフ下縁が、膝継手から等距離になるように設定する(膝を最大屈曲すると両カフの縁が接する位置関係)。",
+    "exam": "61-am-24(正答:大腿下位半月と膝継手の距離=下腿半月と膝継手の距離)",
+    "q": [
+     "61-am-24"
+    ],
+    "note": "確認済み[S1][S2](国試解説サイト)。国試の正答と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nazenani-sougu.com/kokushi/pt53-am13/"
+     },
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "膝継手軸の位置",
+    "target": "長下肢装具の適合判定(膝継手)",
+    "value": "前額面:内転筋結節と膝関節裂隙の中間点の高さを通る。矢状面:膝の前後径の1/2の点と後方1/3の点の中間点を通る。1軸の継手を膝関節の回転中心に比較的近く置く。",
+    "exam": "52-pm-30(正答:矢状面で前後径の1/2と後方1/3の中間点)／49-pm-40(誤答:膝継手の高さは膝関節の関節裂隙)／51-pm-41(誤答:膝継手―膝関節裂隙中央)／61-am-24(誤答:大腿骨顆部の2〜3cm下)",
+    "q": [
+     "49-pm-40",
+     "51-pm-41",
+     "52-pm-30",
+     "61-am-24"
+    ],
+    "note": "確認済み[S2](国試解説サイト)。国試の正答(52-pm-30)と一致し、「関節裂隙の高さ」とする選択肢が誤答になる点とも矛盾しない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "足継手軸の位置",
+    "target": "長下肢装具の適合判定(足継手)",
+    "value": "前額面:外果の中央(内果下端)を通り、床面に平行。水平面:外果中央を通り足部中心線に直交。個人差が大きいので、実際は反対側とのバランスも見て調整することがある。",
+    "exam": "51-pm-41(正答:足継手は内果下端)／52-pm-30(誤答:足継手軸は内果中央)／49-pm-40(誤答:外果下端に合わせる)／61-am-24(誤答:内果と外果の中央を結ぶ線)",
+    "q": [
+     "49-pm-40",
+     "51-pm-41",
+     "52-pm-30",
+     "61-am-24"
+    ],
+    "note": "確認済み[S2](国試解説サイト)。国試の正答(51-pm-41)と一致。「外果中央」と「内果下端」は同じ高さを指す書き方で、覚えるときは国試の言い回し(内果下端)に合わせるとよい。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "骨盤帯・股継手軸の位置(骨盤帯付長下肢装具)",
+    "target": "骨盤帯付長下肢装具の適合判定",
+    "value": "股継手軸:大転子から前方1〜2cm、上方2cmの点。骨盤帯:側面では腸骨稜と大転子の中間、背面では上後腸骨棘と仙骨下縁の中間。",
+    "exam": "52-pm-30(誤答:骨盤帯は腸骨稜と上前腸骨棘の間／股継手軸は小転子より2cm上方)／51-pm-41(誤答:骨盤帯―腸骨稜頂点、股継手―大転子上端)",
+    "q": [
+     "51-pm-41",
+     "52-pm-30"
+    ],
+    "note": "確認済み[S2](国試解説サイト)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "身体と装具のすき間(クリアランス)",
+    "target": "両側支柱付き装具の適合判定",
+    "value": "両側支柱付きの装具では、通常2〜3mm程度のすき間を設ける。内果・外果などの骨突起部は5mm程度。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2](国試解説サイト)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://nazenani-sougu.com/kokushi/pt52-pm30/"
+     }
+    ]
+   },
+   {
+    "item": "長下肢装具の基本構造(両側支柱型)",
+    "target": "長下肢装具の定義",
+    "value": "大腿上部から足底に及び、膝関節と足関節の動きを制御する装具。両側支柱型は、下肢の内外両側に金属支柱を持ち、大腿部と下腿部でそれぞれ両支柱を結ぶ金属の半月を持つ。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3](厚生労働省の補装具費支給事務ガイドブック)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -10646,6 +14514,89 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "lift-off-test",
+  "name": "Lift-offテスト(Gerber)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Lift-offテスト",
+   "Lift-off test",
+   "lift-off sign",
+   "リフトオフテスト",
+   "リフトオフ",
+   "Gerberテスト",
+   "Gerber test",
+   "肩甲下筋テスト",
+   "手背を腰部"
+  ],
+  "rows": [
+   {
+    "item": "Lift-offテストの手技と陽性",
+    "target": "肩甲下筋(肩関節内旋筋)の機能・断裂",
+    "value": "手背を腰部(腰椎の中ほど)に当てた位置から、手を背中から後方へ離すように自分で持ち上げさせる。離せない、離した位置を保てない(支えを外すと戻る=lag)、肘や肩の伸展で代償する場合を陽性とし、肩甲下筋の断裂や著しい筋力低下を示唆する。前提として、手が腰まで届く十分な他動の内旋ができることを確認する(できないと偽陽性になる)",
+    "exam": "54-pm-5(正答: 肩甲下筋。20歳男性、肩の疼痛。図の肢位から手背を腰部から離すよう指示したが離せなかった。誤答: 棘下筋・棘上筋・小円筋・上腕二頭筋。図は未確認)",
+    "q": [
+     "54-pm-5"
+    ],
+    "note": "確認済み[S1][S2]。国試の「手背を腰部から離せない」は陽性所見に一致",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12127584/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+     }
+    ]
+   },
+   {
+    "item": "原法と位置づけ",
+    "target": "検査の成り立ち",
+    "value": "Gerberらが1991年に、肩甲下筋腱の孤立性断裂16例の報告の中で示した簡便な手技で、臨床的に意味のある断裂を診断または除外できるとした(内旋筋力の低下・外旋の増加も所見)。肩甲下筋の完全性をみるために最初に考案された検査で、のちに internal rotation lag sign、belly-press test(変法がNapoleon test)、belly-off sign、bear-hug test が報告された",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3][S4]。確定診断には超音波・MRIなどの画像を用いる(原著)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1670434/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822023/"
+     }
+    ]
+   },
+   {
+    "item": "診断精度(特異度は高いが感度は低い)",
+    "target": "結果の読み方",
+    "value": "メタ解析(13研究)では、bear-hug・belly-press・internal rotation lag sign・lift-offの4検査はいずれもまとめた特異度が0.90超、感度は0.60未満で、どれも単独では肩甲下筋断裂の診断に十分とはいえない。陽性は断裂の確認に役立つが、陰性でも否定できない。感度の報告は研究で幅があり、18〜35%とする報告から、前向き144例の研究での77.4%まである",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S4][S1]。研究ごとの対象・基準(関節鏡・超音波・MRI)や部分断裂か全層断裂かで値が変わる",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8822023/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13566503/"
+     },
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12127584/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "limb-circumference",
   "name": "周径の測定(四肢・断端・下腿周囲長・胸囲)",
   "category": "検査法・徴候",
@@ -10882,6 +14833,114 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "liver-failure-signs-labs",
+  "name": "肝不全(肝機能低下)の症候と検査値",
+  "category": "臨床検査",
+  "aliases": [
+   "肝不全",
+   "肝機能不全",
+   "肝臓の機能不全",
+   "肝機能低下",
+   "肝硬変",
+   "非代償性肝硬変",
+   "肝性脳症",
+   "出血傾向",
+   "Child-Pugh分類",
+   "Child-Pugh",
+   "チャイルド・ピュー分類",
+   "高アンモニア血症"
+  ],
+  "rows": [
+   {
+    "item": "肝不全・肝硬変で起こる症候",
+    "target": "病態の見分け方",
+    "value": "肝細胞の機能が全体に低下し、腹水・肝性脳症(意識障害)・黄疸・出血傾向などが現れる。黄疸・腹水・肝性脳症がそろうものが非代償性肝硬変。肝不全に陥ると腹水・肝性脳症・消化管出血を合併する。",
+    "exam": "49-pm-76(肝臓の機能不全で起こらないのは=高コレステロール血症が正答。黄疸・腹水・出血傾向・意識障害は起こる)／58-am-92(肝不全でみられるのは=腹水貯留が正答。誤答は脳炎・裂肛・血小板増加・高アルブミン血症)",
+    "q": [
+     "49-pm-76",
+     "58-am-92"
+    ],
+    "note": "確認済み[S1]。資料の脳の症状は「肝性脳症」で、脳炎や裂肛の記載はない。主に肝硬変(慢性)の資料で、急性肝不全は別の病態。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsge.or.jp/committees/guideline/disease/pdf/kankouhen_2023.pdf"
+     }
+    ]
+   },
+   {
+    "item": "血液検査の変化",
+    "target": "肝臓の合成・処理能力の低下",
+    "value": "合成能の低下: 血中アルブミンと総コレステロールが低下、血液を固める蛋白が減り固まりにくくなる(PT活性値の低下)。処理能の低下: ビリルビンやヒアルロン酸が上昇。脾臓の腫れ(脾腫)により血小板が破壊されて減少する。",
+    "exam": "49-pm-76(誤答選択肢の高コレステロール血症は逆で、総コレステロールは低下)／58-am-92(誤答選択肢の血小板増加・高アルブミン血症は逆で、血小板減少・低アルブミン血症)",
+    "q": [
+     "49-pm-76",
+     "58-am-92"
+    ],
+    "note": "確認済み[S1]。これらの値は条件で変わり、単独では肝硬変と診断できない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsge.or.jp/committees/guideline/disease/pdf/kankouhen_2023.pdf"
+     }
+    ]
+   },
+   {
+    "item": "肝性脳症とアンモニア",
+    "target": "意識障害の原因",
+    "value": "肝臓の働きの低下や、肝臓を迂回するシャントのため、アンモニアなど本来処理される物質が脳に届いて意識障害を起こす。血漿アンモニア値が上昇し、指標になる。程度は軽いものから昏睡まで。慢性の肝性脳症のほとんどは肝硬変による。",
+    "exam": "49-pm-76(意識障害は起こる=選択肢の一つ)",
+    "q": [
+     "49-pm-76"
+    ],
+    "note": "確認済み[S1]。症状とアンモニア値には時間的なずれがありうる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsge.or.jp/committees/guideline/disease/pdf/kankouhen_2023.pdf"
+     }
+    ]
+   },
+   {
+    "item": "腹水",
+    "target": "肝硬変の腹水",
+    "value": "肝硬変では血液を肝臓が受け入れにくくなり、一部が腹水となって腹腔に漏れる。腹水は淡黄色で、蛋白やアルブミンの濃度が低く、通常は無菌。血中アルブミンが下がると、水分を血管内に引きつける力が弱まり、腹水がたまりやすくなる。",
+    "exam": "58-am-92(正答の腹水貯留)",
+    "q": [
+     "58-am-92"
+    ],
+    "note": "確認済み[S1]。腹水は腹膜炎・がん・腎不全・心不全などでもたまる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsge.or.jp/committees/guideline/disease/pdf/kankouhen_2023.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Child-Pugh分類",
+    "target": "肝硬変の重症度",
+    "value": "5項目を1〜3点で採点してクラスA・B・Cに分ける。肝性脳症(なし/軽度/時々昏睡)、腹水(なし/少量/中等量)、ビリルビン(2.0未満/2.0〜3.0/3.0超 mg/dL)、アルブミン(3.5超/2.8〜3.5/2.8未満 g/dL)、PT活性値(70超/40〜70/40未満 %)。代償性はクラスA、非代償性はクラスB・C。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。合計点とクラスの対応は資料の表を参照。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsge.or.jp/committees/guideline/disease/pdf/kankouhen_2023.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -11518,6 +15577,300 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "macrocytic-anemia-mcv",
+  "name": "大球性貧血と貧血のMCV分類",
+  "category": "臨床検査",
+  "aliases": [
+   "大球性貧血",
+   "大型の赤血球",
+   "大型赤血球",
+   "大赤血球",
+   "巨赤芽球性貧血",
+   "悪性貧血",
+   "葉酸欠乏性貧血",
+   "ビタミンB12欠乏",
+   "小球性貧血",
+   "正球性貧血",
+   "平均赤血球容積"
+  ],
+  "rows": [
+   {
+    "item": "大球性貧血(MCV 100 fL超)の代表",
+    "target": "末梢血に大型の赤血球が出る貧血",
+    "value": "大球性貧血の代表は巨赤芽球性貧血(ビタミンB12欠乏=悪性貧血・胃切除後、葉酸欠乏)。そのほか肝疾患、甲状腺機能低下症、骨髄異形成症候群、白血病、抗腫瘍剤、アルコール多飲でも大球性になる。網赤血球が増えると(急性出血・溶血性貧血)MCVは上がることがある。",
+    "exam": "53-pm-92(末梢血に大型の赤血球が出現するのはどれか。正答は葉酸欠乏性貧血。誤答は再生不良性貧血・消化管出血・鉄欠乏性貧血・溶血性貧血)",
+    "q": [
+     "53-pm-92"
+    ],
+    "note": "確認済み[S1][S2]。資料の表では、急性出血や溶血性貧血も網赤血球増加によりMCVが上がる(大球性側にも載る)。国試は典型例として葉酸欠乏を正答としており、溶血性貧血を誤答とする点が資料の書き方と一致しない。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.japha.jp/doc/2107ga-01.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/11-%E8%A1%80%E6%B6%B2%E5%AD%A6%E3%81%8A%E3%82%88%E3%81%B3%E8%85%AB%E7%98%8D%E5%AD%A6/%E8%B5%A4%E8%A1%80%E7%90%83%E7%94%A3%E7%94%9F%E4%BD%8E%E4%B8%8B%E3%81%AB%E3%82%88%E3%82%8B%E8%B2%A7%E8%A1%80/%E5%B7%A8%E8%B5%A4%E8%8A%BD%E7%90%83%E6%80%A7%E8%B2%A7%E8%A1%80"
+     }
+    ]
+   },
+   {
+    "item": "貧血のMCVによる分類",
+    "target": "貧血の鑑別の最初の手がかり",
+    "value": "小球性(MCV 80 fL未満)=鉄欠乏性貧血・二次性貧血・サラセミア・鉄芽球性貧血。正球性(80〜100 fL)=出血性貧血・溶血性貧血・再生不良性貧血・赤芽球癆・二次性貧血・白血病・骨髄異形成症候群・多発性骨髄腫。大球性(100 fL超)=巨赤芽球性貧血(B12・葉酸欠乏)など。",
+    "exam": "53-pm-92(誤答の再生不良性貧血は正球性、鉄欠乏性貧血は小球性)",
+    "q": [
+     "53-pm-92"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.japha.jp/doc/2107ga-01.pdf"
+     }
+    ]
+   },
+   {
+    "item": "大球性の程度と疑う疾患",
+    "target": "MCVの値からの絞り込み",
+    "value": "軽度大球性(MCV 100〜120 fL)なら肝疾患・甲状腺機能低下症・骨髄異形成症候群・アルコール多飲・網赤血球増加を疑う。高度大球性(120 fL超)ならまず悪性貧血と胃切除後貧血(巨赤芽球性貧血)を疑う。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.japha.jp/doc/2107ga-01.pdf"
+     }
+    ]
+   },
+   {
+    "item": "巨赤芽球性貧血の血液塗抹所見",
+    "target": "形態の特徴",
+    "value": "大型で楕円形の赤血球(大楕円赤血球)、赤血球の大小不同・形の不ぞろい、好中球の過分葉がみられる。ハウエル・ジョリー小体もよくみられる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。鉄欠乏を合併すると大赤血球が目立たないことがある。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/11-%E8%A1%80%E6%B6%B2%E5%AD%A6%E3%81%8A%E3%82%88%E3%81%B3%E8%85%AB%E7%98%8D%E5%AD%A6/%E8%B5%A4%E8%A1%80%E7%90%83%E7%94%A3%E7%94%9F%E4%BD%8E%E4%B8%8B%E3%81%AB%E3%82%88%E3%82%8B%E8%B2%A7%E8%A1%80/%E5%B7%A8%E8%B5%A4%E8%8A%BD%E7%90%83%E6%80%A7%E8%B2%A7%E8%A1%80"
+     }
+    ]
+   },
+   {
+    "item": "ビタミンB12欠乏・葉酸欠乏の原因",
+    "target": "巨赤芽球性貧血の背景",
+    "value": "B12欠乏で最も多いのは、内因子の分泌障害による悪性貧血。胃炎・胃バイパス術・クローン病・条虫感染での吸収不良も原因。食事だけが原因になるのはまれ(完全菜食など)。葉酸欠乏は、食事制限・慢性飲酒・食欲不振、吸収不良(セリアック病など)、妊娠や慢性溶血などの需要増加で起こる。",
+    "exam": "53-pm-92(正答の葉酸欠乏性貧血の背景)",
+    "q": [
+     "53-pm-92"
+    ],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/11-%E8%A1%80%E6%B6%B2%E5%AD%A6%E3%81%8A%E3%82%88%E3%81%B3%E8%85%AB%E7%98%8D%E5%AD%A6/%E8%B5%A4%E8%A1%80%E7%90%83%E7%94%A3%E7%94%9F%E4%BD%8E%E4%B8%8B%E3%81%AB%E3%82%88%E3%82%8B%E8%B2%A7%E8%A1%80/%E5%B7%A8%E8%B5%A4%E8%8A%BD%E7%90%83%E6%80%A7%E8%B2%A7%E8%A1%80"
+     }
+    ]
+   },
+   {
+    "item": "網赤血球(RET)による貧血の鑑別",
+    "target": "MCVに次ぐ手がかり",
+    "value": "網赤血球が増加=急性出血・溶血性貧血(回復期)を疑う。高度に減少=赤芽球癆を疑う。正常〜減少=骨髄低形成・造血器腫瘍・二次性貧血・鉄/ビタミンB12/葉酸欠乏・薬剤性など。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.japha.jp/doc/2107ga-01.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "mallet-finger-hand-injuries",
+  "name": "槌指(マレット指)と手指の外傷・腱鞘炎(ばね指・ボクサー骨折)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "槌 指",
+   "マレット指",
+   "マレット変形",
+   "マレットフィンガー",
+   "mallet finger",
+   "ばね指",
+   "弾発指",
+   "ボクサー骨折",
+   "突き指"
+  ],
+  "rows": [
+   {
+    "item": "槌指(マレット指)の病態と所見",
+    "target": "ボールが指先に当たるなどで生じる指先の屈曲変形",
+    "value": "伸筋腱が末節骨の付着部から剥離し(骨片を伴うこともある)、DIP関節が屈曲位になる。自分では伸ばせないが、他人が動かせば容易に伸ばせる(自動伸展不能・他動伸展可能)。受傷直後は腫れ・皮下出血、爪下血腫を伴うことがある",
+    "exam": "53-pm-18(手にバスケットボールが当たって受傷、手指の写真とX線 → 槌指が正答。誤答:ばね指・ボクサー骨折・ムチランス変形・Bennett骨折)",
+    "q": [
+     "53-pm-18"
+    ],
+    "note": "確認済み[S1]。写真・X線の図は未確認。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/捻挫およびその他の軟部組織損傷/槌指"
+     }
+    ]
+   },
+   {
+    "item": "槌指の画像診断と治療",
+    "target": "診断の進め方と固定",
+    "value": "通常は診察で診断。X線は骨折の有無の確認で、骨折は側面像でわかる(腱断裂のみならX線が正常のこともある)。治療は背側副子でDIP関節を伸展位に固定して6〜8週間。関節面の25%を超える骨折や亜脱臼を伴う骨折は手術が必要になることがある",
+    "exam": "53-pm-18(手指の写真とX線から槌指を選ぶ設問)",
+    "q": [
+     "53-pm-18"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/22-外傷と中毒/捻挫およびその他の軟部組織損傷/槌指"
+     }
+    ]
+   },
+   {
+    "item": "ばね指(弾発指)",
+    "target": "指の屈筋腱と腱鞘の炎症(槌指との区別)",
+    "value": "指が屈曲位で動かなくなり、パチンと音を立てて突然伸展する。屈伸時に弾発現象やロッキング、指の付け根に圧痛・結節。関節リウマチや糖尿病に多い。診断は臨床所見中心で、画像検査は通常不要。治療は副子・温熱・NSAIDs、無効ならステロイド注射、さらに手術(腱鞘を解放)",
+    "exam": "53-pm-18(誤答選択肢。ボール外傷後のDIP関節が伸ばせない変形ではない)",
+    "q": [
+     "53-pm-18"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/弾発指-狭窄性屈筋腱腱鞘炎"
+     }
+    ]
+   },
+   {
+    "item": "ボクサー骨折(中手骨骨折)",
+    "target": "硬いものを殴って生じる中手骨の骨折",
+    "value": "壁や人の顎など硬いものを殴ったときに多いため「ボクサー骨折」と呼ばれる。指の関節が腫れて圧痛があり、骨片がずれたり回転したりして指の位置がずれることがある。診断は複数方向のX線。治療は整復(必要時)と副子固定を数週間。口の歯で皮膚が傷つくと感染に注意",
+    "exam": "53-pm-18(誤答選択肢。ボール外傷で指先が伸ばせなくなる所見は槌指)",
+    "q": [
+     "53-pm-18"
+    ],
+    "note": "確認済み[S1]。第5中手骨頸部骨折という具体的な部位は、この資料では確認していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/home/25-外傷と中毒/骨折/手のひらの骨折"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "master-two-step-test",
+  "name": "マスター二階段試験(Master two-step test)",
+  "category": "臨床検査",
+  "aliases": [
+   "マスター二階段試験",
+   "マスター2階段負荷試験",
+   "マスターシングル試験",
+   "Master's two-step test",
+   "Master two-step",
+   "Master 2-step",
+   "Master's step test"
+  ],
+  "rows": [
+   {
+    "item": "負荷の型:単一段階(固定負荷)",
+    "target": "運動負荷試験の分類",
+    "value": "マスター2階段試験は、一定の負荷量を開始から終了まで続ける「単一段階負荷」。負荷量を時間ごとに増やす「多段階負荷」はトレッドミル(Bruce法など)・自転車エルゴメータ",
+    "exam": "54-am-23(正答:固定負荷にて行う運動負荷試験=マスターシングルテスト)／50-pm-46(「運動負荷量を段階的に増加させる評価法」の正答はBruce法。マスターシングルテストは誤答)／58-am-19(退院時の運動機能評価:正答は6分間歩行テスト、マスターシングルテスト・ハンドグリップテストは誤答)",
+    "q": [
+     "54-am-23",
+     "50-pm-46",
+     "58-am-19"
+    ],
+    "note": "確認済み[S1]。Bruce法が多段階であることは[S1]でトレッドミルの代表的プロトコールとして触れられている",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.kango-roo.com/learning/1502/"
+     }
+    ]
+   },
+   {
+    "item": "方法:台の高さ・昇降回数・時間",
+    "target": "シングル負荷とダブル負荷",
+    "value": "高さ9インチ(23 cm)の凸型2段の台。年齢・性別・体重から求めた昇降回数を1分30秒で行う=シングル負荷。その2倍の回数を3分で行う=ダブル負荷",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。昇降回数は表から求める(具体的な表の値は未確認のため記載しない)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.kango-roo.com/learning/1502/"
+     }
+    ]
+   },
+   {
+    "item": "手順:心電図の記録",
+    "target": "手順",
+    "value": "座位で安静時の心電図→台の昇降(上下1回=6動作で、6動作目に回れ右して折り返す)→運動後ただちに椅子に座り、回復時の心電図を記録",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。大学紀要の記述で、方法の流れの確認用",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://hosei.ecats-library.jp/da/repository/00007169/29tomita.pdf"
+     }
+    ]
+   },
+   {
+    "item": "臨床での使われ方(心臓リハ)",
+    "target": "急性心筋梗塞の心臓リハ(クリニカルパス例)",
+    "value": "日本循環器学会ガイドライン(2021年改訂版)に示された急性心筋梗塞の10日パス例で、心臓リハビリのエントリーテスト非該当例の負荷として「マスターシングル試験またはシャワー浴負荷試験」が記されている",
+    "exam": "58-am-19(経皮的僧帽弁形成術後の退院時の運動機能評価では、マスターシングルテストは誤答。正答は6分間歩行テスト)",
+    "q": [
+     "58-am-19"
+    ],
+    "note": "確認済み[S3]。急性心筋梗塞のパスの記載であり、弁膜症の退院時評価への推奨ではない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -12212,6 +16565,140 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "meningeal-signs",
+  "name": "髄膜刺激徴候(項部硬直・Kernig徴候・Brudzinski徴候)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "髄膜刺激徴候",
+   "髄膜刺激症状",
+   "項部硬直",
+   "Kernig",
+   "Kernig徴候",
+   "Kernig sign",
+   "ケルニッヒ",
+   "Brudzinski",
+   "Brudzinski徴候",
+   "ブルジンスキー",
+   "項部徴候",
+   "nuchal rigidity",
+   "jolt accentuation"
+  ],
+  "rows": [
+   {
+    "item": "髄膜刺激徴候を誘発しやすい体位",
+    "target": "検査の姿勢",
+    "value": "国試の正答は長座位(選択肢は側臥位・端座位・長座位・背臥位・腹臥位)。資料で確認できたのは、Kernigは原法では坐位で行い、現在は背臥位で股・膝を直角に曲げて行うのが一般的、という点まで。「長座位」を誘発体位とする記載は確認できなかった。",
+    "exam": "60-pm-45(髄膜刺激徴候を誘発しやすい体位はどれか。正答=長座位)",
+    "q": [
+     "60-pm-45"
+    ],
+    "note": "[S2]を確認。国試の正答(長座位)と資料(坐位・背臥位)の表現が違うため食い違いとして残す。Kernig徴候は、炎症のある神経根が引き伸ばされるのを防ぐ、ハムストリングスの防御的な緊張として説明される[S2]。股関節を曲げて膝を伸ばす姿勢は、この伸張が加わる姿勢になる(資料の説明からの推論)。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548367/"
+     }
+    ]
+   },
+   {
+    "item": "項部硬直(nuchal rigidity)",
+    "target": "髄膜刺激徴候",
+    "value": "頸部を他動的または能動的に曲げる(屈曲)ときの抵抗。変形性頸椎症や、筋肉痛を伴うインフルエンザによる頸部のこわばりとは、「頸部の回旋はできるが屈曲ができない」点で区別される(髄膜刺激では主に屈曲が制限される)。出現までに時間がかかることがある。",
+    "exam": "59-pm-4(51歳女性、突然の意識障害、JCSⅢ-200、項部硬直陽性、発症時の頭部CTで疑う疾患=くも膜下出血(正答)。誤答は髄膜炎・脳腫瘍・脳膿瘍・急性硬膜下血腫)",
+    "q": [
+     "59-pm-4"
+    ],
+    "note": "確認済み[S1]。項部硬直は髄膜炎だけの所見ではない(くも膜下出血でも出る)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/髄膜炎/髄膜炎の概要"
+     }
+    ]
+   },
+   {
+    "item": "Kernig徴候",
+    "target": "髄膜刺激徴候",
+    "value": "背臥位で股関節と膝関節を直角に曲げ、検者が膝をゆっくり伸ばす。膝関節を135度以上(ほぼ伸びた角度)まで他動的に伸ばそうとして、抵抗または痛みが出れば陽性。原法では痛みは必須ではなかったが、臨床では痛みを陽性の条件に含める人が多い。",
+    "exam": "60-pm-82(深部感覚障害で陽性になるのはどれか。正答=Romberg徴候。Kernig徴候は誤答選択肢で、髄膜刺激徴候。他の誤答はBarré徴候・Lasègue徴候・カーテン徴候)",
+    "q": [
+     "60-pm-82"
+    ],
+    "note": "確認済み[S1][S2]。Lasègue徴候(SLR)は坐骨神経・神経根の伸張テストで別のカードあり。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/髄膜炎/髄膜炎の概要"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548367/"
+     }
+    ]
+   },
+   {
+    "item": "Brudzinski徴候(項部徴候)",
+    "target": "髄膜刺激徴候",
+    "value": "背臥位で、検者が片手を患者の後頭部の下、もう片手を胸に置き、頸部を他動的に前へ曲げる。股関節と膝関節が反射的に曲がれば陽性(完全でも部分的でもよい)。Brudzinskiは、一方の下肢を他動的に曲げると反対側の下肢が反射的に曲がる(対側下肢徴候)なども記載した。",
+    "exam": "出題は直接なし(参考。髄膜刺激徴候の仲間として)",
+    "q": [],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/髄膜炎/髄膜炎の概要"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548367/"
+     }
+    ]
+   },
+   {
+    "item": "くも膜下出血での項部硬直の出方",
+    "target": "くも膜下出血の症状",
+    "value": "突然の激しい頭痛が数秒でピークに達し、意識障害を伴うことがある。項部硬直は、小脳扁桃ヘルニアが起こらない限り、初期には通常みられない。24時間以内に化学性髄膜炎による髄膜刺激徴候と嘔吐が出ることがある。",
+    "exam": "59-pm-4(項部硬直陽性・JCSⅢ-200・突然の意識障害の症例からくも膜下出血を選ぶ。CT所見も合わせて判断する問題)",
+    "q": [
+     "59-pm-4"
+    ],
+    "note": "確認済み[S3]。国試の症例は項部硬直陽性だが、MSDは「初期には通常みられない」とする。項部硬直の有無だけで除外せず、突然発症・CT所見と合わせて判断する(本カードの整理)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/脳卒中/くも膜下出血-sah"
+     }
+    ]
+   },
+   {
+    "item": "髄膜刺激徴候の診断精度",
+    "target": "検査の限界",
+    "value": "感度は低く、特異度は高い。腰椎穿刺前の成人297人の前向き研究では、Kernig徴候・Brudzinski徴候の感度はどちらも5%、項部硬直は30%で、3つとも髄膜炎かどうかをうまく見分けられなかった(陽性尤度比はほぼ1)。ほかの報告でも感度は5〜27%、特異度は成人で約95%(Kernig・Brudzinski)。陰性でも髄膜炎は否定できないが、陽性なら可能性は高い、と整理されている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S4]。乳児(6か月未満)・高齢者・免疫低下・昏睡では徴候が出ないことがある[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3548367/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/12060874/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "metabolic-syndrome",
   "name": "メタボリックシンドロームの診断基準",
   "category": "診断基準・分類",
@@ -12732,6 +17219,332 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "moyamoya-disease",
+  "name": "もやもや病(脳血管造影・鈴木分類)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "もやもや病",
+   "ウィリス動脈輪閉塞症",
+   "もやもや血管",
+   "脳血管造影",
+   "脳血管造影検査",
+   "鈴木分類",
+   "類もやもや病",
+   "内頚動脈終末部",
+   "内頸動脈終末部"
+  ],
+  "rows": [
+   {
+    "item": "もやもや病とは",
+    "target": "疾患の概要",
+    "value": "日本人に多発する原因不明の進行性の脳血管閉塞症。脳血管撮影で、両側の内頚動脈終末部に狭窄または閉塞と、その周囲の異常血管網(もやもや血管)を認める。指定難病。",
+    "exam": "60-pm-15 正答=もやもや病(選択肢: 脳炎・脳腫瘍・もやもや病・硬膜動静脈瘻・アテローム性脳梗塞)。症例は25歳女性で、熱いラーメンを吹いて冷ましていると右の手足に力が入らなくなる症状が数分続き、脳血管造影(正面像・側面像)が示された。画像そのものはこのカードでは未確認。",
+    "q": [
+     "60-pm-15"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "小児例の症状と誘発因子",
+    "target": "一過性の脱力発作など",
+    "value": "小児例は脳虚血の症状で始まることが多く、意識障害・脱力発作(四肢麻痺・片麻痺・単麻痺)・感覚異常・不随意運動・けいれん・頭痛など。虚血発作は過呼吸(啼泣など)で誘発され、反復し、病側の左右が交代することもある。",
+    "exam": "60-pm-15 の「熱いものを吹く」ことで片側の脱力が数分続く、という経過に対応する。",
+    "q": [
+     "60-pm-15"
+    ],
+    "note": "確認済み[S1]。出典は「過呼吸(啼泣など)」と記載。熱い食べ物を吹く動作が過呼吸にあたることは、問題の状況からの学習用の補足。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "診断基準(画像)",
+    "target": "脳血管造影とMRI/MRA",
+    "value": "診断には脳血管造影などの画像診断が必須。脳血管造影では(1)頭蓋内内頚動脈終末部を中心とした領域の狭窄または閉塞、(2)動脈相でもやもや血管(異常血管網)がみられる。両側性・片側性を問わない。MRIでは1.5テスラ以上の機種で、MRAの内頚動脈終末部の狭窄または閉塞、heavy T2強調画像での両側の内頚動脈終末部・中大脳動脈水平部の血管外径の縮小、MRAでの脳底部・脳室周囲の異常血管網の3つがそろえば診断してよい。片側性や動脈硬化を合併する病変では、脳血管造影で他の疾患を除外することが必須。",
+    "exam": "60-pm-15 は脳血管造影の画像から疑う疾患を選ぶ問題。",
+    "q": [
+     "60-pm-15"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "発症年齢・性差・疫学",
+    "target": "好発年齢",
+    "value": "発症年齢は二峰性で、5〜10歳を中心とする高い山と30〜40歳を中心とする低い山がある。男女比は1:2.5(女性に多い)。有病率は10万人あたり3〜10.5人。家族性の発症が10〜20%。RNF213遺伝子の多型p.R4810Kが感受性遺伝子で、日本人患者の80〜90%が保因する。",
+    "exam": "60-pm-15 の患者は25歳の女性。",
+    "q": [
+     "60-pm-15"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "成人例の症状",
+    "target": "出血と虚血",
+    "value": "成人例は頭蓋内出血(多くは脳室内出血、そのほかくも膜下出血・脳内出血)が40〜50代を中心にみられ、成人例の30〜40%に頭蓋内出血を認める。虚血発作で発症する場合もあり、小児と同様に高度な脳循環不全を示す例も、症状が限局して軽い例もある。無症候で発見される例が増えている(3〜16%)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "鈴木分類(脳血管撮影の病期)",
+    "target": "閉塞性変化の進行度",
+    "value": "第1期: carotid fork狭小期(内頚動脈終末部の狭窄)。第2期: もやもや初発期。第3期: もやもや増勢期(前・中大脳動脈が脱落し始める)。第4期: もやもや細微期(後大脳動脈が脱落し始める)。第5期: もやもや縮小期(内頚動脈系主幹動脈がほとんど消失)。第6期: もやもや消失期(外頚動脈・椎骨動脈系のみ血流を保つ)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。形態学的に進んでいても臨床的に重症とは限らない(側副路で代償されるため)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "鑑別診断(類もやもや病)",
+    "target": "除外する病態",
+    "value": "類似の脳血管病変が、自己免疫疾患(SLE・抗リン脂質抗体症候群・結節性多発動脈炎・顕微鏡的多発血管炎・シェーグレン症候群)、髄膜炎、脳腫瘍、ダウン症候群、神経線維腫症1型、頭部放射線照射の既往に伴う場合は「類もやもや病」として除外する。甲状腺機能亢進症の合併例は、もやもや病として診断してよい。",
+    "exam": "出題は直接なし(参考)。60-pm-15 の誤答選択肢の脳腫瘍・脳炎などとの鑑別の背景。",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   },
+   {
+    "item": "治療",
+    "target": "外科的血行再建術",
+    "value": "急性期は血圧管理・脳圧亢進対策などの内科的治療。脳虚血発作には外科的血行再建術が有効とされ、慢性期に行うことが多い。浅側頭動脈-中大脳動脈吻合術を中心とする直接血行再建術、側頭筋接着術などの間接血行再建術、両者を併用する複合血行再建術がある。出血例への直接または複合血行再建術は脳出血の再発予防効果があるとされる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/download_pdf/2021/202111022A.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "mpi-maudsley",
+  "name": "モーズレイ性格検査(MPI)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "MPI",
+   "モーズレイ性格検査",
+   "モーズレー性格検査",
+   "Maudsley Personality Inventory"
+  ],
+  "rows": [
+   {
+    "item": "MPI(モーズレイ性格検査)の構成",
+    "target": "人格(パーソナリティ)の質問紙検査",
+    "value": "Eysenckが作成した人格質問紙検査。下位尺度は、外向性(E)と神経症的傾向(N)の2つと、回答の妥当性を見る虚偽(L)尺度。E・Nは各24項目で、施行しやすく短時間で回答できる。日本版(1970年に岩原らが作成)は「はい・いいえ」式で80項目(E 24・N 24・L 20・ダミー12)、満点はE 48・N 48・L 40、所要は約10分。",
+    "exam": "56-am-79(「イラスト風に描かれた人物のセリフを書き込む」形式の心理検査を問う問題で、モーズレイ性格検査〈MPI〉は誤答選択肢。正答はP-Fスタディ。他の誤答はSCT・バウムテスト・NEO-PI-R)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S1][S2][S3]。[S2]は日本版の使用報告で、項目数の内訳は[S2]による。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5559986/"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/psycholres1954/12/4/12_4_176/_article/-char/en"
+     }
+    ]
+   },
+   {
+    "item": "MPIは質問紙法(投影法ではない)",
+    "target": "検査の種類の見分け",
+    "value": "あらかじめ決まった質問に自分で答える質問紙法の人格検査。人物のセリフを書き込むP-Fスタディ、文章の続きを書くSCT、木を描くバウムテストは、投影法で別の種類(別のカード参照)。",
+    "exam": "56-am-79(「人物のセリフを書き込む」に当てはまるのはP-Fスタディで、MPIは質問紙のため誤り)",
+    "q": [
+     "56-am-79"
+    ],
+    "note": "確認済み[S1]。質問紙法の例としてMPI・MMPI・YG性格検査、投影法の例としてSCT・バウムテスト・TAT・Rorschachが同じ資料に挙げられている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "mrc-sum-score",
+  "name": "MRC sum score(ICU-AW)",
+  "category": "評価尺度",
+  "aliases": [
+   "MRC sum score",
+   "MRC sum-score",
+   "MRCスコア",
+   "MRC sum",
+   "Medical Research Council",
+   "ICU-AW",
+   "ICU獲得性筋力低下",
+   "集中治療室獲得性筋力低下",
+   "ICU-acquired weakness"
+  ],
+  "rows": [
+   {
+    "item": "MRC sum score の求め方",
+    "target": "ICU-AW(ICU獲得性筋力低下)の評価",
+    "value": "左右の上下肢6筋群=12か所(肩・腕の外転/肘(前腕)屈曲/手関節伸展/股関節屈曲/膝伸展/足関節背屈)を徒手筋力テストで評価し、合計0〜60点(満点60点)",
+    "exam": "60-am-37(正答:MRC sum scoreで評価できるのはICU-AW。誤答=意識障害・嚥下障害・HAD・抑うつ)／59-pm-42(問題文:MRC sum scoreによるICU-AWの判定)",
+    "q": [
+     "60-am-37",
+     "59-pm-42"
+    ],
+    "note": "確認済み[S1][S2]。各筋0〜5点は徒手筋力テストの段階(12筋×5=60点)。筋群の呼び方は資料により「肘屈曲/前腕屈曲」など差がある",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "ICU-AW の判定基準(カットオフ)",
+    "target": "ICU-AWの疑い",
+    "value": "合計が60点満点中48点未満、または検査可能な筋の平均が4点未満で、重症患者に急性に生じた四肢の筋力低下。24時間以上あけて2回以上測定する",
+    "exam": "59-pm-42(正答:両側合計48点未満／平均4点未満。誤答=すべて同一の背臥位で測定する・ICU入室時の検査で判定する・握力20 kg未満)",
+    "q": [
+     "59-pm-42"
+    ],
+    "note": "確認済み[S1][S2]。48点÷12筋=平均4点。「同一の背臥位で測定」が誤りとされる理由は、今回の資料では確認していない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "測定できる状態(覚醒・協力)",
+    "target": "いつ測れるか",
+    "value": "患者が覚醒し、十分な協力と理解が得られる必要がある。せん妄などの意識障害があると評価が難しい。鎮静・せん妄・昏睡中は早期の筋力評価の妨げになる",
+    "exam": "59-pm-42(誤答:「ICU入室時の検査で判定する」)／60-am-37(誤答:意識障害は評価対象ではない)",
+    "q": [
+     "59-pm-42",
+     "60-am-37"
+    ],
+    "note": "確認済み[S1][S2]。MRC sum scoreは意識や嚥下ではなく、筋力(ICU-AW)を見る指標",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+     },
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+     }
+    ]
+   },
+   {
+    "item": "ICU-AW と判断する前の鑑別",
+    "target": "他の筋力低下の原因を除く",
+    "value": "重症病態以外に筋力低下をきたす疾患を確認する(ギラン・バレー症候群・重症筋無力症・ALSなどの神経筋疾患、頸髄・脳幹疾患、甲状腺疾患などの内分泌疾患、低カリウム血症・高マグネシウム血症などの電解質異常)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。[S1]も、重症病態以外にもっともらしい原因がないことを診断の条件としている",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jsicm.org/provider/pdf/pics02.pdf"
+     },
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+     }
+    ]
+   },
+   {
+    "item": "握力によるICU-AWの目安",
+    "target": "MRCとは別の指標",
+    "value": "握力計での目安は男性11 kg未満・女性7 kg未満(文献値)。MRC sum scoreでは、60点満点中48点未満=ICU-AW(有意な筋力低下)、36点未満=重度の筋力低下の目安",
+    "exam": "59-pm-42(誤答:「握力が20 kg未満である」はMRC sum scoreの判定条件ではない)",
+    "q": [
+     "59-pm-42"
+    ],
+    "note": "確認済み[S1]。[S1]は重度の目安を「36/48」と書くが、60点満点の誤記と思われる。国試の選択肢の20 kgは、この文献の値と一致しない。握力はMRC sum scoreの判定基準ではない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4592111/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "mri-basics",
   "name": "MRIの基本(T1強調像・T2強調像・適応と禁忌)",
   "category": "臨床検査",
@@ -12954,6 +17767,126 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "myerson-sign",
+  "name": "Myerson徴候(眉間反射)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Myerson徴候",
+   "Myerson's sign",
+   "Myerson sign",
+   "マイヤーソン徴候",
+   "眉間反射",
+   "眉間叩打",
+   "眉間を叩く",
+   "glabellar tap",
+   "glabellar reflex",
+   "glabellar tap sign"
+  ],
+  "rows": [
+   {
+    "item": "Myerson徴候(眉間反射)の見方",
+    "target": "前頭葉解放徴候・パーキンソニズムの所見",
+    "value": "眉間(両眉のあいだ)を指で繰り返し軽く叩く。正常では最初の数回は瞬目するが、叩き続けると慣れ(habituation)が生じて瞬目が止まる。叩くたびに瞬目が続いて止まらないのがMyerson徴候で異常所見。研究の一例では、約2回/秒で21回叩き、瞬目3回以下を正常・4回以上を異常とした(判定回数は文献により異なる)。",
+    "exam": "49-pm-89(正答: Parkinson病の症状・徴候として正しいのはMyerson徴候。誤答: 企図振戦・アテトーゼ・ミオクロニー発作・折りたたみナイフ現象)",
+    "q": [
+     "49-pm-89"
+    ],
+    "note": "確認済み[S1][S2]。判定の叩打回数は研究ごとの設定。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://en.wikipedia.org/wiki/Glabellar_reflex"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8536581/"
+     }
+    ]
+   },
+   {
+    "item": "Parkinson病での出現",
+    "target": "Parkinson病の補助的な所見",
+    "value": "Parkinson病患者25人と健常者25人を比べた研究では、snout反射や眉間反射(glabellar tap)などが患者で明らかに多く、原始反射は診断の助けになりうると結論された。別の研究でも、眉間反射はパーキンソン症候群で比較的出やすい(感度が比較的高い)所見とされた。",
+    "exam": "49-pm-89(正答)。60-pm-90(誤答選択肢: 腰椎椎間板ヘルニアでMyerson徴候は陽性、は誤り=別行)",
+    "q": [
+     "49-pm-89"
+    ],
+    "note": "確認済み[S3][S4]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/8270937/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15452308/"
+     }
+    ]
+   },
+   {
+    "item": "特異性・精度の限界",
+    "target": "鑑別診断での使い方",
+    "value": "Parkinson病・進行性核上性麻痺・多系統萎縮症の間で眉間反射の出現頻度に有意差はなく、疾患を区別する力(特異性)は乏しい。Parkinson病と本態性振戦を比べた研究では感度78.3%・特異度36.2%で、時間が経つと20%の患者で異常から正常に変わった。臨床では補助的な所見として扱う。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2][S4][S5]。精度の数値は1つの研究の結果。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8536581/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/15452308/"
+     },
+     {
+      "label": "S5",
+      "url": "https://www.jstage.jst.go.jp/article/clinicalneurol/60/12/60_cn-001459/_html/-char/ja"
+     }
+    ]
+   },
+   {
+    "item": "腰椎椎間板ヘルニアの診察所見",
+    "target": "腰椎椎間板ヘルニアの身体所見(Myerson徴候は含まれない)",
+    "value": "診療ガイドラインが示す診察は、体幹前屈制限・tight hamstrings・疼痛性側弯、神経学的所見(感覚障害の範囲、下肢への放散痛、筋力低下、深部腱反射)、下肢伸展挙上テスト(SLRT)・交差SLRT・大腿神経伸展テストなど。眉間反射(Myerson徴候)は挙げられていない。",
+    "exam": "60-pm-90(誤答選択肢: 腰椎椎間板ヘルニアでMyerson徴候は陽性である。正答は「脱出髄核は吸収されることがある」)",
+    "q": [
+     "60-pm-90"
+    ],
+    "note": "確認済み[S6]。ガイドライン本文にMyerson徴候の記載がないことを確認(記載なし=陽性所見として扱われていない)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S6",
+      "url": "https://minds.jcqhc.or.jp/common/summary/pdf/c00645.pdf"
+     }
+    ]
+   },
+   {
+    "item": "同問の他の選択肢(腰椎椎間板ヘルニアの基本)",
+    "target": "60-pm-90 の正誤の根拠",
+    "value": "有病率は約1%(「約15%」は誤り)。20〜40歳代の男性に多く、小児・高齢者では少ない(「小児期に多い」は誤り)。症候性ヘルニアの60%以上で画像上の退縮があり、sequestration型・extrusion型は吸収されやすい(「吸収されることがある」が正しい)。症状に膀胱直腸障害が挙がり、「生じない」は誤り。",
+    "exam": "60-pm-90(正答: 脱出髄核は吸収されることがある。誤答: 小児期に多い・膀胱直腸障害は生じない・人口の約15%)",
+    "q": [
+     "60-pm-90"
+    ],
+    "note": "確認済み[S6]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S6",
+      "url": "https://minds.jcqhc.or.jp/common/summary/pdf/c00645.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "needle-emg",
   "name": "針筋電図(神経原性・筋原性・ALS)",
   "category": "臨床検査",
@@ -13010,6 +17943,77 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "neo-pi-r",
+  "name": "NEO-PI-R(Revised NEO Personality Inventory)",
+  "category": "評価尺度",
+  "aliases": [
+   "NEO-PI-R",
+   "NEO-PI",
+   "Revised NEO Personality Inventory",
+   "NEO人格検査",
+   "ビッグファイブ",
+   "Big Five",
+   "5因子モデル",
+   "五因子モデル"
+  ],
+  "rows": [
+   {
+    "item": "NEO-PI-R の構成",
+    "target": "性格(5因子)の質問紙検査",
+    "value": "英語版は240項目。5つの領域(ドメイン)のそれぞれに6つの下位尺度(facet)があり、計30下位尺度",
+    "exam": "56-am-79(誤答:「イラスト風に描かれた人物のセリフを書き込む」心理検査の正答はP-Fスタディ)／58-am-99(誤答:統合失調症の健康関連QOLの測定に使えるのはSF-36。NEO-PI-Rは性格検査でQOL尺度ではない)",
+    "q": [
+     "56-am-79",
+     "58-am-99"
+    ],
+    "note": "確認済み[S1]=240項目、[S2]=1領域あたり6 facet(合計30は計算値)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9614413/"
+     }
+    ]
+   },
+   {
+    "item": "5つの領域(ビッグファイブ)",
+    "target": "測る性格の側面",
+    "value": "神経症傾向・外向性・開放性(開かれていること)・調和性・誠実性(日本語版の資料では「良心性」とも表記)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。開放性・誠実性などは資料により訳語が異なる",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+     }
+    ]
+   },
+   {
+    "item": "日本語版の標準化",
+    "target": "日本人への適用",
+    "value": "英語版を2名が日本語に翻訳し、日本在住のアメリカ人が逆翻訳して作成。大学生200名での信頼性(クロンバックα)は、神経症傾向.926・外向性.882・開放性.859・調和性.831・誠実性.915。著者らは、基本的に日本人にも適用できるとした",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。これは科研費課題の報告で、現在の市販版の標準化とは別",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/en/grant/KAKENHI-PROJECT-04610090"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -13489,6 +18493,153 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "nrs-numerical-rating-scale",
+  "name": "NRS(数値評価スケール)",
+  "category": "評価尺度",
+  "aliases": [
+   "NRS",
+   "Numerical Rating Scale",
+   "Numeric Rating Scale",
+   "numerical rating scale",
+   "数値評価スケール",
+   "数値的評価スケール",
+   "数値評価尺度"
+  ],
+  "rows": [
+   {
+    "item": "NRS とは(0〜10の11段階)",
+    "target": "痛みの強さの自己評価",
+    "value": "痛みを0〜10の11段階に分け、痛みが全くないのを0、考えられるなかで最悪の痛みを10として、点数を答えてもらう。評価するのは痛みの強さ",
+    "exam": "54-pm-27(正答は「順序尺度である」。誤答=「10段階で評価する」[0〜10の11段階]・「疼痛の性質を評価する」[強さを評価])／58-pm-50(正答:NRS=疼痛)／57-pm-35(正答:face scaleとNRSが疼痛検査)",
+    "q": [
+     "54-pm-27",
+     "58-pm-50",
+     "57-pm-35"
+    ],
+    "note": "確認済み[S1]。「性質」ではなく強度を見る点が誤答の根拠",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "尺度水準:順序尺度",
+    "target": "データの扱い",
+    "value": "NRSの得点は順序のある区分で、各区分の幅は等しくない。間隔尺度としての性質は疑わしく、順序尺度として扱う",
+    "exam": "54-pm-27(正答:「順序尺度である」)",
+    "q": [
+     "54-pm-27"
+    ],
+    "note": "確認済み[S2]。術後疼痛の大規模登録データ(34万件超)の解析。尺度水準の一般論は「尺度水準」のカードも参照",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/37851363/"
+     }
+    ]
+   },
+   {
+    "item": "疼痛強度の目安(軽度・中等度・高度)",
+    "target": "がん疼痛ガイドラインでの区分",
+    "value": "NRS 1〜3=軽度、4〜6=中等度、7〜10=高度(専門家の合意による便宜的な区分。統一された見解はない)",
+    "exam": "61-am-20(TKA術後3日・体動時NRS 6点=問題文の数値。この区分では中等度に当たる)",
+    "q": [
+     "61-am-20"
+    ],
+    "note": "確認済み[S1]。区分はがん疼痛のガイドライン上の便宜的な定めで、国試問題は数値を示しただけ",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "離床の開始基準(ICU・急性期)",
+    "target": "積極的な離床・運動の開始",
+    "value": "自己申告できる場合 NRS≦3 またはVAS≦3。申告できない場合は BPS≦5 またはCPOT≦2",
+    "exam": "60-pm-10(誤答:「疼痛がNRS 8である」。正答は平均動脈圧80 mmHg)",
+    "q": [
+     "60-pm-10"
+    ],
+    "note": "確認済み[S3]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.jsicm.org/pdf/soki_riha_1707.pdf"
+     }
+    ]
+   },
+   {
+    "item": "他の疼痛尺度との違い(VAS・VRS・FPS)",
+    "target": "尺度の使い分け",
+    "value": "VAS=100 mmの線上に印をつける。VRS=痛みの強さを表す言葉を選ぶ。FPS(顔の表情)=現在の痛みに合う顔を選び、3歳以上の小児の自己評価で有用性が報告。これらのうち一般にはNRSが推奨される",
+    "exam": "57-pm-35(正答:face scaleとNRS。GCS・mRS・MTSは疼痛の検査ではない)",
+    "q": [
+     "57-pm-35"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "小児での使用",
+    "target": "幼児にNRSを使えるか",
+    "value": "NRSは数の概念の理解が必要。小児の慢性疼痛では8歳以上での使用が検討できる目安とされ、年少児は乖離が大きい。幼い小児にはフェイススケールが使われる",
+    "exam": "54-pm-27(誤答:「幼児の疼痛評価に使用される」)",
+    "q": [
+     "54-pm-27"
+    ],
+    "note": "確認済み[S4](8歳以上の目安)、[S1](FPSは3歳以上)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4158959"
+     },
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "患者間の比較",
+    "target": "同じ点数の意味",
+    "value": "疼痛強度のカットオフには統一した見解がなく、同じNRSの点数でも追加の鎮痛を希望するかは患者で異なる。自己申告の主観的評価で、患者間の比較には向かない",
+    "exam": "54-pm-27(誤答:「患者間の比較に有効である」)",
+    "q": [
+     "54-pm-27"
+    ],
+    "note": "確認済み[S5](NRS 5〜10と答えた患者の19%が追加のオピオイドを希望しなかった報告)、[S1]。「向かない」は資料の記述から導いた学習用の要約",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S5",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9074792"
+     },
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/pain_2020/02_02.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "nuclear-medicine-neuro",
   "name": "核医学検査(MIBG心筋シンチグラフィー・DATスキャン・脳血流SPECT)",
   "category": "臨床検査",
@@ -13700,6 +18851,78 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "odds-ratio-ci",
+  "name": "オッズ比と95%信頼区間の読み方",
+  "category": "診断基準・分類",
+  "aliases": [
+   "オッズ比",
+   "95%信頼区間",
+   "95 %信頼区間",
+   "信頼区間",
+   "ハザード比",
+   "ロジスティック回帰",
+   "ロジスティック分析",
+   "有意差なし"
+  ],
+  "rows": [
+   {
+    "item": "オッズ比の95%信頼区間と有意差の判定",
+    "target": "オッズ比(・ハザード比)が有意かどうか",
+    "value": "95%信頼区間に1が含まれなければ有意、含まれれば有意でない。オッズ比1は「両群で同じ」を意味し、区間に1が入ると同じ(差なし)の可能性を否定できないため。区間が全部1より小さい(例 0.65〜0.89)、または全部1より大きい(例 1.39〜5.67)なら有意。",
+    "exam": "49-pm-49(2つのバランス練習の効果を比べるオッズ比の95%信頼区間。有意なのは1を含まない「0.65〜0.89」と「1.39〜5.67」。誤答:0.89〜1.39、0.65〜1.39、0.65〜5.67はいずれも1を含む)",
+    "q": [
+     "49-pm-49"
+    ],
+    "note": "確認済み[S1]。国試の正答と一致。差の指標が「差」(平均値の差など)のときは基準が0になる[S2]ので、1と0を混同しない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.med.hirosaki-u.ac.jp/~uro/research/Statistical_Analysis_v3.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jsatj/7/1/7_23/_pdf"
+     }
+    ]
+   },
+   {
+    "item": "オッズ比の大きさの意味",
+    "target": "オッズ比の読み方",
+    "value": "オッズ比(ハザード比も同様)が1=ある疾患・事象へのなりやすさが両群で同じ。1より大きい=一方の群でよりなりやすい。1より小さい=一方の群でなりにくい。",
+    "exam": "49-pm-49(オッズ比の読み方を前提とした設問)",
+    "q": [
+     "49-pm-49"
+    ],
+    "note": "確認済み[S1](大学の講義資料)。計算式は、確認できた資料に載っていないためここには書かない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.med.hirosaki-u.ac.jp/~uro/research/Statistical_Analysis_v3.pdf"
+     }
+    ]
+   },
+   {
+    "item": "信頼区間の意味と「有意差なし」の解釈",
+    "target": "信頼区間の読み方の注意",
+    "value": "95%信頼区間は、同じ調査を100回繰り返して区間を作ると、約95回は真の値(母集団の値)を含む区間、という意味。区間が狭いほど推定の精度が高い。区間が広くて有意でないときは、データ数が少ない、または交絡などの影響を疑う。「有意差なし」は「差がない」と確かめられたという意味ではない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2](日本アスレティックトレーニング学会誌の統計解説)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.jstage.jst.go.jp/article/jsatj/7/1/7_23/_pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -13920,6 +19143,301 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "pain-drawing",
+  "name": "痛み図(ペインドローイング)",
+  "category": "評価尺度",
+  "aliases": [
+   "痛み図",
+   "ペインドローイング",
+   "Pain drawing",
+   "ペインダイアグラム",
+   "ボディダイアグラム",
+   "疼痛図",
+   "幻肢痛",
+   "イラストで図示"
+  ],
+  "rows": [
+   {
+    "item": "幻肢痛と痛み図(痛みの部位を図示させる)",
+    "target": "切断後の幻肢痛・残存肢痛の部位の把握",
+    "value": "幻肢痛は、切断された四肢があった位置に感じる痛み。残存肢の痛み(神経腫など)は、断端に限局するのが典型。痛む場所をイラスト(人体図)に図示させる方法が、国試では正しい対応とされた。",
+    "exam": "59-pm-38(四肢切断後の幻肢痛への対応で正しいものを2つ選ぶ。正答=ミラーセラピーが有用である／患者に幻肢痛が残存している部位をイラストで図示させる。誤答=経皮的電気刺激法は禁忌・義肢装着練習は幻肢痛を増悪させる・鎮痛薬はプレガバリンよりNSAIDsを優先)",
+    "q": [
+     "59-pm-38"
+    ],
+    "note": "確認済み[S1](幻肢痛・残存肢痛の部位の違い)。「幻肢痛の評価に痛み図を使う」ことの直接の記載は今回の資料では確認できていない(国試の正答に依る)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/24-%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%88%E3%83%94%E3%83%83%E3%82%AF/%E7%BE%A9%E8%82%A2/%E6%AE%8B%E5%AD%98%E8%82%A2%E3%81%AE%E7%96%BC%E7%97%9B"
+     }
+    ]
+   },
+   {
+    "item": "痛み図の方法・わかること",
+    "target": "痛みの分布(広がり)と性質を視覚的に把握する",
+    "value": "人体図(ボディダイアグラム)に、痛みや感覚症状(うずく・灼ける・ピリピリ・しびれ・触れると過敏など)が出ている範囲と性質を、色分けのマーカーで患者自身に記入させる。分布の広がりと性質を記録する方法。",
+    "exam": "59-pm-38(選択肢「幻肢痛が残存している部位をイラストで図示させる」が正答)",
+    "q": [
+     "59-pm-38"
+    ],
+    "note": "確認済み[S2](色つき痛み図の研究の方法の記述)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33200188/"
+     }
+    ]
+   },
+   {
+    "item": "神経障害性疼痛の識別への利用",
+    "target": "神経障害性疼痛か、それ以外の痛みかの見分け",
+    "value": "慢性痛の213人(神経障害性疼痛と臨床診断されたのは151人=70.9%)で、色つき痛み図を医師2名が盲検で分類した。第一印象での正解は64.3%・73.2%。分布と性質の基準を決めて判定すると、2名とも正しく分類できたのは80.2%、感度80.1%・特異度80.6%。簡単なベッドサイドのスクリーニングとして使える、と著者は述べている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。1つの症例対照研究の結果で、診断の基準にはならない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33200188/"
+     }
+    ]
+   },
+   {
+    "item": "痛み図の限界(心理状態の判定には使えない)",
+    "target": "痛み図で何が言えないか",
+    "value": "痛み図の特異な描き方や広い範囲の記入から、心理的な不調を判定できる根拠はないとされる。19件の研究を統合した結果、心理状態の予測は感度の中央値56%・特異度79.5%で、診断の道具としては低く、ばらつきが大きいと判断された。心理面のスクリーニングとしての使用は勧められていない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3](腰痛が中心の研究の系統的レビュー)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/16772800/"
+     }
+    ]
+   },
+   {
+    "item": "痛みの強さの評価(数値尺度・VAS)との使い分け",
+    "target": "痛みの強さと部位・性質を、別々の方法で評価する",
+    "value": "強さは自己報告が基本。数値尺度は0〜10点(0=痛みなし、10=これまでで最も強い痛み)、VASは10 cmの線の左端(痛みなし)から印までの距離(mm)で得点化する。部位は限局性・びまん性・深在性・表在性などで、性質は鋭い・鈍い・灼熱感などで記述する。痛み図は部位・広がり・性質を絵で記録する方法で、強さは別の尺度で測る。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]。[S4]には痛み図(ボディダイアグラム)の記載がなく、「強さは別の尺度で測る」という整理は[S2]の目的(分布と性質を示す)との組み合わせ。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-%E7%A5%9E%E7%B5%8C%E7%96%BE%E6%82%A3/%E7%96%BC%E7%97%9B/%E7%96%BC%E7%97%9B%E3%81%AE%E8%A9%95%E4%BE%A1"
+     },
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/33200188/"
+     }
+    ]
+   },
+   {
+    "item": "幻肢痛の特徴と治療(同じ問題の誤答選択肢の確認)",
+    "target": "幻肢痛への対応(TENS・義肢・薬物)",
+    "value": "幻肢痛の表現はピリピリ・電撃様・刺す・ズキズキ・灼ける・締め付けなど。義肢を装着していない時、特に夜間に起こりやすい。薬を使わない治療として経皮的電気神経刺激(TENS)、鍼、脊髄刺激療法が挙がる。鎮痛薬としてNSAIDやアセトアミノフェンが使われることがあり、神経障害性疼痛では抗うつ薬・抗てんかん薬を含む集学的治療を行う。",
+    "exam": "59-pm-38(誤答選択肢=経皮的電気刺激法は禁忌・義肢装着練習は幻肢痛を増悪させる・鎮痛薬はプレガバリンよりNSAIDsを優先)",
+    "q": [
+     "59-pm-38"
+    ],
+    "note": "確認済み[S1]。[S1]にミラーセラピーの記載はなく、ミラーセラピーが有用という点(国試の正答)は未確認。プレガバリンとNSAIDの優先順位も[S1]では確認できていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/24-%E3%81%9D%E3%81%AE%E4%BB%96%E3%81%AE%E3%83%88%E3%83%94%E3%83%83%E3%82%AF/%E7%BE%A9%E8%82%A2/%E6%AE%8B%E5%AD%98%E8%82%A2%E3%81%AE%E7%96%BC%E7%97%9B"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "palpation-surface-anatomy",
+  "name": "触診の基礎(体表から触れる骨指標・筋・腱・神経)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "体表から触れ",
+   "体表から触知",
+   "触知部位",
+   "触知できる",
+   "皮膚組織直下に触知",
+   "筋膜を触知",
+   "体表解剖",
+   "体表から触れる",
+   "胸骨角",
+   "頸切痕",
+   "舟状骨粗面",
+   "縫工筋",
+   "長腓骨筋",
+   "ヒラメ筋",
+   "尺側手根屈筋腱",
+   "尺骨神経の触知",
+   "ランドマーク"
+  ],
+  "rows": [
+   {
+    "item": "胸骨角(ルイ角)",
+    "target": "体表から触れる骨指標。第2肋骨の目印",
+    "value": "胸骨柄と胸骨体の接合部。多くの場合、突出していて体表から触れる。ここに第2肋軟骨が結合するので、胸骨角を見つければ第2肋骨の位置が分かる。胸骨角が分かりにくいときは、鎖骨の直下に大きく触れる肋骨を第2肋骨としてもよい。",
+    "exam": "52-am-52(正答:胸骨角・舟状骨粗面。誤答:歯突起・結節間溝・顆間隆起)",
+    "q": [
+     "52-am-52"
+    ],
+    "note": "確認済み[S1]。舟状骨粗面が体表から触れることは、確認できた資料がないため載せていない。誤答の歯突起・結節間溝・顆間隆起が触れにくい理由も未確認。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jstage.jst.go.jp/article/jsrcr/32/3/32_293/_pdf/-char/en"
+     }
+    ]
+   },
+   {
+    "item": "胸骨の頸切痕",
+    "target": "体表から触れる骨指標",
+    "value": "左右の鎖骨の間、胸骨柄の上にある、頸の前面下部のくぼみ。T2〜T3椎骨の高さ。指を当てて触れる。",
+    "exam": "51-pm-59(正答:皮膚組織直下に触知できるのは胸骨の頸切痕。誤答:軸椎の歯突起・上腕骨の結節間溝・尺骨の滑車切痕・寛骨の寛骨臼切痕)",
+    "q": [
+     "51-pm-59"
+    ],
+    "note": "確認済み[S2](百科事典。解剖書での確認は未)。国試の正答と矛盾しない。誤答の4つが触れにくいことは、確認できた資料がない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://en.wikipedia.org/wiki/Jugular_notch"
+     }
+    ]
+   },
+   {
+    "item": "尺骨神経(肘での触知部位)",
+    "target": "末梢神経の体表での位置",
+    "value": "肘では、上腕骨内側上顆の後ろ(肘頭と内側上顆の間、肘部管)を通り、ここで触れる。骨と皮膚の間にあり筋や骨で守られていないため、ぶつけたときにしびれが出やすい。",
+    "exam": "61-pm-60(正答:尺骨神経=肘頭と上腕骨内側上顆の間。誤答:脛骨神経=外果とアキレス腱の間／正中神経=上腕近位部で烏口腕筋の外側／腕神経叢=胸鎖乳突筋の胸骨頭と鎖骨頭の間／総腓骨神経=膝窩部で半腱様筋腱の内側)",
+    "q": [
+     "61-pm-60"
+    ],
+    "note": "確認済み[S3](百科事典)と[S4](MSDマニュアル:肘の内側で叩くとTinel徴候)。国試の正答と一致。誤答側の位置は確認できた資料がなく、記述していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://en.wikipedia.org/wiki/Ulnar_nerve"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/06-筋骨格系疾患と結合組織疾患/手疾患/肘部管症候群"
+     }
+    ]
+   },
+   {
+    "item": "縫工筋",
+    "target": "上前腸骨棘のすぐ遠位に触れる筋",
+    "value": "上前腸骨棘から起こり、大腿の前面を斜めに内下方へ走り、脛骨の前内側(鵞足)に付く。股関節の屈曲・弱い外転・外旋と、膝関節の屈曲に働く。",
+    "exam": "61-am-58(左下肢の運動時の図。左上前腸骨棘のすぐ遠位に筋緊張を触知する筋=縫工筋(正答)。誤答:大腿直筋・薄筋・半腱様筋・半膜様筋)",
+    "q": [
+     "61-am-58"
+    ],
+    "note": "確認済み[S5](百科事典)。起始が上前腸骨棘という点は国試の記述と一致。触診の肢位・手技は、確認できた資料がないため載せていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S5",
+      "url": "https://en.wikipedia.org/wiki/Sartorius_muscle"
+     }
+    ]
+   },
+   {
+    "item": "長腓骨筋(浅層の筋)",
+    "target": "皮下組織の直下に筋膜を触れる筋",
+    "value": "下腿外側区画にあり、3つの腓骨筋(長腓骨筋・短腓骨筋・第三腓骨筋)の中で最も浅い。腓骨頭と腓骨外側面の上部から起こり、外果の後ろを回って第1中足骨底と内側楔状骨に付く。浅腓骨神経の支配。",
+    "exam": "52-pm-52(正答:長腓骨筋。誤答:棘上筋・方形回内筋・小殿筋・中間広筋)",
+    "q": [
+     "52-pm-52"
+    ],
+    "note": "確認済み[S6](百科事典)。「皮下直下に筋膜を触れる」という言い回しそのものは資料にない。国試の正答(浅い筋)とは矛盾しない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S6",
+      "url": "https://en.wikipedia.org/wiki/Fibularis_longus"
+     }
+    ]
+   },
+   {
+    "item": "深層にある筋(中間広筋・小殿筋・方形回内筋)",
+    "target": "触知しにくい筋との区別",
+    "value": "中間広筋:大腿直筋の深層にある(大腿四頭筋の最も深い中央の筋)。小殿筋:中殿筋のすぐ深層にある。方形回内筋:前腕前面の深層(深指屈筋・長母指屈筋と同じ深層)で、前腕遠位にある。",
+    "exam": "52-pm-52(いずれも誤答の選択肢。棘上筋の位置は資料で未確認)",
+    "q": [
+     "52-pm-52"
+    ],
+    "note": "確認済み[S7][S8][S9](百科事典)。棘上筋については、確認できた資料がない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S7",
+      "url": "https://en.wikipedia.org/wiki/Vastus_intermedius"
+     },
+     {
+      "label": "S8",
+      "url": "https://en.wikipedia.org/wiki/Gluteus_minimus"
+     },
+     {
+      "label": "S9",
+      "url": "https://en.wikipedia.org/wiki/Pronator_quadratus_muscle"
+     }
+    ]
+   },
+   {
+    "item": "ヒラメ筋と腓腹筋の位置関係",
+    "target": "下腿後面の筋",
+    "value": "ヒラメ筋は腓腹筋の深層にあり、膝の少し下から踵まで走る。腓骨頭の後面と腓骨の上1/4、脛骨内側縁の中1/3から起こり、アキレス腱として踵骨後面に付く。",
+    "exam": "56-am-60(右下腿後面の図でヒラメ筋の触知部位を選ぶ。正答は④(図問題))",
+    "q": [
+     "56-am-60"
+    ],
+    "note": "確認済み[S10](百科事典)。図の選択肢の位置(どこで触れるか)は、確認できた資料がないため載せていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S10",
+      "url": "https://en.wikipedia.org/wiki/Soleus_muscle"
+     }
+    ]
+   },
+   {
+    "item": "尺側手根屈筋腱",
+    "target": "手首の前面で見える腱",
+    "value": "前腕遠位の前面で見える。手首の直前にある3本の腱のうち最も尺側(小指側)。豆状骨に付く。",
+    "exam": "49-am-59(体表から触れる腱の図。⑤=尺側手根屈筋腱が正答。誤答:長母指屈筋腱・浅指屈筋腱・深指屈筋腱は手根管内で浮き出ない、腕橈骨筋腱は橈側)",
+    "q": [
+     "49-am-59"
+    ],
+    "note": "確認済み[S11](百科事典。「見える」の記載。「触れる」とは書かれていない)。誤答の腱が浮き出ない理由は資料で未確認。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S11",
+      "url": "https://en.wikipedia.org/wiki/Flexor_carpi_ulnaris_muscle"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -14510,6 +20028,120 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "pedi",
+  "name": "PEDI(Pediatric Evaluation of Disability Inventory)",
+  "category": "評価尺度",
+  "aliases": [
+   "PEDI",
+   "Pediatric Evaluation of Disability Inventory"
+  ],
+  "rows": [
+   {
+    "item": "PEDI の3つの部分",
+    "target": "構成",
+    "value": "Part I 機能的スキル=197項目(セルフケア73・移動59・社会的機能65)、各項目0(できない)/1(できる)の2段階。Part II 介助者による援助=20項目(セルフケア8・移動7・社会的機能5)、0〜5。Part III 調整=同じ20項目で、必要な環境・用具の調整をN(なし)/C(子ども向け)/R(リハビリ用具)/E(大がかりな調整)で評価",
+    "exam": "57-pm-29(正答:補装具の使用頻度を評価できる=調整の尺度。誤答=「機能的スキルは0〜3の4段階」[実際は0/1の2段階])／49-pm-47(正答:補助具の使用状況・介護者による援助の状態を評価できる)",
+    "q": [
+     "57-pm-29",
+     "49-pm-47"
+    ],
+    "note": "確認済み[S1](項目数と採点)、[S3](73・59・65項目)。国試は「使用頻度」「使用状況」と書くが、資料では調整=必要な用具・環境調整の区分で、「頻度」の語は確認できていない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+     },
+     {
+      "label": "S3",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+     }
+    ]
+   },
+   {
+    "item": "評価するもの:能力と実行状況",
+    "target": "何を測るか",
+    "value": "機能的活動における、能力(機能的スキル=特定の生活動作ができる/できない)と、パフォーマンス(それに必要な介助の程度=介助者支援)の両方を評価する。健常児のデータにもとづく尺度化スコアで、年齢とは無関係に同じ尺度上で比較できる",
+    "exam": "49-pm-47(正答:特定のことができる能力を評価する／介護者による援助の状態を評価できる／正常発達からの偏差を評価できる)／第50回(正答:機能的スキルを測定する)",
+    "q": [
+     "49-pm-47"
+    ],
+    "note": "確認済み[S3]。「正常発達からの偏差」の語は資料では直接確認できていない(健常児データとの比較は[S3])",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+     }
+    ]
+   },
+   {
+    "item": "対象年齢",
+    "target": "いつから使えるか",
+    "value": "原版は6か月〜7歳半の子どもが対象",
+    "exam": "49-pm-47(誤答:「4か月児から評価の対象になる」)／57-pm-29(誤答:「出生直後から使用可能である」)",
+    "q": [
+     "49-pm-47",
+     "57-pm-29"
+    ],
+    "note": "確認済み[S2]。[S1]は0〜8歳、[S4]は6か月〜7歳と書き、資料により幅が異なる",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3631526"
+     },
+     {
+      "label": "S1",
+      "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.apta.org/patient-care/evidence-based-practice-resources/test-measures/pediatric-evaluation-of-disability-inventory-pedi"
+     }
+    ]
+   },
+   {
+    "item": "対象となる子ども",
+    "target": "疾患",
+    "value": "脳性麻痺、二分脊椎、ダウン症候群、発達障害などの子どもに使われている。日本でも脳性麻痺児790名のPEDIデータが報告されている",
+    "exam": "57-pm-29(誤答:「二分脊椎は対象にならない」)／第50回(誤答:「脳性麻痺は対象にならない」)",
+    "q": [
+     "57-pm-29"
+    ],
+    "note": "確認済み[S4](二分脊椎ほか)、[S3](脳性麻痺児790名)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.apta.org/patient-care/evidence-based-practice-resources/test-measures/pediatric-evaluation-of-disability-inventory-pedi"
+     },
+     {
+      "label": "S3",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-25350660/25350660seika.pdf"
+     }
+    ]
+   },
+   {
+    "item": "評価の方法",
+    "target": "誰がどう評価するか",
+    "value": "保護者への構造化面接、観察、専門職の判断のいずれか、またはその組み合わせで行う。実施時間は資料で31〜60分(慣れた者は20〜30分とされる)",
+    "exam": "第50回(誤答:「評価に要する時間はWeeFIMより短い」)",
+    "q": [],
+    "note": "確認済み[S1]。WeeFIMとの時間比較は資料では確認していない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://sralab.org/rehabilitation-measures/pediatric-evaluation-disability-inventory"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "peripheral-nerve-palsy-signs",
   "name": "末梢神経麻痺の症候と感覚領域(正中・尺骨・橈骨・腓骨神経)",
   "category": "検査法・徴候",
@@ -14632,6 +20264,401 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "pf-study",
+  "name": "P-Fスタディ(絵画欲求不満テスト)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "P-Fスタディ",
+   "PFスタディ",
+   "P-F study",
+   "PF study",
+   "Picture Frustration Study",
+   "絵画欲求不満テスト",
+   "絵画欲求不満",
+   "Rosenzweig",
+   "ローゼンツァイク"
+  ],
+  "rows": [
+   {
+    "item": "P-Fスタディの内容",
+    "target": "欲求不満場面での反応をみる人格検査",
+    "value": "日常でだれもが経験する軽い欲求不満の場面24場面を、漫画風の絵で示す。左側の人物のせりふが刺激として書かれ、受検者は右側の人物がどう答えるかという言語反応を書き込む。人物の表情は省略されている。反応を決まった枠組みで採点できるため、制限のある『準投映法』ともいわれる。",
+    "exam": "56-am-79(正答: イラスト風に描かれた人物のセリフを書き込む心理検査=P-Fスタディ)／59-am-78(選択肢のみ。インクのシミの図版を順に示す検査の正答はRorschachテスト)／54-am-81(選択肢のみ。検査の一部が示された問いの正答はSCT)／55-pm-81(誤答の組合せ: P-Fスタディ―認知症介護負担度)",
+    "q": [
+     "56-am-79",
+     "59-am-78",
+     "54-am-81",
+     "55-pm-81"
+    ],
+    "note": "確認済み[S1]。投映法に分類する資料も準投映法とする資料もあり、国試では他の投映法・質問紙法との区別で問われている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://u-ryukyu.repo.nii.ac.jp/record/2003932/files/No21p043.pdf"
+     }
+    ]
+   },
+   {
+    "item": "アグレッションの方向(3つ)",
+    "target": "反応が誰に向かうかの分類",
+    "value": "他責(攻撃や責任を他人・環境に向ける)、自責(責任を自分に帰する)、無責(誰にも責任はない、不可避の事態と考える)の3方向。以前は外罰・内罰・無罰と呼ばれていた。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://u-ryukyu.repo.nii.ac.jp/record/2003932/files/No21p043.pdf"
+     }
+    ]
+   },
+   {
+    "item": "アグレッションの型(3つ)と評点因子",
+    "target": "反応がどう展開するかの分類",
+    "value": "障害優位(O-D: 欲求不満を起こした障害を指摘したり軽視したりして、失望・不満を表す)、自我防衛(E-D: 自我を守るための反応。他者への非難や自己非難、責任の否認など)、欲求固執(N-P: 欲求不満を解決しようと問題解決を求め続ける反応)の3型。方向3×型3の9つの評点因子(E′・E・e、I′・I・i、M′・M・m)に、特殊な2つを加えた11因子で採点し、集団順応度(GCR)や反応転移も参考にする。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。型の説明は[S1]の表の要約。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tokyo-ondai.repo.nii.ac.jp/record/1442/files/111_fujita2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "他の心理検査との区別",
+    "target": "選択肢の検査の特徴",
+    "value": "SCT(文章完成法)は未完成の文の続きを自由に書く投影法で、比較的意識に近い。バウムテストは『実のなる木を1本描く』描画の投影法。MPI(モーズレイ性格検査)はEysenckの質問紙で、外向性(E)と神経症的傾向(N)と虚偽性(L)をみる。NEO-PI-Rは240項目の質問紙で、神経症傾向・外向性・開放性・調和性・誠実性の5因子を各6側面で測る。",
+    "exam": "56-am-79(誤答選択肢: SCT=文章完成法、バウムテスト=樹木画、MPI、NEO-PI-R。人物のセリフを書き込むのはP-Fスタディ)／49-pm-80(『1本の実のなる木を描く』検査の正答はバウムテスト)",
+    "q": [
+     "56-am-79",
+     "49-pm-80"
+    ],
+    "note": "確認済み[S1](SCT・バウムテスト)[S2](MPI)[S3](NEO-PI-R)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2025/08/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://iwate-u.repo.nii.ac.jp/record/14511/files/arfe-v77pp55-70.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "physical-disability-internal",
+  "name": "身体障害者障害程度等級表(内部障害の区分)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "内部障害",
+   "身体障害者障害程度等級表",
+   "障害程度等級表",
+   "身体障害認定基準",
+   "身体障害者福祉法",
+   "代謝機能障害",
+   "心臓機能障害",
+   "呼吸器機能障害",
+   "小腸機能障害",
+   "膀胱機能障害",
+   "じん臓機能障害",
+   "肝臓機能障害",
+   "免疫機能障害"
+  ],
+  "rows": [
+   {
+    "item": "内部障害の区分(7つ)",
+    "target": "身体障害者福祉法の障害程度等級表で「内部障害」に当たるもの",
+    "value": "心臓機能障害／じん臓機能障害／呼吸器機能障害／ぼうこう又は直腸機能障害／小腸機能障害／ヒト免疫不全ウイルス(HIV)による免疫機能障害／肝臓機能障害 の7つ",
+    "exam": "49-am-94・51-pm-84(同じ設問。正答:代謝機能障害=内部障害に含まれない。誤答:心臓・小腸・膀胱・呼吸器の各機能障害=いずれも内部障害)",
+    "q": [
+     "49-am-94",
+     "51-pm-84"
+    ],
+    "note": "確認済み[S1][S2]。認定基準の「内臓の機能障害」は1心臓〜7肝臓の7区分で、代謝機能障害という区分はない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.pref.osaka.lg.jp/documents/5332/toukyuuhyou.pdf"
+     }
+    ]
+   },
+   {
+    "item": "膀胱機能障害の位置づけ",
+    "target": "「ぼうこう」の障害の区分名",
+    "value": "区分名は「ぼうこう又は直腸機能障害」。ぼうこう(膀胱)の機能障害も内部障害に含まれる",
+    "exam": "49-am-94・51-pm-84(誤答選択肢:膀胱機能障害。内部障害に「当たる」ので「でないもの」ではない)",
+    "q": [
+     "49-am-94",
+     "51-pm-84"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+     }
+    ]
+   },
+   {
+    "item": "等級の範囲(心臓・じん臓・呼吸器)",
+    "target": "等級表で認められる等級",
+    "value": "心臓・じん臓・呼吸器の機能障害は1級・3級・4級(2級の区分はない)。HIVによる免疫機能障害と肝臓機能障害は1〜4級",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。基準の本文で、心臓・じん臓・呼吸器は1・3・4級の記載のみ。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+     }
+    ]
+   },
+   {
+    "item": "呼吸器機能障害の等級基準",
+    "target": "呼吸器機能障害の1・3・4級",
+    "value": "指数(予測肺活量1秒率=1秒量÷予測肺活量×100)または動脈血O2分圧で判定。1級:指数20以下またはPaO2 50Torr以下(呼吸困難が強く歩行がほとんど不可、指数測定不能も含む)／3級:指数20超〜30以下またはPaO2 50超〜60Torr以下／4級:指数30超〜40以下またはPaO2 60超〜70Torr以下",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。「指数」は一般のFEV1/FVCとは別の定義。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+     }
+    ]
+   },
+   {
+    "item": "じん臓機能障害の等級基準(3・4級)",
+    "target": "じん臓機能障害の判定指標",
+    "value": "3級:内因性クレアチニンクリアランス10以上20ml/分未満、または血清Cr 5.0以上8.0mg/dl未満(かつ家庭内での極めて温和な生活以外は著しく制限、または所定の所見2つ以上)／4級:CCr 20以上30ml/分未満、または血清Cr 3.0以上5.0mg/dl未満。eGFRがあれば10以上20未満を4級相当、10未満を3級相当として扱ってよい",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "postural-perturbation-response",
+  "name": "立位の外乱応答(足関節戦略・股関節戦略)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "外乱応答",
+   "足関節戦略",
+   "股関節戦略",
+   "ankle strategy",
+   "hip strategy",
+   "プラットホーム",
+   "姿勢戦略",
+   "床面の移動"
+  ],
+  "rows": [
+   {
+    "item": "床面が後方へ動いたとき(前方動揺)",
+    "target": "最初に働く筋",
+    "value": "床が後方へ動くと身体は前方へ動揺し、弱い外乱では身体の後面の筋(腓腹筋・ハムストリングス・脊柱起立筋)が主に活動する。足関節戦略では足関節まわりの筋から始まり、遠位から近位の順に活動が広がるので、最も早いのは腓腹筋(足関節周囲の筋)。",
+    "exam": "57-pm-1(プラットホームが後方へ動いたとき、外乱に対して最も早く筋活動が観察された筋①は=腓腹筋が正答。選択肢は脊柱起立筋・前脛骨筋・ハムストリングス・腓腹筋・腹直筋。図は未確認)",
+    "q": [
+     "57-pm-1"
+    ],
+    "note": "確認済み[S1][S2][S3]。図(筋活動の波形)は未確認。論文では、後方並進で内側腓腹筋の活動開始が短かった(下腿三頭筋が伸張されるため、と著者が解釈)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-22700548/22700548seika.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4316530"
+     },
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3986462"
+     }
+    ]
+   },
+   {
+    "item": "床面が前方へ動いたとき(後方動揺)",
+    "target": "前面の筋の反応",
+    "value": "床が前方へ動くと身体は後方へ動揺し、弱い外乱では前脛骨筋・大腿四頭筋・腹部の筋が働く。健常者の実験では、前脛骨筋が先に(外乱後約0.10秒)、大腿四頭筋が少し遅れて(約0.14秒)活動した。",
+    "exam": "出題は直接なし(参考。57-pm-1の選択肢の前脛骨筋・腹直筋は、この向きで働く筋)",
+    "q": [],
+    "note": "確認済み[S1][S2]。潜時は1つの研究の値で、条件により異なる。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-22700548/22700548seika.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4316530"
+     }
+    ]
+   },
+   {
+    "item": "外乱の大きさと戦略",
+    "target": "足関節戦略と股関節戦略の使い分け",
+    "value": "弱い外乱では足関節戦略、強い外乱では股関節戦略を使う。台が足より短いなど足関節戦略を使いにくいときは、体幹や大腿の筋が逆の近位から遠位の順に活動する(股関節戦略)。強い前方動揺(床の後方移動)では腹筋群・大腿四頭筋、強い後方動揺(床の前方移動)では脊柱起立筋群・ハムストリングスが働くと説明されている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。Nashnerらの報告をまとめた研究報告書・論文の記述。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://kaken.nii.ac.jp/ja/file/KAKENHI-PROJECT-22700548/22700548seika.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4316530"
+     }
+    ]
+   },
+   {
+    "item": "筋活動が始まる時間",
+    "target": "反応の速さ",
+    "value": "外乱後およそ250ミリ秒以内に、測定したすべての筋で活動が始まった。床の水平移動(並進)のほうが回転より、ほとんどの筋で活動開始が早い。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。1つの研究の結果。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3986462"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "ppi-palliative-prognostic-index",
+  "name": "Palliative Prognostic Index",
+  "category": "評価尺度",
+  "aliases": [
+   "Palliative Prognostic Index",
+   "palliative prognostic index",
+   "PPI〈palliative prognostic index〉",
+   "パリアティブ・プログノスティック・インデックス"
+  ],
+  "rows": [
+   {
+    "item": "PPI の目的と対象",
+    "target": "予後予測(活動能力の評価ではない)",
+    "value": "終末期がん患者の予後予測。評価者は医療者、場面は緩和ケア病棟。PPS・経口摂取・浮腫・安静時の呼吸困難・せん妄の5項目から得点を出す(Morita 1999)",
+    "exam": "59-am-20(乳房温存手術予定の早期乳癌の周術期PTで、活動能力の評価方法として正しいのはKPS。PPI〈palliative prognostic index〉は誤答=予後予測の指標)",
+    "q": [
+     "59-am-20"
+    ],
+    "note": "確認済み[S3][S2]。国試では「活動能力の評価」に当たらない選択肢",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://plaza.umin.ac.jp/~pcpkg/ppi.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+     }
+    ]
+   },
+   {
+    "item": "PPI の5項目と配点",
+    "target": "合計点の出し方",
+    "value": "PPS 10〜20=4.0、30〜50=2.5、60以上=0。経口摂取 著明に減少(数口以下)=2.5、中程度に減少=1.0、正常=0。浮腫あり=1.0。安静時の呼吸困難あり=3.5。せん妄あり=4.0(薬物単独・臓器障害に伴わないものは含めない)。該当点を合計",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。消化管閉塞で高カロリー輸液を受けている場合、経口摂取は「正常」とする",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/glhyd_2013/01_02.pdf"
+     }
+    ]
+   },
+   {
+    "item": "PPI のカットオフ",
+    "target": "生存期間の予測",
+    "value": "合計が6より大きい=3週以内に死亡する確率が感度80%・特異度85%(陽性反応適中度71%・陰性反応適中度90%)。原著では4より大きい=6週生存予測が感度80%・特異度77%",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。資料により「6以上」「6.5以上」と書かれることがあり、原著・ガイドラインは「6より大きい」",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://jspm.ne.jp/files/guideline/glhyd_2013/01_02.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+     }
+    ]
+   },
+   {
+    "item": "PPI の3群(原著)",
+    "target": "予後の群分け",
+    "value": "検証群で、A群(PPI≦2.0)・B群(2.0<PPI≦4.0)・C群(PPI>4.0)に分けると、A群>B群>C群の順に生存期間が長かった",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/10335930/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "pressure-ulcer-turning",
   "name": "褥瘡予防の体位変換",
   "category": "リスク管理",
@@ -14658,6 +20685,101 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "prevention-levels",
+  "name": "予防の段階(一次・二次・三次予防)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "一次予防",
+   "二次予防",
+   "三次予防",
+   "1次予防",
+   "2次予防",
+   "3次予防",
+   "primary prevention",
+   "secondary prevention",
+   "tertiary prevention",
+   "Leavell",
+   "健康増進",
+   "疾病予防",
+   "健康保護"
+  ],
+  "rows": [
+   {
+    "item": "一次予防(健康増進・健康保護・疾病予防)",
+    "target": "病気の原因を絶つ段階",
+    "value": "健康増進=生活習慣の改善(運動・栄養・喫煙・飲酒対策)／健康保護=環境の危険因子の削減(職場の安全・環境保健)／疾病予防=発病の予防(感染症予防・母子保健・循環器疾患の予防)",
+    "exam": "49-pm-84(一次予防=健康増進が正答。誤答=再発予防・早期発見・重症化予防・リハビリテーション)／56-am-23(一次予防=メタボリックシンドロームの予防教育が正答)",
+    "q": [
+     "49-pm-84",
+     "56-am-23"
+    ],
+    "note": "確認済み[S1]。3つは互いに影響し、純粋に分割するのは難しいと書かれている。56-am-23の他の選択肢(高血圧症患者の運動療法、脳出血患者の合併症予防など)の分類は資料に直接なし",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/www1/topics/kenko21_11/s0.html"
+     }
+    ]
+   },
+   {
+    "item": "二次予防(早期発見・早期治療)",
+    "target": "病気を早く見つける段階",
+    "value": "病気の早期発見・早期治療。疾病発見(case finding:多数の中から少数の異常者を見つける。健診・検診など)とリスク発見(risk finding:見つけた対象のリスクを下げる)に分かれる",
+    "exam": "53-pm-22(誤答=『健康診断は一次』。健診は二次予防に当たる)／49-pm-84(誤答=早期発見は一次ではない)",
+    "q": [
+     "53-pm-22",
+     "49-pm-84"
+    ],
+    "note": "確認済み[S1]。『健康診断』という語そのものの分類は資料に書かれていないが、二次予防=早期発見の定義から判断",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/www1/topics/kenko21_11/s0.html"
+     }
+    ]
+   },
+   {
+    "item": "三次予防(リハビリテーション)",
+    "target": "社会的不利を防ぐ段階",
+    "value": "第三段階の三次予防はリハビリテーションで、社会的不利の予防",
+    "exam": "49-pm-84(誤答選択肢=リハビリテーションは三次予防)／53-pm-22(誤答=『糖尿病の運動療法は三次』)",
+    "q": [
+     "49-pm-84",
+     "53-pm-22"
+    ],
+    "note": "確認済み[S1]。再発予防・合併症予防・重症化予防を何次に置くかは、この資料には直接なく、国試の正答・誤答の記録に従った",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/www1/topics/kenko21_11/s0.html"
+     }
+    ]
+   },
+   {
+    "item": "仕分けの例(禁煙・ワクチン・健診)",
+    "target": "具体例の予防段階",
+    "value": "禁煙(喫煙対策)=一次予防の健康増進に含まれる／ワクチン接種(感染症予防)=一次予防の疾病予防／健診による早期発見=二次予防",
+    "exam": "53-pm-22(正答=ワクチン接種は一次予防／誤答=健康診断は一次、禁煙は二次、合併症の予防は二次、糖尿病の運動療法は三次)",
+    "q": [
+     "53-pm-22"
+    ],
+    "note": "確認済み[S1]。合併症予防・糖尿病の運動療法の分類は資料に直接なし",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/www1/topics/kenko21_11/s0.html"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -14814,6 +20936,439 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "ptb-offloading-orthosis",
+  "name": "PTB式免荷装具(膝蓋腱支持式)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "PTB式免荷装具",
+   "PTB免荷装具",
+   "PTB装具",
+   "膝蓋腱支持式",
+   "膝蓋腱荷重",
+   "歩行あぶみ",
+   "パッテン底",
+   "免荷装具",
+   "PTB式"
+  ],
+  "rows": [
+   {
+    "item": "歩行あぶみ(パッテン底)の位置",
+    "target": "PTB式免荷装具の構造(立位・歩行の安定)",
+    "value": "歩行あぶみは舟状骨の真下(下腿長軸よりやや前方)に置く。体重心線にほぼ重なる位置で接地して、立位・歩行を安定させる。",
+    "exam": "50-pm-38(正答:歩行あぶみ(パッテン底)は舟状骨の真下に置く)",
+    "q": [
+     "50-pm-38"
+    ],
+    "note": "確認済み[S1](国試解説サイト)。国試の正答と一致。公的資料では位置を確認できなかった。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     }
+    ]
+   },
+   {
+    "item": "荷重する部位と避ける部位",
+    "target": "PTB式の荷重の考え方",
+    "value": "荷重するのは膝蓋靭帯(膝蓋腱)部と脛骨内側顆部。膝蓋骨そのものは荷重部位ではない。荷重を避ける(除圧する)のは、脛骨粗面・脛骨稜・脛骨顆部の前面・腓骨頭・ハムストリングスの走行部。",
+    "exam": "50-pm-38(誤答:「ハムストリングスを圧迫するように装着する」「膝蓋骨は荷重部位である」)",
+    "q": [
+     "50-pm-38"
+    ],
+    "note": "確認済み[S1][S2]。国試解説サイトとリハビリ病院の解説で一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+     }
+    ]
+   },
+   {
+    "item": "膝関節の扱い",
+    "target": "PTB式免荷装具と膝",
+    "value": "膝関節は固定されず、動かせる(膝蓋腱部で体重を支え、膝から下を宙に浮かせる)。",
+    "exam": "50-pm-38(誤答:「膝関節は固定される」)",
+    "q": [
+     "50-pm-38"
+    ],
+    "note": "確認済み[S1](国試解説サイト)。病院資料[S2]では膝の可動の記載は確認できなかった。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+     }
+    ]
+   },
+   {
+    "item": "適応(骨折部位・免荷の程度)",
+    "target": "PTB式免荷装具を使う場面",
+    "value": "主に下腿骨(脛腓骨)や足根骨など、膝から下の骨折に使う。膝蓋骨まわりで体重を支え、足部は宙に浮く。完全免荷にも部分荷重にもでき、早くから患部に荷重をかけられる。使用は医師が決める。",
+    "exam": "50-pm-38(誤答:「脛骨高原骨折で適応となる」。国試の解説では除圧部位と骨折部位が重なるため適応外とされる)",
+    "q": [
+     "50-pm-38"
+    ],
+    "note": "食い違いあり。国試解説サイト[S1]は脛骨高原骨折を適応外とする。一方、リハビリ病院の解説[S2]は脛骨高原骨折にも処方されるとする。学習では国試の正答(脛骨高原骨折は選ばない)に従い、実際の適応は医師の判断。下腿骨骨折が主な適応であることは[S3]で確認。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://asitahe.com/50rigaku36-40national-examanation-pm/"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.yurin.or.jp/rehabilitation/blog/?id=8722"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jssd/63/0/63_238/_pdf/-char/ja"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "pulse-palpation-sites",
+  "name": "動脈の触知部位(脈拍)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "脈拍の触知",
+   "動脈の触知",
+   "総頸動脈",
+   "上腕動脈",
+   "橈骨動脈",
+   "大腿動脈",
+   "浅側頭動脈",
+   "腋窩動脈",
+   "内頸動脈",
+   "長母指伸筋腱",
+   "橈側手根屈筋腱"
+  ],
+  "rows": [
+   {
+    "item": "総頸動脈",
+    "target": "頸部の脈拍の触知部位",
+    "value": "喉頭と胸鎖乳突筋の前縁の間(輪状軟骨の高さ)で触れる。胸鎖乳突筋の前縁側であり、外縁ではない。成人の蘇生では第一選択の部位。両側を同時に押さえない(脳血流を下げるおそれ)。",
+    "exam": "56-pm-58(正答=総頸動脈―胸鎖乳突筋の前縁)／53-pm-60(誤答=総頸動脈―胸鎖乳突筋の外縁)／58-pm-59(図で総頸動脈の触知部位を選ぶ。正答は足背動脈の図で、総頸動脈の図は誤)／60-pm-58(誤っている組合せ=内頸動脈―鎖骨内側1/3)",
+    "q": [
+     "56-pm-58",
+     "53-pm-60",
+     "58-pm-59",
+     "60-pm-58"
+    ],
+    "note": "確認済み[S1][S6]。内頸動脈は体表の触知部位として資料に載っておらず、問題では誤りの組合せとして出ている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK312/"
+     },
+     {
+      "label": "S6",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK593199/"
+     }
+    ]
+   },
+   {
+    "item": "足背動脈",
+    "target": "足背の脈拍の触知部位",
+    "value": "足の甲(前面)で、長母指伸筋腱の外側(長母指伸筋腱と長指伸筋腱の間にあたる)。舟状骨の隆起の近く(約1cm以内)にある。約10%の人では解剖学的な変異で触れない。母趾を伸ばさせると腱が浮いて探しやすい。",
+    "exam": "58-pm-59(図の正答=足背動脈)／53-pm-60(正答=足背動脈―長母指伸筋腱と長指伸筋腱の間)／55-pm-56(足背動脈―長母指伸筋腱と長指伸筋腱の間は正しい組合せ)／60-pm-58(足背動脈―長母指伸筋腱外側は正しい組合せ)",
+    "q": [
+     "58-pm-59",
+     "53-pm-60",
+     "55-pm-56",
+     "60-pm-58"
+    ],
+    "note": "確認済み[S2]。資料は「長母指伸筋腱の外側」と記載し、「長指伸筋腱との間」という言い方は資料に出てこない。位置としては同じ付近。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK542175/"
+     }
+    ]
+   },
+   {
+    "item": "後脛骨動脈",
+    "target": "足関節内側の脈拍の触知部位",
+    "value": "内果(内くるぶし)のすぐ後方。外果の後方ではない。触れにくく、特に慣れない人には難しい。",
+    "exam": "55-pm-56(誤っている組合せ=後脛骨動脈―外果後方。正しくは内果後方)／58-pm-59(図の誤選択肢として後脛骨動脈)",
+    "q": [
+     "55-pm-56",
+     "58-pm-59"
+    ],
+    "note": "確認済み[S2][S6]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK542175/"
+     },
+     {
+      "label": "S6",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK593199/"
+     }
+    ]
+   },
+   {
+    "item": "橈骨動脈",
+    "target": "手首の脈拍の触知部位",
+    "value": "手首の横じわ(手関節の皮線)より近位で、橈側手根屈筋腱のすぐ外側(橈側)。前腕の掌側・橈側(母指側)にあたる。",
+    "exam": "56-pm-58(誤答選択肢に橈骨動脈の触知部位)／55-pm-56(橈骨動脈―前腕掌側面外側遠位部は正しい組合せ)／58-pm-59(図の誤選択肢として橈骨動脈)／60-pm-58(橈骨動脈―橈側手根屈筋腱外側は正しい組合せ)",
+    "q": [
+     "56-pm-58",
+     "55-pm-56",
+     "58-pm-59",
+     "60-pm-58"
+    ],
+    "note": "確認済み[S3]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK546626/"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK393/"
+     }
+    ]
+   },
+   {
+    "item": "上腕動脈",
+    "target": "上腕〜肘前面の脈拍の触知部位",
+    "value": "肘の前面(肘窩のすぐ近位)で、上腕二頭筋腱の内側(尺側)、上腕骨内側上顆の外側。二頭筋腱の外側ではない。乳児の蘇生で評価する部位。",
+    "exam": "60-pm-58(正しい組合せ=上腕動脈―上腕二頭筋腱内側)／55-pm-56(上腕動脈―上腕二頭筋後内側縁は正しい組合せ)／53-pm-60(誤答=上腕動脈―二頭筋腱の外側)／56-pm-58(誤答選択肢に上腕動脈の触知部位)",
+    "q": [
+     "60-pm-58",
+     "55-pm-56",
+     "53-pm-60",
+     "56-pm-58"
+    ],
+    "note": "確認済み[S2][S4]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK542175/"
+     },
+     {
+      "label": "S4",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK393/"
+     }
+    ]
+   },
+   {
+    "item": "大腿動脈",
+    "target": "鼠径部の脈拍の触知部位",
+    "value": "鼠径靱帯のすぐ遠位で、恥骨結合と上前腸骨棘の間のうち中点より内側寄り。ショックの評価や蘇生で確認する。",
+    "exam": "60-pm-58(正しい組合せ=大腿動脈―上前腸骨棘と恥骨結節を結ぶ中点)／55-pm-56(大腿動脈―Scarpa三角内は正しい組合せ)／56-pm-58(誤答選択肢に大腿動脈の触知部位)／53-pm-60(誤答=大腿動脈―腸腰筋の外側)",
+    "q": [
+     "60-pm-58",
+     "55-pm-56",
+     "56-pm-58",
+     "53-pm-60"
+    ],
+    "note": "国試は「中点」。StatPearlsは「恥骨結合と上前腸骨棘の間の半分より内側寄り」と書き、教科書で表現が分かれる。確認済み[S2]。Scarpa三角内という表現は資料の本文では確認できていない。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.ncbi.nlm.nih.gov/sites/books/NBK542175/"
+     }
+    ]
+   },
+   {
+    "item": "浅側頭動脈",
+    "target": "側頭部の脈拍の触知部位",
+    "value": "耳の前方の浅いところにあり、触れやすい。耳の後方ではない。",
+    "exam": "53-pm-60(誤答=浅側頭動脈―外耳孔の後方)",
+    "q": [
+     "53-pm-60"
+    ],
+    "note": "確認済み[S4]。「外耳孔」を基準にした記載は資料にない(「耳の前方」と書かれている)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://www.ncbi.nlm.nih.gov/books/NBK393/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "pusher-syndrome",
+  "name": "Pusher現象(SCP)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Pusher現象",
+   "pusher",
+   "プッシャー現象",
+   "プッシャー症候群",
+   "押す人症候群",
+   "pusher syndrome",
+   "pusher behavior",
+   "pusher behaviour",
+   "contraversive pushing",
+   "Scale for Contraversive Pushing",
+   "SCP",
+   "Burke Lateropulsion Scale",
+   "lateropulsion"
+  ],
+  "rows": [
+   {
+    "item": "Pusher現象の特徴",
+    "target": "脳卒中後の姿勢異常(非麻痺側で押して麻痺側へ傾く)",
+    "value": "脳卒中後に、非麻痺側の上下肢で床や周囲を押して麻痺側へ体を傾け、支えなしでは麻痺側へ倒れてしまう。さらに、傾いた体を他人が正中・垂直へ戻そうとすると抵抗する。つまり身体軸は『麻痺側』に傾く。",
+    "exam": "57-am-40(「身体軸が非麻痺側に傾斜する」が誤りの記述=正答。正しくは麻痺側へ傾斜)／56-am-9(L-dopa服用後に突然動けなくなる現象の問いで、pusher現象は誤答選択肢。正答はon-off現象)",
+    "q": [
+     "57-am-40",
+     "56-am-9"
+    ],
+    "note": "確認済み[S1][S2][S5]。56-am-9のon-off現象側の確認は本カードでは行っていない(既存カードparkinson-signs-motor-complications参照)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1579228"
+     },
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11087771/"
+     },
+     {
+      "label": "S5",
+      "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+     }
+    ]
+   },
+   {
+    "item": "垂直判断との関係",
+    "target": "Pusher現象の機序",
+    "value": "Pusher患者は、自分の体が非麻痺側へ約18度傾いた状態を『まっすぐ(垂直)』と感じる(自覚的姿勢垂直SPVの異常)。一方、自覚的視覚垂直(SVV)は障害されない。重力に対する身体の向きを感じ取る別の系の障害と考えられている。",
+    "exam": "57-am-40(正しい記述として出題: 垂直判断の障害が関係する。この問いの誤りは「非麻痺側に傾斜」)",
+    "q": [
+     "57-am-40"
+    ],
+    "note": "確認済み[S2]。垂直判断のうち問題になるのは姿勢の垂直(SPV)で、視覚的垂直は保たれるという報告。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/11087771/"
+     }
+    ]
+   },
+   {
+    "item": "好発側(右半球・左半球)",
+    "target": "Pusher現象の頻度と経過",
+    "value": "急性期脳卒中1660人の調査で、pusher行動は9.4%にみられた。右大脳半球損傷で17.4%、左半球損傷で9.5%と右に多く(リスク比1.83)、回復も右半球損傷のほうが遅かった。",
+    "exam": "57-am-40(正しい記述として出題: 右半球損傷に多い)",
+    "q": [
+     "57-am-40"
+    ],
+    "note": "確認済み[S3]。別の105人の研究[S4]では損傷側による頻度差はなかったと報告されており、研究により結果が違う。国試は右半球に多い側の記述。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/22382159/"
+     },
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18617579/"
+     }
+    ]
+   },
+   {
+    "item": "SCPの構成と診断",
+    "target": "Scale for Contraversive Pushing(SCP)",
+    "value": "座位と立位で、(1)自発的な姿勢の対称性、(2)非麻痺側の腕・脚を外転・伸展して押す力を強めるか、(3)他動的に姿勢を直されることへの抵抗、の3つをみる。原法では3つすべてがあり、姿勢と外転・伸展は座位+立位の合計が1以上(各最大2)、かつ抵抗がある場合にpusher現象と診断する。",
+    "exam": "60-am-10(誤答選択肢: pusherの評価としてSCP。右脳出血の症例で最優先は線分抹消試験。症例が正中位修正に抵抗しないためSCPの優先度は低い)",
+    "q": [
+     "60-am-10"
+    ],
+    "note": "確認済み[S1]。SCPの項目と原法の診断規則は[S1]の記載による。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC1579228"
+     }
+    ]
+   },
+   {
+    "item": "SCPのカットオフ(Baccini)",
+    "target": "SCPで何点以上をpusherとするか",
+    "value": "脳卒中直後105人で3つの基準を比較。合計点>0(Crit_1)は臨床診断との一致が低く(κ=.212)、各セクションの下位得点がいずれも>0(Crit_2)が最も一致し(κ=.933)、各セクション≧1(Crit_3)は一致はやや低い(κ=.754)が偽陽性がなかった。目的に応じて基準を選ぶとよいとされた。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/18617579/"
+     }
+    ]
+   },
+   {
+    "item": "評価法の種類",
+    "target": "Pusher現象の評価表",
+    "value": "臨床で使われる評価表は4種類: 最初に発表された『Pusher評価チャート』、現在最も広く使われるSCP、最も細かい段階付けができるBurke Lateropulsion Scale(BLS)、4段階で最も簡便なFour-Point Pusher Score。SCPとBLSの比較では138評価中31で分類が食い違い、すべてBLSで陽性・SCPで陰性で、BLSは立位・歩行での軽いpusherを拾いやすい可能性がある。",
+    "exam": "60-am-10(SCPは誤答選択肢)",
+    "q": [
+     "60-am-10"
+    ],
+    "note": "確認済み[S5][S6]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S5",
+      "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+     },
+     {
+      "label": "S6",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/24459174/"
+     }
+    ]
+   },
+   {
+    "item": "治療の考え方",
+    "target": "Pusher現象へのアプローチ",
+    "value": "現時点でpusher現象を確実に改善させる確立した方法はないとされる。動作練習では、安定した端座位を獲得してから、逆方向連鎖化による起き上がり練習など、誤りを避ける学習(無誤学習)を取り入れる方法が紹介されている。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S5](特集記事の要約)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S5",
+      "url": "https://www.igaku-shoin.co.jp/misc/pdf/ptj_eoi/5406.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "ra-acr-eular-2010",
   "name": "関節リウマチの分類基準(2010 ACR/EULAR)",
   "category": "診断基準・分類",
@@ -14904,6 +21459,140 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "raven-cpm",
+  "name": "Raven色彩マトリックス検査(RCPM)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "RCPM",
+   "Raven色彩マトリックス検査",
+   "Raven色彩マトリックス",
+   "レーヴン色彩マトリックス検査",
+   "レーヴン色彩マトリックス",
+   "Raven's colored progressive matrices",
+   "Raven's coloured progressive matrices",
+   "colored progressive matrices",
+   "coloured progressive matrices",
+   "Raven色彩"
+  ],
+  "rows": [
+   {
+    "item": "RCPMの概要",
+    "target": "非言語性の知能(論理的思考・類推)の検査",
+    "value": "言葉を使わず図形で考える非言語性の検査。A・Ab・Bの3セット(各12問)計36問で、制限時間なし、個別でも集団でも約15〜30分。結果は1つの素点で、基準データに基づくパーセンタイルに換算する。対象は5〜11歳の子ども、高齢者、知的・身体的な障害のある人。",
+    "exam": "51-am-80(『遅延再生を含まない』検査として正答: RCPM。他の選択肢のRBMT・MMSE・HDS-R・RAVLTは遅延再生を含む検査として出題)／50-pm-80(図に示す課題を用いる検査の問いで、RCPMは誤答選択肢)",
+    "q": [
+     "51-am-80",
+     "50-pm-80"
+    ],
+    "note": "確認済み[S1](構成・対象・時間)。『遅延再生を含まない』は、36問の図形課題のみという構成からの整理で、出典に『遅延再生なし』の明記はない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pearsonassessments.com/store/en/usd/p/100000098.html"
+     }
+    ]
+   },
+   {
+    "item": "注意障害の検査ではない",
+    "target": "RCPMと注意・遂行機能・記憶の検査の区別",
+    "value": "高次脳機能障害の診断基準ガイドラインが注意障害の参考検査として挙げるのは、抹消・検出課題、Stroop test、心的統制課題、Continuous Performance Testなど。Raven色彩マトリックス検査は注意の検査ではなく、推理・類推をみる知能検査の側。",
+    "exam": "57-am-28(『注意障害の検査はどれか』で、RCPMは誤答選択肢。正答はTMT)",
+    "q": [
+     "57-am-28"
+    ],
+    "note": "確認済み[S1][S2]。ガイドラインの注意障害の例示にRCPMが含まれないことを確認(記載がない=注意の検査として扱われていない)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.pearsonassessments.com/store/en/usd/p/100000098.html"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "ravlt",
+  "name": "Rey聴覚性言語学習検査(RAVLT)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "RAVLT",
+   "Rey Auditory Verbal Learning Test",
+   "Rey auditory verbal learning test",
+   "Rey聴覚性言語学習検査",
+   "Rey聴覚的言語学習テスト",
+   "Rey聴覚言語性学習検査",
+   "聴覚性言語学習検査",
+   "単語リスト学習課題",
+   "単語リスト学習"
+  ],
+  "rows": [
+   {
+    "item": "RAVLTの手順",
+    "target": "言語性(聴覚性)の学習・記憶の検査",
+    "value": "意味のつながりのない15語のリストA を読み上げ、そのつど自由再生させる(5回)。次に別の15語のリストB を1回提示して再生させ、その直後にリストA をもう一度再生させる。約20分後にリストA を遅延再生し、最後にA の15語をB の語や関連語を含む50語の中から選ぶ再認を行う。",
+    "exam": "51-am-80(『遅延再生を含まないのはどれか』で、RAVLTは遅延再生を含むので誤答選択肢。正答はRCPM)／50-pm-80(図に示す課題を用いる検査の問いで、RAVLTは誤答選択肢。正答はRey-Osterrieth複雑図形検査)",
+    "q": [
+     "51-am-80",
+     "50-pm-80"
+    ],
+    "note": "確認済み[S1]。遅延再生までの時間は報告により20〜30分と幅がある(S1は20分)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5226952"
+     }
+    ]
+   },
+   {
+    "item": "前向健忘の評価での位置づけ",
+    "target": "高次脳機能障害の記憶障害(前向健忘)の参考検査",
+    "value": "国立障害者リハビリテーションセンターの診断基準ガイドラインは、前向健忘の参考検査として、ウェクスラー記憶検査、対語記銘課題(三宅式など)、単語リスト学習課題(Rey聴覚的言語学習テストなど)、視覚学習課題(Rey-Osterrieth複雑図形検査・ベントン視覚記銘検査など)を挙げている。RAVLTは『単語リスト学習課題』にあたる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+     }
+    ]
+   },
+   {
+    "item": "日常記憶の検査との違い",
+    "target": "RAVLTとRBMTの使い分け",
+    "value": "RAVLTは単語リストの学習・再生を調べる検査で、日常生活で必要な記憶を直接試す検査ではない。日常生活場面の記憶障害の検出に適するのはリバーミード行動記憶検査(RBMT。別カード参照)。",
+    "exam": "59-pm-81(日常生活場面で必要な記憶の障害の検出に最も適した検査は? RAVLTは誤答選択肢。正答はRBMT)",
+    "q": [
+     "59-pm-81"
+    ],
+    "note": "RBMTが日常記憶の検査であるという側は既存カードrbmtに記載。RAVLTが単語リスト学習課題である点は[S1][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5226952"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -15049,6 +21738,138 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "research-terms-confounder-population",
+  "name": "研究用語(交絡因子・母集団・標本・無作為抽出)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "交絡因子",
+   "中間因子",
+   "母集団",
+   "標本調査",
+   "標本抽出",
+   "無作為抽出",
+   "標本誤差",
+   "非標本誤差",
+   "多変量解析",
+   "研究に関する用語"
+  ],
+  "rows": [
+   {
+    "item": "交絡因子",
+    "target": "要因(曝露)と結果の関連をゆがめる第3の因子",
+    "value": "要因と結果の関係に影響して、見かけの関連をゆがめる(かく乱する)他の因子。成立の3条件=①結果(疾病)発生の危険因子である ②要因(曝露)と関係がある ③要因と結果の中間因子ではない",
+    "exam": "53-am-21(正答選択肢:「交絡因子=2つの要因の関連をかく乱する他の因子」)",
+    "q": [
+     "53-am-21"
+    ],
+    "note": "確認済み[S1]。国試の説明と一致。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+     }
+    ]
+   },
+   {
+    "item": "交絡因子の調整",
+    "target": "交絡の影響を除いて関連を見る方法",
+    "value": "多変量解析で、交絡因子の影響を除いたうえで要因と結果の関連を調べる。デザイン段階で調整しきれない因子を解析モデルに入れる、という位置づけ",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。層別化・マッチングなど他の方法は、この資料では確認していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+     }
+    ]
+   },
+   {
+    "item": "交絡因子と中間因子の区別",
+    "target": "調整してよい因子かの見極め",
+    "value": "要因と結果の間の経路上にある因子(要因が中間因子を介して結果の原因になる)は、交絡因子ではない。見極めは重要だが難しく、過去の文献や生理学的・生化学的な機序から判断する",
+    "exam": "出題は直接なし(参考。交絡の条件③に対応)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.fmu.ac.jp/gendeqsp/data/file/manual_statistics_03.pdf"
+     }
+    ]
+   },
+   {
+    "item": "母集団",
+    "target": "調べたい対象の全体",
+    "value": "標本調査で、調べる対象とされている元の集団全体。標本調査の目的は、標本から母集団の状況をできるだけ正確に推計すること",
+    "exam": "53-am-21(誤答選択肢:「母集団=実際の研究の対象となるもの」。実際に調べる対象として取り出されるのは標本)",
+    "q": [
+     "53-am-21"
+    ],
+    "note": "確認済み[S2]。総務省統計局の資料は標本調査の説明で、研究デザイン全般の定義ではないが、母集団と標本の関係は同じ。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "標本(サンプル)",
+    "target": "母集団から取り出して実際に調べる一部",
+    "value": "対象のすべてを調べず、一部だけを取り出して調査するのが標本調査で、取り出されたものを標本という。母集団のよい縮図となるように抽出することが重要",
+    "exam": "53-am-21(「実際の研究の対象」は標本に当たる、という切り分けで母集団の選択肢が誤り)",
+    "q": [
+     "53-am-21"
+    ],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "無作為抽出(ランダムサンプリング)",
+    "target": "標本の選び方",
+    "value": "選ぶ際の恣意性をなくし、完全に確率的に母集団から標本を選ぶ方法",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   },
+   {
+    "item": "標本誤差と非標本誤差",
+    "target": "調査結果が真の値とずれる原因",
+    "value": "標本誤差=全数調査でなく標本調査をしたことで生じる誤差。非標本誤差=それ以外の誤差(誤回答・未回答など)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.stat.go.jp/info/kenkyu/kyouiku/pdf/4siryo2.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "respiratory-failure-aado2",
   "name": "呼吸不全の分類・A-aDO2・低酸素血症の機序",
   "category": "診断基準・分類",
@@ -15153,6 +21974,110 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "rey-osterrieth-complex-figure",
+  "name": "Rey-Osterrieth複雑図形検査(ROCFT)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "ROCFT",
+   "ROCF",
+   "Rey-Osterrieth複雑図形",
+   "Rey-Osterrieth複雑図形検査",
+   "Rey-Osterrieth complex figure test",
+   "Rey-Osterrieth complex figure",
+   "Rey Osterrieth complex figure",
+   "Rey複雑図形検査",
+   "Rey複雑図形",
+   "Reyの複雑図形検査",
+   "Reyの複雑図形",
+   "複雑図形検査",
+   "Rey's complex figure"
+  ],
+  "rows": [
+   {
+    "item": "課題の内容と測るもの",
+    "target": "視空間構成と視覚記憶の検査",
+    "value": "34本の線分と円の中の3つの点からなる無意味で複雑な図形を、まず見ながら模写させる。続いて、一定時間(最も一般的なのは3分)をおいて見ずに思い出して描かせる(再生)。視空間の知覚・構成機能と、非言語性(視覚性)の記憶を測る。",
+    "exam": "50-pm-80(図に示す課題を用いる検査として正答: Rey-Osterrieth複雑図形検査)／59-am-9(脳挫傷後の人格・行動変化の症例で最優先の検査の問いで、Rey複雑図形検査は誤答選択肢。正答はFAB)",
+    "q": [
+     "50-pm-80",
+     "59-am-9"
+    ],
+    "note": "確認済み[S1][S2]。再生までの間隔は研究により3分・30分などがある。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.ed.ehime-u.ac.jp/~kiyou/2008/pdf/09.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+     }
+    ]
+   },
+   {
+    "item": "採点(Osterrieth法)",
+    "target": "模写・再生の得点化",
+    "value": "図形を18の部位に分け、各部位を最大2点で採点して合計36点とするのが一般的。正確な形で正確な位置=2点、形は正確だが位置が不正確、または位置は正確だが形が不正確=1点、形も位置も不正確だが何を描いたか分かる=0.5点、描かれていない=0点。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.ed.ehime-u.ac.jp/~kiyou/2008/pdf/09.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+     }
+    ]
+   },
+   {
+    "item": "前向健忘の検査としての位置づけ",
+    "target": "記憶障害の評価での分類",
+    "value": "診断基準ガイドラインは、前向健忘の参考検査の『視覚学習課題』として、Rey-Osterrieth複雑図形検査やベントン視覚記銘検査を挙げている。言語性の記憶をみる単語リスト学習課題(RAVLTなど)とは別の領域。",
+    "exam": "59-am-9(誤答選択肢。視空間認知・視覚記憶の検査であり、この症例の最優先ではない)",
+    "q": [
+     "59-am-9"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+     }
+    ]
+   },
+   {
+    "item": "注意障害・遂行機能障害の検査ではない",
+    "target": "ROCFTと他の高次脳機能検査の区別",
+    "value": "ガイドラインの注意障害の例示は抹消・検出課題、Stroop test、心的統制課題、CPT、遂行機能障害の評価法の例示はBADSなどで、Rey-Osterrieth複雑図形検査は含まれない。模写・再生には計画や組織化の要素も関わるとされるが、国試では注意や遂行機能の検査としては誤りとされた。",
+    "exam": "57-am-28(『注意障害の検査はどれか』で誤答選択肢。正答はTMT)／55-pm-29(『遂行機能障害の診断に用いる検査』でReyの複雑図形検査は誤答選択肢。正答はWCST)",
+    "q": [
+     "57-am-28",
+     "55-pm-29"
+    ],
+    "note": "確認済み[S1][S2]。ガイドラインの例示に含まれないことの確認(記載がない=検査の目的としては扱われていない)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.rehab.go.jp/application/files/3115/1669/0095/3_1_04_1.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.frontiersin.org/articles/10.3389/fneur.2021.680474/pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -15619,6 +22544,144 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "schizophrenia-subtypes",
+  "name": "統合失調症の病型(緊張型・破瓜型・妄想型など)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "統合失調症の病型",
+   "統合失調症の亜型",
+   "緊張型",
+   "破瓜型",
+   "妄想型",
+   "緊張病",
+   "カタレプシー",
+   "catatonic schizophrenia",
+   "hebephrenic schizophrenia",
+   "paranoid schizophrenia"
+  ],
+  "rows": [
+   {
+    "item": "緊張型(F20.2)",
+    "target": "興奮・昏迷などの運動・意志面の異常が目立つ型",
+    "value": "精神運動の障害が前面に出る型。過活動(興奮)と昏迷の間を行き来する、自動的に従う状態と拒絶が交互に出る、不自然な姿勢を長く保つ、激しい興奮の発作が目立つ、などがある。カタレプシー・蝋屈症もこの型に含まれる",
+    "exam": "58-am-97(正答:緊張型。問題文「興奮や昏迷などの意志発動の異常が主体」)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]。国試の「意志発動の異常(興奮・昏迷)」は、資料の「精神運動障害(過活動と昏迷など)」に当たる言い換えとして読んだ",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "破瓜型(F20.1)",
+    "target": "感情の変化が前面に出る型",
+    "value": "感情の変化が目立つ。妄想・幻覚は断片的で移ろいやすい。行動は無責任で予測しにくく、わざとらしい癖が多い。気分は浅く不適切で、思考がまとまらず、会話が支離滅裂になり、社会的に引きこもりやすい。陰性症状(感情の平板化・意欲の低下)が急速に進むため予後は一般に不良で、診断は思春期〜若年成人が基本",
+    "exam": "58-am-97(誤答選択肢:破瓜型。意志発動の異常が主体なのは緊張型)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]。資料では hebephrenic(別名 disorganized)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "妄想型(F20.0)",
+    "target": "妄想が中心の型",
+    "value": "比較的安定した、しばしば被害的な妄想が中心。多くは幻覚(特に幻聴)や知覚の障害を伴う。感情・意欲・言語の障害や緊張病症状は、ないか目立たない",
+    "exam": "58-am-97(誤答選択肢:妄想型)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "単純型(F20.6)",
+    "target": "幻覚・妄想が先行せず陰性症状が進む型",
+    "value": "奇妙な行動がゆっくり進行し、社会の要求に応えられなくなって全体の機能が低下する。残遺型に特徴的な陰性症状(感情の鈍麻・意欲の喪失)が、はっきりした精神病症状を先行させずに現れる",
+    "exam": "58-am-97(誤答選択肢:単純型)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "残遺型(F20.5)",
+    "target": "慢性期の陰性症状が残る型",
+    "value": "統合失調症の慢性期で、初期から後期へ明らかに進んだ後の段階。長期の陰性症状(精神運動の鈍化・活動性低下・感情の平板化・会話の乏しさ・自己管理や社会的機能の低下など)が特徴。長く続くが、必ずしも不可逆ではない",
+    "exam": "58-am-97(誤答選択肢:残遺型)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "鑑別不能型(未分化型・F20.3)",
+    "target": "どの型にも当てはまらない型",
+    "value": "統合失調症の一般的な診断基準は満たすが、妄想型・破瓜型・緊張型のどれにも当てはまらない、または複数の型の特徴を持ち、特定の型が優勢でないもの",
+    "exam": "出題は直接なし(参考)",
+    "q": [
+     "58-am-97"
+    ],
+    "note": "確認済み[S1]。58-am-97の選択肢には出ていない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://classbrowser.nhs.uk/ICD-10-5TH-Edition/vol1/block-f20-f29.htm"
+     }
+    ]
+   },
+   {
+    "item": "病型分類の現在の扱い",
+    "target": "国試の病型は古典的分類(ICD-10・DSM-IV)",
+    "value": "DSM-5 では、DSM-IV にあった下位分類(妄想型・破瓜型・緊張型・未分化型・残遺型)が削除され、症状の次元を評価する方式になった。理由として、異質性を十分に反映せず、時間とともに安定しにくく、経過や治療反応を予測しなかったことなどが挙げられている",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。ICD-10の病型(S1)は上の各行。ICD-11については本文で確認できていないため記載しない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4393695"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "sci-functional-level",
   "name": "脊髄損傷の機能残存レベルとADL(Zancolli分類)",
   "category": "診断基準・分類",
@@ -15726,6 +22789,172 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "sct-sentence-completion",
+  "name": "SCT(文章完成法)",
+  "category": "評価尺度",
+  "aliases": [
+   "SCT",
+   "文章完成法",
+   "文章完成テスト"
+  ],
+  "rows": [
+   {
+    "item": "SCTの方法(文章完成法)",
+    "target": "人格(パーソナリティ)検査の種類。投影法",
+    "value": "あらかじめ書かれている未完成の刺激文の続きを、思い浮かぶまま自由に書いてもらう。書かれた内容に自己概念・対人関係・家族関係などが投影されると考え、本人の状態やパーソナリティを理解する",
+    "exam": "54-am-81(正答: 心理検査の一部の図を示し、この検査法を選ぶ。選択肢はHTP・SCT・MMPI・P-Fスタディ・ASQで、正答はSCT。図は未確認)／56-am-79(誤答選択肢: 「イラスト風に描かれた人物のセリフを書き込む」はP-Fスタディで、SCTではない)",
+    "q": [
+     "54-am-81",
+     "56-am-79"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     }
+    ]
+   },
+   {
+    "item": "SCTの位置づけ・長所と短所",
+    "target": "投影法の中での特徴",
+    "value": "投影法の中では比較的意識に近いレベルの検査。長所: 施行が容易、集団に実施できる、質的な情報が得られる。短所・限界: 本人の言語表出によるため深層心理までは捉えにくい、言語表出能力が必要、数量化など客観的評価が難しい、解釈に習熟が必要。単独でなく、より深い層を探るロールシャッハテストなど別の投影法と組み合わせる(テストバッテリー)のが一般的",
+    "exam": "出題は直接なし(参考)。第49回(前頭葉機能検査ではない)・第51回(投影法)の選択肢として出ていた記録があるが、問題IDは入力になし",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     }
+    ]
+   },
+   {
+    "item": "SCTと他の人格検査の区別",
+    "target": "人格検査の種類(投影法・質問紙法)",
+    "value": "SCT・ロールシャッハテスト・P-Fスタディ・バウムテストはいずれも投影法に分類される人格検査。P-Fスタディは24の欲求不満場面への言語反応から人格を調べる検査で、SCTのように文の続きを書く検査ではない。バウムテストは「実のなる木を1本描く」描画による検査。いずれも認知機能検査・認知症の介護負担度の尺度・自己効力感の尺度ではない",
+    "exam": "55-pm-81(誤答の組合せ: SCT―認知機能、P-Fスタディ―認知症介護負担度、Rorschach―自己効力感。正答は選択肢5で、内容は入力になし)",
+    "q": [
+     "55-pm-81"
+    ],
+    "note": "確認済み[S1][S2]。「認知機能・介護負担度・自己効力感ではない」は、人格検査であることからの整理(各検査の一次資料の記載そのものではない)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://tk.seitoku-u.ac.jp/cms_tk_seitoku/wp-content/uploads/2024/12/%E8%81%96%E5%BE%B3%E5%A4%A7%E5%AD%A6%E5%85%AC%E8%AA%8D%E5%BF%83%E7%90%86%E5%B8%AB%E5%85%A5%E5%AD%A6%E8%AA%AC%E6%98%8E%E4%BC%9A%E6%A8%A1%E6%93%AC%E8%AC%9B%E7%BE%A9%E3%83%91%E3%83%BC%E3%82%BD%E3%83%8A%E3%83%AA%E3%83%86%E3%82%A3%E6%A4%9C%E6%9F%BB.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://konan-wu.repo.nii.ac.jp/record/918/files/038-02.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "seddon-classification",
+  "name": "Seddon分類(末梢神経損傷)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "Seddon分類",
+   "Seddon",
+   "Sunderland分類",
+   "neurapraxia",
+   "ニューラプラキシア",
+   "axonotmesis",
+   "アクソノトメーシス",
+   "neurotmesis",
+   "ニューロトメーシス",
+   "末梢神経損傷",
+   "Waller変性",
+   "ワーラー変性",
+   "Wallerian degeneration"
+  ],
+  "rows": [
+   {
+    "item": "neurapraxia(ニューラプラキシア)",
+    "target": "最も軽い末梢神経損傷",
+    "value": "髄鞘の障害(局所の脱髄・虚血)による一過性の伝導ブロック。軸索の連続性は保たれ、Waller変性は起こらない。損傷部で伝導が途絶え、末梢側の伝導は正常。外科的処置なしで、髄鞘の回復とともに数週〜数か月(約12週以内の報告)で完全に回復する。Tinel徴候は出ない",
+    "exam": "52-pm-35(最も予後良好=ニューラプラキシアが正答)",
+    "q": [
+     "52-pm-35"
+    ],
+    "note": "確認済み[S1][S2]。回復期間は資料により『数時間〜数か月』『12週以内』と幅がある",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4045362/"
+     }
+    ]
+   },
+   {
+    "item": "axonotmesis(アクソノトメーシス)",
+    "target": "軸索損傷(結合組織は残る)",
+    "value": "軸索と髄鞘が断裂するが、神経周膜・上膜など外側の結合組織は保たれる。損傷部より遠位でWaller変性が起こる。近位の軸索が再生して標的に達すれば回復しうる。自然回復はneurapraxiaより遅い(Sunderland II〜IVにまたがり、III・IVでは手術を要することがある)",
+    "exam": "52-pm-35(誤答選択肢=アクソノトメーシス、Waller変性)",
+    "q": [
+     "52-pm-35"
+    ],
+    "note": "確認済み[S1]。Waller変性は損傷後に遠位の神経で起こる変化で、neurapraxiaでは起こらない。『神経根引き抜き損傷』は資料で分類を確認していない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+     }
+    ]
+   },
+   {
+    "item": "neurotmesis(ニューロトメーシス)",
+    "target": "最重症(完全断裂)",
+    "value": "軸索とすべての結合組織が完全に断裂した状態。自然回復は期待できず、手術(修復)が必要。放置すると機能しない神経腫ができうる",
+    "exam": "52-pm-35(誤答選択肢=ニューロトメーシス)",
+    "q": [
+     "52-pm-35"
+    ],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+     },
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4045362/"
+     }
+    ]
+   },
+   {
+    "item": "Seddon分類とSunderland分類の対応",
+    "target": "障害の深さと回復の見込み",
+    "value": "neurapraxia=Sunderland I(髄鞘のみ、自然回復あり)／axonotmesis=II(軸索まで、遅れて回復)・III(神経内膜まで、回復は不確実で手術を要することも)・IV(神経周膜まで、自然回復は非常に難しく手術が必要)／neurotmesis=V(上膜まで全断裂、手術が必要)",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。Seddon分類は1943年に提唱された3区分",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8571504/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -16175,6 +23404,173 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "silfverskiold-test",
+  "name": "Silfverskiöld試験(二関節筋の短縮判定)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Silfverskiold",
+   "Silfverskiöld test",
+   "Silfverskiold test",
+   "シルファースキョルド",
+   "シルフェルスキョルド",
+   "二関節筋",
+   "腓腹筋の短縮",
+   "ヒラメ筋の短縮",
+   "足背屈可動域",
+   "足関節背屈可動域",
+   "膝屈曲位",
+   "膝伸展位"
+  ],
+  "rows": [
+   {
+    "item": "Silfverskiöld試験の考え方",
+    "target": "足関節の背屈制限が、腓腹筋(二関節筋)だけの短縮か、それ以外(ヒラメ筋・関節包・骨性など)かの区別",
+    "value": "膝を伸ばした位置と曲げた位置で他動背屈を比べる。膝屈曲位で背屈が大きく改善すれば、腓腹筋(膝をまたぐ二関節筋)だけの短縮(陽性)。膝を曲げても伸ばしても制限が変わらなければ、ヒラメ筋・関節包・骨性などを含む下腿〜足関節全体の制限を考える。",
+    "exam": "49-pm-7(片麻痺の足背屈の他動・自動可動域を、膝屈曲位と伸展位で測った表の解釈。表: 屈曲位 他動20°/自動20°、伸展位 他動10°(疼痛あり)/自動5°。正答=分離運動の障害がある。誤答=ヒラメ筋の短縮・足の靱帯の疼痛・腓腹筋の収縮時痛・前脛骨筋MMT2未満)",
+    "q": [
+     "49-pm-7"
+    ],
+    "note": "確認済み[S2]。表では他動背屈が屈曲位20°から伸展位10°に下がり、屈曲位の方が大きいので、腓腹筋の関与を示す形(ヒラメ筋の短縮は選べない)。「分離運動の障害」の判断(伸展位で自動が他動より小さい)は問題の解答にもとづく整理で、資料の本文では確認できていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11558460/"
+     }
+    ]
+   },
+   {
+    "item": "足関節背屈の参考可動域と測定肢位",
+    "target": "関節可動域測定での足背屈",
+    "value": "参考可動域は0〜20°。測定は膝関節を屈曲位で行う(腓腹筋をゆるめて測る)。",
+    "exam": "49-pm-7(膝屈曲位の他動20°は参考可動域内に当たる)",
+    "q": [
+     "49-pm-7"
+    ],
+    "note": "確認済み[S1]。日本リハビリテーション医学会・日本整形外科学会・日本足の外科学会の「関節可動域表示ならびに測定法(2022年4月改訂)」。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jarm.or.jp/member/document/kadou/03.pdf"
+     }
+    ]
+   },
+   {
+    "item": "陽性の基準(差の大きさ)",
+    "target": "腓腹筋短縮と判定する閾値",
+    "value": "文献により基準が分かれる。膝屈曲位と伸展位の背屈角の差10°を基準にする立場と、膝伸展位で中間位(0°)を超えて背屈できないことを基準にする立場がある。陽性の厳密な閾値は一致していない。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S3]。原著は、自分たちの研究では陽性の基準を決められないと述べている。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6996460/"
+     }
+    ]
+   },
+   {
+    "item": "脳卒中の痙縮への使い方の注意",
+    "target": "片麻痺の尖足で腓腹筋とヒラメ筋のどちらが過活動かを見分ける用途",
+    "value": "原法は、腓腹筋だけの拘縮かそれ以外かを区別するもの。「膝屈曲で背屈が増える=腓腹筋、変わらない=ヒラメ筋」と痙縮の筋の見分けに使う臨床家もいるが、脳卒中成人で神経ブロックと比べた研究では、この使い方は有効と支持されなかった。",
+    "exam": "49-pm-7(脳卒中片麻痺の背屈可動域の表の解釈)",
+    "q": [
+     "49-pm-7"
+    ],
+    "note": "確認済み[S2]。後ろ向き観察研究1件(2024)の結果で、断定はできない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11558460/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "sins-spine-tumor",
+  "name": "転移性脊椎腫瘍の安定性スコア(SINS)",
+  "category": "診断基準・分類",
+  "aliases": [
+   "SINS",
+   "Spinal Instability Neoplastic Score",
+   "転移性脊椎腫瘍",
+   "脊椎腫瘍の安定性",
+   "脊椎の不安定性"
+  ],
+  "rows": [
+   {
+    "item": "SINS 部位点(固定・半固定・可動・移行部)",
+    "target": "腫瘍のある脊椎部位による不安定性への寄与",
+    "value": "移行部(後頭骨〜C2、C7〜T2、T11〜L1、L5〜S1)=3点／可動部(C3〜C6、L2〜L4)=2点／半固定(T3〜T10)=1点／固定(S2〜S5)=0点",
+    "exam": "61-pm-93(最も安定性が高い部位=S2〜S5が正答／誤答=C7〜T2・T11〜L1・L5・S1〈いずれも移行部3点〉、L2・L3〈可動部2点〉)",
+    "q": [
+     "61-pm-93"
+    ],
+    "note": "確認済み[S1]。原著(Fisher 2010)の表を引用した文献で確認。原著そのものは未開封",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5721994"
+     }
+    ]
+   },
+   {
+    "item": "SINS 合計点と判定",
+    "target": "転移性脊椎腫瘍の安定性の判定",
+    "value": "合計0〜18点。0〜6=安定／7〜12=不確定(不安定の可能性)／13〜18=不安定。7点以上では外科的コンサルトが推奨される",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。同文献の表では安定を『1-6』と書くが、本文は0〜6",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5721994"
+     }
+    ]
+   },
+   {
+    "item": "SINS の6項目",
+    "target": "スコアの構成",
+    "value": "(1)病変の部位、(2)疼痛の性状、(3)骨病変の型、(4)X線での脊柱アライメント、(5)椎体破壊の程度、(6)後側方要素(椎弓根・椎間関節など)の浸潤。各点数を合計する。2010年に Spine Oncology Study Group が提唱",
+    "exam": "出題は直接なし(参考。61-pm-93は(1)の部位点を問う)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5721994"
+     }
+    ]
+   },
+   {
+    "item": "SINS その他の項目の点数",
+    "target": "疼痛・骨病変・アライメント・椎体破壊・後側方要素",
+    "value": "メカニカルな痛み=あり3/なし(他の痛み)2/無痛の病変1／骨病変=溶骨性2・混合性1・造骨性0／アライメント=亜脱臼・すべり4、変形(後弯・側弯)2、正常0／椎体圧潰=50%超3、50%未満2、圧潰なしで椎体の50%超に浸潤1／後側方要素=両側3、片側1",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。二次資料の表の間で疼痛・後側方要素の点数表記に差がある報告があり、原著での最終確認が望ましい",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5721994"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "six-minute-walk-test",
   "name": "6分間歩行テスト(6MWT)",
   "category": "評価尺度",
@@ -16377,6 +23773,131 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "sleep-diary",
+  "name": "睡眠日誌(睡眠表)と概日リズム睡眠・覚醒障害",
+  "category": "検査法・徴候",
+  "aliases": [
+   "睡眠日誌",
+   "睡眠表",
+   "睡眠記録",
+   "睡眠相後退症候群",
+   "睡眠相後退",
+   "睡眠・覚醒障害",
+   "概日リズム睡眠",
+   "睡眠相前進症候群",
+   "睡眠相前進",
+   "不規則型睡眠・覚醒リズム",
+   "非24時間睡眠・覚醒リズム",
+   "DSWPD",
+   "DSPS",
+   "アクチグラフィ",
+   "アクチグラフィー",
+   "体内時計"
+  ],
+  "rows": [
+   {
+    "item": "睡眠相後退症候群(DSWPD)で睡眠日誌が有用な理由",
+    "target": "概日リズム睡眠・覚醒障害の診断",
+    "value": "診断基準の一つに「睡眠日誌(可能ならアクチグラフィ併用)」がある。日誌で、習慣的な睡眠時間帯が社会的に望ましい時刻より遅れている(通常2時間超)ことを確かめる。入眠は午前1〜6時ごろまで遅れ、起床は午前遅くから午後になりやすい。自由に眠れる日は、睡眠の質・量が保たれたまま後退した位相を保つ。",
+    "exam": "57-am-98(正答:睡眠日誌の記載が最も有用なのは睡眠相後退症候群。他の選択肢:原発性不眠症、ナルコレプシー、レム睡眠行動障害、閉塞性睡眠時無呼吸)",
+    "q": [
+     "57-am-98"
+    ],
+    "note": "確認済み[S1](AASM「ICSD-3-TR」概日リズム睡眠・覚醒障害の章の草稿)。他の選択肢の疾患で日誌がどう役立つかは、確認できた資料がないため載せていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://aasm.org/wp-content/uploads/2022/05/ICSD-3-TR-CRSWD-Draft.pdf"
+     }
+    ]
+   },
+   {
+    "item": "睡眠日誌をつける期間",
+    "target": "概日リズム睡眠・覚醒障害の評価",
+    "value": "睡眠日誌とアクチグラフィは、少なくとも7日間、できれば14日間行う。勤務・登校日と休日の両方を含める。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1](ICSD-3-TR草稿。最終版の文言は未確認)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://aasm.org/wp-content/uploads/2022/05/ICSD-3-TR-CRSWD-Draft.pdf"
+     }
+    ]
+   },
+   {
+    "item": "睡眠相後退症候群の臨床像と治療",
+    "target": "睡眠相後退症候群",
+    "value": "社会的に望ましい時刻に寝つき・目覚めることが慢性的に難しい。多くは午前3〜6時ごろにならないと寝つけず、重要な予定があっても起きられない。思春期〜青年期に多い。治療は、朝の高照度光療法または夜のメラトニン投与で体内時計を前進させる。",
+    "exam": "57-am-98(睡眠日誌が有用な疾患として問われた)",
+    "q": [
+     "57-am-98"
+    ],
+    "note": "確認済み[S2](厚生労働省 e-ヘルスネット)。診断のしかたの記載は[S2]にはなく、[S1]で確認。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://kennet.mhlw.go.jp/information/information/dictionary/heart/yk-028.html"
+     }
+    ]
+   },
+   {
+    "item": "睡眠相前進症候群(ASWPD)",
+    "target": "概日リズム睡眠・覚醒障害",
+    "value": "夕方に強い眠気が出て、早朝に目が覚める。高齢者に多い。睡眠日誌では、習慣的な睡眠時間帯が一定して前にずれていることを確かめる(日誌は7日以上、できれば14日)。治療は、入眠前の高照度光療法(位相を後退させる)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://aasm.org/wp-content/uploads/2022/05/ICSD-3-TR-CRSWD-Draft.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://kennet.mhlw.go.jp/information/information/dictionary/heart/yk-028.html"
+     }
+    ]
+   },
+   {
+    "item": "不規則型睡眠・覚醒リズム障害",
+    "target": "概日リズム睡眠・覚醒障害",
+    "value": "睡眠日誌・アクチグラフィで、主となる睡眠時間帯がなく、24時間に少なくとも3回の不規則な睡眠が現れる(1回2〜4時間ほどが多く、日によって変わる)。7日以上、できれば14日の記録で見分ける。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1](ICSD-3-TR草稿)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://aasm.org/wp-content/uploads/2022/05/ICSD-3-TR-CRSWD-Draft.pdf"
+     }
+    ]
+   },
+   {
+    "item": "非24時間睡眠・覚醒リズム障害と交代勤務障害",
+    "target": "概日リズム睡眠・覚醒障害",
+    "value": "非24時間型:睡眠・覚醒と体内時計の位相が安定せず、入眠・起床が毎日遅れていく。記録は少なくとも14日(視覚障害者ではそれ以上が望ましい)。交代勤務障害:勤務スケジュールと睡眠時間帯が重なる不眠・過度の眠気。睡眠日誌は少なくとも14日(勤務日と休日)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1](ICSD-3-TR草稿)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://aasm.org/wp-content/uploads/2022/05/ICSD-3-TR-CRSWD-Draft.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -16798,6 +24319,163 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "stroop-test",
+  "name": "Stroop test(ストループテスト)",
+  "category": "評価尺度",
+  "aliases": [
+   "Stroop test",
+   "Stroop",
+   "ストループテスト",
+   "ストループ検査",
+   "ストループ課題",
+   "ストループ効果",
+   "ストループ干渉",
+   "新ストループ検査"
+  ],
+  "rows": [
+   {
+    "item": "Stroop testとは(何をみる検査か)",
+    "target": "認知的干渉を抑える能力(抑制・実行機能)",
+    "value": "色の名前を表す単語を、単語の意味と異なる色のインクで印刷し、「単語を読む」のではなく「インクの色を答える」よう求める。自動化している「読む」反応を抑えて、慣れていない「色を答える」を行う必要があり、不一致の条件で遅れや誤りが生じる。これをStroop効果(ストループ干渉)という",
+    "exam": "55-pm-8(誤答選択肢: 「1から25までの数字を順に線でつなぐ時間を測る」検査はTMT-Aが正答。Stroop testは選択肢の一つ)／59-pm-19(誤答選択肢: 右を向き左からの声かけに反応が遅い左片麻痺患者で優先度が高いのはBIT。Stroop testは選択肢の一つ)／50-pm-80(誤答選択肢: 「図に示す課題を用いる」検査の正答はRey-Osterrieth複雑図形検査。Stroop testは選択肢の一つ。図は未確認)",
+    "q": [
+     "50-pm-80",
+     "55-pm-8",
+     "59-pm-19"
+    ],
+    "note": "確認済み[S1]。今回の記録では、Stroop testが正答になる問題は入力になし(いずれも誤答選択肢)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5388755/"
+     }
+    ]
+   },
+   {
+    "item": "課題の構成(3つの条件)",
+    "target": "最も一般的な版の手順",
+    "value": "3つの表を、できるだけ速く答える。①色名の単語を黒インクで印刷した表(単語を読む) ②色のパッチの色名を答える表(色の呼称) ③色名の単語を、単語と異なる色のインクで印刷した表(インクの色を答える。色-単語条件)。③が不一致(干渉)条件",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。これは原法(Stroop 1935)に基づく最も一般的な版の説明。日本で用いられる版(新ストループ検査など)の手順は確認していない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5388755/"
+     }
+    ]
+   },
+   {
+    "item": "何を反映するか(前頭葉・実行機能)",
+    "target": "障害との関係",
+    "value": "成績は注意・集中だけでは説明されず、反応を抑える実行機能(前頭葉領域)に強く関わるとされる。不一致条件で、前頭葉に病変のある患者やパーキンソン病の患者に、速度ではなく正確さの低下が報告されている",
+    "exam": "出題は直接なし(参考)。59-pm-19のように「注意障害」の場面でも選択肢に出るが、半側空間無視を疑う場面ではBITが優先",
+    "q": [],
+    "note": "確認済み[S1]。確認できたのは資料の記述(注意・集中だけでなく実行機能も反映)まで。国試・教科書で「注意の検査」「前頭葉機能検査」のどちらに分類されるかは確認していない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC5388755/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "strumpell-sign",
+  "name": "Strümpell現象(脛骨筋現象)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "Strümpell現象",
+   "Strumpell現象",
+   "Strümpell",
+   "Strumpell",
+   "ストリュンペル現象",
+   "ストリュンペル",
+   "シュトリュンペル現象",
+   "シュトリュンペル",
+   "脛骨筋現象",
+   "脛骨筋徴候",
+   "脛骨現象",
+   "tibialis sign",
+   "tibialis phenomenon"
+  ],
+  "rows": [
+   {
+    "item": "Strümpell現象の誘発と反応",
+    "target": "錐体路障害(片麻痺)でみられる下肢の連合反応",
+    "value": "麻痺側の股関節と膝関節を随意的に曲げると、足関節が不随意に背屈し、内反する(母趾や全趾の背屈を伴うこともある)。抵抗をかけて動かすと強まる。正常では、股・膝を強く曲げると足は底屈する",
+    "exam": "52-pm-48(正答: 足関節背屈。端座位で一側の股関節屈曲に抵抗をかけたとき。誤答: 股関節外旋・膝関節屈曲・膝関節伸展・足関節底屈)",
+    "q": [
+     "52-pm-48"
+    ],
+    "note": "確認済み[S1]。設問は股関節屈曲に抵抗をかける形で、資料の「股・膝の屈曲」とは動かす関節の書き方が少し違うが、反応(足関節背屈)は一致",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://neupsykey.com/associated-movements-4/"
+     },
+     {
+      "label": "S3",
+      "url": "https://kotobank.jp/word/%E3%82%B7%E3%83%A5%E3%83%88%E3%83%AA%E3%83%A5%E3%83%B3%E3%83%9A%E3%83%AB%E7%8F%BE%E8%B1%A1-789105"
+     }
+    ]
+   },
+   {
+    "item": "資料による記述の違い",
+    "target": "反応の書き方",
+    "value": "反応の書き方は資料で異なる。教科書の章: 足関節の背屈と内反(母趾・全趾の背屈を伴うことも)。辞典: 伸ばした下肢を抵抗に逆らって曲げると足が背屈・内転。歴史的論文の紹介: 膝を曲げると母趾の背屈と足の回外。いずれも足(足関節)の背屈が中心",
+    "exam": "出題は背屈のみ(52-pm-48)。内反・内転・回外を問う出題の記録はなし",
+    "q": [
+     "52-pm-48"
+    ],
+    "note": "確認済み[S1][S2][S3]。学習用には「股・膝の屈曲に伴う足関節背屈」を基本に覚え、内反・内転・回外は資料で表現が違うと理解しておく",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://neupsykey.com/associated-movements-4/"
+     },
+     {
+      "label": "S2",
+      "url": "https://karger.com/article/FullText/329270"
+     },
+     {
+      "label": "S3",
+      "url": "https://kotobank.jp/word/%E3%82%B7%E3%83%A5%E3%83%88%E3%83%AA%E3%83%A5%E3%83%B3%E3%83%9A%E3%83%AB%E7%8F%BE%E8%B1%A1-789105"
+     }
+    ]
+   },
+   {
+    "item": "徴候の意味",
+    "target": "何を示すか",
+    "value": "錐体路(皮質脊髄路)の障害による下肢の麻痺を示す徴候。Strümpellが1901年の論文で詳しく記載し、現在はStrümpell's signとも呼ばれる。同じ論文でStrümpellは、錐体路障害による抑制の欠如から起こる筋の共同現象として、上肢の回内現象(pronation phenomenon)も論じた",
+    "exam": "出題は直接なし(参考)。52-pm-48は、この現象が出現したことを歩行動作の練習に役立てる、という場面",
+    "q": [],
+    "note": "確認済み[S1][S2]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://neupsykey.com/associated-movements-4/"
+     },
+     {
+      "label": "S2",
+      "url": "https://karger.com/article/FullText/329270"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -17808,6 +25486,80 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "transtibial-prosthesis-alignment",
+  "name": "下腿義足のソケットと角度設定(初期屈曲角・初期内転角)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "下腿義足",
+   "下腿切断",
+   "PTB式ソケット",
+   "PTB式義足",
+   "KBM式",
+   "PTS式",
+   "ソケットの初期屈曲角",
+   "ソケットの初期内転角",
+   "初期内転角",
+   "初期屈曲角",
+   "toe-out",
+   "トウアウト",
+   "ライナー式",
+   "足部内側が浮"
+  ],
+  "rows": [
+   {
+    "item": "初期内転角の不足と足部内側の浮き",
+    "target": "下腿義足の静的立位の観察(前額面)",
+    "value": "静的立位で足部の内側が床から浮く異常は、前額面の角度設定の問題として考える。ソケットの初期内転角の不足がこれにあたる。初期屈曲角は矢状面、toe-out角は水平面の設定なので、前額面の浮きの原因にならない。",
+    "exam": "56-am-39(正答:初期内転角が不足している。誤答:toe-out角が大きすぎる／初期屈曲角が不足／ソケット外壁が高すぎる／足部が外側に位置しすぎている)",
+    "q": [
+     "56-am-39"
+    ],
+    "note": "確認済み[S1](国試解説サイト。消去法による説明)。国試の正答と一致。公的資料では原因との対応を確認できなかった。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nazenani-sougu.com/kokushi/pt56-am39/"
+     }
+    ]
+   },
+   {
+    "item": "初期屈曲角と立脚後期の膝折れ",
+    "target": "下腿義足の歩行観察(矢状面)",
+    "value": "ソケットの初期屈曲角は矢状面で調整する角度設定。なお、立脚後期の膝折れの原因が初期屈曲角の大きすぎにある、という対応そのものは、確認できた資料がなく、ここには載せていない(国試の正答のみ記録)。",
+    "exam": "61-am-3(下腿切断。立脚後期の膝折れの原因=ソケットの初期屈曲角が大きすぎる(正答)。誤答:前足部が硬すぎる／靴の踵が低すぎる／足部が底屈しすぎる／ソケットが足部に対して後ろすぎる)",
+    "q": [
+     "61-am-3"
+    ],
+    "note": "矢状面の設定であることのみ確認[S1]。原因の機序は未確認のため、教科書(義肢学)で確認すること。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://nazenani-sougu.com/kokushi/pt56-am39/"
+     }
+    ]
+   },
+   {
+    "item": "下腿義足のソケットの種類(PTB・KBM・PTS・ライナー式)",
+    "target": "下腿義足のソケットと懸垂",
+    "value": "PTB式:従来から最も一般的。ソフトインサートを付けて装着し、断端の動きを義足に伝えやすい。KBM式:大腿骨顆の上方を両側から包んで懸垂。PTS式:体重の支え方はPTB式に似るが大腿骨顆部を完全に包み、自己懸垂性がある。ライナー式:シリコーン製ライナーで懸垂し、皮膚を守る。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S2]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.kousaikai.or.jp/support/knowledge/g-prosthetichand/g-prostheticleg/"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "trendelenburg-sign",
   "name": "Trendelenburg徴候",
   "category": "検査法・徴候",
@@ -17913,6 +25665,215 @@ export const TESTS: TestCard[] = [
   "review": "ai"
  },
  {
+  "slug": "trunk-orthosis",
+  "name": "体幹装具の種類と制限する動き(Jewett・Knight・Williams・Taylor)",
+  "category": "検査法・徴候",
+  "aliases": [
+   "体幹装具",
+   "脊椎装具",
+   "Jewett型",
+   "Jewett",
+   "ジュエット型",
+   "ジュウェット",
+   "Knight型",
+   "Knight",
+   "ナイト型",
+   "Williams型",
+   "Williams",
+   "ウィリアムス型",
+   "ウイリアムス型",
+   "Taylor型",
+   "Taylor",
+   "テイラー型",
+   "Steindler",
+   "スタインドラー型",
+   "腰仙椎装具",
+   "胸腰仙椎装具",
+   "ダーメンコルセット"
+  ],
+  "rows": [
+   {
+    "item": "Jewett型(ジュエット型)",
+    "target": "胸腰椎の前屈を制限する装具",
+    "value": "胸骨パッド・恥骨パッド・後方パッドの3点固定。前方から胸骨部と恥骨上部、後方から胸腰椎部に力を加えて前屈を制限し、後屈は可能。後彎の矯正を図る。",
+    "exam": "49-am-40(誤答:「Jewett型装具は体幹後屈の制限を目的とする」→前屈の制限が正しい)",
+    "q": [
+     "49-am-40"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Knight型(ナイト型)",
+    "target": "腰椎の動きを制限する腰椎装具",
+    "value": "強固な後方支柱2本・側方支柱・骨盤帯・胸椎バンドからなる逆T字型の構造。腰椎の伸展・屈曲・側屈・回旋を制限し、腹圧で体重を支え、腰椎前彎を軽減する。前部は軟性なので半硬性装具ともいう。",
+    "exam": "49-am-40(正答:Knight型装具は腰椎後屈(伸展)の制限を目的とする)",
+    "q": [
+     "49-am-40"
+    ],
+    "note": "確認済み[S1]。国試の正答と矛盾しない(伸展の制限を含む)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Williams型(ウィリアムス型)",
+    "target": "腰椎前彎を伴う疾患・脊椎分離症などに用いる腰椎装具",
+    "value": "骨盤帯・胸椎バンド・側方支柱・後側方支柱からなる。後屈と側屈を制限し、前屈は可能にする(Knight型・Jewett型と逆の発想)。",
+    "exam": "49-am-40(誤答:「Williams型装具は体幹前屈の制限を目的とする」→後屈と側屈の制限が正しい)",
+    "q": [
+     "49-am-40"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Taylor型(テイラー型)・Knight-Taylor型・Steindler型",
+    "target": "胸椎・胸腰椎を支持する装具",
+    "value": "Taylor型:上部腰椎から胸椎部を支持。後方に金属支柱があり、肩を固定する紐をつけ、前面は軟性。前屈と後屈を制限。Knight-Taylor型:Knight型の後方支柱を上へ伸ばし、前屈・後屈・側屈を制限。Steindler型:金属枠の硬性装具で胸椎装具の中で最も固定力が強く、前屈・後屈・側屈・回旋を制限。",
+    "exam": "49-am-40(誤答:「Taylor型装具は頸椎から仙椎までの可動域を制限する」→上部腰椎から胸椎の支持で、頸椎は含まれない)",
+    "q": [
+     "49-am-40"
+    ],
+    "note": "確認済み[S1]。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   },
+   {
+    "item": "軟性体幹装具(コルセット)の働き",
+    "target": "軟性装具の基本",
+    "value": "主に布製で体幹の輪郭に合わせて作る(一般にコルセット)。腹腔内圧(腹圧)を上げて、椎体と椎間板への負荷を減らす役割をもつ。",
+    "exam": "49-am-40(選択肢にダーメンコルセットが出たが、下端の位置についての記述は資料で未確認)",
+    "q": [
+     "49-am-40"
+    ],
+    "note": "確認済み[S1]。ダーメンコルセットの下端の位置は、確認できた資料がないため載せていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/0000070150.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "twelve-minute-walk-test",
+  "name": "12分間歩行テスト(12MWT)",
+  "category": "評価尺度",
+  "aliases": [
+   "12分間歩行テスト",
+   "12分間歩行",
+   "12分間歩行試験",
+   "12分間歩行距離",
+   "12MWT",
+   "12-minute walk test",
+   "twelve-minute walking test",
+   "12分間走",
+   "クーパーテスト"
+  ],
+  "rows": [
+   {
+    "item": "12分間歩行テストとは",
+    "target": "運動耐容能(日常生活の障害の目安)",
+    "value": "12分間に歩いた距離で運動耐容能を見る定時間の歩行テスト。1976年に McGavin らが慢性気管支炎で報告し、歩行距離は努力肺活量・最大酸素摂取量・換気量と有意に関係し、1秒量とは弱い関係だった",
+    "exam": "50-pm-46(誤答選択肢:12分間歩行テスト。問いは「運動負荷量を段階的に増加させる評価法」で、正答はBruce法)",
+    "q": [
+     "50-pm-46"
+    ],
+    "note": "確認済み[S1]。負荷を段階的に上げる検査ではなく、決めた時間に歩ける距離を測る形(S1の方法の記述からの要約。励まし方や休憩などの細かい手順は本文で確認できていない)",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1260350/"
+     }
+    ]
+   },
+   {
+    "item": "段階的に負荷を増やす検査との区別",
+    "target": "50-pm-46の選択肢の整理",
+    "value": "シャトルウォーキング試験は多段階漸増の運動負荷試験。6分間歩行試験は、6分間にできるだけ長い距離を自分のペースで歩く。12分間歩行は時間を12分に決めて距離を測る歩行テストで、負荷を段階的に上げるものではない",
+    "exam": "50-pm-46(段階的に負荷を増やす評価法=Bruce法が正答。12分間歩行テストは誤答)",
+    "q": [
+     "50-pm-46"
+    ],
+    "note": "確認済み[S2][S3]。シャトルウォーキングはS2、6分間歩行の自己ペースはS3。12分間歩行の項はS1と合わせた要約。Bruce法は運動強度カードも参照",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://www.j-circ.or.jp/cms/wp-content/uploads/2021/03/JCS2021_Makita.pdf"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.jstage.jst.go.jp/article/jsrcr/28/2/28_286/_html/-char/ja"
+     },
+     {
+      "label": "S1",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/1260350/"
+     }
+    ]
+   },
+   {
+    "item": "由来(Cooperの12分間走)",
+    "target": "歴史",
+    "value": "Cooper(1968)は空軍の男性115名で12分間の全力走を行った。McGavin ら(1976)はこれを歩行に改め、日常動作に近いとして、病院の廊下でCOPDなどの患者に用いた",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]。総説の記述。歩行中の指示(最大限の距離を歩くか、休憩可か)は本文で確認できていない",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://jxym.amegroups.org/article/view/4832/html"
+     }
+    ]
+   },
+   {
+    "item": "6分間歩行テストとの関係",
+    "target": "なぜ6分が使われるか",
+    "value": "Butland ら(1982)は2・6・12分の歩行を比べ、12分は検者に時間がかかり患者には負担が大きいと評価した。2分は区別する力が弱く、6分間歩行が妥当な折衷とされた。歩行速度は最初の2分で最高になり、その後は2分ごとの距離が安定した",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S4]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S4",
+      "url": "https://jxym.amegroups.org/article/view/4832/html"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
   "slug": "ultrasound-therapy",
   "name": "超音波療法",
   "category": "物理療法",
@@ -17959,6 +25920,194 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-19",
+  "review": "ai"
+ },
+ {
+  "slug": "updrs",
+  "name": "UPDRS(MDS-UPDRS)",
+  "category": "評価尺度",
+  "aliases": [
+   "UPDRS",
+   "MDS-UPDRS",
+   "Unified Parkinson's Disease Rating Scale",
+   "パーキンソン病統一スケール",
+   "パーキンソン病統一評価尺度"
+  ],
+  "rows": [
+   {
+    "item": "UPDRS(MDS-UPDRS)の構成と対象",
+    "target": "Parkinson病の症状・日常生活・運動合併症の包括的評価",
+    "value": "4部構成。Part I=非運動症状の日常生活(13項目)、Part II=運動症状の日常生活(13項目)、Part III=運動検査(評価者が診察で採点。18項目・33採点)、Part IV=運動合併症(6項目)。計65採点。各項目は0=正常、1=わずか、2=軽度、3=中等度、4=重度の5段階。従来版UPDRSは55項目。",
+    "exam": "58-am-32(脊髄小脳変性症の運動失調の評価はSARAが正答。UPDRSは誤答選択肢=Parkinson病の尺度)／59-am-91(脳卒中患者の身体機能評価はNIHSS・SIASが正答。UPDRSは誤答選択肢)／60-am-12(片麻痺の通所者の転倒リスク評価はTUGが正答。UPDRSは誤答選択肢)",
+    "q": [
+     "58-am-32",
+     "59-am-91",
+     "60-am-12"
+    ],
+    "note": "確認済み[S1][S2]。日本語名「パーキンソン病統一スケール」は検索用の別名で、本資料では確認していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Part III 固縮(項目3.3)",
+    "target": "運動検査(Part III)の代表項目",
+    "value": "頸部と4肢を別々に、力を抜かせて他動的にゆっくり関節を動かして評価(上肢は手首と肘、下肢は股と膝を同時に)。0=固縮なし／1=対側の活性化動作(指タッピング・手の開閉・踵タッピングなど)をしたときだけ検出／2=活性化動作なしで検出、全可動域は容易に得られる／3=全可動域は努力して得られる／4=全可動域が得られない。",
+    "exam": "60-am-29(UPDRS Version 3.0の運動能力検査の項目はどれか。正答=固縮。誤答=嚥下・転倒・寝返り・歩行中のすくみ)",
+    "q": [
+     "60-am-29"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Part II 日常生活の項目(嚥下・寝返り・すくみ・転倒)",
+    "target": "運動症状が日常生活に与える影響(患者・介護者の自己記入が中心)",
+    "value": "Part IIの13項目は、発語・唾液とよだれ・咀嚼と嚥下(2.3)・食事動作・着衣・清潔・書字・趣味や活動・寝返り(2.9)・振戦・ベッド/車/深い椅子からの立ち上がり・歩行とバランス(2.12)・すくみ(2.13)。「転倒」は従来版にあった項目だが、MDS版では日常体験の項目に入れず、診察(Part III)側で扱うとされる。",
+    "exam": "60-am-29(誤答選択肢の嚥下・寝返り・歩行中のすくみ・転倒は、いずれもPart III運動検査の項目ではないという扱い)／60-am-12(転倒リスク評価としてUPDRSは不適切=誤答)",
+    "q": [
+     "60-am-29",
+     "60-am-12"
+    ],
+    "note": "確認済み[S1][S2]。食い違い: 「歩行中のすくみ」は、Part IIの2.13(日常生活のすくみ)だけでなく、Part IIIにも3.11「歩行のすくみ(freezing of gait)」の運動検査項目がある。国試の正答は固縮で、すくみを誤答とした扱いは、選択肢の言い回しがPart IIの2.13を指す前提と考えられる(推測)。Part III 3.12(姿勢の安定性)が転倒に関わる診察項目。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+     }
+    ]
+   },
+   {
+    "item": "Part III 運動検査の項目一覧",
+    "target": "診察で採点する運動症状(Parkinson病の運動検査)",
+    "value": "3.1 発語／3.2 表情／3.3 固縮／3.4 指タップ／3.5 手の運動／3.6 手の回内・回外／3.7 つま先タップ／3.8 下肢の敏捷性／3.9 椅子からの立ち上がり／3.10 歩行／3.11 歩行のすくみ／3.12 姿勢の安定性／3.13 姿勢／3.14 動作全体の自発性(身体の動作緩慢)／3.15 手の姿勢時振戦／3.16 手の動作時振戦／3.17 安静時振戦の振幅／3.18 安静時振戦の持続性。感覚を診る検査項目はない。",
+    "exam": "54-am-35(UPDRSの評価項目でないものは、感覚が正答。誤答選択肢の姿勢・歩行はPart IIIに含まれる側)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "確認済み[S1]。「感覚」の扱いは下の行を参照。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     }
+    ]
+   },
+   {
+    "item": "歩行(Part III 3.10)",
+    "target": "歩行障害の重症度",
+    "value": "少なくとも10 m歩いて折り返す。歩幅・速さ・足の挙上・踵接地・方向転換・腕振りをみる(すくみは別項目)。0=問題なし／1=自立歩行、軽い障害／2=自立歩行だが著しい障害／3=安全な歩行に杖や歩行器が必要(人の介助は不要)／4=全く歩けない、または他者の介助が必要。",
+    "exam": "54-am-35(誤答選択肢=歩行。UPDRSの評価項目に含まれる)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     }
+    ]
+   },
+   {
+    "item": "姿勢の安定性(Part III 3.12)・姿勢(3.13)",
+    "target": "姿勢反射障害(後方突進)の評価",
+    "value": "3.12は、立位の患者の肩を後ろから急に強く引き(1回目は説明用で採点しない)、後ろへのステップ数をみる。0=1〜2歩で回復／1=3〜5歩、自力で回復／2=5歩超、自力で回復／3=姿勢反応がなく、検者が支えないと倒れる／4=非常に不安定で、軽く引くだけで、または自然にバランスを崩す。2歩までは正常。3.13は立位姿勢の観察。",
+    "exam": "54-am-35(誤答選択肢=姿勢。UPDRSの評価項目に含まれる)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     }
+    ]
+   },
+   {
+    "item": "ジスキネジア(Part IV 4.1・4.2)",
+    "target": "運動合併症(ジスキネジア)の評価",
+    "value": "4.1=起きている時間のうちジスキネジアのある割合。0=なし／1=25%以下／2=26〜50%／3=51〜75%／4=75%超。4.2=ジスキネジアが日常の活動・対人場面に与える影響。Part IVはほかにOFF状態の時間・症状変動の影響と複雑さ・OFF期の有痛性ジストニアを含む(計6項目)。",
+    "exam": "54-am-35(誤答選択肢=ジスキネジア。UPDRSの評価項目に含まれる)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     }
+    ]
+   },
+   {
+    "item": "知的機能(Part I 1.1 認知障害)",
+    "target": "Parkinson病の認知機能面の評価",
+    "value": "Part Iの項目1.1「認知障害(Cognitive impairment)」。従来版UPDRSの「知的機能の障害(Intellectual impairment)」に対応する。ほかにPart Iには幻覚・精神症状、抑うつ、不安、アパシー、睡眠、日中の過眠、疲労などの項目がある。",
+    "exam": "54-am-35(誤答選択肢=知的機能。UPDRSの評価項目に含まれる)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "確認済み[S1][S2]。採点の基準文は読んでいない(項目の存在と対応関係のみ確認)。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+     }
+    ]
+   },
+   {
+    "item": "感覚(国試で「評価項目でない」とされた点)",
+    "target": "UPDRSの評価項目に含まれないもの",
+    "value": "運動検査(Part III)に感覚を診る項目はない。一方でPart Iの1.9「痛みとその他の感覚」は、患者が報告する症状の項目(従来版では「感覚の訴え(Sensory complaints related to parkinsonism)」)として存在する。",
+    "exam": "54-am-35(UPDRSの評価項目でないものはどれか。正答=感覚。誤答選択肢=姿勢・歩行・知的機能・ジスキネジア)",
+    "q": [
+     "54-am-35"
+    ],
+    "note": "食い違い: 資料では、感覚検査はないが、患者報告の「痛みとその他の感覚」の項目は存在する[S1][S2]。国試の「感覚」は感覚検査(客観的な診察項目)を指すと考えられる(推測)。",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.cms.gov/files/document/mds-updrsenglishfinal.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.bumc.bu.edu/len/files/2009/01/new-updrs.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {
@@ -18110,6 +26259,279 @@ export const TESTS: TestCard[] = [
    }
   ],
   "checkedOn": "2026-11-20",
+  "review": "ai"
+ },
+ {
+  "slug": "viral-hepatitis",
+  "name": "ウイルス肝炎(A・B・C型)と肝炎ウイルス検査",
+  "category": "臨床検査",
+  "aliases": [
+   "ウイルス性肝炎",
+   "A型肝炎",
+   "B型肝炎",
+   "C型肝炎",
+   "B型肝炎ワクチン",
+   "HCV抗原",
+   "HCV抗体",
+   "HCV-RNA",
+   "HCVコア抗原",
+   "HBs抗原",
+   "慢性肝炎",
+   "急性増悪期"
+  ],
+  "rows": [
+   {
+    "item": "B型肝炎ワクチン(感染予防)",
+    "target": "B型肝炎ウイルス感染の予防",
+    "value": "ワクチンは感染の予防に有効。3回接種後の感染防御効果は20年以上続くと考えられる(抗体獲得率は40歳までの接種で95%)。2016年4月以降生まれの0歳児が定期接種の対象(2016年10月開始)。接種で母子感染(垂直感染)を防げた報告もある",
+    "exam": "53-pm-94(「B型肝炎ワクチンは感染の予防に有効である」=正答)",
+    "q": [
+     "53-pm-94"
+    ],
+    "note": "確認済み[S1][S2]。定期接種の対象・時期は制度開始時(2016年)の情報で、現行の運用は別途確認が必要。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-10900000-Kenkoukyoku/0000137554.pdf"
+     },
+     {
+      "label": "S2",
+      "url": "https://www.mhlw.go.jp/content/10906000/001615371.pdf"
+     }
+    ]
+   },
+   {
+    "item": "C型肝炎の検査(HCV抗体・HCV-RNA・HCV抗原)",
+    "target": "C型肝炎ウイルスの現在の感染を確かめる検査",
+    "value": "HCV抗体=スクリーニング。現在の感染者(血中HCV-RNA陽性)だけでなく、既往の感染者(RNA陰性)も陽性になる。現在感染の診断=HCV-RNA(real time PCR)。HCVコア抗原は現在の感染を意味するが、感度はHCV-RNAに及ばない(安価・定量性・迅速)",
+    "exam": "53-pm-94(誤答選択肢「C型肝炎のキャリアはHCV抗原が陽性である」)",
+    "q": [
+     "53-pm-94"
+    ],
+    "note": "国試ではこの選択肢が誤り扱い。一方、資料ではHCVコア抗原の陽性は現在の感染を意味するとされ、国試の誤りの根拠は資料から確認できない(診断の基本はHCV抗体+HCV-RNAという扱いと思われる)。確認済み[S1]",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://mhlw-grants.niph.go.jp/system/files/report_pdf/202424020A-buntan4.pdf"
+     }
+    ]
+   },
+   {
+    "item": "A型肝炎",
+    "target": "A型肝炎ウイルスによる急性肝炎",
+    "value": "慢性化することはない(まれに劇症化)。主な感染経路は汚染された食品や水などを介した経口感染。潜伏期は平均4週間。一般に予後は良く、特異的な治療法はなく対症療法が中心",
+    "exam": "53-pm-94(誤答選択肢「A型肝炎の慢性化率は約20%である」)",
+    "q": [
+     "53-pm-94"
+    ],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/bunya/kenkou/kekkaku-kansenshou11/01-04-03.html"
+     }
+    ]
+   },
+   {
+    "item": "慢性肝炎の原因ウイルス(B型・C型)",
+    "target": "慢性肝炎(炎症が6か月以上持続)の原因",
+    "value": "慢性肝炎はB型・C型肝炎ウイルスによるものが多い。2021年度の患者数(推計)は、慢性肝炎がB型約18万人・C型約16万人。持続感染者数(2020年推計)はB型約92〜94万人・C型約18〜48万人",
+    "exam": "53-pm-94(誤答選択肢「慢性肝炎の原因ウイルスで最も多いのはB型である」)",
+    "q": [
+     "53-pm-94"
+    ],
+    "note": "国試ではB型が最多とする選択肢が誤り扱い。しかし厚生労働省の最近の資料では、慢性肝炎の患者数はB型の方がやや多く、国試の扱い(C型が最多とする考え方)と食い違う。出題当時と現在で状況が変わった可能性がある。確認済み[S1]",
+    "conflict": true,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10901000/001664302.pdf"
+     }
+    ]
+   },
+   {
+    "item": "慢性肝炎・肝硬変と運動",
+    "target": "肝疾患での運動の位置づけ",
+    "value": "運動療法と栄養療法を組み合わせた肝臓リハビリテーションは、肝硬変に伴うサルコペニアなどへの基本的な治療とされる。ただしChild-Pugh C(肝硬変)の運動療法を推奨できるエビデンスは乏しい",
+    "exam": "53-pm-94(誤答選択肢「慢性肝炎においては急性増悪期を過ぎても運動制限を行う」)",
+    "q": [
+     "53-pm-94"
+    ],
+    "note": "確認済み[S1]。資料は肝硬変・脂肪性肝疾患・肝癌を扱い、慢性肝炎の運動制限そのものには触れていない。国試の選択肢が誤りである点は、資料からは直接確認できていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.jsh.or.jp/medical/committeeactivity/shakaihoken/method.html"
+     }
+    ]
+   },
+   {
+    "item": "C型肝炎の持続感染化",
+    "target": "感染後にキャリアになる割合",
+    "value": "C型は年齢に関係なく約70%が持続感染(キャリア)になる。感染力はB型より弱い。自然経過では徐々に進行し、多くは慢性肝炎を発症",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10901000/001664302.pdf"
+     }
+    ]
+   },
+   {
+    "item": "B型肝炎の持続感染化(キャリア)",
+    "target": "感染時期によるキャリア化の違い",
+    "value": "2〜3歳頃までに感染すると90%以上がキャリア化。成人の感染では約1%(欧米型のウイルスで10%程度)。キャリアの85〜90%は無症候のまま経過",
+    "exam": "出題は直接なし(参考。B型ワクチンが乳児の母子感染予防などに使われる背景)",
+    "q": [],
+    "note": "確認済み[S1]",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.mhlw.go.jp/content/10901000/001664302.pdf"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
+  "review": "ai"
+ },
+ {
+  "slug": "vitamin-b12",
+  "name": "ビタミンB12(胃全摘後の欠乏・亜急性連合性脊髄変性症)",
+  "category": "臨床検査",
+  "aliases": [
+   "ビタミンB12",
+   "血清ビタミンB12",
+   "B12欠乏",
+   "胃全摘出術",
+   "胃全摘術",
+   "胃全摘",
+   "胃切除後",
+   "内因子",
+   "亜急性連合性脊髄変性症",
+   "亜急性脊髄連合変性症"
+  ],
+  "rows": [
+   {
+    "item": "胃全摘術後の貧血(ビタミンB12欠乏)",
+    "target": "胃切除後に起こる貧血",
+    "value": "胃全摘後は吸収に必要な物質(内因子)が分泌されず、肝臓の貯蔵が術後数年で尽きるとビタミンB12欠乏性貧血になる。症状の例は舌がつるつるになる・白髪が増える・足のしびれ。治療はビタミンB12の筋肉注射。胃切除後は食事量の減少や胃酸の減少による鉄欠乏性貧血も起こる。",
+    "exam": "51-pm-85「胃全摘出術後に起こりやすいのはどれか」の正答=貧血(選択肢: 脱水・貧血・脂肪便・出血傾向・低蛋白血症)。問題文にB12の語はなく、貧血の中身がB12欠乏であることを知っていれば解ける。",
+    "q": [
+     "51-pm-85"
+    ],
+    "note": "確認済み[S1][S2]。脱水・脂肪便・出血傾向・低蛋白血症が誤りである理由は、このカードでは確認していない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S2",
+      "url": "https://pod.ncc.go.jp/jp/ncce/CHEER/advice/080/001_hinnketu.pdf"
+     },
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     }
+    ]
+   },
+   {
+    "item": "ビタミンB12の貯蔵と欠乏が出るまでの期間",
+    "target": "欠乏の発症時期",
+    "value": "肝臓に大量に貯蔵されており、摂取が止まっても通常は3〜5年は必要量を維持できる。腸肝循環による再吸収が失われた場合は、数か月〜1年程度。胃全摘後は術後数年で貯蔵が尽きるとされる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S2]。年数は目安で、個人差がある。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     },
+     {
+      "label": "S2",
+      "url": "https://pod.ncc.go.jp/jp/ncce/CHEER/advice/080/001_hinnketu.pdf"
+     }
+    ]
+   },
+   {
+    "item": "ビタミンB12欠乏による貧血の特徴",
+    "target": "貧血の型",
+    "value": "巨赤芽球性貧血(赤血球が大きい大球性)が特徴。多くは潜行性に進み、症状の割に貧血が重いことが多い。舌炎などの消化管症状を伴うことがある。吸収不良の最多原因は高齢者の胃酸低下。内因子の欠如(自己免疫性萎縮性胃炎・胃の手術など)でも起こる。",
+    "exam": "出題は直接なし(参考。51-pm-85の「貧血」の中身)",
+    "q": [],
+    "note": "確認済み[S1]。悪性貧血は本来、内因子欠乏を伴う自己免疫性萎縮性胃炎によるB12欠乏性貧血を指す。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     }
+    ]
+   },
+   {
+    "item": "ビタミンB12欠乏の神経症状(亜急性連合性脊髄変性症)",
+    "target": "脊髄・末梢神経の障害",
+    "value": "貧血などの血液異常がなくても出ることがある。早期は四肢の位置覚・振動覚の低下、軽〜中等度の筋力低下と反射低下。後期は痙性、反射亢進(アキレス腱反射は消失することがある)、伸展性足底反応、下肢の位置覚・振動覚の著明な低下、運動失調。触覚・痛覚・温度覚は通常障害されない。",
+    "exam": "58-pm-6 正答=亜急性連合性脊髄変性症(選択肢: 皮膚筋炎・Shy-Drager症候群・筋萎縮性側索硬化症・ポストポリオ症候群)。症例文から選ぶ問題で、症例文の詳細はこのカードでは未確認。",
+    "q": [
+     "58-pm-6"
+    ],
+    "note": "確認済み[S1][S3]。出典の本文は「白質が障害される」と書き、後索・側索という語は使っていない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/脊髄疾患/亜急性連合性脊髄変性症"
+     },
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     }
+    ]
+   },
+   {
+    "item": "血清ビタミンB12値と補助的な検査",
+    "target": "欠乏の診断",
+    "value": "血清B12が200 pg/mL未満で欠乏が示唆される。200〜350 pg/mLは境界域で、血清メチルマロン酸(MMA)を追加する。MMAの上昇はB12欠乏を支持し、葉酸欠乏では正常のまま。ホモシステインはB12・葉酸のどちらの欠乏でも上がる。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1]。数値は米国系のマニュアルの記載で、施設の基準値とは異なることがある。葉酸の補充はB12欠乏を覆い隠すため、葉酸も確認する。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     }
+    ]
+   },
+   {
+    "item": "ビタミンB12欠乏の治療と経過",
+    "target": "治療・予後の目安",
+    "value": "重症では筋肉内注射、軽症で神経症状がなければ大量の経口投与でも内因子がなくても吸収される。血液所見は通常6週間以内に改善するが、神経症状の回復ははるかに長くかかり、数か月〜数年続くと不可逆になることがある。原因が是正されない限り生涯の補充が必要。葉酸だけで代用してはいけない(神経症状が進むことがある)。",
+    "exam": "出題は直接なし(参考)",
+    "q": [],
+    "note": "確認済み[S1][S3]。学習用の要約で、治療の指示ではない。",
+    "conflict": false,
+    "sources": [
+     {
+      "label": "S1",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/09-栄養障害/ビタミン欠乏症-依存症-および中毒/ビタミンb12欠乏症"
+     },
+     {
+      "label": "S3",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/07-神経疾患/脊髄疾患/亜急性連合性脊髄変性症"
+     }
+    ]
+   }
+  ],
+  "checkedOn": "2026-11-25",
   "review": "ai"
  },
  {

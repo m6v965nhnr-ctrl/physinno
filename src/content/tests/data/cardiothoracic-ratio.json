@@ -1,0 +1,101 @@
+{
+ "slug": "cardiothoracic-ratio",
+ "name": "心胸郭比(CTR)",
+ "category": "臨床検査",
+ "aliases": [
+  "心胸郭比",
+  "心胸比",
+  "CTR",
+  "心拡大",
+  "Cardiothoracic ratio"
+ ],
+ "rows": [
+  {
+   "item": "うっ血性心不全と心胸郭比",
+   "target": "胸部X線での心拡大の判定",
+   "value": "うっ血性心不全では胸部X線で心拡大や肺うっ血がみられる。心拡大の目安は、後前方向(PA)撮影で心胸郭比0.5(50%)以上。",
+   "exam": "52-am-36(うっ血性心不全でみられるのはどれか。正答は咳嗽。誤答選択肢の「心胸郭比40%」は50%未満で、心拡大の基準を満たさない)",
+   "q": [
+    "52-am-36"
+   ],
+   "note": "確認済み[S1][S2]。50%は目安で、撮影条件や体格で変わる。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/topics/2006/11/dl/tp1122-1k05.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+    }
+   ]
+  },
+  {
+   "item": "心胸郭比の測り方",
+   "target": "定義",
+   "value": "胸部X線正面像で、心臓の最大横径を胸郭の最大内横径で割った値(心臓の幅/肺の幅の割合)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2][S3]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+    },
+    {
+     "label": "S3",
+     "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2023/10/nochioka_press.pdf"
+    }
+   ]
+  },
+  {
+   "item": "撮影条件による違い",
+   "target": "PA像とAP像",
+   "value": "測定は後前方向(PA)撮影が望ましい。前後方向(AP)撮影では心陰影が大きく写り、比が大きくなりやすい。呼吸の状態や患者の回旋でも値は変わる。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12499798"
+    }
+   ]
+  },
+  {
+   "item": "経時変化と心不全の発症",
+   "target": "心不全の発症予測(研究)",
+   "value": "東北大学の研究(ステージB心不全の登録患者5,126名)では、登録時の心胸郭比が53%を超え、かつ年に0.5%ずつ上昇する人が、後に心不全を発症しやすかった。発症しなかった群は平均50%で、年0.1%程度の増加。心胸郭比と心エコーの左室拡張末期径との相関は低い。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S3]。1回の値より、年単位の変化を見る研究結果。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.hosp.tohoku.ac.jp/wp-content/uploads/2023/10/nochioka_press.pdf"
+    }
+   ]
+  },
+  {
+   "item": "心胸郭比が小さくなる例(神経性やせ症)",
+   "target": "低栄養での心臓の変化",
+   "value": "神経性やせ症の胸部X線所見として、心胸郭比の低下がある(心エコーでは心嚢液貯留・僧帽弁逸脱など)。",
+   "exam": "出題は直接なし(参考。58-pm-100は神経性やせ症の検査所見の設問)",
+   "q": [],
+   "note": "確認済み[S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://dept.dokkyomed.ac.jp/dep-m/edsupport/resources/medical_cooperation_03.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

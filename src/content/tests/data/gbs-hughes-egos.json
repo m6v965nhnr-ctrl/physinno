@@ -1,0 +1,94 @@
+{
+ "slug": "gbs-hughes-egos",
+ "name": "Guillain-Barré症候群の機能グレード(Hughes)と予後スコア(EGOS)",
+ "category": "評価尺度",
+ "aliases": [
+  "Guillain-Barré障害スコア",
+  "Guillain-Barré 障害スコア",
+  "GBS障害スコア",
+  "GBS disability score",
+  "GBS disability scale",
+  "Hughes",
+  "Hughesの機能グレード",
+  "Hughes機能グレード",
+  "Hughes functional grade",
+  "Hughes functional grading scale",
+  "機能グレード尺度",
+  "EGOS",
+  "Erasmus GBS Outcome Score",
+  "Erasmus GBS Outcome Scale",
+  "ギラン・バレー症候群の予後予測"
+ ],
+ "rows": [
+  {
+   "item": "EGOS(Erasmus GBS Outcome Scale)",
+   "target": "発症6か月後に介助なしで歩けない確率の予測",
+   "value": "3項目の合計(1〜7点)。(1)発症年齢:>60歳=1、41〜60歳=0.5、≦40歳=0。(2)発症前4週以内の下痢:なし=0、あり=1。(3)入院2週後のHughes機能グレード:0または1=1、2=2、3=3、4=4、5=5。合計点が高いほど6か月後の歩行不能の確率が高く、1〜83%の範囲で予測できる。EGOSスコア3以下では5%以下、7では約83%。",
+   "exam": "54-am-2(32歳=0点、先行する下痢あり=1点、入院2週後の障害スコア5(人工呼吸管理)=5点で合計6点。6か月後に歩行不可能な確率は、問題のグラフから60%が正答(選択肢3)。誤答は20・30・80・90%)",
+   "q": [
+    "54-am-2"
+   ],
+   "note": "確認済み[S3][S5]。スコア3以下・7の確率は日本のガイドライン本文にあるが、合計6点の確率の数値は本文にはなく、国試では問題のグラフから読む。EGOSは欧米の研究から作られ、日本でそのまま通用するかは今後の検証が望まれるとガイドラインに書かれている。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S3",
+     "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_04.pdf"
+    },
+    {
+     "label": "S5",
+     "url": "https://pubmed.ncbi.nlm.nih.gov/17537676/"
+    }
+   ]
+  },
+  {
+   "item": "Hughesの機能グレード尺度(FG、GBS障害スコア)",
+   "target": "ギラン・バレー症候群の重症度・経過の評価",
+   "value": "FG0=正常/FG1=軽微な神経症候あり/FG2=歩行器などの支えなしで5m歩行可/FG3=歩行器や支えがあれば5m歩行可/FG4=ベッド上か車椅子に限られる(支えがあっても5m歩けない)/FG5=補助換気(人工呼吸)が必要/FG6=死亡。",
+   "exam": "54-am-2(問題文の「障害スコアが5(人工呼吸管理)」=FG5。この値がEGOSの3項目の1つになる)",
+   "q": [
+    "54-am-2"
+   ],
+   "note": "確認済み[S1]。国試の「Guillain-Barré障害スコア」は、このHughesの機能グレード(障害スコア)のこと。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_01.pdf"
+    }
+   ]
+  },
+  {
+   "item": "FGと治療の目安",
+   "target": "免疫療法・血漿浄化療法を行うかの判断に使われる",
+   "value": "血漿浄化療法(単純血漿交換など)の保険適用は、FG4以上の場合に限られる。IVIgは急性増悪期で歩行が難しい重症例に適応される。発症4週以降の回復期でも、無治療でFG3以上なら積極的な免疫調整療法が考慮されるが、その場合はGBSの診断やCIDPなどとの鑑別を見直す。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S4]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S4",
+     "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_05.pdf"
+    }
+   ]
+  },
+  {
+   "item": "GBSの自然経過(FGで見たもの)",
+   "target": "症状のピークと回復の時期",
+   "value": "1983〜84年の英国の調査で、症状のピークは発症7日以内に34%、14日以内に70%、21日以内に84%。4週ごろまで進行性に悪化し、その後3〜12か月で徐々に回復する。12か月後は67%が完全回復(FG0)、20%が後遺症を残し(FG1〜4)、13%が死亡(FG6)。",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S2]。血漿交換・IVIg普及前の古い調査に基づく数字。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S2",
+     "url": "https://www.neurology-jp.org/guidelinem/gbs/sinkei_gbs_2013_02.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}

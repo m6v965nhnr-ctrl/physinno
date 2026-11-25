@@ -1,0 +1,109 @@
+{
+ "slug": "physical-disability-internal",
+ "name": "身体障害者障害程度等級表(内部障害の区分)",
+ "category": "診断基準・分類",
+ "aliases": [
+  "内部障害",
+  "身体障害者障害程度等級表",
+  "障害程度等級表",
+  "身体障害認定基準",
+  "身体障害者福祉法",
+  "代謝機能障害",
+  "心臓機能障害",
+  "呼吸器機能障害",
+  "小腸機能障害",
+  "膀胱機能障害",
+  "じん臓機能障害",
+  "肝臓機能障害",
+  "免疫機能障害"
+ ],
+ "rows": [
+  {
+   "item": "内部障害の区分(7つ)",
+   "target": "身体障害者福祉法の障害程度等級表で「内部障害」に当たるもの",
+   "value": "心臓機能障害／じん臓機能障害／呼吸器機能障害／ぼうこう又は直腸機能障害／小腸機能障害／ヒト免疫不全ウイルス(HIV)による免疫機能障害／肝臓機能障害 の7つ",
+   "exam": "49-am-94・51-pm-84(同じ設問。正答:代謝機能障害=内部障害に含まれない。誤答:心臓・小腸・膀胱・呼吸器の各機能障害=いずれも内部障害)",
+   "q": [
+    "49-am-94",
+    "51-pm-84"
+   ],
+   "note": "確認済み[S1][S2]。認定基準の「内臓の機能障害」は1心臓〜7肝臓の7区分で、代謝機能障害という区分はない。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+    },
+    {
+     "label": "S2",
+     "url": "https://www.pref.osaka.lg.jp/documents/5332/toukyuuhyou.pdf"
+    }
+   ]
+  },
+  {
+   "item": "膀胱機能障害の位置づけ",
+   "target": "「ぼうこう」の障害の区分名",
+   "value": "区分名は「ぼうこう又は直腸機能障害」。ぼうこう(膀胱)の機能障害も内部障害に含まれる",
+   "exam": "49-am-94・51-pm-84(誤答選択肢:膀胱機能障害。内部障害に「当たる」ので「でないもの」ではない)",
+   "q": [
+    "49-am-94",
+    "51-pm-84"
+   ],
+   "note": "確認済み[S1]",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+    }
+   ]
+  },
+  {
+   "item": "等級の範囲(心臓・じん臓・呼吸器)",
+   "target": "等級表で認められる等級",
+   "value": "心臓・じん臓・呼吸器の機能障害は1級・3級・4級(2級の区分はない)。HIVによる免疫機能障害と肝臓機能障害は1〜4級",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。基準の本文で、心臓・じん臓・呼吸器は1・3・4級の記載のみ。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+    }
+   ]
+  },
+  {
+   "item": "呼吸器機能障害の等級基準",
+   "target": "呼吸器機能障害の1・3・4級",
+   "value": "指数(予測肺活量1秒率=1秒量÷予測肺活量×100)または動脈血O2分圧で判定。1級:指数20以下またはPaO2 50Torr以下(呼吸困難が強く歩行がほとんど不可、指数測定不能も含む)／3級:指数20超〜30以下またはPaO2 50超〜60Torr以下／4級:指数30超〜40以下またはPaO2 60超〜70Torr以下",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。「指数」は一般のFEV1/FVCとは別の定義。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+    }
+   ]
+  },
+  {
+   "item": "じん臓機能障害の等級基準(3・4級)",
+   "target": "じん臓機能障害の判定指標",
+   "value": "3級:内因性クレアチニンクリアランス10以上20ml/分未満、または血清Cr 5.0以上8.0mg/dl未満(かつ家庭内での極めて温和な生活以外は著しく制限、または所定の所見2つ以上)／4級:CCr 20以上30ml/分未満、または血清Cr 3.0以上5.0mg/dl未満。eGFRがあれば10以上20未満を4級相当、10未満を3級相当として扱ってよい",
+   "exam": "出題は直接なし(参考)",
+   "q": [],
+   "note": "確認済み[S1]。",
+   "conflict": false,
+   "sources": [
+    {
+     "label": "S1",
+     "url": "https://www.mhlw.go.jp/file/06-Seisakujouhou-12200000-Shakaiengokyokushougaihokenfukushibu/kijun_all.pdf"
+    }
+   ]
+  }
+ ],
+ "checkedOn": "2026-11-25",
+ "review": "ai"
+}
