@@ -68,7 +68,7 @@ export default function QuizSchoolRanking() {
     <section className="rounded-2xl border border-[var(--relight-line)] bg-white p-4 shadow-sm">
       <div className="flex items-start justify-between gap-2">
         <div>
-          <p className="text-sm font-semibold">🏆 {data.school}のランキング</p>
+          <p className="text-sm font-semibold">🏆 あなたの大学のランキング</p>
           <p className="text-[11px] leading-4 text-gray-500">
             同じ学校の{data.members}人の正解数（最後の答えで数えます）
           </p>
