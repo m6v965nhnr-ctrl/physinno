@@ -231,7 +231,9 @@
   "related": [
     "motor-unit",
     "muscle-energy-metabolism",
-    "skeletal-muscle-contraction"
+    "skeletal-muscle-contraction",
+    "blood-vessels",
+    "neuron"
   ],
   "figures": [],
   "sources": [

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>滑膜性関節の構造（断面の模式図）と、関節唇・関節円板・半月</title><desc>上段は、滑膜性関節を切った断面の模式図。上の骨の関節頭と、下の骨の関節窩のそれぞれの関節面を、関節軟骨がおおい、2つの関節軟骨の間に、滑液で満たされた関節腔がある。関節腔は関節包でかこまれ、関節包は関節面のすぐ外側で骨に付く。関節包の内面には滑膜がある。関節包の外には靱帯がある。下段は、一部の関節にある線維軟骨の模式図。関節唇は関節窩の縁につき、関節円板は2つの骨の間にあり、半月は上から見るとC字形で、外縁が厚く、内縁が薄い。</desc><rect width="680" height="640" fill="#fff"/><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888780"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker></defs><path d="M300 30 L380 30 L380 90 Q460 95 460 160 Q455 245 340 250 Q225 245 220 160 Q220 95 300 90 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M160 215 L232 215 Q240 285 340 287 Q440 285 448 215 L520 215 L520 400 L160 400 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="340" cy="268" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<circle cx="300" cy="262" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<circle cx="380" cy="262" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<circle cx="262" cy="240" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<circle cx="418" cy="238" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<circle cx="236" cy="206" r="2.2" fill="#185FA5" stroke="#185FA5" stroke-width="0"/>
+<path d="M220 160 Q225 245 340 250 Q455 245 460 160" fill="none" stroke="#185FA5" stroke-width="11" stroke-linecap="round"/>
+<path d="M220 160 Q225 245 340 250 Q455 245 460 160" fill="none" stroke="#B5D4F4" stroke-width="8" stroke-linecap="round"/>
+<path d="M232 215 Q240 285 340 287 Q440 285 448 215" fill="none" stroke="#185FA5" stroke-width="11" stroke-linecap="round"/>
+<path d="M232 215 Q240 285 340 287 Q440 285 448 215" fill="none" stroke="#B5D4F4" stroke-width="8" stroke-linecap="round"/>
+<path d="M233 112 Q150 140 168 216" fill="none" stroke="#3B6D11" stroke-width="13" stroke-linecap="round"/>
+<path d="M233 112 Q150 140 168 216" fill="none" stroke="#C0DD97" stroke-width="10" stroke-linecap="round"/>
+<path d="M227 128 Q194 170 184 214" fill="none" stroke="#993C1D" stroke-width="8" stroke-linecap="round"/>
+<path d="M227 128 Q194 170 184 214" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<path d="M455 128 Q488 170 497 214" fill="none" stroke="#993C1D" stroke-width="8" stroke-linecap="round"/>
+<path d="M455 128 Q488 170 497 214" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<path d="M222 158 L233 130 Q206 172 196 213 L232 214" fill="none" stroke="#993556" stroke-width="3" stroke-linejoin="round"/>
+<path d="M458 158 L447 130 Q476 172 486 213 L448 214" fill="none" stroke="#993556" stroke-width="3" stroke-linejoin="round"/>
+<text x="540" y="60" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節頭（骨）</text>
+<path d="M536 60 L420 125" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="420" cy="125" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="540" y="134" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節包</text>
+<text x="540" y="151" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（線維性結合組織）</text>
+<path d="M536 134 L472 144" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="472" cy="144" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="540" y="196" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">滑膜</text>
+<text x="540" y="213" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（関節包の内面）</text>
+<path d="M536 196 L461 155" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="461" cy="155" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="540" y="246" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節軟骨</text>
+<text x="540" y="263" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（硝子軟骨）</text>
+<path d="M536 246 L444 216" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="444" cy="216" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="540" y="300" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節腔</text>
+<text x="540" y="317" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（滑液で満たされる）</text>
+<path d="M536 300 L404 264" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="404" cy="264" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="540" y="350" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節窩（骨）</text>
+<path d="M536 350 L505 350" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="505" cy="350" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<text x="20" y="150" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節包外の靱帯</text>
+<path d="M122 150 L172 150" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="172" cy="150" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<path d="M20 428 L660 428" fill="none" stroke="#B4B2A9" stroke-width="0.7" stroke-dasharray="4 3"/>
+<text x="340" y="446" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">一部の関節にある線維軟骨（模式図）</text>
+<text x="120" y="470" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">関節唇</text>
+<path d="M40 578 L40 540 L68 540 Q120 570 172 540 L200 540 L200 578 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="120" cy="524" r="26" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M68 540 L82 540 L70 524 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M172 540 L158 540 L170 524 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="120" y="596" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">関節窩の縁の線維軟骨</text>
+<text x="120" y="612" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">受け皿を深くする（肩・股）</text>
+<text x="340" y="470" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">関節円板</text>
+<rect x="276" y="496" width="128" height="26" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="276" y="552" width="128" height="26" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<ellipse cx="340" cy="537" rx="48" ry="9" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<text x="340" y="596" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">小さな楕円形の線維軟骨</text>
+<text x="340" y="612" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">胸鎖・遠位橈尺・顎関節</text>
+<text x="560" y="470" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">半月（上から見た図）</text>
+<path d="M536 492 C496 492 484 514 484 532 C484 550 496 572 536 572 C514 566 510 548 510 532 C510 516 514 498 536 492 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M584 492 C624 492 636 514 636 532 C636 550 624 572 584 572 C606 566 610 548 610 532 C610 516 606 498 584 492 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="560" y="596" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">C字形の線維軟骨</text>
+<text x="560" y="612" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">外縁が厚く、内縁が薄い（膝）</text></svg>

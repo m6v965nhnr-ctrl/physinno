@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>ブロック練習とランダム練習の対比と、練習方法の分け方</title><desc>3つの課題 A・B・C を練習する場合の順序の模式図。ブロック練習は、同じ課題をまとめて続ける（AAAA、BBBB、CCCC）。ランダム練習は、同じ課題が続かないように、課題を無作為な順序で混ぜる。練習中の成績は、ブロック練習のほうが高く、ランダム練習は低い。時間をおいた保持テストの成績は、ランダム練習のほうが高い（文脈干渉効果）。下段は、集中練習と分散練習、恒常練習と変動（多様性）練習、全体法と部分法の定義。</desc><rect width="680" height="640" fill="#fff"/><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888780"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker></defs><text x="340" y="18" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">ブロック練習とランダム練習（課題 A・B・C を各4試行ずつ練習する例）</text>
+<text x="20" y="57" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">ブロック練習</text>
+<text x="20" y="78" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">同じ課題を続ける</text>
+<rect x="190" y="40" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="207" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="230" y="40" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="247" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="270" y="40" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="287" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="310" y="40" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="327" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="350" y="40" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="367" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="390" y="40" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="407" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="430" y="40" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="447" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="470" y="40" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="487" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="510" y="40" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="527" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="550" y="40" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="567" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="590" y="40" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="607" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="630" y="40" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="647" y="57" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<text x="662" y="57" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A"></text>
+<text x="20" y="117" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">ランダム練習</text>
+<text x="20" y="138" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">課題を混ぜる</text>
+<rect x="190" y="100" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="207" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="230" y="100" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="247" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="270" y="100" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="287" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="310" y="100" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="327" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="350" y="100" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="367" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="390" y="100" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="407" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="430" y="100" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="447" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="470" y="100" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="487" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="510" y="100" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="527" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<rect x="550" y="100" width="34" height="34" rx="5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="567" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">C</text>
+<rect x="590" y="100" width="34" height="34" rx="5" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="607" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A</text>
+<rect x="630" y="100" width="34" height="34" rx="5" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="647" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">B</text>
+<text x="662" y="117" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A"></text>
+<text x="340" y="160" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">矢印：練習の順序（左から右）</text>
+<path d="M190 150 L650 150" fill="none" stroke="#888780" stroke-width="1.2" marker-end="url(#ar)"/>
+<path d="M20 178 L660 178" fill="none" stroke="#B4B2A9" stroke-width="0.7" stroke-dasharray="4 3"/>
+<text x="340" y="196" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">成績の比較（高さは大小の方向だけを示す模式。数値ではない）</text>
+<text x="170" y="224" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">練習中の成績</text>
+<path d="M60 340 L280 340" fill="none" stroke="#888780" stroke-width="1"/>
+<rect x="90" y="240" width="60" height="100" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<rect x="190" y="280" width="60" height="60" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="120" y="356" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ブロック</text>
+<text x="220" y="356" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ランダム</text>
+<text x="490" y="224" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">時間をおいた保持テストの成績</text>
+<path d="M380 340 L600 340" fill="none" stroke="#888780" stroke-width="1"/>
+<rect x="410" y="280" width="60" height="60" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<rect x="510" y="240" width="60" height="100" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="440" y="356" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ブロック</text>
+<text x="540" y="356" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ランダム</text>
+<text x="340" y="386" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">練習中に成績がよい方法が、保持（学習）でも優れるとは限らない（文脈干渉効果）</text>
+<text x="340" y="404" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">ランダム練習は、課題が切り替わるたびに準備と評価をやり直すため、とする説明がある（精緻化仮説）</text>
+<path d="M20 424 L660 424" fill="none" stroke="#B4B2A9" stroke-width="0.7" stroke-dasharray="4 3"/>
+<text x="340" y="442" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">そのほかの練習の分け方</text>
+<rect x="20" y="458" width="200" height="150" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="120" y="474" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">集中練習／分散練習</text>
+<text x="30" y="498" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">集中</text>
+<text x="30" y="515" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">1回の連続したまとまりで練習する</text>
+<text x="30" y="550" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">分散</text>
+<text x="30" y="567" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">時間（数時間〜数か月）をあけて</text>
+<text x="30" y="582" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">練習を分ける</text>
+<rect x="236" y="458" width="200" height="150" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="336" y="474" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">恒常練習／変動練習</text>
+<text x="246" y="498" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">恒常</text>
+<text x="246" y="515" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">同じ条件（同じ距離など）で</text>
+<text x="246" y="530" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">繰り返す</text>
+<text x="246" y="550" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">変動</text>
+<text x="246" y="567" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">基準の周辺で、条件を</text>
+<text x="246" y="582" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">変えて練習する（多様性練習）</text>
+<rect x="452" y="458" width="200" height="150" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="552" y="474" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">全体法／部分法</text>
+<text x="462" y="498" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">全体法</text>
+<text x="462" y="515" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">課題の始めから終わりまでを</text>
+<text x="462" y="530" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">通して繰り返す</text>
+<text x="462" y="550" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" font-weight="500">部分法</text>
+<text x="462" y="567" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">課題をあらかじめ部分に分け、</text>
+<text x="462" y="582" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">順に練習する</text></svg>

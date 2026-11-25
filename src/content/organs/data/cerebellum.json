@@ -401,7 +401,8 @@
     "basal-ganglia",
     "thalamus",
     "spinal-cord",
-    "cerebrum"
+    "cerebrum",
+    "midbrain"
   ],
   "figures": [
     {

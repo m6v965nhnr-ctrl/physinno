@@ -208,7 +208,8 @@
     "skeletal-muscle-contraction",
     "muscle-fiber-types",
     "muscle-spindle-gto",
-    "spinal-cord"
+    "spinal-cord",
+    "neuron"
   ],
   "figures": [],
   "sources": [

@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="680" height="540" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>滑膜性関節の形による6つの分類（模式図）</title><desc>滑膜性関節を、骨の関節面の形で分けた6つの型の模式図。球関節（多軸、肩関節・股関節）、蝶番関節（一軸で屈曲・伸展、腕尺関節・指節間関節）、車軸関節（一軸で回旋、環軸関節・上橈尺関節）、楕円（顆状）関節（二軸、橈骨手根関節・中手指節関節）、鞍関節（二軸、母指の手根中手関節・胸鎖関節）、平面関節（滑走で動きは小さい、手根間関節・肩鎖関節）。</desc><rect width="680" height="540" fill="#fff"/><defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888780"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker></defs><text x="340" y="16" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">滑膜性関節の6つの型（骨の関節面の形による分類）</text>
+<path d="M74 166 L74 102 L86 102 Q86 132 120 132 Q154 132 154 102 L166 102 L166 166 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="111" y="44" width="18" height="34" rx="9" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="120" cy="106" r="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M156 58 Q178 76 166 98" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<path d="M84 58 Q62 76 74 98" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<path d="M98 52 Q120 66 142 52" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<text x="120" y="186" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">球関節</text>
+<text x="120" y="205" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">多軸（運動範囲が最大）</text>
+<text x="120" y="222" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">肩関節・股関節</text>
+<path d="M290 166 L290 114 L324 114 A16 16 0 0 0 356 114 L390 114 L390 166 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="330" y="42" width="20" height="64" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="340" cy="112" r="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="330" y="42" width="20" height="64" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="340" cy="114" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0"/>
+<path d="M370 68 Q392 90 378 110" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<text x="340" y="186" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">蝶番関節</text>
+<text x="340" y="205" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">一軸（屈曲・伸展）</text>
+<text x="340" y="222" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">腕尺関節（肘）・指節間関節</text>
+<rect x="510" y="136" width="100" height="30" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="551" y="50" width="18" height="92" rx="9" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<ellipse cx="560" cy="134" rx="26" ry="8" fill="none" stroke="#3B6D11" stroke-width="4"/>
+<path d="M530 70 Q560 50 590 70" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<text x="560" y="186" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">車軸関節</text>
+<text x="560" y="205" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">一軸（回旋）</text>
+<text x="560" y="222" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">環軸関節・上橈尺関節</text>
+<path d="M68 398 L68 354 L88 354 Q120 376 152 354 L172 354 L172 398 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="110" y="274" width="20" height="56" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<ellipse cx="120" cy="344" rx="30" ry="17" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="110" y="274" width="20" height="52" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M80 304 Q120 282 160 304" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<path d="M164 324 Q182 338 166 352" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<text x="120" y="418" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">楕円（顆状）関節</text>
+<text x="120" y="437" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">二軸</text>
+<text x="120" y="454" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">橈骨手根関節・中手指節関節</text>
+<path d="M248 398 L248 356 Q288 380 328 356 L328 398 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M266 284 L310 284 L310 362 Q288 370 266 362 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="288" y="410" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">正面</text>
+<path d="M352 398 L352 370 Q392 342 432 370 L432 398 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M362 284 L422 284 L422 364 Q392 348 362 364 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-linejoin="round"/>
+<text x="392" y="410" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">側面</text>
+<text x="340" y="434" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">鞍関節</text>
+<text x="340" y="453" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">二軸</text>
+<text x="340" y="470" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">母指の手根中手関節・胸鎖関節</text>
+<rect x="508" y="344" width="104" height="48" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="516" y="304" width="88" height="36" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M560 286 L526 286" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<path d="M560 286 L594 286" fill="none" stroke="#993C1D" stroke-width="2" marker-end="url(#ao)"/>
+<text x="560" y="418" text-anchor="middle" dominant-baseline="central" font-size="14.5" fill="#2C2C2A" font-weight="500">平面関節</text>
+<text x="560" y="437" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">滑走（動きは小さい）</text>
+<text x="560" y="454" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">手根間関節・肩鎖関節</text>
+<text x="340" y="498" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">鞍関節は、2つの骨の面が、見る方向によって凹と凸が逆になる形。</text>
+<text x="340" y="516" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">日本語の資料には、球関節のほか、臼状関節・らせん関節を別に挙げるものもある。</text></svg>

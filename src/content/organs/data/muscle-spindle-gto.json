@@ -282,7 +282,9 @@
   "related": [
     "spinal-cord",
     "motor-unit",
-    "skeletal-muscle-contraction"
+    "skeletal-muscle-contraction",
+    "neuron",
+    "synapse"
   ],
   "figures": [
     {
