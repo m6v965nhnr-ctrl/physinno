@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 548" width="680" height="548" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>視床の主な核と、入力・投射先</title><desc>視床の主な核を中央に、入力元を左に、大脳皮質の投射先を右に並べた図。前核は乳頭体から入力を受けて帯状回へ。内側核は扁桃体・側頭葉・視床下部などから入力を受けて前頭葉へ。前外側腹側核（VA・VL核）は小脳の歯状核・淡蒼球・黒質から入力を受け、運動前野・運動野へ。後外側腹側核（VPL核）は脊髄視床路と内側毛帯から体幹・四肢の感覚を受け、後内側腹側核（VPM核）は三叉神経毛帯から顔面の感覚を受けて、どちらも中心後回へ。外側膝状体は視索から視覚を受けて後頭葉へ、内側膝状体は下丘から聴覚を受けて側頭葉の横側頭回へ。</desc>
+<rect width="680" height="548" fill="#fff"/>
+<defs><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/></marker></defs>
+<text x="125" y="16" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">入力元</text>
+<text x="350" y="16" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床の核</text>
+<text x="564" y="16" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">皮質の投射先</text>
+<rect x="10" y="36" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="62.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">乳頭体</text>
+<rect x="264" y="36" width="172" height="52" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="350.0" y="62.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前核</text>
+<rect x="458" y="36" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="62.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">帯状回</text>
+<path d="M244 62.0 L262 62.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 62.0 L456 62.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="100" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="126.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">扁桃体・側頭葉・視床下部</text>
+<rect x="264" y="100" width="172" height="52" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="350.0" y="126.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内側核</text>
+<rect x="458" y="100" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="126.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">前頭葉</text>
+<path d="M244 126.0 L262 126.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 126.0 L456 126.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="164" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="190.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">小脳歯状核・淡蒼球・黒質</text>
+<rect x="264" y="164" width="172" height="52" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="350.0" y="181.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前外側腹側核</text>
+<text x="350.0" y="199.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（VA・VL）</text>
+<rect x="458" y="164" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="190.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">運動前野・運動野</text>
+<path d="M244 190.0 L262 190.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 190.0 L456 190.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="228" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="254.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">脊髄視床路・内側毛帯（体幹・四肢）</text>
+<rect x="264" y="228" width="172" height="52" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="350.0" y="245.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">後外側腹側核</text>
+<text x="350.0" y="263.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（VPL）</text>
+<rect x="458" y="228" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="254.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">中心後回</text>
+<path d="M244 254.0 L262 254.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 254.0 L456 254.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="292" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="318.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">三叉神経毛帯（顔面）</text>
+<rect x="264" y="292" width="172" height="52" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="350.0" y="309.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">後内側腹側核</text>
+<text x="350.0" y="327.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（VPM）</text>
+<rect x="458" y="292" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="318.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">中心後回</text>
+<path d="M244 318.0 L262 318.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 318.0 L456 318.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="356" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="382.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">視索（視覚）</text>
+<rect x="264" y="356" width="172" height="52" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="350.0" y="382.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外側膝状体</text>
+<rect x="458" y="356" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="382.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">後頭葉（一次視覚野）</text>
+<path d="M244 382.0 L262 382.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 382.0 L456 382.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<rect x="10" y="420" width="232" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="126.0" y="446.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">下丘（聴覚）</text>
+<rect x="264" y="420" width="172" height="52" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="350.0" y="446.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内側膝状体</text>
+<rect x="458" y="420" width="212" height="52" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="564.0" y="446.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">側頭葉（横側頭回）</text>
+<path d="M244 446.0 L262 446.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<path d="M438 446.0 L456 446.0" stroke="#5F5E5A" stroke-width="2.2" marker-end="url(#ag)"/>
+<text x="20" y="498" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">※VPL・VPMから皮質への線維は内包後脚を通る。視床は嗅覚以外の感覚が大脳皮質に届く前に必ず中継する。</text>
+<text x="20" y="520" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">※核の名称と投射は主なもので、すべてではない（視床網様核・髄板内核などは省略）。</text>
+<text x="20" y="542" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">※灰色の箱は入力元・投射先。中央の箱の色は、青＝体性感覚、緑＝視覚・聴覚、橙＝運動、紫＝辺縁系・連合。</text>
+</svg>

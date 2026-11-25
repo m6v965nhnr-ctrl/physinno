@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>大脳基底核の直接路と間接路</title><desc>左は直接路。大脳皮質が線条体を興奮させ、線条体が淡蒼球内節・黒質網様部を抑制し、その結果、視床への抑制が弱まって（脱抑制）視床が大脳皮質を興奮させ、運動が促される。右は間接路。線条体が淡蒼球外節を抑制し、淡蒼球外節による視床下核の抑制が弱まり、視床下核が淡蒼球内節・黒質網様部を興奮させ、視床への抑制が強まって、運動が抑えられる。黒質緻密部のドパミンは、直接路を促し（D1受容体）、間接路を抑える（D2受容体）。</desc>
+<rect width="680" height="640" fill="#fff"/>
+<defs><marker id="ex" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="in" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M5 -1 L5 11" stroke="#A32D2D" stroke-width="3.2"/></marker><marker id="dx" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker><marker id="di" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M5 -1 L5 11" stroke="#534AB7" stroke-width="3.2"/></marker></defs>
+<text x="130" y="16" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">直接路</text>
+<rect x="55.0" y="40" width="150" height="36" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="130.0" y="58.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">大脳皮質</text>
+<rect x="55.0" y="120" width="150" height="44" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="130.0" y="133.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">線条体</text>
+<text x="130.0" y="151.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（尾状核・被殻）</text>
+<rect x="55.0" y="344" width="150" height="44" rx="6" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="130.0" y="357.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">淡蒼球内節</text>
+<text x="130.0" y="375.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">黒質網様部</text>
+<rect x="55.0" y="424" width="150" height="36" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="130.0" y="442.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">視床</text>
+<path d="M130 76 L130 118" fill="none" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="138" y="97" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">＋</text>
+<path d="M130 164 L130 342" fill="none" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="138" y="253" font-size="16" font-weight="500" fill="#A32D2D" dominant-baseline="central">－</text>
+<path d="M130 388 L130 422" fill="none" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="138" y="405" font-size="16" font-weight="500" fill="#A32D2D" dominant-baseline="central">－</text>
+<path d="M55.0 442 L29.0 442 L29.0 58 L53.0 58" fill="none" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="25.0" y="250" text-anchor="end" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">＋</text>
+<rect x="221.0" y="214" width="90" height="52" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="266.0" y="231.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">黒質</text>
+<text x="266.0" y="249.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">緻密部</text>
+<path d="M266.0 214 L266.0 142 L207.0 142" fill="none" stroke="#534AB7" stroke-width="2.6" stroke-dasharray="6 4" marker-end="url(#dx)"/>
+<text x="272.0" y="185" font-size="13" font-weight="500" fill="#534AB7" dominant-baseline="central">D1</text>
+<text x="266.0" y="284" text-anchor="middle" font-size="12" fill="#534AB7" dominant-baseline="central">ドパミンが</text>
+<text x="266.0" y="300" text-anchor="middle" font-size="12" fill="#534AB7" dominant-baseline="central">促進（＋）</text>
+<text x="472" y="16" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">間接路</text>
+<rect x="397.0" y="40" width="150" height="36" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="472.0" y="58.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">大脳皮質</text>
+<rect x="397.0" y="120" width="150" height="44" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="472.0" y="133.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">線条体</text>
+<text x="472.0" y="151.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（尾状核・被殻）</text>
+<rect x="397.0" y="200" width="150" height="36" rx="6" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="472.0" y="218.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">淡蒼球外節</text>
+<rect x="397.0" y="272" width="150" height="36" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="472.0" y="290.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">視床下核</text>
+<rect x="397.0" y="344" width="150" height="44" rx="6" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="472.0" y="357.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">淡蒼球内節</text>
+<text x="472.0" y="375.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">黒質網様部</text>
+<rect x="397.0" y="424" width="150" height="36" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="472.0" y="442.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">視床</text>
+<path d="M472 76 L472 118" fill="none" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="480" y="97" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">＋</text>
+<path d="M472 164 L472 198" fill="none" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="480" y="181" font-size="16" font-weight="500" fill="#A32D2D" dominant-baseline="central">－</text>
+<path d="M472 236 L472 270" fill="none" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="480" y="253" font-size="16" font-weight="500" fill="#A32D2D" dominant-baseline="central">－</text>
+<path d="M472 308 L472 342" fill="none" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="480" y="325" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">＋</text>
+<path d="M472 388 L472 422" fill="none" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="480" y="405" font-size="16" font-weight="500" fill="#A32D2D" dominant-baseline="central">－</text>
+<path d="M397.0 442 L371.0 442 L371.0 58 L395.0 58" fill="none" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="367.0" y="250" text-anchor="end" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">＋</text>
+<rect x="563.0" y="214" width="90" height="52" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="608.0" y="231.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">黒質</text>
+<text x="608.0" y="249.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">緻密部</text>
+<path d="M608.0 214 L608.0 142 L549.0 142" fill="none" stroke="#534AB7" stroke-width="2.6" stroke-dasharray="6 4" marker-end="url(#di)"/>
+<text x="614.0" y="185" font-size="13" font-weight="500" fill="#534AB7" dominant-baseline="central">D2</text>
+<text x="608.0" y="284" text-anchor="middle" font-size="12" fill="#534AB7" dominant-baseline="central">ドパミンが</text>
+<text x="608.0" y="300" text-anchor="middle" font-size="12" fill="#534AB7" dominant-baseline="central">抑制（－）</text>
+<line x1="340" y1="8" x2="340" y2="470" stroke="#D3D1C7" stroke-width="1"/>
+<text x="130" y="488" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床の抑制がはずれる（脱抑制）</text>
+<text x="130" y="508" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">→ 皮質が興奮 → 運動が促される</text>
+<text x="472" y="488" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床への抑制が強まる</text>
+<text x="472" y="508" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">→ 皮質の興奮が減る → 運動が抑えられる</text>
+<line x1="20" y1="556" x2="62" y2="556" stroke="#185FA5" stroke-width="2.6" marker-end="url(#ex)"/>
+<text x="70" y="556" font-size="13" fill="#2C2C2A" dominant-baseline="central">興奮性（＋）</text>
+<line x1="170" y1="556" x2="212" y2="556" stroke="#A32D2D" stroke-width="2.6" marker-end="url(#in)"/>
+<text x="220" y="556" font-size="13" fill="#2C2C2A" dominant-baseline="central">抑制性（－）</text>
+<text x="20" y="586" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">※大脳皮質から線条体への線維は興奮性（グルタミン酸）。</text>
+<text x="20" y="606" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">　線条体・淡蒼球・黒質網様部の出力は抑制性（GABA）。</text>
+<text x="20" y="626" font-size="12.5" fill="#5F5E5A" dominant-baseline="central">※神経核の位置関係を省いた流れ図。パーキンソン病では黒質緻密部のドパミンが減り、間接路が優位になる。</text>
+</svg>

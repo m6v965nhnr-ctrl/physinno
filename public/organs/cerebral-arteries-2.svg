@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 334" width="680" height="334" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>3つの大脳動脈の支配領域（大脳半球の外側面と内側面）</title>
+<desc>大脳半球の外側面（左）と内側面（右）で、前大脳動脈・中大脳動脈・後大脳動脈の支配領域を色分けした模式図。前は左、後ろは右。外側面は、中大脳動脈が外側面の大部分、前大脳動脈が上縁の帯、後大脳動脈が後頭葉と側頭葉の下面。内側面は、前大脳動脈が前頭葉・頭頂葉の内側面（脳梁の周り）、後大脳動脈が後頭葉の内側面と側頭葉の下面。</desc>
+<rect width="680" height="312" fill="#fff"/>
+<defs><clipPath id="cl"><path d="M70 300 C62 215 125 140 235 122 C335 108 455 115 545 160 C615 195 645 265 632 325 C625 370 590 395 545 392 C500 405 430 425 360 420 C300 415 245 395 215 365 C190 340 150 352 120 350 C90 345 72 330 70 300 Z"/></clipPath><clipPath id="cm"><path d="M75 290 C70 205 135 135 245 118 C350 104 470 112 545 158 C612 198 640 265 628 320 C620 362 585 380 545 384 C510 388 470 395 440 400 C420 404 410 420 402 440 L330 440 C322 415 300 392 262 384 C200 372 150 362 112 345 C85 332 76 312 75 290 Z"/></clipPath></defs>
+<g transform="translate(-15,30) scale(0.5)">
+<path d="M70 300 C62 215 125 140 235 122 C335 108 455 115 545 160 C615 195 645 265 632 325 C625 370 590 395 545 392 C500 405 430 425 360 420 C300 415 245 395 215 365 C190 340 150 352 120 350 C90 345 72 330 70 300 Z" fill="#F5C4B3"/>
+<g clip-path="url(#cl)">
+<clipPath id="ca"><path d="M108 40 L545 40 L560 260 L108 260 Z"/></clipPath>
+<path d="M70 300 C62 215 125 140 235 122 C335 108 455 115 545 160 C615 195 645 265 632 325 C625 370 590 395 545 392 C500 405 430 425 360 420 C300 415 245 395 215 365 C190 340 150 352 120 350 C90 345 72 330 70 300 Z" fill="none" stroke="#FAC775" stroke-width="72" clip-path="url(#ca)"/>
+<path d="M545 100 C575 160 580 230 572 300 C566 340 560 360 556 440 L700 440 L700 100 Z" fill="#9FE1CB"/>
+<clipPath id="cb"><path d="M205 330 L565 330 L565 460 L205 460 Z"/></clipPath>
+<path d="M70 300 C62 215 125 140 235 122 C335 108 455 115 545 160 C615 195 645 265 632 325 C625 370 590 395 545 392 C500 405 430 425 360 420 C300 415 245 395 215 365 C190 340 150 352 120 350 C90 345 72 330 70 300 Z" fill="none" stroke="#9FE1CB" stroke-width="64" clip-path="url(#cb)"/>
+</g>
+<path d="M70 300 C62 215 125 140 235 122 C335 108 455 115 545 160 C615 195 645 265 632 325 C625 370 590 395 545 392 C500 405 430 425 360 420 C300 415 245 395 215 365 C190 340 150 352 120 350 C90 345 72 330 70 300 Z" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linejoin="round"/>
+</g>
+<g transform="translate(345,30) scale(0.5)">
+<path d="M75 290 C70 205 135 135 245 118 C350 104 470 112 545 158 C612 198 640 265 628 320 C620 362 585 380 545 384 C510 388 470 395 440 400 C420 404 410 420 402 440 L330 440 C322 415 300 392 262 384 C200 372 150 362 112 345 C85 332 76 312 75 290 Z" fill="#FAC775"/>
+<g clip-path="url(#cm)">
+<path d="M470 90 L700 90 L700 470 L215 470 L215 372 L450 344 L440 300 Z" fill="#9FE1CB"/>
+</g>
+<path d="M150 288 C170 226 250 190 340 188 C430 188 500 220 514 288 C470 252 410 234 340 234 C265 234 195 252 150 288 Z" fill="#D3D1C7" stroke="#888780" stroke-width="1.5"/>
+<path d="M470 116 L440 300" stroke="#5F5E5A" stroke-width="2" stroke-dasharray="6 5" fill="none"/>
+<path d="M75 290 C70 205 135 135 245 118 C350 104 470 112 545 158 C612 198 640 265 628 320 C620 362 585 380 545 384 C510 388 470 395 440 400 C420 404 410 420 402 440 L330 440 C322 415 300 392 262 384 C200 372 150 362 112 345 C85 332 76 312 75 290 Z" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linejoin="round"/>
+</g>
+<text x="60.0" y="157.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">前頭葉</text>
+<text x="195.0" y="137.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">頭頂葉</text>
+<text x="155.0" y="202.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">側頭葉</text>
+<text x="284.0" y="165.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">後頭葉</text>
+<text x="427.5" y="147.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">前頭葉</text>
+<text x="525.0" y="100.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">頭頂葉</text>
+<text x="510.0" y="217.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">側頭葉</text>
+<text x="625.0" y="155.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">後頭葉</text>
+<text x="511.0" y="135.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" stroke="#fff" stroke-width="3" paint-order="stroke" stroke-linejoin="round">脳梁</text>
+<text x="150" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">外側面（左半球）</text>
+<text x="498" y="28" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">内側面</text>
+<text x="22" y="64" font-size="13" fill="#888780">前</text>
+<text x="358" y="64" font-size="13" fill="#888780">前</text>
+<text x="300" y="64" text-anchor="end" font-size="13" fill="#888780">後</text>
+<text x="650" y="64" text-anchor="end" font-size="13" fill="#888780">後</text>
+<text x="569.0" y="194.0" font-size="12" fill="#5F5E5A">頭頂後頭溝</text>
+<text x="569.0" y="208.0" font-size="12" fill="#5F5E5A">（境の目安）</text>
+<rect x="20" y="262" width="16" height="12" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="42" y="268" dominant-baseline="central" font-size="13" fill="#2C2C2A">前大脳動脈の領域</text>
+<rect x="190" y="262" width="16" height="12" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="212" y="268" dominant-baseline="central" font-size="13" fill="#2C2C2A">中大脳動脈の領域</text>
+<rect x="360" y="262" width="16" height="12" rx="2" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="382" y="268" dominant-baseline="central" font-size="13" fill="#2C2C2A">後大脳動脈の領域</text>
+<text x="20" y="292" font-size="13" fill="#5F5E5A">領域の境は目安。上頭頂小葉は、出典で中大脳動脈と後大脳動脈の両方に挙げられている。</text>
+<text x="20" y="314" font-size="13" fill="#5F5E5A">内側面の点線（前・後大脳動脈の境）は、出典に境として書かれておらず、頭頂後頭溝を目安にした。</text>
+</svg>

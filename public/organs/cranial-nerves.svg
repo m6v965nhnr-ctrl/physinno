@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 730" width="680" height="730" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脳神経が脳幹に出入りする位置（脳を下から見た模式図）</title>
+<desc>脳を下から見た模式図。上に嗅球と視神経・視交叉、中央に脳幹（中脳・橋・延髄）と脊髄。動眼神経は中脳の脚間窩、滑車神経は中脳の背側、三叉神経は橋、外転神経と顔面神経と内耳神経は橋と延髄の境、舌咽神経と迷走神経と副神経は延髄のオリーブの背側、舌下神経はオリーブと錐体の間から出る。感覚・運動・混合を色分けし、動眼・顔面・舌咽・迷走神経には副交感線維を含む印を付けた。</desc>
+<rect width="680" height="730" fill="#fff"/>
+<ellipse cx="248" cy="448" rx="62" ry="88" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="1"/>
+<ellipse cx="432" cy="448" rx="62" ry="88" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="1"/>
+<text x="232" y="550" text-anchor="middle" font-size="13" fill="#888780">小脳</text>
+<text x="448" y="550" text-anchor="middle" font-size="13" fill="#888780">小脳</text>
+<path d="M292 150 L324 150 L328 238 L304 238 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M388 150 L356 150 L352 238 L376 238 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M300 240 Q262 282 296 326 L384 326 Q418 282 380 240 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M298 326 L382 326 L376 520 L368 606 L314 606 L306 520 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round"/>
+<line x1="340" y1="330" x2="340" y2="520" stroke="#B4B2A9" stroke-width="1"/>
+<path d="M330 332 L328 516 M350 332 L352 516" stroke="#B4B2A9" stroke-width="1" fill="none"/>
+<ellipse cx="315" cy="414" rx="9" ry="30" fill="#fff" stroke="#B4B2A9" stroke-width="1"/>
+<ellipse cx="365" cy="414" rx="9" ry="30" fill="#fff" stroke="#B4B2A9" stroke-width="1"/>
+<ellipse cx="312" cy="46" rx="11" ry="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<path d="M312 68 L312 108" stroke="#5F5E5A" stroke-width="5" stroke-linecap="round" fill="none"/>
+<ellipse cx="368" cy="46" rx="11" ry="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<path d="M368 68 L368 108" stroke="#5F5E5A" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M262 84 L330 120 M418 84 L350 120" stroke="#5F5E5A" stroke-width="1.5" fill="none"/>
+<path d="M262 84 L330 120 M418 84 L350 120" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" fill="none"/>
+<path d="M262 84 L330 120 M418 84 L350 120" stroke="#185FA5" stroke-width="1" fill="none"/>
+<path d="M330 120 L340 114 L350 120 L344 132 L336 132 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<path d="M336 132 Q300 150 296 168 M344 132 Q380 150 384 168" stroke="#185FA5" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+<text x="340" y="190" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A" stroke="#F1EFE8" stroke-width="3" paint-order="stroke">中脳</text>
+<text x="340" y="284" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A" stroke="#F1EFE8" stroke-width="3" paint-order="stroke">橋</text>
+<text x="340" y="570" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A" stroke="#F1EFE8" stroke-width="3" paint-order="stroke">脊髄</text>
+<text x="340" y="486" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A" stroke="#F1EFE8" stroke-width="3" paint-order="stroke">延髄</text>
+<path d="M330 226 L284 198" fill="none" stroke="#993C1D" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M330 226 L284 198" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<path d="M304 232 L268 238" fill="none" stroke="#993C1D" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M304 232 L268 238" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round" stroke-dasharray="1 7"/>
+<path d="M385 286 L430 284" fill="none" stroke="#534AB7" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M385 286 L430 284" fill="none" stroke="#CECBF6" stroke-width="5" stroke-linecap="round"/>
+<path d="M332 328 L276 322" fill="none" stroke="#993C1D" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M332 328 L276 322" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<path d="M383 326 L430 322" fill="none" stroke="#534AB7" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M383 326 L430 322" fill="none" stroke="#CECBF6" stroke-width="5" stroke-linecap="round"/>
+<path d="M388 338 L434 350" fill="none" stroke="#185FA5" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M388 338 L434 350" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M378 384 L426 388" fill="none" stroke="#534AB7" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M378 384 L426 388" fill="none" stroke="#CECBF6" stroke-width="5" stroke-linecap="round"/>
+<path d="M378 406 L428 416" fill="none" stroke="#534AB7" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M378 406 L428 416" fill="none" stroke="#CECBF6" stroke-width="5" stroke-linecap="round"/>
+<path d="M376 430 L426 448" fill="none" stroke="#993C1D" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M376 430 L426 448" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<path d="M326 420 L276 452" fill="none" stroke="#993C1D" stroke-width="7.5" stroke-linecap="round"/>
+<path d="M326 420 L276 452" fill="none" stroke="#F5C4B3" stroke-width="5" stroke-linecap="round"/>
+<text x="20" y="96" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅱ 視神経</text>
+<text x="20" y="113" text-anchor="start" dominant-baseline="central" font-size="13" fill="#185FA5">感覚</text>
+<text x="20" y="176" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅲ 動眼神経＊</text>
+<text x="20" y="193" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">運動</text>
+<text x="20" y="246" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅳ 滑車神経</text>
+<text x="20" y="263" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">運動</text>
+<text x="20" y="330" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅵ 外転神経</text>
+<text x="20" y="347" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">運動</text>
+<text x="20" y="452" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅻ 舌下神経</text>
+<text x="20" y="469" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">運動</text>
+<text x="480" y="40" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅰ 嗅神経</text>
+<text x="480" y="57" text-anchor="start" dominant-baseline="central" font-size="13" fill="#185FA5">感覚</text>
+<text x="480" y="276" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅴ 三叉神経</text>
+<text x="480" y="293" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7">混合</text>
+<text x="480" y="322" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅶ 顔面神経＊</text>
+<text x="480" y="339" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7">混合</text>
+<text x="480" y="366" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅷ 内耳神経</text>
+<text x="480" y="383" text-anchor="start" dominant-baseline="central" font-size="13" fill="#185FA5">感覚</text>
+<text x="480" y="410" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅸ 舌咽神経＊</text>
+<text x="480" y="427" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7">混合</text>
+<text x="480" y="454" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅹ 迷走神経＊</text>
+<text x="480" y="471" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7">混合</text>
+<text x="480" y="498" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">Ⅺ 副神経</text>
+<text x="480" y="515" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">運動</text>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="96" y1="96" x2="268" y2="87"/>
+<line x1="124" y1="176" x2="278" y2="197"/>
+<line x1="124" y1="246" x2="262" y2="238"/>
+<line x1="124" y1="330" x2="270" y2="322"/>
+<line x1="124" y1="452" x2="270" y2="452"/>
+<line x1="476" y1="40" x2="382" y2="44"/>
+<line x1="476" y1="276" x2="436" y2="284"/>
+<line x1="476" y1="322" x2="436" y2="322"/>
+<line x1="476" y1="366" x2="440" y2="350"/>
+<line x1="476" y1="410" x2="430" y2="388"/>
+<line x1="476" y1="454" x2="432" y2="416"/>
+<line x1="476" y1="498" x2="430" y2="448"/>
+</g>
+<line x1="20" y1="640" x2="660" y2="640" stroke="#D3D1C7" stroke-width="1"/>
+<rect x="20" y="654" width="16" height="12" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="42" y="660" dominant-baseline="central" font-size="13" fill="#2C2C2A">感覚神経（3対）</text>
+<rect x="190" y="654" width="16" height="12" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="212" y="660" dominant-baseline="central" font-size="13" fill="#2C2C2A">運動神経（5対）</text>
+<rect x="360" y="654" width="16" height="12" rx="2" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="382" y="660" dominant-baseline="central" font-size="13" fill="#2C2C2A">混合神経（4対）</text>
+<text x="20" y="684" dominant-baseline="central" font-size="13" fill="#2C2C2A">＊副交感線維を含む脳神経</text>
+<text x="20" y="704" dominant-baseline="central" font-size="13" fill="#2C2C2A">滑車神経（点線）は脳幹の背側から出ます。神経は左右一対ですが、片側だけを描いています。</text>
+<text x="20" y="724" dominant-baseline="central" font-size="13" fill="#5F5E5A">出る位置の順序を示す模式図。大きさ・長さ・走行は実物と異なります。</text>
+</svg>

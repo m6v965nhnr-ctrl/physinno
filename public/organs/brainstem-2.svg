@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 810" width="680" height="810" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脳幹の断面の模式図（中脳と橋）</title><desc>脳幹の断面の模式図。上は中脳の上丘の高さ。背側に上丘（中脳蓋）、その腹側に中脳水道を囲む中心灰白質、その腹側に動眼神経核。被蓋には赤核があり、赤核の外方に内側毛帯が位置する。動眼神経根は赤核を貫いて腹側の脚間窩へ向かう。腹側には大脳脚があり、大脳脚のすぐ背側に黒質がある。下は橋の尾側。背側に第四脳室があり、その底の正中寄りに外転神経核（顔面神経丘の下）と内側縦束、外側に前庭神経核、さらに外側に三叉神経脊髄路核、その腹内側に顔面神経核がある。橋網様体は被蓋の中央にあり、被蓋の腹側縁に内側毛帯が水平に広がる。内側毛帯より腹側が橋腹側部（橋底部）で、橋核、縦橋線維、横橋線維があり、横橋線維は中小脳脚へ続く。</desc>
+<rect width="680" height="810" fill="#fff"/>
+<text x="24" y="28" text-anchor="start" dominant-baseline="central" font-size="16" font-weight="500" fill="#2C2C2A">中脳（上丘の高さ）</text>
+<text x="340" y="52" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">背側</text>
+<path d="M238,150 C238,96 280,68 340,68 C400,68 442,96 442,150 C442,200 436,262 418,300 C404,326 378,342 354,338 L340,320 L326,338 C302,342 276,326 262,300 C244,262 238,200 238,150 Z" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1.4"/>
+<clipPath id="midc"><path d="M238,150 C238,96 280,68 340,68 C400,68 442,96 442,150 C442,200 436,262 418,300 C404,326 378,342 354,338 L340,320 L326,338 C302,342 276,326 262,300 C244,262 238,200 238,150 Z"/></clipPath>
+<g clip-path="url(#midc)">
+<path d="M230,60 L450,60 L450,118 C420,104 380,98 340,98 C300,98 260,104 230,118 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1" />
+<path d="M340,300 L340,342 L380,350 L430,330 L436,300 L410,284 L370,290 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1" /><path d="M340,300 L340,342 L300,350 L250,330 L244,300 L270,284 L310,290 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1" />
+</g>
+<path d="M238,150 C238,96 280,68 340,68 C400,68 442,96 442,150 C442,200 436,262 418,300 C404,326 378,342 354,338 L340,320 L326,338 C302,342 276,326 262,300 C244,262 238,200 238,150 Z" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<g clip-path="url(#midc)">
+<path d="M438,288 C410,276 370,274 344,284 L344,298 C370,290 406,292 434,304 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1" /><path d="M242,288 C270,276 310,274 336,284 L336,298 C310,290 274,292 246,304 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+</g>
+<ellipse cx="340" cy="140" rx="26" ry="24" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" />
+<circle cx="340" cy="140" r="7" fill="#fff" stroke="#2C2C2A" stroke-width="1"/>
+<ellipse cx="348" cy="182" rx="9" ry="10" fill="#F4C0D1" stroke="#993556" stroke-width="1" /><ellipse cx="332" cy="182" rx="9" ry="10" fill="#F4C0D1" stroke="#993556" stroke-width="1" />
+<ellipse cx="382" cy="228" rx="22" ry="22" fill="#E24B4A" stroke="#A32D2D" stroke-width="1" /><ellipse cx="298" cy="228" rx="22" ry="22" fill="#E24B4A" stroke="#A32D2D" stroke-width="1" />
+<path d="M420,196 L436,200 L440,244 L426,256 L416,236 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" /><path d="M260,196 L244,200 L240,244 L254,256 L264,236 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<path d="M348,190 C362,206 374,216 380,232 C382,262 362,290 346,314" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-dasharray="3 3"/>
+<text x="340" y="262" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">被蓋</text>
+<text x="340" y="372" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">腹側</text>
+<line x1="210" y1="96" x2="290" y2="106" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="290" cy="106" r="2.2" fill="#2C2C2A"/><text x="206" y="96" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">上丘（中脳蓋）</text>
+<line x1="210" y1="224" x2="254" y2="224" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="254" cy="224" r="2.2" fill="#2C2C2A"/><text x="206" y="224" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">内側毛帯</text>
+<line x1="210" y1="300" x2="264" y2="286" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="264" cy="286" r="2.2" fill="#2C2C2A"/><text x="206" y="300" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">黒質</text>
+<line x1="210" y1="332" x2="280" y2="322" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="280" cy="322" r="2.2" fill="#2C2C2A"/><text x="206" y="332" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">大脳脚</text>
+<line x1="462" y1="118" x2="354" y2="132" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="354" cy="132" r="2.2" fill="#2C2C2A"/><text x="466" y="118" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">中脳水道と中心灰白質</text>
+<line x1="462" y1="170" x2="350" y2="182" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="350" cy="182" r="2.2" fill="#2C2C2A"/><text x="466" y="170" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">動眼神経核</text>
+<line x1="462" y1="222" x2="380" y2="228" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="380" cy="228" r="2.2" fill="#2C2C2A"/><text x="466" y="222" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">赤核</text>
+<line x1="462" y1="270" x2="369" y2="266" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="369" cy="266" r="2.2" fill="#2C2C2A"/><text x="466" y="270" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">動眼神経根</text>
+<line x1="462" y1="320" x2="342" y2="328" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="342" cy="328" r="2.2" fill="#2C2C2A"/><text x="466" y="320" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脚間窩</text>
+<path d="M624,64 L630,64 L630,120 L624,120 M624,126 L630,126 L630,296 L624,296 M624,302 L630,302 L630,340 L624,340" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="636" y="92" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">蓋</text>
+<text x="636" y="210" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">被蓋</text>
+<text x="636" y="320" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">大脳脚</text>
+<text x="24" y="448" text-anchor="start" dominant-baseline="central" font-size="16" font-weight="500" fill="#2C2C2A">橋（尾側：外転神経核・顔面神経核の高さ）</text>
+<text x="340" y="472" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">背側</text>
+<path d="M292,520 L318,482 L362,482 L388,520 Z" fill="#fff" stroke="#2C2C2A" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M460,660 L490,654 L494,708 L452,718 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1" /><path d="M220,660 L190,654 L186,708 L228,718 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1" />
+<path d="M262,520 L418,520 C450,526 466,550 466,588 C470,630 470,670 450,710 C430,742 380,758 340,758 C300,758 250,742 230,710 C210,670 210,630 214,588 C214,550 230,526 262,520 Z" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1.4"/>
+<clipPath id="ponc"><path d="M262,520 L418,520 C450,526 466,550 466,588 C470,630 470,670 450,710 C430,742 380,758 340,758 C300,758 250,742 230,710 C210,670 210,630 214,588 C214,550 230,526 262,520 Z"/></clipPath>
+<g clip-path="url(#ponc)">
+<rect x="200" y="668" width="280" height="110" fill="#fff"/>
+</g>
+<path d="M262,520 L418,520 C450,526 466,550 466,588 C470,630 470,670 450,710 C430,742 380,758 340,758 C300,758 250,742 230,710 C210,670 210,630 214,588 C214,550 230,526 262,520 Z" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<line x1="214" y1="668" x2="466" y2="668" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<path d="M348,520 Q358,510 370,520" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1"/><path d="M332,520 Q322,510 310,520" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1"/>
+<ellipse cx="359" cy="540" rx="9" ry="9" fill="#F4C0D1" stroke="#993556" stroke-width="1" /><ellipse cx="321" cy="540" rx="9" ry="9" fill="#F4C0D1" stroke="#993556" stroke-width="1" />
+<ellipse cx="350" cy="568" rx="5" ry="9" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" /><ellipse cx="330" cy="568" rx="5" ry="9" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" />
+<ellipse cx="340" cy="612" rx="34" ry="24" fill="none" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="4 3"/>
+<ellipse cx="404" cy="542" rx="16" ry="10" fill="#F4C0D1" stroke="#993556" stroke-width="1" /><ellipse cx="276" cy="542" rx="16" ry="10" fill="#F4C0D1" stroke="#993556" stroke-width="1" />
+<ellipse cx="436" cy="592" rx="13" ry="24" fill="#F4C0D1" stroke="#993556" stroke-width="1" /><ellipse cx="244" cy="592" rx="13" ry="24" fill="#F4C0D1" stroke="#993556" stroke-width="1" />
+<ellipse cx="404" cy="624" rx="15" ry="13" fill="#F4C0D1" stroke="#993556" stroke-width="1" /><ellipse cx="276" cy="624" rx="15" ry="13" fill="#F4C0D1" stroke="#993556" stroke-width="1" />
+<path d="M346,668 L400,668 L402,656 L346,656 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" /><path d="M334,668 L280,668 L278,656 L334,656 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<g clip-path="url(#ponc)">
+<path d="M200,688 Q340,672 480,688" fill="none" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M200,708 Q340,692 480,708" fill="none" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M200,728 Q340,712 480,728" fill="none" stroke="#3B6D11" stroke-width="1.3"/>
+</g>
+<circle cx="452" cy="684" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="228" cy="684" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="426" cy="696" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="254" cy="696" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="440" cy="714" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="240" cy="714" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="396" cy="712" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="284" cy="712" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="418" cy="728" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="262" cy="728" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="366" cy="722" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="314" cy="722" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<circle cx="384" cy="740" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/><circle cx="296" cy="740" r="5" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<ellipse cx="370" cy="696" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" /><ellipse cx="310" cy="696" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" />
+<ellipse cx="436" cy="708" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" /><ellipse cx="244" cy="708" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" />
+<ellipse cx="404" cy="728" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" /><ellipse cx="276" cy="728" rx="9" ry="13" fill="#CECBF6" stroke="#534AB7" stroke-width="1" />
+<text x="340" y="782" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">腹側</text>
+<line x1="180" y1="540" x2="262" y2="542" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="262" cy="542" r="2.2" fill="#2C2C2A"/><text x="176" y="540" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">前庭神経核</text>
+<line x1="180" y1="580" x2="244" y2="592" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="244" cy="592" r="2.2" fill="#2C2C2A"/><text x="176" y="580" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">三叉神経脊髄路核</text>
+<line x1="180" y1="632" x2="276" y2="624" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="276" cy="624" r="2.2" fill="#2C2C2A"/><text x="176" y="632" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">顔面神経核</text>
+<line x1="180" y1="680" x2="214" y2="680" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="214" cy="680" r="2.2" fill="#2C2C2A"/><text x="176" y="680" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">中小脳脚</text>
+<line x1="180" y1="726" x2="254" y2="696" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="254" cy="696" r="2.2" fill="#2C2C2A"/><text x="176" y="726" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">橋核</text>
+<line x1="496" y1="482" x2="366" y2="490" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="366" cy="490" r="2.2" fill="#2C2C2A"/><text x="500" y="482" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">第四脳室</text>
+<line x1="496" y1="506" x2="360" y2="517" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="360" cy="517" r="2.2" fill="#2C2C2A"/><text x="500" y="506" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">顔面神経丘</text>
+<line x1="496" y1="540" x2="359" y2="540" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="359" cy="540" r="2.2" fill="#2C2C2A"/><text x="500" y="540" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">外転神経核</text>
+<line x1="496" y1="566" x2="350" y2="568" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="350" cy="568" r="2.2" fill="#2C2C2A"/><text x="500" y="566" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">内側縦束</text>
+<line x1="496" y1="614" x2="372" y2="614" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="372" cy="614" r="2.2" fill="#2C2C2A"/><text x="500" y="614" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">橋網様体</text>
+<line x1="496" y1="652" x2="390" y2="662" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="390" cy="662" r="2.2" fill="#2C2C2A"/><text x="500" y="652" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">内側毛帯</text>
+<line x1="496" y1="702" x2="436" y2="708" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="436" cy="708" r="2.2" fill="#2C2C2A"/><text x="500" y="702" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">縦橋線維</text>
+<line x1="496" y1="746" x2="430" y2="728" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/><circle cx="430" cy="728" r="2.2" fill="#2C2C2A"/><text x="500" y="746" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">横橋線維</text>
+<path d="M624,524 L630,524 L630,662 L624,662 M624,674 L630,674 L630,756 L624,756" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="636" y="594" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">被蓋</text>
+<text x="636" y="712" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">橋底部</text>
+</svg>

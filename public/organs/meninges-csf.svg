@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 610" width="680" height="610" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脳脊髄液の循環（脳を横から見た模式図）</title>
+<desc>脳を左横から見た模式図。側脳室の脈絡叢でつくられた髄液が、室間孔、第三脳室、中脳水道、第四脳室の順に流れ、正中口・外側口からくも膜下腔に出て、くも膜顆粒から上矢状静脈洞に吸収される。第四脳室の下は脊髄の中心管（盲管）につながる。</desc>
+<rect width="680" height="610" fill="#fff"/>
+<defs><marker id="af" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker></defs>
+<g fill="#B5D4F4" stroke="#B5D4F4" stroke-width="26" stroke-linejoin="round">
+<path d="M140 275 C128 175 205 98 335 90 C462 84 560 130 585 212 C598 262 584 300 556 322 C530 340 470 332 440 335 C400 340 360 345 330 335 C300 325 270 332 240 330 C190 327 148 322 140 275 Z"/>
+<path d="M418 352 C468 334 552 346 566 384 C572 418 518 444 470 440 C432 436 412 412 412 382 Z"/>
+<path d="M338 322 L406 322 L412 410 L398 470 L396 548 L352 548 L350 470 L342 410 Z"/>
+</g>
+<g fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round">
+<path d="M140 275 C128 175 205 98 335 90 C462 84 560 130 585 212 C598 262 584 300 556 322 C530 340 470 332 440 335 C400 340 360 345 330 335 C300 325 270 332 240 330 C190 327 148 322 140 275 Z"/>
+<path d="M418 352 C468 334 552 346 566 384 C572 418 518 444 470 440 C432 436 412 412 412 382 Z"/>
+</g>
+<path d="M338 322 L406 322 L412 410 L398 470 L396 548 L352 548 L350 470 L342 410 Z" fill="#F1EFE8" stroke="none"/>
+<path d="M338 318 L342 410 L350 470 L352 548 L396 548 L398 470 L412 410 L406 318" fill="none" stroke="#5F5E5A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M290 70 C310 54 350 54 372 70 L372 82 L290 82 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<path d="M306 82 L306 74 Q312 66 318 74 L318 82 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<path d="M325 82 L325 74 Q331 66 337 74 L337 82 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<path d="M344 82 L344 74 Q350 66 356 74 L356 82 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<path d="M331 96 L331 84" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M225 232 C255 185 330 168 395 180 C445 190 482 225 495 278" fill="none" stroke="#0F6E56" stroke-width="21" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M225 232 C255 185 330 168 395 180 C445 190 482 225 495 278" fill="none" stroke="#9FE1CB" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 175 L345 205" fill="none" stroke="#0F6E56" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 175 L345 205" fill="none" stroke="#9FE1CB" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 205 L345 278" fill="none" stroke="#0F6E56" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 205 L345 278" fill="none" stroke="#9FE1CB" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 278 C350 300 362 316 372 338" fill="none" stroke="#0F6E56" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M345 278 C350 300 362 316 372 338" fill="none" stroke="#9FE1CB" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M372 338 L414 364 L372 392 Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M372 392 L372 540" fill="none" stroke="#0F6E56" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M372 392 L372 540" fill="none" stroke="#9FE1CB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M392 380 L428 424" stroke="#9FE1CB" stroke-width="7" stroke-linecap="round"/>
+<path d="M392 380 L428 424" stroke="#0F6E56" stroke-width="1" stroke-dasharray="3 3" fill="none"/>
+<circle cx="300" cy="176" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="330" cy="172" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="360" cy="174" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="390" cy="180" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="425" cy="198" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="470" cy="238" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="345" cy="212" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<circle cx="386" cy="364" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<path d="M345 178 L345 200" stroke="#A32D2D" stroke-width="2" fill="none" marker-end="url(#af)"/>
+<path d="M345 236 L345 268" stroke="#A32D2D" stroke-width="2" fill="none" marker-end="url(#af)"/>
+<path d="M352 292 C356 308 364 320 368 330" stroke="#A32D2D" stroke-width="2" fill="none" marker-end="url(#af)"/>
+<path d="M410 400 L440 436" stroke="#A32D2D" stroke-width="2" fill="none" marker-end="url(#af)"/>
+<path d="M560.1 318.6 L584.1 282.9" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M589.3 259.9 L585.7 215.0" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M569.0 177.6 L510.9 124.6" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M455.8 102.1 L364.9 89.6" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<g font-size="14" fill="#2C2C2A" dominant-baseline="central">
+<text x="20" y="150" font-weight="500">①側脳室</text>
+<text x="20" y="190" font-weight="500">②室間孔</text><text x="20" y="208" font-size="13" fill="#5F5E5A">（Monro孔）</text>
+<text x="20" y="262" font-weight="500">③第三脳室</text>
+<text x="20" y="330" font-weight="500">④中脳水道</text>
+<text x="20" y="410" font-weight="500">⑤第四脳室</text>
+<text x="20" y="500" font-weight="500">脊髄の中心管</text><text x="20" y="518" font-size="13" fill="#5F5E5A">（盲管）</text>
+<text x="660" y="462" text-anchor="end" font-weight="500">⑥正中口・外側口</text><text x="660" y="480" text-anchor="end" font-size="13" fill="#5F5E5A">→くも膜下腔へ</text>
+<text x="660" y="342" text-anchor="end" font-weight="500">⑦くも膜下腔</text><text x="660" y="360" text-anchor="end" font-size="13" fill="#5F5E5A">（髄液が流れる）</text>
+<text x="660" y="42" text-anchor="end" font-weight="500">⑧くも膜顆粒から</text><text x="660" y="60" text-anchor="end" font-weight="500">上矢状静脈洞へ</text>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="90" y1="150" x2="240" y2="222"/>
+<line x1="100" y1="196" x2="338" y2="190"/>
+<line x1="100" y1="262" x2="336" y2="252"/>
+<line x1="100" y1="330" x2="342" y2="296"/>
+<line x1="100" y1="410" x2="368" y2="372"/>
+<line x1="110" y1="502" x2="368" y2="500"/>
+<line x1="566" y1="462" x2="440" y2="434"/>
+<line x1="625" y1="328" x2="594" y2="296"/>
+<line x1="560" y1="60" x2="372" y2="68"/>
+</g>
+<circle cx="40" cy="570" r="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/><text x="54" y="570" font-size="13" fill="#2C2C2A" dominant-baseline="central">脈絡叢（髄液をつくる。側脳室・第三脳室・第四脳室）</text>
+<rect x="400" y="564" width="14" height="12" fill="#B5D4F4" stroke="#185FA5" stroke-width="0.8"/><text x="420" y="570" font-size="13" fill="#2C2C2A" dominant-baseline="central">くも膜下腔（髄液が入っている）</text>
+</svg>

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 630" width="680" height="630" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>自律神経の遠心路（交感神経と副交感神経の対比）</title>
+<desc>左は交感神経。胸髄〜腰髄の側角の節前ニューロンから、短い節前線維（アセチルコリン）が交感神経節に行き、長い節後線維（おもにノルアドレナリン）が効果器に達する。副腎髄質は節前線維が直接支配し、血中にアドレナリンとノルアドレナリンを出す。右は副交感神経。脳幹と仙髄の節前ニューロンから、長い節前線維（アセチルコリン）が効果器の近くの神経節に行き、短い節後線維（アセチルコリン）が効果器に達する。</desc>
+<rect width="680" height="630" fill="#fff"/>
+<defs><marker id="mo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="my" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#854F0B"/></marker></defs>
+<line x1="340" y1="14" x2="340" y2="540" stroke="#D3D1C7" stroke-width="1"/>
+<text x="170" y="24" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="500" fill="#2C2C2A">交感神経（胸腰系）</text>
+<text x="510" y="24" text-anchor="middle" dominant-baseline="central" font-size="15" font-weight="500" fill="#2C2C2A">副交感神経（頭仙系）</text>
+<rect x="20" y="50" width="310" height="64" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="175.0" y="72.5" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">胸髄〜腰髄（T1〜L2/L3）の側角</text>
+<text x="175.0" y="91.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">節前ニューロンの細胞体</text>
+<path d="M75 114 L75 196" stroke="#993C1D" stroke-width="3" fill="none" marker-end="url(#mo)"/>
+<text x="88" y="140" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">節前線維</text>
+<text x="88" y="159" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">短い・有髄</text>
+<text x="88" y="178" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">ACh</text>
+<rect x="20" y="200" width="120" height="52" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="80.0" y="216.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">交感神経節</text>
+<text x="80.0" y="235.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（幹・椎前）</text>
+<path d="M75 252 L75 462" stroke="#993C1D" stroke-width="3" fill="none" marker-end="url(#mo)"/>
+<text x="88" y="330" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">節後線維</text>
+<text x="88" y="349" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">長い・無髄</text>
+<text x="88" y="368" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">ノルアドレナリン</text>
+<text x="88" y="387" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">（汗腺などはACh）</text>
+<rect x="20" y="466" width="120" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="80.0" y="484.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">効果器</text>
+<text x="80.0" y="503.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">心臓・平滑筋・腺</text>
+<path d="M285 114 L285 316" stroke="#993C1D" stroke-width="3" fill="none" marker-end="url(#mo)"/>
+<text x="272" y="215" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">節前線維が</text>
+<text x="272" y="234" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">直接支配</text>
+<rect x="235" y="320" width="90" height="52" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="280.0" y="346.0" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">副腎髄質</text>
+<path d="M280 372 L280 430" stroke="#854F0B" stroke-width="3" fill="none" marker-end="url(#my)"/>
+<text x="268" y="410" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">アドレナリン・</text>
+<text x="268" y="429" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">ノルアドレナリン</text>
+<text x="285" y="446" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">血中へ</text>
+<rect x="350" y="50" width="310" height="64" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="505.0" y="72.5" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">脳幹（Ⅲ・Ⅶ・Ⅸ・Ⅹ）と仙髄</text>
+<text x="505.0" y="91.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">節前ニューロンの細胞体</text>
+<path d="M415 114 L415 380" stroke="#185FA5" stroke-width="3" fill="none" marker-end="url(#mb)"/>
+<text x="428" y="220" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">節前線維</text>
+<text x="428" y="239" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">長い</text>
+<text x="428" y="258" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">ACh</text>
+<rect x="355" y="384" width="120" height="52" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="415.0" y="400.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">副交感神経節</text>
+<text x="415.0" y="419.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（効果器の近く）</text>
+<path d="M415 436 L415 462" stroke="#185FA5" stroke-width="3" fill="none" marker-end="url(#mb)"/>
+<text x="428" y="450" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">節後線維（短い）ACh</text>
+<rect x="355" y="466" width="120" height="56" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="415.0" y="484.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">効果器</text>
+<text x="415.0" y="503.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">心臓・平滑筋・腺</text>
+<line x1="20" y1="548" x2="660" y2="548" stroke="#D3D1C7" stroke-width="1"/>
+<text x="20" y="568" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">ACh: アセチルコリン（節前線維は、交感・副交感ともAChを放出する）。</text>
+<text x="20" y="588" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">交感神経の節後線維は、おもにノルアドレナリンを放出する（汗腺・骨格筋の血管はACh）。</text>
+<text x="20" y="608" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">神経節の位置と線維の長さの対比を示した模式図。実際の長さ・本数・走行ではない。</text>
+</svg>

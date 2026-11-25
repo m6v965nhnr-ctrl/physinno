@@ -3,7 +3,9 @@
 import fs from "node:fs";
 import path from "node:path";
 const dir = "src/content/organs/data";
-const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".json")).sort() : [];
+// 作成中のカードを一時的に外して公開するときだけ使う（ORGANS_HOLD=slug1,slug2）。通常は指定しない
+const hold = new Set((process.env.ORGANS_HOLD ?? "").split(",").filter(Boolean));
+const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith(".json") && !hold.has(f.replace(/\.json$/, ""))).sort() : [];
 const errs = [];
 const slugsIn = (d) => (fs.existsSync(d) ? fs.readdirSync(d).filter((f) => f.endsWith(".json")).map((f) => f.replace(/\.json$/, "")) : []);
 const DISEASES = new Set(slugsIn("src/content/diseases/data"));
@@ -49,6 +51,17 @@ const out = files.map((f) => {
   };
 });
 if (new Set(out.map((d) => d.slug)).size !== out.length) errs.push("slug が重複");
+// 名前・かっこ内の語・別名が、別のカードと完全に同じだと、どちらのチップを出すか決められない
+const owner = new Map();
+for (const d of out) {
+  const base = d.name.replace(/\(.*?\)|（.*?）/g, "").trim();
+  const inner = [...d.name.matchAll(/[(（](.+?)[)）]/g)].flatMap((m) => m[1].split(/[・、]/));
+  for (const w of new Set([base, ...inner, ...d.aliases].map((x) => x.trim()).filter(Boolean))) {
+    if (w.length === 1 && w !== base) errs.push(`${d.slug}: 1文字の別名は使えない (${w})`);
+    if (owner.has(w) && owner.get(w) !== d.slug) errs.push(`語「${w}」が ${owner.get(w)} と ${d.slug} で重なっている`);
+    else owner.set(w, d.slug);
+  }
+}
 if (errs.length) { console.error("臓器カードの検証に失敗:\n" + errs.join("\n")); process.exit(1); }
 fs.writeFileSync("src/content/organs/generated.ts", `// 自動生成（scripts/build-organs.mjs）。直接は編集しない\nimport type { OrganCard } from "./types";\nexport const ORGANS: OrganCard[] = ${JSON.stringify(out, null, 1)};\n`);
 console.log(`臓器カード ${out.length} 件`);

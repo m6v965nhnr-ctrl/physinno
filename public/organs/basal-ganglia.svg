@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" width="680" height="520" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>大脳基底核と視床の位置（前頭断の模式図）</title><desc>視床の高さで大脳を前頭断にした模式図。中央に第三脳室があり、その両側に視床がある。視床のすぐ下に視床下部と視床下核がある。視床の外側に内包（後脚）が通り、さらに外側に淡蒼球、その外側に被殻が並ぶ。側脳室の外側壁に沿って尾状核がある。脳梁は側脳室の上にある。</desc>
+<rect width="680" height="520" fill="#fff"/>
+<g transform="translate(340 20) scale(0.85 0.9) translate(-340 0)">
+<path d="M340 52 C210 52 105 130 100 240 C98 310 140 360 215 372 C250 378 290 380 310 392 L340 410 L370 392 C390 380 430 378 465 372 C540 360 582 310 580 240 C575 130 470 52 340 52 Z" fill="#FBFAF6" stroke="#2C2C2A" stroke-width="1.8"/>
+<rect x="236" y="96" width="208" height="18" rx="9" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<ellipse cx="394" cy="238" rx="50" ry="54" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<ellipse cx="510" cy="245" rx="20" ry="50" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="479" cy="245" rx="13" ry="34" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<path d="M426 178 L448 176 L466 232 L458 300 L434 356 L412 356 L436 300 L444 232 Z" fill="#E9E6DB" stroke="#2C2C2A" stroke-width="1.2"/>
+<path d="M346 122 C385 118 430 124 448 142 L444 170 C425 160 385 152 346 152 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"/>
+<ellipse cx="441" cy="167" rx="14" ry="17" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5"/>
+<ellipse cx="412" cy="318" rx="15" ry="8" transform="rotate(-20 412 318)" fill="#F4C0D1" stroke="#993556" stroke-width="1.5"/>
+<ellipse cx="370" cy="348" rx="27" ry="28" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5"/>
+<g transform="translate(680 0) scale(-1 1)">
+<ellipse cx="394" cy="238" rx="50" ry="54" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<ellipse cx="510" cy="245" rx="20" ry="50" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="479" cy="245" rx="13" ry="34" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<path d="M426 178 L448 176 L466 232 L458 300 L434 356 L412 356 L436 300 L444 232 Z" fill="#E9E6DB" stroke="#2C2C2A" stroke-width="1.2"/>
+<path d="M346 122 C385 118 430 124 448 142 L444 170 C425 160 385 152 346 152 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"/>
+<ellipse cx="441" cy="167" rx="14" ry="17" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5"/>
+<ellipse cx="412" cy="318" rx="15" ry="8" transform="rotate(-20 412 318)" fill="#F4C0D1" stroke="#993556" stroke-width="1.5"/>
+<ellipse cx="370" cy="348" rx="27" ry="28" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5"/>
+</g>
+<rect x="337" y="170" width="6" height="206" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+</g>
+<text x="570" y="78" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳皮質</text>
+<line x1="566" y1="78" x2="527.0" y2="155.0" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="124" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">側脳室</text>
+<line x1="566" y1="124" x2="423.3" y2="144.2" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="164" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尾状核</text>
+<line x1="566" y1="164" x2="430.1" y2="164.0" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="204" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">被殻</text>
+<line x1="566" y1="204" x2="489.6" y2="204.5" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="248" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">淡蒼球</text>
+<line x1="566" y1="248" x2="459.0" y2="255.8" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="570" y="312" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内包（後脚）</text>
+<line x1="566" y1="312" x2="426.7" y2="309.8" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="110" y="104" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">脳梁</text>
+<line x1="114" y1="104" x2="263.5" y2="114.5" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="385.9" y="234.2" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床</text>
+<text x="294.1" y="234.2" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床</text>
+<text x="110" y="300" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床下核</text>
+<line x1="114" y1="300" x2="281.4" y2="305.3" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="110" y="374" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">視床下部</text>
+<line x1="114" y1="374" x2="326.4" y2="347.6" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="340" y="420" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">第三脳室</text>
+<line x1="340" y1="410" x2="340" y2="336.8" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3"/>
+<text x="20" y="462" font-size="13" fill="#5F5E5A" dominant-baseline="central">※視床の高さの前頭断（前から見た図）。左右は対称に描き、ラベルは両側に分けて付けた。</text>
+<text x="20" y="484" font-size="13" fill="#5F5E5A" dominant-baseline="central">※黒質は中脳にあり、この断面には現れない。視床下核の位置は模式的。</text>
+<text x="20" y="506" font-size="13" fill="#5F5E5A" dominant-baseline="central">※内包（後脚）は、この高さでは内側の視床と、外側の淡蒼球・被殻のあいだを通る白質。</text>
+</svg>

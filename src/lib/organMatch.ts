@@ -13,7 +13,10 @@ const isAscii = (s: string) => /^[\x20-\x7e]+$/.test(s);
 const ALNUM = /[A-Za-z0-9-]/;
 const HAN = /\p{Script=Han}/u;
 // その臓器の語を含むが、別のものを指す熟語（例: 前大脳動脈は血管、大脳基底核は別の構造）。この範囲の一致は数えない
-const NOT_THIS: Record<string, RegExp> = { cerebrum: /[前中後]大脳動脈|大脳基底核|大脳脚|大脳鎌/g };
+const NOT_THIS: Record<string, RegExp> = {
+  cerebrum: /[前中後]大脳動脈|大脳基底核|大脳脚|大脳鎌/g,
+  pons: /橋本|橋静脈|橋渡し|架橋|ブリッジ/g,
+};
 
 export function findOrgans(text: string): OrganCard[] {
   const hits: { start: number; end: number; d: OrganCard }[] = [];

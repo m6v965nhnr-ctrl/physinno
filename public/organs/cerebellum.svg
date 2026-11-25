@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 568" width="680" height="568" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>小脳の区分（展開した模式図）</title><desc>小脳を前後に開いて平らに広げた模式図。上から前葉・後葉・片葉小節葉の3つの葉が、第一裂と後外側裂で区切られる。左右方向には、中央の虫部、その両側の中間部（傍虫部）、さらに外側の外側部（半球）の3つの帯があり、虫部は室頂核、中間部は中位核、外側部は歯状核に対応する。片葉小節葉は前庭小脳、虫部は脊髄小脳、外側部は大脳小脳。中間部の扱いは出典で異なる。</desc>
+<rect width="680" height="568" fill="#fff"/>
+<rect x="150" y="112" width="84" height="92" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="234" y="112" width="60" height="92" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<rect x="294" y="112" width="92" height="92" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="386" y="112" width="60" height="92" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<rect x="446" y="112" width="84" height="92" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="150" y="204" width="84" height="148" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="234" y="204" width="60" height="148" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<rect x="294" y="204" width="92" height="148" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="386" y="204" width="60" height="148" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<rect x="446" y="204" width="84" height="148" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="150" y="352" width="380" height="60" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<g stroke="#534AB7" stroke-width="1" stroke-dasharray="4 3"><line x1="294" y1="352" x2="294" y2="412"/><line x1="386" y1="352" x2="386" y2="412"/></g>
+<text x="222.0" y="382.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">片葉</text>
+<text x="340.0" y="382.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">小節</text>
+<text x="458.0" y="382.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">片葉</text>
+<line x1="142" y1="204" x2="538" y2="204" stroke="#2C2C2A" stroke-width="2.5"/>
+<line x1="142" y1="352" x2="538" y2="352" stroke="#2C2C2A" stroke-width="2.5"/>
+<rect x="150" y="112" width="380" height="300" fill="none" stroke="#2C2C2A" stroke-width="1.5"/>
+<text x="136" y="158" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前葉</text>
+<text x="136" y="278" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">後葉</text>
+<text x="136" y="382" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">片葉小節葉</text>
+<text x="20" y="190" font-size="13" fill="#2C2C2A" dominant-baseline="central">第一裂</text>
+<text x="20" y="338" font-size="13" fill="#2C2C2A" dominant-baseline="central">後外側裂</text>
+<line x1="20" y1="204" x2="142" y2="204" stroke="#2C2C2A" stroke-width="1" stroke-dasharray="3 3"/><line x1="20" y1="352" x2="142" y2="352" stroke="#2C2C2A" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="192.0" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外側部</text>
+<text x="192.0" y="58" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">（半球）</text>
+<text x="192.0" y="80" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">歯状核</text>
+<text x="264.0" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">中間部</text>
+<text x="264.0" y="58" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">（傍虫部）</text>
+<text x="264.0" y="80" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">中位核</text>
+<text x="340.0" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">虫部</text>
+<text x="340.0" y="80" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">室頂核</text>
+<text x="416.0" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">中間部</text>
+<text x="416.0" y="58" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">（傍虫部）</text>
+<text x="416.0" y="80" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">中位核</text>
+<text x="488.0" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外側部</text>
+<text x="488.0" y="58" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">（半球）</text>
+<text x="488.0" y="80" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">歯状核</text>
+<text x="136" y="80" text-anchor="end" font-size="12" fill="#5F5E5A" dominant-baseline="central">対応する小脳核</text>
+<g stroke="#888780" stroke-width="0.8"><line x1="150" y1="94" x2="530" y2="94" stroke-dasharray="4 3"/></g>
+<path d="M152 424 L152 432 L232 432 L232 424" fill="none" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="192.0" y="448" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳小脳</text>
+<path d="M448 424 L448 432 L528 432 L528 424" fill="none" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="488.0" y="448" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳小脳</text>
+<path d="M296 424 L296 432 L384 432 L384 424" fill="none" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="340.0" y="448" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">脊髄小脳</text>
+<text x="264.0" y="438" text-anchor="middle" font-size="16" fill="#2C2C2A" dominant-baseline="central">※</text>
+<text x="416.0" y="438" text-anchor="middle" font-size="16" fill="#2C2C2A" dominant-baseline="central">※</text>
+<text x="544" y="382" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">＝前庭小脳</text>
+<text x="20" y="486" font-size="13" fill="#5F5E5A" dominant-baseline="central">※中間部（傍虫部）は、UTHealthの教科書では脊髄小脳、脳科学辞典では大脳小脳に含める。</text>
+<text x="20" y="510" font-size="13" fill="#5F5E5A" dominant-baseline="central">※小脳を前後に開いて平らに広げた模式図（上が前葉側、下が片葉小節葉側）。実物の形・大きさではない。</text>
+<text x="20" y="534" font-size="13" fill="#5F5E5A" dominant-baseline="central">※片葉小節葉は、虫部の「小節」と半球の「片葉」からなり、第一裂は前葉と後葉を、</text>
+<text x="20" y="554" font-size="13" fill="#5F5E5A" dominant-baseline="central">　後外側裂は後葉と片葉小節葉を分ける。</text>
+</svg>

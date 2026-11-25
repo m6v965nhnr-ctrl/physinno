@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>小脳と脳幹をつなぐ3対の小脳脚</title><desc>小脳と脳幹の連絡を示す流れ図。中小脳脚は橋核から小脳へ入力する。下小脳脚は脊髄・延髄（下オリーブ核など）から小脳へ入力する。上小脳脚は主に小脳核からの出力で、赤核と視床の外側腹側核（VL核）へ向かい、視床から大脳皮質の運動野へ戻る。</desc>
+<rect width="680" height="560" fill="#fff"/>
+<defs><marker id="ai" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="4.2" markerHeight="4.2" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/></marker></defs>
+<rect x="20" y="28" width="130" height="300" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="85.0" y="178.0" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳皮質</text>
+<text x="85" y="52" text-anchor="middle" font-size="13" fill="#5F5E5A" dominant-baseline="central">運動野</text>
+<rect x="220" y="28" width="130" height="44" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="285.0" y="41.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">視床</text>
+<text x="285.0" y="59.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（VL核）</text>
+<rect x="220" y="110" width="130" height="84" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="285.0" y="143.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">中脳</text>
+<text x="285.0" y="161.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（赤核）</text>
+<rect x="220" y="214" width="130" height="84" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="285.0" y="247.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">橋</text>
+<text x="285.0" y="265.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（橋核）</text>
+<rect x="220" y="318" width="130" height="100" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="285.0" y="350.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">延髄</text>
+<text x="285.0" y="368.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（下オリーブ核・</text>
+<text x="285.0" y="386.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">前庭神経核など）</text>
+<rect x="20" y="350" width="130" height="60" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="85.0" y="380.0" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">脊髄</text>
+<rect x="470" y="110" width="190" height="308" rx="6" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="565.0" y="264.0" text-anchor="middle" font-size="16" fill="#2C2C2A" dominant-baseline="central"></text>
+<text x="565" y="128" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">小脳</text>
+<rect x="490" y="146" width="150" height="36" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="565.0" y="164.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">小脳核（歯状核など）</text>
+<text x="565" y="290" text-anchor="middle" font-size="13" fill="#5F5E5A" dominant-baseline="central">小脳皮質</text>
+<text x="565" y="310" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">（プルキンエ細胞）</text>
+<path d="M490 160 L352 150" fill="none" stroke="#993C1D" stroke-width="3.5" marker-end="url(#ao)"/>
+<text x="420" y="126" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">上小脳脚</text>
+<text x="420" y="180" text-anchor="middle" font-size="13" fill="#993C1D" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">主に出力</text>
+<path d="M352 256 L468 256" fill="none" stroke="#185FA5" stroke-width="3.5" marker-end="url(#ai)"/>
+<text x="410" y="232" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">中小脳脚</text>
+<text x="410" y="280" text-anchor="middle" font-size="13" fill="#185FA5" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">橋核から入力</text>
+<path d="M352 372 L468 372" fill="none" stroke="#185FA5" stroke-width="3.5" marker-end="url(#ai)"/>
+<text x="410" y="348" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">下小脳脚</text>
+<text x="410" y="396" text-anchor="middle" font-size="13" fill="#185FA5" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脊髄・延髄から</text>
+<path d="M152 256 L218 256" fill="none" stroke="#5F5E5A" stroke-width="2.5" marker-end="url(#ag)"/>
+<text x="185" y="236" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">皮質橋路</text>
+<path d="M152 380 L218 380" fill="none" stroke="#5F5E5A" stroke-width="2.5" marker-end="url(#ag)"/>
+<text x="185" y="360" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脊髄から</text>
+<path d="M285 108 L285 74" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#ao)"/>
+<text x="296" y="92" font-size="12" fill="#993C1D" dominant-baseline="central" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">交叉して上行</text>
+<path d="M218 50 L152 50" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#ao)"/>
+<text x="20" y="452" font-size="13" fill="#5F5E5A" dominant-baseline="central">青い矢印＝小脳への入力、赤い矢印＝小脳からの出力、灰色の矢印＝脳幹へ向かう上流の線維。</text>
+<text x="20" y="478" font-size="13" fill="#5F5E5A" dominant-baseline="central">流れの順序の模式図で、実際の位置関係・大きさではない（脳幹は上が中脳、下が延髄）。</text>
+<text x="20" y="504" font-size="13" fill="#5F5E5A" dominant-baseline="central">上小脳脚には脊髄小脳路の一部が入り、下小脳脚には前庭神経核への出力も含まれる。</text>
+<text x="20" y="530" font-size="13" fill="#5F5E5A" dominant-baseline="central">大脳皮質→橋核→中小脳脚→小脳（外側部）→歯状核→上小脳脚→視床VL核→運動野、が大脳小脳の回路。</text>
+</svg>
