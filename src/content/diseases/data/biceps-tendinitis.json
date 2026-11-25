@@ -1,0 +1,178 @@
+{
+ "slug": "biceps-tendinitis",
+ "name": "上腕二頭筋腱炎",
+ "reading": "じょうわんにとうきんけんえん",
+ "aliases": [
+  "上腕二頭筋腱炎",
+  "上腕二頭筋長頭腱炎",
+  "biceps tendinitis",
+  "biceps tendonitis",
+  "bicipital tendinitis",
+  "上腕二頭筋長頭腱腱鞘炎",
+  "上腕二頭筋腱鞘炎"
+ ],
+ "system": "運動器",
+ "summary": {
+  "t": "上腕二頭筋の長頭腱（結節間溝を通る腱）に炎症や変性が起こり、肩の前方が痛む病気。腱板の障害と症状が重なりやすい。",
+  "s": [
+   1,
+   2
+  ]
+ },
+ "cause": [
+  {
+   "t": "肩の前方の痛みを起こす代表的な病態の一つとされる（米国の報告）。結節間溝の両側に棘上筋・肩甲下筋の付着部があり、腱板障害と症状や誘発テストが重なる。",
+   "s": [
+    2
+   ]
+  },
+  {
+   "t": "投球など腕を頭の上で使うスポーツ選手に、上腕二頭筋と関節唇（肩関節のふちの軟骨）の複合体の障害が多い。",
+   "s": [
+    1
+   ]
+  }
+ ],
+ "symptoms": [
+  {
+   "t": "肩の前方に痛みが出る。",
+   "s": [
+    2
+   ]
+  },
+  {
+   "t": "結節間溝に沿って腱を触ると痛む（圧痛）。強く押すと正常な肩でも痛むため、健側と比べて判断する。",
+   "s": [
+    1,
+    2
+   ]
+  }
+ ],
+ "diagnosis": [
+  {
+   "t": "Yergasonテスト: 肘を90度曲げ、前腕を回内位にして、検者の抵抗に逆らって回外させる。結節間溝や肩関節の痛みが出れば陽性。",
+   "s": [
+    1
+   ]
+  },
+  {
+   "t": "Speedテスト: 肩を60〜90度前方に挙げ、前腕を回外、肘を伸ばして、検者が下向きに抵抗を加える。肩の前方の痛みが出れば陽性。",
+   "s": [
+    1
+   ]
+  },
+  {
+   "t": "Yergasonテストは感度が低く特異度が高いとされ、Speedテストは感度が低く特異度はやや高いとされるが、報告による差が大きい。MRIや関節鏡だけでは、上腕二頭筋と関節唇の複合体の障害を十分に評価できないことがある。",
+   "s": [
+    1
+   ]
+  }
+ ],
+ "treatment": [
+  {
+   "t": "結節間溝への超音波ガイド下ステロイド注射が、診断を兼ねて使われることがある。",
+   "s": [
+    2
+   ]
+  },
+  {
+   "t": "手術として、腱固定術や腱切離術が行われることがあるが、どの段階で行うかの基準は定まっていない。",
+   "s": [
+    1
+   ]
+  }
+ ],
+ "examPoints": [
+  {
+   "t": "上腕二頭筋腱炎で陽性になる検査は、Yergasonテスト（前腕の回外に抵抗）。Speedテストも用いられる。",
+   "q": [
+    "54-am-33"
+   ],
+   "s": [
+    1,
+    2
+   ]
+  },
+  {
+   "t": "Adsonテストは胸郭出口症候群の検査で、顔を患側に向け首を反らして深呼吸すると、橈骨動脈の脈が弱くなれば陽性。",
+   "q": [
+    "54-am-33"
+   ],
+   "s": [
+    4
+   ]
+  },
+  {
+   "t": "Finkelsteinテストはドケルバン病（母指の腱鞘炎）の検査で、母指を小指側へ牽引すると痛みが強くなれば陽性。",
+   "q": [
+    "54-am-33"
+   ],
+   "s": [
+    3
+   ]
+  }
+ ],
+ "confusable": [
+  {
+   "name": "腱板損傷・腱板障害（棘上筋腱炎など）",
+   "diff": "結節間溝の近くに腱板が付着し、症状やテストが重なる。肩の前方痛で区別が難しい。",
+   "s": [
+    2
+   ]
+  },
+  {
+   "name": "ドケルバン病",
+   "diff": "手首の母指側の腱鞘炎。Finkelsteinテストで陽性になる。",
+   "s": [
+    3
+   ]
+  },
+  {
+   "name": "胸郭出口症候群",
+   "diff": "腕を挙げる動作で上肢のしびれや痛み。Adsonテスト・Edenテストなどで脈が弱くなる。",
+   "s": [
+    4
+   ]
+  }
+ ],
+ "related": [
+  "腱板損傷",
+  "ドケルバン病",
+  "胸郭出口症候群"
+ ],
+ "sources": [
+  {
+   "n": 1,
+   "title": "A Comprehensive Review of the Physical Examination for the Biceps-Labrum Complex of the Shoulder",
+   "org": "Arthrosc Tech 2024（PMC11704891）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11704891/",
+   "checked": "2026-11-25",
+   "kind": "paper"
+  },
+  {
+   "n": 2,
+   "title": "Codman maneuver for biceps tendonitis: a prospective evaluation of a forgotten examination maneuver",
+   "org": "JSES Int 2025（PMC12145046）",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12145046/",
+   "checked": "2026-11-25",
+   "kind": "paper"
+  },
+  {
+   "n": 3,
+   "title": "ドケルバン病（狭窄性腱鞘炎）",
+   "org": "日本整形外科学会 症状・病気をしらべる",
+   "url": "https://www.joa.or.jp/public/sick/condition/de_quervain_disease.html",
+   "checked": "2026-11-25",
+   "kind": "official"
+  },
+  {
+   "n": 4,
+   "title": "胸郭出口症候群",
+   "org": "日本整形外科学会 症状・病気をしらべる",
+   "url": "https://www.joa.or.jp/public/sick/condition/thoracic_outlet_syndrome.html",
+   "checked": "2026-11-25",
+   "kind": "official"
+  }
+ ],
+ "review": "ai"
+}
