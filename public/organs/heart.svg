@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>心臓の構造と血液の流れ（前から見た模式図）</title><desc>心臓を前から見た模式図。右心房・右心室・左心房・左心室の4つの部屋、三尖弁・肺動脈弁・僧帽弁・大動脈弁の4つの弁、上大静脈・下大静脈・肺動脈幹・肺静脈・大動脈を示し、青い矢印で酸素の少ない血液、赤い矢印で酸素の多い血液の流れる向きを示す。</desc>
+<defs><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker></defs>
+<rect width="680" height="640" fill="#fff"/>
+<path d="M222 195 L500 195 Q516 195 516 215 L516 290 Q548 330 548 400 Q548 500 440 526 Q410 532 385 520 Q300 500 250 450 Q208 405 208 345 L208 215 Q208 195 222 195 Z" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1.5"/>
+<path d="M234 212 L286 212 Q290 212 290 216 L290 314 Q290 318 286 318 L222 318 Q218 318 218 314 L218 228 Q218 212 234 212 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<path d="M222 326 L296 326 L296 200 L330 200 L330 330 L386 492 Q340 490 280 450 Q222 410 222 340 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<path d="M408 250 L490 250 Q506 250 506 266 L506 296 L392 296 L392 266 Q392 250 408 250 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<path d="M348 236 L378 236 L378 300 L500 300 L500 410 Q500 490 430 494 Q400 494 392 478 L348 336 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"><line x1="96" y1="100" x2="227" y2="100"/><line x1="96" y1="204" x2="296" y2="204"/><line x1="96" y1="322" x2="222" y2="322"/><line x1="96" y1="440" x2="159" y2="440"/><line x1="555" y1="90" x2="478" y2="90"/><line x1="555" y1="236" x2="380" y2="236"/><line x1="555" y1="298" x2="504" y2="298"/><line x1="420" y1="546" x2="420" y2="529"/><line x1="313" y1="100" x2="313" y2="118"/></g>
+<path d="M262 132 L420 132" fill="none" stroke="#185FA5" stroke-width="29"/><path d="M262 132 L420 132" fill="none" stroke="#B5D4F4" stroke-width="26"/>
+<path d="M313 206 L313 132" fill="none" stroke="#185FA5" stroke-width="37"/><path d="M313 206 L313 132" fill="none" stroke="#B5D4F4" stroke-width="34"/>
+<path d="M241 52 L241 214" fill="none" stroke="#185FA5" stroke-width="29"/><path d="M241 52 L241 214" fill="none" stroke="#B5D4F4" stroke-width="26"/>
+<path d="M172 520 L172 276 L222 276" fill="none" stroke="#185FA5" stroke-width="27"/><path d="M172 520 L172 276 L222 276" fill="none" stroke="#B5D4F4" stroke-width="24"/>
+<path d="M548 262 L500 262" fill="none" stroke="#993C1D" stroke-width="19"/><path d="M548 262 L500 262" fill="none" stroke="#F5C4B3" stroke-width="16"/>
+<path d="M548 284 L500 284" fill="none" stroke="#993C1D" stroke-width="19"/><path d="M548 284 L500 284" fill="none" stroke="#F5C4B3" stroke-width="16"/>
+<path d="M363 240 L363 112 Q363 64 410 64 Q457 64 457 112 L457 168" fill="none" stroke="#993C1D" stroke-width="37"/><path d="M363 240 L363 112 Q363 64 410 64 Q457 64 457 112 L457 168" fill="none" stroke="#F5C4B3" stroke-width="34"/>
+<rect x="222" y="318" width="18" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/><rect x="266" y="318" width="18" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="296" y="200" width="8" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/><rect x="322" y="200" width="8" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="396" y="296" width="68" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/><rect x="492" y="296" width="12" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="348" y="236" width="8" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/><rect x="370" y="236" width="8" height="8" rx="2" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<path d="M241 68 L241 200" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M172 480 L172 276 L214 276" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M253 262 L253 350 Q254 400 296 384 Q313 374 313 340 L313 150" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M296 132 L266 132" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/><path d="M392 132 L418 132" stroke="#185FA5" stroke-width="2.5" fill="none" marker-end="url(#ab)"/>
+<path d="M548 262 L512 262" stroke="#A32D2D" stroke-width="2.5" fill="none" marker-end="url(#ar)"/><path d="M548 284 L512 284" stroke="#A32D2D" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+<path d="M478 262 L478 335 Q470 395 420 380 Q372 360 364 300 L364 130" stroke="#A32D2D" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+<path d="M457 100 L457 160" stroke="#A32D2D" stroke-width="2.5" fill="none" marker-end="url(#ar)"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central"><text x="20" y="100" text-anchor="start">上大静脈</text><text x="20" y="204" text-anchor="start">肺動脈弁</text><text x="20" y="322" text-anchor="start">三尖弁</text><text x="20" y="440" text-anchor="start">下大静脈</text><text x="565" y="90" text-anchor="start">大動脈</text><text x="565" y="236" text-anchor="start">大動脈弁</text><text x="556" y="273" text-anchor="start">肺静脈</text><text x="565" y="298" text-anchor="start">僧帽弁</text><text x="313" y="88" text-anchor="middle">肺動脈幹</text><text x="420" y="566" text-anchor="middle">心尖</text><text x="252" y="236" text-anchor="middle">右心房</text><text x="320" y="445" text-anchor="middle">右心室</text><text x="430" y="276" text-anchor="middle">左心房</text><text x="445" y="455" text-anchor="middle">左心室</text></g>
+<g font-size="14" fill="#2C2C2A" dominant-baseline="central"><line x1="20" y1="600" x2="52" y2="600" stroke="#185FA5" stroke-width="2.5" marker-end="url(#ab)"/><text x="62" y="600">酸素の少ない血液（右心系）</text><line x1="300" y1="600" x2="332" y2="600" stroke="#A32D2D" stroke-width="2.5" marker-end="url(#ar)"/><text x="342" y="600">酸素の多い血液（左心系）</text></g>
+</svg>

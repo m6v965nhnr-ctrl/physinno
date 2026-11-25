@@ -33,6 +33,7 @@ const PUBLIC_PAGES = [
   ["/columns", "コラム"],
   ["/columns/tests", "検査"],
   ["/columns/tests/abi", "足関節上腕血圧比"],
+  ["/columns/organs", "臓器・仕組み"],
   ["/kokushi", "国家試験"],
   ["/schools", "合格状況"],
   ["/paper-search", "8サイト"],

@@ -28,6 +28,7 @@ import { shareContent, shareUrl } from "@/lib/share";
 import MuscleLookup from "@/components/student/MuscleLookup";
 import DiseaseLookup from "@/components/student/DiseaseLookup";
 import TestLookup from "@/components/student/TestLookup";
+import OrganLookup from "@/components/student/OrganLookup";
 import RomMmtGuide from "@/components/student/RomMmtGuide";
 import CalcMemo from "@/components/student/CalcMemo";
 import { LoadingScreen } from "@/components/states";
@@ -111,6 +112,7 @@ function ReviewPanel({ q, chosen, reveal }: { q: QuizQuestion; chosen: number[];
           <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <DiseaseLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <TestLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
+<OrganLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
           <RomMmtGuide text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
         </div>
       ) : (
@@ -661,6 +663,7 @@ export default function QuizPlayPage() {
               <MuscleLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <DiseaseLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 <TestLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
+<OrganLookup text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
           <RomMmtGuide text={[q.intro, q.stem, ...q.choices, reveal.explanation].join("\n")} />
 
               {reveal.ref_url && (

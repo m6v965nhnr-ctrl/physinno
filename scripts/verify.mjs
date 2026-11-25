@@ -20,6 +20,8 @@ function run(label, cmd, args) {
 run("ガイドの検証・集約", "node", ["scripts/build-guides.mjs"]);
 run("検査カードの検証・集約", "node", ["scripts/build-tests.mjs"]);
 run("疾患カードの検証・集約", "node", ["scripts/build-diseases.mjs"]);
+run("臓器カードの検証・集約", "node", ["scripts/build-organs.mjs"]);
+run("臓器カードの一致判定", "node", ["scripts/organ.test.mts"]);
 run("型チェック (tsc)", "npx", ["tsc", "--noEmit"]);
 run("ビルド (next build)", "npx", ["next", "build"]);
 

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 650" width="680" height="650" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>上行路と下行路の経路（交叉する場所）</title><desc>3つの経路を並べた模式図。左は後索から内側毛帯へ続く経路で、受容器から同じ側の後索を上行し、延髄の薄束核・楔状束核で二次ニューロンに換わり、延髄で反対側へ交叉して内側毛帯となり、視床を経て中心後回に至る。中央は脊髄視床路で、後根神経節から脊髄の後角で二次ニューロンに換わり、脊髄の中で反対側へ交叉して上行し、視床を経て中心後回に至る。右は外側皮質脊髄路で、中心前回から内包・大脳脚・延髄錐体を下り、延髄の下端（錐体交叉）で反対側へ交叉して脊髄の側索を下り、前角の運動ニューロンから筋に至る。</desc>
+<rect width="680" height="650" fill="#fff"/>
+<defs>
+<marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker>
+<marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker>
+<marker id="mc" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker>
+</defs>
+<g stroke="#D3D1C7" stroke-width="1"><line x1="220" y1="14" x2="220" y2="570"/><line x1="444" y1="14" x2="444" y2="570"/></g>
+<g fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5">
+<rect x="10" y="352" width="196" height="160" rx="8"/>
+<rect x="234" y="352" width="196" height="160" rx="8"/>
+<rect x="458" y="352" width="196" height="160" rx="8"/>
+</g>
+<g font-size="13" fill="#5F5E5A" dominant-baseline="central">
+<text x="16" y="366">脊髄</text>
+<text x="240" y="366">脊髄</text>
+<text x="464" y="366">脊髄</text>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3">
+<line x1="108" y1="58" x2="108" y2="576"/>
+<line x1="332" y1="58" x2="332" y2="576"/>
+<line x1="556" y1="58" x2="556" y2="576"/>
+</g>
+<text x="108" y="24" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">後索–内側毛帯系</text><text x="108" y="44" text-anchor="middle" font-size="13" fill="#5F5E5A">深部感覚・識別触覚</text>
+<text x="332" y="24" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">脊髄視床路</text><text x="332" y="44" text-anchor="middle" font-size="13" fill="#5F5E5A">痛覚・温度覚・粗大触覚</text>
+<text x="556" y="24" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A">外側皮質脊髄路</text><text x="556" y="44" text-anchor="middle" font-size="13" fill="#5F5E5A">随意運動（下行路）</text>
+<rect x="12.0" y="508.0" width="96" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/><text x="60" y="519.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">後根神経節</text><text x="60" y="536.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（1次）</text>
+<path d="M60 508 L60 326" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#ma)"/>
+<rect x="12.0" y="263.0" width="96" height="62" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/><text x="60" y="277.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">延髄</text><text x="60" y="294.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">薄束核・</text><text x="60" y="311.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">楔状束核</text>
+<path d="M60 262 C60 222 156 242 156 192" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#ma)"/>
+<circle cx="108" cy="226" r="6" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<path d="M156 192 L156 168" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#ma)"/>
+<rect x="108.0" y="132.0" width="96" height="32" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/><text x="156" y="148.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">視床（3次）</text>
+<path d="M156 132 L156 108" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#ma)"/>
+<rect x="108.0" y="74.0" width="96" height="32" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/><text x="156" y="90.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">中心後回</text>
+<text x="68" y="420" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">後索を上行</text>
+<text x="12" y="200" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">毛帯交叉</text>
+<text x="164" y="196" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">内側毛帯</text>
+<text x="14" y="568" font-size="13" fill="#2C2C2A">皮膚・関節の受容器から</text>
+<rect x="236.0" y="508.0" width="96" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/><text x="284" y="519.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">後根神経節</text><text x="284" y="536.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（1次）</text>
+<path d="M284 508 L284 490" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#mb)"/>
+<rect x="236.0" y="448.0" width="96" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/><text x="284" y="459.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">後角</text><text x="284" y="476.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（2次）</text>
+<path d="M284 448 C284 412 380 432 380 392" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#mb)"/>
+<circle cx="332" cy="424" r="6" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<path d="M380 392 L380 168" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#mb)"/>
+<rect x="332.0" y="132.0" width="96" height="32" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/><text x="380" y="148.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">視床（3次）</text>
+<path d="M380 132 L380 108" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#mb)"/>
+<rect x="332.0" y="74.0" width="96" height="32" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/><text x="380" y="90.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">中心後回</text>
+<text x="340" y="478" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脊髄内で交叉</text>
+<text x="388" y="300" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脊髄視床路</text>
+<text x="238" y="568" font-size="13" fill="#2C2C2A">皮膚の受容器から</text>
+<rect x="460.0" y="74.0" width="96" height="32" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/><text x="508" y="90.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">中心前回</text>
+<path d="M508 106 L508 238" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#mc)"/>
+<text x="516" y="170" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">内包・大脳脚・橋</text>
+<rect x="460.0" y="242.0" width="96" height="40" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/><text x="508" y="253.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">延髄</text><text x="508" y="270.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">錐体</text>
+<path d="M508 282 C508 322 604 308 604 346" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#mc)"/>
+<circle cx="556" cy="312" r="6" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<text x="546" y="338" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">錐体交叉</text>
+<path d="M604 346 L604 428" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#mc)"/>
+<text x="612" y="386" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">外側皮質</text>
+<text x="612" y="404" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">脊髄路</text>
+<rect x="547.0" y="432.0" width="114" height="40" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/><text x="604" y="443.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">前角の</text><text x="604" y="460.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">運動ニューロン</text>
+<path d="M604 472 L604 548" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#mc)"/>
+<text x="604" y="568" text-anchor="middle" font-size="13" fill="#2C2C2A">骨格筋へ</text>
+<g font-size="13" fill="#5F5E5A">
+<text x="14" y="610">赤い丸は、左右が入れ替わる場所。矢印は信号の流れる向き。</text>
+<text x="14" y="632">感覚は、受容器と反対側の大脳に届く。運動は、大脳の反対側の筋を動かす。</text>
+</g>
+</svg>
