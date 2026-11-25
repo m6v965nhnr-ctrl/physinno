@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="680" height="500" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>毛細血管での液の出入り（濾過と再吸収）</title><desc>毛細血管を横から見た模式図。動脈側の端では毛細血管静水圧が血漿膠質浸透圧より高く、液が血管の外へ濾過される。中央では両者がつり合い、静脈側の端では膠質浸透圧が上回って液が血管内へ再吸収される。再吸収されなかった液は毛細リンパ管へ入る。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="500" fill="#fff"/>
+<text x="340" y="24" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">毛細血管の長さに沿った液の出入り</text>
+<rect x="60" y="150" width="560" height="60" rx="30" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1.5" />
+<text x="76" y="180" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">細動脈側</text>
+<text x="604" y="180" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">細静脈側</text>
+<path d="M20 180 L58 180" fill="none" stroke="#A32D2D" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ar)"/>
+<path d="M622 180 L660 180" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ab)"/>
+<text x="60" y="56" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">血管の外側は組織（間質）</text>
+<text x="340" y="240" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">差 ＝ 静水圧 − 膠質浸透圧（ネット濾過圧）</text>
+<path d="M180 144 L180 96" fill="none" stroke="#993C1D" stroke-width="3" stroke-linecap="round" marker-end="url(#ao)"/>
+<text x="180" y="80" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">濾過</text>
+<path d="M500 96 L500 144" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" marker-end="url(#ag)"/>
+<text x="500" y="80" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">再吸収</text>
+<text x="340" y="110" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">正味の出入りなし</text>
+<line x1="340" y1="126" x2="340" y2="146" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<rect x="40" y="300" width="190" height="126" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<rect x="245" y="300" width="190" height="126" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="450" y="300" width="190" height="126" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="135" y="318" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">動脈側の端</text>
+<text x="135" y="350" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">静水圧 約35 mmHg</text>
+<text x="135" y="372" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">膠質浸透圧 約25 mmHg</text>
+<text x="135" y="400" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">差 +10 → 濾過</text>
+<text x="340" y="318" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">中央付近</text>
+<text x="340" y="350" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">静水圧 ＝ 膠質浸透圧</text>
+<text x="340" y="372" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（約25 mmHg）</text>
+<text x="340" y="400" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">差 0 → 正味の出入りなし</text>
+<text x="545" y="318" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">静脈側の端</text>
+<text x="545" y="350" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">静水圧 約18 mmHg</text>
+<text x="545" y="372" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">膠質浸透圧 約25 mmHg</text>
+<text x="545" y="400" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">差 −7 → 再吸収</text>
+<text x="340" y="452" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">再吸収されずに残った液は、毛細リンパ管に入ってリンパになる。</text>
+<text x="340" y="474" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">静水圧は液を血管の外へ押し出し、血漿タンパクによる膠質浸透圧は液を血管内へ引き戻す。</text>
+</svg>

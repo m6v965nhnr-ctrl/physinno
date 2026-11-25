@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>圧受容器反射（血圧が変わったときの流れ）</title><desc>頸動脈洞と大動脈の圧受容器が血圧の変化を感じ、延髄の心血管中枢に伝える。血圧が上がると受容器の発火が増え、副交感神経が心臓を抑え、交感神経が弱まって血管が広がり、血圧が下がる。血圧が下がると発火が減り、交感神経が心臓と血管を強め、血圧が上がる。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="640" fill="#fff"/>
+<rect x="150" y="20" width="380" height="66" rx="10" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="340" y="40" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">圧受容器（血管壁の伸展を感じる）</text>
+<text x="340" y="64" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">頸動脈洞 → 舌咽神経　／　大動脈 → 迷走神経</text>
+<path d="M270 88 L270 140" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M410 88 L410 140" fill="none" stroke="#993C1D" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ao)"/>
+<text x="262" y="114" text-anchor="end" font-size="13" fill="#185FA5" dominant-baseline="central">血圧↑ 発火が増える</text>
+<text x="418" y="114" text-anchor="start" font-size="13" fill="#993C1D" dominant-baseline="central">血圧↓ 発火が減る</text>
+<rect x="190" y="142" width="300" height="64" rx="10" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="340" y="162" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">延髄の心血管中枢</text>
+<text x="340" y="186" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">心臓促進・心臓抑制・血管運動</text>
+<path d="M270 208 L170 252" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M410 208 L510 252" fill="none" stroke="#993C1D" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ao)"/>
+<rect x="20" y="254" width="300" height="74" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="170" y="274" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">心臓抑制：副交感神経（迷走神経）↑</text>
+<text x="170" y="298" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">心拍数↓　心拍出量↓</text>
+<rect x="20" y="350" width="300" height="74" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="170" y="370" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血管運動：交感神経の働き↓</text>
+<text x="170" y="394" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">細動脈が広がる（抵抗↓）</text>
+<path d="M170 330 L170 348" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M170 426 L170 466" fill="none" stroke="#185FA5" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ab)"/>
+<rect x="60" y="468" width="220" height="50" rx="25" fill="#B5D4F4" stroke="#185FA5" stroke-width="2" />
+<text x="170" y="493" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血圧が下がる</text>
+<rect x="360" y="254" width="300" height="74" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="510" y="274" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">心臓促進：交感神経↑</text>
+<text x="510" y="298" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">心拍数↑　収縮力↑　心拍出量↑</text>
+<rect x="360" y="350" width="300" height="74" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="510" y="370" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血管運動：交感神経の働き↑</text>
+<text x="510" y="394" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">細動脈が縮む（抵抗↑）</text>
+<path d="M510 330 L510 348" fill="none" stroke="#993C1D" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ao)"/>
+<path d="M510 426 L510 466" fill="none" stroke="#993C1D" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ao)"/>
+<rect x="400" y="468" width="220" height="50" rx="25" fill="#F5C4B3" stroke="#993C1D" stroke-width="2" />
+<text x="510" y="493" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血圧が上がる</text>
+<text x="340" y="556" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">化学受容器（O2↓・CO2↑・H+↑）も圧受容器の近くにあり、心血管中枢に働く。</text>
+<text x="340" y="580" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">血圧↑のとき左の流れ、血圧↓のとき右の流れが働き、血圧を一定の範囲に戻す。</text>
+</svg>

@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 700" width="680" height="700" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>レニン・アンジオテンシン・アルドステロン系と血圧（流れ図）</title><desc>血圧が下がると腎臓の傍糸球体細胞がレニンを出す。レニンは肝臓でつくられるアンジオテンシノーゲンをアンジオテンシンIに変え、肺のACEがアンジオテンシンIIに変える。アンジオテンシンIIは血管を強く収縮させ、副腎皮質からのアルドステロンと下垂体後葉からのバソプレシンの分泌を促し、口渇も起こす。腎でナトリウムと水の再吸収が増えて血液量が増え、血圧が上がる。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="700" fill="#fff"/>
+<rect x="190" y="16" width="300" height="46" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340" y="39" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血圧が下がる</text>
+<path d="M340 64 L340 92" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="150" y="94" width="380" height="52" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="340" y="112" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">腎臓：傍糸球体細胞が</text>
+<text x="340" y="132" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">レニンを血液中に出す</text>
+<path d="M340 148 L340 176" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="150" y="178" width="380" height="52" rx="10" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="340" y="196" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">レニンが肝臓でつくられる</text>
+<text x="340" y="216" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">アンジオテンシノーゲン → アンジオテンシンⅠ</text>
+<path d="M340 232 L340 260" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="150" y="262" width="380" height="52" rx="10" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="340" y="280" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">肺のアンジオテンシン変換酵素（ACE）が</text>
+<text x="340" y="300" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">アンジオテンシンⅠ → アンジオテンシンⅡ</text>
+<path d="M252 316 L90 372" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M308 316 L250 372" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M364 316 L410 372" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M420 316 L570 372" fill="none" stroke="#2C2C2A" stroke-width="2.5" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="15" y="374" width="150" height="92" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="90" y="396" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血管を強く収縮</text>
+<text x="90" y="420" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">抵抗↑</text>
+<rect x="175" y="374" width="150" height="92" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="250" y="396" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">副腎皮質から</text>
+<text x="250" y="418" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">アルドステロン↑</text>
+<rect x="335" y="374" width="150" height="92" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="410" y="396" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">下垂体後葉から</text>
+<text x="410" y="418" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">バソプレシン↑</text>
+<text x="410" y="442" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（血管収縮も）</text>
+<rect x="495" y="374" width="150" height="92" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="570" y="396" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">視床下部の</text>
+<text x="570" y="418" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">口渇中枢を刺激</text>
+<path d="M250 468 L300 514" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M410 468 L380 514" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M570 468 L450 514" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="160" y="516" width="360" height="64" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="340" y="536" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">腎でNa+と水の再吸収↑ ／ 飲水↑</text>
+<text x="340" y="560" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">→ 循環血液量↑</text>
+<path d="M90 468 L90 640 L156 640" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ak)"/>
+<path d="M340 582 L340 606" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ak)"/>
+<rect x="160" y="608" width="360" height="64" rx="32" fill="#F5C4B3" stroke="#993C1D" stroke-width="2" />
+<text x="340" y="640" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血圧が上がる</text>
+</svg>

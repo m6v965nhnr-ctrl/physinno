@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 740" width="680" height="740" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>胎児の血液循環（模式図）</title><desc>胎児の血液循環の模式図。胎盤からの臍静脈の血液は一部が肝臓を通り、一部は静脈管を通って下大静脈に入り、右心房から卵円孔を通って左心房へ向かう。上大静脈の血液は右心房から右心室、肺動脈幹に入り、大部分は動脈管を通って大動脈へ流れる。胎児の肺を流れる血液はわずかである。臍動脈が血液を胎盤へ運ぶ。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="740" fill="#fff"/>
+<rect x="250" y="16" width="180" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340" y="36" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">頭・上肢（上半身）</text>
+<rect x="120" y="130" width="120" height="50" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="180" y="155" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">右心房</text>
+<rect x="440" y="130" width="120" height="50" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="500" y="155" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">左心房</text>
+<rect x="120" y="250" width="120" height="50" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="180" y="275" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">右心室</text>
+<rect x="440" y="250" width="120" height="50" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="500" y="275" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">左心室</text>
+<rect x="120" y="350" width="120" height="40" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="180" y="370" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">肺動脈幹</text>
+<rect x="290" y="300" width="100" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340" y="320" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">肺</text>
+<rect x="440" y="350" width="120" height="40" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="500" y="370" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">大動脈</text>
+<rect x="440" y="452" width="120" height="40" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="500" y="472" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">下半身</text>
+<rect x="150" y="420" width="110" height="40" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="205" y="440" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">下大静脈</text>
+<rect x="270" y="482" width="140" height="52" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="340" y="508" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">肝臓</text>
+<rect x="250" y="610" width="180" height="44" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="340" y="632" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胎盤</text>
+<path d="M262 58 L196 128" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M180 182 L180 248" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M240 155 L438 155" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M500 182 L500 248" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M180 302 L180 348" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M240 372 L288 328" fill="none" stroke="#185FA5" stroke-width="1.8" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M560 275 L620 275 L620 36 L432 36" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M500 302 L500 348" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M240 372 L438 372" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M500 392 L500 450" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M440 472 L262 446" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M148 440 L60 440 L60 155 L118 155" fill="none" stroke="#534AB7" stroke-width="3" stroke-linecap="round" marker-end="url(#ap)"/>
+<path d="M530 494 Q 530 580 432 624" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M340 608 L340 536" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)"/>
+<path d="M340 566 L205 566 L205 462" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)"/>
+<text x="340" y="138" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵円孔</text>
+<text x="340" y="386" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">動脈管</text>
+<text x="240" y="106" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">上大静脈</text>
+<text x="630" y="150" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">大動脈弓から</text>
+<text x="630" y="168" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">上半身へ</text>
+<text x="552" y="590" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臍動脈</text>
+<text x="552" y="610" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（2本）</text>
+<text x="352" y="586" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臍静脈</text>
+<text x="272" y="584" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">静脈管</text>
+<path d="M320 480 L262 462" fill="none" stroke="#534AB7" stroke-width="2.2" stroke-linecap="round" marker-end="url(#ap)"/>
+<text x="296" y="474" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central"></text>
+<line x1="20" y1="690" x2="50" y2="690" stroke="#A32D2D" stroke-width="4"/>
+<text x="58" y="690" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">酸素が多い血液</text>
+<line x1="235" y1="690" x2="265" y2="690" stroke="#534AB7" stroke-width="4"/>
+<text x="273" y="690" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">中間（混ざった血液）</text>
+<line x1="450" y1="690" x2="480" y2="690" stroke="#185FA5" stroke-width="4"/>
+<text x="488" y="690" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">酸素が少ない血液</text>
+<text x="20" y="720" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">色は酸素の多少の目安。肺を流れる血液はわずかで、肺から戻る血液も図では省略した。</text>
+</svg>

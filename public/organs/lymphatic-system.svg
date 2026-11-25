@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 690" width="680" height="690" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>リンパの流れと主なリンパ節（模式図）</title><desc>人体の輪郭の模式図。頭頸部の右側、胸部の右側、右上肢のリンパは右リンパ本幹に集まり右の鎖骨下静脈に注ぐ。それ以外の全身のリンパは乳び槽から胸管に集まり、左の鎖骨下静脈に注ぐ。リンパ節は頸部、腋窩、鼠径部に多い。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="690" fill="#fff"/>
+<g  fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"><circle cx="340" cy="70" r="30"/><rect x="326" y="96" width="28" height="22"/><path d="M286 118 Q340 104 394 118 L402 250 Q402 290 392 330 L288 330 Q278 290 278 250 Z"/><path d="M286 122 L246 138 L226 250 L212 360 L238 366 L258 262 L292 170 Z"/><path d="M394 122 L434 138 L454 250 L468 360 L442 366 L422 262 L388 170 Z"/><path d="M290 326 L396 326 L410 470 L394 580 L352 580 L340 400 L330 580 L286 580 L270 470 Z"/></g>
+<clipPath id="rc"><rect x="0" y="0" width="340" height="232"/><rect x="0" y="232" width="275" height="150"/></clipPath>
+<g clip-path="url(#rc)" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"><circle cx="340" cy="70" r="30"/><rect x="326" y="96" width="28" height="22"/><path d="M286 118 Q340 104 394 118 L402 250 Q402 290 392 330 L288 330 Q278 290 278 250 Z"/><path d="M286 122 L246 138 L226 250 L212 360 L238 366 L258 262 L292 170 Z"/><path d="M394 122 L434 138 L454 250 L468 360 L442 366 L422 262 L388 170 Z"/><path d="M290 326 L396 326 L410 470 L394 580 L352 580 L340 400 L330 580 L286 580 L270 470 Z"/></g>
+<line x1="180" y1="232" x2="500" y2="232" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="506" y="232" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">横隔膜</text>
+<path d="M268 112 L412 112" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M268 112 L412 112" fill="none" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M346 260 L346 190 Q346 150 392 118" fill="none" stroke="#0F6E56" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M346 260 L346 190 Q346 150 392 118" fill="none" stroke="#9FE1CB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="318" y="254" width="56" height="24" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="346" y="266" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">乳び槽</text>
+<path d="M322 356 L334 278" fill="none" stroke="#0F6E56" stroke-width="2.5" />
+<path d="M372 356 L358 278" fill="none" stroke="#0F6E56" stroke-width="2.5" />
+<path d="M312 112 L300 112" fill="none" stroke="#0F6E56" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M312 112 L300 112" fill="none" stroke="#9FE1CB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="326" cy="104" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<circle cx="354" cy="104" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<circle cx="300" cy="160" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<circle cx="392" cy="160" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<circle cx="322" cy="356" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<circle cx="372" cy="356" r="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<line x1="102" y1="36" x2="320" y2="100" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="36" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">頸部リンパ節</text>
+<line x1="102" y1="84" x2="304" y2="112" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="84" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">右リンパ本幹</text>
+<line x1="115" y1="140" x2="270" y2="112" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="140" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">右の鎖骨下静脈</text>
+<line x1="102" y1="190" x2="294" y2="162" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="190" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">腋窩リンパ節</text>
+<line x1="565" y1="60" x2="410" y2="112" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="60" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">左の鎖骨下静脈</text>
+<line x1="500" y1="120" x2="390" y2="140" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="120" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">胸管（左の鎖骨下静脈へ）</text>
+<line x1="578" y1="190" x2="398" y2="162" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="190" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">腋窩リンパ節</text>
+<line x1="500" y1="270" x2="376" y2="266" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="270" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">乳び槽（胸管のはじまり）</text>
+<line x1="487" y1="310" x2="366" y2="310" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="310" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">腰リンパ本幹・腸リンパ本幹</text>
+<line x1="578" y1="376" x2="380" y2="360" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="376" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">鼠径リンパ節</text>
+<rect x="20" y="610" width="22" height="16" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="50" y="618" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">右リンパ本幹に集まる領域（右の頭頸部・胸部・上肢）</text>
+<rect x="20" y="636" width="22" height="16" rx="3" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="50" y="644" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">胸管に集まる領域（それ以外の全身）</text>
+<text x="20" y="672" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">黄色の丸はリンパ節。リンパ管の細かな枝は省略。</text>
+<text x="660" y="672" text-anchor="end" font-size="12" fill="#2C2C2A" dominant-baseline="central">図の左が体の右側</text>
+</svg>

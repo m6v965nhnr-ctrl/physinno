@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 470" width="680" height="470" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>動脈・静脈・毛細血管の壁の構造（断面の模式図）</title><desc>動脈、静脈、毛細血管を輪切りにした模式図。動脈は壁が厚く内腔が小さく、中膜が最も厚い。静脈は壁が薄く内腔が大きく、外膜が最も厚い。毛細血管は内皮と基底膜だけでできている。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="470" fill="#fff"/>
+<text x="120" y="28" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">動脈</text>
+<ellipse cx="120" cy="150" rx="62" ry="62" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<ellipse cx="120" cy="150" rx="52" ry="52" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<ellipse cx="120" cy="150" rx="26" ry="26" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="120" cy="150" rx="22" ry="22" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+<circle cx="120" cy="150" r="52" fill="none" stroke="#2C2C2A" stroke-width="1" stroke-dasharray="3 2"/><circle cx="120" cy="150" r="26" fill="none" stroke="#2C2C2A" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="345" y="28" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">静脈</text>
+<ellipse cx="345" cy="150" rx="80" ry="60" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<ellipse cx="345" cy="150" rx="56" ry="42" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<ellipse cx="345" cy="150" rx="44" ry="31" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="345" cy="150" rx="41" ry="28" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+<text x="525" y="28" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">毛細血管</text>
+<circle cx="525" cy="150" r="22" fill="#fff" stroke="#5F5E5A" stroke-width="1.5"/>
+<ellipse cx="525" cy="150" rx="17" ry="17" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="525" cy="150" rx="13" ry="13" fill="#FCEBEB" stroke="#A32D2D" stroke-width="1"/>
+<ellipse cx="525" cy="150" rx="8" ry="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="157.84062043356596" y1="112.15937956643405" x2="205" y2="98" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="209" y="98" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">外膜</text>
+<line x1="160" y1="142" x2="205" y2="132" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="209" y="132" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">中膜</text>
+<line x1="144" y1="154" x2="205" y2="164" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="209" y="164" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内膜</text>
+<line x1="130" y1="164" x2="205" y2="194" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="209" y="194" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内腔</text>
+<text x="120" y="234" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">点線は弾性板</text>
+<text x="120" y="252" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（大きな動脈にある）</text>
+<line x1="407" y1="120" x2="445" y2="102" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="449" y="102" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">外膜</text>
+<line x1="395" y1="144" x2="445" y2="134" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="449" y="134" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">中膜</text>
+<line x1="387" y1="158" x2="445" y2="166" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="449" y="166" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内膜</text>
+<line x1="365" y1="168" x2="445" y2="196" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="449" y="196" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内腔</text>
+<text x="345" y="234" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">弾性板なし</text>
+<text x="345" y="252" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">四肢などの静脈に弁</text>
+<line x1="537" y1="140" x2="577" y2="116" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="581" y="116" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内皮細胞</text>
+<line x1="545" y1="154" x2="577" y2="160" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="581" y="160" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">基底膜</text>
+<line x1="529" y1="158" x2="565" y2="190" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="569" y="190" text-anchor="start" font-size="14" fill="#2C2C2A" dominant-baseline="central">内腔</text>
+<text x="525" y="234" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">ところどころに平滑筋線維</text>
+<text x="20" y="300" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">壁が厚く内腔が小さい</text>
+<text x="20" y="322" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">中膜が最も厚い</text>
+<text x="245" y="300" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">壁が薄く内腔が大きい</text>
+<text x="245" y="322" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">外膜が最も厚い</text>
+<text x="450" y="300" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内皮と基底膜だけの壁</text>
+<text x="450" y="322" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内径は約5〜10μm</text>
+<line x1="20" y1="338" x2="660" y2="338" stroke="#D3D1C7" stroke-width="1"/>
+<rect x="30" y="370" width="22" height="16" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="60" y="378" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内膜（内皮・基底膜）</text>
+<rect x="245" y="370" width="22" height="16" rx="3" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<text x="275" y="378" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">中膜（平滑筋・弾性線維）</text>
+<rect x="460" y="370" width="22" height="16" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="490" y="378" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">外膜（結合組織）</text>
+<text x="30" y="406" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内腔の赤い部分は血液。大きさの比は実物と異なり、弁・毛細血管の種類は省いています。</text>
+<text x="30" y="428" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">点線は弾性板（内弾性板・外弾性板）の位置を示す。</text>
+</svg>

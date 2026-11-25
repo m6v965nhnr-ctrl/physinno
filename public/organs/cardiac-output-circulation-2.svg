@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>運動時の臓器別血流量（健康な若い人の例）</title><desc>安静時、軽い運動、最大運動の3つの状態での臓器別血流量（mL/分）の棒グラフ。骨格筋は1200から4500、12500へ、心臓は250から350、750へ、皮膚は500から1500、1900へ増える。脳は750で変わらない。腎臓は1100から900、600へ、消化管は1400から1100、600へ減る。合計は5800、9500、17500 mL/分。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="560" fill="#fff"/>
+<text x="20" y="18" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臓器別の血流量（mL/分）</text>
+<rect x="330" y="10" width="18" height="14" rx="3" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="354" y="17" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">安静時</text>
+<rect x="440" y="10" width="18" height="14" rx="3" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="464" y="17" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">軽い運動</text>
+<rect x="550" y="10" width="18" height="14" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<text x="574" y="17" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">最大運動</text>
+<text x="190" y="72" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">骨格筋</text>
+<rect x="200" y="48" width="36.5" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="242.48" y="54.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,200</text>
+<rect x="200" y="64" width="136.8" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="342.8" y="70.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">4,500</text>
+<rect x="200" y="80" width="380.0" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="586.0" y="86.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">12,500</text>
+<text x="190" y="134" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">心臓</text>
+<rect x="200" y="110" width="7.6" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="213.6" y="116.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">250</text>
+<rect x="200" y="126" width="10.6" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="216.64" y="132.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">350</text>
+<rect x="200" y="142" width="22.8" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="228.8" y="148.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">750</text>
+<text x="190" y="196" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">脳</text>
+<rect x="200" y="172" width="22.8" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="228.8" y="178.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">750</text>
+<rect x="200" y="188" width="22.8" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="228.8" y="194.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">750</text>
+<rect x="200" y="204" width="22.8" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="228.8" y="210.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">750</text>
+<text x="190" y="258" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">皮膚</text>
+<rect x="200" y="234" width="15.2" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="221.2" y="240.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">500</text>
+<rect x="200" y="250" width="45.6" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="251.6" y="256.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,500</text>
+<rect x="200" y="266" width="57.8" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="263.76" y="272.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,900</text>
+<text x="190" y="320" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">腎臓</text>
+<rect x="200" y="296" width="33.4" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="239.44" y="302.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,100</text>
+<rect x="200" y="312" width="27.4" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="233.36" y="318.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">900</text>
+<rect x="200" y="328" width="18.2" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="224.24" y="334.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">600</text>
+<text x="190" y="382" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">消化管</text>
+<rect x="200" y="358" width="42.6" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="248.56" y="364.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,400</text>
+<rect x="200" y="374" width="33.4" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="239.44" y="380.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">1,100</text>
+<rect x="200" y="390" width="18.2" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="224.24" y="396.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">600</text>
+<text x="190" y="444" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">その他（肝臓・脾臓など）</text>
+<rect x="200" y="420" width="18.2" height="13" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="224.24" y="426.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">600</text>
+<rect x="200" y="436" width="12.2" height="13" rx="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="218.16" y="442.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">400</text>
+<rect x="200" y="452" width="12.2" height="13" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="218.16" y="458.5" text-anchor="start" font-size="11" fill="#2C2C2A" dominant-baseline="central">400</text>
+<line x1="200" y1="40" x2="200" y2="474" stroke="#888780" stroke-width="1"/>
+<text x="20" y="492" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">合計　安静時 5,800 → 軽い運動 9,500 → 最大運動 17,500 mL/分</text>
+<text x="20" y="516" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">骨格筋・心臓・皮膚で増え、腎臓・消化管で減る。脳はほぼ変わらない。</text>
+</svg>

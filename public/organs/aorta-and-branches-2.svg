@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 830" width="680" height="830" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>主な静脈と門脈系（模式図）</title><desc>上半身の静脈血は上大静脈、下半身の静脈血は下大静脈に集まって右心房に入る。奇静脈（体の右側）と半奇静脈（左側）は胸壁などの血液を集めて上大静脈・腕頭静脈に入る。胃・小腸・大腸・脾臓などの血液は、上腸間膜静脈と脾静脈が合流した門脈を通って肝臓に入り、肝静脈から下大静脈へ出る。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="830" fill="#fff"/>
+<text x="20" y="16" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">青：全身から心臓へ戻る静脈　緑：奇静脈・門脈系</text>
+<text x="660" y="16" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">図の左が体の右側</text>
+<path d="M370 236 L370 130" fill="none" stroke="#185FA5" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 236 L370 130" fill="none" stroke="#B5D4F4" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 130 L290 100" fill="none" stroke="#185FA5" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 130 L290 100" fill="none" stroke="#B5D4F4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 130 L450 100" fill="none" stroke="#185FA5" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 130 L450 100" fill="none" stroke="#B5D4F4" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M290 100 L262 66" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M290 100 L262 66" fill="none" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M290 100 L236 112" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M290 100 L236 112" fill="none" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 100 L478 66" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M450 100 L478 66" fill="none" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 100 L504 112" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M450 100 L504 112" fill="none" stroke="#B5D4F4" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M300 326 L300 196 Q300 150 364 148" fill="none" stroke="#0F6E56" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M300 326 L300 196 Q300 150 364 148" fill="none" stroke="#9FE1CB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M440 326 L440 220 Q440 112 452 104" fill="none" stroke="#0F6E56" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M440 326 L440 220 Q440 112 452 104" fill="none" stroke="#9FE1CB" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="320" y="236" width="100" height="40" rx="10" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="370" y="256" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">右心房</text>
+<path d="M370 276 L370 640" fill="none" stroke="#185FA5" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 276 L370 640" fill="none" stroke="#B5D4F4" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="100" y1="330" x2="640" y2="330" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="562" y="316" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">横隔膜</text>
+<rect x="120" y="345" width="170" height="92" rx="22" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="205" y="366" text-anchor="middle" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">肝臓</text>
+<text x="205" y="392" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">門脈の血液は類洞を通り</text>
+<text x="205" y="412" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">肝静脈で下大静脈へ</text>
+<path d="M290 368 L366 352" fill="none" stroke="#185FA5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M290 368 L366 352" fill="none" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M210 530 L210 437" fill="none" stroke="#0F6E56" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M210 530 L210 437" fill="none" stroke="#9FE1CB" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M135 552 L210 530" fill="none" stroke="#0F6E56" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M135 552 L210 530" fill="none" stroke="#9FE1CB" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M285 552 L210 530" fill="none" stroke="#0F6E56" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M285 552 L210 530" fill="none" stroke="#9FE1CB" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="60" y="562" width="150" height="66" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="135" y="580" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">胃・小腸・大腸</text>
+<text x="135" y="604" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（上・下腸間膜静脈）</text>
+<rect x="230" y="562" width="110" height="66" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="285" y="580" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">脾臓・膵臓</text>
+<text x="285" y="604" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">（脾静脈）</text>
+<path d="M370 470 L312 480" fill="none" stroke="#185FA5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 470 L312 480" fill="none" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 470 L428 480" fill="none" stroke="#185FA5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 470 L428 480" fill="none" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 640 L322 692" fill="none" stroke="#185FA5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 640 L322 692" fill="none" stroke="#B5D4F4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M370 640 L418 692" fill="none" stroke="#185FA5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M370 640 L418 692" fill="none" stroke="#B5D4F4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M322 692 L296 748" fill="none" stroke="#185FA5" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M322 692 L296 748" fill="none" stroke="#B5D4F4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M296 748 L284 800" fill="none" stroke="#185FA5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M296 748 L284 800" fill="none" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M322 692 L346 734" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M322 692 L346 734" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M418 692 L444 748" fill="none" stroke="#185FA5" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M418 692 L444 748" fill="none" stroke="#B5D4F4" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M444 748 L456 800" fill="none" stroke="#185FA5" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/><path d="M444 748 L456 800" fill="none" stroke="#B5D4F4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M418 692 L394 734" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><path d="M418 692 L394 734" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="76" y1="46" x2="264" y2="68" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="46" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内頸静脈</text>
+<line x1="89" y1="98" x2="240" y2="110" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="98" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">鎖骨下静脈</text>
+<line x1="76" y1="150" x2="330" y2="114" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="150" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">腕頭静脈</text>
+<line x1="604" y1="190" x2="380" y2="190" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="190" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">上大静脈</text>
+<line x1="115" y1="232" x2="300" y2="232" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="232" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">奇静脈（右側）</text>
+<line x1="552" y1="252" x2="444" y2="252" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="252" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">半奇静脈（左側）</text>
+<line x1="604" y1="420" x2="380" y2="420" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="420" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">下大静脈</text>
+<line x1="617" y1="480" x2="432" y2="480" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="480" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">腎静脈</text>
+<text x="196" y="486" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">門脈</text>
+<line x1="200" y1="486" x2="208" y2="486" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="470" y="650" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">総腸骨静脈</text>
+<line x1="466" y1="650" x2="398" y2="662" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="470" y="672" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（第5腰椎の高さで合流）</text>
+<line x1="89" y1="716" x2="308" y2="716" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="716" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">外腸骨静脈</text>
+<line x1="591" y1="730" x2="402" y2="726" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="660" y="730" text-anchor="end" font-size="13" fill="#2C2C2A" dominant-baseline="central">内腸骨静脈</text>
+<line x1="76" y1="776" x2="290" y2="776" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="776" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">大腿静脈</text>
+<text x="20" y="812" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">細い静脈は省略した模式図。上肢・下肢の静脈の細かな名称は本文を参照。</text>
+</svg>
