@@ -46,7 +46,7 @@ const out = files.map((f) => {
   return {
     slug: d.slug, name: d.name, reading: d.reading, system: d.system, aliases: arr(d.aliases),
     summary: d.summary, location: arr(d.location), structure: arr(d.structure), function: arr(d.function), mechanism: arr(d.mechanism),
-    examPoints: arr(d.examPoints), diseases: arr(d.diseases), tests: arr(d.tests), related: arr(d.related), figures: arr(d.figures),
+    examPoints: arr(d.examPoints).map((p) => ({ ...p, q: p.q ?? [] })), diseases: arr(d.diseases), tests: arr(d.tests), related: arr(d.related), figures: arr(d.figures),
     sources: arr(d.sources), checkedOn, review: d.review ?? "ai",
   };
 });

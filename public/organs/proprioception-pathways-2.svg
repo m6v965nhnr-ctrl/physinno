@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="680" height="420" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脊髄の障害と感覚障害のパターン</title><desc>脊髄の断面で示した3つの障害のパターン。左はBrown-Séquard症候群で、断面の片側が障害され、病変と同じ側に不全麻痺と触覚・位置覚・振動覚の消失、反対側に温痛覚の消失が出る。中央は前脊髄症候群で、断面の腹側が障害され、後索以外のすべての神経路が障害されて位置覚・振動覚は保たれる。右は後索の障害（脊髄癆など）で、後索を通る位置覚・振動覚・識別触覚が低下し、脊髄視床路を通る温痛覚は保たれる（後索と脊髄視床路の働きから導いた模式）。</desc>
+<rect width="680" height="420" fill="#fff"/>
+<defs></defs>
+<clipPath id="c1"><ellipse cx="115" cy="118" rx="56" ry="50"/></clipPath>
+<ellipse cx="115" cy="118" rx="56" ry="50" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="115" cy="118" rx="16" ry="12" fill="#D3D1C7"/>
+<ellipse cx="99" cy="94" rx="6" ry="17" transform="rotate(-12 99 94)" fill="#D3D1C7"/>
+<ellipse cx="93" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<ellipse cx="131" cy="94" rx="6" ry="17" transform="rotate(12 131 94)" fill="#D3D1C7"/>
+<ellipse cx="137" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<g clip-path="url(#c1)"><path d="M115 58 L45 58 L45 178 L115 178 Z" fill="#E24B4A" fill-opacity="0.45" stroke="#A32D2D" stroke-width="1"/></g>
+<ellipse cx="115" cy="118" rx="56" ry="50" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<text x="115" y="58" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">後</text>
+<text x="115" y="179" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">前</text>
+<text x="53" y="118" text-anchor="end" dominant-baseline="central" font-size="12.5" fill="#A32D2D" font-weight="500">病変側</text>
+<text x="177" y="118" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">反対側</text>
+<clipPath id="c2"><ellipse cx="340" cy="118" rx="56" ry="50"/></clipPath>
+<ellipse cx="340" cy="118" rx="56" ry="50" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="340" cy="118" rx="16" ry="12" fill="#D3D1C7"/>
+<ellipse cx="324" cy="94" rx="6" ry="17" transform="rotate(-12 324 94)" fill="#D3D1C7"/>
+<ellipse cx="318" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<ellipse cx="356" cy="94" rx="6" ry="17" transform="rotate(12 356 94)" fill="#D3D1C7"/>
+<ellipse cx="362" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<g clip-path="url(#c2)"><path d="M270 102 L410 102 L410 178 L270 178 Z" fill="#E24B4A" fill-opacity="0.45" stroke="#A32D2D" stroke-width="1"/></g>
+<ellipse cx="340" cy="118" rx="56" ry="50" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<text x="340" y="58" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">後</text>
+<text x="340" y="179" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">前</text>
+<clipPath id="c3"><ellipse cx="565" cy="118" rx="56" ry="50"/></clipPath>
+<ellipse cx="565" cy="118" rx="56" ry="50" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="565" cy="118" rx="16" ry="12" fill="#D3D1C7"/>
+<ellipse cx="549" cy="94" rx="6" ry="17" transform="rotate(-12 549 94)" fill="#D3D1C7"/>
+<ellipse cx="543" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<ellipse cx="581" cy="94" rx="6" ry="17" transform="rotate(12 581 94)" fill="#D3D1C7"/>
+<ellipse cx="587" cy="134" rx="15" ry="12" fill="#D3D1C7"/>
+<g clip-path="url(#c3)"><path d="M535 58 L595 58 L595 92 L535 92 Z" fill="#E24B4A" fill-opacity="0.45" stroke="#A32D2D" stroke-width="1"/></g>
+<ellipse cx="565" cy="118" rx="56" ry="50" fill="none" stroke="#2C2C2A" stroke-width="1.4"/>
+<text x="565" y="58" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">後</text>
+<text x="565" y="179" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">前</text>
+<text x="115" y="22" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">Brown-Séquard症候群</text>
+<text x="115" y="42" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">（脊髄の片側の病変）</text>
+<text x="340" y="22" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">前脊髄症候群</text>
+<text x="340" y="42" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">（脊髄の腹側の障害）</text>
+<text x="565" y="22" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">後索の障害</text>
+<text x="565" y="42" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">（位置覚・振動覚の型）</text>
+<text x="115" y="210" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">病変と同じ側</text>
+<text x="115" y="230" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">不全麻痺</text>
+<text x="115" y="250" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">触覚・位置覚・振動覚の消失</text>
+<text x="115" y="270" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">反対側</text>
+<text x="115" y="290" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">温痛覚の消失</text>
+<text x="340" y="210" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">後索以外のすべての</text>
+<text x="340" y="230" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">神経路が障害される</text>
+<text x="340" y="250" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">位置覚・振動覚は</text>
+<text x="340" y="270" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">保たれる</text>
+<text x="565" y="210" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">後索を通る位置覚・</text>
+<text x="565" y="230" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">振動覚・識別触覚が低下</text>
+<text x="565" y="250" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">温痛覚は保たれる</text>
+<text x="565" y="270" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">（例：脊髄癆。北大の資料は</text>
+<text x="565" y="290" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">「後索が選択的に障害」と記す）</text>
+<line x1="228" y1="10" x2="228" y2="330" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="0"/>
+<line x1="453" y1="10" x2="453" y2="330" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="0"/>
+<text x="340" y="356" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">赤い部分が障害された範囲。断面の形と障害の広がりは簡略化した模式図。</text>
+<text x="340" y="376" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">右の図の症状は、後索と脊髄視床路の働き（別の出典）から導いた模式。</text>
+<text x="340" y="398" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">亜急性連合性脊髄変性症は、MSDマニュアルが病変部位を「後索」と書かないため例にしていない。</text>
+</svg>

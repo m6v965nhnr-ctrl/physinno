@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="680" height="620" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>記憶の分類図</title><desc>上段は保持時間による分類。心理学では、感覚記憶から短期記憶、長期記憶へ進み、短期記憶から長期記憶になる過程を固定化という。臨床神経学では、即時記憶、近時記憶、遠隔記憶。下段は内容による分類で、長期記憶は陳述記憶と非陳述記憶に分かれる。陳述記憶はエピソード記憶（内側側頭葉・海馬）と意味記憶（側頭葉）。非陳述記憶は手続き記憶（大脳基底核・小脳）、プライミング、古典的条件付け、非連合学習。</desc>
+<rect width="680" height="620" fill="#fff"/>
+<defs><marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#888780"/></marker></defs>
+<text x="340" y="20" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">保持時間による分類</text>
+<text x="14" y="82" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">心理学</text>
+<rect x="100" y="62" width="140" height="40" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="170.0" y="82.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">感覚記憶</text>
+<text x="170" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">瞬間的で</text>
+<text x="170" y="131" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">意識されない</text>
+<rect x="270" y="62" width="140" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="340.0" y="82.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">短期記憶</text>
+<text x="340" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">数十秒程度</text>
+<text x="340" y="131" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">容量に限界</text>
+<rect x="440" y="62" width="140" height="40" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="510.0" y="82.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">長期記憶</text>
+<text x="510" y="116" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">数分〜一生</text>
+<text x="510" y="131" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">容量に制限なし</text>
+<path d="M242 82 L268 82" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<path d="M412 82 L438 82" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<text x="425" y="52" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">固定化</text>
+<text x="14" y="170" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">臨床神経学</text>
+<rect x="100" y="150" width="140" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="170.0" y="170.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">即時記憶</text>
+<text x="170" y="204" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">数字系列の復唱</text>
+<text x="170" y="219" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">で評価</text>
+<rect x="270" y="150" width="140" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="340.0" y="170.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">近時記憶</text>
+<text x="340" y="204" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">数分〜数日</text>
+<text x="340" y="219" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">遅延再生で評価</text>
+<rect x="440" y="150" width="140" height="40" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="510.0" y="170.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">遠隔記憶</text>
+<text x="510" y="204" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">〜数十年</text>
+<text x="510" y="219" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">生活史を尋ねる</text>
+<path d="M242 170 L268 170" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<path d="M412 170 L438 170" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<rect x="14" y="246" width="652" height="34" rx="6" fill="#fff" stroke="#B4B2A9" stroke-width="0.7" stroke-dasharray="4 3"/>
+<text x="24" y="263" text-anchor="start" dominant-baseline="central" font-size="12" fill="#2C2C2A">ワーキングメモリー：数秒〜数十秒保持し、それを使って他の認知機能を実行する（前頭前皮質・後頭頂皮質など）</text>
+<text x="340" y="306" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">内容による分類（長期記憶）</text>
+<rect x="280" y="322" width="120" height="38" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="340.0" y="341.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">長期記憶</text>
+<rect x="30" y="386" width="220" height="52" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="140.0" y="403.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">陳述記憶（宣言的記憶）</text>
+<text x="140.0" y="420.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">意識して想起し、述べられる</text>
+<rect x="350" y="386" width="270" height="52" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="485.0" y="403.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">非陳述記憶（非宣言的記憶）</text>
+<text x="485.0" y="420.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">意識して想起できない</text>
+<path d="M310 360 L140 384" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<path d="M370 360 L485 384" fill="none" stroke="#888780" stroke-width="2" marker-end="url(#m0)"/>
+<rect x="26" y="462" width="98" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="75.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">エピソード記憶</text>
+<text x="75" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">昨日の夕食</text>
+<text x="75" y="533" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">（いつ・どこで）</text>
+<text x="75" y="548" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">内側側頭葉</text>
+<text x="75" y="563" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">（海馬）</text>
+<rect x="132" y="462" width="98" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="181.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">意味記憶</text>
+<text x="181" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">「ミカン」の</text>
+<text x="181" y="533" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">知識など</text>
+<text x="181" y="548" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">側頭葉</text>
+<rect x="238" y="462" width="98" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="287.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">手続き記憶</text>
+<text x="287" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">自転車の</text>
+<text x="287" y="533" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">乗り方など</text>
+<text x="287" y="548" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">大脳基底核</text>
+<text x="287" y="563" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">小脳</text>
+<rect x="344" y="462" width="98" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="393.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">プライミング</text>
+<text x="393" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">以前の経験で</text>
+<text x="393" y="533" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">後の同定が</text>
+<text x="393" y="548" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">促進される</text>
+<rect x="450" y="462" width="98" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="499.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">古典的条件付け</text>
+<text x="499" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">梅干しを見て</text>
+<text x="499" y="533" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">唾液が出る</text>
+<rect x="556" y="462" width="98" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="605.0" y="482.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">非連合学習</text>
+<text x="605" y="518" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">慣れ・感作</text>
+<path d="M140 438 L75 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M140 438 L181 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M485 438 L287 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M485 438 L393 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M485 438 L499 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<path d="M485 438 L605 460" fill="none" stroke="#888780" stroke-width="1.5"/>
+<text x="14" y="586" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">脳科学辞典の記憶の分類に基づく。脳部位は代表的なもので、1対1の対応を示すものではありません。</text><text x="14" y="604" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">上段の2つの分類は、上下で対応するものではありません（臨床神経学の分類は、記銘と想起の間の干渉の有無で分けます）。</text>
+</svg>

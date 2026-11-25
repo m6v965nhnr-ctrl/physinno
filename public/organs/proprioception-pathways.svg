@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 616" width="680" height="616" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>感覚の種類と経路の対応表</title><desc>6つの感覚の種類について、受容器、経路、交叉する場所を示した表。位置覚・運動覚、振動覚、識別触覚は後索–内側毛帯系で、延髄で交叉する。粗大触覚は前脊髄視床路、痛覚・温度覚は外側脊髄視床路で、どちらも脊髄の中で交叉する。無意識の深部感覚は脊髄小脳路で、後脊髄小脳路は交叉しない。</desc>
+<rect width="680" height="616" fill="#fff"/>
+<defs></defs>
+<text x="340" y="22" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2C2C2A" font-weight="500">感覚の種類と経路の対応</text>
+<text x="340" y="46" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">一次ニューロンはどれも後根神経節（脊髄神経節）にある</text>
+<rect x="14" y="80" width="118" height="30" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="73.0" y="95" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">感覚の種類</text>
+<rect x="134" y="80" width="150" height="30" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="209.0" y="95" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">受容器</text>
+<rect x="286" y="80" width="246" height="30" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="409.0" y="95" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">経路（二次ニューロン以降）</text>
+<rect x="534" y="80" width="110" height="30" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="589.0" y="95" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">交叉する場所</text>
+<rect x="14" y="118" width="118" height="62" rx="4" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="73.0" y="140.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">位置覚・運動覚</text>
+<text x="73.0" y="157.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">（関節位置覚）</text>
+<rect x="134" y="118" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="132.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">筋紡錘</text>
+<text x="209.0" y="149.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ゴルジ腱器官</text>
+<text x="209.0" y="166.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">関節受容器</text>
+<rect x="286" y="118" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="132.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">後索（薄束・楔状束）</text>
+<text x="409.0" y="149.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">→延髄の後索核→内側毛帯</text>
+<text x="409.0" y="166.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">→視床VPL核→中心後回</text>
+<rect x="534" y="118" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="140.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">延髄</text>
+<text x="589.0" y="157.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（毛帯交叉）</text>
+<rect x="14" y="184" width="118" height="62" rx="4" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="73.0" y="215.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">振動覚</text>
+<rect x="134" y="184" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="206.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">パチニ小体</text>
+<text x="209.0" y="223.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（深部の圧・振動）</text>
+<rect x="286" y="184" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="206.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">後索–内側毛帯系</text>
+<text x="409.0" y="223.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（上と同じ経路）</text>
+<rect x="534" y="184" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="206.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">延髄</text>
+<text x="589.0" y="223.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（毛帯交叉）</text>
+<rect x="14" y="250" width="118" height="62" rx="4" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="73.0" y="272.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">識別触覚</text>
+<text x="73.0" y="289.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">（2点識別）</text>
+<rect x="134" y="250" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="281.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">皮膚の機械受容器</text>
+<rect x="286" y="250" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="272.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">後索–内側毛帯系</text>
+<text x="409.0" y="289.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（上と同じ経路）</text>
+<rect x="534" y="250" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="272.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">延髄</text>
+<text x="589.0" y="289.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（毛帯交叉）</text>
+<rect x="14" y="316" width="118" height="62" rx="4" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="73.0" y="347.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">粗大触覚</text>
+<rect x="134" y="316" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="347.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">皮膚の機械受容器</text>
+<rect x="286" y="316" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="338.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">前脊髄視床路（後角固有核）</text>
+<text x="409.0" y="355.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">→視床VPL核→中心後回</text>
+<rect x="534" y="316" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="338.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">脊髄の中</text>
+<text x="589.0" y="355.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（入った高さ）</text>
+<rect x="14" y="382" width="118" height="62" rx="4" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="73.0" y="413.0" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">痛覚・温度覚</text>
+<rect x="134" y="382" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="404.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">自由神経終末</text>
+<text x="209.0" y="421.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（Aδ線維・C線維）</text>
+<rect x="286" y="382" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="404.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">外側脊髄視床路（後縁核）</text>
+<text x="409.0" y="421.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">→視床VPL核→中心後回</text>
+<rect x="534" y="382" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="404.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">脊髄の中</text>
+<text x="589.0" y="421.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（入った高さ）</text>
+<rect x="14" y="448" width="118" height="62" rx="4" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="73.0" y="470.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">無意識の</text>
+<text x="73.0" y="487.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">深部感覚</text>
+<rect x="134" y="448" width="150" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="209.0" y="470.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">筋紡錘</text>
+<text x="209.0" y="487.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">ゴルジ腱器官</text>
+<rect x="286" y="448" width="246" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="409.0" y="462.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">脊髄小脳路</text>
+<text x="409.0" y="479.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（後脊髄小脳路：胸髄核→</text>
+<text x="409.0" y="496.0" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">同側の側索→小脳）</text>
+<rect x="534" y="448" width="110" height="62" rx="4" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<text x="589.0" y="470.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">交叉しない</text>
+<text x="589.0" y="487.5" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（後脊髄小脳路）</text>
+<rect x="14" y="528" width="26" height="14" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="46" y="535" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">後索–内側毛帯系</text>
+<rect x="204" y="528" width="26" height="14" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="236" y="535" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">脊髄視床路</text>
+<rect x="394" y="528" width="26" height="14" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="426" y="535" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">脊髄小脳路</text>
+<text x="14" y="562" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">VPL核は視床の後外側腹側核。顔面の体性感覚は三叉神経系で、視床のVPM核を経る。</text>
+<text x="14" y="578" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">北大の資料・OpenStax・脳科学辞典・UTHealthの教材に基づく。経路の図は『脊髄』カードを参照。</text><text x="14" y="598" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">粗大触覚の経路は出典で異なる（北大は前脊髄視床路、UTHealthは外側脊髄視床路）。簡略化した図。</text>
+</svg>

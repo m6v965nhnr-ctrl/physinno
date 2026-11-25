@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>反射弓：伸張反射と屈曲反射</title><desc>左は伸張反射。筋紡錘から求心性神経（Ia）が脊髄に入り、同じ筋のα運動ニューロンに直接つながり（シナプスは1つ）、筋が収縮する。拮抗筋のα運動ニューロンは抑制性介在ニューロンを介して抑制される。右は屈曲反射。皮膚の痛覚受容器から求心性神経が脊髄に入り、介在ニューロンを介して屈筋のα運動ニューロンを興奮させ、伸筋のα運動ニューロンを抑制する。</desc>
+<rect width="680" height="600" fill="#fff"/>
+<defs><marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#3B6D11"/></marker></defs>
+<text x="170" y="22" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2C2C2A" font-weight="500">伸張反射</text>
+<text x="512" y="22" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2C2C2A" font-weight="500">屈曲反射</text>
+<text x="170" y="44" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">単シナプス反射</text>
+<text x="512" y="44" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">介在ニューロンを介する反射</text>
+<line x1="338" y1="10" x2="338" y2="520" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="0"/>
+<rect x="80" y="150" width="245" height="185" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="88" y="165" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">脊髄</text>
+<line x1="88" y1="262" x2="317" y2="262" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="3 3"/>
+<text x="88" y="250" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">後角</text>
+<text x="88" y="275" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">前角</text>
+<rect x="95" y="432" width="110" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="150.0" y="457.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋（収縮）</text>
+<rect x="240" y="432" width="85" height="50" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="282.5" y="448.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">拮抗筋</text>
+<text x="282.5" y="466.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（弛緩）</text>
+<circle cx="108" cy="432" r="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="14" y="418" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">筋紡錘</text>
+<path d="M108 426 L108 402 L62 402 L62 120 Q62 108 74 108 L150 108 L150 278" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#m0)"/>
+<text x="74" y="92" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">求心性神経（Ia）</text>
+<text x="138" y="270" text-anchor="end" dominant-baseline="central" font-size="16" fill="#185FA5" font-weight="700">＋</text>
+<circle cx="150" cy="295" r="14" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<text x="150" y="295" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">α</text>
+<path d="M150 309 L150 430" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#m1)"/>
+<text x="162" y="385" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">α運動ニューロン</text>
+<text x="162" y="403" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">（遠心性神経）</text>
+<circle cx="215" cy="205" r="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<path d="M150 205 L202 205" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#m0)"/>
+<circle cx="282" cy="295" r="14" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<text x="282" y="295" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">α</text>
+<path d="M226 208 Q282 210 282 279" fill="none" stroke="#A32D2D" stroke-width="2.2" marker-end="url(#m2)"/>
+<text x="294" y="248" text-anchor="start" dominant-baseline="central" font-size="16" fill="#A32D2D" font-weight="700">－</text>
+<path d="M282 309 L282 430" fill="none" stroke="#993C1D" stroke-width="2.2" marker-end="url(#m1)" stroke-dasharray="5 3"/>
+<text x="170" y="505" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">筋が急に伸ばされる → 同じ筋が収縮</text>
+<text x="170" y="523" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">拮抗筋は抑制されて弛緩（相反神経支配）</text>
+<rect x="425" y="150" width="245" height="185" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="433" y="165" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">脊髄</text>
+<line x1="433" y1="262" x2="662" y2="262" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="3 3"/>
+<text x="433" y="250" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">後角</text>
+<text x="433" y="275" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">前角</text>
+<rect x="346" y="432" width="96" height="50" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="394.0" y="448.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">皮膚</text>
+<text x="394.0" y="466.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（痛み刺激）</text>
+<rect x="470" y="432" width="100" height="50" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="520.0" y="448.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">屈筋</text>
+<text x="520.0" y="466.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（収縮）</text>
+<rect x="590" y="432" width="80" height="50" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="630.0" y="448.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">伸筋</text>
+<text x="630.0" y="466.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（弛緩）</text>
+<path d="M395 426 L395 120 Q395 108 407 108 L462 108 L462 205" fill="none" stroke="#185FA5" stroke-width="2.5"/>
+<text x="407" y="92" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">求心性神経（痛覚）</text>
+<circle cx="520" cy="205" r="11" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<circle cx="630" cy="205" r="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<path d="M462 205 L507 205" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#m0)"/>
+<path d="M462 175 L630 175 L630 192" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#m0)"/>
+<circle cx="520" cy="295" r="14" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<text x="520" y="295" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">α</text>
+<circle cx="630" cy="295" r="14" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<text x="630" y="295" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">α</text>
+<path d="M520 217 L520 279" fill="none" stroke="#3B6D11" stroke-width="2.2" marker-end="url(#m3)"/>
+<text x="532" y="250" text-anchor="start" dominant-baseline="central" font-size="16" fill="#185FA5" font-weight="700">＋</text>
+<path d="M630 217 L630 279" fill="none" stroke="#A32D2D" stroke-width="2.2" marker-end="url(#m2)"/>
+<text x="642" y="250" text-anchor="start" dominant-baseline="central" font-size="16" fill="#A32D2D" font-weight="700">－</text>
+<path d="M520 309 L520 430" fill="none" stroke="#993C1D" stroke-width="2.5" marker-end="url(#m1)"/>
+<path d="M630 309 L630 430" fill="none" stroke="#993C1D" stroke-width="2.2" marker-end="url(#m1)" stroke-dasharray="5 3"/>
+<text x="512" y="505" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">屈筋が収縮して手足を引っ込める</text>
+<text x="512" y="523" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">伸筋は弛緩する</text>
+<text x="512" y="541" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">反対側では伸筋が興奮（交叉性伸展反射）</text>
+<circle cx="30" cy="570" r="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<text x="44" y="570" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">α運動ニューロン</text>
+<circle cx="175" cy="570" r="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="189" y="570" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">興奮性介在ニューロン</text>
+<circle cx="345" cy="570" r="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<text x="359" y="570" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">抑制性介在ニューロン</text>
+<text x="510" y="570" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">＋興奮　－抑制</text>
+<text x="30" y="590" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">矢印は信号の向き。点線は抑制された経路。断面は簡略化した模式図。</text>
+</svg>

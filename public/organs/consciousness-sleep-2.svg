@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 438" width="680" height="438" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>概日リズムの経路</title><desc>光の情報は網膜から網膜視床下部路を通って、視床下部の視交叉上核（体内時計の中枢）に直接伝わる。視交叉上核は、睡眠・行動・内分泌などのリズムを制御し、松果体のメラトニン分泌のリズムも制御する。メラトニンは夜間に多く昼間に少なく、血流にのって全身に時刻情報を伝え、視交叉上核にもフィードバックされる。</desc>
+<rect width="680" height="438" fill="#fff"/>
+<defs><marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#854F0B"/></marker><marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker><marker id="m3" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker></defs>
+<g transform="translate(0,-40)"><circle cx="48" cy="124" r="24" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<text x="48" y="124" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#2C2C2A" font-weight="500">光</text>
+<path d="M74 124 L96 124" fill="none" stroke="#854F0B" stroke-width="2.5" marker-end="url(#m0)"/>
+<rect x="92" y="96" width="114" height="56" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="149.0" y="115.75" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">網膜</text>
+<text x="149.0" y="132.25" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（メラノプシン細胞）</text>
+<path d="M208 124 L298 124" fill="none" stroke="#185FA5" stroke-width="2.5" marker-end="url(#m1)"/>
+<text x="246" y="106" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#185FA5" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">網膜視床下部路</text>
+<rect x="292" y="62" width="190" height="118" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="300" y="76" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">視床下部</text>
+<rect x="306" y="92" width="162" height="60" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="387.0" y="113.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">視交叉上核</text>
+<text x="387.0" y="131.0" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">（体内時計の中枢）</text>
+<path d="M474 122 L520 122" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#m2)"/>
+<rect x="522" y="92" width="140" height="60" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="592.0" y="113.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">睡眠・行動・</text>
+<text x="592.0" y="130.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">内分泌のリズム</text>
+<path d="M387 182 L387 246" fill="none" stroke="#534AB7" stroke-width="2.5" marker-end="url(#m2)"/>
+<text x="399" y="214" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">分泌リズムを制御</text>
+<rect x="306" y="248" width="162" height="56" rx="6" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<text x="387.0" y="267.75" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">松果体</text>
+<text x="387.0" y="284.25" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">（メラトニンを合成・分泌）</text>
+<rect x="508" y="236" width="154" height="92" rx="6" fill="#fff" stroke="#B4B2A9" stroke-width="0.8"/>
+<rect x="542" y="240" width="86" height="66" rx="2" fill="#F1EFE8" stroke="#B4B2A9" stroke-width="0" fill-opacity="0.8"/>
+<polyline points="516.0,302.0 517.4,302.0 518.8,302.0 520.1,302.0 521.5,302.0 522.9,302.0 524.3,301.9 525.7,301.9 527.0,301.9 528.4,301.9 529.8,301.8 531.2,301.8 532.6,301.7 533.9,301.6 535.3,301.5 536.7,301.3 538.1,301.1 539.5,300.9 540.8,300.6 542.2,300.3 543.6,299.9 545.0,299.4 546.4,298.8 547.7,298.1 549.1,297.4 550.5,296.5 551.9,295.5 553.3,294.3 554.6,293.0 556.0,291.6 557.4,290.0 558.8,288.2 560.2,286.4 561.5,284.3 562.9,282.2 564.3,280.0 565.7,277.6 567.1,275.3 568.4,272.8 569.8,270.4 571.2,268.0 572.6,265.7 574.0,263.5 575.3,261.5 576.7,259.6 578.1,258.0 579.5,256.6 580.9,255.5 582.2,254.7 583.6,254.2 585.0,254.0 586.4,254.2 587.8,254.7 589.1,255.5 590.5,256.6 591.9,258.0 593.3,259.6 594.7,261.5 596.0,263.5 597.4,265.7 598.8,268.0 600.2,270.4 601.6,272.8 602.9,275.3 604.3,277.6 605.7,280.0 607.1,282.2 608.5,284.3 609.8,286.4 611.2,288.2 612.6,290.0 614.0,291.6 615.4,293.0 616.7,294.3 618.1,295.5 619.5,296.5 620.9,297.4 622.3,298.1 623.6,298.8 625.0,299.4 626.4,299.9 627.8,300.3 629.2,300.6 630.5,300.9 631.9,301.1 633.3,301.3 634.7,301.5 636.1,301.6 637.4,301.7 638.8,301.8 640.2,301.8 641.6,301.9 643.0,301.9 644.3,301.9 645.7,301.9 647.1,302.0 648.5,302.0 649.9,302.0 651.2,302.0 652.6,302.0 654.0,302.0" fill="none" stroke="#854F0B" stroke-width="2.2"/>
+<text x="525" y="319" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">昼</text>
+<text x="585" y="319" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">夜</text>
+<text x="645" y="319" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">昼</text>
+<text x="585.0" y="342" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">メラトニンの分泌（模式）</text>
+<path d="M470 276 L506 276" fill="none" stroke="#854F0B" stroke-width="2.5" marker-end="url(#m0)"/>
+<path d="M585 234 L585 196 L430 196 L430 154" fill="none" stroke="#0F6E56" stroke-width="2" marker-end="url(#m3)" stroke-dasharray="5 3"/>
+<text x="507" y="184" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#0F6E56" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">フィードバック</text>
+<text x="24" y="354" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">光は、体内時計の位相をリセットする最も強力な同調因子。</text>
+<text x="24" y="376" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">朝に光を浴びるとリズムは前進し、夕方に光を浴びるとリズムは後退する。</text>
+<text x="24" y="402" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">メラトニンは血流にのって時刻情報を全身に伝え、睡眠の誘導などの概日リズムを生む。</text>
+<text x="24" y="424" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A">視交叉上核にもメラトニン受容体があり、松果体からフィードバックを受ける。</text>
+<text x="24" y="452" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">矢印は信号・指令の向き。位置関係を示す簡略図で、大きさ・形は実物と異なります。</text></g>
+</svg>
