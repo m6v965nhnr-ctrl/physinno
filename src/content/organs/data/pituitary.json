@@ -220,10 +220,12 @@
       ]
     },
     {
-      "t": "53-pm-67は「黄体形成ホルモン（LH）はプロゲステロンの分泌を促進する」が正答。LHは卵巣でのエストロゲン・プロゲステロンの産生を促す。FSH・LHは下垂体前葉、GnRHは視床下部のホルモンなので、「FSHは視床下部から」「GnRHは下垂体から」は誤り。出典は、エストロゲン・テストステロンがLH・FSHの分泌を抑える（負のフィードバック）と記しており、「エストロゲンは下垂体ホルモン分泌を促進する」という記述は、出典では確かめられない。プロラクチンは前葉から分泌される（乳腺ではない）。",
+      "t": "53-pm-67は「黄体形成ホルモン（LH）はプロゲステロンの分泌を促進する」が正答。LHは卵巣でのエストロゲン・プロゲステロンの産生を促す。FSH・LHは下垂体前葉、GnRHは視床下部のホルモンなので、「FSHは視床下部から」「GnRHは下垂体から」は誤り。「エストロゲンは下垂体ホルモン分泌を促進する」は、国試では誤りとされた。ただし出典（OpenStax 27.2）は、エストロゲンの下垂体への作用を2通り記す。通常は、エストロゲンがGnRH・LH・FSHを抑える（負のフィードバック）。排卵の直前だけは、優位卵胞が出す非常に高濃度のエストロゲンが、LH・FSHの大量放出を起こす（正のフィードバック。LHサージ）。男性では、テストステロンが視床下部と下垂体を抑える（OpenStax 27.1、負のフィードバック）。プロラクチンは前葉から分泌される（乳腺ではない）。",
       "s": [
         1,
-        2
+        2,
+        6,
+        7
       ],
       "q": [
         "53-pm-67"
@@ -335,6 +337,22 @@
       "title": "Anatomy and Physiology 2e, 17.4 The Thyroid Gland",
       "org": "OpenStax",
       "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/17-4-the-thyroid-gland",
+      "checked": "2026-11-25",
+      "kind": "教科書"
+    },
+    {
+      "n": 6,
+      "title": "Anatomy and Physiology 2e, 27.2 Anatomy and Physiology of the Ovarian Reproductive System",
+      "org": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-2-anatomy-and-physiology-of-the-ovarian-reproductive-system",
+      "checked": "2026-11-25",
+      "kind": "教科書"
+    },
+    {
+      "n": 7,
+      "title": "Anatomy and Physiology 2e, 27.1 Anatomy and Physiology of the Testicular Reproductive System",
+      "org": "OpenStax",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/27-1-anatomy-and-physiology-of-the-testicular-reproductive-system",
       "checked": "2026-11-25",
       "kind": "教科書"
     }

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 530" width="680" height="530" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>胎盤と羊水の模式図</title><desc>妊娠中の子宮を前から見た断面の模式図と、胎盤の拡大。子宮の壁（筋層）の内側に絨毛膜と羊膜があり、羊膜に囲まれた羊水の中に胎児がいる。胎児は臍帯で胎盤とつながる。胎盤は子宮の壁に接し、胎児側は絨毛膜絨毛、母体側は脱落膜からなる。子宮頸管には粘液栓がある。拡大図では、絨毛の中の胎児の血管（臍動脈は酸素の少ない血液を胎盤へ、臍静脈は酸素の多い血液を胎児へ）と絨毛のまわりの母体血が、血液が混ざらないまま物質を交換する。</desc><defs><marker id="ah185FA5" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ahA32D2D" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker></defs><rect width="680" height="530" fill="#fff"/>
+<path d="M240,36 C322,36 366,112 364,212 C362,300 326,368 294,394 L294,478 L186,478 L186,394 C154,368 118,300 116,212 C114,112 158,36 240,36 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="3" />
+<path d="M240,62 C310,62 340,126 338,210 C336,282 306,338 274,364 L274,394 L206,394 L206,364 C174,338 144,282 142,210 C140,126 170,62 240,62 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.6" />
+<path d="M231,394 L231,478 L249,478 L249,394 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<rect x="231" y="424" width="18" height="28" rx="0" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<path d="M284,66 C318,92 336,124 338,150 L338,236 C337,262 330,292 322,306 L296,296 C300,270 302,252 302,236 L302,150 C302,120 294,98 276,80 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.4" />
+<path d="M330,110 L312,120" stroke="#993556" stroke-width="1" />
+<path d="M330,140 L312,150" stroke="#993556" stroke-width="1" />
+<path d="M330,170 L312,180" stroke="#993556" stroke-width="1" />
+<path d="M330,200 L312,210" stroke="#993556" stroke-width="1" />
+<path d="M330,230 L312,240" stroke="#993556" stroke-width="1" />
+<path d="M330,260 L312,270" stroke="#993556" stroke-width="1" />
+<path d="M240,76 C262,76 270,78 276,82 C292,98 302,122 302,150 L302,236 C302,256 300,272 296,292 C288,324 282,342 268,358 L268,388 L212,388 L212,358 C184,332 160,280 158,210 C156,132 184,76 240,76 Z" fill="#E6F1FB" stroke="#185FA5" stroke-width="1.8" />
+<ellipse cx="232" cy="222" rx="28" ry="50" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" transform="rotate(8 232 222)"/>
+<circle cx="228" cy="152" r="23" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<ellipse cx="212" cy="292" rx="22" ry="30" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" transform="rotate(-22 212 292)"/>
+<ellipse cx="250" cy="262" rx="10" ry="22" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" transform="rotate(20 250 262)"/>
+<path d="M252,232 C272,254 282,200 303,218" fill="none" stroke="#993556" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M252,232 C272,254 282,200 303,218" fill="none" stroke="#F4C0D1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="100" y="118" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮筋層</text>
+<line x1="105" y1="118" x2="128" y2="150" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="100" y="172" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">絨毛膜</text>
+<line x1="105" y1="172" x2="144" y2="180" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="100" y="226" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">羊膜</text>
+<line x1="105" y1="226" x2="160" y2="232" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="100" y="284" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">羊水</text>
+<line x1="105" y1="284" x2="182" y2="300" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="100" y="344" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胎児</text>
+<line x1="105" y1="344" x2="208" y2="258" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="392" y="110" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胎盤</text>
+<line x1="387" y1="110" x2="328" y2="130" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="392" y="196" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臍帯</text>
+<line x1="387" y1="196" x2="286" y2="222" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="318" y="412" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">粘液栓</text>
+<line x1="313" y1="412" x2="251" y2="436" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="318" y="462" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮頸管</text>
+<line x1="313" y1="462" x2="250" y2="464" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="548" y="44" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胎盤の拡大（模式図）</text>
+<rect x="430" y="60" width="236" height="276" rx="0" fill="none" stroke="#888780" stroke-width="1" />
+<rect x="440" y="96" width="216" height="200" rx="0" fill="#FCEBEB" stroke="#FCEBEB" stroke-width="0" />
+<rect x="440" y="82" width="216" height="14" rx="0" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<rect x="440" y="296" width="216" height="28" rx="0" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="548" y="310" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">脱落膜（母体側）</text>
+<text x="548" y="72" text-anchor="middle" font-size="12.5" font-weight="500" fill="#993556" dominant-baseline="central">絨毛（胎児側）</text>
+<path d="M490,96 L490,196" fill="none" stroke="#993556" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M490,96 L490,196" fill="none" stroke="#F4C0D1" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M485,98 L485,190 C485,198 495,198 495,190 L495,98" fill="none" stroke="#fff" stroke-width="0"/>
+<line x1="485" y1="100" x2="485" y2="190" stroke="#185FA5" stroke-width="2.4"/>
+<line x1="495" y1="100" x2="495" y2="190" stroke="#A32D2D" stroke-width="2.4"/>
+<path d="M485,190 C485,198 495,198 495,190" fill="none" stroke="#7A3F8F" stroke-width="2.4"/>
+<path d="M548,96 L548,224" fill="none" stroke="#993556" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M548,96 L548,224" fill="none" stroke="#F4C0D1" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M543,98 L543,218 C543,226 553,226 553,218 L553,98" fill="none" stroke="#fff" stroke-width="0"/>
+<line x1="543" y1="100" x2="543" y2="218" stroke="#185FA5" stroke-width="2.4"/>
+<line x1="553" y1="100" x2="553" y2="218" stroke="#A32D2D" stroke-width="2.4"/>
+<path d="M543,218 C543,226 553,226 553,218" fill="none" stroke="#7A3F8F" stroke-width="2.4"/>
+<path d="M606,96 L606,186" fill="none" stroke="#993556" stroke-width="27" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M606,96 L606,186" fill="none" stroke="#F4C0D1" stroke-width="24" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M601,98 L601,180 C601,188 611,188 611,180 L611,98" fill="none" stroke="#fff" stroke-width="0"/>
+<line x1="601" y1="100" x2="601" y2="180" stroke="#185FA5" stroke-width="2.4"/>
+<line x1="611" y1="100" x2="611" y2="180" stroke="#A32D2D" stroke-width="2.4"/>
+<path d="M601,180 C601,188 611,188 611,180" fill="none" stroke="#7A3F8F" stroke-width="2.4"/>
+<line x1="520" y1="292" x2="520" y2="246" stroke="#A32D2D" stroke-width="2.4" marker-end="url(#ahA32D2D)"/>
+<line x1="578" y1="246" x2="578" y2="292" stroke="#185FA5" stroke-width="2.4" marker-end="url(#ah185FA5)"/>
+<text x="446" y="262" text-anchor="start" font-size="13" font-weight="500" fill="#A32D2D" dominant-baseline="central">母体血</text>
+<text x="430" y="358" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">酸素・栄養：母体血から胎児血へ</text>
+<text x="430" y="380" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">CO₂・老廃物：胎児血から母体血へ</text>
+<text x="430" y="402" text-anchor="start" font-size="13" font-weight="500" fill="#A32D2D" dominant-baseline="central">母体血と胎児血は混ざらない</text>
+<line x1="432" y1="430" x2="452" y2="430" stroke="#185FA5" stroke-width="2.4" />
+<text x="458" y="430" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臍動脈（胎児→胎盤）</text>
+<line x1="432" y1="452" x2="452" y2="452" stroke="#A32D2D" stroke-width="2.4" />
+<text x="458" y="452" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">臍静脈（胎盤→胎児）</text>
+</svg>

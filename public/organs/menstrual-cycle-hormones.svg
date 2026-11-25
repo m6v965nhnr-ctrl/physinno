@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>月経周期と性ホルモンの変化（模式図）</title><desc>28日周期の例で、月経開始日を1日目として時間軸をそろえた模式図。上から、卵巣周期（卵胞期・黄体期）と月経周期（月経期・増殖期・分泌期）、下垂体ホルモン（FSHは周期の初めにわずかに上がり、LHは排卵の直前に急上昇する）、卵巣ホルモン（エストロゲンは排卵の前に高まり、黄体期にもう一度高まる。プロゲステロンは排卵後の黄体期だけ高い）、子宮内膜の厚さ（月経期に薄くなり、増殖期に厚くなり、分泌期にさらに厚くなる）、基礎体温（卵胞期は低く、排卵後の黄体期は少し高い二相性）。数値は示さず、傾向だけを表す。</desc><rect width="680" height="640" fill="#fff"/>
+<rect x="60.0" y="26" width="290.0" height="26" rx="0" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="205.0" y="39.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵胞期</text>
+<rect x="350.0" y="26" width="290.0" height="26" rx="0" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="495.0" y="39.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">黄体期</text>
+<rect x="60.0" y="56" width="103.57142857142856" height="26" rx="0" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" />
+<text x="111.78571428571428" y="69.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">月経期</text>
+<rect x="163.57142857142856" y="56" width="186.42857142857144" height="26" rx="0" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="256.7857142857143" y="69.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">増殖期</text>
+<rect x="350.0" y="56" width="290.0" height="26" rx="0" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="495.0" y="69.0" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">分泌期</text>
+<text x="52" y="39" text-anchor="end" font-size="12.5" font-weight="500" fill="#5F5E5A" dominant-baseline="central">卵巣</text>
+<text x="52" y="69" text-anchor="end" font-size="12.5" font-weight="500" fill="#5F5E5A" dominant-baseline="central">子宮</text>
+<text x="60" y="104" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">下垂体ホルモン</text>
+<line x1="60" y1="118" x2="60" y2="214" stroke="#5F5E5A" stroke-width="1.4" />
+<line x1="60" y1="214" x2="640" y2="214" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="60" y="236" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵巣ホルモン</text>
+<line x1="60" y1="250" x2="60" y2="346" stroke="#5F5E5A" stroke-width="1.4" />
+<line x1="60" y1="346" x2="640" y2="346" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="60" y="366" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮内膜の厚さ</text>
+<line x1="60" y1="380" x2="60" y2="450" stroke="#5F5E5A" stroke-width="1.4" />
+<line x1="60" y1="450" x2="640" y2="450" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="60" y="478" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">基礎体温</text>
+<line x1="60" y1="492" x2="60" y2="562" stroke="#5F5E5A" stroke-width="1.4" />
+<line x1="60" y1="562" x2="640" y2="562" stroke="#5F5E5A" stroke-width="1.4" />
+<path d="M60.0,185.2 C65.2,183.3 77.3,174.3 91.1,173.7 C104.9,173.0 120.4,178.2 142.9,181.4 C165.3,184.6 198.1,190.6 225.7,192.9 C253.3,195.1 290.3,196.1 308.6,194.8 C326.9,193.5 328.6,190.3 335.5,185.2 C342.4,180.1 344.8,164.1 350.0,164.1 C355.2,164.1 356.2,179.1 366.6,185.2 C376.9,191.3 387.3,197.0 412.1,200.6 C437.0,204.1 484.6,206.3 515.7,206.3 C546.8,206.3 577.9,204.1 598.6,200.6 C619.3,197.0 633.1,187.8 640.0,185.2" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60.0,202.5 C91.1,202.5 203.3,203.1 246.4,202.5 C289.6,201.8 303.7,203.1 318.9,198.6 C334.1,194.2 332.4,189.0 337.6,175.6 C342.8,162.2 345.5,117.7 350.0,118.0 C354.5,118.3 357.6,163.8 364.5,177.5 C371.4,191.3 345.5,196.4 391.4,200.6 C437.3,204.7 598.6,202.2 640.0,202.5" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="113.85714285714286" y="132" text-anchor="start" font-size="13.5" font-weight="500" fill="#185FA5" dominant-baseline="central">FSH</text>
+<text x="368.64285714285717" y="126" text-anchor="start" font-size="13.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">LH（排卵の直前に急上昇）</text>
+<path d="M60.0,334.5 C73.8,333.2 111.8,332.9 142.9,326.8 C173.9,320.7 215.4,310.8 246.4,298.0 C277.5,285.2 311.3,256.4 329.3,250.0 C347.2,243.6 343.8,250.3 354.1,259.6 C364.5,268.9 368.0,302.5 391.4,305.7 C414.9,308.9 463.9,280.1 495.0,278.8 C526.1,277.5 553.7,288.7 577.9,298.0 C602.0,307.3 629.6,328.4 640.0,334.5" fill="none" stroke="#BA7517" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60.0,342.2 C108.3,342.2 291.3,347.1 350.0,342.2 C408.7,337.2 388.0,326.5 412.1,312.4 C436.3,298.3 467.4,258.8 495.0,257.7 C522.6,256.6 553.7,291.9 577.9,305.7 C602.0,319.4 629.6,334.5 640.0,340.2" fill="none" stroke="#3B6D11" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="84.85714285714286" y="262" text-anchor="start" font-size="13.5" font-weight="500" fill="#854F0B" dominant-baseline="central">エストロゲン</text>
+<text x="461.85714285714283" y="242" text-anchor="start" font-size="13.5" font-weight="500" fill="#3B6D11" dominant-baseline="central">プロゲステロン</text>
+<path d="M60.0,401.0 C63.5,403.3 72.1,409.4 80.7,415.0 C89.3,420.6 98.0,431.1 111.8,434.6 C125.6,438.1 141.1,437.9 163.6,436.0 C186.0,434.1 215.4,428.3 246.4,423.4 C277.5,418.5 318.9,412.1 350.0,406.6 C381.1,401.1 405.2,394.9 432.9,390.5 C460.5,386.1 488.1,381.2 515.7,380.0 C543.3,378.8 577.9,380.0 598.6,383.5 C619.3,387.0 633.1,398.1 640.0,401.0 L640.0,450 L60.0,450 Z" fill="#F4C0D1" stroke="none"/>
+<path d="M60.0,401.0 C63.5,403.3 72.1,409.4 80.7,415.0 C89.3,420.6 98.0,431.1 111.8,434.6 C125.6,438.1 141.1,437.9 163.6,436.0 C186.0,434.1 215.4,428.3 246.4,423.4 C277.5,418.5 318.9,412.1 350.0,406.6 C381.1,401.1 405.2,394.9 432.9,390.5 C460.5,386.1 488.1,381.2 515.7,380.0 C543.3,378.8 577.9,380.0 598.6,383.5 C619.3,387.0 633.1,398.1 640.0,401.0" fill="none" stroke="#993556" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M60.0,537.5 L350.0,537.5 C360.0,537.5 366.0,513.0 387.0,513.0 L640.0,513.0" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round"/>
+<text x="101.42857142857143" y="553.5" text-anchor="start" font-size="13.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">低温相</text>
+<text x="453.57142857142856" y="499.0" text-anchor="start" font-size="13.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">高温相</text>
+<text x="80.71428571428572" y="478" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central"></text>
+<line x1="350.0" y1="26" x2="350.0" y2="562" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="6 4" />
+<text x="350.0" y="97" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">排卵</text>
+<line x1="60.0" y1="562" x2="60.0" y2="568" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="60.0" y="580" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">1</text>
+<line x1="205.0" y1="562" x2="205.0" y2="568" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="205.0" y="580" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">7</text>
+<line x1="350.0" y1="562" x2="350.0" y2="568" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="350.0" y="580" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">14</text>
+<line x1="495.0" y1="562" x2="495.0" y2="568" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="495.0" y="580" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">21</text>
+<line x1="640.0" y1="562" x2="640.0" y2="568" stroke="#5F5E5A" stroke-width="1.4" />
+<text x="640.0" y="580" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">28</text>
+<text x="350" y="606" text-anchor="middle" font-size="13.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">月経が始まった日を1日目とした日数（28日周期の例）</text>
+<text x="350" y="626" text-anchor="middle" font-size="12.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">濃度・厚さ・体温は相対的な傾向を示す模式図で、数値は示さない</text>
+</svg>

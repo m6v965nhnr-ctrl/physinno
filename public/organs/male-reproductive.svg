@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 690" width="680" height="690" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>男性生殖器の矢状断（精子の通り道）</title><desc>男性生殖器を横から見た模式図（前が左）。陰嚢の中に精巣と精巣上体があり、精巣上体から精管が精索となって上り、鼠径管を通って骨盤に入り、膀胱の後ろを回って精嚢の管と合わさり射精管になる。射精管は前立腺を貫いて前立腺部尿道に開く。尿道は前立腺部、膜様部、海綿体部の順で陰茎の尿道海綿体の中を通る。前立腺は直腸の前にある。尿道球腺は膜様部の近くにある。下に精子の通り道を順に示す。</desc><defs><marker id="ah2C2C2A" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker></defs><rect width="680" height="690" fill="#fff"/>
+<path d="M395,40 L395,300 C395,330 400,345 410,352 L438,352 C448,345 453,330 453,300 L453,40 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<path d="M150,238 C150,230 176,230 178,240 L180,300 C178,310 152,310 150,300 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<path d="M205,392 C205,372 300,372 322,392 C336,420 330,500 262,512 C215,512 198,450 205,392 Z" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" />
+<ellipse cx="246" cy="440" rx="28" ry="40" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<path d="M270,402 C300,412 304,462 270,484" fill="none" stroke="#0F6E56" stroke-width="12" stroke-linecap="round"/>
+<path d="M270,402 C300,412 304,462 270,484" fill="none" stroke="#9FE1CB" stroke-width="9" stroke-linecap="round"/>
+<path d="M262,486 C312,476 316,412 290,382 C262,352 190,345 150,306 C124,276 130,170 152,120 C176,74 240,64 305,66 C352,68 374,100 374,150 L374,204" fill="none" stroke="#993556" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M262,486 C312,476 316,412 290,382 C262,352 190,345 150,306 C124,276 130,170 152,120 C176,74 240,64 305,66 C352,68 374,100 374,150 L374,204" fill="none" stroke="#F4C0D1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="285" cy="160" rx="60" ry="50" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="362" cy="246" rx="15" ry="40" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" transform="rotate(-18 362 246)"/>
+<ellipse cx="372" cy="212" rx="9" ry="14" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<ellipse cx="285" cy="252" rx="38" ry="38" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<path d="M366,232 C345,250 320,262 288,264" fill="none" stroke="#3B6D11" stroke-width="2.2" stroke-linecap="round"/>
+<path d="M285,200 L285,292 C285,318 270,332 246,344" fill="none" stroke="#854F0B" stroke-width="9" stroke-linecap="round"/>
+<path d="M285,200 L285,292 C285,318 270,332 246,344" fill="none" stroke="#FAC775" stroke-width="6" stroke-linecap="round"/>
+<ellipse cx="266" cy="318" rx="10" ry="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<polygon points="250.0,362.3 120.1,437.3 110.1,420.0 240.0,345.0" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<polygon points="240.0,345.0 110.1,420.0 100.1,402.7 230.0,327.7" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<ellipse cx="238.1" cy="357.7" rx="16" ry="18" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" transform="rotate(150 238.1 357.7)"/>
+<line x1="245.0" y1="353.7" x2="102.1" y2="436.2" stroke="#854F0B" stroke-width="7" stroke-linecap="round"/>
+<line x1="245.0" y1="353.7" x2="102.1" y2="436.2" stroke="#FAC775" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="96.2" cy="428.0" rx="24" ry="22" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" transform="rotate(150 96.2 428.0)"/>
+<text x="480" y="70" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">直腸</text>
+<line x1="475" y1="70" x2="450" y2="110" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="118" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">膀胱</text>
+<line x1="475" y1="118" x2="344" y2="140" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="166" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精管</text>
+<line x1="475" y1="166" x2="376" y2="166" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="212" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精管膨大部</text>
+<line x1="475" y1="212" x2="382" y2="212" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="258" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精嚢</text>
+<line x1="475" y1="258" x2="376" y2="262" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="300" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">射精管</text>
+<line x1="475" y1="300" x2="326" y2="258" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="344" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前立腺</text>
+<line x1="475" y1="344" x2="316" y2="282" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="388" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿道球腺</text>
+<line x1="475" y1="388" x2="274" y2="320" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="436" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精巣上体</text>
+<line x1="475" y1="436" x2="298" y2="436" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="480" y="482" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精巣</text>
+<line x1="475" y1="482" x2="270" y2="452" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="104" y="215" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精索</text>
+<line x1="109" y1="215" x2="132" y2="215" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="112" y="300" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">恥骨結合</text>
+<line x1="117" y1="300" x2="150" y2="292" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="112" y="360" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">陰茎海綿体</text>
+<line x1="117" y1="360" x2="157.1" y2="381.3" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="150" y="462" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿道海綿体</text>
+<line x1="155" y1="462" x2="172" y2="404" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="60" y="478" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">亀頭</text>
+<line x1="65" y1="478" x2="92" y2="444" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="170" y="196" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿道</text>
+<line x1="206" y1="196" x2="284" y2="224" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="112" y="500" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">陰嚢</text>
+<line x1="117" y1="500" x2="208" y2="470" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="340" y="538" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精子の通り道（①→⑧）</text>
+<rect x="20" y="558" width="140" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="90.0" y="575.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">①曲精細管</text>
+<line x1="162" y1="575.0" x2="182" y2="575.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="185" y="558" width="140" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="255.0" y="575.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">②直精細管</text>
+<line x1="327" y1="575.0" x2="347" y2="575.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="350" y="558" width="140" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="420.0" y="575.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">③精巣網</text>
+<line x1="492" y1="575.0" x2="512" y2="575.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="515" y="558" width="140" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="585.0" y="575.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">④精巣輸出管</text>
+<rect x="20" y="622" width="140" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="90.0" y="639.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">⑤精巣上体管</text>
+<line x1="162" y1="639.0" x2="182" y2="639.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="185" y="622" width="140" height="34" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="255.0" y="639.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">⑥精管</text>
+<line x1="327" y1="639.0" x2="347" y2="639.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="350" y="622" width="140" height="34" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="420.0" y="639.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">⑦射精管</text>
+<line x1="492" y1="639.0" x2="512" y2="639.0" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="515" y="622" width="140" height="34" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<text x="585.0" y="639.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">⑧尿道</text>
+<text x="585.0" y="670" text-anchor="middle" font-size="12" font-weight="500" fill="#5F5E5A" dominant-baseline="central">前立腺部→膜様部→海綿体部</text>
+</svg>

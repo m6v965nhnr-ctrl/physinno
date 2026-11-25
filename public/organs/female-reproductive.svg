@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>女性生殖器の前額断（卵巣・卵管・子宮・腟）</title><desc>女性の内生殖器を前から見た模式図（広げて描いたもの）。中央に子宮があり、上の丸い部分が子宮底、中ほどが子宮体、下の細い部分が子宮頸で、子宮頸は腟の中に突き出す。子宮の壁は内側から子宮内膜、筋層、外膜。左右の子宮の上外側から卵管が出て、子宮に近い狭い部分が卵管峡部、その外側の広い部分が卵管膨大部、先の広がった部分が卵管漏斗で、指のような卵管采がある。卵管のそばに卵巣があり、固有卵巣索で子宮につながり、卵巣提索で骨盤壁につながる。子宮の両側に子宮広間膜があり、子宮円索は子宮から外側下方に出て大陰唇に至る。</desc><rect width="680" height="600" fill="#fff"/>
+<polygon points="296,178 132,152 126,360 318,360" fill="#F1EFE8" fill-opacity="0.75" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<polygon points="384,178 548,152 554,360 362,360" fill="#F1EFE8" fill-opacity="0.75" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<path d="M304,360 L298,520 C312,548 368,548 382,520 L376,360 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<path d="M290,178 C290,138 390,138 390,178 C390,232 372,292 366,334 L364,392 C350,402 330,402 316,392 L314,334 C308,292 290,232 290,178 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="3.5" />
+<path d="M312,180 C312,160 368,160 368,180 L346,322 L334,322 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.6" />
+<line x1="340" y1="322" x2="340" y2="392" stroke="#993556" stroke-width="3" />
+<path d="M294,198 C270,250 250,330 205,425" fill="none" stroke="#3B6D11" stroke-width="3" stroke-linecap="round"/>
+<path d="M200,245 C190,190 180,130 175,82" fill="none" stroke="#854F0B" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/>
+<path d="M236,258 C260,250 278,240 298,228" fill="none" stroke="#185FA5" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="205" cy="262" rx="34" ry="22" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<circle cx="195" cy="258" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<circle cx="212" cy="268" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<circle cx="222" cy="255" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<path d="M292,176 C275,168 262,166 246,167" fill="none" stroke="#0F6E56" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M292,176 C275,168 262,166 246,167" fill="none" stroke="#9FE1CB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M246,167 C205,166 160,182 150,232 C147,250 147,262 150,272" fill="none" stroke="#0F6E56" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M246,167 C205,166 160,182 150,232 C147,250 147,262 150,272" fill="none" stroke="#9FE1CB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M142,268 L160,268 L166,290 L136,290 Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.4" />
+<path d="M138,290 L135,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M146,290 L143,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M154,290 L156,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M162,290 L164,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M386,198 C410,250 430,330 475,425" fill="none" stroke="#3B6D11" stroke-width="3" stroke-linecap="round"/>
+<path d="M480,245 C490,190 500,130 505,82" fill="none" stroke="#854F0B" stroke-width="3" stroke-dasharray="1 5" stroke-linecap="round"/>
+<path d="M444,258 C420,250 402,240 382,228" fill="none" stroke="#185FA5" stroke-width="4" stroke-linecap="round"/>
+<ellipse cx="475" cy="262" rx="34" ry="22" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<circle cx="485" cy="258" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<circle cx="468" cy="268" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<circle cx="458" cy="255" r="5" fill="#fff" stroke="#854F0B" stroke-width="1" />
+<path d="M388,176 C405,168 418,166 434,167" fill="none" stroke="#0F6E56" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M388,176 C405,168 418,166 434,167" fill="none" stroke="#9FE1CB" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M434,167 C475,166 520,182 530,232 C533,250 533,262 530,272" fill="none" stroke="#0F6E56" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M434,167 C475,166 520,182 530,232 C533,250 533,262 530,272" fill="none" stroke="#9FE1CB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M538,268 L520,268 L514,290 L544,290 Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.4" />
+<path d="M542,290 L545,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M534,290 L537,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M526,290 L524,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M518,290 L516,304" stroke="#0F6E56" stroke-width="2.4" stroke-linecap="round"/>
+<text x="340" y="100" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮底</text>
+<line x1="340" y1="112" x2="340" y2="150" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="262" y="112" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵管峡部</text>
+<line x1="262" y1="124" x2="264" y2="164" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="120" y="205" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵管膨大部</text>
+<line x1="125" y1="205" x2="162" y2="205" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="124" y="340" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵管漏斗・卵管采</text>
+<line x1="129" y1="340" x2="142" y2="300" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="172" y="400" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵巣</text>
+<line x1="176" y1="388" x2="200" y2="286" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="262" y="400" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">固有卵巣索</text>
+<line x1="262" y1="388" x2="266" y2="252" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="182" y="455" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮円索</text>
+<line x1="187" y1="455" x2="210" y2="424" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="105" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">卵巣提索</text>
+<line x1="571" y1="105" x2="512" y2="138" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="150" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外膜（漿膜）</text>
+<line x1="571" y1="150" x2="386" y2="214" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="190" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">筋層</text>
+<line x1="571" y1="190" x2="369" y2="250" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="315" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮内膜</text>
+<line x1="571" y1="315" x2="345" y2="290" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="355" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮体</text>
+<line x1="571" y1="355" x2="371" y2="302" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="395" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮広間膜</text>
+<line x1="571" y1="395" x2="470" y2="338" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="435" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">子宮頸</text>
+<line x1="571" y1="435" x2="366" y2="352" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="475" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腟円蓋</text>
+<line x1="571" y1="475" x2="376" y2="372" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="576" y="525" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腟</text>
+<line x1="571" y1="525" x2="380" y2="500" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+</svg>

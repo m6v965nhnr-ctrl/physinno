@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 560" width="680" height="560" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>乳汁産生と射乳の反射</title><desc>乳児が乳頭を吸うと、乳輪の感覚神経が刺激され、神経内分泌反射が起こる。下垂体前葉からプロラクチンが一時的に増え、腺房の細胞が乳汁をつくる（次の授乳分）。下垂体後葉からオキシトシンが放出され、腺房を囲む筋上皮細胞が収縮して、乳汁が乳管に押し出される（射乳、let-down）。吸うことが続くかぎり、この反射が続く。妊娠中はエストロゲンやプロゲステロンなどが乳汁産生を抑えていて、胎盤が出ると抑制が解け、乳汁産生が始まる。</desc><defs><marker id="ah2C2C2A" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker></defs><rect width="680" height="560" fill="#fff"/>
+<rect x="190" y="20" width="300" height="56" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340.0" y="38.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">乳児が乳頭を吸う</text>
+<text x="340.0" y="58.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（乳輪の感覚神経が刺激される）</text>
+<line x1="340" y1="78" x2="340" y2="112" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="190" y="114" width="300" height="44" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="340.0" y="136.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">神経内分泌反射</text>
+<line x1="300" y1="160" x2="170" y2="208" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<line x1="380" y1="160" x2="510" y2="208" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="30" y="210" width="280" height="44" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="170.0" y="232.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">下垂体前葉</text>
+<line x1="170" y1="256" x2="170" y2="290" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="30" y="292" width="280" height="56" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="170.0" y="310.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">プロラクチンが約1時間</text>
+<text x="170.0" y="330.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">だけ増える（授乳のたび）</text>
+<line x1="170" y1="350" x2="170" y2="384" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="30" y="386" width="280" height="56" rx="10" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="170.0" y="404.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腺房の乳腺細胞が</text>
+<text x="170.0" y="424.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">乳汁をつくる（次の授乳分）</text>
+<rect x="370" y="210" width="280" height="44" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="510.0" y="232.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">下垂体後葉</text>
+<line x1="510" y1="256" x2="510" y2="290" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="370" y="292" width="280" height="56" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="510.0" y="310.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">オキシトシンを放出</text>
+<text x="510.0" y="330.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（1分以内に射乳が起こる）</text>
+<line x1="510" y1="350" x2="510" y2="384" stroke="#2C2C2A" stroke-width="2" marker-end="url(#ah2C2C2A)"/>
+<rect x="370" y="386" width="280" height="56" rx="10" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="510.0" y="404.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腺房を囲む筋上皮細胞が収縮</text>
+<text x="510.0" y="424.0" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">乳汁が乳管に押し出される（射乳）</text>
+<text x="340" y="468" text-anchor="middle" font-size="13.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">吸うかぎりこの反射が続く（正のフィードバック）</text>
+<text x="340" y="500" text-anchor="middle" font-size="13" font-weight="400" fill="#5F5E5A" dominant-baseline="central">妊娠中：エストロゲン・プロゲステロンなどが乳汁産生を抑える</text>
+<text x="340" y="522" text-anchor="middle" font-size="13" font-weight="400" fill="#5F5E5A" dominant-baseline="central">胎盤が出ると抑制が解け、乳汁産生が始まる</text>
+</svg>

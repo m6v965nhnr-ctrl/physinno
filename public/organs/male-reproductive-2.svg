@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>精子形成の模式図</title><desc>精細管の壁を、下の基底膜から上の内腔に向かって見た模式図。基底膜に接する精祖細胞（2n）が有糸分裂し、一部は一次精母細胞（2n）になる。一次精母細胞は減数分裂Iで2個の二次精母細胞（n）に、減数分裂IIで4個の精子細胞（n）になり、精子細胞が精子になって内腔へ放出される。セルトリ細胞は全段階の細胞を取り囲んで支える。精細管のあいだ（間質）にライディッヒ細胞がある。下にLH・FSHの作用を示す。</desc><defs><marker id="ah5F5E5A" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/></marker><marker id="ah2C2C2A" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker></defs><rect width="680" height="640" fill="#fff"/>
+<path d="M165,480 C150,400 150,120 175,62 L295,62 C320,120 320,400 305,480 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="5 4"/>
+<line x1="110" y1="480" x2="360" y2="480" stroke="#2C2C2A" stroke-width="3" />
+<text x="100" y="480" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">基底膜</text>
+<text x="100" y="62" text-anchor="end" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内腔</text>
+<line x1="120" y1="470" x2="120" y2="80" stroke="#5F5E5A" stroke-width="2" marker-end="url(#ah5F5E5A)"/>
+<circle cx="230" cy="438" r="26" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="230" y="438" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">2n</text>
+<circle cx="230" cy="358" r="26" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="230" y="358" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">2n</text>
+<circle cx="206" cy="278" r="19" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="206" y="278" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<circle cx="256" cy="278" r="19" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="256" y="278" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<circle cx="180" cy="198" r="14" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="180" y="198" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<circle cx="215" cy="198" r="14" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="215" y="198" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<circle cx="250" cy="198" r="14" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="250" y="198" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<circle cx="285" cy="198" r="14" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="285" y="198" text-anchor="middle" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">n</text>
+<ellipse cx="180" cy="118" rx="8" ry="11" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<path d="M180,106 C174,92 186,82 180,68" fill="none" stroke="#0F6E56" stroke-width="1.6"/>
+<ellipse cx="215" cy="118" rx="8" ry="11" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<path d="M215,106 C209,92 221,82 215,68" fill="none" stroke="#0F6E56" stroke-width="1.6"/>
+<ellipse cx="250" cy="118" rx="8" ry="11" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<path d="M250,106 C244,92 256,82 250,68" fill="none" stroke="#0F6E56" stroke-width="1.6"/>
+<ellipse cx="285" cy="118" rx="8" ry="11" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<path d="M285,106 C279,92 291,82 285,68" fill="none" stroke="#0F6E56" stroke-width="1.6"/>
+<path d="M258,424 C285,410 285,386 262,372" fill="none" stroke="#534AB7" stroke-width="0"/>
+<line x1="230" y1="408" x2="230" y2="386" stroke="#2C2C2A" stroke-width="1.8" marker-end="url(#ah2C2C2A)"/>
+<line x1="230" y1="328" x2="230" y2="300" stroke="#2C2C2A" stroke-width="1.8" marker-end="url(#ah2C2C2A)"/>
+<line x1="230" y1="250" x2="230" y2="218" stroke="#2C2C2A" stroke-width="1.8" marker-end="url(#ah2C2C2A)"/>
+<line x1="230" y1="172" x2="230" y2="134" stroke="#2C2C2A" stroke-width="1.8" marker-end="url(#ah2C2C2A)"/>
+<text x="345" y="438" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精祖細胞　2n（染色体46本）</text>
+<text x="345" y="397" text-anchor="start" font-size="12.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">有糸分裂（1個は精祖細胞のまま残る）</text>
+<text x="345" y="358" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">一次精母細胞　2n</text>
+<text x="345" y="314" text-anchor="start" font-size="12.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">減数分裂 I（2個の二次精母細胞になる）</text>
+<text x="345" y="278" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">二次精母細胞　n（23本）×2</text>
+<text x="345" y="234" text-anchor="start" font-size="12.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">減数分裂 II（4個の精子細胞になる）</text>
+<text x="345" y="198" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精子細胞　n ×4</text>
+<text x="345" y="153" text-anchor="start" font-size="12.5" font-weight="400" fill="#5F5E5A" dominant-baseline="central">精子細胞が精子になる（変態）</text>
+<text x="345" y="118" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精子　n ×4</text>
+<text x="20" y="300" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">セルトリ細胞</text>
+<line x1="20" y1="316" x2="20" y2="316" stroke="#888780" stroke-width="1.2" />
+<circle cx="190" cy="508" r="13" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<circle cx="230" cy="516" r="13" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<circle cx="270" cy="508" r="13" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="345" y="512" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ライディッヒ細胞（精細管のあいだ）</text>
+<line x1="284" y1="510" x2="340" y2="512" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<line x1="95" y1="300" x2="153" y2="300" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3" />
+<text x="20" y="300" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">セルトリ細胞</text>
+<rect x="20" y="549" width="60" height="32" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="50.0" y="565" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">LH</text>
+<line x1="82" y1="565" x2="108" y2="565" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="110" y="549" width="150" height="32" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="185.0" y="565" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ライディッヒ細胞</text>
+<line x1="262" y1="565" x2="288" y2="565" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="290" y="549" width="360" height="32" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="470.0" y="565" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">テストステロン（精子形成を保つ）</text>
+<rect x="20" y="592" width="60" height="32" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="50.0" y="608" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">FSH</text>
+<line x1="82" y1="608" x2="108" y2="608" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="110" y="592" width="150" height="32" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="185.0" y="608" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">セルトリ細胞</text>
+<line x1="262" y1="608" x2="288" y2="608" stroke="#2C2C2A" stroke-width="1.6" marker-end="url(#ah2C2C2A)"/>
+<rect x="290" y="592" width="360" height="32" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="470.0" y="608" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">精子形成を促す・インヒビンを分泌</text>
+</svg>
