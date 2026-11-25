@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 450" width="680" height="450" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>運動のエネルギー供給系の時間経過（模式図）</title>
+<desc>横軸は運動を始めてからの時間、縦軸はATP産生への貢献の大きさ（相対）。ATP-CP系は開始直後に最も大きく、数秒〜十数秒でなくなる。解糖系はそれに続いて大きくなり、約1分のころまで貢献したのち下がる。有酸素系はゆっくり立ち上がり、長時間の運動では主役になる。ATP-CP系と解糖系は無酸素性、有酸素系は有酸素性。</desc>
+<rect width="680" height="450" fill="#fff"/>
+<path d="M90 320 C150 312 230 262 320 196 C400 152 470 140 640 138 L640 320 Z" fill="#9FE1CB" fill-opacity="0.6" stroke="#0F6E56" stroke-width="2"/>
+<path d="M90 320 C130 306 165 190 235 148 C290 118 335 200 385 270 C405 304 425 320 445 320 Z" fill="#FAC775" fill-opacity="0.65" stroke="#854F0B" stroke-width="2"/>
+<path d="M90 320 L90 118 C112 108 150 150 190 250 C205 292 225 318 250 320 Z" fill="#F5C4B3" fill-opacity="0.75" stroke="#993C1D" stroke-width="2"/>
+<path d="M90 330 L90 70" stroke="#2C2C2A" stroke-width="1.5" fill="none"/>
+<path d="M82 320 L648 320" stroke="#2C2C2A" stroke-width="1.5" fill="none"/>
+<path d="M90 64 l-5 10 h10 z M654 320 l-10 -5 v10 z" fill="#2C2C2A"/>
+<line x1="90" y1="320" x2="90" y2="326" stroke="#2C2C2A" stroke-width="1.5"/>
+<text x="90" y="342" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">開始</text>
+<line x1="190" y1="320" x2="190" y2="326" stroke="#2C2C2A" stroke-width="1.5"/>
+<text x="190" y="342" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">数秒〜十数秒</text>
+<line x1="430" y1="320" x2="430" y2="326" stroke="#2C2C2A" stroke-width="1.5"/>
+<text x="430" y="342" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">約1分</text>
+<line x1="575" y1="320" x2="575" y2="326" stroke="#2C2C2A" stroke-width="1.5"/>
+<text x="575" y="342" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">数分以上（長時間）</text>
+<text x="365" y="372" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">運動を始めてからの時間（全力に近い運動を続けた場合）</text>
+<text x="24" y="190" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A" transform="rotate(-90 24 190)">ATP産生への貢献（相対）</text>
+<text x="100" y="76" text-anchor="start" dominant-baseline="central" font-size="15" fill="#993C1D" font-weight="500">ATP-CP系</text>
+<text x="100" y="94" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">速いが短時間</text>
+<text x="262" y="112" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#854F0B" font-weight="500">解糖系</text>
+<text x="262" y="132" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#854F0B">乳酸が蓄積し始める</text>
+<text x="560" y="100" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#0F6E56" font-weight="500">有酸素系</text>
+<text x="560" y="120" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#0F6E56">遅いが長く続く</text>
+<path d="M92 58 L92 52 L420 52 L420 58" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="256" y="40" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">無酸素性（酸素を使わない）</text>
+<path d="M440 58 L440 52 L640 52 L640 58" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="540" y="40" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">有酸素性（酸素を使う）</text>
+<text x="14" y="402" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">ATP-CP系は、資料により約7〜8秒、約15秒とされる。解糖系は約1分とされる。</text>
+<text x="14" y="424" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">曲線は貢献の移り変わりの傾向を示す模式図で、実測値ではない。</text>
+</svg>

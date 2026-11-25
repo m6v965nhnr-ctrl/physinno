@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="680" height="620" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>伸張反射とIb抑制の回路</title>
+<desc>同じ筋の筋紡錘から出たIa線維は、脊髄で同じ筋のα運動ニューロンを興奮させる。Ia線維の枝は抑制性介在ニューロンを介して拮抗筋のα運動ニューロンを抑制する。ゴルジ腱器官から出たIb線維は、抑制性介在ニューロンを介して共同筋のα運動ニューロンを抑制する。</desc>
+<rect width="680" height="620" fill="#fff"/>
+<defs><marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="mg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="mo" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker></defs>
+<rect x="20" y="40" width="190" height="70" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="115" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">拮抗筋</text>
+<rect x="230" y="40" width="230" height="70" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="345" y="56" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">伸張される筋</text>
+<ellipse cx="290" cy="78" rx="28" ry="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="290" y="96" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">筋紡錘</text>
+<rect x="410" y="68" width="12" height="20" rx="3" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="416" y="98" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">腱器官</text>
+<rect x="480" y="40" width="180" height="70" rx="10" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="570" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">共同筋</text>
+<rect x="20" y="140" width="640" height="300" rx="14" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="48" y="158" text-anchor="start" dominant-baseline="central" font-size="14" fill="#5F5E5A">脊髄</text>
+<rect x="70" y="210" width="120" height="44" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="130" y="223" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">抑制性</text>
+<text x="130" y="241" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">介在ニューロン</text>
+<rect x="380" y="210" width="110" height="44" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="435" y="223" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">抑制性</text>
+<text x="435" y="241" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">介在ニューロン</text>
+<rect x="50" y="352" width="160" height="36" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="130" y="370" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">α運動ニューロン</text>
+<rect x="215" y="352" width="160" height="36" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="295" y="370" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">α運動ニューロン</text>
+<rect x="500" y="352" width="150" height="36" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="575" y="370" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">α運動ニューロン</text>
+<text x="130" y="402" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">（拮抗筋へ）</text>
+<text x="295" y="402" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">（同じ筋へ）</text>
+<text x="575" y="402" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">（共同筋へ）</text>
+<path d="M290 110 L290 350" fill="none" stroke="#185FA5" stroke-width="2.4" marker-end="url(#mb)"/>
+<circle cx="290" cy="232" r="4" fill="#185FA5"/>
+<path d="M290 232 L192 232" fill="none" stroke="#185FA5" stroke-width="2.4" marker-end="url(#mb)"/>
+<path d="M130 254 L130 350" fill="none" stroke="#185FA5" stroke-width="2.4" marker-end="url(#mb)"/>
+<circle cx="290" cy="312" r="10" fill="#fff" stroke="#185FA5" stroke-width="1.6"/>
+<text x="290" y="312" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#185FA5" font-weight="500">+</text>
+<circle cx="130" cy="304" r="10" fill="#fff" stroke="#185FA5" stroke-width="1.6"/>
+<text x="130" y="304" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#185FA5" font-weight="500">−</text>
+<text x="282" y="170" text-anchor="end" dominant-baseline="central" font-size="13" fill="#185FA5">Ia群線維</text>
+<text x="282" y="336" text-anchor="end" dominant-baseline="central" font-size="13" fill="#185FA5">単シナプスで興奮</text>
+<path d="M416 110 L416 208" fill="none" stroke="#0F6E56" stroke-width="2.4" marker-end="url(#mg)"/>
+<path d="M470 254 L470 370 L502 370" fill="none" stroke="#0F6E56" stroke-width="2.4" marker-end="url(#mg)"/>
+<circle cx="470" cy="312" r="10" fill="#fff" stroke="#0F6E56" stroke-width="1.6"/>
+<text x="470" y="312" text-anchor="middle" dominant-baseline="central" font-size="16" fill="#0F6E56" font-weight="500">−</text>
+<text x="424" y="170" text-anchor="start" dominant-baseline="central" font-size="13" fill="#0F6E56">Ib群線維</text>
+<path d="M50 370 L36 370 L36 112" fill="none" stroke="#993C1D" stroke-width="2.4" marker-end="url(#mo)"/>
+<path d="M350 352 L350 112" fill="none" stroke="#993C1D" stroke-width="2.4" marker-end="url(#mo)"/>
+<path d="M600 352 L600 112" fill="none" stroke="#993C1D" stroke-width="2.4" marker-end="url(#mo)"/>
+<text x="44" y="290" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">α運動線維</text>
+<text x="358" y="290" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D">α運動線維</text>
+<text x="592" y="290" text-anchor="end" dominant-baseline="central" font-size="13" fill="#993C1D">α運動線維</text>
+<text x="14" y="462" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">青：Ia群線維（筋紡錘）　緑：Ib群線維（ゴルジ腱器官）　橙：運動線維</text>
+<text x="14" y="484" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">＋：興奮させる　−：抑制する</text>
+<text x="14" y="512" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">Ia線維は、同じ筋のα運動ニューロンを直接興奮させる（伸張反射）。</text>
+<text x="14" y="534" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">Ia線維の枝は、抑制性介在ニューロンを介して、拮抗筋のα運動ニューロンを抑える。</text>
+<text x="14" y="556" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">Ib線維は、抑制性介在ニューロンを介して、共同筋のα運動ニューロンを抑える。</text>
+<text x="14" y="578" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">介在ニューロンの位置は便宜上のもの。γ運動線維と、Ibが拮抗筋を促通する</text>
+<text x="14" y="600" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">経路など、出典にある他の結合は省略している。</text>
+</svg>

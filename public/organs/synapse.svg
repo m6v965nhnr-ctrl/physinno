@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 590" width="680" height="590" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>化学シナプスの伝達の流れ</title><desc>シナプス前終末に活動電位が到達し、Ca2+が流入してシナプス小胞が融合し、神経伝達物質がシナプス間隙に放出され、後膜の受容体に結合して膜電位を変え、その後除去される流れ。</desc>
+<rect width="680" height="590" fill="#fff"/>
+<defs><marker id="mb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker></defs>
+<path d="M140 92 Q140 72 160 72 L520 72 Q540 72 540 92 L540 230 L140 230 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<rect x="14" y="134" width="130" height="46" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<rect x="136" y="136" width="10" height="42" fill="#C0DD97"/>
+<line x1="30" y1="157" x2="120" y2="157" stroke="#185FA5" stroke-width="2.5" marker-end="url(#mb)"/>
+<text x="76" y="196" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">軸索</text>
+<circle cx="196" cy="112" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="192" cy="109" r="2.2" fill="#993C1D"/>
+<circle cx="200" cy="114" r="2.2" fill="#993C1D"/>
+<circle cx="195" cy="117" r="2.2" fill="#993C1D"/>
+<circle cx="246" cy="150" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="242" cy="147" r="2.2" fill="#993C1D"/>
+<circle cx="250" cy="152" r="2.2" fill="#993C1D"/>
+<circle cx="245" cy="155" r="2.2" fill="#993C1D"/>
+<circle cx="296" cy="108" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="292" cy="105" r="2.2" fill="#993C1D"/>
+<circle cx="300" cy="110" r="2.2" fill="#993C1D"/>
+<circle cx="295" cy="113" r="2.2" fill="#993C1D"/>
+<circle cx="214" cy="184" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="210" cy="181" r="2.2" fill="#993C1D"/>
+<circle cx="218" cy="186" r="2.2" fill="#993C1D"/>
+<circle cx="213" cy="189" r="2.2" fill="#993C1D"/>
+<circle cx="470" cy="120" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="466" cy="117" r="2.2" fill="#993C1D"/>
+<circle cx="474" cy="122" r="2.2" fill="#993C1D"/>
+<circle cx="469" cy="125" r="2.2" fill="#993C1D"/>
+<circle cx="180" cy="150" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="176" cy="147" r="2.2" fill="#993C1D"/>
+<circle cx="184" cy="152" r="2.2" fill="#993C1D"/>
+<circle cx="179" cy="155" r="2.2" fill="#993C1D"/>
+<path d="M404 230 A18 18 0 1 1 436 230" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="416" cy="214" r="2.2" fill="#993C1D"/><circle cx="426" cy="212" r="2.2" fill="#993C1D"/><circle cx="421" cy="221" r="2.2" fill="#993C1D"/>
+<line x1="140" y1="230" x2="402" y2="230" stroke="#3B6D11" stroke-width="4"/>
+<line x1="438" y1="230" x2="540" y2="230" stroke="#3B6D11" stroke-width="4"/>
+<rect x="253" y="224" width="18" height="12" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<circle cx="262" cy="258" r="5" fill="#E24B4A" stroke="#A32D2D"/>
+<line x1="262" y1="251" x2="262" y2="240" stroke="#A32D2D" stroke-width="1.6"/>
+<path d="M262 238 L258 246 L266 246 z" fill="#A32D2D"/>
+<rect x="321" y="224" width="18" height="12" rx="2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<circle cx="330" cy="258" r="5" fill="#E24B4A" stroke="#A32D2D"/>
+<line x1="330" y1="251" x2="330" y2="240" stroke="#A32D2D" stroke-width="1.6"/>
+<path d="M330 238 L326 246 L334 246 z" fill="#A32D2D"/>
+<rect x="186" y="224" width="18" height="12" rx="2" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="195" cy="258" r="3" fill="#993C1D"/>
+<path d="M195 252 L195 241" stroke="#5F5E5A" stroke-width="1.4" fill="none"/><path d="M195 238 L191 246 L199 246 z" fill="#5F5E5A"/>
+<circle cx="412" cy="246" r="3" fill="#993C1D"/>
+<circle cx="430" cy="252" r="3" fill="#993C1D"/>
+<circle cx="420" cy="266" r="3" fill="#993C1D"/>
+<circle cx="444" cy="244" r="3" fill="#993C1D"/>
+<circle cx="452" cy="262" r="3" fill="#993C1D"/>
+<circle cx="404" cy="262" r="3" fill="#993C1D"/>
+<rect x="140" y="290" width="400" height="120" rx="0" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"/>
+<line x1="140" y1="290" x2="540" y2="290" stroke="#185FA5" stroke-width="4"/>
+<path d="M408 292 L408 282 Q408 276 414 276 L426 276 Q432 276 432 282 L432 292 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<path d="M458 292 L458 282 Q458 276 464 276 L476 276 Q482 276 482 282 L482 292 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<circle cx="420" cy="272" r="3" fill="#993C1D"/>
+<text x="340" y="360" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">シナプス後膜（後ろの細胞）</text>
+<text x="340" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">シナプス前終末（軸索終末）</text>
+<text x="556" y="100" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">シナプス小胞</text>
+<line x1="483" y1="115" x2="552" y2="102" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="556" y="232" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">神経伝達物質</text>
+<line x1="454" y1="262" x2="552" y2="234" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="300" y="190" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Ca²⁺チャネル</text>
+<line x1="330" y1="222" x2="312" y2="200" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="556" y="268" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">シナプス間隙</text>
+<line x1="500" y1="262" x2="552" y2="268" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="556" y="300" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">受容体</text>
+<line x1="482" y1="282" x2="552" y2="300" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<circle cx="76" cy="126" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="76" y="126.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">①</text>
+<circle cx="296" cy="270" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="296" y="270.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">②</text>
+<circle cx="462" cy="194" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="462" y="194.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">③</text>
+<circle cx="380" cy="270" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="380" y="270.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">④</text>
+<circle cx="402" cy="334" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="402" y="334.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">⑤</text>
+<circle cx="160" cy="262" r="11" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="160" y="262.5" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">⑥</text>
+<text x="24" y="438" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">① 活動電位が軸索終末に到達する</text>
+<text x="24" y="464" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">② 電位依存性Ca²⁺チャネルが開き、Ca²⁺が終末内に流入する</text>
+<text x="24" y="490" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">③ シナプス小胞が前膜と融合し、神経伝達物質が間隙に放出される（開口放出）</text>
+<text x="24" y="516" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">④ 伝達物質が間隙を拡散し、後膜の受容体に結合する</text>
+<text x="24" y="542" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">⑤ 後膜の膜電位が変わる（脱分極＝EPSP、過分極＝IPSP）</text>
+<text x="24" y="568" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">⑥ 伝達物質が、酵素による分解や、再取り込みで取り除かれる</text>
+</svg>

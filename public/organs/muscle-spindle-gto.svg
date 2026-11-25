@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 460" width="680" height="460" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>筋紡錘とゴルジ腱器官の位置と構造</title>
+<desc>左は筋全体の中での位置。両端が腱の筋の中央に、錘外筋線維と並列に筋紡錘があり、筋と腱の移行部にゴルジ腱器官がある。右は筋紡錘の拡大図。結合組織のカプセルの中に錘内筋線維があり、中央部にIa群線維の一次終末、その両側にII群線維の二次終末がある。錘内筋線維の両端には、γ運動ニューロンの軸索が来る。</desc>
+<rect width="680" height="460" fill="#fff"/>
+<defs><clipPath id="bel"><ellipse cx="150" cy="150" rx="95" ry="45"/></clipPath><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker></defs>
+<text x="14" y="24" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">筋全体の中の位置</text>
+<rect x="20" y="139" width="40" height="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="240" y="139" width="40" height="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<ellipse cx="150" cy="150" rx="95" ry="45" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<g clip-path="url(#bel)" stroke="#993C1D" stroke-width="1.4" opacity="0.7"><line x1="50" y1="124" x2="250" y2="124"/><line x1="50" y1="138" x2="250" y2="138"/><line x1="50" y1="162" x2="250" y2="162"/><line x1="50" y1="176" x2="250" y2="176"/></g>
+<path d="M100 150 C122 140 178 140 200 150 C178 160 122 160 100 150 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"/>
+<rect x="233" y="139" width="14" height="22" rx="4" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<text x="40" y="176" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">腱</text>
+<text x="260" y="176" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">腱</text>
+<text x="150" y="78" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋紡錘</text>
+<text x="150" y="96" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">（錘外筋線維と並列）</text>
+<line x1="150" y1="106" x2="150" y2="142" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="110" y="232" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">錘外筋線維</text>
+<line x1="120" y1="222" x2="125" y2="177" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="190" y="270" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">ゴルジ腱器官</text>
+<text x="190" y="288" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">（筋と腱の移行部）</text>
+<line x1="240" y1="262" x2="240" y2="163" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="330" y="24" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">筋紡錘の拡大図</text>
+<rect x="360" y="124" width="280" height="76" rx="38" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="145" width="300" height="10" rx="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<ellipse cx="500" cy="150" rx="48" ry="8" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="350" y="169" width="300" height="10" rx="5" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<ellipse cx="500" cy="174" rx="48" ry="8" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<ellipse cx="488" cy="162" rx="5" ry="26" fill="none" stroke="#185FA5" stroke-width="2.4"/>
+<ellipse cx="500" cy="162" rx="5" ry="26" fill="none" stroke="#185FA5" stroke-width="2.4"/>
+<ellipse cx="512" cy="162" rx="5" ry="26" fill="none" stroke="#185FA5" stroke-width="2.4"/>
+<line x1="500" y1="136" x2="500" y2="84" stroke="#185FA5" stroke-width="2.4"/>
+<ellipse cx="426" cy="162" rx="4" ry="24" fill="none" stroke="#3B6D11" stroke-width="2.2"/>
+<ellipse cx="434" cy="162" rx="4" ry="24" fill="none" stroke="#3B6D11" stroke-width="2.2"/>
+<line x1="430" y1="138" x2="430" y2="84" stroke="#3B6D11" stroke-width="2.2"/>
+<ellipse cx="566" cy="162" rx="4" ry="24" fill="none" stroke="#3B6D11" stroke-width="2.2"/>
+<ellipse cx="574" cy="162" rx="4" ry="24" fill="none" stroke="#3B6D11" stroke-width="2.2"/>
+<line x1="570" y1="138" x2="570" y2="84" stroke="#3B6D11" stroke-width="2.2"/>
+<text x="430" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">II群</text>
+<text x="500" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Ia群</text>
+<text x="570" y="62" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">II群</text>
+<text x="430" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">二次終末</text>
+<text x="500" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">一次終末</text>
+<text x="570" y="78" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">二次終末</text>
+<text x="650" y="28" text-anchor="end" dominant-baseline="central" font-size="13" fill="#5F5E5A">感覚神経は上へ（脊髄へ）向かう</text>
+<path d="M395 262 L395 186" fill="none" stroke="#993C1D" stroke-width="2.2" marker-end="url(#ao)"/>
+<path d="M605 262 L605 186" fill="none" stroke="#993C1D" stroke-width="2.2" marker-end="url(#ao)"/>
+<path d="M395 262 L605 262" fill="none" stroke="#993C1D" stroke-width="2.2"/>
+<text x="500" y="282" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">γ運動ニューロンの軸索</text>
+<text x="500" y="300" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">錘内筋線維の両端（収縮する部分）に来る</text>
+<text x="500" y="218" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">錘内筋線維</text>
+<line x1="500" y1="210" x2="500" y2="184" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="330" y="226" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">カプセル</text>
+<line x1="352" y1="216" x2="370" y2="198" stroke="#888780" stroke-width="1" stroke-dasharray="3 3"/>
+<text x="14" y="350" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋紡錘：筋の長さと、その変化の速さを検出する（Ia群・II群求心性線維）。</text>
+<text x="14" y="376" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">ゴルジ腱器官：筋の張力を検出する（Ib群求心性線維）。</text>
+<text x="14" y="402" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">γ運動ニューロン：筋紡錘の感度を調節する。錘外筋はα運動ニューロンが支配する。</text>
+<text x="14" y="440" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">錘内筋線維の種類（核袋線維・核鎖線維）と、終末の細かい分布は省略している。</text>
+</svg>

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="680" height="580" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>活動電位の波形</title><desc>横軸は時間（約2ミリ秒）、縦軸は膜電位。静止膜電位−70 mV、閾値−55 mV、頂点+30 mV。脱分極（Na+流入）、再分極（K+流出）、過分極、静止に戻る。波形の下に絶対不応期と相対不応期。</desc>
+<rect width="680" height="580" fill="#fff"/>
+<defs><marker id="ma" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/></marker></defs>
+<line x1="90" y1="48" x2="90" y2="500" stroke="#2C2C2A" stroke-width="1.5"/>
+<line x1="90" y1="500" x2="650" y2="500" stroke="#2C2C2A" stroke-width="1.5" marker-end="url(#ma)"/>
+<text x="90" y="30" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">膜電位（mV）</text>
+<text x="650" y="520" text-anchor="end" dominant-baseline="central" font-size="13" fill="#5F5E5A">時間（約2ミリ秒）</text>
+<line x1="86" y1="70" x2="90" y2="70" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="80" y="70" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">+30</text>
+<line x1="86" y1="166" x2="90" y2="166" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="80" y="166" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">0</text>
+<line x1="86" y1="342" x2="90" y2="342" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="80" y="342" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">−55</text>
+<line x1="86" y1="390" x2="90" y2="390" stroke="#2C2C2A" stroke-width="1.2"/>
+<text x="80" y="390" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">−70</text>
+<line x1="90" y1="166" x2="640" y2="166" stroke="#D3D1C7" stroke-width="1" stroke-dasharray="2 3"/>
+<line x1="90" y1="390" x2="640" y2="390" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<line x1="90" y1="342" x2="640" y2="342" stroke="#A32D2D" stroke-width="1.2" stroke-dasharray="6 4"/>
+<text x="640" y="330" text-anchor="end" dominant-baseline="central" font-size="13" fill="#A32D2D">閾値（−55 mV）</text>
+<path d="M110 390 L170 390 C185 388 200 370 215 342 C222 250 232 110 246 72 C250 66 262 66 266 72 C280 110 296 250 306 342 C316 400 335 424 360 424 C395 424 420 396 450 391 L640 390" fill="none" stroke="#185FA5" stroke-width="3"/>
+<text x="100" y="376" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">静止膜電位</text>
+<text x="206" y="276" text-anchor="end" dominant-baseline="central" font-size="14" fill="#993C1D" font-weight="500">脱分極</text>
+<text x="206" y="296" text-anchor="end" dominant-baseline="central" font-size="13" fill="#2C2C2A">Na⁺が流入</text>
+<text x="296" y="56" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">頂点（+30 mV）</text>
+<text x="318" y="196" text-anchor="start" dominant-baseline="central" font-size="14" fill="#0F6E56" font-weight="500">再分極</text>
+<text x="318" y="216" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">K⁺が流出</text>
+<text x="360" y="452" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#534AB7" font-weight="500">過分極</text>
+<text x="360" y="470" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#5F5E5A">Kチャネルの閉じが遅れる</text>
+<text x="462" y="360" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">静止に戻る</text>
+<text x="462" y="377" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">（Na⁺/K⁺ポンプなど）</text>
+<path d="M170 440 L170 400" fill="none" stroke="#E24B4A" stroke-width="2"/>
+<path d="M170 396 L164 408 L176 408 z" fill="#E24B4A"/>
+<text x="170" y="456" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#A32D2D">刺激</text>
+<line x1="215" y1="342" x2="215" y2="538" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="2 3"/>
+<line x1="306" y1="342" x2="306" y2="538" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="2 3"/>
+<line x1="450" y1="391" x2="450" y2="538" stroke="#B4B2A9" stroke-width="1" stroke-dasharray="2 3"/>
+<rect x="215" y="526" width="91" height="24" rx="4" fill="#F5C4B3" stroke="#993C1D"/>
+<text x="260.5" y="538" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">絶対不応期</text>
+<rect x="306" y="526" width="144" height="24" rx="4" fill="#FAC775" stroke="#854F0B"/>
+<text x="378" y="538" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">相対不応期</text>
+<text x="14" y="538" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">不応期（目安）</text>
+</svg>

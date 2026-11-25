@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 710" width="680" height="710" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>筋節の構造と滑走説（弛緩時と収縮時）</title>
+<desc>上が弛緩時、下が収縮時の筋節の模式図。左右のZ線から細いフィラメント（アクチン）が中央へ伸び、中央に太いフィラメント（ミオシン、中央がM線）がある。太いフィラメントの範囲がA帯、Z線側の細いフィラメントだけの範囲がI帯、中央の太いフィラメントだけの範囲がH帯。収縮時は、Z線どうしが近づき、I帯とH帯が小さくなり、A帯の長さは変わらない。</desc>
+<rect width="680" height="710" fill="#fff"/>
+<text x="14" y="22" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">弛緩時</text>
+<rect x="110" y="77" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="405" y="77" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="110" y="117" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="405" y="117" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="110" y="157" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="405" y="157" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="225" y="94" width="230" height="12" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<path d="M233 94 l0 -6 M233 106 l0 6 M249 94 l0 -6 M249 106 l0 6 M265 94 l0 -6 M265 106 l0 6 M281 94 l0 -6 M281 106 l0 6 M297 94 l0 -6 M297 106 l0 6 M313 94 l0 -6 M313 106 l0 6 M377 94 l0 -6 M377 106 l0 6 M393 94 l0 -6 M393 106 l0 6 M409 94 l0 -6 M409 106 l0 6 M425 94 l0 -6 M425 106 l0 6 M441 94 l0 -6 M441 106 l0 6" stroke="#534AB7" stroke-width="1.5"/>
+<rect x="225" y="134" width="230" height="12" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<path d="M233 134 l0 -6 M233 146 l0 6 M249 134 l0 -6 M249 146 l0 6 M265 134 l0 -6 M265 146 l0 6 M281 134 l0 -6 M281 146 l0 6 M297 134 l0 -6 M297 146 l0 6 M313 134 l0 -6 M313 146 l0 6 M377 134 l0 -6 M377 146 l0 6 M393 134 l0 -6 M393 146 l0 6 M409 134 l0 -6 M409 146 l0 6 M425 134 l0 -6 M425 146 l0 6 M441 134 l0 -6 M441 146 l0 6" stroke="#534AB7" stroke-width="1.5"/>
+<rect x="108" y="62" width="4" height="118" fill="#2C2C2A"/>
+<rect x="568" y="62" width="4" height="118" fill="#2C2C2A"/>
+<line x1="340.0" y1="64" x2="340.0" y2="178" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="110" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Z線</text>
+<text x="570" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Z線</text>
+<text x="340.0" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">M線</text>
+<path d="M114 191 L114 196 L225 196 L225 191" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="169.5" y="214" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">I帯</text>
+<path d="M225 191 L225 196 L455 196 L455 191" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="214" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A帯（太いフィラメントの長さ）</text>
+<path d="M455 191 L455 196 L566 196 L566 191" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="510.5" y="214" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">I帯</text>
+<path d="M275 235 L275 240 L405 240 L405 235" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="258" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">H帯</text>
+<path d="M110 277 L110 282 L570 282 L570 277" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="300" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋節（Z線から次のZ線まで）</text>
+<text x="14" y="322" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">収縮時（細いフィラメントが筋節の中央へ滑り込む）</text>
+<rect x="150" y="377" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="365" y="377" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="150" y="417" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="365" y="417" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="150" y="457" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="365" y="457" width="165" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="225" y="394" width="230" height="12" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<path d="M233 394 l0 -6 M233 406 l0 6 M249 394 l0 -6 M249 406 l0 6 M265 394 l0 -6 M265 406 l0 6 M281 394 l0 -6 M281 406 l0 6 M297 394 l0 -6 M297 406 l0 6 M313 394 l0 -6 M313 406 l0 6 M377 394 l0 -6 M377 406 l0 6 M393 394 l0 -6 M393 406 l0 6 M409 394 l0 -6 M409 406 l0 6 M425 394 l0 -6 M425 406 l0 6 M441 394 l0 -6 M441 406 l0 6" stroke="#534AB7" stroke-width="1.5"/>
+<rect x="225" y="434" width="230" height="12" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<path d="M233 434 l0 -6 M233 446 l0 6 M249 434 l0 -6 M249 446 l0 6 M265 434 l0 -6 M265 446 l0 6 M281 434 l0 -6 M281 446 l0 6 M297 434 l0 -6 M297 446 l0 6 M313 434 l0 -6 M313 446 l0 6 M377 434 l0 -6 M377 446 l0 6 M393 434 l0 -6 M393 446 l0 6 M409 434 l0 -6 M409 446 l0 6 M425 434 l0 -6 M425 446 l0 6 M441 434 l0 -6 M441 446 l0 6" stroke="#534AB7" stroke-width="1.5"/>
+<rect x="148" y="362" width="4" height="118" fill="#2C2C2A"/>
+<rect x="528" y="362" width="4" height="118" fill="#2C2C2A"/>
+<line x1="340.0" y1="364" x2="340.0" y2="478" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<text x="150" y="352" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Z線</text>
+<text x="530" y="352" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Z線</text>
+<text x="340.0" y="352" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">M線</text>
+<path d="M154 491 L154 496 L225 496 L225 491" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="189.5" y="514" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">I帯</text>
+<path d="M225 491 L225 496 L455 496 L455 491" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="514" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">A帯（太いフィラメントの長さ）</text>
+<path d="M455 491 L455 496 L526 496 L526 491" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="490.5" y="514" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">I帯</text>
+<path d="M315 535 L315 540 L365 540 L365 535" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="558" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">H帯</text>
+<path d="M150 577 L150 582 L530 582 L530 577" fill="none" stroke="#5F5E5A" stroke-width="1.2"/>
+<text x="340.0" y="600" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋節（Z線から次のZ線まで）</text>
+<rect x="14" y="642" width="26" height="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="48" y="645" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">細いフィラメント（アクチン。トロポニン・トロポミオシンが付く）</text>
+<rect x="14" y="664" width="26" height="12" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="48" y="670" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">太いフィラメント（ミオシン。突き出た短い線は頭部。中央には頭部がない）</text>
+<text x="14" y="694" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">収縮すると、Z線が近づき、I帯とH帯が小さくなる。A帯の長さは変わらない。</text>
+</svg>

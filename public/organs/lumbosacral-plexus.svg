@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>腰仙骨神経叢の枝と支配筋の対応</title><desc>腰神経叢（大腿神経・閉鎖神経など）と仙骨神経叢（上殿神経・下殿神経・坐骨神経・陰部神経など）の枝の名前、通る孔、主な支配筋の対応を示した模式図。</desc>
+<rect width="680" height="600" fill="#fff"/>
+
+<rect x="10" y="8" width="312" height="330" rx="8" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="22" y="19" width="288" height="34" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="166" y="36" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#2C2C2A">腰神経叢（腰神経から）</text>
+<rect x="22" y="69" width="288" height="62" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="166" y="82.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">大腿神経</text>
+<text x="166" y="100" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">縫工筋・恥骨筋・大腿四頭筋</text>
+<text x="166" y="117.5" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">枝：伏在神経（下腿の内側の感覚）</text>
+<rect x="22" y="149" width="288" height="46" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="166" y="163.25" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">閉鎖神経</text>
+<text x="166" y="180.75" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">内転筋群・外閉鎖筋</text>
+<rect x="22" y="213" width="288" height="62" rx="6" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<text x="166" y="227.75" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">そのほかの枝</text>
+<text x="166" y="244" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">腸骨下腹神経・腸骨鼠径神経</text>
+<text x="166" y="260.25" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">外側大腿皮神経・陰部大腿神経・腰仙骨神経幹</text>
+<rect x="22" y="295" width="288" height="26" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="166" y="308" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">腸腰筋は、腰神経叢の枝が支配</text>
+<text x="14" y="362" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">通る場所</text>
+<text x="14" y="384" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・大腿神経：鼠径靱帯の下の筋裂孔</text>
+<text x="14" y="406" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・閉鎖神経：閉鎖管</text>
+<text x="14" y="428" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・上殿神経：梨状筋上孔</text>
+<text x="14" y="450" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・下殿神経・坐骨神経：梨状筋下孔</text>
+<text x="14" y="480" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">感覚の領域</text>
+<text x="14" y="502" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・伏在神経：下腿の内側</text>
+<text x="14" y="524" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・閉鎖神経の皮枝：大腿の内側</text>
+<text x="14" y="546" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">・深腓骨神経：母趾と第2趾が</text>
+<text x="14" y="568" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">　向かい合う縁</text>
+<rect x="342" y="8" width="328" height="540" rx="8" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="352" y="19" width="308" height="34" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="506" y="36" text-anchor="middle" dominant-baseline="central" font-size="15" fill="#2C2C2A">仙骨神経叢（L4・L5・S1〜S4）</text>
+<text x="352" y="70" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">梨状筋上孔を通る</text>
+<rect x="352" y="82" width="308" height="44" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="506" y="95.25" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">上殿神経（L4・L5・S1）</text>
+<text x="506" y="112.75" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">中殿筋・小殿筋・大腿筋膜張筋</text>
+<rect x="352" y="137" width="308" height="18" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="506" y="146" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">梨状筋</text>
+<text x="352" y="172" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">梨状筋下孔を通る</text>
+<rect x="349" y="186" width="150" height="44" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="424" y="199.25" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">下殿神経</text>
+<text x="424" y="216.75" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">大殿筋</text>
+<rect x="517" y="186" width="150" height="44" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="592" y="199.25" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">後大腿皮神経</text>
+<text x="592" y="216.75" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">大腿後面の皮膚</text>
+<rect x="349" y="242" width="150" height="44" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="424" y="255.875" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">陰部神経（S2〜S4）</text>
+<text x="424" y="272.125" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">外尿道・外肛門括約筋</text>
+<text x="508" y="256" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">小坐骨孔から</text>
+<text x="508" y="274" text-anchor="start" dominant-baseline="central" font-size="12" fill="#5F5E5A">骨盤内へ再び入る</text>
+<rect x="349" y="328" width="150" height="44" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="424" y="341.25" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">坐骨神経</text>
+<text x="424" y="358.75" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">大腿の屈筋群</text>
+<line x1="500" y1="350" x2="520" y2="350" stroke="#185FA5" stroke-width="1.8"/>
+<line x1="520" y1="320" x2="520" y2="402" stroke="#185FA5" stroke-width="1.8"/>
+<rect x="526" y="300" width="136" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="594" y="311.875" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">脛骨神経</text>
+<text x="594" y="328.125" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">下腿の屈筋群・足底</text>
+<rect x="526" y="382" width="136" height="40" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="594" y="402" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">総腓骨神経</text>
+<line x1="520" y1="320" x2="528" y2="320" stroke="#185FA5" stroke-width="1.8"/>
+<line x1="520" y1="402" x2="526" y2="402" stroke="#185FA5" stroke-width="1.8"/>
+<line x1="552" y1="422" x2="552" y2="500" stroke="#185FA5" stroke-width="1.8"/>
+<line x1="552" y1="462" x2="562" y2="462" stroke="#185FA5" stroke-width="1.8"/>
+<line x1="552" y1="500" x2="562" y2="500" stroke="#185FA5" stroke-width="1.8"/>
+<rect x="562" y="445" width="104" height="34" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="614" y="454.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">浅腓骨神経</text>
+<text x="614" y="469.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">腓骨筋群</text>
+<rect x="562" y="487" width="104" height="34" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="614" y="496.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">深腓骨神経</text>
+<text x="614" y="511.5" text-anchor="middle" dominant-baseline="central" font-size="12" fill="#2C2C2A">下腿の伸筋群</text>
+</svg>

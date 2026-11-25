@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 590" width="680" height="590" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>ニューロンの構造と跳躍伝導の模式図</title><desc>有髄の多極ニューロンの構造（樹状突起・細胞体・軸索小丘・軸索起始部・髄鞘とランビエ絞輪・軸索終末）と、有髄線維の跳躍伝導・無髄線維の連続伝導の比較。</desc>
+<rect width="680" height="590" fill="#fff"/>
+<defs><marker id="mk" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="mg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5F5E5A"/></marker></defs>
+<text x="14" y="18" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">ニューロンの構造（有髄の多極ニューロン）</text>
+<line x1="96" y1="122" x2="40" y2="88" stroke="#0F6E56" stroke-width="3"/>
+<line x1="96" y1="130" x2="30" y2="124" stroke="#0F6E56" stroke-width="3"/>
+<line x1="96" y1="150" x2="30" y2="160" stroke="#0F6E56" stroke-width="3"/>
+<line x1="96" y1="158" x2="42" y2="196" stroke="#0F6E56" stroke-width="3"/>
+<line x1="52" y1="96" x2="38" y2="76" stroke="#0F6E56" stroke-width="2"/>
+<line x1="52" y1="96" x2="66" y2="74" stroke="#0F6E56" stroke-width="2"/>
+<ellipse cx="116" cy="140" rx="34" ry="30" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5"/>
+<circle cx="116" cy="140" r="10" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<path d="M148 128 L172 136 L172 144 L148 152 Z" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<line x1="172" y1="140" x2="560" y2="140" stroke="#0F6E56" stroke-width="3"/>
+<rect x="212" y="127" width="72" height="26" rx="12" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="292" y="127" width="72" height="26" rx="12" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="372" y="127" width="72" height="26" rx="12" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="452" y="127" width="72" height="26" rx="12" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<path d="M560 140 L588 118 M560 140 L592 140 M560 140 L588 162" stroke="#0F6E56" stroke-width="2.5" fill="none"/>
+<circle cx="594" cy="116" r="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<circle cx="598" cy="140" r="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<circle cx="594" cy="164" r="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<text x="116" y="141" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#2C2C2A">核</text>
+<line x1="116" y1="110" x2="116" y2="93" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="116" y="84" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">細胞体</text>
+<line x1="160" y1="132" x2="176" y2="93" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="176" y="84" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">軸索小丘</text>
+<line x1="192" y1="138" x2="250" y2="61" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="250" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">軸索起始部</text>
+<line x1="328" y1="127" x2="328" y2="93" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="328" y="84" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">髄鞘</text>
+<line x1="368" y1="140" x2="420" y2="61" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="420" y="52" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">ランビエ絞輪</text>
+<line x1="594" y1="108" x2="610" y2="93" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="610" y="84" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">軸索終末</text>
+<line x1="46" y1="194" x2="48" y2="217" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="48" y="226" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">樹状突起</text>
+<line x1="430" y1="142" x2="430" y2="169" stroke="#888780" stroke-width="0.9" stroke-dasharray="3 3"/>
+<text x="430" y="178" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" stroke="#fff" stroke-width="4" paint-order="stroke" stroke-linejoin="round">軸索</text>
+<line x1="120" y1="208" x2="540" y2="208" stroke="#5F5E5A" stroke-width="1.6" marker-end="url(#mg)"/>
+<text x="330" y="226" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">情報の流れ（樹状突起 → 細胞体 → 軸索 → 軸索終末）</text>
+<rect x="14" y="246" width="652" height="46" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.5"/>
+<text x="24" y="262" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">髄鞘をつくる細胞：中枢神経系＝希突起膠細胞（1つの細胞が複数の軸索の節を包む）</text>
+<text x="24" y="281" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">　　　　　　　　　末梢神経系＝シュワン細胞（1つの細胞が1つの軸索の1つの節だけを包む）</text>
+<text x="14" y="326" text-anchor="start" dominant-baseline="central" font-size="15" fill="#2C2C2A" font-weight="500">興奮の伝わり方</text>
+<text x="14" y="358" text-anchor="start" dominant-baseline="central" font-size="14" fill="#854F0B" font-weight="500">有髄線維：跳躍伝導（絞輪から絞輪へ）</text>
+<line x1="60" y1="428" x2="620" y2="428" stroke="#0F6E56" stroke-width="3"/>
+<rect x="96" y="416" width="104" height="24" rx="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="232" y="416" width="104" height="24" rx="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="368" y="416" width="104" height="24" rx="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="504" y="416" width="104" height="24" rx="11" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="64" cy="428" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<circle cx="216" cy="428" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<circle cx="352" cy="428" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<circle cx="488" cy="428" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<circle cx="620" cy="428" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<path d="M68 414 C94 380 186 380 212 414" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#mk)"/>
+<path d="M220 414 C246 380 322 380 348 414" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#mk)"/>
+<path d="M356 414 C382 380 458 380 484 414" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#mk)"/>
+<path d="M492 414 C518 380 590 380 616 414" fill="none" stroke="#185FA5" stroke-width="2" marker-end="url(#mk)"/>
+<text x="340" y="458" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">赤い点＝ランビエ絞輪（電位依存性チャネルが集まり、活動電位が生じる）</text>
+<text x="14" y="500" text-anchor="start" dominant-baseline="central" font-size="14" fill="#185FA5" font-weight="500">無髄線維：連続伝導（軸索の全長で順に）</text>
+<line x1="60" y1="540" x2="620" y2="540" stroke="#0F6E56" stroke-width="3"/>
+<circle cx="80" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="86" y1="526" x2="114" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="120" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="126" y1="526" x2="154" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="160" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="166" y1="526" x2="194" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="200" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="206" y1="526" x2="234" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="240" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="246" y1="526" x2="274" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="280" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="286" y1="526" x2="314" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="320" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="326" y1="526" x2="354" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="360" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="366" y1="526" x2="394" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="400" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="406" y1="526" x2="434" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="440" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="446" y1="526" x2="474" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="480" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="486" y1="526" x2="514" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="520" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="526" y1="526" x2="554" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<circle cx="560" cy="540" r="4" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<line x1="566" y1="526" x2="594" y2="526" stroke="#185FA5" stroke-width="1.8" marker-end="url(#mk)"/>
+<text x="340" y="570" text-anchor="middle" dominant-baseline="central" font-size="13" fill="#5F5E5A">赤い点＝活動電位が生じる場所（全長に並ぶ）。跳躍伝導は連続伝導より速い</text>
+</svg>

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 774" width="680" height="774" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>興奮収縮連関と弛緩の流れ</title>
+<desc>運動ニューロンの活動電位から、アセチルコリンの放出、筋線維の活動電位、T管、筋小胞体からのCa2+放出、トロポニンへの結合、ミオシンの滑走までの流れと、神経の信号が止まったあとにCa2+が筋小胞体に戻って弛緩するまでの流れを、上から下へ並べた図。</desc>
+<defs><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#444441"/></marker></defs>
+<rect width="680" height="774" fill="#fff"/>
+<rect x="200" y="20" width="440" height="46" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="210" y="32" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7" font-weight="500">1</text>
+<text x="426.0" y="34" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">運動ニューロンの活動電位が</text>
+<text x="426.0" y="53" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">神経終末に届く</text>
+<line x1="420.0" y1="66" x2="420.0" y2="82" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="84" width="440" height="46" rx="6" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<text x="210" y="96" text-anchor="start" dominant-baseline="central" font-size="13" fill="#534AB7" font-weight="500">2</text>
+<text x="426.0" y="98" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">神経終末からアセチルコリン（ACh）が</text>
+<text x="426.0" y="117" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">シナプス間隙へ放出される</text>
+<line x1="420.0" y1="130" x2="420.0" y2="146" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="148" width="440" height="46" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<text x="210" y="160" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993C1D" font-weight="500">3</text>
+<text x="426.0" y="162" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">AChが筋鞘の運動終板の受容体に結合</text>
+<text x="426.0" y="181" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">陽イオンが入り、筋線維が脱分極する</text>
+<line x1="420.0" y1="194" x2="420.0" y2="210" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="212" width="440" height="46" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="210" y="224" text-anchor="start" dominant-baseline="central" font-size="13" fill="#185FA5" font-weight="500">4</text>
+<text x="426.0" y="226" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Naチャネルが開き、</text>
+<text x="426.0" y="245" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">活動電位が筋線維の膜全体に広がる</text>
+<line x1="420.0" y1="258" x2="420.0" y2="274" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="276" width="440" height="46" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<text x="210" y="288" text-anchor="start" dominant-baseline="central" font-size="13" fill="#185FA5" font-weight="500">5</text>
+<text x="426.0" y="290" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">活動電位がT管を通って</text>
+<text x="426.0" y="309" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋線維の内部へ伝わる</text>
+<line x1="420.0" y1="322" x2="420.0" y2="338" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="340" width="440" height="46" rx="6" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<text x="210" y="352" text-anchor="start" dominant-baseline="central" font-size="13" fill="#3B6D11" font-weight="500">6</text>
+<text x="426.0" y="354" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋小胞体のCa2+チャネルが開き、</text>
+<text x="426.0" y="373" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Ca2+が筋形質へ放出される</text>
+<line x1="420.0" y1="386" x2="420.0" y2="402" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="404" width="440" height="46" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="210" y="416" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993556" font-weight="500">7</text>
+<text x="426.0" y="418" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">Ca2+がトロポニンに結合</text>
+<text x="426.0" y="437" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">→ アクチンのミオシン結合部位が露出</text>
+<line x1="420.0" y1="450" x2="420.0" y2="466" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="468" width="440" height="46" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<text x="210" y="480" text-anchor="start" dominant-baseline="central" font-size="13" fill="#993556" font-weight="500">8</text>
+<text x="426.0" y="482" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">ミオシン頭部が結合・首振り・離脱（ATPを使う）</text>
+<text x="426.0" y="501" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">→ 細いフィラメントが滑走し、筋節が短縮</text>
+<line x1="420.0" y1="514" x2="420.0" y2="530" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="532" width="440" height="46" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="210" y="544" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">9</text>
+<text x="426.0" y="546" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">運動ニューロンのACh放出が止まり、</text>
+<text x="426.0" y="565" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋線維が再分極する</text>
+<line x1="420.0" y1="578" x2="420.0" y2="594" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="596" width="440" height="46" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="210" y="608" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">10</text>
+<text x="426.0" y="610" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">ATPで動くポンプが、Ca2+を</text>
+<text x="426.0" y="629" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋小胞体へ戻す</text>
+<line x1="420.0" y1="642" x2="420.0" y2="658" stroke="#444441" stroke-width="1.8" marker-end="url(#ar)"/>
+<rect x="200" y="660" width="440" height="46" rx="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="210" y="672" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A" font-weight="500">11</text>
+<text x="426.0" y="674" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">トロポミオシンが結合部位を再び覆い、</text>
+<text x="426.0" y="693" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">架橋ができなくなって弛緩する</text>
+<rect x="178" y="20" width="8" height="110" rx="3" fill="#534AB7"/>
+<text x="168" y="75.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">運動神経</text>
+<rect x="178" y="148" width="8" height="46" rx="3" fill="#993C1D"/>
+<text x="168" y="171.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">神経筋接合部</text>
+<rect x="178" y="212" width="8" height="110" rx="3" fill="#185FA5"/>
+<text x="168" y="267.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋鞘・T管</text>
+<rect x="178" y="340" width="8" height="46" rx="3" fill="#3B6D11"/>
+<text x="168" y="363.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋小胞体</text>
+<rect x="178" y="404" width="8" height="110" rx="3" fill="#993556"/>
+<text x="168" y="459.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">筋原線維</text>
+<rect x="178" y="532" width="8" height="174" rx="3" fill="#5F5E5A"/>
+<text x="168" y="619.0" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">弛緩</text>
+<text x="14" y="728" text-anchor="start" dominant-baseline="central" font-size="13" fill="#5F5E5A">矢印は、起こる順序を示す。1〜8が収縮、9〜11が弛緩。</text>
+</svg>
