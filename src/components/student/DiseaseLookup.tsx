@@ -8,21 +8,10 @@ import type { Disease } from "@/content/diseases/types";
 // 開いたカードだけを、1枚ずつ読み込む（全部を画面の束に入れない）
 const cache = new Map<string, Disease>();
 
-const tabs = (d: Disease) =>
-  [
-    { key: "sym", label: "症状・所見", items: d.symptoms.map((c) => c.t) },
-    { key: "dx", label: "診断・検査", items: d.diagnosis.map((c) => c.t) },
-    { key: "cls", label: "分類・重症度", items: d.classification.map((c) => c.t) },
-    { key: "tx", label: "治療・リハ", items: [...d.treatment, ...d.pt].map((c) => c.t) },
-    { key: "risk", label: "リスク管理", items: d.risk.map((c) => c.t) },
-    { key: "exam", label: "国試で問われる点", items: d.examPoints.map((c) => c.t) },
-  ].filter((t) => t.items.length > 0);
-
-// 問題・解説に出てくる疾患を、1タップで確かめる（どんな病気か・主な症状・国試で問われる点）
+// 問題・解説に出てくる疾患を、1タップで確かめる（国試で問われる点だけを出す。周辺の情報は出さない）
 export default function DiseaseLookup({ text }: { text: string }) {
   const diseases = useMemo(() => findDiseases(text), [text]);
   const [openSlug, setOpenSlug] = useState<string | null>(null);
-  const [tab, setTab] = useState<string | null>(null);
   const [card, setCard] = useState<Disease | null>(null);
   const [failed, setFailed] = useState(false);
   useEffect(() => {
@@ -50,7 +39,7 @@ export default function DiseaseLookup({ text }: { text: string }) {
             key={x.slug}
             type="button"
             aria-pressed={openSlug === x.slug}
-            onClick={() => { setOpenSlug(openSlug === x.slug ? null : x.slug); setTab(null); }}
+            onClick={() => { setOpenSlug(openSlug === x.slug ? null : x.slug); }}
             className={`rounded-full border px-3 py-1 text-xs ${
               openSlug === x.slug ? "border-rose-500 bg-rose-50 text-rose-800" : "border-gray-300 bg-white text-gray-700"
             }`}
@@ -64,27 +53,15 @@ export default function DiseaseLookup({ text }: { text: string }) {
       )}
       {d && (
         <div className="mt-3 space-y-3 rounded-lg bg-white p-3 text-sm leading-6 text-gray-900">
-          <p>{d.summary.t}</p>
-          <div className="flex flex-wrap gap-1.5" role="tablist">
-            {tabs(d).map((t) => (
-              <button
-                key={t.key}
-                type="button"
-                role="tab"
-                aria-selected={tab === t.key}
-                onClick={() => setTab(tab === t.key ? null : t.key)}
-                className={`rounded-md border px-2.5 py-1 text-xs font-semibold ${tab === t.key ? "border-gray-800 bg-gray-800 text-white" : "border-gray-300 text-gray-700"}`}
-              >
-                {t.label}
-              </button>
-            ))}
-          </div>
-          {tabs(d).find((t) => t.key === tab) && (
+          <p className="text-xs font-semibold text-gray-500">国試で問われる点</p>
+          {d.examPoints.length > 0 ? (
             <ul className="list-disc space-y-1.5 pl-5">
-              {tabs(d).find((t) => t.key === tab)!.items.map((c) => (
-                <li key={c}>{c}</li>
+              {d.examPoints.map((c) => (
+                <li key={c.t}>{c.t}</li>
               ))}
             </ul>
+          ) : (
+            <p>{d.summary.t}</p>
           )}
           <p className="text-xs text-gray-500">
             <Link href={`/columns/diseases/${d.slug}`} target="_blank" className="font-semibold text-blue-600 underline">
