@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="680" height="580" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>ネフロンの構造（模式図）</title><desc>ネフロンの構造の模式図。輸入細動脈から糸球体に入った血液は輸出細動脈から出る。糸球体を包むボウマン嚢が腎小体をつくり、近位尿細管、ヘンレ係蹄（下行脚と上行脚）、遠位尿細管、集合管の順に続く。腎小体と曲部の尿細管は皮質、ヘンレ係蹄と集合管は髄質にある。遠位尿細管の初めの部分は傍糸球体装置（緻密斑）として輸入・輸出細動脈に接する。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="580" fill="#fff"/>
+<rect x="8" y="12" width="664" height="250" fill="#F1EFE8"/>
+<rect x="8" y="262" width="664" height="298" fill="#F5C4B3" fill-opacity="0.45"/>
+<line x1="8" y1="262" x2="672" y2="262" stroke="#888780" stroke-width="1" stroke-dasharray="6 4"/>
+<text x="600" y="246" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">皮質</text>
+<text x="600" y="282" text-anchor="start" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">髄質</text>
+<path d="M110 36 L190 100" fill="none" stroke="#A32D2D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M110 36 L190 100" fill="none" stroke="#E24B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M212 100 L290 40" fill="none" stroke="#A32D2D" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M212 100 L290 40" fill="none" stroke="#E24B4A" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="200" cy="140" r="42" fill="#9FE1CB" fill-opacity="0.55" stroke="#0F6E56" stroke-width="2"/>
+<circle cx="200" cy="140" r="26" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.5"/>
+<path d="M200 182 C190 200 150 196 160 214 C170 232 235 222 225 240 C218 252 200 252 200 262" fill="none" stroke="#185FA5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 182 C190 200 150 196 160 214 C170 232 235 222 225 240 C218 252 200 252 200 262" fill="none" stroke="#B5D4F4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M200 262 L200 444" fill="none" stroke="#3B6D11" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 262 L200 444" fill="none" stroke="#C0DD97" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M200 444 C200 474 262 474 262 444 L262 402" fill="none" stroke="#3B6D11" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/><path d="M200 444 C200 474 262 474 262 444 L262 402" fill="none" stroke="#C0DD97" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M262 402 L262 262 L262 160 C262 135 245 125 232 112" fill="none" stroke="#0F6E56" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M262 402 L262 262 L262 160 C262 135 245 125 232 112" fill="none" stroke="#9FE1CB" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M232 112 C255 88 300 86 330 100 C360 112 340 128 365 136 C392 144 380 164 410 164 L450 166" fill="none" stroke="#854F0B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M232 112 C255 88 300 86 330 100 C360 112 340 128 365 136 C392 144 380 164 410 164 L450 166" fill="none" stroke="#FAC775" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M450 166 L450 520" fill="none" stroke="#534AB7" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/><path d="M450 166 L450 520" fill="none" stroke="#CECBF6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="230" cy="112" r="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="2"/>
+<path d="M410 520 L450 540 L490 520" fill="none" stroke="#534AB7" stroke-width="2"/>
+<text x="16" y="52" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">輸入細動脈</text>
+<line x1="104" y1="52" x2="150" y2="68" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="16" y="118" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">緻密斑</text>
+<line x1="60" y1="118" x2="224" y2="111" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="16" y="170" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">糸球体</text>
+<line x1="62" y1="170" x2="186" y2="148" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="16" y="206" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ボウマン嚢</text>
+<line x1="90" y1="206" x2="164" y2="164" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="16" y="246" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">近位尿細管</text>
+<line x1="100" y1="242" x2="156" y2="218" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<circle cx="200" cy="140" r="54" fill="none" stroke="#5F5E5A" stroke-width="1" stroke-dasharray="5 4"/>
+<text x="292" y="160" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎小体</text>
+<line x1="288" y1="160" x2="252" y2="150" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="16" y="382" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">下行脚</text>
+<text x="16" y="402" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（細い部分）</text>
+<line x1="90" y1="382" x2="196" y2="382" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="300" y="28" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">輸出細動脈</text>
+<line x1="296" y1="34" x2="288" y2="40" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="300" y="222" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">上行脚</text>
+<text x="300" y="242" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（太い部分）</text>
+<line x1="296" y1="222" x2="268" y2="222" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="330" y="382" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ヘンレ係蹄</text>
+<line x1="326" y1="382" x2="266" y2="452" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="470" y="206" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">集合管</text>
+<line x1="466" y1="206" x2="456" y2="206" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="470" y="92" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">遠位尿細管</text>
+<line x1="466" y1="98" x2="400" y2="150" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="480" y="490" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎乳頭</text>
+<text x="480" y="510" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（腎杯へ）</text>
+</svg>

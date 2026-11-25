@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>腎臓の割面と腎動脈・腎静脈（右腎を後ろから見た模式図）</title><desc>右腎を後ろから見た割面の模式図。外側が腎皮質、内側に腎錐体と、錐体のあいだの腎柱がある。錐体の先端（腎乳頭）を小腎杯が包み、小腎杯が集まって腎盂、尿管へ続く（大腎杯は省略）。腹大動脈から腎動脈が、下大静脈へ腎静脈が腎門に出入りし、腎動脈は下大静脈の後ろを通る。腎動脈の枝の葉間動脈は腎柱を通って皮質へ向かう。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="600" fill="#fff"/>
+<rect x="20" y="20" width="26" height="540" rx="10" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" />
+<rect x="58" y="20" width="26" height="540" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="33" y="574" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腹大動脈</text>
+<text x="71" y="590" text-anchor="middle" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">下大静脈</text>
+<g transform="translate(-40,0)">
+<path d="M335 205 C305 150 335 62 415 58 C505 54 575 140 577 255 C579 370 505 462 415 466 C335 468 305 372 335 315 L350 300 C340 280 340 240 350 220 Z" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="2" />
+<polygon points="376.0,206.2 359.9,223.7 369.4,183.2 413.4,109.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="417.4,209.9 423.1,102.0 474.0,93.9 514.7,120.9" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="445.8,240.3 535.8,153.7 551.5,197.6 557.8,241.6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="446.5,281.8 558.4,276.6 552.7,320.5 538.6,364.7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="419.2,313.2 518.9,398.0 480.3,428.0 429.8,425.7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="378.0,318.3 419.8,419.6 371.0,346.4 360.6,302.2" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" stroke-linejoin="round"/>
+<path d="M379.9 219.7 L365.9 240.9 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M379.9 219.7 L365.9 240.9 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="377.4" cy="211.1" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="375.2" cy="203.4" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<path d="M411.3 222.5 L381.6 242.2 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M411.3 222.5 L381.6 242.2 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="415.2" cy="214.4" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="418.7" cy="207.2" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<path d="M432.8 245.5 L392.4 253.8 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M432.8 245.5 L392.4 253.8 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="441.1" cy="242.1" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="448.6" cy="239.1" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<path d="M433.3 277.0 L392.7 269.5 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M433.3 277.0 L392.7 269.5 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="441.8" cy="280.1" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="449.3" cy="282.9" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<path d="M412.7 300.8 L382.3 281.4 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M412.7 300.8 L382.3 281.4 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="416.9" cy="308.8" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="420.6" cy="315.9" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<path d="M381.4 304.7 L366.7 283.3 L352 262" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M381.4 304.7 L366.7 283.3 L352 262" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="379.2" cy="313.4" r="13" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="377.2" cy="321.2" r="6.5" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<ellipse cx="358" cy="262" rx="16" ry="21" fill="#FAC775" stroke="#854F0B" stroke-width="1.4"/>
+<path d="M340 266 L298 306 L200 462 L160 556" fill="none" stroke="#854F0B" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 266 L298 306 L200 462 L160 556" fill="none" stroke="#FAC775" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M84 236 L200 236 L332 246" fill="none" stroke="#A32D2D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M84 236 L200 236 L332 246" fill="none" stroke="#E24B4A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M120 190 L220 190 L340 224" fill="none" stroke="#185FA5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M120 190 L220 190 L340 224" fill="none" stroke="#B5D4F4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<line x1="398.1" y1="192.3" x2="405.3" y2="109.6" stroke="#A32D2D" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="443.2" y1="214.3" x2="532.4" y2="131.1" stroke="#A32D2D" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="462.0" y1="260.8" x2="567.0" y2="258.9" stroke="#A32D2D" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="444.8" y1="307.9" x2="535.4" y2="386.7" stroke="#A32D2D" stroke-width="2.4" stroke-linecap="round"/>
+<line x1="400.5" y1="331.5" x2="411.4" y2="419.8" stroke="#A32D2D" stroke-width="2.4" stroke-linecap="round"/>
+<path d="M335 205 C305 150 335 62 415 58 C505 54 575 140 577 255 C579 370 505 462 415 466 C335 468 305 372 335 315 L350 300 C340 280 340 240 350 220 Z" fill="none" stroke="#2C2C2A" stroke-width="2" />
+</g>
+<text x="560" y="64" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎皮質</text>
+<line x1="556" y1="64" x2="480" y2="104" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="560" y="120" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎柱</text>
+<line x1="556" y1="120" x2="370.6375826984104" y2="113.55176877669689" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="560" y="200" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎錐体</text>
+<text x="560" y="220" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">（髄質）</text>
+<line x1="556" y1="206" x2="458.62614327518054" y2="218.92024175717012" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="560" y="296" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎乳頭</text>
+<line x1="556" y1="296" x2="411.20063510951223" y2="283.5472690295171" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="560" y="356" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">小腎杯</text>
+<line x1="556" y1="356" x2="373.595691888151" y2="302.61558927151066" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="560" y="420" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">葉間動脈</text>
+<line x1="556" y1="420" x2="442.56514962673265" y2="340.7270834788609" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="140" y="172" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎静脈</text>
+<text x="120" y="266" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎動脈</text>
+<text x="262" y="340" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎盂</text>
+<line x1="300" y1="336" x2="310" y2="278" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="196" y="500" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿管（膀胱へ）</text>
+</svg>

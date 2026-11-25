@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 740" width="680" height="740" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>尿路全体（男性・前から見た模式図）</title><desc>尿路全体を前から見た模式図。左右の腎臓から腎盂を経て尿管が下り、膀胱に入る。図の右側の尿管に、教科書（Dartmouth）で尿管の狭窄部とされる3か所（腎盂尿管移行部、骨盤入口で腸骨血管と交差する部、膀胱壁を貫く部）に番号を付けた。膀胱の底に左右の尿管口と内尿道口を結ぶ膀胱三角があり、尿道は男性では前立腺を貫いて続く。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="740" fill="#fff"/>
+<path d="M340 16 L340 262" fill="none" stroke="#A32D2D" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 16 L340 262" fill="none" stroke="#E24B4A" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M340 262 L470 382" fill="none" stroke="#A32D2D" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 262 L470 382" fill="none" stroke="#E24B4A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M340 262 L210 382" fill="none" stroke="#A32D2D" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 262 L210 382" fill="none" stroke="#E24B4A" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<ellipse cx="190" cy="96" rx="46" ry="76" fill="#F5C4B3" stroke="#993C1D" stroke-width="2"/>
+<ellipse cx="490" cy="96" rx="46" ry="76" fill="#F5C4B3" stroke="#993C1D" stroke-width="2"/>
+<ellipse cx="212" cy="140" rx="14" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<ellipse cx="468" cy="140" rx="14" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<path d="M468 150 L455 250 L421 335 L395 440 L408 466" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M468 150 L455 250 L421 335 L395 440 L408 466" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M212 150 L225 250 L259 335 L285 440 L272 466" fill="none" stroke="#854F0B" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/><path d="M212 150 L225 250 L259 335 L285 440 L272 466" fill="none" stroke="#FAC775" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M340 428 C280 428 262 470 262 510 C262 550 295 570 340 570 C385 570 418 550 418 510 C418 470 400 428 340 428 Z" fill="#F4C0D1" stroke="#993556" stroke-width="2" />
+<polygon points="298,530 382,530 340,566" fill="#fff" fill-opacity="0.6" stroke="#993556" stroke-width="1.2" stroke-dasharray="4 3"/>
+<circle cx="298" cy="530" r="4.5" fill="#993556"/>
+<circle cx="382" cy="530" r="4.5" fill="#993556"/>
+<circle cx="340" cy="566" r="4.5" fill="#993556"/>
+<ellipse cx="340" cy="618" rx="44" ry="32" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.8"/>
+<path d="M340 568 L340 712" fill="none" stroke="#854F0B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M340 568 L340 712" fill="none" stroke="#FAC775" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="486" cy="176" r="12" fill="#fff" stroke="#E24B4A" stroke-width="2.5"/>
+<text x="486" y="176" text-anchor="middle" font-size="14" font-weight="500" fill="#A32D2D" dominant-baseline="central">①</text>
+<circle cx="437" cy="312" r="12" fill="#fff" stroke="#E24B4A" stroke-width="2.5"/>
+<text x="437" y="312" text-anchor="middle" font-size="14" font-weight="500" fill="#A32D2D" dominant-baseline="central">②</text>
+<circle cx="424" cy="478" r="12" fill="#fff" stroke="#E24B4A" stroke-width="2.5"/>
+<text x="424" y="478" text-anchor="middle" font-size="14" font-weight="500" fill="#A32D2D" dominant-baseline="central">③</text>
+<text x="20" y="96" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎臓</text>
+<line x1="54" y1="96" x2="148" y2="96" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="172" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腎盂</text>
+<line x1="54" y1="172" x2="200" y2="148" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="300" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿管</text>
+<line x1="54" y1="300" x2="228" y2="300" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="440" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">膀胱</text>
+<line x1="54" y1="440" x2="264" y2="480" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="570" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">膀胱三角</text>
+<line x1="94" y1="570" x2="306" y2="536" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="640" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前立腺</text>
+<line x1="64" y1="640" x2="298" y2="628" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="366" y="676" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿道</text>
+<text x="20" y="690" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿道の長さ: 男性 約20 cm／女性 約4 cm</text>
+<text x="580" y="530" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">尿管口</text>
+<line x1="576" y1="530" x2="386" y2="530" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="580" y="596" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内尿道口</text>
+<line x1="576" y1="592" x2="346" y2="568" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="354" y="44" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腹大動脈</text>
+<text x="480" y="402" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">総腸骨動脈</text>
+<text x="520" y="200" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">① 腎盂尿管移行部</text>
+<line x1="516" y1="196" x2="498" y2="180" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="500" y="312" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">② 腸骨血管との交差部</text>
+<line x1="496" y1="312" x2="451" y2="312" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="500" y="478" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">③ 膀胱壁を貫く部</text>
+<line x1="496" y1="478" x2="436" y2="478" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="500" y="500" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（尿管の内腔が最も狭い所）</text>
+<text x="20" y="724" text-anchor="start" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">番号は教科書（Dartmouth）の狭窄部3か所。2021年のCT研究では②は結石の好発部位でない</text>
+</svg>

@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>消化と吸収の部位の対応（概略図）</title><desc>消化管の部位ごとの、消化酵素と吸収の対応を表にした図。口：唾液アミラーゼが糖質の分解を始める。胃：ペプシンが蛋白質の分解を始め、内因子が分泌される。十二指腸：膵液と胆汁が入り、鉄とカルシウムが吸収される。空腸：糖質と蛋白質が主に吸収される。回腸の末端：胆汁酸塩とビタミンB12が吸収される。大腸：水と電解質が吸収される。小腸全体では水と脂質が吸収される。</desc><rect width="680" height="640" fill="#fff"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<rect x="20" y="20" width="110" height="36" fill="#F1EFE8" stroke="#5F5E5A"/><rect x="130" y="20" width="270" height="36" fill="#F1EFE8" stroke="#5F5E5A"/><rect x="400" y="20" width="260" height="36" fill="#F1EFE8" stroke="#5F5E5A"/>
+<text x="75" y="38" text-anchor="middle">部位</text><text x="265" y="38" text-anchor="middle">消化（酵素・分泌）</text><text x="530" y="38" text-anchor="middle">吸収</text>
+<rect x="20" y="56" width="110" height="64" fill="#F4C0D1" stroke="#993556"/><rect x="130" y="56" width="270" height="64" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="56" width="260" height="64" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="88" text-anchor="middle">口</text><text x="142" y="78" font-size="13">唾液アミラーゼ：</text><text x="142" y="100" font-size="13">デンプンの分解を始める</text><text x="412" y="88" font-size="13" fill="#5F5E5A">—</text>
+<rect x="20" y="120" width="110" height="76" fill="#FAC775" stroke="#854F0B"/><rect x="130" y="120" width="270" height="76" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="120" width="260" height="76" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="158" text-anchor="middle">胃</text><text x="142" y="140" font-size="13">塩酸・ペプシン：</text><text x="142" y="160" font-size="13">蛋白質の分解を始める</text><text x="142" y="180" font-size="13">内因子（ビタミンB12用）</text><text x="412" y="158" font-size="13" fill="#5F5E5A">（アルコール・アスピリンなどが少量）</text>
+<rect x="20" y="196" width="110" height="92" fill="#CECBF6" stroke="#534AB7"/><rect x="130" y="196" width="270" height="92" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="196" width="260" height="92" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="242" text-anchor="middle">十二指腸</text><text x="142" y="214" font-size="13">膵液：アミラーゼ・リパーゼ・</text><text x="142" y="234" font-size="13">トリプシンなど、重炭酸</text><text x="142" y="254" font-size="13">胆汁：脂質の乳化</text><text x="142" y="274" font-size="13">刷子縁の酵素：最終の消化</text><text x="412" y="230" font-size="13">鉄・カルシウム</text>
+<rect x="20" y="288" width="110" height="60" fill="#9FE1CB" stroke="#0F6E56"/><rect x="130" y="288" width="270" height="60" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="288" width="260" height="60" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="318" text-anchor="middle">空腸</text><text x="142" y="318" font-size="13">（同上：膵液・刷子縁の酵素）</text><text x="412" y="308" font-size="13">糖質・蛋白質（主に）</text><text x="412" y="330" font-size="13" fill="#5F5E5A">グルコース・アミノ酸など</text>
+<rect x="20" y="348" width="110" height="64" fill="#C0DD97" stroke="#3B6D11"/><rect x="130" y="348" width="270" height="64" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="348" width="260" height="64" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="380" text-anchor="middle">回腸（末端）</text><text x="142" y="380" font-size="13" fill="#5F5E5A">（同上）</text><text x="412" y="368" font-size="13">胆汁酸塩・ビタミンB12</text><text x="412" y="392" font-size="12" fill="#5F5E5A">胆汁酸塩は門脈から肝臓へ戻る</text>
+<rect x="20" y="412" width="110" height="64" fill="#F5C4B3" stroke="#993C1D"/><rect x="130" y="412" width="270" height="64" fill="#fff" stroke="#D3D1C7"/><rect x="400" y="412" width="260" height="64" fill="#fff" stroke="#D3D1C7"/>
+<text x="75" y="444" text-anchor="middle">大腸</text><text x="142" y="434" font-size="13">消化酵素は出さない。</text><text x="142" y="456" font-size="13">腸内細菌が発酵する</text><text x="412" y="444" font-size="13">水・電解質（残りの水分）</text>
+</g>
+<rect x="20" y="500" width="640" height="66" fill="#E1F5EE" stroke="#0F6E56" stroke-width="1" opacity="0.6"/>
+<text x="34" y="518" font-size="14" font-weight="500" fill="#2C2C2A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">小腸全体：水（約90%）と脂質を吸収する</text>
+<text x="34" y="540" font-size="13" fill="#2C2C2A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">水に溶ける栄養素 → 毛細血管 → 門脈 → 肝臓</text><text x="34" y="558" font-size="13" fill="#2C2C2A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">長鎖脂肪酸など → リンパ管 → 胸管 → 血液（短鎖脂肪酸は毛細血管へ）</text>
+<text x="20" y="596" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">部位の対応を表にした概略図です。位置や形を示す図ではありません。</text>
+<text x="20" y="616" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">空腸と回腸の境ははっきりしません。</text>
+</svg>

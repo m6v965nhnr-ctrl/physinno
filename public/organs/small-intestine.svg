@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 480" width="680" height="480" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>小腸の区分（前から見た模式図）</title><desc>胃の幽門に続く十二指腸が、膵頭を囲むC字形をつくり、空腸、回腸と続いて、回盲弁で盲腸につながる。十二指腸乳頭は十二指腸の壁にある（図では下行部の内側に描くが、位置は目安）。</desc><rect width="680" height="480" fill="#fff"/>
+<path d="M250 44 L345 44 Q360 44 360 58 L360 70 Q360 84 345 84 L250 84 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="164" y="84" width="122" height="128" rx="10" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<g fill="none" stroke-linejoin="round" stroke-linecap="round"><path d="M250 70 L150 70 L150 230 L300 230 L300 170" stroke="#534AB7" stroke-width="26"/><path d="M250 70 L150 70 L150 230 L300 230 L300 170" stroke="#CECBF6" stroke-width="23"/>
+<path d="M300 170 L480 170 L480 205 L340 205 L340 240 L480 240" stroke="#0F6E56" stroke-width="22"/><path d="M300 170 L480 170 L480 205 L340 205 L340 240 L480 240" stroke="#9FE1CB" stroke-width="19"/>
+<path d="M480 240 L480 275 L330 275 L330 310 L480 310 L480 345 L250 345 L250 385 L196 385" stroke="#3B6D11" stroke-width="22"/><path d="M480 240 L480 275 L330 275 L330 310 L480 310 L480 345 L250 345 L250 385 L196 385" stroke="#C0DD97" stroke-width="19"/></g>
+<path d="M120 320 L120 405 Q147 442 176 405 L176 320 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="178" cy="385" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.5"/>
+<circle cx="162" cy="150" r="5" fill="#E24B4A" stroke="#A32D2D" stroke-width="0.5"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central"><text x="272" y="64">胃（幽門側）</text><text x="225" y="148" text-anchor="middle">膵頭</text><g text-anchor="end"><text x="100" y="150">十二指腸乳頭</text><text x="100" y="200">十二指腸</text><text x="100" y="385">盲腸（大腸）</text></g><text x="505" y="205">空腸</text><text x="505" y="310">回腸</text><text x="205" y="430">回盲弁</text></g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"><line x1="105" y1="150" x2="158" y2="150"/><line x1="105" y1="200" x2="136" y2="200"/><line x1="105" y1="385" x2="120" y2="385"/><line x1="500" y1="205" x2="492" y2="205"/><line x1="500" y1="310" x2="492" y2="310"/><line x1="210" y1="422" x2="182" y2="391"/></g>
+<text x="20" y="465" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">空腸と回腸の境ははっきりしません。蛇行する腸管は、区分を示すための単純な形です。</text>
+</svg>

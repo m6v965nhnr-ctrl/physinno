@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 712" width="680" height="712" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>排尿の神経支配：蓄尿期と排尿期の対比（模式図）</title><desc>排尿の神経支配の模式図。左が蓄尿期、右が排尿期。蓄尿期は、大脳が橋排尿中枢を抑制し、胸腰髄の交感神経中枢から下腹神経が興奮して排尿筋は弛緩、内尿道括約筋は収縮し、仙髄のオヌフ核から陰部神経が興奮して外尿道括約筋は収縮する。仙髄の副交感神経中枢から出る骨盤神経は抑制される。排尿期は、抑制が解除されて橋排尿中枢が活動し、胸腰髄と仙髄に信号が伝わって、下腹神経と陰部神経が抑制され、内・外尿道括約筋が弛緩し、骨盤神経が興奮して排尿筋が収縮する。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="712" fill="#fff"/>
+<rect x="8" y="8" width="325" height="650" rx="10" fill="none" stroke="#B4B2A9" stroke-width="1"/>
+<text x="170" y="26" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">蓄尿期</text>
+<rect x="103" y="44" width="135" height="30" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="170" y="59" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳</text>
+<rect x="93" y="108" width="155" height="34" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<text x="170" y="125" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">橋排尿中枢</text>
+<rect x="158" y="158" width="26" height="256" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="170" y1="76" x2="170" y2="104" stroke="#A32D2D" stroke-width="3"/><line x1="156" y1="104" x2="184" y2="104" stroke="#A32D2D" stroke-width="4"/>
+<text x="194" y="92" text-anchor="start" font-size="13" font-weight="500" fill="#A32D2D" dominant-baseline="central">抑制</text>
+<rect x="120" y="190" width="100" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="170" y="203" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胸腰髄</text>
+<text x="170" y="219" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">交感神経中枢</text>
+<rect x="112" y="318" width="116" height="58" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="170" y="332" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">仙髄</text>
+<text x="170" y="348" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">副交感神経中枢と</text>
+<text x="170" y="364" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">オヌフ核（体性）</text>
+<path d="M108 488 C108 458 234 458 234 488 C234 540 204 560 171 560 C138 560 108 540 108 488 Z" fill="#F4C0D1" stroke="#993556" stroke-width="2" />
+<text x="171" y="492" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">排尿筋</text>
+<text x="171" y="512" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">弛緩</text>
+<path d="M171 560 L171 652" fill="none" stroke="#854F0B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M171 560 L171 652" fill="none" stroke="#FAC775" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="156" y="570" width="30" height="12" rx="3" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2"/>
+<rect x="156" y="612" width="30" height="12" rx="3" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2"/>
+<text x="122" y="566" text-anchor="end" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内尿道括約筋</text>
+<text x="122" y="581" text-anchor="end" font-size="12.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">収縮</text>
+<text x="122" y="608" text-anchor="end" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外尿道括約筋</text>
+<text x="122" y="623" text-anchor="end" font-size="12.5" font-weight="500" fill="#A32D2D" dominant-baseline="central">収縮</text>
+<path d="M120 210 L38 210 L38 500 L106 500" fill="none" stroke="#993C1D" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ao)"/>
+<path d="M112 350 L72 350 L72 526 L108 526" fill="none" stroke="#888780" stroke-width="2" stroke-dasharray="5 4"/>
+<path d="M228 350 L304 350 L304 622 L192 622" fill="none" stroke="#0F6E56" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ag)"/>
+<text x="44" y="262" text-anchor="start" font-size="13" font-weight="500" fill="#993C1D" dominant-baseline="central">下腹神経</text>
+<text x="44" y="278" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（交感）</text>
+<text x="78" y="430" text-anchor="start" font-size="13" font-weight="500" fill="#185FA5" dominant-baseline="central">骨盤神経</text>
+<text x="78" y="446" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（副交感）</text>
+<text x="234" y="420" text-anchor="start" font-size="13" font-weight="500" fill="#0F6E56" dominant-baseline="central">陰部神経</text>
+<text x="234" y="436" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（体性）</text>
+<text x="44" y="300" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">活動</text>
+<text x="78" y="462" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抑制</text>
+<text x="234" y="452" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">活動</text>
+<rect x="342" y="8" width="325" height="650" rx="10" fill="none" stroke="#B4B2A9" stroke-width="1"/>
+<text x="504" y="26" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">排尿期</text>
+<rect x="437" y="44" width="135" height="30" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="504" y="59" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">大脳</text>
+<rect x="427" y="108" width="155" height="34" rx="8" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.5"/>
+<text x="504" y="125" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">橋排尿中枢</text>
+<rect x="492" y="158" width="26" height="256" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<line x1="504" y1="76" x2="504" y2="104" stroke="#888780" stroke-width="2.5" stroke-dasharray="4 3" marker-end="url(#ak)"/>
+<text x="528" y="84" text-anchor="start" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">排尿の指令で</text>
+<text x="528" y="99" text-anchor="start" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">抑制を解除</text>
+<path d="M504 144 L504 186" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" marker-end="url(#ag)"/>
+<rect x="454" y="190" width="100" height="40" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="504" y="203" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胸腰髄</text>
+<text x="504" y="219" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">交感神経中枢</text>
+<path d="M504 232 L504 314" fill="none" stroke="#0F6E56" stroke-width="3" stroke-linecap="round" marker-end="url(#ag)"/>
+<rect x="446" y="318" width="116" height="58" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="504" y="332" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">仙髄</text>
+<text x="504" y="348" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">副交感神経中枢と</text>
+<text x="504" y="364" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">オヌフ核（体性）</text>
+<path d="M442 488 C442 458 568 458 568 488 C568 540 538 560 505 560 C472 560 442 540 442 488 Z" fill="#E8A0B8" stroke="#993556" stroke-width="2" />
+<text x="505" y="492" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">排尿筋</text>
+<text x="505" y="512" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">収縮</text>
+<path d="M505 560 L505 652" fill="none" stroke="#854F0B" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><path d="M505 560 L505 652" fill="none" stroke="#FAC775" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="464" y="570" width="14" height="12" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/><rect x="532" y="570" width="14" height="12" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<rect x="464" y="612" width="14" height="12" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/><rect x="532" y="612" width="14" height="12" rx="3" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<text x="456" y="566" text-anchor="end" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">内尿道括約筋</text>
+<text x="456" y="581" text-anchor="end" font-size="12.5" font-weight="500" fill="#0F6E56" dominant-baseline="central">弛緩</text>
+<text x="456" y="608" text-anchor="end" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">外尿道括約筋</text>
+<text x="456" y="623" text-anchor="end" font-size="12.5" font-weight="500" fill="#0F6E56" dominant-baseline="central">弛緩</text>
+<path d="M454 210 L372 210 L372 500 L440 500" fill="none" stroke="#888780" stroke-width="2" stroke-dasharray="5 4"/>
+<path d="M446 350 L406 350 L406 526 L442 526" fill="none" stroke="#185FA5" stroke-width="3.5" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M562 350 L638 350 L638 622 L548 622" fill="none" stroke="#888780" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="378" y="262" text-anchor="start" font-size="13" font-weight="500" fill="#993C1D" dominant-baseline="central">下腹神経</text>
+<text x="378" y="278" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（交感）</text>
+<text x="412" y="430" text-anchor="start" font-size="13" font-weight="500" fill="#185FA5" dominant-baseline="central">骨盤神経</text>
+<text x="412" y="446" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（副交感）</text>
+<text x="568" y="420" text-anchor="start" font-size="13" font-weight="500" fill="#0F6E56" dominant-baseline="central">陰部神経</text>
+<text x="568" y="436" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">（体性）</text>
+<text x="378" y="300" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抑制</text>
+<text x="412" y="462" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">活動</text>
+<text x="568" y="452" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">抑制</text>
+<text x="10" y="678" text-anchor="start" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">太い矢印＝その神経が働く。点線＝抑制されている。</text>
+<text x="10" y="696" text-anchor="start" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">膀胱の伸展の情報は、骨盤神経の求心路で仙髄から脳へ伝わる。</text>
+</svg>

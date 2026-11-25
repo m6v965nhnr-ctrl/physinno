@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>体液の区分とおもな電解質（成人男性の模式図）</title><desc>体液の区分の模式図。体重の約60％が水で、その約2/3が細胞内液（体重の約40％）、約1/3が細胞外液（体重の約20％）。細胞外液の約25％が血漿、約75％が間質液。細胞内はK＋が、細胞外はNa＋とCl−が多く、細胞膜のNa＋‐K＋ポンプがこの差を保つ。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="600" fill="#fff"/>
+<rect x="20" y="50" width="110" height="216" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.5"/>
+<text x="75.0" y="150.0" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">水</text>
+<text x="75.0" y="166.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">体重の約60％</text>
+<rect x="20" y="266" width="110" height="144" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<text x="75.0" y="330.0" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">水以外</text>
+<text x="75.0" y="346.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">体重の約40％</text>
+<text x="20" y="34" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">体重　100％</text>
+<rect x="190" y="50" width="110" height="144" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<text x="245.0" y="106.0" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞内液</text>
+<text x="245.0" y="122.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">水の約2/3</text>
+<text x="245.0" y="138.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">（体重の約40％）</text>
+<rect x="190" y="194" width="110" height="72" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<text x="245.0" y="214.0" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞外液</text>
+<text x="245.0" y="230.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">水の約1/3</text>
+<text x="245.0" y="246.0" text-anchor="middle" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">（体重の約20％）</text>
+<text x="190" y="34" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">水の内訳</text>
+<rect x="360" y="194" width="110" height="54" fill="#F4C0D1" stroke="#993556" stroke-width="1.5"/>
+<text x="415.0" y="221.0" text-anchor="middle" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">間質液</text>
+<rect x="360" y="248" width="110" height="18" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.5"/>
+<text x="360" y="34" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞外液の内訳</text>
+<text x="480" y="220" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">間質液　細胞外液の約75％</text>
+<text x="480" y="256" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血漿　細胞外液の約25％</text>
+<line x1="472" y1="257" x2="478" y2="257" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<line x1="130" y1="50" x2="190" y2="50" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<line x1="130" y1="266" x2="190" y2="266" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<line x1="300" y1="194" x2="360" y2="194" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<line x1="300" y1="266" x2="360" y2="266" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="20" y="430" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">70 kgの男性では、総水分は約42 L（細胞内約28 L）。女性・高齢者・肥満では水の割合が低い。</text>
+<rect x="20" y="452" width="270" height="118" rx="8" fill="#C0DD97" fill-opacity="0.45" stroke="#3B6D11" stroke-width="1.5"/>
+<rect x="390" y="452" width="270" height="118" rx="8" fill="#F5C4B3" fill-opacity="0.45" stroke="#993C1D" stroke-width="1.5"/>
+<text x="34" y="474" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞内液</text>
+<text x="34" y="498" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">K＋　約140 mEq/L（多い）</text>
+<text x="34" y="520" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Na＋　約12 mEq/L（少ない）</text>
+<text x="34" y="542" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">リン酸・マグネシウム・蛋白が多い</text>
+<text x="404" y="474" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞外液</text>
+<text x="404" y="498" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Na＋　約140 mEq/L（多い）</text>
+<text x="404" y="520" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">K＋　3.5〜5 mEq/L（少ない）</text>
+<text x="404" y="542" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Cl−・HCO3−が多い</text>
+<line x1="318" y1="452" x2="318" y2="570" stroke="#2C2C2A" stroke-width="2"/><line x1="362" y1="452" x2="362" y2="570" stroke="#2C2C2A" stroke-width="2"/>
+<circle cx="340" cy="511" r="20" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5"/>
+<text x="340" y="511" text-anchor="middle" font-size="11" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ポンプ</text>
+<path d="M366 492 L398 492" fill="none" stroke="#2C2C2A" stroke-width="2" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="370" y="478" text-anchor="start" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">Na＋</text>
+<path d="M314 540 L282 540" fill="none" stroke="#2C2C2A" stroke-width="2" stroke-linecap="round" marker-end="url(#ak)"/>
+<text x="286" y="556" text-anchor="start" font-size="12" font-weight="500" fill="#2C2C2A" dominant-baseline="central">K＋</text>
+<text x="340" y="446" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">細胞膜</text>
+</svg>

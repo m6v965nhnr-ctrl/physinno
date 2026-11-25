@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="680" height="580" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>糸球体濾過の模式図</title><desc>糸球体濾過の模式図。左は腎小体全体で、輸入細動脈から糸球体に入った血液が輸出細動脈から出て、ボウマン嚢に濾過された濾液が近位尿細管へ流れる。右は濾過膜の拡大で、毛細血管内の血液から、有窓内皮、基底膜、足細胞の濾過スリットを通って水と小さな物質がボウマン腔へ濾過され、血球とアルブミンは通らない。下は有効濾過圧で、糸球体血圧55 mmHgに、ボウマン嚢内圧15 mmHgと血漿膠質浸透圧30 mmHgが逆らい、差は約10 mmHgである。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="580" fill="#fff"/>
+<circle cx="190" cy="150" r="84" fill="#9FE1CB" fill-opacity="0.55" stroke="#0F6E56" stroke-width="2"/>
+<circle cx="190" cy="150" r="54" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.5"/>
+<path d="M24 120 L112 128" fill="none" stroke="#A32D2D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 120 L112 128" fill="none" stroke="#E24B4A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M112 172 L24 182" fill="none" stroke="#A32D2D" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/><path d="M112 172 L24 182" fill="none" stroke="#E24B4A" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M274 150 L330 150" fill="none" stroke="#185FA5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/><path d="M274 150 L330 150" fill="none" stroke="#B5D4F4" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="20" y="92" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">輸入細動脈</text>
+<text x="20" y="212" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">輸出細動脈</text>
+<text x="150" y="262" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ボウマン嚢</text>
+<text x="190" y="150" text-anchor="middle" font-size="14" font-weight="500" fill="#fff" dominant-baseline="central">糸球体</text>
+<text x="284" y="130" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">濾液</text>
+<text x="284" y="176" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">近位尿細管へ</text>
+<line x1="190" y1="250" x2="190" y2="236" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<rect x="376" y="40" width="288" height="236" rx="8" fill="#fff" stroke="#888780" stroke-width="1" stroke-dasharray="5 4"/>
+<rect x="384" y="56" width="100" height="204" fill="#F5C4B3" fill-opacity="0.5"/>
+<rect x="508" y="56" width="142" height="204" fill="#9FE1CB" fill-opacity="0.4"/>
+<rect x="484" y="56" width="8" height="52" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="484" y="124" width="8" height="48" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="484" y="188" width="8" height="48" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="484" y="252" width="8" height="8" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="492" y="56" width="16" height="204" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<rect x="508" y="56" width="22" height="58" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="508" y="130" width="22" height="48" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="508" y="194" width="22" height="48" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<rect x="508" y="258" width="22" height="2" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<circle cx="410" cy="92" r="15" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2"/>
+<circle cx="446" cy="206" r="15" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2"/>
+<circle cx="454" cy="142" r="5.5" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<circle cx="406" cy="150" r="5.5" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<circle cx="432" cy="240" r="5.5" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<circle cx="460" cy="66" r="5.5" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<path d="M466 116 L590 116" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M466 182 L590 182" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" marker-end="url(#ab)"/>
+<path d="M466 248 L590 248" fill="none" stroke="#185FA5" stroke-width="2" stroke-linecap="round" marker-end="url(#ab)"/>
+<line x1="446" y1="142" x2="480" y2="142" stroke="#A32D2D" stroke-width="2"/><line x1="480" y1="132" x2="480" y2="152" stroke="#A32D2D" stroke-width="3"/>
+<text x="434" y="34" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血液（毛細血管内）</text>
+<text x="579" y="34" text-anchor="middle" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ボウマン腔（濾液）</text>
+<text x="380" y="332" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">赤血球（赤丸）・アルブミン（紫の丸）は</text>
+<text x="380" y="352" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">濾過膜を通らず、血液側に残る</text>
+<text x="380" y="300" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">有窓内皮</text>
+<line x1="416" y1="288" x2="488" y2="260" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="458" y="300" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">基底膜</text>
+<line x1="480" y1="288" x2="500" y2="262" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<text x="516" y="300" text-anchor="start" font-size="12.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">足細胞（濾過スリット）</text>
+<line x1="566" y1="288" x2="524" y2="244" stroke="#888780" stroke-width="0.9" stroke-dasharray="4 3"/>
+<rect x="20" y="382" width="640" height="148" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<text x="36" y="406" text-anchor="start" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">有効濾過圧（正味の濾過を押す力）</text>
+<path d="M60 440 L200 440" fill="none" stroke="#185FA5" stroke-width="3" stroke-linecap="round" marker-end="url(#ab)"/>
+<text x="212" y="440" text-anchor="start" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">糸球体血圧　55 mmHg（濾過を押す）</text>
+<path d="M200 470 L60 470" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)"/>
+<text x="212" y="470" text-anchor="start" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">ボウマン嚢内圧　15 mmHg（逆らう）</text>
+<path d="M200 500 L60 500" fill="none" stroke="#A32D2D" stroke-width="3" stroke-linecap="round" marker-end="url(#ar)"/>
+<text x="212" y="500" text-anchor="start" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血漿膠質浸透圧　30 mmHg（逆らう）</text>
+<text x="476" y="440" text-anchor="start" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">有効濾過圧</text>
+<text x="476" y="466" text-anchor="start" font-size="13.5" font-weight="500" fill="#2C2C2A" dominant-baseline="central">＝55－(15＋30)</text>
+<text x="476" y="492" text-anchor="start" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">＝約10 mmHg</text>
+<text x="476" y="518" text-anchor="start" font-size="12" fill="#2C2C2A" dominant-baseline="central">数値はOpenStaxの値</text>
+</svg>
