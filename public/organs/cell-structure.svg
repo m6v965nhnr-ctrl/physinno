@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="680" height="540" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>細胞と細胞小器官（模式図）</title><desc>細胞の断面の模式図。細胞膜で囲まれた細胞質の中に、核（核膜・核小体）、粗面小胞体、滑面小胞体、ゴルジ体、ミトコンドリア、リソソーム、リボソーム、中心小体がある。</desc><rect width="680" height="540" fill="#fff"/>
+<ellipse cx="340" cy="275" rx="220" ry="195" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="3"/>
+<ellipse cx="340" cy="275" rx="213" ry="188" fill="none" stroke="#2C2C2A" stroke-width="1"/>
+<circle cx="300" cy="270" r="83" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5"/>
+<circle cx="300" cy="270" r="77" fill="none" stroke="#534AB7" stroke-width="1.5"/>
+<path d="M255 300 C265 285 280 305 292 292 C304 280 312 300 326 288 M268 330 C280 316 296 336 310 322 C322 312 336 330 350 316 M262 232 C276 222 290 240 304 228 C316 218 326 236 340 224" fill="none" stroke="#534AB7" stroke-width="1.5"/>
+<circle cx="285" cy="262" r="19" fill="#534AB7"/>
+<g fill="none" stroke-linecap="round"><g stroke="#0F6E56" stroke-width="11"><path d="M400 215 C440 245 440 305 400 335"/><path d="M420 200 C470 240 470 310 420 350"/><path d="M440 188 C498 238 498 312 440 362"/></g><g stroke="#9FE1CB" stroke-width="8"><path d="M400 215 C440 245 440 305 400 335"/><path d="M420 200 C470 240 470 310 420 350"/><path d="M440 188 C498 238 498 312 440 362"/></g></g>
+<g fill="#2C2C2A"><circle cx="437" cy="232" r="2.5"/><circle cx="442" cy="270" r="2.5"/><circle cx="436" cy="312" r="2.5"/><circle cx="470" cy="216" r="2.5"/><circle cx="486" cy="252" r="2.5"/><circle cx="487" cy="288" r="2.5"/><circle cx="476" cy="326" r="2.5"/></g>
+<g fill="none" stroke-linecap="round"><g stroke="#0F6E56" stroke-width="9"><path d="M400 372 C420 392 450 380 468 396"/><path d="M430 384 C440 410 470 412 490 400"/><path d="M468 396 C490 380 506 388 508 372"/></g><g stroke="#9FE1CB" stroke-width="6"><path d="M400 372 C420 392 450 380 468 396"/><path d="M430 384 C440 410 470 412 490 400"/><path d="M468 396 C490 380 506 388 508 372"/></g></g>
+<g fill="none" stroke-linecap="round"><g stroke="#854F0B" stroke-width="11"><path d="M392 134 C416 120 452 120 476 134"/><path d="M396 148 C418 136 450 136 472 148"/><path d="M400 162 C420 152 448 152 468 162"/><path d="M406 176 C422 168 446 168 462 176"/></g><g stroke="#FAC775" stroke-width="8"><path d="M392 134 C416 120 452 120 476 134"/><path d="M396 148 C418 136 450 136 472 148"/><path d="M400 162 C420 152 448 152 468 162"/><path d="M406 176 C422 168 446 168 462 176"/></g></g>
+<g fill="#FAC775" stroke="#854F0B" stroke-width="1.2"><circle cx="384" cy="160" r="6"/><circle cx="484" cy="160" r="6"/></g>
+<circle cx="520" cy="205" r="14" fill="#F4C0D1" stroke="#993556" stroke-width="1.5"/><g fill="#993556"><circle cx="515" cy="202" r="2"/><circle cx="523" cy="209" r="2"/><circle cx="522" cy="199" r="2"/></g>
+<g fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"><ellipse cx="240" cy="400" rx="44" ry="22"/><ellipse cx="360" cy="430" rx="38" ry="18"/></g>
+<g fill="none" stroke="#993C1D" stroke-width="1.2"><path d="M208 396 L218 384 L228 404 L238 384 L248 404 L258 384 L270 398"/><path d="M334 428 L342 418 L350 436 L358 418 L366 436 L374 418 L384 430"/></g>
+<g fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"><rect x="218" y="156" width="34" height="10"/><rect x="232" y="167" width="10" height="34"/></g>
+<g fill="#2C2C2A"><circle cx="505" cy="330" r="2.5"/><circle cx="196" cy="300" r="2.5"/><circle cx="188" cy="250" r="2.5"/><circle cx="210" cy="340" r="2.5"/><circle cx="250" cy="355" r="2.5"/><circle cx="170" cy="280" r="2.5"/><circle cx="520" cy="270" r="2.5"/><circle cx="380" cy="390" r="2.5"/></g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<g text-anchor="end"><text x="108" y="120">細胞膜</text><text x="108" y="168">中心小体</text><text x="108" y="222">核小体</text><text x="108" y="300">核</text><text x="108" y="405">ミトコンドリア</text><text x="108" y="465">細胞質</text></g>
+<g text-anchor="start"><text x="580" y="118">ゴルジ体</text><text x="580" y="192">リソソーム</text><text x="580" y="262">粗面小胞体</text><text x="580" y="330">リボソーム</text><text x="580" y="400">滑面小胞体</text></g>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"><line x1="112" y1="120" x2="188" y2="140"/><line x1="112" y1="168" x2="216" y2="162"/><line x1="112" y1="222" x2="268" y2="258"/><line x1="112" y1="300" x2="220" y2="290"/><line x1="112" y1="405" x2="196" y2="402"/><line x1="112" y1="465" x2="250" y2="440"/><line x1="576" y1="118" x2="470" y2="132"/><line x1="576" y1="192" x2="534" y2="200"/><line x1="576" y1="262" x2="486" y2="262"/><line x1="576" y1="330" x2="508" y2="330"/><line x1="576" y1="400" x2="496" y2="402"/></g>
+<text x="20" y="515" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">黒い点がリボソームです。位置関係を示す模式図で、大きさ・形・数は実物と異なります。</text>
+</svg>

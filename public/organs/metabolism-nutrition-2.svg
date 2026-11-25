@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 588" width="680" height="588" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>ビタミンの分類と欠乏症（対応表）</title><desc>脂溶性ビタミンA・D・E・Kと水溶性ビタミンB1・B2・ナイアシン・B12・葉酸・Cの働きと、欠乏で起こる主な病態の対応表。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="588" fill="#fff"/>
+<rect x="15" y="14" width="650" height="30" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="25" y="29" text-anchor="start" font-size="15" font-weight="500" fill="#993C1D" dominant-baseline="central">脂溶性ビタミン</text>
+<text x="655" y="29" text-anchor="end" font-size="12" fill="#993C1D" dominant-baseline="central">脂質とともに吸収され、体内の脂質に蓄積（過剰症が起こりうる）</text>
+<rect x="15" y="50" width="120" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="75" y="71.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">ビタミンA</text>
+<rect x="140" y="50" width="525" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="150" y="62.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 夜盲症</text>
+<text x="150" y="80.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">（乳幼児は角膜乾燥症から失明も）</text>
+<rect x="15" y="96" width="120" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="75" y="117.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">ビタミンD</text>
+<rect x="140" y="96" width="525" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="150" y="108.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">小腸でのCa・Pの吸収を支える</text>
+<text x="150" y="126.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → くる病（小児）・骨軟化症（成人）</text>
+<rect x="15" y="142" width="120" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="75" y="163.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">ビタミンE</text>
+<rect x="140" y="142" width="525" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="150" y="163.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">生体膜の脂質を酸化から守る（抗酸化）</text>
+<rect x="15" y="188" width="120" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="75" y="209.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">ビタミンK</text>
+<rect x="140" y="188" width="525" height="42" rx="6" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="150" y="200.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">肝で血液凝固因子（II・VII・IX・X）を</text>
+<text x="150" y="218.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">活性化する酵素の補酵素 → 凝固を促す</text>
+<rect x="15" y="240" width="650" height="30" rx="6" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="25" y="255" text-anchor="start" font-size="15" font-weight="500" fill="#185FA5" dominant-baseline="central">水溶性ビタミン</text>
+<text x="655" y="255" text-anchor="end" font-size="12" fill="#185FA5" dominant-baseline="central">体に蓄えられにくく、余ると尿に出る</text>
+<rect x="15" y="276" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="297.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">ビタミンB1</text>
+<rect x="140" y="276" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="288.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">グルコース代謝・TCA回路の補酵素</text>
+<text x="150" y="306.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 脚気、Wernicke-Korsakoff症候群</text>
+<rect x="15" y="322" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="343.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">ビタミンB2</text>
+<rect x="140" y="322" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="334.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">FMN・FADとして酸化還元（TCA回路・電子伝達系・β酸化）</text>
+<text x="150" y="352.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 口内炎・口角炎・舌炎・脂漏性皮膚炎</text>
+<rect x="15" y="368" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="389.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">ナイアシン</text>
+<rect x="140" y="368" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="380.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">NAD・NADPとして酸化還元</text>
+<text x="150" y="398.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → ペラグラ（皮膚炎・下痢・精神神経症状）</text>
+<rect x="15" y="414" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="435.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">ビタミンB12</text>
+<rect x="140" y="414" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="426.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 巨赤芽球性貧血、脊髄・脳の白質障害</text>
+<text x="150" y="444.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">内因子の低下でB12を吸収できない → 悪性貧血</text>
+<rect x="15" y="460" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="481.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">葉酸</text>
+<rect x="140" y="460" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="472.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">DNA合成に関わる</text>
+<text x="150" y="490.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 巨赤芽球性貧血</text>
+<rect x="15" y="506" width="120" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="75" y="527.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">ビタミンC</text>
+<rect x="140" y="506" width="525" height="42" rx="6" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="150" y="518.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">コラーゲン合成の補因子・抗酸化</text>
+<text x="150" y="536.0" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">欠乏 → 壊血病（血管がもろく出血傾向）</text>
+<text x="15" y="572" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">日本人の食事摂取基準（2025年版）の記述の要約。数値（摂取量）は省いています。</text>
+</svg>

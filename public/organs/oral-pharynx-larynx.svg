@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 580" width="680" height="580" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>口腔・咽頭・喉頭の矢状断（模式図）</title><desc>頭頸部を横から見た正中矢状断の模式図。左が前。鼻腔、硬口蓋、軟口蓋、口蓋垂、口腔、舌、舌根の舌扁桃、咽頭（鼻咽頭・中咽頭・下咽頭）、咽頭扁桃、喉頭蓋、甲状軟骨、声帯、輪状軟骨、気管、食道の位置関係を示す。</desc><rect width="680" height="580" fill="#fff"/>
+<path d="M300 40 C380 22 470 50 472 140 L472 235 C472 290 458 322 445 346 L445 535 L318 535 L318 392 C318 372 312 362 300 356 C284 350 262 346 246 336 C232 330 224 318 226 304 L231 268 C233 262 233 256 236 250 L232 246 L229 226 L226 206 C210 200 200 188 204 176 C210 168 222 160 224 140 C224 110 236 60 300 40 Z" fill="#fff" stroke="#5F5E5A" stroke-width="1.5"/>
+<path d="M232 186 L238 168 C270 152 320 140 349 130 L349 208 L270 208 L232 196 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="350" y="122" width="42" height="94" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2"/>
+<rect x="350" y="216" width="42" height="76" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<rect x="350" y="292" width="42" height="92" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<path d="M382 128 C392 130 392 146 390 156 C392 164 388 168 384 168 C378 160 378 140 382 128 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<path d="M246 208 L338 208 L338 218 L250 220 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M338 208 C354 206 370 212 376 224 C378 234 372 240 368 242 L338 220 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<path d="M360 236 C372 240 372 258 364 266 C356 264 354 246 360 236 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<path d="M240 264 C246 244 268 238 300 242 C326 246 342 252 350 264 L350 300 C336 306 300 302 270 294 C250 290 240 280 240 264 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.5"/>
+<g fill="#CECBF6" stroke="#534AB7" stroke-width="1"><circle cx="349" cy="264" r="5"/><circle cx="350" cy="276" r="5"/><circle cx="350" cy="288" r="5"/></g>
+<path d="M229 226 C226 218 236 216 242 220 L242 244 L232 246 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<path d="M232 250 L242 248 L242 270 C236 274 230 270 230 266 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="342" y="326" width="24" height="66" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<path d="M326 314 L342 310 L342 372 L330 376 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M341 326 L347 322 C349 306 354 294 358 282 L363 286 C358 298 356 312 354 330 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M366 336 L380 336 L380 378 L366 380 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M334 368 L342 368 L342 382 L334 382 Z" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.3"/>
+<path d="M342 346 L360 348 L342 355 Z" fill="#E24B4A" stroke="#A32D2D" stroke-width="1"/>
+<rect x="342" y="384" width="24" height="146" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<g fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"><rect x="334" y="394" width="8" height="12"/><rect x="334" y="414" width="8" height="12"/><rect x="334" y="434" width="8" height="12"/><rect x="334" y="454" width="8" height="12"/><rect x="334" y="474" width="8" height="12"/><rect x="334" y="494" width="8" height="12"/></g>
+<rect x="368" y="384" width="26" height="146" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<line x1="392" y1="122" x2="392" y2="384" stroke="#2C2C2A" stroke-width="1.5"/>
+<g stroke="#5F5E5A" stroke-width="1" stroke-dasharray="3 3"><line x1="350" y1="216" x2="392" y2="216"/><line x1="350" y1="292" x2="392" y2="292"/></g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<g text-anchor="end"><text x="205" y="150">鼻腔</text><text x="205" y="190">硬口蓋</text><text x="205" y="228">口腔</text><text x="205" y="258">口唇</text><text x="205" y="286">舌</text><text x="205" y="314">舌扁桃（舌根）</text><text x="205" y="345">甲状軟骨</text><text x="205" y="374">声帯</text><text x="205" y="440">気管</text></g>
+<g text-anchor="start"><text x="500" y="140">咽頭扁桃</text><text x="500" y="190">鼻咽頭（上咽頭）</text><text x="500" y="222">軟口蓋</text><text x="500" y="254">口蓋垂</text><text x="500" y="280">中咽頭</text><text x="500" y="306">喉頭蓋</text><text x="500" y="345">下咽頭</text><text x="500" y="374">輪状軟骨</text><text x="500" y="440">食道</text></g>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"><line x1="210" y1="150" x2="278" y2="170"/><line x1="210" y1="190" x2="280" y2="212"/><line x1="210" y1="228" x2="290" y2="231"/><line x1="210" y1="258" x2="232" y2="256"/><line x1="210" y1="286" x2="280" y2="268"/><line x1="210" y1="314" x2="344" y2="284"/><line x1="210" y1="345" x2="328" y2="345"/><line x1="210" y1="374" x2="346" y2="351"/><line x1="210" y1="440" x2="340" y2="440"/><line x1="496" y1="140" x2="392" y2="146"/><line x1="496" y1="190" x2="372" y2="190"/><line x1="496" y1="222" x2="372" y2="226"/><line x1="496" y1="254" x2="366" y2="256"/><line x1="496" y1="280" x2="386" y2="270"/><line x1="496" y1="306" x2="360" y2="298"/><line x1="496" y1="345" x2="386" y2="346"/><line x1="496" y1="374" x2="374" y2="372"/><line x1="496" y1="440" x2="384" y2="440"/></g>
+<text x="20" y="560" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">左が前（顔の側）。咽頭の3部の境（点線）は目安で、決まった高さを示す図ではありません。</text>
+</svg>

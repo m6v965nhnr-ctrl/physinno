@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="680" height="540" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>運動強度と酸素摂取量・血中乳酸・換気量（模式図）</title><desc>横軸は運動強度（段階的に増やす負荷）。酸素摂取量は強度とともに直線的に増え、最大酸素摂取量で頭打ちになる。血中乳酸は低い強度ではほぼ一定で、嫌気性代謝閾値付近から急に増える。換気量もAT付近から増え方が急になる。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="540" fill="#fff"/>
+<line x1="300" y1="60" x2="300" y2="438" stroke="#534AB7" stroke-width="1.4" stroke-dasharray="6 4"/>
+<text x="300" y="46" text-anchor="middle" font-size="13" font-weight="500" fill="#534AB7" dominant-baseline="central">嫌気性代謝閾値（AT）付近</text>
+<path d="M100 74 L100 180" stroke="#2C2C2A" stroke-width="1.4" fill="none"/><path d="M100 180 L648 180" stroke="#2C2C2A" stroke-width="1.4" fill="none"/>
+<path d="M100 68 l-4 8 h8 z" fill="#2C2C2A"/>
+<text x="8" y="122.0" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">酸素摂取量</text>
+<text x="8" y="140.0" text-anchor="start" font-size="11" fill="#5F5E5A" dominant-baseline="central">（L/分など）</text>
+<path d="M100 178 L470 96 L600 96" fill="none" stroke="#185FA5" stroke-width="2.6"/>
+<text x="480" y="84" text-anchor="start" font-size="13" font-weight="500" fill="#185FA5" dominant-baseline="central">最大酸素摂取量</text>
+<text x="480" y="114" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">（強度を上げても増えない）</text>
+<path d="M100 199 L100 305" stroke="#2C2C2A" stroke-width="1.4" fill="none"/><path d="M100 305 L648 305" stroke="#2C2C2A" stroke-width="1.4" fill="none"/>
+<path d="M100 193 l-4 8 h8 z" fill="#2C2C2A"/>
+<text x="8" y="247.0" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">血中乳酸</text>
+<text x="8" y="265.0" text-anchor="start" font-size="11" fill="#5F5E5A" dominant-baseline="central"></text>
+<path d="M100 298 L200 296 L300 291 C360 280 450 240 520 222 L600 206" fill="none" stroke="#993C1D" stroke-width="2.6"/>
+<text x="200" y="284" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">ほぼ一定</text>
+<text x="470" y="262" text-anchor="start" font-size="12" fill="#993C1D" dominant-baseline="central">急に増える</text>
+<path d="M100 329 L100 435" stroke="#2C2C2A" stroke-width="1.4" fill="none"/><path d="M100 435 L648 435" stroke="#2C2C2A" stroke-width="1.4" fill="none"/>
+<path d="M100 323 l-4 8 h8 z" fill="#2C2C2A"/>
+<text x="8" y="377.0" text-anchor="start" font-size="13" font-weight="500" fill="#2C2C2A" dominant-baseline="central">換気量</text>
+<text x="8" y="395.0" text-anchor="start" font-size="11" fill="#5F5E5A" dominant-baseline="central"></text>
+<path d="M100 430 L300 400 C360 385 450 362 540 350 L600 338" fill="none" stroke="#0F6E56" stroke-width="2.6"/>
+<text x="190" y="396" text-anchor="middle" font-size="12" fill="#5F5E5A" dominant-baseline="central">強度に比例して増える</text>
+<text x="400" y="400" text-anchor="start" font-size="12" fill="#0F6E56" dominant-baseline="central">増え方が急になる</text>
+<text x="370" y="462" text-anchor="middle" font-size="13" fill="#5F5E5A" dominant-baseline="central">運動強度（段階的に増やす負荷） →</text>
+<text x="14" y="488" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">ATは、酸素供給が足りる状態から不足する状態へ移る変化点で、最大運動の50〜60%程度の強度とされる。</text>
+<text x="14" y="508" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">血中乳酸が急増する点は乳酸性閾値（LT）。曲線は傾向を示す模式図で、実測値ではない。</text>
+</svg>

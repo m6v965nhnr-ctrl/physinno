@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 622" width="680" height="622" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>加齢による主な機能変化（一覧）</title><desc>加齢による変化の一覧。体組成、筋、骨と関節、心臓と血管、肺、腎と肝、免疫、感覚と神経、体温調節、代謝と運動能力について、変化の向きを矢印で示す。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="622" fill="#fff"/>
+<rect x="15" y="14" width="120" height="50" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="75" y="39.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">体組成</text>
+<rect x="140" y="14" width="525" height="50" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="152" y="29.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">筋量・骨量・除脂肪体重・体内水分 ↓</text>
+<text x="152" y="48.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">体脂肪の割合 ↑</text>
+<rect x="15" y="70" width="120" height="50" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="75" y="95.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">筋</text>
+<rect x="140" y="70" width="525" height="50" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="152" y="85.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">筋線維の数と太さ ↓。速筋線維が先に減る</text>
+<text x="152" y="104.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">収縮の速さ ↓・筋力 ↓</text>
+<rect x="15" y="126" width="120" height="50" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="75" y="151.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993C1D" dominant-baseline="central">骨・関節</text>
+<rect x="140" y="126" width="525" height="50" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="152" y="141.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">骨量・骨密度 ↓（女性は閉経後に急）</text>
+<text x="152" y="160.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">関節軟骨が薄くなり、靭帯・腱が硬く弱くなる</text>
+<rect x="15" y="182" width="120" height="50" rx="7" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="75" y="207.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993556" dominant-baseline="central">心臓・血管</text>
+<rect x="140" y="182" width="525" height="50" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="152" y="197.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">血管が硬くなる・末梢血管抵抗 ↑</text>
+<text x="152" y="216.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">最大心拍数・最大心拍出量 ↓</text>
+<rect x="15" y="238" width="120" height="50" rx="7" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="75" y="263.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993556" dominant-baseline="central">肺</text>
+<rect x="140" y="238" width="525" height="50" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="152" y="253.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">肺活量・肺の弾性・1秒量 ↓</text>
+<text x="152" y="272.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">残気量 ↑・呼吸筋が弱くなる</text>
+<rect x="15" y="294" width="120" height="50" rx="7" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="75" y="319.0" text-anchor="middle" font-size="14" font-weight="500" fill="#993556" dominant-baseline="central">腎・肝</text>
+<rect x="140" y="294" width="525" height="50" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="152" y="309.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">糸球体濾過量・腎血流量 ↓</text>
+<text x="152" y="328.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">肝重量・肝血流量 ↓</text>
+<rect x="15" y="350" width="120" height="50" rx="7" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="75" y="375.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">免疫</text>
+<rect x="140" y="350" width="525" height="50" rx="7" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="152" y="365.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">T細胞・B細胞の機能 ↓</text>
+<text x="152" y="384.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">ワクチンへの抗体反応 ↓・自己抗体 ↑</text>
+<rect x="15" y="406" width="120" height="50" rx="7" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="75" y="431.0" text-anchor="middle" font-size="14" font-weight="500" fill="#185FA5" dominant-baseline="central">感覚・神経</text>
+<rect x="140" y="406" width="525" height="50" rx="7" fill="#fff" stroke="#185FA5" stroke-width="1" />
+<text x="152" y="421.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">高い音が聞こえにくい・老眼・味覚と嗅覚 ↓</text>
+<text x="152" y="440.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">反応や作業がやや遅くなる・脳血流 ↓</text>
+<rect x="15" y="462" width="120" height="50" rx="7" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="75" y="487.0" text-anchor="middle" font-size="14" font-weight="500" fill="#0F6E56" dominant-baseline="central">体温調節</text>
+<rect x="140" y="462" width="525" height="50" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="152" y="477.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">汗腺・皮膚の血管の数 ↓、汗の産生 ↓</text>
+<text x="152" y="496.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">熱を逃がしにくい。皮下脂肪層が薄くなり寒さにも弱い</text>
+<rect x="15" y="518" width="120" height="50" rx="7" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="75" y="543.0" text-anchor="middle" font-size="14" font-weight="500" fill="#0F6E56" dominant-baseline="central">代謝・運動能力</text>
+<rect x="140" y="518" width="525" height="50" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="152" y="533.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">基礎代謝 ↓（主な原因は筋量の減少）</text>
+<text x="152" y="552.5" text-anchor="start" font-size="13" fill="#2C2C2A" dominant-baseline="central">最高酸素摂取量 ↓（20〜30歳代で大きく、40歳以降は緩やか）</text>
+<text x="15" y="586" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">矢印は変化の向きを示す一覧で、大きさや始まる年齢は示していない。個人差が大きく、病気による変化は含まない。</text>
+<text x="15" y="606" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">主な出典: MSDマニュアル（家庭版・プロフェッショナル版）、健康長寿ネット、OpenStax、e-ヘルスネット。</text>
+</svg>

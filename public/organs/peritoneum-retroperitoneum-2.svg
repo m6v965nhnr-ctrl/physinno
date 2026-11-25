@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 548" width="680" height="548" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>腹膜内器官と後腹膜器官（水平断の模式図）</title><desc>上腹部の水平断の模式図。上が前、左が患者の右。壁側腹膜の線より前の腹膜腔に、肝臓・胃・小腸や結腸が間膜でつながって入っている。壁側腹膜の後ろの後腹膜腔に、膵臓、十二指腸、上行結腸、下行結腸、腎臓、下大静脈、腹大動脈がある。</desc><rect width="680" height="548" fill="#fff"/>
+<ellipse cx="340" cy="257" rx="242" ry="198" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5"/>
+<ellipse cx="340" cy="262" rx="214" ry="182" fill="#fff" stroke="#5F5E5A" stroke-width="1"/>
+<path d="M124 268 C148 270 170 273 182 276 C198 282 220 288 240 288 C262 286 290 280 340 278 C390 278 420 284 440 288 C470 294 490 290 506 280 C522 272 540 270 556 268 C556 360 520 430 340 444 C160 430 124 360 124 268 Z" fill="#F5C4B3" fill-opacity="0.25"/>
+<path d="M126 270 A214 190 0 0 1 554 270" fill="none" stroke="#185FA5" stroke-width="3"/>
+<path d="M124 268 C148 270 170 273 182 276 C198 282 220 288 240 288 C262 286 290 280 340 278 C390 278 420 284 440 288 C470 294 490 290 506 280 C522 272 540 270 556 268" fill="none" stroke="#185FA5" stroke-width="3"/>
+<path d="M150 200 C150 140 220 110 290 120 C300 150 290 215 250 250 C210 270 160 262 150 230 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1.5"/>
+<ellipse cx="470" cy="170" rx="52" ry="34" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"/>
+<path d="M330 286 L352 286 L402 240 L322 214 Z" fill="#B5D4F4" fill-opacity="0.7" stroke="#185FA5" stroke-width="1.3"/>
+<g fill="#C0DD97" stroke="#3B6D11" stroke-width="1.5"><circle cx="350" cy="160" r="17"/><circle cx="392" cy="188" r="17"/><circle cx="330" cy="200" r="17"/><circle cx="372" cy="226" r="16"/><circle cx="312" cy="164" r="15"/></g>
+<g fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"><path d="M280 302 C300 292 380 290 420 300 C432 306 428 318 410 320 C380 324 320 326 290 320 C274 316 272 308 280 302 Z"/><ellipse cx="256" cy="308" rx="15" ry="12"/><circle cx="164" cy="302" r="17"/><circle cx="518" cy="302" r="16"/><ellipse cx="214" cy="352" rx="38" ry="30"/><ellipse cx="466" cy="352" rx="38" ry="30"/><ellipse cx="310" cy="354" rx="14" ry="10"/><circle cx="354" cy="354" r="11"/></g>
+<ellipse cx="340" cy="398" rx="30" ry="22" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="340" y="398" text-anchor="middle" font-size="12">腰椎</text>
+<g text-anchor="end"><text x="92" y="110">壁側腹膜</text><text x="92" y="150">肝臓</text><text x="92" y="240">十二指腸</text><text x="92" y="302">上行結腸</text><text x="92" y="352">右腎</text></g>
+<g text-anchor="start"><text x="590" y="150">胃</text><text x="590" y="205">腸間膜</text><text x="590" y="250">膵臓</text><text x="590" y="302">下行結腸</text><text x="590" y="352">左腎</text></g>
+<text x="340" y="30" text-anchor="middle">小腸・結腸（腹膜内器官）</text><text x="250" y="482" text-anchor="middle">下大静脈</text><text x="430" y="482" text-anchor="middle">腹大動脈</text><text x="392" y="412">後腹膜腔</text><text x="340" y="118" text-anchor="middle" fill="#185FA5">腹膜腔</text>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"><line x1="98" y1="110" x2="196" y2="104"/><line x1="98" y1="150" x2="190" y2="170"/><line x1="98" y1="240" x2="246" y2="304"/><line x1="98" y1="302" x2="146" y2="302"/><line x1="98" y1="352" x2="178" y2="352"/><line x1="584" y1="150" x2="520" y2="164"/><line x1="584" y1="205" x2="396" y2="232"/><line x1="584" y1="250" x2="424" y2="302"/><line x1="584" y1="302" x2="536" y2="302"/><line x1="584" y1="352" x2="504" y2="352"/><line x1="340" y1="38" x2="348" y2="143"/><line x1="250" y1="472" x2="310" y2="364"/><line x1="430" y1="472" x2="356" y2="364"/></g>
+<text x="20" y="508" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">上が前、左が患者の右（足側から見た図）。青い線が腹膜で、緑・黄は腹膜内、橙は後腹膜にある器官です。</text>
+<text x="20" y="528" font-size="12" fill="#5F5E5A" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">位置関係を示す模式図です。大きさ・形は実物と異なります。肝臓の腹膜との関係は、この図では区別していません。</text>
+</svg>

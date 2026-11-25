@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 566" width="680" height="566" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>骨格筋・心筋・平滑筋の対比</title><desc>骨格筋・心筋・平滑筋の、横紋・核・随意性・興奮の始まりと伝わり方・T管・カルシウムによる収縮の調節・カルシウムの由来を比べた表。</desc>
+<defs><marker id="ak" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#2C2C2A"/></marker><marker id="ab" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#185FA5"/></marker><marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#A32D2D"/></marker><marker id="ag" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#0F6E56"/></marker><marker id="ao" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#993C1D"/></marker><marker id="ap" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#534AB7"/></marker></defs>
+<rect width="680" height="566" fill="#fff"/>
+<rect x="132" y="14" width="171" height="34" rx="7" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<text x="217.5" y="31" text-anchor="middle" font-size="16" font-weight="500" fill="#993556" dominant-baseline="central">骨格筋</text>
+<rect x="312" y="14" width="171" height="34" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="397.5" y="31" text-anchor="middle" font-size="16" font-weight="500" fill="#993C1D" dominant-baseline="central">心筋</text>
+<rect x="492" y="14" width="171" height="34" rx="7" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="577.5" y="31" text-anchor="middle" font-size="16" font-weight="500" fill="#0F6E56" dominant-baseline="central">平滑筋</text>
+<rect x="15" y="54" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="80.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">横紋・筋節</text>
+<rect x="132" y="54" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="80.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">あり</text>
+<rect x="312" y="54" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="80.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">あり</text>
+<rect x="492" y="54" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="80.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">なし</text>
+<rect x="15" y="112" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="138.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">核</text>
+<rect x="132" y="112" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="138.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">多核</text>
+<rect x="312" y="112" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="138.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">通常1つ（中央）</text>
+<rect x="492" y="112" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="138.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">1つ</text>
+<rect x="15" y="170" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="196.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">随意性</text>
+<rect x="132" y="170" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="196.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">随意</text>
+<rect x="312" y="170" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="196.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">不随意</text>
+<rect x="492" y="170" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="196.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">不随意</text>
+<rect x="15" y="228" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="254.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">興奮の始まり</text>
+<rect x="132" y="228" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="245.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">運動神経</text>
+<text x="217.5" y="262.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（神経筋接合部）</text>
+<rect x="312" y="228" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="245.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">ペースメーカー細胞</text>
+<text x="397.5" y="262.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（自動能）</text>
+<rect x="492" y="228" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="245.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">自律神経・ホルモン</text>
+<text x="577.5" y="262.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">・局所因子・伸展</text>
+<rect x="15" y="286" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="312.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">興奮の伝わり</text>
+<rect x="132" y="286" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="312.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">各線維に神経筋接合部</text>
+<rect x="312" y="286" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="303.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">介在板のギャップ結合</text>
+<text x="397.5" y="320.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">で細胞間に伝わる</text>
+<rect x="492" y="286" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="296.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">単一ユニット型:</text>
+<text x="577.5" y="312.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">ギャップ結合で伝わる</text>
+<text x="577.5" y="328.0" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">多ユニット型: 伝わらない</text>
+<rect x="15" y="344" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="370.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">T管</text>
+<rect x="132" y="344" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="361.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">あり</text>
+<text x="217.5" y="378.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（A帯とI帯の境）</text>
+<rect x="312" y="344" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="361.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">あり</text>
+<text x="397.5" y="378.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（Z盤の位置）</text>
+<rect x="492" y="344" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="370.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">なし（不要）</text>
+<rect x="15" y="402" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="428.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Ca2+による調節</text>
+<rect x="132" y="402" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="428.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">トロポニン</text>
+<rect x="312" y="402" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="428.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">トロポニン</text>
+<rect x="492" y="402" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="419.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">カルモジュリン→</text>
+<text x="577.5" y="436.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">ミオシン軽鎖キナーゼ</text>
+<rect x="15" y="460" width="110" height="52" rx="7" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="70.0" y="486.0" text-anchor="middle" font-size="13" font-weight="500" fill="#5F5E5A" dominant-baseline="central">Ca2+の主な由来</text>
+<rect x="132" y="460" width="171" height="52" rx="7" fill="#fff" stroke="#993556" stroke-width="1" />
+<text x="217.5" y="486.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">筋小胞体</text>
+<rect x="312" y="460" width="171" height="52" rx="7" fill="#fff" stroke="#993C1D" stroke-width="1" />
+<text x="397.5" y="477.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">筋小胞体＋細胞外</text>
+<text x="397.5" y="494.5" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">（細胞外の割合は資料で差あり）</text>
+<rect x="492" y="460" width="171" height="52" rx="7" fill="#fff" stroke="#0F6E56" stroke-width="1" />
+<text x="577.5" y="486.0" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">大半が細胞外からの流入</text>
+<text x="15" y="530" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">OpenStax（10.2・10.7・10.8・19.2）とMSDマニュアルの記述の要約。数値は省いています。</text>
+<text x="15" y="550" text-anchor="start" font-size="12" fill="#5F5E5A" dominant-baseline="central">平滑筋の単一ユニット型は内臓の壁、多ユニット型は大血管の周囲・気道・眼にある。</text>
+</svg>
