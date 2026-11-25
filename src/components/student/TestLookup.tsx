@@ -30,16 +30,19 @@ export default function TestLookup({ text }: { text: string }) {
         ))}
       </div>
       {d && (
-        <div className="mt-3 space-y-2.5 rounded-lg bg-white p-3 text-sm leading-6 text-gray-900">
-          {d.rows.slice(0, 6).map((r) => (
-            <div key={r.item}>
-              <p className="text-xs font-semibold text-gray-500">{r.item}</p>
-              <p>{r.value}</p>
-              {r.conflict && <p className="mt-0.5 text-[11px] leading-5 text-amber-700">国試の記載と現行の資料で、違いがあります（くわしい解説を参照）</p>}
-            </div>
-          ))}
-          {d.rows.length > 6 && <p className="text-xs text-gray-500">ほか {d.rows.length - 6} 項目</p>}
-          <p className="text-xs text-gray-500">
+        <div className="mt-3 rounded-lg border-l-4 border-teal-500 bg-white p-3 text-gray-900">
+          <p className="text-sm font-bold">{d.name.replace(/\(.*?\)/g, "")}</p>
+          <dl className="mt-2 divide-y divide-gray-100">
+            {d.rows.slice(0, 6).map((r) => (
+              <div key={r.item} className="py-2 first:pt-0 last:pb-0">
+                <dt className="text-[11px] font-bold text-teal-700">{r.item}</dt>
+                <dd className="mt-0.5 text-sm leading-7">{r.value}</dd>
+                {r.conflict && <dd className="mt-0.5 text-[11px] leading-5 text-amber-700">国試の記載と現行の資料で、違いがあります（くわしい解説を参照）</dd>}
+              </div>
+            ))}
+          </dl>
+          {d.rows.length > 6 && <p className="mt-1 text-xs text-gray-500">ほか {d.rows.length - 6} 項目</p>}
+          <p className="mt-3 border-t border-gray-100 pt-2 text-xs text-gray-500">
             <Link href={`/columns/tests/${d.slug}`} target="_blank" className="font-semibold text-blue-600 underline">
               {d.name.replace(/\(.*?\)/g, "")}のくわしい解説（出典つき）→
             </Link>

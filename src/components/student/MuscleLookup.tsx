@@ -51,21 +51,24 @@ export default function MuscleLookup({ text }: { text: string }) {
         ))}
       </div>
       {(muscle || bone) && (
-        <dl className="mt-3 space-y-2 rounded-lg bg-white p-3 text-xs leading-5 text-gray-700">
-          {rows.map(([k, v]) => (
-            <div key={k}>
-              <dt className="font-semibold text-gray-500">{k}</dt>
-              <dd className="text-sm leading-6 text-gray-900">{v}</dd>
-            </div>
-          ))}
+        <div className={`mt-3 rounded-lg border-l-4 bg-white p-3 text-gray-900 ${bone ? "border-sky-500" : "border-emerald-500"}`}>
+          <p className="text-sm font-bold">{(muscle ?? bone)!.name}</p>
+          <dl className="mt-2 divide-y divide-gray-100">
+            {rows.map(([k, v]) => (
+              <div key={k} className="py-2 first:pt-0 last:pb-0">
+                <dt className={`text-[11px] font-bold ${bone ? "text-sky-700" : "text-emerald-700"}`}>{k}</dt>
+                <dd className="mt-0.5 text-sm leading-7">{v}</dd>
+              </div>
+            ))}
+          </dl>
           <AnatomyFigure id={(muscle ?? bone)!.id} name={(muscle ?? bone)!.name} />
-          <p className="text-[11px] leading-4 text-gray-400">
+          <p className="mt-3 border-t border-gray-100 pt-2 text-[11px] leading-4 text-gray-400">
             編集部がまとめた要約です。髄節などは教科書で確認してください。
             <Link href={`/columns/${muscle ? "muscles" : "bones"}/${encodeURIComponent((muscle ?? bone)!.name)}`} target="_blank" rel="noopener" className="ml-1 text-blue-600 underline">
               {(muscle ?? bone)!.name}のページを見る
             </Link>
           </p>
-        </dl>
+        </div>
       )}
     </div>
   );
