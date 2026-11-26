@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 960" width="680" height="960" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>肩甲骨の各部（後面と前面の模式図）</title><desc>右の肩甲骨。上は後ろから見た図。内側（図の左）に長い内側縁、上に上縁、外側に外側縁があり、内側縁と上縁の間が上角、内側縁と外側縁の間が下角。後面を横切る隆起が肩甲棘で、その上が棘上窩、下が棘下窩。肩甲棘の外側端が肩峰で、関節窩の上に張り出す。上縁の外寄りに肩甲切痕があり、肩甲上神経が通る。下は前から見た図（左右が反転する）。肋骨側の面全体がくぼんだ肩甲下窩。外側の角に関節窩があり、その上に関節上結節、下に関節下結節。上縁の外側端から前へ烏口突起が出る。</desc><rect width="680" height="960" fill="#fff"/><defs><clipPath id="sp"><path d="M 245,100 L 320,88 Q 355,76 378,96 Q 404,116 402,146 Q 398,176 382,200 L 345,320 Q 310,390 275,430 Q 252,370 248,280 Q 240,190 245,100 Z"/></clipPath><clipPath id="sa"><path d="M 435,560 L 360,548 Q 325,536 302,556 Q 276,576 278,606 Q 282,636 298,660 L 335,780 Q 370,850 405,890 Q 428,830 432,740 Q 440,650 435,560 Z"/></clipPath></defs><text x="340" y="34" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A" font-weight="500">後面（右の肩甲骨を後ろから見る）</text>
+<path d="M 245,100 L 320,88 Q 355,76 378,96 Q 404,116 402,146 Q 398,176 382,200 L 345,320 Q 310,390 275,430 Q 252,370 248,280 Q 240,190 245,100 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" stroke-linejoin="round"/>
+<g clip-path="url(#sp)">
+<polygon points="235,70 410,60 368,142 248,188" fill="#9FE1CB" fill-opacity="0.55" stroke="#0F6E56" stroke-width="1"/>
+<polygon points="248,206 364,164 412,168 402,212 280,450 235,450" fill="#C0DD97" fill-opacity="0.55" stroke="#3B6D11" stroke-width="1"/>
+</g>
+<circle cx="330" cy="89" r="7" fill="#fff" stroke="#5F5E5A" stroke-width="1.2"/>
+<circle cx="330" cy="91" r="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<path d="M 254,190 L 366,148" stroke="#854F0B" stroke-width="16" stroke-linecap="round"/>
+<path d="M 254,190 L 366,148" stroke="#FAC775" stroke-width="12.5" stroke-linecap="round"/>
+<path d="M 362,142 Q 390,100 432,110 Q 446,134 422,154 L 366,162 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<line x1="210" y1="100" x2="270" y2="95" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="270" cy="95" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="100" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">上縁</text>
+<line x1="210" y1="150" x2="246" y2="102" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="246" cy="102" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="150" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">上角</text>
+<line x1="210" y1="330" x2="246" y2="280" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="246" cy="280" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="330" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">内側縁</text>
+<line x1="210" y1="440" x2="276" y2="426" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="276" cy="426" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="440" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">下角</text>
+<line x1="465" y1="76" x2="330" y2="89" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="330" cy="89" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="76" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">肩甲切痕</text>
+<text x="470" y="92" font-size="12" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">（肩甲上神経が通る）</text>
+<line x1="465" y1="132" x2="432" y2="122" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="432" cy="122" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="132" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">肩峰</text>
+<line x1="465" y1="180" x2="355" y2="110" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="355" cy="110" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="180" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">棘上窩</text>
+<line x1="465" y1="232" x2="326" y2="164" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="326" cy="164" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="232" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">肩甲棘</text>
+<line x1="465" y1="300" x2="364" y2="270" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="364" cy="270" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="300" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">外側縁</text>
+<line x1="465" y1="380" x2="330" y2="290" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="330" cy="290" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="380" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">棘下窩</text>
+<text x="340" y="484" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A" font-weight="500">前面（右の肩甲骨を前から見る＝肋骨側の面）</text>
+<path d="M 435,560 L 360,548 Q 325,536 302,556 Q 276,576 278,606 Q 282,636 298,660 L 335,780 Q 370,850 405,890 Q 428,830 432,740 Q 440,650 435,560 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" stroke-linejoin="round"/>
+<g clip-path="url(#sa)">
+<polygon points="440,520 270,510 270,606 290,670 330,790 380,910 445,910 442,740" fill="#9FE1CB" fill-opacity="0.5" stroke="#0F6E56" stroke-width="1"/>
+</g>
+<ellipse cx="292" cy="600" rx="11" ry="24" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="295" cy="567" rx="9" ry="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<ellipse cx="298" cy="634" rx="9" ry="7" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<circle cx="350" cy="548" r="7" fill="#fff" stroke="#5F5E5A" stroke-width="1.2"/>
+<path d="M 328,552 Q 328,514 300,510 Q 274,510 262,526 L 274,534 Q 282,524 294,526 Q 302,530 304,556 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<line x1="210" y1="526" x2="278" y2="520" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="278" cy="520" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="526" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">烏口突起</text>
+<line x1="210" y1="610" x2="295" y2="567" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="295" cy="567" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="610" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">関節上結節</text>
+<line x1="210" y1="678" x2="292" y2="600" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="292" cy="600" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="678" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">関節窩</text>
+<line x1="210" y1="740" x2="298" y2="634" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="298" cy="634" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="740" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">関節下結節</text>
+<line x1="210" y1="810" x2="313" y2="710" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="313" cy="710" r="2.4" fill="#2C2C2A"/>
+<text x="205" y="810" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">外側縁</text>
+<line x1="465" y1="550" x2="350" y2="548" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="350" cy="548" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="550" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">肩甲切痕</text>
+<line x1="465" y1="600" x2="435" y2="562" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="435" cy="562" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="600" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">上角</text>
+<line x1="465" y1="700" x2="370" y2="710" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="370" cy="710" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="700" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">肩甲下窩</text>
+<line x1="465" y1="790" x2="434" y2="740" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="434" cy="740" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="790" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">内側縁</text>
+<line x1="465" y1="890" x2="404" y2="886" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="404" cy="886" r="2.4" fill="#2C2C2A"/>
+<text x="470" y="890" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">下角</text></svg>

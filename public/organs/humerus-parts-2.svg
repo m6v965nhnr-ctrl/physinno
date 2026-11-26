@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 664" width="680" height="664" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>上腕骨に接する神経と骨折の部位（後面の模式図）</title><desc>右の上腕骨を後ろから見た模式図。外科頸には腋窩神経が接し（橙）、体の後面の橈骨神経溝には橈骨神経が通り（緑）、内側上顆の後ろの溝には尺骨神経が通る（紫）。両上顆の上で骨を横切る線が顆上骨折の部位（赤の点線）。</desc><rect width="680" height="664" fill="#fff"/><defs><clipPath id="cq"><path d="M 215,140 Q 217,108 187,100 Q 157,80 117,88 Q 85,108 99,148 Q 107,172 131,192 Q 143,215 143,250 L 143,490 Q 139,520 113,556 L 99,592 Q 101,618 125,622 L 191,622 Q 215,622 215,598 Q 211,562 195,536 Q 187,512 187,490 L 187,250 Q 189,222 207,194 Q 217,172 215,140 Z"/></clipPath></defs><path d="M 215,140 Q 217,108 187,100 Q 157,80 117,88 Q 85,108 99,148 Q 107,172 131,192 Q 143,215 143,250 L 143,490 Q 139,520 113,556 L 99,592 Q 101,618 125,622 L 191,622 Q 215,622 215,598 Q 211,562 195,536 Q 187,512 187,490 L 187,250 Q 189,222 207,194 Q 217,172 215,140 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" stroke-linejoin="round"/>
+<g clip-path="url(#cq)">
+<circle cx="127" cy="122" r="34" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="197" cy="128" rx="20" ry="34" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<path d="M 215,204 Q 165,228 119,204 L 119,230 Q 165,254 215,230 Z" fill="#F5C4B3" fill-opacity="0.9" stroke="#993C1D" stroke-width="1.2"/>
+<ellipse cx="165" cy="536" rx="20" ry="24" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="3 2"/>
+<ellipse cx="111" cy="582" rx="14" ry="24" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="205" cy="586" rx="10" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+</g>
+<path d="M 151,262 Q 159,350 181,426" stroke="#3B6D11" stroke-width="12" stroke-linecap="round" fill="none"/>
+<path d="M 151,262 Q 159,350 181,426" stroke="#C0DD97" stroke-width="8" stroke-linecap="round" fill="none"/>
+<path d="M 121,548 Q 131,585 121,614" stroke="#534AB7" stroke-width="9" stroke-linecap="round" fill="none"/>
+<path d="M 121,548 Q 131,585 121,614" stroke="#CECBF6" stroke-width="5" stroke-linecap="round" fill="none"/>
+<path d="M 127,500 L 203,500" stroke="#A32D2D" stroke-width="2.4" stroke-dasharray="6 4" fill="none"/>
+<text x="165" y="40" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A" font-weight="500">後面（右の上腕骨）</text>
+<line x1="322" y1="214" x2="203" y2="214" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="203" cy="214" r="2.4" fill="#2C2C2A"/>
+<rect x="330" y="205" width="18" height="18" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<text x="358" y="214" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A" font-weight="500">外科頸</text>
+<text x="358" y="233" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">腋窩神経が骨に接する。</text>
+<text x="358" y="250" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">外科頸の骨折で傷つくことがある</text>
+<line x1="322" y1="340" x2="167" y2="340" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="167" cy="340" r="2.4" fill="#2C2C2A"/>
+<rect x="330" y="331" width="18" height="18" rx="3" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="358" y="340" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A" font-weight="500">橈骨神経溝</text>
+<text x="358" y="359" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">橈骨神経が通る。</text>
+<text x="358" y="376" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">骨幹部の骨折で傷つくことがある</text>
+<line x1="322" y1="500" x2="203" y2="500" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="203" cy="500" r="2.4" fill="#2C2C2A"/>
+<rect x="330" y="491" width="18" height="18" rx="3" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2"/>
+<text x="358" y="500" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A" font-weight="500">顆上（両上顆の上）</text>
+<text x="358" y="519" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">顆上骨折の部位。</text>
+<text x="358" y="536" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">前腕の血流と神経に注意</text>
+<line x1="322" y1="590" x2="131" y2="585" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="131" cy="585" r="2.4" fill="#2C2C2A"/>
+<rect x="330" y="581" width="18" height="18" rx="3" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<text x="358" y="590" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A" font-weight="500">内側上顆の後ろの溝</text>
+<text x="358" y="609" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">尺骨神経が通る。</text>
+<text x="358" y="626" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">内側上顆の骨折で傷つくことがある</text>
+<text x="330" y="130" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A" font-weight="500">骨に接して通る神経の位置</text>
+<text x="330" y="152" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">（色は神経が骨に近づく場所を示す。</text>
+<text x="330" y="170" font-size="12.5" text-anchor="start" dominant-baseline="central" fill="#5F5E5A">実際の経路の細部は省いている）</text></svg>

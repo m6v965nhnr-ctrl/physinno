@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 664" width="680" height="664" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>上腕骨の各部（前面と後面の模式図）</title><desc>右の上腕骨を前から見た図（左）と後ろから見た図（右）。前面では、上端の内側に上腕骨頭、そのふちが解剖頸。外側に大結節、前の内側に小結節、その間に結節間溝。結節の下の細くなる所が外科頸。体の外側の中ほどに三角筋粗面。下端は、外側から外側上顆、上腕骨小頭、上腕骨滑車、内側上顆の順で、小頭の上に橈骨窩、滑車の上に鈎突窩がある。後面では、橈骨神経溝が体の後ろを斜めに外側へ下り、下端の後ろに大きなくぼみの肘頭窩がある。</desc><rect width="680" height="664" fill="#fff"/><defs><clipPath id="ca"><path d="M 120,140 Q 118,108 148,100 Q 178,80 218,88 Q 250,108 236,148 Q 228,172 204,192 Q 192,215 192,250 L 192,490 Q 196,520 222,556 L 236,592 Q 234,618 210,622 L 144,622 Q 120,622 120,598 Q 124,562 140,536 Q 148,512 148,490 L 148,250 Q 146,222 128,194 Q 118,172 120,140 Z"/></clipPath><clipPath id="cp"><path d="M 545,140 Q 547,108 517,100 Q 487,80 447,88 Q 415,108 429,148 Q 437,172 461,192 Q 473,215 473,250 L 473,490 Q 469,520 443,556 L 429,592 Q 431,618 455,622 L 521,622 Q 545,622 545,598 Q 541,562 525,536 Q 517,512 517,490 L 517,250 Q 519,222 537,194 Q 547,172 545,140 Z"/></clipPath></defs><path d="M 120,140 Q 118,108 148,100 Q 178,80 218,88 Q 250,108 236,148 Q 228,172 204,192 Q 192,215 192,250 L 192,490 Q 196,520 222,556 L 236,592 Q 234,618 210,622 L 144,622 Q 120,622 120,598 Q 124,562 140,536 Q 148,512 148,490 L 148,250 Q 146,222 128,194 Q 118,172 120,140 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" stroke-linejoin="round"/>
+<g clip-path="url(#ca)">
+<circle cx="208" cy="122" r="34" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="138" cy="128" rx="20" ry="34" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="186" cy="160" rx="16" ry="20" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<path d="M 120,204 Q 170,228 216,204 L 216,230 Q 170,254 120,230 Z" fill="#F5C4B3" fill-opacity="0.9" stroke="#993C1D" stroke-width="1.2"/>
+<ellipse cx="158" cy="340" rx="9" ry="26" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="160" cy="520" rx="8" ry="11" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="3 2"/>
+<ellipse cx="190" cy="512" rx="12" ry="14" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="3 2"/>
+<ellipse cx="156" cy="574" rx="17" ry="17" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<ellipse cx="194" cy="576" rx="19" ry="22" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<ellipse cx="224" cy="582" rx="14" ry="24" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="130" cy="586" rx="10" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+</g>
+<path d="M 164,112 L 166,252" stroke="#854F0B" stroke-width="3.2" stroke-linecap="round" fill="none"/>
+<path d="M 176,104 Q 180,162 230,152" stroke="#993C1D" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+<text x="170" y="40" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A" font-weight="500">前面（右の上腕骨）</text>
+<line x1="101" y1="112" x2="130" y2="120" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="130" cy="120" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="112" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">大結節</text>
+<line x1="101" y1="214" x2="132" y2="214" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="132" cy="214" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="214" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">外科頸</text>
+<line x1="101" y1="340" x2="156" y2="340" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="156" cy="340" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="340" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">三角筋粗面</text>
+<line x1="101" y1="420" x2="164" y2="420" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="164" cy="420" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="420" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">上腕骨体</text>
+<line x1="101" y1="508" x2="160" y2="520" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="160" cy="520" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="508" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">橈骨窩</text>
+<line x1="101" y1="556" x2="154" y2="572" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="154" cy="572" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="556" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">上腕骨小頭</text>
+<line x1="101" y1="606" x2="128" y2="590" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="128" cy="590" r="2.4" fill="#2C2C2A"/>
+<text x="96" y="606" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">外側上顆</text>
+<line x1="265" y1="96" x2="222" y2="112" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="222" cy="112" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="96" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">上腕骨頭</text>
+<line x1="265" y1="138" x2="206" y2="160" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="206" cy="160" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="138" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">解剖頸</text>
+<line x1="265" y1="180" x2="192" y2="166" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="192" cy="166" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="180" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">小結節</text>
+<line x1="265" y1="222" x2="166" y2="232" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="166" cy="232" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="222" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">結節間溝</text>
+<line x1="265" y1="506" x2="192" y2="512" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="192" cy="512" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="506" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">鈎突窩</text>
+<line x1="265" y1="556" x2="200" y2="578" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="200" cy="578" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="556" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">上腕骨滑車</text>
+<line x1="265" y1="606" x2="228" y2="592" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="228" cy="592" r="2.4" fill="#2C2C2A"/>
+<text x="270" y="606" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">内側上顆</text>
+<path d="M 545,140 Q 547,108 517,100 Q 487,80 447,88 Q 415,108 429,148 Q 437,172 461,192 Q 473,215 473,250 L 473,490 Q 469,520 443,556 L 429,592 Q 431,618 455,622 L 521,622 Q 545,622 545,598 Q 541,562 525,536 Q 517,512 517,490 L 517,250 Q 519,222 537,194 Q 547,172 545,140 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" stroke-linejoin="round"/>
+<g clip-path="url(#cp)">
+<circle cx="457" cy="122" r="34" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<ellipse cx="527" cy="128" rx="20" ry="34" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<path d="M 545,204 Q 495,228 449,204 L 449,230 Q 495,254 545,230 Z" fill="#F5C4B3" fill-opacity="0.9" stroke="#993C1D" stroke-width="1.2"/>
+<ellipse cx="495" cy="536" rx="20" ry="24" fill="#fff" stroke="#5F5E5A" stroke-width="1.2" stroke-dasharray="3 2"/>
+<ellipse cx="441" cy="582" rx="14" ry="24" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="535" cy="586" rx="10" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+</g>
+<path d="M 481,262 Q 489,350 511,426" stroke="#3B6D11" stroke-width="9" stroke-linecap="round" fill="none"/>
+<path d="M 481,262 Q 489,350 511,426" stroke="#C0DD97" stroke-width="5.5" stroke-linecap="round" fill="none"/>
+<path d="M 489,104 Q 485,162 435,152" stroke="#993C1D" stroke-width="2" stroke-dasharray="4 3" fill="none"/>
+<text x="495" y="40" font-size="15" text-anchor="middle" dominant-baseline="central" fill="#2C2C2A" font-weight="500">後面（右の上腕骨）</text>
+<line x1="400" y1="96" x2="443" y2="112" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="443" cy="112" r="2.4" fill="#2C2C2A"/>
+<text x="395" y="96" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">上腕骨頭</text>
+<line x1="400" y1="138" x2="459" y2="160" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="459" cy="160" r="2.4" fill="#2C2C2A"/>
+<text x="395" y="138" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">解剖頸</text>
+<line x1="400" y1="540" x2="495" y2="540" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="495" cy="540" r="2.4" fill="#2C2C2A"/>
+<text x="395" y="540" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">肘頭窩</text>
+<line x1="400" y1="606" x2="437" y2="592" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="437" cy="592" r="2.4" fill="#2C2C2A"/>
+<text x="395" y="606" font-size="14" text-anchor="end" dominant-baseline="central" fill="#2C2C2A">内側上顆</text>
+<line x1="590" y1="112" x2="535" y2="120" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="535" cy="120" r="2.4" fill="#2C2C2A"/>
+<text x="595" y="112" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">大結節</text>
+<line x1="590" y1="214" x2="533" y2="214" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="533" cy="214" r="2.4" fill="#2C2C2A"/>
+<text x="595" y="214" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">外科頸</text>
+<line x1="590" y1="330" x2="493" y2="336" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="493" cy="336" r="2.4" fill="#2C2C2A"/>
+<text x="595" y="330" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">橈骨神経溝</text>
+<line x1="590" y1="420" x2="503" y2="440" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="503" cy="440" r="2.4" fill="#2C2C2A"/>
+<text x="595" y="420" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">上腕骨体</text>
+<line x1="590" y1="606" x2="537" y2="590" stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none"/>
+<circle cx="537" cy="590" r="2.4" fill="#2C2C2A"/>
+<text x="595" y="606" font-size="14" text-anchor="start" dominant-baseline="central" fill="#2C2C2A">外側上顆</text></svg>
