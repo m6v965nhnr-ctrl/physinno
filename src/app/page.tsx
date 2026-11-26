@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import LpHeader from "@/components/lp/LpHeader";
 import LpStickyCta from "@/components/lp/LpStickyCta";
-import { LpFooter, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
+import { BTN_PRIMARY, LpFooter, SECTION_LABEL, SafetySection } from "@/components/lp/LpParts";
 import StandaloneRedirect from "@/components/StandaloneRedirect";
 import { pickLpEntrance } from "@/lib/lpEntrance";
 
@@ -11,16 +11,16 @@ import { pickLpEntrance } from "@/lib/lpEntrance";
 
 const STATS = [
   { big: "完全無料", small: "登録も基本機能も" },
-  { big: "約14.6万", small: "全国の病院・施設のリアルな口コミが見れる" },
-  { big: "8サイト", small: "論文をまとめて検索" },
-  { big: "約2,500問", small: "国試の過去問（第49〜61回）" },
+  { big: "約14.6万", small: "全国の病院・施設を探せる（口コミも）" },
+  { big: "8サイト", small: "英語論文も、日本語でまとめて検索" },
+  { big: "約2,500問", small: "国試の過去問（第49〜61回）・解説つき" },
 ];
 
 
 // 理学療法士・学生が、登録者のほとんどを占めるため、この2つを主役にする
 const DOORS = [
-  { key: "pt", href: "/for-pt", who: "理学療法士の方へ" },
-  { key: "student", href: "/for-students", who: "学生の方へ" },
+  { key: "pt", href: "/for-pt", who: "理学療法士の方へ", sub: "論文検索・認定PTの進捗・職場の口コミ" },
+  { key: "student", href: "/for-students", who: "学生の方へ", sub: "国試の過去問2,500問・解説つき" },
 ];
 
 const OTHER_DOORS = [
@@ -66,16 +66,23 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
               <ruby className="text-[1.3em] text-[var(--lp-g700)]">
                 PT<rt className="text-[0.26em] font-bold tracking-[0.3em] text-[var(--lp-g600)]">理学療法士</rt>
               </ruby>
-              <span className="ml-1">のための、</span>
+              <span className="ml-1">の調べ物を、</span>
             </span>
             <br />
-            アプリ。
+            ぜんぶ無料で。
           </h1>
           <p className="mt-4 text-base font-semibold leading-8 text-[var(--lp-g800)] md:text-lg">
-            論文も、国試も、職場探しも。
+            論文は日本語で一括検索。
             <br />
-            ぜんぶ無料で使えます。
+            認定PTの進捗も、職場の口コミも。
           </p>
+
+          <div className="mt-6">
+            <Link href={registerHref} className={BTN_PRIMARY}>
+              {entrance.register === "student" ? "学生として" : "理学療法士として"}無料ではじめる
+            </Link>
+            <p className="mt-2 text-xs leading-6 text-gray-600">メールアドレスだけ・1分。登録すると、認定PTの進捗や、研修・学会の保存、匿名の口コミ投稿まで使えます。</p>
+          </div>
 
           <div className="mt-6 grid gap-3 sm:grid-cols-2">
             {doors.map((d, i) => (
@@ -90,6 +97,7 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
                 }`}
               >
                 <span className={`block text-[15px] font-bold ${i === 0 ? "text-[var(--on-brand)]" : "text-[var(--lp-g900)]"}`}>{d.who}</span>
+                <span className={`mt-1 block text-xs leading-5 ${i === 0 ? "text-[var(--on-brand)]" : "text-gray-600"}`}>{d.sub}</span>
                 <span className={`mt-2 inline-block rounded-full px-4 py-1.5 text-xs font-bold ${i === 0 ? "bg-white text-[var(--lp-g800)]" : "bg-relight-gradient"}`}>詳しく見る →</span>
               </Link>
             ))}
@@ -106,10 +114,10 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
 
           <p className="mt-4 text-sm leading-7 text-gray-600">
             <Link href="/guest" className="font-bold text-[var(--lp-g700)] underline underline-offset-4">
-              👀 ログインなしで、中を見てみる
+              👀 登録せずに、まず触ってみる
             </Link>
             <br />
-            登録は、メールアドレスだけ・1分
+            気に入ったら、そのまま無料登録へ。
           </p>
 
         </div>
@@ -131,8 +139,9 @@ export default async function LandingPage({ searchParams }: { searchParams: Prom
         <div className="mx-auto max-w-3xl">
           <h2 className="text-xl font-bold text-[var(--lp-g900)]">Re:light（リライト）とは</h2>
           <p className="mt-3 text-sm leading-7 text-gray-700">
-            Re:light（リライト）は、理学療法士と、PTをめざす学生のための無料Webアプリです。
-            学生向けには国家試験の過去問が約2,500問（第49〜61回・解説つき）。先生はクラスにテストを配って、誰がどの単元でつまずいているかを見られます。
+            Re:light（リライト）は、理学療法士のための無料Webアプリです。
+            論文を8サイトまとめて検索し、認定・専門PTの進捗、研修・学会、職場の口コミや求人まで、ひとつで調べられます。
+            PTをめざす学生には、国家試験の過去問が約2,500問（第49〜61回・解説つき）。先生はクラスにテストを配って、誰がどの単元でつまずいているかを見られます。
           </p>
           <p className="mt-3 text-sm leading-7 text-gray-700">
             登録に必要なのはメールアドレスだけで、1分あれば終わります。病院・施設・法人の採用担当の方は、組織として登録すると求人の掲載やPTへのスカウトができます。
