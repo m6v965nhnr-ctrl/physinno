@@ -1,0 +1,100 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 900" width="680" height="900" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>大腿骨の各部（前面）と頸体角・前捻角（模式図）</title><desc>右大腿骨を前から見た模式図。上内側に大腿骨頭（頭窩を含む）、頭と体をつなぐ大腿骨頸、頸の上外側に大転子、内側縁に小転子、前面に転子間線。遠位は内側顆・外側顆とその外側の内側上顆・外側上顆、内側上顆の上に内転筋結節、前面中央に膝蓋面。赤い点線は大腿骨近位部骨折の部位（頸部・転子部・転子下）。下段は、前から見た頸体角（約120〜130°の目安）と、上から見た前捻角（約15°）の模式図。</desc>
+<rect width="680" height="900" fill="#fff"/>
+<defs><clipPath id="s"><path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 350,598 349,588 347,588 C 345,588 344,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z"/></clipPath></defs>
+<path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 350,598 349,588 347,588 C 345,588 344,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#s)">
+<polygon points="342,152 392,146 414,196 372,238 369,262 342,170" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<circle cx="404" cy="165" r="28" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<polygon points="300,140 346,140 342,168 350,200 332,232 300,232" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<polygon points="362,236 395,236 395,290 362,290" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<polygon points="295,520 400,520 400,610 295,610" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<rect x="331" y="498" width="34" height="76" rx="15" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+</g>
+<path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 350,598 349,588 347,588 C 345,588 344,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M 342,168 C 350,200 360,235 369,262" fill="none" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="414" cy="172" rx="5" ry="4" fill="#fff" stroke="#185FA5" stroke-width="1"/>
+<g stroke="#A32D2D" stroke-width="2.6" stroke-dasharray="6 3" stroke-linecap="round"><line x1="364" y1="166" x2="389" y2="202"/><line x1="310" y1="188" x2="383" y2="262"/><line x1="328" y1="304" x2="366" y2="304"/></g>
+<circle cx="377" cy="184" r="9" fill="#A32D2D"/><text x="377" y="184.5" font-size="12" fill="#fff" text-anchor="middle" dominant-baseline="central">①</text>
+<circle cx="347" cy="225" r="9" fill="#A32D2D"/><text x="347" y="225.5" font-size="12" fill="#fff" text-anchor="middle" dominant-baseline="central">②</text>
+<circle cx="347" cy="304" r="9" fill="#A32D2D"/><text x="347" y="304.5" font-size="12" fill="#fff" text-anchor="middle" dominant-baseline="central">③</text>
+<rect x="126" y="800" width="28" height="80" fill="#F1EFE8" stroke="#5F5E5A"/>
+<line x1="140" y1="800" x2="221.9" y2="742.6" stroke="#185FA5" stroke-width="14" stroke-linecap="round" opacity="0.55"/>
+<circle cx="233.4" cy="734.6" r="24" fill="#B5D4F4" stroke="#185FA5"/>
+<line x1="140" y1="770" x2="140" y2="880" stroke="#2C2C2A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<line x1="119.5" y1="814.4" x2="254.7" y2="719.6" stroke="#2C2C2A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<path d="M 140,844 A 44,44 0 0 0 176.0,774.7" fill="none" stroke="#A32D2D" stroke-width="2"/>
+<line x1="420" y1="830" x2="650" y2="830" stroke="#2C2C2A" stroke-width="1.6"/>
+<circle cx="475" cy="830" r="3.5" fill="#2C2C2A"/><circle cx="615" cy="830" r="3.5" fill="#2C2C2A"/>
+<ellipse cx="545" cy="830" rx="20" ry="15" fill="#F1EFE8" stroke="#5F5E5A"/>
+<line x1="545" y1="830" x2="448.4" y2="804.1" stroke="#185FA5" stroke-width="12" stroke-linecap="round" opacity="0.55"/>
+<circle cx="433.0" cy="800.0" r="22" fill="#B5D4F4" stroke="#185FA5"/>
+<line x1="545" y1="830" x2="424.3" y2="797.6" stroke="#2C2C2A" stroke-width="1.2" stroke-dasharray="5 3"/>
+<path d="M 450,830 A 95,95 0 0 1 453.2,805.4" fill="none" stroke="#A32D2D" stroke-width="2.4"/>
+<line x1="454" y1="824" x2="428" y2="864" stroke="#A32D2D" stroke-width="0.8"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="515" y1="100" x2="418" y2="150"/>
+<line x1="515" y1="140" x2="417" y2="173"/>
+<line x1="515" y1="215" x2="374" y2="203"/>
+<line x1="515" y1="268" x2="376" y2="258"/>
+<line x1="515" y1="500" x2="380" y2="512"/>
+<line x1="515" y1="548" x2="391" y2="548"/>
+<line x1="515" y1="596" x2="374" y2="582"/>
+<line x1="245" y1="110" x2="322" y2="165"/>
+<line x1="245" y1="190" x2="351" y2="200"/>
+<line x1="245" y1="390" x2="340" y2="390"/>
+<line x1="245" y1="480" x2="338" y2="520"/>
+<line x1="245" y1="548" x2="304" y2="548"/>
+<line x1="245" y1="596" x2="322" y2="584"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="418" cy="150" r="2.4"/>
+<circle cx="417" cy="173" r="2.4"/>
+<circle cx="374" cy="203" r="2.4"/>
+<circle cx="376" cy="258" r="2.4"/>
+<circle cx="380" cy="512" r="2.4"/>
+<circle cx="391" cy="548" r="2.4"/>
+<circle cx="374" cy="582" r="2.4"/>
+<circle cx="322" cy="165" r="2.4"/>
+<circle cx="351" cy="200" r="2.4"/>
+<circle cx="340" cy="390" r="2.4"/>
+<circle cx="338" cy="520" r="2.4"/>
+<circle cx="304" cy="548" r="2.4"/>
+<circle cx="322" cy="584" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="520" y="100" text-anchor="start">大腿骨頭</text>
+<text x="520" y="140" text-anchor="start">頭窩（骨頭窩）</text>
+<text x="520" y="215" text-anchor="start">大腿骨頸</text>
+<text x="520" y="268" text-anchor="start">小転子</text>
+<text x="520" y="500" text-anchor="start">内転筋結節</text>
+<text x="520" y="548" text-anchor="start">内側上顆</text>
+<text x="520" y="596" text-anchor="start">内側顆</text>
+<text x="240" y="110" text-anchor="end">大転子</text>
+<text x="240" y="190" text-anchor="end">転子間線</text>
+<text x="240" y="390" text-anchor="end">大腿骨体（骨幹）</text>
+<text x="240" y="480" text-anchor="end">膝蓋面</text>
+<text x="240" y="548" text-anchor="end">外側上顆</text>
+<text x="240" y="596" text-anchor="end">外側顆</text>
+<text x="40" y="110" text-anchor="start" font-size="13" fill="#5F5E5A">近位</text>
+<text x="40" y="596" text-anchor="start" font-size="13" fill="#5F5E5A">遠位</text>
+<text x="300" y="628" text-anchor="middle" font-size="13" fill="#5F5E5A">外側</text>
+<text x="394" y="628" text-anchor="middle" font-size="13" fill="#5F5E5A">内側</text>
+<text x="340" y="22" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">右大腿骨を前から見た図</text>
+<text x="40" y="660" text-anchor="start" font-size="13" fill="#2C2C2A">赤い点線＝大腿骨近位部骨折の部位（関節面に近い側から）</text>
+<text x="40" y="682" text-anchor="start" font-size="13" fill="#2C2C2A">①頸部（骨頭下を含む）　②転子部　③転子下</text>
+<text x="40" y="722" text-anchor="start" font-size="14" fill="#2C2C2A" font-weight="500">頸体角（前から見る）</text>
+<text x="192" y="834" text-anchor="start" font-size="14" fill="#A32D2D" font-weight="500">頸体角</text>
+<text x="192" y="854" text-anchor="start" font-size="14" fill="#A32D2D" font-weight="500">約120〜130°</text>
+<text x="160" y="878" text-anchor="start" font-size="12" fill="#5F5E5A">骨幹の軸</text>
+<text x="217.89999999999998" y="776.6" text-anchor="start" font-size="12" fill="#5F5E5A">頸の軸</text>
+<text x="380" y="722" text-anchor="start" font-size="14" fill="#2C2C2A" font-weight="500">前捻角（上から見る）</text>
+<text x="475" y="848" text-anchor="middle" font-size="12" fill="#5F5E5A">内側顆</text>
+<text x="615" y="848" text-anchor="middle" font-size="12" fill="#5F5E5A">外側顆</text>
+<text x="424" y="878" text-anchor="start" font-size="14" fill="#A32D2D" font-weight="500">前捻角 約15°</text>
+<text x="551" y="766" text-anchor="start" font-size="13" fill="#5F5E5A">前</text>
+<text x="551" y="876" text-anchor="start" font-size="13" fill="#5F5E5A">後</text>
+<text x="537" y="800" text-anchor="start" font-size="12" fill="#5F5E5A">頸の軸</text>
+<text x="575" y="822" text-anchor="start" font-size="12" fill="#5F5E5A">両顆を結ぶ線</text>
+</g>
+</svg>

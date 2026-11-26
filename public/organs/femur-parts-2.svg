@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 700" width="680" height="700" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>大腿骨の各部（後面）（模式図）</title><desc>右大腿骨を後ろから見た模式図。左が内側。上内側に大腿骨頭、頭と体をつなぐ大腿骨頸。頸の外側に大転子、その内側のくぼみが転子窩。大転子と小転子を後ろでつなぐ隆起が転子間稜。小転子の下縁に沿って恥骨筋線。大転子の下から続く粗い面が殿筋粗面で、後面中央を縦に走る粗線は内側唇と外側唇に分かれ、遠位で内側・外側の顆上線に分かれて、その間が膝窩面。遠位は内側顆・外側顆、その間の深いくぼみが顆間窩。内側上顆の上に内転筋結節。</desc>
+<rect width="680" height="700" fill="#fff"/>
+<defs><clipPath id="sp"><path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 358,598 359,590 359,578 L 335,578 C 335,590 336,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z"/></clipPath></defs>
+<g transform="translate(694,0) scale(-1,1)">
+<path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 358,598 359,590 359,578 L 335,578 C 335,590 336,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#sp)">
+<polygon points="342,152 392,146 414,196 372,238 369,262 342,170" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<circle cx="404" cy="165" r="28" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+<polygon points="300,140 346,140 342,168 350,200 332,232 300,232" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<polygon points="362,236 395,236 395,290 362,290" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<polygon points="295,525 400,525 400,610 295,610" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+</g>
+<polygon points="332,238 343,236 345,300 332,302" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" stroke-dasharray="3 2"/>
+<polygon points="343,456 352,456 380,526 322,526" fill="#C0DD97" stroke="#3B6D11" stroke-width="1"/>
+<path d="M 316,152 C 322,142 336,140 344,148 C 352,158 368,160 384.2,145.2 A 28,28 0 1 1 398.4,192.2 C 386,202 372,214 367,228 C 372,236 380,246 380,258 C 380,268 372,274 363,278 L 362,455 C 364,485 384,505 390,528 L 392,548 C 394,575 388,598 366,598 L 354,598 C 358,598 359,590 359,578 L 335,578 C 335,590 336,598 340,598 L 328,598 C 306,598 300,575 302,548 L 304,528 C 310,505 330,485 332,455 L 332,300 C 332,260 318,230 314,200 C 312,178 312,160 316,152 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M 344,152 C 352,190 362,225 372,252" fill="none" stroke="#2C2C2A" stroke-width="2.6" stroke-linecap="round"/>
+<ellipse cx="350" cy="160" rx="5" ry="9" fill="#D3D1C7" stroke="#5F5E5A" stroke-width="1"/>
+<g fill="none" stroke="#854F0B" stroke-width="2.4" stroke-linecap="round"><path d="M 343,238 L 343,300 L 343,456 L 322,526"/><path d="M 352,302 L 352,456 L 380,526"/></g>
+<path d="M 372,277 L 354,300" fill="none" stroke="#2C2C2A" stroke-width="1.4" stroke-dasharray="3 2"/>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="245" y1="100" x2="296" y2="150"/>
+<line x1="245" y1="200" x2="320" y2="205"/>
+<line x1="245" y1="240" x2="336" y2="215"/>
+<line x1="245" y1="290" x2="320" y2="262"/>
+<line x1="245" y1="330" x2="330" y2="289"/>
+<line x1="245" y1="400" x2="342" y2="400"/>
+<line x1="245" y1="470" x2="344" y2="495"/>
+<line x1="245" y1="515" x2="313" y2="520"/>
+<line x1="245" y1="550" x2="303" y2="548"/>
+<line x1="245" y1="596" x2="320" y2="585"/>
+<line x1="345" y1="116" x2="344" y2="158"/>
+<line x1="445" y1="120" x2="372" y2="165"/>
+<line x1="445" y1="260" x2="356" y2="270"/>
+<line x1="445" y1="370" x2="351" y2="370"/>
+<line x1="445" y1="550" x2="390" y2="548"/>
+<line x1="445" y1="596" x2="372" y2="585"/>
+<line x1="352" y1="630" x2="347" y2="585"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="296" cy="150" r="2.4"/>
+<circle cx="320" cy="205" r="2.4"/>
+<circle cx="336" cy="215" r="2.4"/>
+<circle cx="320" cy="262" r="2.4"/>
+<circle cx="330" cy="289" r="2.4"/>
+<circle cx="342" cy="400" r="2.4"/>
+<circle cx="344" cy="495" r="2.4"/>
+<circle cx="313" cy="520" r="2.4"/>
+<circle cx="303" cy="548" r="2.4"/>
+<circle cx="320" cy="585" r="2.4"/>
+<circle cx="344" cy="158" r="2.4"/>
+<circle cx="372" cy="165" r="2.4"/>
+<circle cx="356" cy="270" r="2.4"/>
+<circle cx="351" cy="370" r="2.4"/>
+<circle cx="390" cy="548" r="2.4"/>
+<circle cx="372" cy="585" r="2.4"/>
+<circle cx="347" cy="585" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="240" y="100" text-anchor="end">大腿骨頭</text>
+<text x="240" y="200" text-anchor="end">大腿骨頸</text>
+<text x="240" y="240" text-anchor="end">転子間稜</text>
+<text x="240" y="290" text-anchor="end">小転子</text>
+<text x="240" y="330" text-anchor="end">恥骨筋線</text>
+<text x="240" y="400" text-anchor="end">粗線（内側唇）</text>
+<text x="240" y="470" text-anchor="end">膝窩面</text>
+<text x="240" y="515" text-anchor="end">内転筋結節</text>
+<text x="240" y="550" text-anchor="end">内側上顆</text>
+<text x="240" y="596" text-anchor="end">内側顆</text>
+<text x="345" y="104" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">転子窩</text>
+<text x="450" y="120" text-anchor="start">大転子</text>
+<text x="450" y="260" text-anchor="start">殿筋粗面</text>
+<text x="450" y="370" text-anchor="start">粗線（外側唇）</text>
+<text x="450" y="550" text-anchor="start">外側上顆</text>
+<text x="450" y="596" text-anchor="start">外側顆</text>
+<text x="347" y="630" text-anchor="middle">顆間窩</text>
+<text x="300" y="664" text-anchor="middle" font-size="13" fill="#5F5E5A">内側</text>
+<text x="394" y="664" text-anchor="middle" font-size="13" fill="#5F5E5A">外側</text>
+<text x="340" y="22" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">右大腿骨を後ろから見た図</text>
+</g>
+</svg>

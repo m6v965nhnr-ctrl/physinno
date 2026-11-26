@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 720" width="680" height="720" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>足の骨の各部（足背側から）（模式図）</title><desc>右足を上（足背側）から見た模式図。後方（かかと側）に踵骨と、その上に距骨（頭・頸・体）。距骨の前に内側の舟状骨、踵骨の前に外側の立方骨。舟状骨の前に内側・中間・外側の3つの楔状骨。その前に中足骨が第1〜第5まで母趾側から並び、先に趾骨（母趾は2個、ほかの趾は3個ずつ）。赤い点線がリスフラン関節（足根骨と中足骨の間）、青い点線がショパール関節（距舟関節と踵立方関節）。</desc>
+<rect width="680" height="720" fill="#fff"/>
+<polygon points="330,612 396,612 414,566 416,500 412,446 356,446 322,470 312,540" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" stroke-linejoin="round"/>
+<polygon points="356,330 412,330 414,446 356,446" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="280" y="448" width="78" height="66" rx="14" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<polygon points="284,448 330,448 326,414 290,412" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" stroke-linejoin="round"/>
+<circle cx="298" cy="408" r="22" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<polygon points="250,390 254,354 352,352 354,392 322,396 276,398" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" stroke-linejoin="round"/>
+<rect x="240" y="296" width="44" height="54" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="286" y="310" width="32" height="40" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="320" y="300" width="34" height="50" rx="7" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2"/>
+<rect x="238" y="150" width="40" height="146" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="284" y="130" width="28" height="168" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="318" y="140" width="26" height="160" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="350" y="150" width="26" height="178" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="384" y="160" width="28" height="168" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="412" y="318" width="16" height="14" rx="5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<rect x="240" y="100" width="36" height="48" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="242" y="56" width="32" height="42" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="285" y="92" width="26" height="36" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="286" y="66" width="24" height="24" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="287" y="38" width="22" height="26" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="319" y="104" width="24" height="34" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="320" y="80" width="22" height="22" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="321" y="54" width="20" height="24" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="351" y="116" width="24" height="32" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="352" y="94" width="22" height="20" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="353" y="70" width="20" height="22" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="386" y="128" width="26" height="30" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="388" y="108" width="22" height="18" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<rect x="389" y="90" width="20" height="16" rx="6" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<polyline points="232,296 356,296 356,328 424,328" fill="none" stroke="#A32D2D" stroke-width="2.2" stroke-dasharray="6 3"/>
+<polyline points="236,394 354,394 354,446 420,446" fill="none" stroke="#185FA5" stroke-width="2.2" stroke-dasharray="6 3"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="210" y1="190" x2="256" y2="200"/>
+<line x1="210" y1="265" x2="262" y2="318"/>
+<line x1="210" y1="355" x2="262" y2="376"/>
+<line x1="210" y1="405" x2="288" y2="402"/>
+<line x1="210" y1="445" x2="300" y2="432"/>
+<line x1="210" y1="485" x2="312" y2="480"/>
+<line x1="443" y1="70" x2="398" y2="100"/>
+<line x1="443" y1="200" x2="363" y2="220"/>
+<line x1="443" y1="262" x2="421" y2="325"/>
+<line x1="443" y1="395" x2="386" y2="392"/>
+<line x1="443" y1="520" x2="392" y2="520"/>
+<line x1="443" y1="600" x2="366" y2="606"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="256" cy="200" r="2.4"/>
+<circle cx="262" cy="318" r="2.4"/>
+<circle cx="262" cy="376" r="2.4"/>
+<circle cx="288" cy="402" r="2.4"/>
+<circle cx="300" cy="432" r="2.4"/>
+<circle cx="312" cy="480" r="2.4"/>
+<circle cx="398" cy="100" r="2.4"/>
+<circle cx="363" cy="220" r="2.4"/>
+<circle cx="421" cy="325" r="2.4"/>
+<circle cx="386" cy="392" r="2.4"/>
+<circle cx="392" cy="520" r="2.4"/>
+<circle cx="366" cy="606" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="262" y="330" text-anchor="middle" font-size="12" fill="#993C1D">内</text>
+<text x="302" y="330" text-anchor="middle" font-size="12" fill="#993C1D">中</text>
+<text x="337" y="330" text-anchor="middle" font-size="12" fill="#993C1D">外</text>
+<text x="258.0" y="274" text-anchor="middle" font-size="13" fill="#185FA5" font-weight="500">1</text>
+<text x="298.0" y="276" text-anchor="middle" font-size="13" fill="#185FA5" font-weight="500">2</text>
+<text x="331.0" y="278" text-anchor="middle" font-size="13" fill="#185FA5" font-weight="500">3</text>
+<text x="363.0" y="306" text-anchor="middle" font-size="13" fill="#185FA5" font-weight="500">4</text>
+<text x="398.0" y="306" text-anchor="middle" font-size="13" fill="#185FA5" font-weight="500">5</text>
+<text x="205" y="190" text-anchor="end">第1中足骨</text>
+<text x="205" y="265" text-anchor="end">楔状骨（内側・中間・外側）</text>
+<text x="205" y="355" text-anchor="end">舟状骨</text>
+<text x="205" y="405" text-anchor="end">距骨頭</text>
+<text x="205" y="445" text-anchor="end">距骨頸</text>
+<text x="205" y="485" text-anchor="end">距骨体（上面が滑車）</text>
+<text x="448" y="70" text-anchor="start">趾骨（母趾2・ほか各3＝計14）</text>
+<text x="448" y="200" text-anchor="start">中足骨（母趾側から第1〜5）</text>
+<text x="448" y="262" text-anchor="start">第5中足骨粗面</text>
+<text x="448" y="395" text-anchor="start">立方骨</text>
+<text x="448" y="520" text-anchor="start">踵骨</text>
+<text x="448" y="600" text-anchor="start">踵骨隆起（かかと）</text>
+<text x="448" y="300" text-anchor="start" font-size="13" fill="#A32D2D" font-weight="500">リスフラン関節（足根中足関節）</text>
+<text x="448" y="442" text-anchor="start" font-size="13" fill="#185FA5" font-weight="500">ショパール関節（横足根関節）</text>
+<text x="340" y="18" text-anchor="middle" font-size="13" fill="#5F5E5A">遠位（つま先）</text>
+<text x="340" y="660" text-anchor="middle" font-size="13" fill="#5F5E5A">近位（かかと）</text>
+<text x="120" y="690" text-anchor="middle" font-size="13" fill="#5F5E5A">内側（母趾側）</text>
+<text x="560" y="690" text-anchor="middle" font-size="13" fill="#5F5E5A">外側（小趾側）</text>
+<text x="340" y="700" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">右足を上（足背）から見た図</text>
+</g>
+</svg>

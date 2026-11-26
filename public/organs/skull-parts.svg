@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 870" width="680" height="870" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>頭蓋の側面と新生児の頭蓋（上面）</title>
+<desc>頭蓋を左から見た図と、新生児の頭蓋を上から見た図。左から見た図では、前頭骨・頭頂骨・側頭骨・後頭骨・蝶形骨の大翼・頬骨・上顎骨・鼻骨・下顎骨を色分けし、冠状縫合、鱗状縫合、ラムダ縫合を赤い線で示す。翼点は前頭骨・頭頂骨・側頭骨・蝶形骨が接する所。新生児の上面図では、前頭骨・頭頂骨・後頭骨と、冠状縫合・矢状縫合・前頭縫合・ラムダ縫合、前に大泉門、後ろに小泉門を示す。</desc>
+<rect width="680" height="870" fill="#fff"/>
+<text x="20" y="20" font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central">頭蓋の側面（左から見る）</text>
+<path d="M144 238 L172 258 L210 266 L236 290 L232 312 L190 326 L150 318 L138 285 Z" fill="#C0DD97" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M168 190 L150 215 L144 238 L158 238 L176 205 Z" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M158 322 L232 316 L262 300 L290 280 Q300 300 312 306 Q325 296 332 288 L346 300 L346 350 Q344 372 328 372 L190 372 Q156 372 150 345 Q148 330 158 322 Z" fill="#B5D4F4" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M168 190 C160 150 170 95 215 62 C240 45 275 35 305 33 C285 90 265 150 250 198 L215 196 Z" fill="#CECBF6" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M305 33 C350 30 380 36 410 44 C450 52 482 66 500 78 C520 140 505 210 452 262 C455 235 448 208 430 190 C380 140 300 150 262 214 L250 198 C265 150 285 90 305 33 Z" fill="#B5D4F4" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M500 78 C530 100 545 150 548 195 C556 250 540 285 515 300 C495 312 465 320 440 328 L452 262 C505 210 520 140 500 78 Z" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M262 214 C300 150 380 140 430 190 C448 208 455 235 452 262 L440 328 L428 352 Q415 358 405 340 L395 322 C370 308 330 296 300 285 L262 262 Z" fill="#9FE1CB" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M232 200 L250 198 L262 214 L262 262 L238 262 Q226 232 232 200 Z" fill="#FAC775" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M172 250 L205 262 L232 252 L262 255 L262 272 L235 290 L190 292 L165 272 Z" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1" stroke-linejoin="round"/>
+<path d="M240 256 L305 266 L305 282 L240 274 Z" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1"/>
+<path d="M305 266 L352 274 L352 288 L305 282 Z" fill="#9FE1CB" stroke="#2C2C2A" stroke-width="1"/>
+<ellipse cx="338" cy="288" rx="9" ry="6" fill="#B5D4F4" stroke="#2C2C2A" stroke-width="1"/>
+<ellipse cx="204" cy="232" rx="25" ry="30" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<circle cx="374" cy="268" r="8" fill="#fff" stroke="#2C2C2A" stroke-width="1.3"/>
+<line x1="150" y1="314.0" x2="150" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="160" y1="314.0" x2="160" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="170" y1="314.0" x2="170" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="180" y1="314.0" x2="180" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="190" y1="314.0" x2="190" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="200" y1="314.0" x2="200" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="210" y1="314.0" x2="210" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="220" y1="314.0" x2="220" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<line x1="230" y1="314.0" x2="230" y2="322" stroke="#3B6D11" stroke-width="0.8"/>
+<path d="M305 33 C285 90 265 150 250 198" stroke="#A32D2D" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M262 214 C300 150 380 140 430 190 C448 208 455 235 452 262" stroke="#A32D2D" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M500 78 C520 140 505 210 452 262" stroke="#A32D2D" stroke-width="3" fill="none" stroke-linecap="round"/>
+<circle cx="256" cy="207" r="14" fill="none" stroke="#A32D2D" stroke-width="1.6" stroke-dasharray="3 3"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="128" y1="60" x2="190" y2="100"/>
+<line x1="128" y1="130" x2="246" y2="201"/>
+<line x1="128" y1="175" x2="153" y2="218"/>
+<line x1="128" y1="220" x2="246" y2="240"/>
+<line x1="128" y1="265" x2="196" y2="278"/>
+<line x1="128" y1="315" x2="160" y2="300"/>
+<line x1="128" y1="385" x2="180" y2="360"/>
+<line x1="568" y1="60" x2="420" y2="100"/>
+<line x1="568" y1="108" x2="376" y2="155"/>
+<line x1="568" y1="156" x2="514" y2="158"/>
+<line x1="568" y1="205" x2="530" y2="215"/>
+<line x1="568" y1="255" x2="381" y2="266"/>
+<line x1="568" y1="300" x2="425" y2="296"/>
+<line x1="568" y1="350" x2="420" y2="345"/>
+<line x1="250" y1="30" x2="292" y2="58"/>
+</g>
+<text x="20" y="60" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭骨</text>
+<text x="20" y="130" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">翼点</text>
+<text x="20" y="175" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鼻骨</text>
+<text x="20" y="220" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">蝶形骨（大翼）</text>
+<text x="20" y="265" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">頬骨</text>
+<text x="20" y="315" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">上顎骨</text>
+<text x="20" y="385" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎骨</text>
+<text x="576" y="60" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">頭頂骨</text>
+<text x="576" y="108" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鱗状縫合</text>
+<text x="576" y="156" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">ラムダ縫合</text>
+<text x="576" y="205" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">後頭骨</text>
+<text x="576" y="255" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">外耳孔</text>
+<text x="576" y="300" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">側頭骨</text>
+<text x="576" y="350" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">乳様突起</text>
+<text x="250" y="16" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#A32D2D">冠状縫合</text>
+<text x="300" y="408" text-anchor="middle" dominant-baseline="central" font-size="12" font-weight="400" fill="#A32D2D">赤い線＝縫合（冠状縫合・鱗状縫合・ラムダ縫合）</text>
+<text x="20" y="458" text-anchor="start" dominant-baseline="central" font-size="15" font-weight="500" fill="#2C2C2A">新生児の頭蓋（上から見る）</text>
+<defs><clipPath id="nb"><ellipse cx="340" cy="655" rx="130" ry="165"/></clipPath></defs>
+<g clip-path="url(#nb)" stroke="#2C2C2A" stroke-width="1">
+<polygon points="190,470 490,470 490,592 372,578 340,545 308,578 190,592" fill="#CECBF6"/>
+<polygon points="150,592 308,578 340,611 340,750 324,780 240,850 150,850" fill="#B5D4F4"/>
+<polygon points="530,592 372,578 340,611 340,750 356,780 440,850 530,850" fill="#B5D4F4"/>
+<polygon points="324,780 356,780 440,850 240,850" fill="#F5C4B3"/>
+</g>
+<polygon points="340,545 372,578 340,611 308,578" fill="#F4C0D1" stroke="#993556" stroke-width="2"/>
+<polygon points="340,750 356,780 324,780" fill="#F4C0D1" stroke="#993556" stroke-width="2"/>
+<g stroke="#A32D2D" stroke-width="3" fill="none" stroke-linecap="round" clip-path="url(#nb)">
+<path d="M190 592 L308 578 M372 578 L490 592"/>
+<path d="M340 611 L340 750"/>
+<path d="M324 780 L262 830 M356 780 L418 830"/>
+</g>
+<path d="M340 485 L340 545" stroke="#A32D2D" stroke-width="2" stroke-dasharray="5 3" fill="none"/>
+<ellipse cx="340" cy="655" rx="130" ry="165" fill="none" stroke="#2C2C2A" stroke-width="1.6"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="150" y1="512" x2="270" y2="520"/>
+<line x1="150" y1="572" x2="258" y2="585"/>
+<line x1="150" y1="650" x2="260" y2="650"/>
+<line x1="150" y1="762" x2="290" y2="806"/>
+<line x1="150" y1="828" x2="330" y2="802"/>
+<line x1="500" y1="512" x2="340" y2="515"/>
+<line x1="500" y1="578" x2="372" y2="578"/>
+<line x1="500" y1="690" x2="340" y2="690"/>
+<line x1="500" y1="775" x2="356" y2="780"/>
+</g>
+<text x="20" y="512" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭骨</text>
+<text x="20" y="572" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">冠状縫合</text>
+<text x="20" y="650" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">頭頂骨</text>
+<text x="20" y="762" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">ラムダ縫合</text>
+<text x="20" y="828" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">後頭骨</text>
+<text x="508" y="512" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭縫合</text>
+<text x="508" y="578" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">大泉門</text>
+<text x="508" y="690" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">矢状縫合</text>
+<text x="508" y="775" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">小泉門</text>
+<text x="340" y="468" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#5F5E5A">前</text>
+<text x="340" y="848" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#5F5E5A">後</text>
+</svg>

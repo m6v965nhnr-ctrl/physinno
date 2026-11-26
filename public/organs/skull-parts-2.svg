@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 900" width="680" height="900" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>頭蓋の前面・眼窩・副鼻腔・鼻腔</title>
+<desc>頭蓋を前から見た図。前頭骨、鼻骨、頬骨、上顎骨、下顎骨を色分けし、眼窩の縁の色で、上壁が前頭骨、外側壁が頬骨、下壁が上顎骨、内側壁が篩骨と涙骨であることを示す。副鼻腔は、前頭洞が眉の上、篩骨洞が眼窩と鼻腔の間、上顎洞が眼窩の下にある。下の拡大図は鼻腔で、鼻中隔の上部は篩骨の垂直板、下部は鋤骨、外側壁に中鼻甲介（篩骨）と下鼻甲介がある。</desc>
+<rect width="680" height="900" fill="#fff"/>
+<path d="M205 250 C196 130 250 38 340 38 C430 38 484 130 475 250 Z" fill="#CECBF6" stroke="#2C2C2A" stroke-width="1.4"/>
+<polygon points="212,250 468,250 462,330 452,395 436,426 244,426 228,395 218,330" fill="#C0DD97" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="222" cy="320" rx="28" ry="44" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="458" cy="320" rx="28" ry="44" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1.2"/>
+<polygon points="328,208 352,208 358,268 322,268" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1.2"/>
+<path d="M226 432 C224 520 280 590 340 592 C400 590 456 520 454 432 L432 438 C430 500 394 545 340 548 C286 545 250 500 248 438 Z" fill="#B5D4F4" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="262" cy="272" rx="42" ry="38" fill="#fff" stroke="#2C2C2A" stroke-width="15"/>
+<path d="M227.6 250.2 A42 38 0 0 1 296.4 250.2" fill="none" stroke="#CECBF6" stroke-width="11" stroke-linecap="butt"/>
+<path d="M296.4 250.2 A42 38 0 0 1 296.4 293.8" fill="none" stroke="#F5C4B3" stroke-width="11" stroke-linecap="butt"/>
+<path d="M296.4 293.8 A42 38 0 0 1 227.6 293.8" fill="none" stroke="#C0DD97" stroke-width="11" stroke-linecap="butt"/>
+<path d="M227.6 293.8 A42 38 0 0 1 227.6 250.2" fill="none" stroke="#F4C0D1" stroke-width="11" stroke-linecap="butt"/>
+<ellipse cx="262" cy="272" rx="36" ry="32" fill="#fff" stroke="none"/>
+<ellipse cx="418" cy="272" rx="42" ry="38" fill="#fff" stroke="#2C2C2A" stroke-width="15"/>
+<path d="M383.6 250.2 A42 38 0 0 1 452.4 250.2" fill="none" stroke="#CECBF6" stroke-width="11" stroke-linecap="butt"/>
+<path d="M383.6 293.8 A42 38 0 0 1 383.6 250.2" fill="none" stroke="#F5C4B3" stroke-width="11" stroke-linecap="butt"/>
+<path d="M452.4 293.8 A42 38 0 0 1 383.6 293.8" fill="none" stroke="#C0DD97" stroke-width="11" stroke-linecap="butt"/>
+<path d="M452.4 250.2 A42 38 0 0 1 452.4 293.8" fill="none" stroke="#F4C0D1" stroke-width="11" stroke-linecap="butt"/>
+<ellipse cx="418" cy="272" rx="36" ry="32" fill="#fff" stroke="none"/>
+<path d="M340 303 C352 303 372 340 372 372 C372 392 358 402 340 402 C322 402 308 392 308 372 C308 340 328 303 340 303 Z" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<rect x="336" y="306" width="8" height="46" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="0.8"/>
+<rect x="336" y="352" width="8" height="50" fill="#9FE1CB" stroke="#2C2C2A" stroke-width="0.8"/>
+<ellipse cx="296" cy="206" rx="36" ry="15" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<ellipse cx="384" cy="206" rx="36" ry="15" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<ellipse cx="316" cy="294" rx="8" ry="17" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<ellipse cx="364" cy="294" rx="8" ry="17" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<ellipse cx="272" cy="380" rx="36" ry="30" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<ellipse cx="408" cy="380" rx="36" ry="30" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="1.8" stroke-dasharray="5 3"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="165" y1="70" x2="280" y2="92"/>
+<line x1="165" y1="150" x2="262" y2="206"/>
+<line x1="165" y1="300" x2="210" y2="300"/>
+<line x1="165" y1="372" x2="242" y2="378"/>
+<line x1="165" y1="425" x2="232" y2="412"/>
+<line x1="165" y1="470" x2="262" y2="506"/>
+<line x1="512" y1="230" x2="438" y2="262"/>
+<line x1="512" y1="290" x2="372" y2="293"/>
+<line x1="512" y1="335" x2="366" y2="350"/>
+<line x1="512" y1="395" x2="436" y2="382"/>
+<line x1="340" y1="34" x2="340" y2="214"/>
+</g>
+<text x="20" y="70" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭骨</text>
+<text x="20" y="150" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭洞</text>
+<text x="20" y="300" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">頬骨</text>
+<text x="20" y="372" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">上顎洞</text>
+<text x="20" y="425" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">上顎骨</text>
+<text x="20" y="470" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎骨</text>
+<text x="520" y="230" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">眼窩</text>
+<text x="520" y="290" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">篩骨洞</text>
+<text x="520" y="335" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鼻腔</text>
+<text x="520" y="395" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">上顎洞</text>
+<text x="340" y="20" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鼻骨</text>
+<text x="20" y="618" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="500" fill="#2C2C2A">眼窩の壁（縁の色）</text>
+<rect x="20" y="640" width="16" height="16" fill="#CECBF6" stroke="#2C2C2A" stroke-width="1"/>
+<text x="42" y="648" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="400" fill="#2C2C2A">前頭骨（上壁）</text>
+<rect x="180" y="640" width="16" height="16" fill="#F4C0D1" stroke="#2C2C2A" stroke-width="1"/>
+<text x="202" y="648" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="400" fill="#2C2C2A">頬骨（外側壁）</text>
+<rect x="340" y="640" width="16" height="16" fill="#C0DD97" stroke="#2C2C2A" stroke-width="1"/>
+<text x="362" y="648" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="400" fill="#2C2C2A">上顎骨（下壁）</text>
+<rect x="500" y="640" width="16" height="16" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="1"/>
+<text x="522" y="648" text-anchor="start" dominant-baseline="central" font-size="13" font-weight="400" fill="#2C2C2A">篩骨・涙骨（内側壁）</text>
+<text x="20" y="670" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="400" fill="#5F5E5A">（奥には蝶形骨・口蓋骨もあり、眼窩の後方をつくる。点線の青い部分＝副鼻腔）</text>
+<text x="20" y="700" text-anchor="start" dominant-baseline="central" font-size="15" font-weight="500" fill="#2C2C2A">鼻腔（前から見た拡大図）</text>
+<path d="M340 715 C372 715 410 780 410 830 C410 868 380 888 340 888 C300 888 270 868 270 830 C270 780 308 715 340 715 Z" fill="#fff" stroke="#2C2C2A" stroke-width="1.6"/>
+<rect x="334" y="718" width="12" height="90" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="1"/>
+<rect x="334" y="808" width="12" height="80" fill="#9FE1CB" stroke="#2C2C2A" stroke-width="1"/>
+<ellipse cx="300" cy="790" rx="22" ry="16" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="298" cy="850" rx="26" ry="18" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="380" cy="790" rx="22" ry="16" fill="#F5C4B3" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="382" cy="850" rx="26" ry="18" fill="#F1EFE8" stroke="#2C2C2A" stroke-width="1.2"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="190" y1="770" x2="286" y2="786"/>
+<line x1="190" y1="850" x2="276" y2="850"/>
+<line x1="430" y1="745" x2="346" y2="745"/>
+<line x1="430" y1="840" x2="346" y2="826"/>
+</g>
+<text x="20" y="770" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">中鼻甲介（篩骨）</text>
+<text x="20" y="850" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下鼻甲介（独立した骨）</text>
+<text x="438" y="745" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鼻中隔の上部（篩骨垂直板）</text>
+<text x="438" y="840" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">鼻中隔の下部（鋤骨）</text>
+</svg>

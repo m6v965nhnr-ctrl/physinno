@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="680" height="620" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脛骨・腓骨の各部（前面）（模式図）</title><desc>右の下腿骨を前から見た模式図。内側（右）の太い骨が脛骨、外側（左）の細い骨が腓骨。脛骨の近位は内側顆と外側顆に広がり、その間に顆間隆起。顆の下の前面に脛骨粗面、外側顆の前外側にガーディ結節。脛骨の前縁（脛骨稜）が脛骨粗面から下へ走る。遠位の内側が内果。腓骨は、近位に腓骨頭が脛骨外側顆の下に接して上脛腓関節をつくり、その下の細い部分が腓骨頸、遠位が外果。脛骨と腓骨の間は骨間膜（骨間縁に付く）でつながり、遠位では脛骨の腓骨切痕に腓骨が接して下脛腓関節をつくる。</desc>
+<rect width="680" height="620" fill="#fff"/>
+<defs><clipPath id="t"><path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z"/></clipPath><clipPath id="b"><path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z"/></clipPath></defs>
+<polygon points="350,212 372,202 372,440 350,486" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="0.8" stroke-dasharray="3 2"/>
+<path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#t)">
+<polygon points="330,60 450,60 450,150 330,150" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<polygon points="414,470 450,470 450,560 414,560 408,500" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+</g>
+<ellipse cx="393" cy="166" rx="12" ry="20" fill="#F5C4B3" stroke="#993C1D" stroke-width="1"/>
+<ellipse cx="357" cy="128" rx="9" ry="12" fill="#F4C0D1" stroke="#993556" stroke-width="1"/>
+<path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#b)">
+<polygon points="300,120 360,120 360,176 300,176" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<polygon points="300,176 360,176 360,206 300,206" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<polygon points="300,512 360,512 360,560 300,560" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+</g>
+<path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M 393,186 C 396,300 398,420 396,528" fill="none" stroke="#2C2C2A" stroke-width="2.2" stroke-linecap="round"/>
+<line x1="372" y1="204" x2="372" y2="440" stroke="#185FA5" stroke-width="2" stroke-dasharray="5 3"/>
+<line x1="350" y1="214" x2="350" y2="486" stroke="#185FA5" stroke-width="2" stroke-dasharray="5 3"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="495" y1="86" x2="424" y2="100"/>
+<line x1="495" y1="170" x2="396" y2="170"/>
+<line x1="495" y1="330" x2="397" y2="320"/>
+<line x1="495" y1="410" x2="402" y2="400"/>
+<line x1="495" y1="520" x2="428" y2="518"/>
+<line x1="495" y1="128" x2="390" y2="66"/>
+<line x1="245" y1="70" x2="351" y2="100"/>
+<line x1="245" y1="105" x2="357" y2="128"/>
+<line x1="245" y1="140" x2="330" y2="150"/>
+<line x1="245" y1="175" x2="352" y2="153"/>
+<line x1="245" y1="210" x2="334" y2="194"/>
+<line x1="245" y1="250" x2="372" y2="260"/>
+<line x1="245" y1="330" x2="361" y2="330"/>
+<line x1="245" y1="420" x2="339" y2="420"/>
+<line x1="245" y1="490" x2="358" y2="500"/>
+<line x1="245" y1="540" x2="334" y2="536"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="424" cy="100" r="2.4"/>
+<circle cx="396" cy="170" r="2.4"/>
+<circle cx="397" cy="320" r="2.4"/>
+<circle cx="402" cy="400" r="2.4"/>
+<circle cx="428" cy="518" r="2.4"/>
+<circle cx="390" cy="66" r="2.4"/>
+<circle cx="351" cy="100" r="2.4"/>
+<circle cx="357" cy="128" r="2.4"/>
+<circle cx="330" cy="150" r="2.4"/>
+<circle cx="352" cy="153" r="2.4"/>
+<circle cx="334" cy="194" r="2.4"/>
+<circle cx="372" cy="260" r="2.4"/>
+<circle cx="361" cy="330" r="2.4"/>
+<circle cx="339" cy="420" r="2.4"/>
+<circle cx="358" cy="500" r="2.4"/>
+<circle cx="334" cy="536" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="500" y="86" text-anchor="start">脛骨内側顆</text>
+<text x="500" y="170" text-anchor="start">脛骨粗面</text>
+<text x="500" y="330" text-anchor="start">脛骨稜（前縁）</text>
+<text x="500" y="410" text-anchor="start">脛骨体</text>
+<text x="500" y="520" text-anchor="start">内果</text>
+<text x="500" y="128" text-anchor="start">顆間隆起</text>
+<text x="240" y="70" text-anchor="end">脛骨外側顆</text>
+<text x="240" y="105" text-anchor="end">ガーディ結節</text>
+<text x="240" y="140" text-anchor="end">腓骨頭</text>
+<text x="240" y="175" text-anchor="end">上脛腓関節</text>
+<text x="240" y="210" text-anchor="end">腓骨頸</text>
+<text x="240" y="250" text-anchor="end">骨間縁</text>
+<text x="240" y="330" text-anchor="end">骨間膜</text>
+<text x="240" y="420" text-anchor="end">腓骨体</text>
+<text x="240" y="490" text-anchor="end">腓骨切痕</text>
+<text x="240" y="540" text-anchor="end">外果</text>
+<text x="40" y="70" text-anchor="start" font-size="13" fill="#5F5E5A">近位</text>
+<text x="40" y="540" text-anchor="start" font-size="13" fill="#5F5E5A">遠位</text>
+<text x="330" y="586" text-anchor="middle" font-size="13" fill="#5F5E5A">外側</text>
+<text x="414" y="586" text-anchor="middle" font-size="13" fill="#5F5E5A">内側</text>
+<text x="340" y="22" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">右下腿を前から見た図</text>
+</g>
+</svg>

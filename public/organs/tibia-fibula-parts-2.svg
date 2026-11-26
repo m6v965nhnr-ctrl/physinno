@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 620" width="680" height="620" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>脛骨・腓骨の各部（後面）と総腓骨神経（模式図）</title><desc>右の下腿骨を後ろから見た模式図。左が内側の脛骨、右が外側の腓骨。脛骨の後面に、外側顆の下から内側へ斜めに下るヒラメ筋線。腓骨頭と、その下の細い腓骨頸。総腓骨神経は腓骨頭の後ろを通り、頸のまわりを外側へまわる。</desc>
+<rect width="680" height="620" fill="#fff"/>
+<defs><clipPath id="t"><path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z"/></clipPath><clipPath id="b"><path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z"/></clipPath></defs>
+<g transform="translate(744,0) scale(-1,1)">
+<polygon points="350,212 372,202 372,440 350,486" fill="#B5D4F4" fill-opacity="0.55" stroke="#185FA5" stroke-width="0.8" stroke-dasharray="3 2"/>
+<path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#t)">
+<polygon points="330,60 450,60 450,150 330,150" fill="#FAC775" stroke="#854F0B" stroke-width="1"/>
+<polygon points="414,470 450,470 450,560 414,560 408,500" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+</g>
+<path d="M 343,92 C 345,78 360,74 372,76 L 380,74 C 384,62 388,62 390,70 C 392,62 396,62 400,74 L 408,76 C 420,74 436,78 438,92 C 440,112 430,130 416,148 C 410,160 408,175 408,200 L 408,440 C 408,470 428,486 432,506 L 434,528 C 434,542 424,546 414,540 L 396,528 L 372,524 C 360,522 354,510 352,490 C 352,470 372,460 372,440 L 372,200 C 372,175 366,150 352,135 C 342,120 340,105 343,92 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<path d="M 374,164 L 407,226" fill="none" stroke="#993C1D" stroke-width="3" stroke-linecap="round"/>
+<path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1"/>
+<g clip-path="url(#b)">
+<polygon points="300,120 360,120 360,176 300,176" fill="#CECBF6" stroke="#534AB7" stroke-width="1"/>
+<polygon points="300,176 360,176 360,206 300,206" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1"/>
+<polygon points="300,512 360,512 360,560 300,560" fill="#B5D4F4" stroke="#185FA5" stroke-width="1"/>
+</g>
+<path d="M 326,134 C 336,128 350,132 354,146 C 356,160 352,172 346,180 C 344,190 348,200 350,212 L 350,486 C 354,500 360,508 360,526 C 360,540 354,548 344,548 C 332,548 326,540 326,524 C 326,508 330,500 328,486 L 328,210 C 326,200 330,190 330,180 C 324,174 318,165 318,152 C 318,142 320,138 326,134 Z" fill="none" stroke="#2C2C2A" stroke-width="1.6" stroke-linejoin="round"/>
+<line x1="372" y1="204" x2="372" y2="440" stroke="#185FA5" stroke-width="2" stroke-dasharray="5 3"/>
+<line x1="350" y1="214" x2="350" y2="486" stroke="#185FA5" stroke-width="2" stroke-dasharray="5 3"/>
+</g>
+<path d="M 384,120 C 388,146 398,160 410,172 C 420,180 426,188 430,196" fill="none" stroke="#993C1D" stroke-width="3" stroke-dasharray="7 4" stroke-linecap="round"/>
+<path d="M 430,197 l 9,-3 l -2,9 z" fill="#993C1D"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="245" y1="80" x2="320" y2="100"/>
+<line x1="245" y1="200" x2="354" y2="196"/>
+<line x1="245" y1="380" x2="352" y2="380"/>
+<line x1="245" y1="520" x2="316" y2="518"/>
+<line x1="495" y1="70" x2="393" y2="100"/>
+<line x1="495" y1="130" x2="414" y2="150"/>
+<line x1="495" y1="215" x2="410" y2="200"/>
+<line x1="495" y1="165" x2="398" y2="160"/>
+<line x1="495" y1="420" x2="405" y2="420"/>
+<line x1="495" y1="540" x2="410" y2="536"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="320" cy="100" r="2.4"/>
+<circle cx="354" cy="196" r="2.4"/>
+<circle cx="352" cy="380" r="2.4"/>
+<circle cx="316" cy="518" r="2.4"/>
+<circle cx="393" cy="100" r="2.4"/>
+<circle cx="414" cy="150" r="2.4"/>
+<circle cx="410" cy="200" r="2.4"/>
+<circle cx="398" cy="160" r="2.4"/>
+<circle cx="405" cy="420" r="2.4"/>
+<circle cx="410" cy="536" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="240" y="80" text-anchor="end">脛骨内側顆</text>
+<text x="240" y="200" text-anchor="end">ヒラメ筋線</text>
+<text x="240" y="380" text-anchor="end">脛骨体</text>
+<text x="240" y="520" text-anchor="end">内果</text>
+<text x="500" y="70" text-anchor="start">脛骨外側顆</text>
+<text x="500" y="130" text-anchor="start">腓骨頭</text>
+<text x="500" y="215" text-anchor="start">腓骨頸</text>
+<text x="500" y="165" text-anchor="start">総腓骨神経</text>
+<text x="500" y="420" text-anchor="start">腓骨体</text>
+<text x="500" y="540" text-anchor="start">外果</text>
+<text x="300" y="586" text-anchor="middle" font-size="13" fill="#5F5E5A">内側</text>
+<text x="420" y="586" text-anchor="middle" font-size="13" fill="#5F5E5A">外側</text>
+<text x="340" y="22" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">右下腿を後ろから見た図</text>
+</g>
+</svg>

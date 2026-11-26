@@ -14,4 +14,6 @@ assert.ok(!slugs("橋本病の甲状腺").includes("pons"));
 assert.ok(slugs("橋出血で四肢麻痺").includes("pons"));
 assert.ok(!slugs("脳血管障害の既往").includes("blood-vessels"));
 assert.ok(slugs("動脈と静脈と毛細血管の壁の構造").includes("blood-vessels"));
+assert.ok(!slugs("下顎呼吸がみられる").includes("mandible-tmj"));
+assert.ok(slugs("大腿骨頸部骨折の好発部位").length>=1);
 console.log("organ match ok");

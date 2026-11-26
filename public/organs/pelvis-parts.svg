@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 640" width="680" height="640" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>骨盤の各部（前面）（模式図）</title><desc>骨盤を前から見た模式図。中央に仙骨（上端の前縁が岬角）、左右に寛骨（腸骨・恥骨・坐骨）。腸骨は上の広がった部分（腸骨翼）で、上縁が腸骨稜、前端が上前腸骨棘、その下に下前腸骨棘、内面のくぼみが腸骨窩。寛骨の外側にくぼみの寛骨臼、その内下方に大きな孔の閉鎖孔。左右の恥骨は正中の恥骨結合でつながり、上縁近くに恥骨結節、恥骨上枝の上縁に恥骨櫛。坐骨の下端が坐骨結節。左右の恥骨下枝がつくる角が恥骨下角。赤い点線は分界線（岬角・弓状線・恥骨櫛・恥骨結合上縁）で、これより上が大骨盤、下が小骨盤。</desc>
+<rect width="680" height="640" fill="#fff"/>
+<defs><clipPath id="hr"><path d="M 396,92 C 424,66 486,66 524,98 C 552,120 574,140 586,166 C 584,190 570,212 562,234 C 560,250 552,262 546,274 C 556,296 556,336 542,362 C 536,410 500,470 470,510 C 458,524 436,526 424,514 C 400,490 372,460 344,430 L 342,430 L 342,394 L 372,380 L 492,292 C 470,250 440,215 418,180 C 410,166 404,150 404,130 Z"/></clipPath><clipPath id="hl"><path d="M 284,92 C 256,66 194,66 156,98 C 128,120 106,140 94,166 C 96,190 110,212 118,234 C 120,250 128,262 134,274 C 124,296 124,336 138,362 C 144,410 180,470 210,510 C 222,524 244,526 256,514 C 280,490 308,460 336,430 L 338,430 L 338,394 L 308,380 L 188,292 C 210,250 240,215 262,180 C 270,166 276,150 276,130 Z"/></clipPath></defs>
+<g transform="translate(54.40,20) scale(0.84)">
+<path d="M 262,94 L 418,94 C 410,180 372,300 340,376 C 308,300 270,180 262,94 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<ellipse cx="302" cy="150" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/><ellipse cx="378" cy="150" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/>
+<ellipse cx="310" cy="200" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/><ellipse cx="370" cy="200" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/>
+<ellipse cx="316" cy="246" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/><ellipse cx="364" cy="246" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/>
+<ellipse cx="323" cy="286" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/><ellipse cx="357" cy="286" rx="6" ry="9" fill="#fff" stroke="#5F5E5A"/>
+<path d="M 396,92 C 424,66 486,66 524,98 C 552,120 574,140 586,166 C 584,190 570,212 562,234 C 560,250 552,262 546,274 C 556,296 556,336 542,362 C 536,410 500,470 470,510 C 458,524 436,526 424,514 C 400,490 372,460 344,430 L 342,430 L 342,394 L 372,380 L 492,292 C 470,250 440,215 418,180 C 410,166 404,150 404,130 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<g clip-path="url(#hr)">
+<polygon points="300,40 620,40 620,312 500,312 492,292 300,292" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<polygon points="494,296 620,296 620,580 380,580 396,490 440,430 470,368" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+</g>
+<ellipse cx="536" cy="330" rx="20" ry="38" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" transform="rotate(-12 536 330)"/>
+<ellipse cx="442" cy="430" rx="34" ry="44" fill="#fff" stroke="#5F5E5A" stroke-width="1.4" transform="rotate(28 442 430)"/>
+<path d="M 396,92 C 424,66 486,66 524,98 C 552,120 574,140 586,166 C 584,190 570,212 562,234 C 560,250 552,262 546,274 C 556,296 556,336 542,362 C 536,410 500,470 470,510 C 458,524 436,526 424,514 C 400,490 372,460 344,430 L 342,430 L 342,394 L 372,380 L 492,292 C 470,250 440,215 418,180 C 410,166 404,150 404,130 Z" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linejoin="round"/>
+<path d="M 284,92 C 256,66 194,66 156,98 C 128,120 106,140 94,166 C 96,190 110,212 118,234 C 120,250 128,262 134,274 C 124,296 124,336 138,362 C 144,410 180,470 210,510 C 222,524 244,526 256,514 C 280,490 308,460 336,430 L 338,430 L 338,394 L 308,380 L 188,292 C 210,250 240,215 262,180 C 270,166 276,150 276,130 Z" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<g clip-path="url(#hl)">
+<polygon points="380,40 60,40 60,312 180,312 188,292 380,292" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<polygon points="186,296 60,296 60,580 300,580 284,490 240,430 210,368" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+</g>
+<ellipse cx="144" cy="330" rx="20" ry="38" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" transform="rotate(12 144 330)"/>
+<ellipse cx="238" cy="430" rx="34" ry="44" fill="#fff" stroke="#5F5E5A" stroke-width="1.4" transform="rotate(-28 238 430)"/>
+<path d="M 284,92 C 256,66 194,66 156,98 C 128,120 106,140 94,166 C 96,190 110,212 118,234 C 120,250 128,262 134,274 C 124,296 124,336 138,362 C 144,410 180,470 210,510 C 222,524 244,526 256,514 C 280,490 308,460 336,430 L 338,430 L 338,394 L 308,380 L 188,292 C 210,250 240,215 262,180 C 270,166 276,150 276,130 Z" fill="none" stroke="#2C2C2A" stroke-width="1.8" stroke-linejoin="round"/>
+<rect x="336" y="394" width="8" height="38" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<path d="M 340,100 C 372,100 396,112 410,134 C 420,160 440,196 462,236 L 492,292 L 372,380 L 342,394" fill="none" stroke="#A32D2D" stroke-width="3" stroke-dasharray="7 4"/>
+<path d="M 340,100 C 308,100 284,112 270,134 C 260,160 240,196 218,236 L 188,292 L 308,380 L 338,394" fill="none" stroke="#A32D2D" stroke-width="3" stroke-dasharray="7 4"/>
+<text x="340" y="206" font-size="15" fill="#5F5E5A" text-anchor="middle" font-weight="500">仙骨</text>
+<line x1="340" y1="394" x2="340" y2="430" stroke="#185FA5" stroke-width="0"/>
+</g>
+<polyline points="398.8,444.2 341.7,382.9 281.2,444.2" fill="none" stroke="#2C2C2A" stroke-width="1.2" stroke-dasharray="4 3"/>
+<rect x="40" y="596" width="16" height="16" fill="#B5D4F4" stroke="#185FA5"/>
+<rect x="130" y="596" width="16" height="16" fill="#F4C0D1" stroke="#993556"/>
+<rect x="220" y="596" width="16" height="16" fill="#C0DD97" stroke="#3B6D11"/>
+<rect x="310" y="596" width="16" height="16" fill="#FAC775" stroke="#854F0B"/>
+<line x1="520" y1="604" x2="548" y2="604" stroke="#A32D2D" stroke-width="3" stroke-dasharray="7 4"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="575" y1="60" x2="449.2" y2="78.8"/>
+<line x1="585" y1="100" x2="545.0" y2="161.1"/>
+<line x1="595" y1="160" x2="526.5" y2="218.2"/>
+<line x1="595" y1="215" x2="474.4" y2="162.8"/>
+<line x1="595" y1="262" x2="428.2" y2="194.7"/>
+<line x1="595" y1="330" x2="511.4" y2="297.2"/>
+<line x1="595" y1="380" x2="424.0" y2="300.6"/>
+<line x1="595" y1="440" x2="432.4" y2="389.6"/>
+<line x1="595" y1="515" x2="430.7" y2="453.4"/>
+<line x1="95" y1="60" x2="340.0" y2="102.3"/>
+<line x1="105" y1="120" x2="293.0" y2="127.5"/>
+<line x1="105" y1="300" x2="313.1" y2="339.2"/>
+<line x1="105" y1="420" x2="340.0" y2="367.8"/>
+<line x1="105" y1="500" x2="340.0" y2="423.2"/>
+</g>
+<g fill="#2C2C2A">
+<circle cx="449.2" cy="78.8" r="2.4"/>
+<circle cx="545.0" cy="161.1" r="2.4"/>
+<circle cx="526.5" cy="218.2" r="2.4"/>
+<circle cx="474.4" cy="162.8" r="2.4"/>
+<circle cx="428.2" cy="194.7" r="2.4"/>
+<circle cx="511.4" cy="297.2" r="2.4"/>
+<circle cx="424.0" cy="300.6" r="2.4"/>
+<circle cx="432.4" cy="389.6" r="2.4"/>
+<circle cx="430.7" cy="453.4" r="2.4"/>
+<circle cx="340.0" cy="102.3" r="2.4"/>
+<circle cx="293.0" cy="127.5" r="2.4"/>
+<circle cx="313.1" cy="339.2" r="2.4"/>
+<circle cx="340.0" cy="367.8" r="2.4"/>
+<circle cx="340.0" cy="423.2" r="2.4"/>
+</g>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="580" y="60" text-anchor="start">腸骨稜</text>
+<text x="590" y="100" text-anchor="start">上前腸骨棘</text>
+<text x="600" y="160" text-anchor="start">下前腸骨棘</text>
+<text x="600" y="215" text-anchor="start">腸骨窩</text>
+<text x="600" y="262" text-anchor="start">弓状線</text>
+<text x="600" y="330" text-anchor="start">寛骨臼</text>
+<text x="600" y="380" text-anchor="start">恥骨櫛</text>
+<text x="600" y="440" text-anchor="start">閉鎖孔</text>
+<text x="600" y="515" text-anchor="start">坐骨結節</text>
+<text x="90" y="60" text-anchor="end">岬角</text>
+<text x="100" y="120" text-anchor="end">仙腸関節</text>
+<text x="100" y="300" text-anchor="end">恥骨結節</text>
+<text x="100" y="420" text-anchor="end">恥骨結合</text>
+<text x="100" y="500" text-anchor="end">恥骨下角</text>
+<text x="62" y="605" text-anchor="start" font-size="13" fill="#2C2C2A">腸骨</text>
+<text x="152" y="605" text-anchor="start" font-size="13" fill="#2C2C2A">恥骨</text>
+<text x="242" y="605" text-anchor="start" font-size="13" fill="#2C2C2A">坐骨</text>
+<text x="332" y="605" text-anchor="start" font-size="13" fill="#2C2C2A">寛骨臼（3つの骨が集まる）</text>
+<text x="554" y="605" text-anchor="start" font-size="13" fill="#A32D2D" font-weight="500">分界線</text>
+<text x="340" y="14" text-anchor="middle" font-size="14" fill="#2C2C2A" font-weight="500">骨盤を前から見た図</text>
+<text x="40" y="632" text-anchor="start" font-size="12" fill="#5F5E5A">赤い点線＝分界線（これより上が大骨盤、下が小骨盤）。恥骨下角の位置を点線で示す。</text>
+</g>
+</svg>

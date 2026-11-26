@@ -16,6 +16,7 @@ const HAN = /\p{Script=Han}/u;
 const NOT_THIS: Record<string, RegExp> = {
   cerebrum: /[前中後]大脳動脈|大脳基底核|大脳脚|大脳鎌/g,
   pons: /橋本|橋静脈|橋渡し|架橋|ブリッジ/g,
+  "mandible-tmj": /下顎(呼吸|反射)/g,
   "blood-vessels": /[脳心]血管|血管(障害|疾患|性|炎|腫|病変)/g,
 };
 

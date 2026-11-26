@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 760" width="680" height="760" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>頭蓋底の内面（上から見た模式図）</title>
+<desc>頭蓋底の内面を上から見た模式図。上が前、下が後ろ。前頭蓋窩・中頭蓋窩・後頭蓋窩を色分けし、蝶形骨小翼と錐体稜が境をつくる。篩板、視神経管、上眼窩裂、正円孔、卵円孔、棘孔、下垂体窩、内耳孔、頸静脈孔、舌下神経管、大孔、斜台を示す。孔は左右対称で、左右に分けて名を示した。</desc>
+<rect width="680" height="760" fill="#fff"/>
+<defs><clipPath id="sk"><path d="M340 40 C255 40 212 92 202 170 C192 260 184 350 190 450 C196 560 250 690 340 712 C430 690 484 560 490 450 C496 350 488 260 478 170 C468 92 425 40 340 40 Z"/></clipPath></defs>
+<g clip-path="url(#sk)">
+<path d="M150 20 L530 20 L530 230 L482 232 Q410 205 358 236 L322 236 Q270 205 198 232 L150 230 Z" fill="#C0DD97"/>
+<path d="M150 440 L198 420 L305 330 L340 318 L375 330 L482 420 L530 440 L530 760 L150 760 Z" fill="#B5D4F4"/>
+<path d="M150 230 L198 232 Q270 205 322 236 L358 236 Q410 205 482 232 L530 230 L530 440 L482 420 L375 330 L340 318 L305 330 L198 420 L150 440 Z" fill="#FAC775"/>
+</g>
+<path d="M196 232 Q270 205 322 236 L358 236 Q410 205 484 232" fill="none" stroke="#854F0B" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M198 420 L305 330 M482 420 L375 330" stroke="#185FA5" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+<path d="M340 40 C255 40 212 92 202 170 C192 260 184 350 190 450 C196 560 250 690 340 712 C430 690 484 560 490 450 C496 350 488 260 478 170 C468 92 425 40 340 40 Z" fill="none" stroke="#2C2C2A" stroke-width="1.5"/>
+<path d="M322 318 L358 318 L362 520 L318 520 Z" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M312 312 L368 312" stroke="#2C2C2A" stroke-width="3" stroke-linecap="round"/>
+<ellipse cx="340" cy="285" rx="24" ry="20" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<rect x="318" y="112" width="12" height="62" rx="3" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<rect x="350" y="112" width="12" height="62" rx="3" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<path d="M334 112 L346 112 L343 150 L337 150 Z" fill="#fff" stroke="#2C2C2A" stroke-width="1.2"/>
+<ellipse cx="302" cy="250" rx="9" ry="5" transform="rotate(-20 302 250)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="258" cy="264" rx="22" ry="6" transform="rotate(-30 258 264)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="268" cy="303" rx="7" ry="7" transform="rotate(0 268 303)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="246" cy="346" rx="9" ry="12" transform="rotate(-20 246 346)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="224" cy="374" rx="5" ry="5" transform="rotate(0 224 374)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="262" cy="412" rx="9" ry="6" transform="rotate(-35 262 412)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="276" cy="478" rx="15" ry="10" transform="rotate(-30 276 478)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="302" cy="549" rx="8" ry="5" transform="rotate(-25 302 549)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="378" cy="250" rx="9" ry="5" transform="rotate(20 378 250)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="422" cy="264" rx="22" ry="6" transform="rotate(30 422 264)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="412" cy="303" rx="7" ry="7" transform="rotate(0 412 303)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="434" cy="346" rx="9" ry="12" transform="rotate(20 434 346)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="456" cy="374" rx="5" ry="5" transform="rotate(0 456 374)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="418" cy="412" rx="9" ry="6" transform="rotate(35 418 412)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="404" cy="478" rx="15" ry="10" transform="rotate(30 404 478)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="378" cy="549" rx="8" ry="5" transform="rotate(25 378 549)" fill="#fff" stroke="#2C2C2A" stroke-width="1.4"/>
+<ellipse cx="340" cy="572" rx="29" ry="37" fill="#fff" stroke="#2C2C2A" stroke-width="1.6"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="168" y1="100" x2="228" y2="100"/>
+<line x1="168" y1="150" x2="317" y2="150"/>
+<line x1="168" y1="205" x2="232" y2="222"/>
+<line x1="168" y1="262" x2="238" y2="262"/>
+<line x1="168" y1="303" x2="260" y2="303"/>
+<line x1="168" y1="342" x2="237" y2="343"/>
+<line x1="168" y1="378" x2="219" y2="374"/>
+<line x1="168" y1="418" x2="270" y2="360"/>
+<line x1="168" y1="470" x2="334" y2="440"/>
+<line x1="512" y1="232" x2="386" y2="247"/>
+<line x1="512" y1="288" x2="364" y2="285"/>
+<line x1="512" y1="340" x2="460" y2="322"/>
+<line x1="512" y1="400" x2="414" y2="410"/>
+<line x1="512" y1="462" x2="404" y2="476"/>
+<line x1="512" y1="520" x2="378" y2="546"/>
+<line x1="512" y1="580" x2="369" y2="574"/>
+<line x1="512" y1="650" x2="420" y2="640"/>
+</g>
+<text x="20" y="100" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">前頭蓋窩（前頭葉）</text>
+<text x="20" y="150" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">篩板（鶏冠の両側）</text>
+<text x="20" y="205" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">蝶形骨小翼</text>
+<text x="20" y="262" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">上眼窩裂</text>
+<text x="20" y="303" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">正円孔</text>
+<text x="20" y="342" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">卵円孔</text>
+<text x="20" y="378" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">棘孔</text>
+<text x="20" y="418" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">錐体稜</text>
+<text x="20" y="470" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">斜台</text>
+<text x="520" y="232" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">視神経管</text>
+<text x="520" y="288" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下垂体窩（トルコ鞍）</text>
+<text x="520" y="340" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">中頭蓋窩（側頭葉）</text>
+<text x="520" y="400" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">内耳孔</text>
+<text x="520" y="462" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">頸静脈孔</text>
+<text x="520" y="520" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">舌下神経管</text>
+<text x="520" y="580" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">大孔</text>
+<text x="520" y="650" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">後頭蓋窩（小脳・脳幹）</text>
+<text x="340" y="24" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#5F5E5A">前</text>
+<text x="340" y="740" text-anchor="middle" dominant-baseline="central" font-size="13" font-weight="500" fill="#5F5E5A">後</text>
+</svg>

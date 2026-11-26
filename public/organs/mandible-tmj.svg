@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 530" width="680" height="530" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>下顎骨（左外側から見た模式図）</title>
+<desc>下顎骨を左外側から見た模式図。顔は左向き。下顎体、下顎枝、下顎角、筋突起、下顎切痕、関節突起（下顎頭・下顎頚）、オトガイ隆起、オトガイ孔を示し、内側面の下顎孔・下顎小舌と下顎管を点線で示す。</desc>
+<rect width="680" height="530" fill="#fff"/>
+<defs><clipPath id="m"><path d="M150 288 L290 280 C302 255 318 190 336 112 C340 140 352 168 372 172 C390 172 400 162 404 150 Q400 128 412 118 Q428 110 440 124 Q448 138 436 150 C444 230 440 330 418 392 Q412 412 392 410 L200 395 Q160 392 150 355 Q144 320 150 288 Z"/></clipPath></defs>
+<path d="M150 288 L290 280 C302 255 318 190 336 112 C340 140 352 168 372 172 C390 172 400 162 404 150 Q400 128 412 118 Q428 110 440 124 Q448 138 436 150 C444 230 440 330 418 392 Q412 412 392 410 L200 395 Q160 392 150 355 Q144 320 150 288 Z" fill="#B5D4F4"/>
+<g clip-path="url(#m)">
+<polygon points="292,282 404,412 470,412 470,50 300,50" fill="#9FE1CB"/>
+<polygon points="270,50 372,50 372,172 296,268 270,268" fill="#FAC775"/>
+<polygon points="372,50 470,50 470,215 372,215" fill="#F5C4B3"/>
+</g>
+<path d="M150 288 L290 280 C302 255 318 190 336 112 C340 140 352 168 372 172 C390 172 400 162 404 150 Q400 128 412 118 Q428 110 440 124 Q448 138 436 150 C444 230 440 330 418 392 Q412 412 392 410 L200 395 Q160 392 150 355 Q144 320 150 288 Z" fill="none" stroke="#2C2C2A" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M292 282 L402 410" stroke="#534AB7" stroke-width="1" stroke-dasharray="5 4" fill="none" clip-path="url(#m)"/>
+<line x1="160" y1="288.3" x2="160" y2="301.3" stroke="#185FA5" stroke-width="1"/>
+<line x1="176" y1="287.2" x2="176" y2="300.2" stroke="#185FA5" stroke-width="1"/>
+<line x1="192" y1="286.1" x2="192" y2="299.1" stroke="#185FA5" stroke-width="1"/>
+<line x1="208" y1="284.9" x2="208" y2="297.9" stroke="#185FA5" stroke-width="1"/>
+<line x1="224" y1="283.8" x2="224" y2="296.8" stroke="#185FA5" stroke-width="1"/>
+<line x1="240" y1="282.7" x2="240" y2="295.7" stroke="#185FA5" stroke-width="1"/>
+<line x1="256" y1="281.6" x2="256" y2="294.6" stroke="#185FA5" stroke-width="1"/>
+<line x1="272" y1="280.5" x2="272" y2="293.5" stroke="#185FA5" stroke-width="1"/>
+<circle cx="215" cy="342" r="6" fill="#fff" stroke="#2C2C2A" stroke-width="1.3"/>
+<path d="M365 300 Q335 368 255 360 L222 346" fill="none" stroke="#534AB7" stroke-width="2" stroke-dasharray="6 4"/>
+<circle cx="367" cy="297" r="8" fill="#fff" fill-opacity="0.75" stroke="#534AB7" stroke-width="1.5" stroke-dasharray="3 2"/>
+<path d="M352 288 L346 272 L362 282 Z" fill="#fff" stroke="#534AB7" stroke-width="1.2"/>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="140" y1="70" x2="335" y2="116"/>
+<line x1="100" y1="250" x2="205" y2="293"/>
+<line x1="130" y1="310" x2="209" y2="341"/>
+<line x1="135" y1="395" x2="148" y2="352"/>
+<line x1="90" y1="450" x2="260" y2="396"/>
+<line x1="490" y1="92" x2="436" y2="122"/>
+<line x1="490" y1="142" x2="404" y2="158"/>
+<line x1="490" y1="190" x2="426" y2="196"/>
+<line x1="490" y1="240" x2="436" y2="255"/>
+<line x1="490" y1="280" x2="360" y2="280"/>
+<line x1="490" y1="325" x2="374" y2="300"/>
+<line x1="490" y1="405" x2="408" y2="402"/>
+<line x1="372" y1="62" x2="372" y2="166"/><line x1="300" y1="470" x2="300" y2="362"/>
+</g>
+<text x="20" y="70" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">筋突起</text>
+<text x="20" y="250" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">歯槽部</text>
+<text x="20" y="310" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">オトガイ孔</text>
+<text x="20" y="395" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">オトガイ隆起</text>
+<text x="20" y="450" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎体</text>
+<text x="500" y="92" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎頭</text>
+<text x="500" y="142" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎頚</text>
+<text x="500" y="190" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">関節突起</text>
+<text x="500" y="240" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎枝</text>
+<text x="500" y="280" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎小舌（内側面）</text>
+<text x="500" y="325" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎孔（内側面）</text>
+<text x="500" y="405" text-anchor="start" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎角</text>
+<text x="372" y="50" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎切痕</text>
+<text x="300" y="482" text-anchor="middle" dominant-baseline="central" font-size="14" font-weight="500" fill="#2C2C2A">下顎管（内側面・点線）</text>
+<text x="20" y="512" text-anchor="start" dominant-baseline="central" font-size="12" font-weight="400" fill="#5F5E5A">青=下顎体　青緑=下顎枝　橙=筋突起　桃=関節突起（下顎頭・下顎頚）</text>
+</svg>
