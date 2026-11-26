@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 420" width="680" height="420" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>腱鞘と滑液包（横から見た模式図）</title><desc>筋から出た腱が、関節をまたいで骨に付く様子の模式図。関節をまたぐ所で、腱は潤滑液を含む結合組織の袋である腱鞘に包まれる。腱が骨の出っ張りの上を通る所では、腱と骨の間に、潤滑液を含む袋である滑液包がある。どちらも、腱や骨が直接こすれるのを防ぐ。</desc>
+<rect width="680" height="420" fill="#fff"/>
+<text x="340" y="22" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">腱鞘と滑液包（横から見た模式図）</text>
+<path d="M30 300 L262 300 L262 360 L30 360 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M338 360 L338 300 L420 300 L420 232 Q470 220 520 232 L520 300 L650 300 L650 360 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.5" stroke-linejoin="round"/>
+<rect x="262" y="296" width="76" height="68" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="300" y="330" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">関節</text>
+<text x="146" y="334" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">骨</text><text x="580" y="334" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">骨</text>
+<path d="M30 190 C50 150 140 150 185 185 C140 225 50 225 30 190 Z" fill="#F4C0D1" stroke="#993556" stroke-width="2"/>
+<text x="105" y="188" text-anchor="middle" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">筋</text>
+<rect x="225" y="164" width="190" height="44" rx="14" fill="#B5D4F4" stroke="#185FA5" stroke-width="2"/>
+<path d="M180 177 L590 177 L590 300 L572 300 L572 197 L180 197 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1.5" stroke-linejoin="round"/>
+<ellipse cx="470" cy="215" rx="38" ry="11" fill="#9FE1CB" stroke="#0F6E56" stroke-width="2"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="190" y="110">腱</text><text x="300" y="110">腱鞘</text><text x="450" y="110">滑液包</text>
+</g>
+<text x="300" y="130" font-size="12" fill="#2C2C2A" dominant-baseline="central" text-anchor="start">潤滑液を含む袋</text>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="197" y1="122" x2="260" y2="178"/><line x1="322" y1="140" x2="322" y2="165"/><line x1="470" y1="122" x2="470" y2="203"/>
+</g>
+<text x="340" y="394" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">腱鞘も滑液包も潤滑液を含む袋で、腱や骨が直接こすれるのを防ぐ。</text>
+</svg>

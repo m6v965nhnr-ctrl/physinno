@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 520" width="680" height="520" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>胸郭（胸骨と肋骨）を前から見た模式図</title><desc>胸郭を前から見た模式図。中央に胸骨があり、上から胸骨柄、胸骨体、剣状突起に分かれる。胸骨柄と胸骨体の境が胸骨角で、第2肋骨が付く。肋骨は左右12対。第1〜7肋骨は真肋で、肋軟骨が直接胸骨に付く。第8〜10肋骨は仮肋で、肋軟骨が1つ上の肋軟骨に付く。第11・12肋骨は浮遊肋で、胸骨に付かない。</desc>
+<rect width="680" height="520" fill="#fff"/>
+<text x="340" y="22" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">胸郭（前から見た模式図）</text>
+<g transform="translate(0,26)">
+<path d="M408 300 C421 314 425 334 425 350 C425 372 394 418 380 424" fill="none" stroke="#5F5E5A" stroke-width="8" stroke-linecap="round"/>
+<path d="M408 300 C421 314 425 334 425 350 C425 372 394 418 380 424" fill="none" stroke="#F1EFE8" stroke-width="5" stroke-linecap="round"/>
+<path d="M192 300 C179 314 175 334 175 350 C175 372 206 418 220 424" fill="none" stroke="#5F5E5A" stroke-width="8" stroke-linecap="round"/>
+<path d="M192 300 C179 314 175 334 175 350 C175 372 206 418 220 424" fill="none" stroke="#F1EFE8" stroke-width="5" stroke-linecap="round"/>
+<path d="M429 296 C446 310 450 330 450 346 C450 368 414 408 400 414" fill="none" stroke="#5F5E5A" stroke-width="8" stroke-linecap="round"/>
+<path d="M429 296 C446 310 450 330 450 346 C450 368 414 408 400 414" fill="none" stroke="#F1EFE8" stroke-width="5" stroke-linecap="round"/>
+<path d="M171 296 C154 310 150 330 150 346 C150 368 186 408 200 414" fill="none" stroke="#5F5E5A" stroke-width="8" stroke-linecap="round"/>
+<path d="M171 296 C154 310 150 330 150 346 C150 368 186 408 200 414" fill="none" stroke="#F1EFE8" stroke-width="5" stroke-linecap="round"/>
+<path d="M412 398 L402 341" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M412 398 L402 341" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M443 284 C461 298 466 318 466 334 C466 356 426 392 412 398" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M443 284 C461 298 466 318 466 334 C466 356 426 392 412 398" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M188 398 L198 341" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M188 398 L198 341" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M157 284 C139 298 134 318 134 334 C134 356 174 392 188 398" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M157 284 C139 298 134 318 134 334 C134 356 174 392 188 398" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M418 376 L390 312" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M418 376 L390 312" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M448 264 C467 278 472 298 472 314 C472 336 432 370 418 376" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M448 264 C467 278 472 298 472 314 C472 336 432 370 418 376" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M182 376 L210 312" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M182 376 L210 312" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M152 264 C133 278 128 298 128 314 C128 336 168 370 182 376" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M152 264 C133 278 128 298 128 314 C128 336 168 370 182 376" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M422 352 L363 278" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M422 352 L363 278" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M451 242 C471 256 476 276 476 292 C476 314 436 346 422 352" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M451 242 C471 256 476 276 476 292 C476 314 436 346 422 352" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M178 352 L237 278" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M178 352 L237 278" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M149 242 C129 256 124 276 124 292 C124 314 164 346 178 352" fill="none" stroke="#854F0B" stroke-width="8" stroke-linecap="round"/>
+<path d="M149 242 C129 256 124 276 124 292 C124 314 164 346 178 352" fill="none" stroke="#FAC775" stroke-width="5" stroke-linecap="round"/>
+<path d="M418 328 L318 238" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M418 328 L318 238" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M450 218 C470 232 475 252 475 268 C475 290 432 322 418 328" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M450 218 C470 232 475 252 475 268 C475 290 432 322 418 328" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M182 328 L282 238" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M182 328 L282 238" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M150 218 C130 232 125 252 125 268 C125 290 168 322 182 328" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M150 218 C130 232 125 252 125 268 C125 290 168 322 182 328" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M414 296 L318 216" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M414 296 L318 216" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M447 188 C466 202 471 222 471 238 C471 260 428 290 414 296" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M447 188 C466 202 471 222 471 238 C471 260 428 290 414 296" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M186 296 L282 216" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M186 296 L282 216" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M153 188 C134 202 129 222 129 238 C129 260 172 290 186 296" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M153 188 C134 202 129 222 129 238 C129 260 172 290 186 296" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M408 258 L318 194" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M408 258 L318 194" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M440 154 C458 168 463 188 463 204 C463 226 422 252 408 258" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M440 154 C458 168 463 188 463 204 C463 226 422 252 408 258" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M192 258 L282 194" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M192 258 L282 194" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M160 154 C142 168 137 188 137 204 C137 226 178 252 192 258" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M160 154 C142 168 137 188 137 204 C137 226 178 252 192 258" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M398 220 L318 172" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M398 220 L318 172" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M429 118 C446 132 450 152 450 168 C450 190 412 214 398 220" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M429 118 C446 132 450 152 450 168 C450 190 412 214 398 220" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M202 220 L282 172" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M202 220 L282 172" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M171 118 C154 132 150 152 150 168 C150 190 188 214 202 220" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M171 118 C154 132 150 152 150 168 C150 190 188 214 202 220" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M386 180 L318 150" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M386 180 L318 150" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M414 82 C428 96 432 116 432 132 C432 154 400 174 386 180" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M414 82 C428 96 432 116 432 132 C432 154 400 174 386 180" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M214 180 L282 150" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M214 180 L282 150" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M186 82 C172 96 168 116 168 132 C168 154 200 174 214 180" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M186 82 C172 96 168 116 168 132 C168 154 200 174 214 180" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M370 138 L318 129" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M370 138 L318 129" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M390 48 C402 62 405 82 405 98 C405 120 384 132 370 138" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M390 48 C402 62 405 82 405 98 C405 120 384 132 370 138" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M230 138 L282 129" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M230 138 L282 129" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M210 48 C198 62 195 82 195 98 C195 120 216 132 230 138" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M210 48 C198 62 195 82 195 98 C195 120 216 132 230 138" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M344 92 L322 90" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M344 92 L322 90" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M360 36 C368 44 370 50 370 66 C370 88 358 86 344 92" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M360 36 C368 44 370 50 370 66 C370 88 358 86 344 92" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M256 92 L278 90" fill="none" stroke="#0F6E56" stroke-width="7" stroke-linecap="round"/>
+<path d="M256 92 L278 90" fill="none" stroke="#9FE1CB" stroke-width="4" stroke-linecap="round"/>
+<path d="M240 36 C232 44 230 50 230 66 C230 88 242 86 256 92" fill="none" stroke="#185FA5" stroke-width="8" stroke-linecap="round"/>
+<path d="M240 36 C232 44 230 50 230 66 C230 88 242 86 256 92" fill="none" stroke="#B5D4F4" stroke-width="5" stroke-linecap="round"/>
+<path d="M276 70 L292 70 L300 80 L308 70 L324 70 L322 128 L278 128 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M281 130 L319 130 L318 290 L282 290 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M290 292 L310 292 L300 330 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+<line x1="276" y1="129" x2="324" y2="129" stroke="#534AB7" stroke-width="1.5"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="16" y="72">頸切痕</text>
+<text x="16" y="100">胸骨柄</text>
+<text x="16" y="129">胸骨角</text>
+<text x="16" y="210">胸骨体</text>
+<text x="16" y="312">剣状突起</text>
+<text x="500" y="96">真肋（第1〜7肋骨）</text>
+<text x="500" y="196">肋軟骨</text>
+<text x="500" y="318">仮肋（第8〜10肋骨）</text>
+<text x="500" y="420">浮遊肋（第11・12肋骨）</text>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="64" y1="72" x2="294" y2="74"/>
+<line x1="64" y1="100" x2="286" y2="100"/>
+<line x1="64" y1="129" x2="276" y2="129"/>
+<line x1="64" y1="210" x2="284" y2="210"/>
+<line x1="78" y1="312" x2="294" y2="310"/>
+<line x1="494" y1="96" x2="436" y2="121"/>
+<line x1="494" y1="196" x2="363" y2="226"/>
+<line x1="494" y1="318" x2="475" y2="314"/>
+<line x1="494" y1="420" x2="404" y2="416"/>
+</g>
+</g>
+<g font-size="13" fill="#2C2C2A" dominant-baseline="central"><text x="340" y="482" text-anchor="middle">肋骨は左右に12対。曲がり・間隔・長さは模式的です（特に上位の肋骨と、第11・12肋骨）。</text><text x="340" y="502" text-anchor="middle">後ろで肋骨が関節する胸椎は省いています。</text></g>
+</svg>

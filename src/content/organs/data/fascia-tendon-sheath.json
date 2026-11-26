@@ -1,0 +1,276 @@
+{
+  "slug": "fascia-tendon-sheath",
+  "name": "筋膜・腱鞘・滑液包",
+  "reading": "きんまく・けんしょう・かつえきほう",
+  "system": "運動器",
+  "aliases": [
+    "筋膜",
+    "浅筋膜",
+    "深筋膜",
+    "筋外膜",
+    "筋周膜",
+    "筋内膜",
+    "筋束",
+    "筋間中隔",
+    "腱鞘",
+    "腱膜",
+    "筋区画",
+    "筋膜区画",
+    "コンパートメント",
+    "コンパートメント症候群",
+    "fascia",
+    "epimysium",
+    "perimysium",
+    "endomysium"
+  ],
+  "summary": {
+    "t": "筋は、筋外膜・筋周膜・筋内膜の3層の結合組織に包まれ、この3層が腱のコラーゲンとつながって、筋の張力を骨へ伝える。筋の外側には、皮下組織にあたる浅筋膜と、その下の深筋膜がある。腱の周りの腱鞘と、皮膚・靱帯・筋・腱がこすれやすい所にある滑液包は、潤滑液を含む袋で、摩擦を減らす。",
+    "s": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "location": [
+    {
+      "t": "浅筋膜は皮膚のすぐ下の層で、皮下組織（hypodermis）にあたり、皮膚を下の組織につなぐ。深筋膜は、その下にあり、筋外膜や筋間中隔と連続することがある。",
+      "s": [
+        1,
+        4
+      ]
+    },
+    {
+      "t": "大腿を例にすると、深筋膜は、すべての筋を包む腱膜性の筋膜（外側は腸脛靱帯で補強される）と、筋ごとに分かれた筋外膜性の筋膜からなる（3体の献体での研究）。",
+      "s": [
+        8
+      ]
+    },
+    {
+      "t": "腱は筋を骨につなぎ、他端で骨膜と融合する。腱鞘は、腱が関節をまたぐ所で腱を取り囲む。滑液包は、皮膚・靱帯・筋・腱がこすれやすい所にあり、多くは関節の近くにある。",
+      "s": [
+        2,
+        3,
+        7
+      ]
+    }
+  ],
+  "structure": [
+    {
+      "t": "浅筋膜は、皮膚の直下を包む層で、密性結合組織と疎性結合組織、脂肪を含む。",
+      "s": [
+        1
+      ]
+    },
+    {
+      "t": "深筋膜は、主に密で不規則に配列した結合組織の連続したシートで、下の組織の形の変化を制限する。疎性結合組織の層を含むこともある。",
+      "s": [
+        1
+      ]
+    },
+    {
+      "t": "筋間中隔は、コラーゲン線維の束が密に詰まった薄い層で、屈筋群と伸筋群のように、多くは拮抗する筋群を分ける。",
+      "s": [
+        1
+      ]
+    },
+    {
+      "t": "骨格筋には、3層の結合組織がある。筋外膜は筋全体を包む密性不規則性結合組織で、筋が周囲の組織から独立して動けるようにする。筋周膜は中間の層で、筋線維を束ねて筋束（fascicle）にする。筋内膜は、1本ずつの筋線維を包む薄い層で、コラーゲン線維と細網線維からなり、細胞外液と栄養を含む。",
+      "s": [
+        1,
+        2
+      ]
+    },
+    {
+      "t": "腱は、筋を骨につなぐ丈夫な線維性の索で、密性規則性結合組織でできている。筋の3層のコラーゲンは、腱のコラーゲンと編み合わさる。腱膜は、腱のような広い板で、筋の3層がここにも融合する（例: 広背筋が腰背部の腱膜に融合する）。",
+      "s": [
+        2,
+        7
+      ]
+    },
+    {
+      "t": "腱鞘は、滑液包に似るが、より小さい結合組織の袋で、関節をまたぐ所で腱を取り囲み、潤滑液を含む。腱の中には、周囲を腱鞘で覆われているものがある。",
+      "s": [
+        3,
+        6
+      ]
+    },
+    {
+      "t": "滑液包は、潤滑液を含む薄い結合組織の袋。位置で分けられ、皮下滑液包は皮膚と骨のあいだ（膝蓋前滑液包・肘頭滑液包）、筋下滑液包は筋と骨、または筋どうしのあいだ（大転子の滑液包）、腱下滑液包は腱と骨のあいだ（肩峰下滑液包・膝蓋上滑液包）にある。",
+      "s": [
+        3
+      ]
+    }
+  ],
+  "function": [
+    {
+      "t": "筋が収縮して生む張力は、筋外膜・筋周膜・筋内膜（3層の結合組織）を通って腱に伝わり、腱から骨膜に伝わって、骨を引く。",
+      "s": [
+        2
+      ]
+    },
+    {
+      "t": "深筋膜は、下の組織の形の変化を制限する。筋間中隔は、多くは拮抗する筋群を分ける。",
+      "s": [
+        1
+      ]
+    },
+    {
+      "t": "滑液包は、隣り合う構造どうしを隔てて、直接こすれるのを防ぎ、摩擦を減らす。腱鞘は潤滑液を含み、その液は、筋の収縮や関節の運動のときに、腱が滑らかに動くのを助ける。",
+      "s": [
+        3
+      ]
+    }
+  ],
+  "mechanism": [
+    {
+      "t": "コンパートメント症候群は、閉じた筋膜の区域内の圧が上がり、組織が虚血になる状態。外傷後の組織浮腫（腫れや血腫）が閉じた筋膜の区域内（下肢では前区画や後区画）で起こると、組織が広がる余地が少なく、間質の圧（コンパートメント内圧）が上がる。",
+      "s": [
+        5
+      ]
+    },
+    {
+      "t": "コンパートメント内圧が、正常な毛細血管圧（出典では約8 mmHg）を超えると、細胞への血流が遅れ、止まる。この値は動脈圧よりずっと低いので、脈が消える前から、血流が止まっていることがある。",
+      "s": [
+        5
+      ]
+    },
+    {
+      "t": "虚血は浮腫をさらに悪化させ、悪循環になる。放置すると筋が壊死し、横紋筋融解症・感染・高カリウム血症に至り、四肢を失うこともある。壊死組織が治ったあとに、拘縮が残ることがある。",
+      "s": [
+        5
+      ]
+    },
+    {
+      "t": "下腿と前腕で最も多い。最も早い症状は、損傷の重さに釣り合わない痛みで、診断は臨床所見で行い、通常はコンパートメント内圧の測定で確定する。治療は筋膜切開。",
+      "s": [
+        5
+      ]
+    },
+    {
+      "t": "腱炎は腱の炎症、腱鞘炎は、腱の周りを保護している被膜（腱鞘）の炎症を伴う腱炎。手の親指以外の指を曲げる屈筋腱の炎症では、腱が腱鞘の中で引っかかり、弾けるような感覚が出る（ばね指）。手の親指を手から離れる方向に伸ばす2本の腱の炎症を、ドゥケルバン症候群という。",
+      "s": [
+        6
+      ]
+    },
+    {
+      "t": "滑液包炎は、関節の近くの滑液包の炎症で、痛み・腫れ・圧痛が出て、関節がこわばることもある。肩・股関節・膝・肘の滑液包に多い。原因は、筋の使いすぎ、外傷、皮膚への長時間の圧迫、関節リウマチ、痛風、関節の感染など。",
+      "s": [
+        3
+      ]
+    }
+  ],
+  "examPoints": [
+    {
+      "t": "ドゥケルバン病（出典の表記はドゥケルバン症候群）は、手の親指を手から離れる方向に伸ばす2本の腱の腱鞘炎。国試の正答は長母指外転筋腱だが、個々の腱の名前は、この出典には書かれていない（疾患カード「手の腱疾患」を参照）。",
+      "q": [
+        "56-am-95"
+      ],
+      "s": [
+        6
+      ]
+    }
+  ],
+  "diseases": [
+    "fracture-complications",
+    "hand-tendon-disorders",
+    "plantar-fasciitis-calcaneal-spur",
+    "biceps-tendinitis",
+    "achilles-tendon-disorders",
+    "rhabdomyolysis"
+  ],
+  "tests": [
+    "finkelstein-eichhoff",
+    "yergason-speed-test",
+    "limb-circumference"
+  ],
+  "related": [
+    "tissues",
+    "joint-structure",
+    "skeletal-muscle-contraction",
+    "skin-somatosensation"
+  ],
+  "figures": [
+    {
+      "src": "/organs/fascia-tendon-sheath.svg",
+      "alt": "筋の断面の模式図。筋全体を筋外膜が包み、内部の筋線維は筋周膜でいくつかの筋束にまとめられ、1本ずつの筋線維を筋内膜が包む。右に筋束を拡大して示す。3層のコラーゲンは腱のコラーゲンとつながり、筋の張力は腱を通して骨膜と骨へ伝わる。",
+      "caption": "筋を包む3層の結合組織の模式図。層の数と位置を示すもので、筋束・筋線維の数や大きさは実物と異なります。"
+    },
+    {
+      "src": "/organs/fascia-tendon-sheath-2.svg",
+      "alt": "筋から出た腱が関節をまたいで骨に付く様子を横から見た模式図。関節をまたぐ所で、腱は潤滑液を含む結合組織の袋である腱鞘に包まれる。腱が骨の出っ張りの上を通る所では、腱と骨の間に、潤滑液を含む袋である滑液包がある。",
+      "caption": "腱鞘と滑液包を横から見た模式図。位置関係を示すもので、大きさ・形は実物と異なります。実際の腱鞘の位置と長さは、腱によって違います。"
+    },
+    {
+      "src": "/organs/fascia-tendon-sheath-3.svg",
+      "alt": "四肢の断面の模式図。外側から、皮膚、浅筋膜（皮下組織）、深筋膜の順に層をなし、深筋膜の内側に筋と骨がある。筋間中隔が、拮抗する筋群を2つの区画に分ける。深筋膜と筋間中隔で囲まれた区画の中は、腫れても広がる余地が少なく、内圧が上がる。",
+      "caption": "四肢の断面と筋膜の区画の模式図。層の順序を示すもので、区画の数・筋の配置は部位によって異なります。"
+    }
+  ],
+  "sources": [
+    {
+      "n": 1,
+      "title": "Communicating About Fascia: History, Pitfalls, and Recommendations（Langevin HM, Huijing PA. Int J Ther Massage Bodywork 2009;2(4)）",
+      "org": "International Journal of Therapeutic Massage & Bodywork",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC3091474/",
+      "checked": "2026-11-26",
+      "kind": "論文"
+    },
+    {
+      "n": 2,
+      "title": "Anatomy and Physiology 2e, 10.2 Skeletal Muscle",
+      "org": "OpenStax（Rice University）",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/10-2-skeletal-muscle",
+      "checked": "2026-11-26",
+      "kind": "教科書"
+    },
+    {
+      "n": 3,
+      "title": "Anatomy and Physiology 2e, 9.4 Synovial Joints",
+      "org": "OpenStax（Rice University）",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/9-4-synovial-joints",
+      "checked": "2026-11-26",
+      "kind": "教科書"
+    },
+    {
+      "n": 4,
+      "title": "Anatomy and Physiology 2e, 5.1 Layers of the Skin",
+      "org": "OpenStax（Rice University）",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/5-1-layers-of-the-skin",
+      "checked": "2026-11-26",
+      "kind": "教科書"
+    },
+    {
+      "n": 5,
+      "title": "コンパートメント症候群（MSDマニュアル プロフェッショナル版、2022年12月）",
+      "org": "MSDマニュアル（Merck & Co., Inc.）",
+      "url": "https://www.msdmanuals.com/ja-jp/professional/22-%E5%A4%96%E5%82%B7%E3%81%A8%E4%B8%AD%E6%AF%92/%E9%AA%A8%E6%8A%98/%E3%82%B3%E3%83%B3%E3%83%91%E3%83%BC%E3%83%88%E3%83%A1%E3%83%B3%E3%83%88%E7%97%87%E5%80%99%E7%BE%A4",
+      "checked": "2026-11-26",
+      "kind": "その他"
+    },
+    {
+      "n": 6,
+      "title": "腱炎と腱鞘炎（MSDマニュアル家庭版、2024年3月）",
+      "org": "MSDマニュアル（Merck & Co., Inc.）",
+      "url": "https://www.msdmanuals.com/ja-jp/home/08-%E9%AA%A8-%E9%96%A2%E7%AF%80-%E7%AD%8B%E8%82%89%E3%81%AE%E7%97%85%E6%B0%97/%E7%AD%8B%E8%82%89-%E6%BB%91%E6%B6%B2%E5%8C%85-%E8%85%B1%E3%81%AE%E7%97%85%E6%B0%97/%E8%85%B1%E7%82%8E%E3%81%A8%E8%85%B1%E9%9E%98%E7%82%8E",
+      "checked": "2026-11-26",
+      "kind": "その他"
+    },
+    {
+      "n": 7,
+      "title": "Anatomy and Physiology 2e, 11.1 Interactions of Skeletal Muscles, Their Fascicle Arrangement, and Their Lever Systems",
+      "org": "OpenStax（Rice University）",
+      "url": "https://openstax.org/books/anatomy-and-physiology-2e/pages/11-1-interactions-of-skeletal-muscles-their-fascicle-arrangement-and-their-lever-systems",
+      "checked": "2026-11-26",
+      "kind": "教科書"
+    },
+    {
+      "n": 8,
+      "title": "An anatomical comparison of the fasciae of the thigh: A macroscopic, microscopic and ultrasound imaging study（Pirri C, et al. J Anat 2021）",
+      "org": "Journal of Anatomy",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7930759/",
+      "checked": "2026-11-26",
+      "kind": "論文"
+    }
+  ]
+}

@@ -1,0 +1,362 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 590" width="680" height="590" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>骨の構造（長骨の縦断面と、皮質骨・海綿骨の拡大の模式図）</title><desc>左は長骨の縦断面。両端の骨端は海綿骨でできて赤色骨髄がすき間を満たし、関節面は関節軟骨でおおわれる。中央の骨幹は皮質骨（緻密骨）の壁で、中の髄腔に黄色骨髄がある。骨端と骨幹の境の骨幹端に、成長期の骨端板（成長軟骨板）がある。骨の外面は骨膜、髄腔の内面は骨内膜でおおわれる。右上は皮質骨の構造単位である骨単位（オステオン）で、中心管のまわりに層板が同心円状に並び、骨細胞が骨小腔に入る。右下は海綿骨で、骨梁が網目をつくり、すき間に赤色骨髄がある。</desc><rect width="680" height="590" fill="#fff"/><path d="M150 148 C150 140 118 134 118 100 C118 60 150 42 190 42 C230 42 262 60 262 100 C262 134 230 140 230 148 L230 432 C230 440 262 446 262 480 C262 520 230 538 190 538 C150 538 118 520 118 480 C118 446 150 440 150 432 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.4" />
+<rect x="162" y="160" width="56" height="262" rx="4" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<path d="M134 100 C134 70 158 56 190 56 C222 56 246 70 246 100 C246 124 224 132 218 140 L162 140 C156 132 134 124 134 100 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" />
+<path d="M134 480 C134 510 158 524 190 524 C222 524 246 510 246 480 C246 456 224 448 218 440 L162 440 C156 448 134 456 134 480 Z" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" />
+<clipPath id="ct"><path d="M134 100 C134 70 158 56 190 56 C222 56 246 70 246 100 C246 124 224 132 218 140 L162 140 C156 132 134 124 134 100 Z"/></clipPath><clipPath id="cb"><path d="M134 480 C134 510 158 524 190 524 C222 524 246 510 246 480 C246 456 224 448 218 440 L162 440 C156 448 134 456 134 480 Z"/></clipPath>
+<g clip-path="url(#ct)">
+<line x1="164.8" y1="102.4" x2="175.8" y2="127.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="164.8" y1="102.4" x2="175.8" y2="127.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="202.1" y1="65.1" x2="233.4" y2="66.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="202.1" y1="65.1" x2="233.4" y2="66.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="166.9" y1="78.3" x2="141.4" y2="78.6" stroke="#5F5E5A" stroke-width="3" />
+<line x1="166.9" y1="78.3" x2="141.4" y2="78.6" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="222.3" y1="97.2" x2="213.7" y2="115.6" stroke="#5F5E5A" stroke-width="3" />
+<line x1="222.3" y1="97.2" x2="213.7" y2="115.6" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="202.9" y1="127.7" x2="200.8" y2="157.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="202.9" y1="127.7" x2="200.8" y2="157.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="206.5" y1="65" x2="186.5" y2="83.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="206.5" y1="65" x2="186.5" y2="83.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="170.9" y1="62.4" x2="147.6" y2="72.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="170.9" y1="62.4" x2="147.6" y2="72.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="211" y1="128.5" x2="190.6" y2="154.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="211" y1="128.5" x2="190.6" y2="154.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="179.9" y1="122.5" x2="185.6" y2="154.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="179.9" y1="122.5" x2="185.6" y2="154.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="234.7" y1="94" x2="225.8" y2="115.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="234.7" y1="94" x2="225.8" y2="115.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="190.7" y1="90.1" x2="203" y2="114.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="190.7" y1="90.1" x2="203" y2="114.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="198.1" y1="130.5" x2="180.3" y2="158.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="198.1" y1="130.5" x2="180.3" y2="158.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="224.2" y1="137.3" x2="213.7" y2="155" stroke="#5F5E5A" stroke-width="3" />
+<line x1="224.2" y1="137.3" x2="213.7" y2="155" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="224.6" y1="135.2" x2="198.7" y2="143.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="224.6" y1="135.2" x2="198.7" y2="143.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="210.5" y1="76.5" x2="187.1" y2="90.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="210.5" y1="76.5" x2="187.1" y2="90.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="150.5" y1="122.4" x2="156.2" y2="142.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="150.5" y1="122.4" x2="156.2" y2="142.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="170.2" y1="120" x2="153" y2="127.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="170.2" y1="120" x2="153" y2="127.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="201" y1="63.5" x2="186.2" y2="81.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="201" y1="63.5" x2="186.2" y2="81.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="226.6" y1="136.5" x2="226" y2="170.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="226.6" y1="136.5" x2="226" y2="170.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="171.7" y1="66" x2="166" y2="83.6" stroke="#5F5E5A" stroke-width="3" />
+<line x1="171.7" y1="66" x2="166" y2="83.6" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="160.9" y1="91.8" x2="154" y2="111.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="160.9" y1="91.8" x2="154" y2="111.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="146.1" y1="127.7" x2="164.5" y2="155.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="146.1" y1="127.7" x2="164.5" y2="155.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="228.1" y1="89.5" x2="231.3" y2="115.6" stroke="#5F5E5A" stroke-width="3" />
+<line x1="228.1" y1="89.5" x2="231.3" y2="115.6" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="203.8" y1="106.5" x2="198.6" y2="133.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="203.8" y1="106.5" x2="198.6" y2="133.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="232.3" y1="99.5" x2="238.6" y2="128.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="232.3" y1="99.5" x2="238.6" y2="128.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="194.6" y1="60.9" x2="201.8" y2="87.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="194.6" y1="60.9" x2="201.8" y2="87.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="202.2" y1="96.4" x2="189.6" y2="116.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="202.2" y1="96.4" x2="189.6" y2="116.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="209.9" y1="117.6" x2="228.8" y2="118.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="209.9" y1="117.6" x2="228.8" y2="118.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="206.9" y1="135.1" x2="224.7" y2="153.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="206.9" y1="135.1" x2="224.7" y2="153.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="198.9" y1="85" x2="208.4" y2="105.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="198.9" y1="85" x2="208.4" y2="105.9" stroke="#F1EFE8" stroke-width="1.6" />
+</g>
+<g clip-path="url(#cb)">
+<line x1="177.4" y1="489.6" x2="191.5" y2="509.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="177.4" y1="489.6" x2="191.5" y2="509.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="216.1" y1="444.2" x2="209.7" y2="473.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="216.1" y1="444.2" x2="209.7" y2="473.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="171.8" y1="459.8" x2="154" y2="472.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="171.8" y1="459.8" x2="154" y2="472.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="160" y1="476.8" x2="148.5" y2="492.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="160" y1="476.8" x2="148.5" y2="492.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="172.9" y1="468.7" x2="151.2" y2="481.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="172.9" y1="468.7" x2="151.2" y2="481.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="224.1" y1="455.5" x2="238.1" y2="480.3" stroke="#5F5E5A" stroke-width="3" />
+<line x1="224.1" y1="455.5" x2="238.1" y2="480.3" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="192.8" y1="457.3" x2="167" y2="475.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="192.8" y1="457.3" x2="167" y2="475.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="218.2" y1="463.7" x2="229.7" y2="485.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="218.2" y1="463.7" x2="229.7" y2="485.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="182.3" y1="474.8" x2="162.4" y2="479.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="182.3" y1="474.8" x2="162.4" y2="479.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="183.7" y1="518" x2="162.7" y2="522.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="183.7" y1="518" x2="162.7" y2="522.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="213.6" y1="508.9" x2="200.7" y2="531.9" stroke="#5F5E5A" stroke-width="3" />
+<line x1="213.6" y1="508.9" x2="200.7" y2="531.9" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="169.7" y1="469.3" x2="184.2" y2="481.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="169.7" y1="469.3" x2="184.2" y2="481.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="198.5" y1="465" x2="183" y2="475.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="198.5" y1="465" x2="183" y2="475.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="228.7" y1="497.5" x2="197.3" y2="505.2" stroke="#5F5E5A" stroke-width="3" />
+<line x1="228.7" y1="497.5" x2="197.3" y2="505.2" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="158.5" y1="466" x2="145.6" y2="489" stroke="#5F5E5A" stroke-width="3" />
+<line x1="158.5" y1="466" x2="145.6" y2="489" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="181.7" y1="517.1" x2="173.6" y2="539.1" stroke="#5F5E5A" stroke-width="3" />
+<line x1="181.7" y1="517.1" x2="173.6" y2="539.1" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="166.2" y1="510.9" x2="168.4" y2="541.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="166.2" y1="510.9" x2="168.4" y2="541.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="175.8" y1="457.8" x2="172.4" y2="488.7" stroke="#5F5E5A" stroke-width="3" />
+<line x1="175.8" y1="457.8" x2="172.4" y2="488.7" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="221.1" y1="442.6" x2="208.6" y2="471.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="221.1" y1="442.6" x2="208.6" y2="471.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="146.8" y1="463.7" x2="164.4" y2="483.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="146.8" y1="463.7" x2="164.4" y2="483.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="182.6" y1="479.8" x2="168.8" y2="491.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="182.6" y1="479.8" x2="168.8" y2="491.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="147.3" y1="452.1" x2="164.9" y2="459.4" stroke="#5F5E5A" stroke-width="3" />
+<line x1="147.3" y1="452.1" x2="164.9" y2="459.4" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="172.3" y1="467.2" x2="185.1" y2="492.5" stroke="#5F5E5A" stroke-width="3" />
+<line x1="172.3" y1="467.2" x2="185.1" y2="492.5" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="198.3" y1="470.9" x2="217.5" y2="484" stroke="#5F5E5A" stroke-width="3" />
+<line x1="198.3" y1="470.9" x2="217.5" y2="484" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="149.7" y1="456.3" x2="160.4" y2="481.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="149.7" y1="456.3" x2="160.4" y2="481.8" stroke="#F1EFE8" stroke-width="1.6" />
+<line x1="217.1" y1="472.4" x2="194.4" y2="488.8" stroke="#5F5E5A" stroke-width="3" />
+<line x1="217.1" y1="472.4" x2="194.4" y2="488.8" stroke="#F1EFE8" stroke-width="1.6" />
+</g>
+<rect x="150" y="141" width="80" height="9" rx="0" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<rect x="150" y="430" width="80" height="9" rx="0" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<path d="M126 86 C132 58 158 44 190 44 C222 44 248 58 254 86" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round"/>
+<path d="M126 86 C132 58 158 44 190 44 C222 44 248 58 254 86" fill="none" stroke="#B5D4F4" stroke-width="6.5" stroke-linecap="round"/>
+<path d="M126 494 C132 522 158 536 190 536 C222 536 248 522 254 494" fill="none" stroke="#185FA5" stroke-width="9" stroke-linecap="round"/>
+<path d="M126 494 C132 522 158 536 190 536 C222 536 248 522 254 494" fill="none" stroke="#B5D4F4" stroke-width="6.5" stroke-linecap="round"/>
+<line x1="146" y1="152" x2="146" y2="428" stroke="#993556" stroke-width="3" />
+<line x1="234" y1="152" x2="234" y2="428" stroke="#993556" stroke-width="3" />
+<line x1="162" y1="162" x2="162" y2="420" stroke="#3B6D11" stroke-width="2" stroke-dasharray="4 2" />
+<line x1="218" y1="162" x2="218" y2="420" stroke="#3B6D11" stroke-width="2" stroke-dasharray="4 2" />
+<line x1="104" y1="44" x2="104" y2="146" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="44" x2="110" y2="44" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="146" x2="110" y2="146" stroke="#5F5E5A" stroke-width="1.5" />
+<text x="96" y="95" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨端</text>
+<line x1="104" y1="152" x2="104" y2="428" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="152" x2="110" y2="152" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="428" x2="110" y2="428" stroke="#5F5E5A" stroke-width="1.5" />
+<text x="96" y="290" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨幹</text>
+<line x1="104" y1="434" x2="104" y2="536" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="434" x2="110" y2="434" stroke="#5F5E5A" stroke-width="1.5" />
+<line x1="104" y1="536" x2="110" y2="536" stroke="#5F5E5A" stroke-width="1.5" />
+<text x="96" y="485" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨端</text>
+<text x="276" y="52" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">関節軟骨</text>
+<text x="276" y="69" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">関節面をおおう</text>
+<line x1="272" y1="52" x2="232" y2="57" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="232" cy="57" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="108" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">海綿骨</text>
+<text x="276" y="125" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">すき間に赤色骨髄</text>
+<line x1="272" y1="108" x2="214" y2="106" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="214" cy="106" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="160" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨端板（成長軟骨板）</text>
+<text x="276" y="177" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨幹端にある・成長期のみ</text>
+<line x1="272" y1="160" x2="222" y2="145" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="222" cy="145" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="236" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨膜</text>
+<text x="276" y="253" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨の外面をおおう</text>
+<line x1="272" y1="236" x2="236" y2="236" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="236" cy="236" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="296" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">皮質骨（緻密骨）</text>
+<text x="276" y="313" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨幹の壁</text>
+<line x1="272" y1="296" x2="228" y2="300" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="228" cy="300" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="352" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">髄腔</text>
+<text x="276" y="369" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">黄色骨髄が入る</text>
+<line x1="272" y1="352" x2="200" y2="352" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="200" cy="352" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="276" y="410" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨内膜</text>
+<text x="276" y="427" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">髄腔の内面</text>
+<line x1="272" y1="410" x2="219" y2="400" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="219" cy="400" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="542" y="60" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">皮質骨の拡大：骨単位（オステオン）</text>
+<circle cx="482" cy="150" r="62" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.3" />
+<circle cx="482" cy="150" r="50" fill="none" stroke="#5F5E5A" stroke-width="0.9" />
+<circle cx="482" cy="150" r="38" fill="none" stroke="#5F5E5A" stroke-width="0.9" />
+<circle cx="482" cy="150" r="26" fill="none" stroke="#5F5E5A" stroke-width="0.9" />
+<line x1="482" y1="150" x2="482" y2="262" stroke="#A32D2D" stroke-width="5" />
+<line x1="482" y1="150" x2="482" y2="262" stroke="#E24B4A" stroke-width="3" />
+<circle cx="482" cy="150" r="10" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" />
+<line x1="534.6" y1="169.2" x2="529" y2="167.1" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="534.6" cy="169.2" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(110 534.6 169.2)"/>
+<line x1="462.8" y1="202.6" x2="464.9" y2="197" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="462.8" cy="202.6" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(200 462.8 202.6)"/>
+<line x1="429.4" y1="130.8" x2="435" y2="132.9" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="429.4" cy="130.8" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(290 429.4 130.8)"/>
+<line x1="501.2" y1="97.4" x2="499.1" y2="103" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="501.2" cy="97.4" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(380 501.2 97.4)"/>
+<line x1="534.6" y1="130.8" x2="529" y2="132.9" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="534.6" cy="130.8" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(430 534.6 130.8)"/>
+<line x1="504" y1="188.1" x2="501" y2="182.9" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="504" cy="188.1" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(150 504 188.1)"/>
+<line x1="443.9" y1="172" x2="449.1" y2="169" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="443.9" cy="172" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(240 443.9 172)"/>
+<line x1="460" y1="111.9" x2="463" y2="117.1" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="460" cy="111.9" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(330 460 111.9)"/>
+<line x1="515.7" y1="121.7" x2="511.1" y2="125.6" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="515.7" cy="121.7" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(410 515.7 121.7)"/>
+<line x1="513.5" y1="155.6" x2="507.6" y2="154.5" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="513.5" cy="155.6" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(100 513.5 155.6)"/>
+<line x1="476.4" y1="181.5" x2="477.5" y2="175.6" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="476.4" cy="181.5" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(190 476.4 181.5)"/>
+<line x1="450.5" y1="144.4" x2="456.4" y2="145.5" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="450.5" cy="144.4" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(280 450.5 144.4)"/>
+<line x1="487.6" y1="118.5" x2="486.5" y2="124.4" stroke="#534AB7" stroke-width="0.8" />
+<ellipse cx="487.6" cy="118.5" rx="3.6" ry="2.4" fill="#CECBF6" stroke="#534AB7" stroke-width="0.8" transform="rotate(370 487.6 118.5)"/>
+<text x="558" y="98" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">層板</text>
+<text x="558" y="115" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">同心円状</text>
+<line x1="554" y1="98" x2="529" y2="112" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="529" cy="112" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="558" y="148" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨細胞</text>
+<text x="558" y="165" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨小腔に入る</text>
+<line x1="554" y1="148" x2="534.6" y2="169.2" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="534.6" cy="169.2" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="558" y="198" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">中心管</text>
+<text x="558" y="215" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（ハバース管）</text>
+<line x1="554" y1="198" x2="491" y2="154" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="491" cy="154" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="558" y="248" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">穿通管</text>
+<text x="558" y="265" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（フォルクマン管）</text>
+<line x1="554" y1="248" x2="484" y2="250" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="484" cy="250" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="546" y="284" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">海綿骨の拡大</text>
+<rect x="446" y="296" width="200" height="110" rx="6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<clipPath id="cs"><rect x="446" y="296" width="200" height="110" rx="6"/></clipPath><g clip-path="url(#cs)">
+<line x1="464.6" y1="345.3" x2="468.2" y2="351.6" stroke="#5F5E5A" stroke-width="6" />
+<line x1="464.6" y1="345.3" x2="468.2" y2="351.6" stroke="#F1EFE8" stroke-width="4" />
+<line x1="464.6" y1="345.3" x2="468.5" y2="325.7" stroke="#5F5E5A" stroke-width="6" />
+<line x1="464.6" y1="345.3" x2="468.5" y2="325.7" stroke="#F1EFE8" stroke-width="4" />
+<line x1="464.6" y1="345.3" x2="470.3" y2="315.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="464.6" y1="345.3" x2="470.3" y2="315.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.2" y1="351.6" x2="468.5" y2="325.7" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.2" y1="351.6" x2="468.5" y2="325.7" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.2" y1="351.6" x2="470.3" y2="315.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.2" y1="351.6" x2="470.3" y2="315.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.2" y1="351.6" x2="479.8" y2="327.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.2" y1="351.6" x2="479.8" y2="327.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.5" y1="325.7" x2="470.3" y2="315.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.5" y1="325.7" x2="470.3" y2="315.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.5" y1="325.7" x2="479.8" y2="327.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.5" y1="325.7" x2="479.8" y2="327.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="468.5" y1="325.7" x2="483.4" y2="318.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="468.5" y1="325.7" x2="483.4" y2="318.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="470.3" y1="315.8" x2="479.8" y2="327.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="470.3" y1="315.8" x2="479.8" y2="327.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="470.3" y1="315.8" x2="483.4" y2="318.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="470.3" y1="315.8" x2="483.4" y2="318.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="470.3" y1="315.8" x2="489.8" y2="358" stroke="#5F5E5A" stroke-width="6" />
+<line x1="470.3" y1="315.8" x2="489.8" y2="358" stroke="#F1EFE8" stroke-width="4" />
+<line x1="479.8" y1="327.2" x2="483.4" y2="318.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="479.8" y1="327.2" x2="483.4" y2="318.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="479.8" y1="327.2" x2="489.8" y2="358" stroke="#5F5E5A" stroke-width="6" />
+<line x1="479.8" y1="327.2" x2="489.8" y2="358" stroke="#F1EFE8" stroke-width="4" />
+<line x1="479.8" y1="327.2" x2="501" y2="357.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="479.8" y1="327.2" x2="501" y2="357.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="483.4" y1="318.1" x2="489.8" y2="358" stroke="#5F5E5A" stroke-width="6" />
+<line x1="483.4" y1="318.1" x2="489.8" y2="358" stroke="#F1EFE8" stroke-width="4" />
+<line x1="483.4" y1="318.1" x2="501" y2="357.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="483.4" y1="318.1" x2="501" y2="357.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="483.4" y1="318.1" x2="513.3" y2="358.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="483.4" y1="318.1" x2="513.3" y2="358.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="489.8" y1="358" x2="501" y2="357.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="489.8" y1="358" x2="501" y2="357.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="489.8" y1="358" x2="512.3" y2="378.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="489.8" y1="358" x2="512.3" y2="378.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="489.8" y1="358" x2="513.3" y2="358.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="489.8" y1="358" x2="513.3" y2="358.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="501" y1="357.4" x2="512.3" y2="378.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="501" y1="357.4" x2="512.3" y2="378.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="501" y1="357.4" x2="513.3" y2="358.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="501" y1="357.4" x2="513.3" y2="358.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="501" y1="357.4" x2="515" y2="321" stroke="#5F5E5A" stroke-width="6" />
+<line x1="501" y1="357.4" x2="515" y2="321" stroke="#F1EFE8" stroke-width="4" />
+<line x1="512.3" y1="378.2" x2="513.3" y2="358.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="512.3" y1="378.2" x2="513.3" y2="358.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="512.3" y1="378.2" x2="515" y2="321" stroke="#5F5E5A" stroke-width="6" />
+<line x1="512.3" y1="378.2" x2="515" y2="321" stroke="#F1EFE8" stroke-width="4" />
+<line x1="512.3" y1="378.2" x2="532.7" y2="379.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="512.3" y1="378.2" x2="532.7" y2="379.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="513.3" y1="358.4" x2="515" y2="321" stroke="#5F5E5A" stroke-width="6" />
+<line x1="513.3" y1="358.4" x2="515" y2="321" stroke="#F1EFE8" stroke-width="4" />
+<line x1="513.3" y1="358.4" x2="532.7" y2="379.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="513.3" y1="358.4" x2="532.7" y2="379.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="513.3" y1="358.4" x2="537.8" y2="333.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="513.3" y1="358.4" x2="537.8" y2="333.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="515" y1="321" x2="532.7" y2="379.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="515" y1="321" x2="532.7" y2="379.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="515" y1="321" x2="537.8" y2="333.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="515" y1="321" x2="537.8" y2="333.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="515" y1="321" x2="552.3" y2="339.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="515" y1="321" x2="552.3" y2="339.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="532.7" y1="379.1" x2="537.8" y2="333.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="532.7" y1="379.1" x2="537.8" y2="333.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="532.7" y1="379.1" x2="550.4" y2="383.3" stroke="#5F5E5A" stroke-width="6" />
+<line x1="532.7" y1="379.1" x2="550.4" y2="383.3" stroke="#F1EFE8" stroke-width="4" />
+<line x1="532.7" y1="379.1" x2="552.3" y2="339.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="532.7" y1="379.1" x2="552.3" y2="339.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="537.8" y1="333.8" x2="550.4" y2="383.3" stroke="#5F5E5A" stroke-width="6" />
+<line x1="537.8" y1="333.8" x2="550.4" y2="383.3" stroke="#F1EFE8" stroke-width="4" />
+<line x1="537.8" y1="333.8" x2="552.3" y2="339.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="537.8" y1="333.8" x2="552.3" y2="339.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="537.8" y1="333.8" x2="554.4" y2="313.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="537.8" y1="333.8" x2="554.4" y2="313.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="550.4" y1="383.3" x2="552.3" y2="339.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="550.4" y1="383.3" x2="552.3" y2="339.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="550.4" y1="383.3" x2="559.6" y2="342.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="550.4" y1="383.3" x2="559.6" y2="342.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="550.4" y1="383.3" x2="568.4" y2="389.5" stroke="#5F5E5A" stroke-width="6" />
+<line x1="550.4" y1="383.3" x2="568.4" y2="389.5" stroke="#F1EFE8" stroke-width="4" />
+<line x1="552.3" y1="339.4" x2="554.4" y2="313.4" stroke="#5F5E5A" stroke-width="6" />
+<line x1="552.3" y1="339.4" x2="554.4" y2="313.4" stroke="#F1EFE8" stroke-width="4" />
+<line x1="552.3" y1="339.4" x2="559.6" y2="342.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="552.3" y1="339.4" x2="559.6" y2="342.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="552.3" y1="339.4" x2="568.4" y2="389.5" stroke="#5F5E5A" stroke-width="6" />
+<line x1="552.3" y1="339.4" x2="568.4" y2="389.5" stroke="#F1EFE8" stroke-width="4" />
+<line x1="554.4" y1="313.4" x2="559.6" y2="342.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="554.4" y1="313.4" x2="559.6" y2="342.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="554.4" y1="313.4" x2="570.4" y2="340" stroke="#5F5E5A" stroke-width="6" />
+<line x1="554.4" y1="313.4" x2="570.4" y2="340" stroke="#F1EFE8" stroke-width="4" />
+<line x1="554.4" y1="313.4" x2="572.6" y2="314.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="554.4" y1="313.4" x2="572.6" y2="314.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="559.6" y1="342.1" x2="568.4" y2="389.5" stroke="#5F5E5A" stroke-width="6" />
+<line x1="559.6" y1="342.1" x2="568.4" y2="389.5" stroke="#F1EFE8" stroke-width="4" />
+<line x1="559.6" y1="342.1" x2="570.4" y2="340" stroke="#5F5E5A" stroke-width="6" />
+<line x1="559.6" y1="342.1" x2="570.4" y2="340" stroke="#F1EFE8" stroke-width="4" />
+<line x1="559.6" y1="342.1" x2="572.6" y2="314.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="559.6" y1="342.1" x2="572.6" y2="314.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="568.4" y1="389.5" x2="570.4" y2="340" stroke="#5F5E5A" stroke-width="6" />
+<line x1="568.4" y1="389.5" x2="570.4" y2="340" stroke="#F1EFE8" stroke-width="4" />
+<line x1="568.4" y1="389.5" x2="577.8" y2="344.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="568.4" y1="389.5" x2="577.8" y2="344.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="568.4" y1="389.5" x2="597.8" y2="368.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="568.4" y1="389.5" x2="597.8" y2="368.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="570.4" y1="340" x2="572.6" y2="314.2" stroke="#5F5E5A" stroke-width="6" />
+<line x1="570.4" y1="340" x2="572.6" y2="314.2" stroke="#F1EFE8" stroke-width="4" />
+<line x1="570.4" y1="340" x2="577.8" y2="344.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="570.4" y1="340" x2="577.8" y2="344.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="570.4" y1="340" x2="597.8" y2="368.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="570.4" y1="340" x2="597.8" y2="368.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="572.6" y1="314.2" x2="577.8" y2="344.8" stroke="#5F5E5A" stroke-width="6" />
+<line x1="572.6" y1="314.2" x2="577.8" y2="344.8" stroke="#F1EFE8" stroke-width="4" />
+<line x1="572.6" y1="314.2" x2="597.8" y2="368.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="572.6" y1="314.2" x2="597.8" y2="368.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="572.6" y1="314.2" x2="609.1" y2="332.9" stroke="#5F5E5A" stroke-width="6" />
+<line x1="572.6" y1="314.2" x2="609.1" y2="332.9" stroke="#F1EFE8" stroke-width="4" />
+<line x1="577.8" y1="344.8" x2="597.8" y2="368.1" stroke="#5F5E5A" stroke-width="6" />
+<line x1="577.8" y1="344.8" x2="597.8" y2="368.1" stroke="#F1EFE8" stroke-width="4" />
+<line x1="577.8" y1="344.8" x2="609.1" y2="332.9" stroke="#5F5E5A" stroke-width="6" />
+<line x1="577.8" y1="344.8" x2="609.1" y2="332.9" stroke="#F1EFE8" stroke-width="4" />
+<line x1="577.8" y1="344.8" x2="629.8" y2="312" stroke="#5F5E5A" stroke-width="6" />
+<line x1="577.8" y1="344.8" x2="629.8" y2="312" stroke="#F1EFE8" stroke-width="4" />
+<line x1="597.8" y1="368.1" x2="609.1" y2="332.9" stroke="#5F5E5A" stroke-width="6" />
+<line x1="597.8" y1="368.1" x2="609.1" y2="332.9" stroke="#F1EFE8" stroke-width="4" />
+<line x1="609.1" y1="332.9" x2="629.8" y2="312" stroke="#5F5E5A" stroke-width="6" />
+<line x1="609.1" y1="332.9" x2="629.8" y2="312" stroke="#F1EFE8" stroke-width="4" />
+</g>
+<text x="450" y="428" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">骨梁（網目の骨）</text>
+<line x1="476" y1="416" x2="467.4" y2="330.5" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="467.4" cy="330.5" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="450" y="452" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A">すき間：赤色骨髄</text>
+<line x1="556" y1="440" x2="586" y2="394" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="586" cy="394" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="340" y="570" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">成長が止まる（18〜21歳ごろ）と、骨端板は骨端線になる。模式図で、大きさ・形は実物と異なる</text></svg>

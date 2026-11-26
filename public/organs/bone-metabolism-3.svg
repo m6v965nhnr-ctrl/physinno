@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 590" width="680" height="590" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>骨折の治癒の段階（模式図）</title><desc>長骨の骨幹が折れて治る流れの模式図。1、骨折血腫：骨折の6〜8時間後ごろに血液が固まり、周りの骨細胞が死ぬ。2、仮骨の形成：約48時間で、髄腔側に線維軟骨の内仮骨、骨膜側に軟骨と骨の外仮骨ができて骨折部が安定する。3、数週間かけて、破骨細胞が死んだ骨を吸収し、仮骨の軟骨が骨梁に置き換わる。4、リモデリング：内外の仮骨が合わさり、外側の縁は緻密骨に置き換わり、腫れは改変されて目立たなくなる。</desc><rect width="680" height="590" fill="#fff"/><text x="20" y="20" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">① 骨折血腫</text>
+<text x="20" y="40" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨折の6〜8時間後ごろ、血液が固まる</text>
+<text x="20" y="56" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">周りの骨細胞は血流が絶たれて死ぬ</text>
+<polygon points="30,124 168,124 161,148 171,170 164,196 30,196" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="194,124 330,124 330,196 188,196 196,172 189,148" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="30,136 163,136 157,152 166,170 161,184 30,184" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<polygon points="198,136 330,136 330,184 191,184 199,170 193,152" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<ellipse cx="180" cy="160" rx="32" ry="48" fill="#E24B4A" stroke="#A32D2D" stroke-width="1.2" fill-opacity="0.55"/>
+<text x="220" y="94" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨折血腫</text>
+<line x1="216" y1="94" x2="194" y2="126" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="194" cy="126" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="350" y="20" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">② 仮骨の形成</text>
+<text x="350" y="40" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">約48時間で骨折部が安定する</text>
+<polygon points="360,124 498,124 491,148 501,170 494,196 360,196" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="524,124 660,124 660,196 518,196 526,172 519,148" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="360,136 493,136 487,152 496,170 491,184 360,184" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<polygon points="528,136 660,136 660,184 521,184 529,170 523,152" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<rect x="492" y="136" width="34" height="48" rx="0" fill="#CECBF6" stroke="#534AB7" stroke-width="1" />
+<ellipse cx="510" cy="122" rx="46" ry="15" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<ellipse cx="510" cy="198" rx="46" ry="15" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="354" y="82" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">外仮骨</text>
+<text x="354" y="99" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">軟骨と骨（骨膜側）</text>
+<line x1="350" y1="82" x2="476" y2="116" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="476" cy="116" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="550" y="232" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">内仮骨（髄腔側）</text>
+<text x="550" y="249" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">線維軟骨</text>
+<line x1="546" y1="232" x2="520" y2="176" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="520" cy="176" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="20" y="290" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">③ 仮骨が骨梁に置き換わる</text>
+<text x="20" y="310" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">数週間：破骨細胞が死んだ骨を吸収し、</text>
+<text x="20" y="326" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">仮骨の軟骨が骨梁（海綿骨）になる</text>
+<polygon points="30,394 168,394 161,418 171,440 164,466 30,466" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="194,394 330,394 330,466 188,466 196,442 189,418" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<polygon points="30,406 163,406 157,422 166,440 161,454 30,454" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<polygon points="198,406 330,406 330,454 191,454 199,440 193,422" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<rect x="162" y="406" width="34" height="48" rx="0" fill="#C0DD97" stroke="#3B6D11" stroke-width="1" />
+<ellipse cx="180" cy="392" rx="46" ry="15" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<ellipse cx="180" cy="468" rx="46" ry="15" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<line x1="194.5" y1="396.7" x2="191.1" y2="401.4" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="194.4" y1="398.8" x2="185.5" y2="399.7" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="177.9" y1="399.1" x2="186.9" y2="399.5" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="204.1" y1="385.8" x2="200" y2="390.3" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="164.8" y1="392.7" x2="165.7" y2="397.7" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="150.8" y1="463.5" x2="148.7" y2="468.3" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="205" y1="472.3" x2="210.7" y2="476.1" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="197.8" y1="462.2" x2="205.7" y2="464.6" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="157.6" y1="460" x2="154.4" y2="464.7" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="162.6" y1="463.4" x2="154.3" y2="465.4" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="201.3" y1="426.6" x2="192.4" y2="426.9" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="181.4" y1="432.8" x2="172.4" y2="433.5" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="205.5" y1="433.1" x2="212.7" y2="436" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="202.6" y1="426.8" x2="193.7" y2="427.3" stroke="#3B6D11" stroke-width="1.6" />
+<line x1="159" y1="424.3" x2="162.8" y2="428.9" stroke="#3B6D11" stroke-width="1.6" />
+<ellipse cx="153" cy="430" rx="0.1" ry="0.1" fill="none" stroke="none" stroke-width="0" />
+<ellipse cx="173" cy="430" rx="0.1" ry="0.1" fill="none" stroke="none" stroke-width="0" />
+<ellipse cx="158" cy="427" rx="7" ry="4.6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" />
+<ellipse cx="202" cy="434" rx="7" ry="4.6" fill="#F5C4B3" stroke="#993C1D" stroke-width="1" />
+<text x="250" y="512" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">破骨細胞</text>
+<text x="250" y="529" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">死んだ骨を吸収</text>
+<line x1="246" y1="512" x2="203" y2="436" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="203" cy="436" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="24" y="368" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">骨梁</text>
+<text x="24" y="385" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">軟骨が置き換わる</text>
+<line x1="20" y1="368" x2="150" y2="390" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="150" cy="390" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="350" y="290" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">④ リモデリング</text>
+<text x="350" y="310" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">内外の仮骨が合わさり、</text>
+<text x="350" y="326" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">外側の縁は緻密骨に置き換わる</text>
+<rect x="360" y="394" width="300" height="72" rx="0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="360" y="406" width="300" height="48" rx="0" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<ellipse cx="510" cy="393" rx="36" ry="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-dasharray="3 2"/>
+<ellipse cx="510" cy="467" rx="36" ry="6" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1" stroke-dasharray="3 2"/>
+<text x="354" y="512" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">緻密骨が回復</text>
+<text x="354" y="529" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">内外の仮骨が合わさる</text>
+<line x1="350" y1="512" x2="440" y2="461" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="440" cy="461" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="540" y="512" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">わずかな腫れ</text>
+<text x="540" y="529" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">改変されて目立たなくなる</text>
+<line x1="536" y1="512" x2="526" y2="470" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="526" cy="470" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="340" y="572" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">骨の治癒の流れ（OpenStax の骨折修復の項による）。模式図で、大きさ・形は実物と異なる</text></svg>

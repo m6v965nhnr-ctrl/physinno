@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 446" width="680" height="446" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>四肢の断面と筋膜の区画（模式図）</title><desc>四肢の断面の模式図。外側から、皮膚、浅筋膜（皮下組織）、深筋膜の順に層をなし、深筋膜の内側に筋と骨がある。筋間中隔が、拮抗する筋群を2つの区画に分ける。深筋膜と筋間中隔で囲まれた区画の中は、腫れても広がる余地が少なく、内圧が上がる。</desc>
+<rect width="680" height="446" fill="#fff"/>
+<text x="340" y="22" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">四肢の断面と筋膜の区画（模式図）</text>
+<circle cx="190" cy="230" r="166" fill="#F0997B" stroke="#993C1D" stroke-width="2"/>
+<circle cx="190" cy="230" r="160" fill="#FAC775" stroke="#993C1D" stroke-width="1.5"/>
+<circle cx="190" cy="230" r="132" fill="#F4C0D1" stroke="#185FA5" stroke-width="4"/>
+<ellipse cx="128" cy="170" rx="40" ry="26" transform="rotate(-20 128 170)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="112" cy="230" rx="40" ry="30" transform="rotate(0 112 230)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="128" cy="292" rx="40" ry="26" transform="rotate(20 128 292)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="252" cy="170" rx="40" ry="26" transform="rotate(20 252 170)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="268" cy="230" rx="40" ry="30" transform="rotate(0 268 230)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<ellipse cx="252" cy="292" rx="40" ry="26" transform="rotate(-20 252 292)" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.5"/>
+<line x1="190" y1="98" x2="190" y2="204" stroke="#185FA5" stroke-width="3.5"/>
+<line x1="190" y1="256" x2="190" y2="362" stroke="#185FA5" stroke-width="3.5"/>
+<circle cx="190" cy="230" r="28" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.8"/>
+<text x="190" y="230" text-anchor="middle" font-size="14" fill="#2C2C2A" dominant-baseline="central">骨</text>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="400" y="62">皮膚</text><text x="400" y="104">浅筋膜（皮下組織）</text><text x="400" y="146">深筋膜</text><text x="400" y="188">筋（筋外膜に包まれる）</text><text x="190" y="408" text-anchor="middle">筋間中隔</text>
+</g>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="394" y1="62" x2="283" y2="97"/>
+<line x1="394" y1="104" x2="293" y2="127"/>
+<line x1="394" y1="146" x2="307" y2="168"/>
+<line x1="394" y1="188" x2="302" y2="216"/>
+<line x1="190" y1="396" x2="190" y2="330"/>
+</g>
+<rect x="400" y="250" width="260" height="96" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2"/>
+<text x="412" y="270" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">区画（コンパートメント）</text>
+<text x="412" y="294" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">深筋膜と筋間中隔で囲まれた空間。</text>
+<text x="412" y="314" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">中が腫れると広がる余地が少なく、</text>
+<text x="412" y="332" font-size="12.5" fill="#2C2C2A" dominant-baseline="central">内圧が上がる。</text>
+<text x="190" y="426" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">区画の数と筋の配置は、部位によって異なる。</text>
+</svg>

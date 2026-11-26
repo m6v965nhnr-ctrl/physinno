@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 540" width="680" height="540" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>椎間板と靱帯（脊柱の正中矢状断の模式図）</title><desc>隣り合う3つの椎骨を、正中で縦に切った模式図（左が前）。椎体の間に椎間板があり、外側の線維輪と中心の髄核からなる。椎体の前面に前縦靱帯、椎体の後面（脊柱管の前壁）に後縦靱帯が走る。脊柱管の中に脊髄があり、後方では椎弓板の間に黄色靱帯、棘突起の間に棘間靱帯、棘突起の先端に棘上靱帯がある。</desc><rect width="680" height="540" fill="#fff"/><rect x="352" y="34" width="44" height="462" rx="0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.8" stroke-dasharray="4 3" fill-opacity="0.5"/>
+<rect x="363" y="34" width="22" height="462" rx="0" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1" />
+<rect x="398" y="54" width="22" height="82" rx="5" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="417" y="78" width="92" height="30" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="398" y="204" width="22" height="82" rx="5" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="417" y="228" width="92" height="30" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="398" y="354" width="22" height="82" rx="5" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="417" y="378" width="92" height="30" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="398" y="136" width="22" height="68" rx="3" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<rect x="417" y="108" width="92" height="120" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<rect x="398" y="286" width="22" height="68" rx="3" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<rect x="417" y="258" width="92" height="120" rx="3" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<rect x="510" y="38" width="9" height="454" rx="4" fill="#F4C0D1" stroke="#993556" stroke-width="1.2" />
+<rect x="212" y="50" width="124" height="90" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="212" y="200" width="124" height="90" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="212" y="350" width="124" height="90" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="209" y="140" width="130" height="60" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.4" />
+<ellipse cx="274" cy="170" rx="37.2" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<rect x="209" y="290" width="130" height="60" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.4" />
+<ellipse cx="274" cy="320" rx="37.2" ry="18" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<rect x="199" y="36" width="8" height="458" rx="3" fill="#C0DD97" stroke="#3B6D11" stroke-width="1" />
+<rect x="341" y="36" width="8" height="458" rx="3" fill="#E24B4A" stroke="#A32D2D" stroke-width="1" />
+<text x="172" y="62" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">前縦靱帯</text>
+<line x1="176" y1="62" x2="203" y2="75" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="203" cy="75" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="172" y="126" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎体</text>
+<line x1="176" y1="126" x2="236" y2="116" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="236" cy="116" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="172" y="176" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">線維輪</text>
+<text x="172" y="193" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間板の外側</text>
+<line x1="176" y1="176" x2="211" y2="154" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="211" cy="154" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="172" y="222" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">髄核</text>
+<text x="172" y="239" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間板の中心</text>
+<line x1="176" y1="222" x2="248" y2="174" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="248" cy="174" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="172" y="272" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">後縦靱帯</text>
+<text x="172" y="289" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">脊柱管の前壁</text>
+<line x1="176" y1="272" x2="345" y2="272" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="345" cy="272" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="374" y="16" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A">脊柱管（中に脊髄）</text>
+<line x1="374" y1="28" x2="374" y2="60" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="374" cy="60" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="541" y="76" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">棘突起</text>
+<line x1="537" y1="76" x2="460" y2="93" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="460" cy="93" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="541" y="142" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">棘上靱帯</text>
+<text x="541" y="159" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">棘突起の先端</text>
+<line x1="537" y1="142" x2="514" y2="142" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="514" cy="142" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="541" y="214" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">棘間靱帯</text>
+<text x="541" y="231" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">隣り合う棘突起の間</text>
+<line x1="537" y1="214" x2="470" y2="162" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="470" cy="162" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="541" y="300" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">黄色靱帯</text>
+<text x="541" y="317" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">隣り合う椎弓板の間</text>
+<line x1="537" y1="300" x2="409" y2="320" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="409" cy="320" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="541" y="372" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎弓板</text>
+<line x1="537" y1="372" x2="409" y2="390" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="409" cy="390" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="340" y="522" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">正中矢状断の模式図（左が前）。椎骨の数・大きさは実物と異なる</text></svg>

@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 706" width="680" height="706" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif">
+<title>縦隔の区分（横から見た模式図）</title><desc>胸部を横から見た模式図。左が前（胸骨）、右が後ろ（脊柱）。胸骨角と第4・5胸椎の椎間板を結ぶ面より上が上縦隔。その下の縦隔は、心膜（心嚢）に包まれた心臓のある部分が中縦隔、心膜より前が前縦隔、心膜より後ろが後縦隔である。下に、各区分に含まれる主な構造を示す。</desc>
+<rect width="680" height="706" fill="#fff"/>
+<text x="340" y="22" text-anchor="middle" font-size="16" font-weight="500" fill="#2C2C2A" dominant-baseline="central">縦隔の区分（横から見た模式図。左が前、右が後ろ）</text>
+<path d="M100 100 L350 78 L350 190 L100 190 Z" fill="#CECBF6"/>
+<path d="M100 190 L350 190 L350 372 Q225 340 100 372 Z" fill="#C0DD97"/>
+<path d="M100 190 L210 190 C180 225 176 300 196 340 L200 357 L100 372 Z" fill="#FAC775"/>
+<path d="M210 190 L290 190 C322 215 316 320 288 357 C262 352 215 352 196 340 C176 300 180 225 210 190 Z" fill="#F4C0D1" stroke="#993556" stroke-width="2"/>
+<path d="M100 372 Q225 340 350 372" fill="none" stroke="#2C2C2A" stroke-width="2.5"/>
+<line x1="100" y1="190" x2="350" y2="190" stroke="#A32D2D" stroke-width="1.8" stroke-dasharray="6 4"/>
+<rect x="80" y="100" width="20" height="90" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/><rect x="80" y="192" width="20" height="148" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+<path d="M80 342 L100 342 L90 366 Z" fill="#CECBF6" stroke="#534AB7" stroke-width="1.5" stroke-linejoin="round"/>
+<rect x="350" y="78" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="106" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="134" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="162" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="194" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="222" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="250" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="278" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="306" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="334" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="362" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<rect x="350" y="390" width="40" height="24" rx="4" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2"/>
+<g font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">
+<text x="10" y="140">胸骨柄</text>
+<text x="10" y="190">胸骨角</text>
+<text x="10" y="270">胸骨体</text>
+<text x="10" y="360">剣状突起</text>
+<text x="10" y="402">横隔膜</text>
+<text x="402" y="190">第4・5胸椎の椎間板</text>
+<text x="402" y="120">第1〜12胸椎</text>
+</g>
+<g font-size="15" font-weight="500" fill="#2C2C2A" dominant-baseline="central" text-anchor="middle">
+<text x="225" y="145">上縦隔</text><text x="147" y="272">前縦隔</text><text x="250" y="262">中縦隔</text>
+<text transform="translate(334,272) rotate(90)">後縦隔</text></g>
+<text x="250" y="288" text-anchor="middle" font-size="12" fill="#2C2C2A" dominant-baseline="central">心臓・心膜（心嚢）</text>
+<g stroke="#888780" stroke-width="0.8" stroke-dasharray="4 3" fill="none">
+<line x1="66" y1="140" x2="80" y2="140"/><line x1="66" y1="190" x2="80" y2="190"/><line x1="66" y1="270" x2="80" y2="270"/><line x1="76" y1="360" x2="86" y2="352"/>
+<line x1="62" y1="402" x2="130" y2="366"/><line x1="395" y1="190" x2="372" y2="190"/><line x1="394" y1="120" x2="372" y2="112"/>
+</g>
+<text x="340" y="432" text-anchor="middle" font-size="13" fill="#2C2C2A" dominant-baseline="central">赤い点線は、胸骨角と第4・5胸椎の椎間板を結ぶ面。これより上が上縦隔、下が前・中・後縦隔。</text>
+<rect x="20" y="458" width="640" height="58" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2"/>
+<text x="34" y="487.0" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">上縦隔</text>
+<text x="116" y="480" font-size="13" fill="#2C2C2A" dominant-baseline="central">気管、食道、大動脈弓、左総頸動脈・左鎖骨下動脈、腕頭静脈、</text>
+<text x="116" y="500" font-size="13" fill="#2C2C2A" dominant-baseline="central">上大静脈の上半分、胸腺、胸管、横隔神経・迷走神経・左反回神経、リンパ節</text>
+<rect x="20" y="524" width="640" height="38" rx="8" fill="#FAC775" stroke="#854F0B" stroke-width="1.2"/>
+<text x="34" y="543.0" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">前縦隔</text>
+<text x="116" y="546" font-size="13" fill="#2C2C2A" dominant-baseline="central">胸腺の遺残、脂肪、リンパ節</text>
+<rect x="20" y="570" width="640" height="58" rx="8" fill="#F4C0D1" stroke="#993556" stroke-width="1.2"/>
+<text x="34" y="599.0" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">中縦隔</text>
+<text x="116" y="592" font-size="13" fill="#2C2C2A" dominant-baseline="central">心臓、心膜、上行大動脈、上大静脈の下半分、気管・主気管支、</text>
+<text x="116" y="612" font-size="13" fill="#2C2C2A" dominant-baseline="central">肺動脈・肺静脈、横隔神経、リンパ節</text>
+<rect x="20" y="636" width="640" height="58" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2"/>
+<text x="34" y="665.0" font-size="14" font-weight="500" fill="#2C2C2A" dominant-baseline="central">後縦隔</text>
+<text x="116" y="658" font-size="13" fill="#2C2C2A" dominant-baseline="central">下行大動脈、食道、奇静脈・半奇静脈、胸管、リンパ節、</text>
+<text x="116" y="678" font-size="13" fill="#2C2C2A" dominant-baseline="central">迷走神経などの自律神経</text>
+</svg>

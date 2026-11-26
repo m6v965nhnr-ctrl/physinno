@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="680" height="430" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>椎間板ヘルニアと神経（椎骨を横から見た模式図）</title><desc>隣り合う2つの椎骨を横から見た模式図（左が前）。椎体の間の椎間板で、中心の髄核が線維輪を破って後方へ突出し、椎間孔の中の脊髄神経に触れている。椎間孔は、上下の椎弓根の間にあり、その後ろで、上の椎骨の下関節突起と下の椎骨の上関節突起が椎間関節をつくる。棘突起は後方へ出る。</desc><rect width="680" height="430" fill="#fff"/><rect x="270" y="66" width="80" height="30" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="346" y="66" width="44" height="142" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="390" y="80" width="104" height="30" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="270" y="238" width="80" height="30" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="346" y="214" width="44" height="128" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="390" y="270" width="104" height="30" rx="10" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="150" y="60" width="120" height="110" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="150" y="232" width="120" height="110" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<rect x="147" y="170" width="126" height="62" rx="10" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.4" />
+<ellipse cx="204" cy="201" rx="36" ry="14" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<ellipse cx="308" cy="152" rx="36" ry="60" fill="none" stroke="#888780" stroke-width="1" stroke-dasharray="4 3"/>
+<path d="M268 176 C304 174 312 206 268 222 Z" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<circle cx="304" cy="176" r="13" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="128" y="100" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎体</text>
+<line x1="132" y1="100" x2="184" y2="100" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="184" cy="100" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="128" y="184" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">線維輪</text>
+<text x="128" y="201" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間板の外側</text>
+<line x1="132" y1="184" x2="149" y2="190" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="149" cy="190" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="128" y="268" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">髄核の突出</text>
+<text x="128" y="285" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">線維輪から後方へ</text>
+<line x1="132" y1="268" x2="288" y2="203" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="288" cy="203" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="520" y="70" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">棘突起</text>
+<line x1="516" y1="70" x2="470" y2="95" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="470" cy="95" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="520" y="122" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎間孔</text>
+<line x1="516" y1="122" x2="300" y2="116" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="300" cy="116" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="520" y="170" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">脊髄神経</text>
+<text x="520" y="187" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間孔から出る</text>
+<line x1="516" y1="170" x2="316" y2="174" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="316" cy="174" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="520" y="240" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎間関節</text>
+<text x="520" y="257" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">上下の関節突起の間</text>
+<line x1="516" y1="240" x2="368" y2="210" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="368" cy="210" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="340" y="402" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">椎間板ヘルニアの模式図（左が前）。突出の向き・大きさは単純化している</text></svg>

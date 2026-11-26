@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 500" width="680" height="500" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>椎骨と椎間板を上から見た模式図（水平断）</title><desc>腰の椎骨を上から見た模式図（上が前）。前方に椎体があり、その上に椎間板が重なる。椎間板は外側の線維輪と中心の髄核からなる。椎体の後方に椎弓があり、椎弓は左右の椎弓根と椎弓板からなる。椎弓と椎体の間の椎孔の中に、神経の通る袋（硬膜管）がある。椎弓から後方へ棘突起、左右へ横突起が出る。</desc><rect width="680" height="500" fill="#fff"/><path d="M270 205 C246 285 262 352 326 362 L354 362 C418 352 434 285 410 205" fill="none" stroke="#5F5E5A" stroke-width="17" stroke-linecap="round"/>
+<path d="M270 205 C246 285 262 352 326 362 L354 362 C418 352 434 285 410 205" fill="none" stroke="#F1EFE8" stroke-width="14" stroke-linecap="round"/>
+<line x1="340" y1="362" x2="340" y2="452" stroke="#5F5E5A" stroke-width="17" stroke-linecap="round"/>
+<line x1="340" y1="362" x2="340" y2="452" stroke="#F1EFE8" stroke-width="14" stroke-linecap="round"/>
+<line x1="256" y1="292" x2="166" y2="312" stroke="#5F5E5A" stroke-width="17" stroke-linecap="round"/>
+<line x1="256" y1="292" x2="166" y2="312" stroke="#F1EFE8" stroke-width="14" stroke-linecap="round"/>
+<line x1="424" y1="292" x2="514" y2="312" stroke="#5F5E5A" stroke-width="17" stroke-linecap="round"/>
+<line x1="424" y1="292" x2="514" y2="312" stroke="#F1EFE8" stroke-width="14" stroke-linecap="round"/>
+<ellipse cx="340" cy="172" rx="108" ry="72" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.3" />
+<ellipse cx="340" cy="172" rx="98" ry="62" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.4" />
+<ellipse cx="340" cy="174" rx="52" ry="30" fill="#FAC775" stroke="#854F0B" stroke-width="1.2" />
+<circle cx="340" cy="292" r="34" fill="#9FE1CB" stroke="#0F6E56" stroke-width="1.2" />
+<text x="340" y="16" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">前（腹側）</text>
+<text x="340" y="480" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">後（背側）</text>
+<text x="148" y="108" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">線維輪</text>
+<text x="148" y="125" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間板の外側</text>
+<line x1="152" y1="108" x2="252" y2="150" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="252" cy="150" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="148" y="170" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">髄核</text>
+<text x="148" y="187" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎間板の中心</text>
+<line x1="152" y1="170" x2="300" y2="176" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="300" cy="176" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="148" y="236" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎体</text>
+<text x="148" y="253" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（椎間板の下）</text>
+<line x1="152" y1="236" x2="266" y2="220" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="266" cy="220" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="148" y="300" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎弓根</text>
+<line x1="152" y1="300" x2="262" y2="258" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="262" cy="258" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="148" y="370" text-anchor="end" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎孔</text>
+<text x="148" y="387" text-anchor="end" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">椎体と椎弓の間</text>
+<line x1="152" y1="370" x2="306" y2="338" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="306" cy="338" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="548" y="196" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">硬膜管</text>
+<text x="548" y="213" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">神経の通る袋</text>
+<line x1="544" y1="196" x2="366" y2="284" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="366" cy="284" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="548" y="254" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">横突起</text>
+<line x1="544" y1="254" x2="500" y2="306" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="500" cy="306" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="548" y="336" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">椎弓板</text>
+<line x1="544" y1="336" x2="404" y2="336" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="404" cy="336" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" />
+<text x="548" y="424" text-anchor="start" dominant-baseline="central" font-size="14" fill="#2C2C2A">棘突起</text>
+<line x1="544" y1="424" x2="344" y2="430" stroke="#888780" stroke-width="1" stroke-dasharray="3 3" />
+<circle cx="344" cy="430" r="2.5" fill="#2C2C2A" stroke="#2C2C2A" stroke-width="0" /></svg>

@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 600" width="680" height="600" role="img" font-family="'Hiragino Sans','Noto Sans JP','Yu Gothic',sans-serif"><title>骨のリモデリング（骨吸収→骨形成）と、関わる細胞・調節</title><desc>上段は骨の細胞の由来。単球・マクロファージから破骨細胞（多核で骨を吸収）、未分化な骨原性細胞から骨芽細胞（骨をつくる）ができ、骨芽細胞は基質に埋まると骨細胞になる。中段は骨の表面での流れ。古い・傷んだ骨を破骨細胞が吸収し、同じ面で骨芽細胞が新しい骨をつくって置き換える。下段は調節。副甲状腺ホルモンは破骨細胞を刺激し、カルシトニンは破骨細胞の働きを抑える。性ホルモン・成長ホルモン・甲状腺ホルモンと力学的負荷は骨をつくる働きを促す。吸収が形成を上回ると骨量が減る。</desc><rect width="680" height="600" fill="#fff"/><text x="20" y="18" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">骨の細胞</text>
+<rect x="20" y="32" width="150" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="95" y="46" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">単球・マクロファージ</text>
+<text x="95" y="64" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">（白血球）</text>
+<line x1="172" y1="54" x2="226" y2="54" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="226,54 219.7,57 219.7,51" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<rect x="228" y="32" width="160" height="44" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<text x="308" y="46" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">破骨細胞</text>
+<text x="308" y="64" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">多核・骨を吸収する</text>
+<rect x="20" y="96" width="150" height="44" rx="8" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<text x="95" y="110" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨原性細胞</text>
+<text x="95" y="128" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">未分化・分裂できる</text>
+<line x1="172" y1="118" x2="226" y2="118" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="226,118 219.7,121 219.7,115" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<rect x="228" y="96" width="130" height="44" rx="8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1.2" />
+<text x="293" y="110" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨芽細胞</text>
+<text x="293" y="128" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨をつくる</text>
+<line x1="360" y1="118" x2="414" y2="118" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="414,118 407.7,121 407.7,115" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<rect x="416" y="96" width="170" height="44" rx="8" fill="#CECBF6" stroke="#534AB7" stroke-width="1.2" />
+<text x="501" y="110" text-anchor="middle" dominant-baseline="central" font-size="14" fill="#2C2C2A" font-weight="500">骨細胞</text>
+<text x="501" y="128" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">基質に埋まった骨芽細胞</text>
+<text x="388" y="104" text-anchor="middle" dominant-baseline="central" font-size="11" fill="#2C2C2A"></text>
+<line x1="20" y1="166" x2="660" y2="166" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="4 3" />
+<text x="340" y="184" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">骨の表面で起きること（同じ面で、吸収のあとに形成）</text>
+<rect x="20" y="250" width="140" height="100" rx="0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<ellipse cx="90" cy="268" rx="42" ry="12" fill="#FAC775" stroke="#854F0B" stroke-width="1" />
+<text x="90" y="226" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#854F0B">古い・傷んだ骨</text>
+<path d="M180 250 L220 250 Q250 292 280 250 L320 250 L320 350 L180 350 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<ellipse cx="250" cy="236" rx="40" ry="19" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.3" />
+<circle cx="234" cy="236" r="3.4" fill="#993C1D" stroke="none" stroke-width="0" />
+<circle cx="250" cy="236" r="3.4" fill="#993C1D" stroke="none" stroke-width="0" />
+<circle cx="266" cy="236" r="3.4" fill="#993C1D" stroke="none" stroke-width="0" />
+<line x1="220" y1="252" x2="220" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="230" y1="252" x2="230" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="240" y1="252" x2="240" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="250" y1="252" x2="250" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="260" y1="252" x2="260" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="270" y1="252" x2="270" y2="258" stroke="#993C1D" stroke-width="1" />
+<line x1="280" y1="252" x2="280" y2="258" stroke="#993C1D" stroke-width="1" />
+<path d="M340 250 L380 250 Q410 292 440 250 L480 250 L480 350 L340 350 Z" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<clipPath id="n3"><path d="M380 250 Q410 292 440 250 Z"/></clipPath>
+<g clip-path="url(#n3)"><rect x="370" y="264" width="80" height="40" fill="#C0DD97"/><line x1="370" y1="264" x2="450" y2="264" stroke="#3B6D11" stroke-width="1"/></g>
+<ellipse cx="384" cy="252" rx="8" ry="6.5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<circle cx="384" cy="252" r="2" fill="#185FA5" stroke="none" stroke-width="0" />
+<ellipse cx="401" cy="252" rx="8" ry="6.5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<circle cx="401" cy="252" r="2" fill="#185FA5" stroke="none" stroke-width="0" />
+<ellipse cx="419" cy="252" rx="8" ry="6.5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<circle cx="419" cy="252" r="2" fill="#185FA5" stroke="none" stroke-width="0" />
+<ellipse cx="436" cy="252" rx="8" ry="6.5" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<circle cx="436" cy="252" r="2" fill="#185FA5" stroke="none" stroke-width="0" />
+<rect x="500" y="250" width="140" height="100" rx="0" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="1.2" />
+<clipPath id="n4"><path d="M540 250 Q570 292 600 250 Z"/></clipPath>
+<g clip-path="url(#n4)"><rect x="530" y="250" width="80" height="50" fill="#C0DD97"/></g>
+<path d="M540 250 Q570 292 600 250" fill="none" stroke="#3B6D11" stroke-width="1" />
+<ellipse cx="570" cy="262" rx="5" ry="3.3" fill="#CECBF6" stroke="#534AB7" stroke-width="0.9" />
+<ellipse cx="522" cy="246" rx="15" ry="3.8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<ellipse cx="570" cy="246" rx="15" ry="3.8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<ellipse cx="618" cy="246" rx="15" ry="3.8" fill="#B5D4F4" stroke="#185FA5" stroke-width="1" />
+<text x="90" y="372" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">① 古い骨</text>
+<text x="250" y="372" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">② 骨吸収</text>
+<text x="250" y="390" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">破骨細胞が骨を溶かす</text>
+<text x="410" y="372" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">③ 骨形成</text>
+<text x="410" y="390" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨芽細胞が新しい骨をつくる</text>
+<text x="570" y="372" text-anchor="middle" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">④ 置き換わった骨</text>
+<text x="570" y="390" text-anchor="middle" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨芽細胞の一部は骨細胞に</text>
+<line x1="163" y1="300" x2="177" y2="300" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="177,300 170.7,303 170.7,297" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<line x1="323" y1="300" x2="337" y2="300" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="337,300 330.7,303 330.7,297" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<line x1="483" y1="300" x2="497" y2="300" stroke="#5F5E5A" stroke-width="1.6" />
+<polygon points="497,300 490.7,303 490.7,297" fill="#5F5E5A" stroke="#5F5E5A" stroke-width="0" />
+<line x1="20" y1="414" x2="660" y2="414" stroke="#B4B2A9" stroke-width="0.8" stroke-dasharray="4 3" />
+<text x="20" y="430" text-anchor="start" dominant-baseline="central" font-size="13.5" fill="#2C2C2A" font-weight="500">調節</text>
+<rect x="20" y="444" width="306" height="104" rx="8" fill="#F5C4B3" stroke="#993C1D" stroke-width="1.2" />
+<rect x="348" y="444" width="312" height="104" rx="8" fill="#C0DD97" stroke="#3B6D11" stroke-width="1.2" />
+<text x="34" y="460" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">吸収を進める・抑える</text>
+<text x="34" y="482" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">副甲状腺ホルモン（PTH）</text>
+<text x="34" y="499" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">破骨細胞を刺激して骨吸収を進める</text>
+<text x="34" y="518" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">カルシトニン：破骨細胞の働きを抑える</text>
+<text x="362" y="460" text-anchor="start" dominant-baseline="central" font-size="13" fill="#2C2C2A" font-weight="500">形成を進める</text>
+<text x="362" y="482" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">性ホルモン・成長ホルモン・甲状腺ホルモン</text>
+<text x="362" y="499" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">骨芽細胞の働きを促す</text>
+<text x="362" y="518" text-anchor="start" dominant-baseline="central" font-size="12.5" fill="#2C2C2A">力学的負荷：骨の沈着を促す</text>
+<text x="362" y="535" text-anchor="start" dominant-baseline="central" font-size="11.5" fill="#5F5E5A">負荷がないと、骨のミネラルとコラーゲンが失われる</text>
+<text x="340" y="574" text-anchor="middle" dominant-baseline="central" font-size="12.5" fill="#5F5E5A">吸収が形成を上回ると骨量が減る（骨粗鬆症）。模式図で、大きさ・形は実物と異なる</text></svg>
