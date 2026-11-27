@@ -4,23 +4,10 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { findDiseases } from "@/lib/diseaseMatch";
 import type { Disease } from "@/content/diseases/types";
+import LeadText from "@/components/LeadText";
 
 // 開いたカードだけを、1枚ずつ読み込む（全部を画面の束に入れない）
 const cache = new Map<string, Disease>();
-
-// 「病型の三つ。本文…」のように短い見出しで始まる点は、見出しを太字にして頭に入りやすくする
-function PointText({ t }: { t: string }) {
-  const i = t.indexOf("。");
-  // 文の途中（は・が・読点を含む）は見出しではないので、そのまま出す
-  if (i < 0 || i > 14 || i === t.length - 1 || /[はが、,]/.test(t.slice(0, i))) return <span>{t}</span>;
-  return (
-    <span>
-      <span className="font-semibold">{t.slice(0, i + 1)}</span>
-      <br />
-      {t.slice(i + 1)}
-    </span>
-  );
-}
 
 // 問題・解説に出てくる疾患を、1タップで確かめる（国試で問われる点だけを出す。周辺の情報は出さない）
 export default function DiseaseLookup({ text }: { text: string }) {
@@ -76,7 +63,7 @@ export default function DiseaseLookup({ text }: { text: string }) {
               {d.examPoints.map((c, i) => (
                 <li key={c.t} className="flex gap-2.5 py-2 first:pt-0 last:pb-0">
                   <span aria-hidden className="mt-1.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-rose-50 text-[11px] font-bold text-rose-700">{i + 1}</span>
-                  <PointText t={c.t} />
+                  <span><LeadText t={c.t} /></span>
                 </li>
               ))}
             </ol>

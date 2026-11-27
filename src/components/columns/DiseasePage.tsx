@@ -4,20 +4,23 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 import type { Claim, Disease } from "@/content/diseases/types";
 import { TESTS } from "@/content/tests/generated";
 import BackLink from "@/components/BackLink";
+import LeadText from "@/components/LeadText";
 
 const cite = (s: number[]) => (
   <sup className="ml-0.5 text-[10px] text-gray-400">[{s.join(",")}]</sup>
 );
 
-function List({ title, items }: { title: string; items: Claim[] }) {
+const H2 = "border-l-4 border-brand-500 pl-2.5 text-base font-bold text-gray-900";
+
+function List({ title, items, id }: { title: string; items: Claim[]; id: string }) {
   if (items.length === 0) return null;
   return (
-    <section className="mt-8">
-      <h2 className="text-base font-bold text-gray-900">{title}</h2>
-      <ul className="mt-2 list-disc space-y-1.5 pl-5 text-sm leading-7 text-gray-800">
+    <section id={id} className="mt-9 scroll-mt-4">
+      <h2 className={H2}>{title}</h2>
+      <ul className="mt-3 divide-y divide-gray-100 rounded-2xl border border-gray-100 bg-white px-4 text-sm leading-7 text-gray-800">
         {items.map((c) => (
-          <li key={c.t}>
-            {c.t}
+          <li key={c.t} className="py-3">
+            <LeadText t={c.t} />
             {cite(c.s)}
           </li>
         ))}
@@ -63,6 +66,19 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
   ];
   const tests = d.tests.map((s) => TESTS.find((t) => t.slug === s)).filter((t): t is NonNullable<typeof t> => !!t);
   const qids = [...new Set(d.examPoints.flatMap((e) => e.q))];
+  const toc = (
+    [
+      ["cause", "原因・病態", d.cause.length],
+      ["symptoms", "症状・所見", d.symptoms.length],
+      ["diagnosis", "診断・検査", d.diagnosis.length],
+      ["classification", "分類", d.classification.length],
+      ["treatment", "治療", d.treatment.length],
+      ["pt", "理学療法", d.pt.length],
+      ["risk", "リスク管理", d.risk.length],
+      ["exam", "国試で問われる点", d.examPoints.length],
+      ["confusable", "取り違えやすい疾患", d.confusable.length],
+    ] as [string, string, number][]
+  ).filter(([, , n]) => n > 0);
 
   return (
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
@@ -80,22 +96,30 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
           <span className="ml-2 text-base font-medium text-gray-400">{d.reading}</span>
         </h1>
         <p className="mt-1 text-xs text-gray-400">{d.system} ・ {SITE_NAME}編集部 ・ 確認日 {d.checkedOn}</p>
-        <p className="mt-4 text-sm leading-7 text-gray-700">
+        <p className="mt-4 rounded-2xl bg-brand-50 p-4 text-sm leading-7 text-gray-800">
           {d.summary.t}
           {cite(d.summary.s)}
         </p>
 
-        <List title="原因・病態" items={d.cause} />
-        <List title="主な症状・所見" items={d.symptoms} />
-        <List title="診断・検査" items={d.diagnosis} />
-        <List title="分類・重症度" items={d.classification} />
-        <List title="治療" items={d.treatment} />
-        <List title="理学療法・リハで押さえること" items={d.pt} />
-        <List title="リスク管理・禁忌" items={d.risk} />
+        <nav aria-label="このページの内容" className="mt-4 flex flex-wrap gap-1.5">
+          {toc.map(([id, label]) => (
+            <a key={id} href={`#${id}`} className="rounded-full border border-gray-300 bg-white px-3 py-1 text-xs text-gray-700 hover:border-gray-500">
+              {label}
+            </a>
+          ))}
+        </nav>
+
+        <List id="cause" title="原因・病態" items={d.cause} />
+        <List id="symptoms" title="主な症状・所見" items={d.symptoms} />
+        <List id="diagnosis" title="診断・検査" items={d.diagnosis} />
+        <List id="classification" title="分類・重症度" items={d.classification} />
+        <List id="treatment" title="治療" items={d.treatment} />
+        <List id="pt" title="理学療法・リハで押さえること" items={d.pt} />
+        <List id="risk" title="リスク管理・禁忌" items={d.risk} />
 
         {tests.length > 0 && (
-          <section className="mt-8">
-            <h2 className="text-base font-bold text-gray-900">関係する検査・基準値</h2>
+          <section className="mt-9">
+            <h2 className={H2}>関係する検査・基準値</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
               {tests.map((t) => (
                 <li key={t.slug}>
@@ -109,13 +133,13 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
         )}
 
         {d.examPoints.length > 0 && (
-          <section className="mt-8">
-            <h2 className="text-base font-bold text-gray-900">国家試験で問われる点</h2>
+          <section id="exam" className="mt-9 scroll-mt-4">
+            <h2 className={H2}>国家試験で問われる点</h2>
             <p className="mt-1 text-xs text-gray-500">第52〜61回の過去問で問われた知識と、基本事項です。</p>
             <ul className="mt-2 space-y-2.5 text-sm leading-7 text-gray-800">
               {d.examPoints.map((e) => (
                 <li key={e.t} className="rounded-xl border border-gray-100 bg-white p-3">
-                  {e.t}
+                  <LeadText t={e.t} />
                   {cite(e.s)}
                   {e.q.length > 0 && (
                     <span className="mt-1 flex flex-wrap gap-1.5">
@@ -133,8 +157,8 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
         )}
 
         {d.confusable.length > 0 && (
-          <section className="mt-8">
-            <h2 className="text-base font-bold text-gray-900">取り違えやすい疾患との違い</h2>
+          <section id="confusable" className="mt-9 scroll-mt-4">
+            <h2 className={H2}>取り違えやすい疾患との違い</h2>
             <dl className="mt-2 space-y-2 rounded-2xl border border-gray-100 bg-white p-4">
               {d.confusable.map((c) => (
                 <div key={c.name} className="grid grid-cols-[7rem_1fr] gap-2">
@@ -161,8 +185,8 @@ export default function DiseasePage({ d, related, guideTitle }: { d: Disease; re
         </div>
 
         {(related.length > 0 || d.guide) && (
-          <section className="mt-8">
-            <h2 className="text-base font-bold text-gray-900">あわせて読む</h2>
+          <section className="mt-9">
+            <h2 className={H2}>あわせて読む</h2>
             <ul className="mt-3 flex flex-wrap gap-2">
               {d.guide && (
                 <li>
