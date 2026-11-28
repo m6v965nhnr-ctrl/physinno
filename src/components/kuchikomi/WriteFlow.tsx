@@ -19,8 +19,11 @@ export default function WriteFlow() {
   const [profession, setProfession] = useState<Profession | null>(null);
   const [workplace, setWorkplace] = useState<{ id: string; name: string } | null>(null);
 
+  const [justRegistered, setJustRegistered] = useState(false);
+
   useEffect(() => {
     let alive = true;
+    setJustRegistered(new URLSearchParams(window.location.search).get("registered") === "1");
     (async () => {
       const { data } = await getLocalUser();
       const uid = data.user?.id ?? null;
@@ -62,7 +65,7 @@ export default function WriteFlow() {
     return (
       <div className="rounded-3xl border border-gray-100 bg-white p-6">
         <h2 className="text-lg font-bold text-gray-900">無料・約1分で登録</h2>
-        <p className="mt-2 text-sm leading-7 text-gray-700">口コミは、匿名で書けます。登録は無料・約1分で、登録のあと、そのまま書けます（登録のとき、職種を選ぶだけ）。</p>
+        <p className="mt-2 text-sm leading-7 text-gray-700">口コミは、匿名で書けます。登録は無料・約1分です（職種・名前・メール・パスワード）。登録のあと、そのまま書けます。</p>
         <div className="mt-4 flex flex-wrap gap-2">
           <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(HERE)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料で登録する</Link>
           <Link href={withReturnTo("/login", HERE)} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>
@@ -89,6 +92,19 @@ export default function WriteFlow() {
       <p className="rounded-2xl bg-gray-50 px-4 py-3 text-sm leading-6 text-gray-700">
         口コミを書けるのは、現役の理学療法士・作業療法士・言語聴覚士です。{accountType === "student" ? "学生の方は、実習先での経験を、病院ページの「実習生の声」に書けます。" : ""}
       </p>
+    );
+  }
+
+  // 登録した直後は、次にすることを1つだけ見せる
+  if (justRegistered) {
+    return (
+      <div className="rounded-3xl border border-gray-100 bg-white p-6 text-center">
+        <h2 className="text-lg font-bold text-gray-900" role="status">登録できました</h2>
+        <p className="mt-2 text-sm leading-7 text-gray-700">次は、口コミを書く職場を選びます。以前の職場でも書けます。</p>
+        <button type="button" onClick={() => setJustRegistered(false)} className="mt-4 w-full rounded-full bg-relight-gradient px-5 py-3.5 text-sm font-bold">
+          口コミを書く病院や施設を探す
+        </button>
+      </div>
     );
   }
 

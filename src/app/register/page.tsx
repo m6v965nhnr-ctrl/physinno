@@ -209,7 +209,12 @@ export default function RegisterPage() {
     // まずプロフィール（名前・勤務先・専門分野）の入力へ案内する。
     // 学生は、名前と養成校・卒業予定年などを入れる設定画面へ案内する
     // 職場口コミサイトの「口コミを書く」から来た人は、登録のあと、開いていた施設の口コミ投稿画面へ進む（ホーム・マイページには行かない）
-    const kuchikomiNext = fromKuchikomi && !isTeacher && !isOrg ? takeReturnTo() : null;
+    // 施設を決めて来た人は、その施設へ戻す。それ以外は「職場を探す」ボタンの画面へ（長いプロフィール入力には進ませない）
+    let kuchikomiNext: string | null = null;
+    if (fromKuchikomi && !isTeacher && !isOrg) {
+      const back = takeReturnTo();
+      kuchikomiNext = back && /^\/kuchikomi\/[0-9a-f-]{36}/i.test(back) ? back : "/kuchikomi/write?registered=1";
+    }
     router.push(
       kuchikomiNext
         ? kuchikomiNext
@@ -229,12 +234,16 @@ export default function RegisterPage() {
     <main className="min-h-screen bg-[#fafafa] px-6 py-12">
       <div className="mx-auto max-w-md">
 
-        <Link
-          href="/"
-          className="text-sm text-gray-400"
-        >
-          ← Re:light
-        </Link>
+        {fromKuchikomi ? (
+          // 口コミサイトから来た人には、「リハ職の本音」の登録画面として見せる
+          <Link href="/kuchikomi" className="text-base font-bold tracking-tight text-gray-900">
+            ← リハ職の本音
+          </Link>
+        ) : (
+          <Link href="/" className="text-sm text-gray-400">
+            ← Re:light
+          </Link>
+        )}
 
         <h1 className="mt-10 text-3xl font-semibold tracking-tight">
           {isTeacher ? "先生の新規登録" : isOrg ? "採用担当の新規登録" : "新規登録"}
@@ -246,7 +255,7 @@ export default function RegisterPage() {
             : isOrg
             ? "病院・施設・企業の採用担当向けです。登録後に組織の情報を入れると、運営の確認のあと、求人の掲載やPTへのスカウトができます。"
             : fromKuchikomi
-            ? "無料・約1分で登録できます。登録のあと、そのまま、口コミを書けます。口コミは、匿名にできます。"
+            ? "無料・約1分で登録できます。登録のあと、そのまま、口コミを書けます。このアカウントは、Re:lightでも使えます。"
             : "Re:lightをはじめましょう"}
         </p>
 
@@ -383,11 +392,18 @@ export default function RegisterPage() {
               className="w-full rounded-2xl border border-gray-200 bg-white px-4 py-3.5 text-sm outline-none focus:border-gray-400"
             />
 
-            <p className="mt-2 text-xs leading-5 text-gray-400">
-              {isTeacher
-                ? "クラスに参加した学生に、先生の名前として表示されます。"
-                : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
-            </p>
+            {fromKuchikomi && !isTeacher ? (
+              <>
+                <p className="mt-2 text-sm font-bold leading-6 text-gray-900">口コミは匿名でできます。</p>
+                <p className="text-xs leading-5 text-gray-500">口コミに、名前は出ません。Re:lightで投稿やコメントをするときは、名前が表示されます。</p>
+              </>
+            ) : (
+              <p className="mt-2 text-xs leading-5 text-gray-400">
+                {isTeacher
+                  ? "クラスに参加した学生に、先生の名前として表示されます。"
+                  : "コメントやメッセージで、ほかのユーザーに表示されます。あとから変更できます。"}
+              </p>
+            )}
           </div>
           )}
 
