@@ -13,6 +13,7 @@ export const KUCHIKOMI_SITE: GuideSite = {
   brand: "リハ職の本音",
   href: "/kuchikomi",
   register: KUCHIKOMI_REGISTER,
+  cta: { href: "/kuchikomi/write", label: "口コミを書く" }, // ヘッダーに、スマホでも出す
   blurb: "の、「リハ職の本音」（職場口コミ）の入口です。",
   audience: "理学療法士・作業療法士・言語聴覚士・学生",
   links: [
