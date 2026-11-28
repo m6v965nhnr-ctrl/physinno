@@ -3,7 +3,7 @@ import Link from "next/link";
 // 論文検索サイトの、共通の枠（ヘッダー・フッター）。Re:lightの「入口」であることは、小さく示す
 const REGISTER = "/register?type=pt&utm_source=paper-site&utm_medium=web&utm_campaign=paper-search";
 
-type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[]; note?: string; audience?: string; cta?: { href: string; label: string } };
+type Site = { brand: string; href: string; register: string; blurb: string; links: { href: string; label: string }[]; note?: string; audience?: string; actions?: React.ReactNode; footerLinks?: { href: string; label: string }[] };
 
 // フッターの共通リンク（サイトごとのリンクと重なるものは、1回だけ出す）
 const COMMON_LINKS = [
@@ -38,18 +38,15 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
             {site.brand}
           </Link>
           <nav className="flex items-center gap-3 text-sm" aria-label="メイン">
-            {site.links.filter((l) => l.href !== site.cta?.href).map((l) => (
+            {site.links.map((l) => (
               <Link key={l.href} href={l.href} className="hidden text-gray-600 hover:text-gray-900 sm:inline">
                 {l.label}
               </Link>
             ))}
-            <Link href={site.register} className={`whitespace-nowrap rounded-full text-xs font-bold ${site.cta ? "border border-gray-300 bg-white px-3 py-2 text-gray-800" : "bg-relight-gradient px-4 py-2"}`}>
-              {/* 主なボタン(cta)があるサイトは、狭い画面で2つ並ぶように、短い言葉にする */}
-              <span className={site.cta ? "hidden sm:inline" : undefined}>Re:lightを</span>無料で使う
-            </Link>
-            {site.cta && (
-              <Link href={site.cta.href} className="whitespace-nowrap rounded-full bg-relight-gradient px-4 py-2 text-xs font-bold">
-                {site.cta.label}
+            {/* actions があるサイトは、Re:light への登録ボタンの代わりに、そのサイトのボタンを出す */}
+            {site.actions ?? (
+              <Link href={site.register} className="rounded-full bg-relight-gradient px-4 py-2 text-xs font-bold">
+                Re:lightを無料で使う
               </Link>
             )}
           </nav>
@@ -63,7 +60,7 @@ export default function PaperSiteFrame({ children, site = PAPER_SITE }: { childr
           {site.blurb}
         </p>
         <div className="mt-3 flex flex-wrap items-center justify-center gap-4">
-          {[...site.links, ...COMMON_LINKS.filter((c) => !site.links.some((l) => l.href === c.href))].map((l) => (
+          {(site.footerLinks ?? [...site.links, ...COMMON_LINKS.filter((c) => !site.links.some((l) => l.href === c.href))]).map((l) => (
             <Link key={l.href} href={l.href}>{l.label}</Link>
           ))}
         </div>

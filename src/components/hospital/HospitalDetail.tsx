@@ -147,7 +147,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
       {!userId && (
         <p className="mt-1.5 text-center text-[11px] leading-5 text-gray-500">
           無料・約1分で登録できます。お名前は表に出ません。登録のあと、そのまま、この施設の投稿画面に進めます。
-          <Link href={`/login?next=${encodeURIComponent(writeHref)}`} className="ml-1 underline">登録済みの方はログイン</Link>
+          <Link href={`${variant === "kuchikomi" ? "/kuchikomi/login" : "/login"}?next=${encodeURIComponent(writeHref)}`} className="ml-1 underline">登録済みの方はログイン</Link>
         </p>
       )}
     </div>
@@ -503,7 +503,9 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
           </h1>
 
           <p className="mt-0.5 text-sm text-gray-500">
-            {hospital.prefecture ? (
+            {variant === "kuchikomi" ? (
+              hospital.prefecture
+            ) : hospital.prefecture ? (
               <Link href={`/hospital-areas/${encodeURIComponent(hospital.prefecture)}`} className="underline underline-offset-2 hover:text-gray-800">
                 {hospital.prefecture}
               </Link>
@@ -595,7 +597,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
 
         {dataReady && (
           <>
-        {tab === "top" && pts.length > 0 && (
+        {variant === "app" && tab === "top" && pts.length > 0 && (
           <section className="mt-3 rounded-3xl border border-gray-100 bg-white p-4 sm:mt-5 sm:p-6">
             <h2 className="text-sm font-semibold text-gray-500">在籍PT</h2>
             <div className="mt-3 space-y-2">
@@ -655,6 +657,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
               {/* 空のページを、口コミ・登録の入口にする */}
               <div className="mt-3 space-y-2">
                 {writeCta}
+                {variant === "app" && (
                 <Link
                   href={userId ? "/org" : "/for-org"}
                   onClick={() => track("facility_cta", { kind: "org" })}
@@ -662,6 +665,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
                 >
                   採用担当の方はこちら（無料で求人掲載・ページ運営）
                 </Link>
+                )}
               </div>
             </div>
           )}
@@ -1007,7 +1011,7 @@ export default function HospitalDetail({ variant = "app" }: { variant?: Hospital
                 <p className="mt-1 text-[11px] leading-5 text-gray-900/80">登録なしで読めるのは、新しい口コミ3件までです。</p>
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
                   <Link href={variant === "kuchikomi" ? `${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(selfPath)}` : `/register?type=pt&utm_source=kuchikomi&utm_medium=web&utm_campaign=hospital-page&next=${encodeURIComponent(`${selfPath}?tab=reviews`)}`} className="rounded-full bg-white px-4 py-2 text-xs font-bold text-gray-900">無料で登録する</Link>
-                  <Link href={`/login?next=${encodeURIComponent(variant === "kuchikomi" ? selfPath : `${selfPath}?tab=reviews`)}`} className="rounded-full border border-gray-900/30 px-4 py-2 text-xs font-semibold text-gray-900">ログイン</Link>
+                  <Link href={variant === "kuchikomi" ? `/kuchikomi/login?next=${encodeURIComponent(selfPath)}` : `/login?next=${encodeURIComponent(`${selfPath}?tab=reviews`)}`} className="rounded-full border border-gray-900/30 px-4 py-2 text-xs font-semibold text-gray-900">ログイン</Link>
                 </div>
               </div>
             )}

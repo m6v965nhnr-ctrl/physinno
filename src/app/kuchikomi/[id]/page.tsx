@@ -174,7 +174,7 @@ export default async function KuchikomiHospitalPage({ params }: Props) {
               ))}
             </ul>
             <p className="mt-3 text-xs text-gray-500">
-              <Link href={`/hospital-areas/${encodeURIComponent(h.prefecture)}`} className="underline">{h.prefecture}の病院を、一覧から探す</Link>
+              <Link href="/kuchikomi" className="underline">ほかの施設を探す</Link>
             </p>
           </div>
         </section>

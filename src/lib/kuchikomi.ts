@@ -6,20 +6,26 @@ import type { GuideSite } from "@/components/paper-search/PaperSiteFrame";
 export const FREE_REVIEW_LIMIT = 3;
 
 // 登録の入口。from=kuchikomi のとき、登録画面は、職種（理学療法士・作業療法士・言語聴覚士）を選ぶ形になる
-const REG = "from=kuchikomi&utm_source=kuchikomi&utm_medium=web&utm_campaign=kuchikomi";
-export const KUCHIKOMI_REGISTER = `/register?${REG}`;
+export const KUCHIKOMI_REGISTER = "/kuchikomi/register?utm_source=kuchikomi&utm_medium=web&utm_campaign=kuchikomi";
+
+// 登録のあとに戻すのは、施設を決めて来た場合だけ（それ以外は、職場を探す画面へ進む）
+export function facilityReturnPath(path: string | null): string | null {
+  return path && /^\/kuchikomi\/[0-9a-f-]{36}(\/write)?(\?[\w=&-]*)?$/i.test(path) ? path : null;
+}
 
 export const KUCHIKOMI_SITE: GuideSite = {
   brand: "リハ職の本音",
   href: "/kuchikomi",
   register: KUCHIKOMI_REGISTER,
-  cta: { href: "/kuchikomi/write", label: "口コミを書く" }, // ヘッダーに、スマホでも出す
-  blurb: "の、「リハ職の本音」（職場口コミ）の入口です。",
+  blurb: "が運営しています。",
   audience: "理学療法士・作業療法士・言語聴覚士・学生",
-  links: [
+  links: [{ href: "/kuchikomi", label: "施設を探す" }],
+  footerLinks: [
+    { href: "/kuchikomi", label: "施設を探す" },
     { href: "/kuchikomi/write", label: "口コミを書く" },
-    { href: "/hospital-areas", label: "病院を探す" },
-    { href: "/job-hunting", label: "就活ガイド" },
+    { href: "/contact", label: "お問い合わせ" },
+    { href: "/terms", label: "利用規約" },
+    { href: "/privacy", label: "プライバシーポリシー" },
   ],
   note: "口コミは、個人の感想です。個人情報や、患者さんが特定される情報は、書かないでください。",
 };

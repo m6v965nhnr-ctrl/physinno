@@ -286,7 +286,7 @@
 - **職種（20261217_rehab_profession.sql）**: `users.profession`（'pt'|'ot'|'st'、自己申告）。**OT・STは、account_type='general' のまま職種だけを持つ**（PT向けの機能・RLSは変えない。将来OT・ST向けのアカウントを作るときも、引き継げる）。`/register?from=kuchikomi` で、職種（PT/OT/ST）を選ぶ形になる（PT→account_type='pt'、OT/ST→'general'+profession を、サインアップ時のメタデータで渡し、`handle_new_user` が保存）。すでに「一般」で登録した人は、口コミのページ・`/kuchikomi/write` で、あとから職種を選べる（`set_my_profession`、1回だけ）。
 - 口コミを書ける人は、DBで `is_rehab_pro`（PT、または職種がOT/ST）に絞る（`hospital_reviews` のINSERT/UPDATEのRLS）。各口コミには、投稿者の職種を表示する（`get_hospital_review_professions`。氏名などは出さない）。
 - **口コミを集める導線**: `/kuchikomi/write`（登録→職種→施設検索→投稿画面。勤務先がプロフィールにあれば1タップ）、サイトのメニューに「口コミを書く」、PTホームの案内（`WorkplaceReviewPrompt`。勤務先が分かれば、その施設の投稿画面へ）、投稿後に「同じ職場の方に共有」（`shareContent`）。未実施: 登録者へのメール依頼、SNSでの呼びかけ、投稿の少ない施設への通知。
-- **登録の導線（2026-11-28）**: `from=kuchikomi` の登録画面は「リハ職の本音」の見出しで、名前の下に「口コミは匿名でできます」。登録後は、施設を決めて来た人はその施設へ、それ以外は `/kuchikomi/write?registered=1`（「口コミを書く病院や施設を探す」ボタン→検索→投稿）。長いプロフィール入力には進まない。ヘッダーには「口コミを書く」（スマホでも表示）。
+- **単体サイトとして完結（2026-11-29）**: アカウントとデータは Re:light と共通で、画面は `/kuchikomi/*` の中で完結する。`register`（職種・名前・メール・パスワード・同意）→`welcome`（リハ職としての経験年数。認証のユーザー情報 `rehab_experience_years` に保存。口コミには表示しない）→施設を探す/元の施設→投稿。`login`・`forgot-password`・`mypage`（自分の口コミ・ログアウト・退会）。ヘッダーは `KuchikomiHeaderActions`。`/register?from=kuchikomi` は転送。施設ページの kuchikomi 版は、アプリへのリンク（PTプロフィール・採用担当）を出さない。パスワード再設定メールの行き先 `/reset-password` と、口コミトップ本文の地域一覧・就活ガイドへのリンクは、Re:light の画面のまま。
 - 2026-11-17時点の口コミは全体で2件（2施設）。口コミが集まるまでは、「書く」への導線がサイトの中心。
 
 ## 施設データの取り込み（2026-10-25 に実施した方法）

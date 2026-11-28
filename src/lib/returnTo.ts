@@ -9,7 +9,7 @@ export function safeReturnPath(raw: string | null | undefined): string | null {
   if (path.length === 0 || path.length > 300) return null;
   if (!path.startsWith("/") || path.startsWith("//") || path.includes("\\")) return null;
   // 認証まわりの画面に戻すと、ぐるぐる回ってしまう
-  if (/^\/(login|register|forgot-password|reset-password)(\/|\?|$)/.test(path)) return null;
+  if (/^\/(kuchikomi\/)?(login|register|welcome|forgot-password|reset-password)(\/|\?|$)/.test(path)) return null;
   return path;
 }
 

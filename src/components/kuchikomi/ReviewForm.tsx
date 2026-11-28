@@ -22,7 +22,6 @@ import { KUCHIKOMI_REGISTER } from "@/lib/kuchikomi";
 import { notify } from "@/lib/notify";
 import { shareContent, shareUrl } from "@/lib/share";
 import { supabase } from "@/lib/supabase";
-import { withReturnTo } from "@/lib/returnTo";
 
 // 口コミの投稿画面（職場口コミサイトの中で完結する。×を押すと、口コミサイトの施設ページへ戻る）。
 // 入力欄は、アプリの職場ページの投稿画面と同じ（保存は upsertHospitalReview を共用）
@@ -155,7 +154,7 @@ export default function ReviewForm({ hospitalId, hospitalName }: { hospitalId: s
           <p className="text-sm leading-7 text-gray-700">口コミは、匿名で書けます。無料・約1分で登録できます（職種・名前・メール・パスワード）。登録のあと、そのまま、この画面に戻って書けます。</p>
           <div className="mt-3 flex flex-wrap gap-2">
             <Link href={`${KUCHIKOMI_REGISTER}&next=${encodeURIComponent(here)}`} className="rounded-full bg-relight-gradient px-5 py-2.5 text-sm font-bold">無料で登録する</Link>
-            <Link href={withReturnTo("/login", here)} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>
+            <Link href={`/kuchikomi/login?next=${encodeURIComponent(here)}`} className="rounded-full border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-800">ログイン</Link>
           </div>
         </div>
       )}
