@@ -66,7 +66,7 @@ export default function EditProfilePage() {
 
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
-  // 新規登録直後（?welcome=1）は歓迎メッセージを出し、保存後はホームへ進める
+  // 新規登録直後（?welcome=1）は歓迎メッセージを出し、保存後は職場口コミの検索（/workplace）へ進める
   const [welcome, setWelcome] = useState(false);
   // 初回プロフィール登録が済んだ日時（未完了ならnull）
   const [onboardedAt, setOnboardedAt] = useState<string | null>(null);
@@ -564,7 +564,7 @@ export default function EditProfilePage() {
 
     notify("プロフィールを保存しました");
 
-    router.push(welcome ? (takeReturnTo() ?? "/home") : "/mypage");
+    router.push(welcome ? (takeReturnTo() ?? "/workplace") : "/mypage");
   }
 
   if (loading) {
