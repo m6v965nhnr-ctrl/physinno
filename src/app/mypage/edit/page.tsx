@@ -399,14 +399,12 @@ export default function EditProfilePage() {
       return;
     }
 
-    // プロフィールに必要な項目は必須（アイコン・勤務先・所属部署・出身・生年月日・連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
+    // プロフィールに必要な項目は必須（学歴・言語・アイコン・勤務先・所属部署・出身・生年月日・連絡先・自己紹介・強み・興味のある分野・カバー写真・証明写真は任意）
     const requiredFields: { label: string; filled: boolean; focusId: string }[] = [
       { label: "名前", filled: Boolean(fullName.trim()), focusId: "field-1" },
       { label: "ふりがな", filled: Boolean(fullNameKana.trim()), focusId: "field-kana" },
       { label: "資格", filled: Boolean(qualification.trim()), focusId: "field-5" },
       { label: "経験（何年目か）", filled: experienceYears.trim() !== "", focusId: "field-exp" },
-      { label: "学歴", filled: Boolean(education.trim()), focusId: "field-6" },
-      { label: "言語", filled: Boolean(language.trim()), focusId: "field-9" },
     ];
 
     const missing = requiredFields.filter((f) => !f.filled);
@@ -919,7 +917,7 @@ export default function EditProfilePage() {
           {/* 学歴 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-6">
-              学歴 <span className="text-xs font-normal text-red-500">（必須）</span>
+              学歴 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-6"
@@ -967,7 +965,7 @@ export default function EditProfilePage() {
           {/* 言語 */}
           <div>
             <label className="block font-semibold mb-2" htmlFor="field-9">
-              言語 <span className="text-xs font-normal text-red-500">（必須）</span>
+              言語 <span className="text-xs font-normal text-gray-400">（任意）</span>
             </label>
 
             <input id="field-9"
